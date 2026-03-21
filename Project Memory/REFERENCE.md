@@ -136,5 +136,9 @@ Current project skills:
   - `/Users/baqer/.codex/skills/project-memory-updater/SKILL.md`
 - `powerbi-visual-repair`
   - `/Users/baqer/.codex/skills/powerbi-visual-repair/SKILL.md`
+- `kpi-visual-consistency-agent`
+  - `/Users/baqer/.codex/skills/kpi-visual-consistency-agent/SKILL.md`
+- `model-cleanup-stale-object-agent`
+  - `/Users/baqer/.codex/skills/model-cleanup-stale-object-agent/SKILL.md`
 
 Use `Project Memory` as the project brain and the Codex skills folder as the live instruction layer.
