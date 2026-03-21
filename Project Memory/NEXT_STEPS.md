@@ -3,7 +3,7 @@
 ## Immediate Priority
 1. Reopen the PBIP after each semantic-model pass and capture screenshots of the remaining broken pages.
 2. Recheck whether the right-pane warnings for `generalLedgerEntries` and `accounts` are gone after the latest cleanup pass.
-3. Recheck the rewired monetary KPI cards on the 5 core finance pages and confirm the explicit title is clean and the values now render with the intended two-decimal compact behavior such as `2.00bn د.ع.‏`.
+3. Recheck the rewired monetary KPI cards on the 5 core finance pages and confirm the explicit title is clean and the values now render with the intended two-decimal compact behavior such as `2.00bn د.ع.‏` without breaking the card visuals.
 4. Reopen `Actual vs Budget` and confirm the page is stable after the dimension-slicer removal and interaction cleanup.
 5. Reopen `Cashflow` and confirm the corrected `CashflowPeriod` binding and lower-section cards/charts render without stale errors.
 6. Keep the new root `README`, `docs/`, and GitHub templates aligned with any future project-direction changes so repository onboarding does not drift away from `Project Memory`.

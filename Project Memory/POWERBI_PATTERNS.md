@@ -40,11 +40,11 @@ This file captures what we have learned about handling PBIP report files, TMDL s
 - The old helper `... KPI` / `... KPI Plain` aliases are retired. They leaked internal captions in live Desktop validation and should not be reintroduced.
 - For the repeated top monetary KPI cards, card-level `labelPrecision` and `labelDisplayUnits` alone are not reliable enough when Power BI insists on compact text like `2bn`.
 - The safer current pattern for those repeated top monetary cards is:
-- bind the card to a dedicated text-returning `... Card Display` measure
+- bind the card to a dedicated numeric `... Card Display` measure with fixed scaling
 - hide the built-in card label
 - set the card title explicitly to the business caption
 - keep the value typography on the card itself
-- use the text measure to enforce compact `bn / M` output with two decimals
+- use the measure format string to enforce compact `bn / M` output with two decimals
 - If two pages answer the same question with nearly the same visual, reassign one of them to a different business angle instead of keeping both. In the current 7-page set:
 - `Income Statement` should own profitability mix
 - `Revenue Insights` should own sales-type revenue mix
