@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Project Documentation
+    url: https://github.com/Baqer-Marayati/al-jazeera-reporting-hub/blob/main/README.md
+    about: Start here for repository orientation and working rules.
+  - name: Project Memory Reference
+    url: https://github.com/Baqer-Marayati/al-jazeera-reporting-hub/blob/main/Project%20Memory/REFERENCE.md
+    about: Use this when you need the core paths and active project anchors.
