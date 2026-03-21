@@ -45,6 +45,7 @@ This file captures what we have learned about handling PBIP report files, TMDL s
 - set the card title explicitly to the business caption
 - keep the value typography on the card itself
 - use the measure format string to enforce compact `bn / M` output with two decimals
+- Do not mix that newer KPI-row card pattern with the older `labels/categoryLabels` card styling on adjacent top-row cards. Percent and count cards in the same KPI row should also use the explicit-title + hidden-label structure so the whole row renders as one component family.
 - If two pages answer the same question with nearly the same visual, reassign one of them to a different business angle instead of keeping both. In the current 7-page set:
 - `Income Statement` should own profitability mix
 - `Revenue Insights` should own sales-type revenue mix

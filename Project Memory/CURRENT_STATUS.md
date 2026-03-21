@@ -117,6 +117,8 @@ These pages were physically removed from the report definition during cleanup so
 - Follow-up screenshots confirmed the old helper-based `KPI Plain` strategy was unsafe and leaked internal captions into the first five pages' top monetary cards, so those legacy helper measures were removed from `_Measures.tmdl`.
 - The top monetary cards on `Executive Overview`, `Income Statement`, `Revenue Insights`, `Cost Structure`, and `Balance Sheet` now use an explicit title plus a hidden built-in label, with the card value bound to dedicated numeric `... Card Display` measures.
 - Those `... Card Display` measures are limited to the repeated top money cards only. They use fixed unit scaling plus measure-level format strings such as `0.00bn د.ع.‏` or `0.00M د.ع.‏` so the visuals stay valid while still rendering two decimals.
+- The remaining top-row percent/count cards on those same five pages were then moved onto the same hidden-label + explicit-title card pattern so the whole KPI row shares one typography system instead of mixing the old label-style cards with the newer monetary cards.
+- The intended standard for the first five pages is now: same quiet 9pt title treatment, same non-bold 18pt Tahoma value text, and no visibly heavier percent/count cards sitting next to the monetary cards.
 - `Executive Overview`'s `Revenue Mix by Location` donut was adjusted to render all three location labels more reliably.
 - Per user direction, `Actual vs Budget` and `Cashflow` are now intentionally left untouched while refinement continues on the first five pages only.
 - Added a dedicated server-transfer export routine:
