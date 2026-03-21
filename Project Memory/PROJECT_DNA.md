@@ -1,7 +1,7 @@
 # Project DNA
 
 ## Purpose
-This is a Power BI financial reporting project for management reporting, centered on P&L, executive overview, financial details, revenue insights, cost structure, and balance sheet reporting.
+This is a Power BI financial reporting project for management reporting, centered on executive overview, income statement, revenue insights, cost structure, balance sheet reporting, and controlled recovery of a small number of remaining benchmark pages.
 
 ## Active Project
 Use this folder as the active working project:
@@ -27,24 +27,18 @@ As of March 20, 2026, `Design Benchmarks/Sample 2` is the active benchmark and s
 Use it as the baseline report shell, not just as inspiration.
 
 ## Main Pages
-The active project currently includes:
+The active working set currently includes:
 - `Executive Overview`
 - `Income Statement`
-- `Financial Details`
-- `Performance Details`
 - `Revenue Insights`
 - `Cost Structure`
 - `Balance Sheet`
 
-The report also intentionally retains benchmark-shell pages that still need SAP rewiring:
-- `Profit and Loss`
+The report also retains two active recovery pages:
 - `Actual vs Budget`
-- `Accounts Payable`
-- `AP Invoice Details`
-- `Accounts Receivable`
-- `AR Invoice Details`
 - `Cashflow`
-- `Commitment Report`
+
+Other benchmark-shell pages remain historical or deferred unless the user explicitly reactivates them.
 
 ## Design Rules
 - Preserve the active benchmark's page shell, surface treatment, and spacing system unless newer records clearly replace it.
@@ -92,10 +86,11 @@ The work sequence should be:
 3. remap visuals, measures, and fields to the SAP model
 4. then polish page-by-page
 
-As of March 20, 2026, the report is in a hybrid state:
-- working core pages already run on SAP logic
-- benchmark-shell pages still exist but some use compatibility tables/measures
-- several benchmark pages are only partially working because of missing rewires, broken field bindings, or provisional semantic-model objects
+As of March 22, 2026, the report is in a hybrid but much narrower state:
+- the five core finance pages are visually stable and run on SAP-backed logic
+- the top KPI row on those five pages is now a shared, stabilized pattern
+- `Actual vs Budget` and `Cashflow` remain the main recovery pages because they still depend on compatibility or provisional logic
+- older benchmark-shell pages remain in project history, but are not part of the active operating queue
 
 The current semantic-model recovery strategy is:
 1. keep the Sample 2 shell
@@ -125,19 +120,15 @@ This project responds better to deliberate, evidence-based passes than to broad 
 Refine these pages first:
 1. `Executive Overview`
 2. `Income Statement`
-3. `Financial Details`
+3. `Revenue Insights`
+4. `Cost Structure`
+5. `Balance Sheet`
 
-Use `Design Benchmarks/Sample 2` as the benchmark for all three.
+Use `Design Benchmarks/Sample 2` as the benchmark for all five.
 
-Current repair priority for the broken benchmark pages is:
-1. `Profit and Loss`
-2. `Accounts Receivable`
-3. `Accounts Payable`
-4. `AR Invoice Details`
-5. `AP Invoice Details`
-6. `Actual vs Budget`
-7. `Commitment Report`
-8. `Cashflow`
+Current repair priority for the remaining broken benchmark pages is:
+1. `Actual vs Budget`
+2. `Cashflow`
 
 ## Working Rule For Future Threads
 When a new Codex thread starts:
@@ -147,3 +138,4 @@ When a new Codex thread starts:
 4. re-check `Design Benchmarks` before making visual decisions
 5. update the memory files when the benchmark changes meaningfully
 6. read `CURRENT_STATUS.md`, `MODEL_NOTES.md`, and `NEXT_STEPS.md` before touching broken benchmark pages
+7. treat the KPI row on the five core finance pages as one system, not five separate formatting tasks

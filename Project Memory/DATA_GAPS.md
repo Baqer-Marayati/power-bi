@@ -5,20 +5,10 @@ This file separates what is truly available from SAP-backed logic, what is curre
 
 ## Available Now
 
-### Profit and Loss / Financial Reporting Core
+### Financial Reporting Core
 - `Fact_PNL` is available and already powers working financial pages.
 - `Fact_BalanceSheet` is available and already powers the balance sheet page.
 - `Fact_SalesDetail` is available and already powers sales and revenue-oriented pages.
-
-### Accounts Receivable
-- SAP-backed AR-style data is available through `customerLedgerEntries`.
-- AR top cards and customer-level views prove the underlying domain exists.
-- Remaining problems are mostly report wiring and visual cleanup.
-
-### Accounts Payable
-- SAP-backed AP-style data is available through `vendorLedgerEntries`.
-- AP top cards and invoice-status visuals prove the underlying domain exists.
-- Remaining problems are mostly report wiring and visual cleanup.
 
 ### Commitment-Like Purchase Logic
 - Commitment-style logic is partly available through `purchaseLines`.
@@ -63,8 +53,6 @@ This file separates what is truly available from SAP-backed logic, what is curre
 - whether purchase-line commitment logic is sufficient for the intended commitment-report scope
 
 ### Does Not Currently Depend On User Input
-- AR domain existence
-- AP domain existence
 - core P&L domain existence
 - balance sheet domain existence
 - general report rewiring, cleanup, and IQD formatting work
@@ -72,3 +60,4 @@ This file separates what is truly available from SAP-backed logic, what is curre
 ## Practical Reading
 - If a page is broken but its top cards already show valid numbers, the domain usually exists and the problem is likely report wiring.
 - If a page depends on budget or bank-ledger truth, verify whether the source is real before claiming the page is fully solved.
+- For the current active queue, `Actual vs Budget` and `Cashflow` are the most important examples of pages where compatibility logic should not be mistaken for final business truth.
