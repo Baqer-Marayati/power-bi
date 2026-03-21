@@ -23,10 +23,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Sales Gross Profit YTD KPI Plain"
+                  "Property": "Sales Gross Profit YTD"
                 }
               },
-              "queryRef": "_Measures.Sales Gross Profit YTD KPI Plain",
+              "queryRef": "_Measures.Sales Gross Profit YTD",
               "nativeQueryRef": "Sales Gross Profit YTD"
             }
           ]
@@ -80,7 +80,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                      "Value": "1D"
                 }
               }
             },
@@ -100,14 +100,14 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                      "Value": "true"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                      "Value": "9D"
                 }
               }
             },
@@ -130,7 +130,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#6B7772'"
                     }
                   }
                 }
@@ -231,51 +231,6 @@
                       "Value": "'#FFFFFF'"
                     }
                   }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "title": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Sales Gross Profit YTD'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "9D"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#6B7772'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif"
                 }
               }
             }

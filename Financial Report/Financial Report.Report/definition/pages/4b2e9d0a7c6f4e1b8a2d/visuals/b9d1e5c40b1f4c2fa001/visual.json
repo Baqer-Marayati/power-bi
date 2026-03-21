@@ -23,10 +23,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Operating Expenses KPI Plain"
+                  "Property": "Operating Expenses Display"
                 }
               },
-              "queryRef": "_Measures.Operating Expenses KPI Plain",
+              "queryRef": "_Measures.Operating Expenses Display",
               "nativeQueryRef": "Operating Expenses"
             }
           ]
@@ -62,7 +62,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                      "Value": "1D"
                 }
               }
             },
@@ -82,7 +82,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                      "Value": "9D"
                 }
               }
             },
@@ -93,21 +93,6 @@
                 }
               }
             },
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
-    "visualContainerObjects": {
-      "title": [
-        {
-          "properties": {
             "show": {
               "expr": {
                 "Literal": {
@@ -115,35 +100,14 @@
                 }
               }
             },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Operating Expenses'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "9D"
-                }
-              }
-            },
-            "fontColor": {
+            "color": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#6B7772'"
                     }
                   }
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif"
                 }
               }
             }

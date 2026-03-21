@@ -114,9 +114,9 @@ These pages were physically removed from the report definition during cleanup so
 - Replaced the remaining live compact-text KPI display measures on the kept 7 pages so they now render explicit IQD values with two decimals instead of `bn / M` shorthand.
 - Removed the inert `Dimension` slicer from `Actual vs Budget` and cleaned the page interaction map so it no longer references deleted or non-existent visual IDs.
 - Corrected the stale `CashflowPeriod` query reference on the `Cashflow` page so the page definition is internally consistent again.
-- Review screenshots confirmed the shared KPI-card rendering issue on the first five pages is resolved, but also showed that helper measure names like `KPI Plain` were leaking into card captions.
-- The first five pages now use explicit visual titles on the top monetary KPI cards so the report shows business-facing labels such as `Net Revenue`, `Gross Profit`, and `Total Assets` instead of helper-measure names.
-- Follow-up screenshots showed that card titles do not replace the built-in category label on these visuals; they stack above it and create a duplicate-caption failure.
-- The safer live pattern is now: keep the explicit visual title for business-facing naming, but visually suppress the built-in helper caption instead of trusting the card `categoryLabels.show = false` setting.
+- Follow-up screenshots showed that the helper-based `KPI Plain` strategy was still leaking internal captions into the first five pages' top monetary cards.
+- The top monetary cards on `Executive Overview`, `Income Statement`, `Revenue Insights`, `Cost Structure`, and `Balance Sheet` were then rewired away from the helper `... KPI` / `... KPI Plain` layers and back to the real business measures.
+- Those cards now follow a safer single-caption pattern: show the built-in category label in the standard grey 9pt style, remove the extra visual title, and force non-compact display units at the value layer.
+- The old helper KPI measures were removed from `_Measures.tmdl` because the report no longer references them.
 - `Executive Overview`'s `Revenue Mix by Location` donut was adjusted to render all three location labels more reliably.
 - Per user direction, `Actual vs Budget` and `Cashflow` are now intentionally left untouched while refinement continues on the first five pages only.
