@@ -45,6 +45,9 @@ Use this folder for:
 - architecture and structure summaries
 - page-purpose summaries
 - data-context notes that help orient future work
+- repeatable workflows
+- stable standards
+- glossary and quick-scan issue summaries
 
 ### `.github`
 
@@ -65,6 +68,14 @@ Use each layer for a different purpose:
   - stable repo-facing documentation
 - `Project Memory/`
   - active truth, decisions, current state, and handoff context
+
+Recommended substructure inside `docs/`:
+- `workflows/`
+  - repeated operating procedures and checklists
+- `standards/`
+  - naming, formatting, and layout rules
+- root `docs/*.md`
+  - orientation docs such as setup, pages, known issues, and glossary
 
 ## Source Of Truth Rules
 

@@ -60,6 +60,14 @@ If you are continuing work on this project, read these in order:
 - [`docs/structure.md`](docs/structure.md)
 - [`docs/data-sources.md`](docs/data-sources.md)
 - [`docs/pages.md`](docs/pages.md)
+- [`docs/known-issues.md`](docs/known-issues.md)
+- [`docs/glossary.md`](docs/glossary.md)
+- [`docs/workflows/pbip-editing.md`](docs/workflows/pbip-editing.md)
+- [`docs/workflows/visual-repair-checklist.md`](docs/workflows/visual-repair-checklist.md)
+- [`docs/workflows/semantic-model-change-checklist.md`](docs/workflows/semantic-model-change-checklist.md)
+- [`docs/standards/naming.md`](docs/standards/naming.md)
+- [`docs/standards/currency-formatting.md`](docs/standards/currency-formatting.md)
+- [`docs/standards/page-layout-rules.md`](docs/standards/page-layout-rules.md)
 - [`CHANGELOG.md`](CHANGELOG.md)
 
 ## Git Workflow

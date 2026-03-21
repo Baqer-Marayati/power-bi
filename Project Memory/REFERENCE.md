@@ -88,6 +88,14 @@ Use these repo-facing docs for fast orientation before dropping into detailed me
 - `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/docs/structure.md`
 - `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/docs/data-sources.md`
 - `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/docs/pages.md`
+- `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/docs/known-issues.md`
+- `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/docs/glossary.md`
+- `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/docs/workflows/pbip-editing.md`
+- `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/docs/workflows/visual-repair-checklist.md`
+- `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/docs/workflows/semantic-model-change-checklist.md`
+- `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/docs/standards/naming.md`
+- `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/docs/standards/currency-formatting.md`
+- `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/docs/standards/page-layout-rules.md`
 - `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/CHANGELOG.md`
 
 Use `README` and `docs` for repo orientation.

@@ -97,6 +97,8 @@
 - Keep a repo-facing documentation layer at the root for GitHub orientation.
 - Use `README.md` for a fast repo overview and key links.
 - Use `docs/` for stable setup, structure, page-purpose, and data-context documentation.
+- Use `docs/workflows/` for repeatable operating procedures.
+- Use `docs/standards/` for durable formatting, naming, and layout rules.
 - Do not duplicate active status tracking across every doc; current truth still belongs in `Project Memory`.
 - Keep `CHANGELOG.md` milestone-level only.
 
