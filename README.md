@@ -53,6 +53,7 @@ If you are continuing work on this project, read these in order:
 - Use `Design Benchmarks/Sample 2` as the active visual benchmark unless memory says otherwise.
 - Update `Project Memory` after meaningful technical or design changes.
 - Keep Git commits small and descriptive.
+- Treat repeated UI patterns like KPI rows and slicer rails as shared systems; fix them consistently across pages instead of one card or one screenshot at a time.
 
 ## Project Documentation
 

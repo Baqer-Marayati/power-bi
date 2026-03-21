@@ -60,18 +60,16 @@ From `Design Benchmarks/Sample 2`:
 ## Current Priority Pages
 - `Executive Overview`
 - `Income Statement`
-- `Financial Details`
+- `Revenue Insights`
+- `Cost Structure`
+- `Balance Sheet`
 
 ## Current Recovery Pages
 These pages still need active repair or semantic cleanup:
-- `Profit and Loss`
 - `Actual vs Budget`
-- `Accounts Payable`
-- `AP Invoice Details`
-- `Accounts Receivable`
-- `AR Invoice Details`
 - `Cashflow`
-- `Commitment Report`
+
+Deferred pages are no longer part of the live 7-page shell and should be treated as history unless explicitly reintroduced later.
 
 ## Memory Files
 Read these first in future threads:

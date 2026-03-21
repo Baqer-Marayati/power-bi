@@ -82,6 +82,13 @@
 - Broad style improvements should be applied as repeated-pattern fixes, not isolated screenshot patches.
 - If a styling issue survives a basic size tweak, prefer structural changes such as moving titles outside controls or standardizing repeated geometry.
 
+## KPI Row Rule
+- Treat the top KPI row on the first five pages as a shared component, not as isolated cards.
+- Do not mix the older `labels/categoryLabels` card style with the newer hidden-label + explicit-title pattern on adjacent KPI cards.
+- Monetary KPI cards may use dedicated numeric `... Card Display` measures when Power BI ignores compact-number precision settings.
+- Percent and count cards in the same row should keep the same visual structure and typography even if they continue to bind directly to the base measure.
+- If a future tweak threatens card stability, prefer preserving the current unified KPI-row pattern over chasing one-off formatting tricks.
+
 ## Semantic Safety Rule
 - Be cautious with compatibility aliases that bridge domains in both directions.
 - If a compatibility measure creates a circular-feeling dependency path, prefer rewiring the report visual directly to the source table instead of keeping the alias.

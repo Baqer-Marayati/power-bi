@@ -23,6 +23,7 @@ For exact live truth, defer to `Project Memory/CURRENT_STATUS.md`.
 ### Currency And Layout Coupling
 - IQD formatting can change visual fit
 - any currency-formatting edit should trigger a layout recheck on KPI cards and dense visuals
+- do not treat a visually working KPI row as safe if it mixes old and new card systems; consistency is part of stability here
 
 ## Operational Risks
 

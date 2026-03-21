@@ -3,12 +3,11 @@
 ## Immediate Priority
 1. Reopen the PBIP after each semantic-model pass and capture screenshots of the remaining broken pages.
 2. Recheck whether the right-pane warnings for `generalLedgerEntries` and `accounts` are gone after the latest cleanup pass.
-3. Recheck the rewired monetary KPI cards on the 5 core finance pages and confirm the explicit title is clean and the values now render with the intended two-decimal compact behavior such as `2.00bn د.ع.‏` without breaking the card visuals.
+3. Preserve the now-working KPI-row pattern on the 5 core finance pages and reuse it consistently instead of reintroducing older card variants.
 4. Reopen `Actual vs Budget` and confirm the page is stable after the dimension-slicer removal and interaction cleanup.
 5. Reopen `Cashflow` and confirm the corrected `CashflowPeriod` binding and lower-section cards/charts render without stale errors.
-6. Keep the new root `README`, `docs/`, and GitHub templates aligned with any future project-direction changes so repository onboarding does not drift away from `Project Memory`.
-7. Start using the new `docs/workflows/` and `docs/standards/` files as the default lightweight reference layer before deeper repair work.
-8. Keep the new GitHub issues current as work advances so the repo stays operational and later threads can pick up from issue state instead of reconstructing priorities from chat.
+6. Keep the root `README`, `docs/`, and GitHub templates aligned with any future project-direction changes so repository onboarding does not drift away from `Project Memory`.
+7. Keep GitHub issues current as work advances so later threads can pick up from issue state instead of reconstructing priorities from chat.
 
 ## Page-Specific Guidance
 
@@ -32,4 +31,5 @@
 - PBIP opens cleanly.
 - The targeted page renders without broken visuals.
 - Currency formatting is consistent in IQD.
+- Shared repeated UI systems such as KPI rows and slicer rails remain internally consistent after the change.
 - Project Memory is updated before the thread is considered done.
