@@ -93,6 +93,13 @@
 - Add new markdown files when they materially improve continuity for later build threads.
 - Consolidate durable discoveries into the right memory files instead of letting them remain trapped in chat history.
 
+## Documentation Layer Rule
+- Keep a repo-facing documentation layer at the root for GitHub orientation.
+- Use `README.md` for a fast repo overview and key links.
+- Use `docs/` for stable setup, structure, page-purpose, and data-context documentation.
+- Do not duplicate active status tracking across every doc; current truth still belongs in `Project Memory`.
+- Keep `CHANGELOG.md` milestone-level only.
+
 ## Rebuild Rule
 - If the existing report is resisting design changes, do not spend multiple passes on low-impact theme edits.
 - Start from the benchmark report layer and rewire it to the active semantic model instead.

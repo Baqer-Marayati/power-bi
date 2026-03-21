@@ -6,6 +6,7 @@
 3. Recheck the restored monetary KPI cards on the 5 core finance pages and confirm the explicit IQD values now render cleanly without compact `bn / M` fallback.
 4. Reopen `Actual vs Budget` and confirm the page is stable after the dimension-slicer removal and interaction cleanup.
 5. Reopen `Cashflow` and confirm the corrected `CashflowPeriod` binding and lower-section cards/charts render without stale errors.
+6. Keep the new root `README`, `docs/`, and GitHub templates aligned with any future project-direction changes so repository onboarding does not drift away from `Project Memory`.
 
 ## Page-Specific Guidance
 

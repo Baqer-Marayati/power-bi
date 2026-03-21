@@ -81,6 +81,18 @@ Read these first in future threads:
 - `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/Project Memory/DATA_GAPS.md`
 - `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/Project Memory/POWERBI_PATTERNS.md`
 
+## Repository Documentation
+Use these repo-facing docs for fast orientation before dropping into detailed memory:
+- `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/README.md`
+- `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/docs/setup.md`
+- `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/docs/structure.md`
+- `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/docs/data-sources.md`
+- `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/docs/pages.md`
+- `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/CHANGELOG.md`
+
+Use `README` and `docs` for repo orientation.
+Use `Project Memory` for live project truth and handoff context.
+
 ## Learning Focus
 Use Project Memory to preserve:
 - project taste and design direction
