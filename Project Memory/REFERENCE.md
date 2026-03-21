@@ -4,6 +4,9 @@
 Main PBIP:
 - `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/Financial Report/Financial Report.pbip`
 
+GitHub repository:
+- `https://github.com/Baqer-Marayati/al-jazeera-reporting-hub`
+
 Semantic model:
 - `/Users/baqer/Dropbox/Work/PowerBI/Al Jazeera Reporting Hub/Financial Report/Financial Report.SemanticModel/definition/model.tmdl`
 
@@ -100,6 +103,22 @@ Use these repo-facing docs for fast orientation before dropping into detailed me
 
 Use `README` and `docs` for repo orientation.
 Use `Project Memory` for live project truth and handoff context.
+
+## GitHub Tracking
+GitHub issue tracking is now part of the active operating setup.
+
+Configured foundations include:
+- repository description and topics
+- protected `main` branch with deletion and force-push protection
+- issue labels and milestones
+- issue templates and contribution guide in the repo
+
+The local Mac also now has:
+- `gh`
+- `jq`
+- `ffmpeg`
+
+`gh` authentication is working for account `Baqer-Marayati`, so future threads can create and manage GitHub issues directly from the terminal instead of relying on manual website-only setup.
 
 ## Learning Focus
 Use Project Memory to preserve:

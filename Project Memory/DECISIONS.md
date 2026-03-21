@@ -102,6 +102,12 @@
 - Do not duplicate active status tracking across every doc; current truth still belongs in `Project Memory`.
 - Keep `CHANGELOG.md` milestone-level only.
 
+## GitHub Tracking Rule
+- Use GitHub Issues as the active task-tracking layer for meaningful repair, model, design, and documentation work.
+- Keep labels and milestones aligned to the real project state rather than using GitHub as a generic backlog dump.
+- Prefer updating or closing an existing issue over creating duplicate issues for the same active page or model problem.
+- The local terminal `gh` workflow is now part of the approved setup, so future GitHub issue management does not need to be done manually in the browser unless account settings or new permissions are involved.
+
 ## Rebuild Rule
 - If the existing report is resisting design changes, do not spend multiple passes on low-impact theme edits.
 - Start from the benchmark report layer and rewire it to the active semantic model instead.

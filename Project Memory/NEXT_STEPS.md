@@ -8,6 +8,7 @@
 5. Reopen `Cashflow` and confirm the corrected `CashflowPeriod` binding and lower-section cards/charts render without stale errors.
 6. Keep the new root `README`, `docs/`, and GitHub templates aligned with any future project-direction changes so repository onboarding does not drift away from `Project Memory`.
 7. Start using the new `docs/workflows/` and `docs/standards/` files as the default lightweight reference layer before deeper repair work.
+8. Keep the new GitHub issues current as work advances so the repo stays operational and later threads can pick up from issue state instead of reconstructing priorities from chat.
 
 ## Page-Specific Guidance
 
