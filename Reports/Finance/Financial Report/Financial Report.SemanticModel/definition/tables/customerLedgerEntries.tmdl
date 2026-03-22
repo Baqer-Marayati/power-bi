@@ -210,3 +210,4 @@ table customerLedgerEntries
 				    Source
 
 	annotation PBI_ResultType = Table
+

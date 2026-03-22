@@ -3,111 +3,64 @@ table DateTable
 	dataCategory: Time
 
 	column Date
-		dataType: dateTime
-		isKey
-		formatString: General Date
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0202
-		summarizeBy: none
-		sourceColumn: Date
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 309f5598-ccbf-441c-a5c3-3f9c31b90d65
+		isNameInferred
+		sourceColumn: [Date]
 
 	column Year
-		dataType: int64
-		formatString: 0
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0203
-		summarizeBy: none
-		sourceColumn: Year
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 5ee3e256-1f06-41fb-b88d-2472c8e60ddb
+		isNameInferred
+		sourceColumn: [Year]
 
 	column Quarter
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0204
-		summarizeBy: none
-		sourceColumn: Quarter
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: bbe25c95-d220-4895-907d-5708df3575ee
+		isNameInferred
+		sourceColumn: [Quarter]
 
 	column Month
-		dataType: int64
-		formatString: 0
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0205
-		summarizeBy: none
-		sourceColumn: Month
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 6c650eb6-4f28-4265-b391-cabd61c29924
+		isNameInferred
+		sourceColumn: [Month]
 
 	column 'Month Name'
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0206
-		summarizeBy: none
-		sourceColumn: Month Name
-		sortByColumn: Month
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: aa025a20-de95-480a-a37a-d380c8eb7981
+		isNameInferred
+		sourceColumn: [Month Name]
 
 	column 'Month Name Short'
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0207
-		summarizeBy: none
-		sourceColumn: Month Name Short
-		sortByColumn: MonthsortOrder
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: da7553aa-ab9e-4515-a87c-5329e06310ec
+		isNameInferred
+		sourceColumn: [Month Name Short]
 
 	column MonthsortOrder
-		dataType: int64
-		formatString: 0
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0208
-		summarizeBy: none
-		sourceColumn: MonthsortOrder
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 73031f2e-0bd6-4172-8f5b-f903e72c8ce3
+		isNameInferred
+		sourceColumn: [MonthsortOrder]
 
 	column Day
-		dataType: int64
-		formatString: 0
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0209
-		summarizeBy: none
-		sourceColumn: Day
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 627fe89b-13d1-43a5-99ca-f9316e433bb3
+		isNameInferred
+		sourceColumn: [Day]
 
 	column 'Day Name'
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0210
-		summarizeBy: none
-		sourceColumn: Day Name
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 63dce588-c7a3-46d8-9b92-931eddc68d69
+		isNameInferred
+		sourceColumn: [Day Name]
 
 	column 'Weekday Number'
-		dataType: int64
-		formatString: 0
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0211
-		summarizeBy: none
-		sourceColumn: Weekday Number
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 7300c2ff-be06-4f78-91a4-9ff610e9d1d9
+		isNameInferred
+		sourceColumn: [Weekday Number]
 
 	column IsWeekend
-		dataType: boolean
-		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0212
-		summarizeBy: none
-		sourceColumn: IsWeekend
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 8d57eb8a-4464-4bfd-a846-9d419ef5ad2a
+		isNameInferred
+		sourceColumn: [IsWeekend]
 
 	column IsPreviousMonthToDate
-		dataType: boolean
-		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0213
-		summarizeBy: none
-		sourceColumn: IsPreviousMonthToDate
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: bc0a7b69-989e-4f32-a09e-c28756ad1a27
+		isNameInferred
+		sourceColumn: [IsPreviousMonthToDate]
 
 	partition DateTable = calculated
 		mode: import
@@ -131,3 +84,4 @@ table DateTable
 				)
 
 	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0201
+

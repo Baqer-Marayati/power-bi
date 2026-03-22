@@ -2,29 +2,19 @@ table dimensions
 	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0021
 
 	column ID
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0022
-		summarizeBy: none
-		sourceColumn: ID
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 427b1d5b-971b-4a70-91dd-113b23e45edf
+		isNameInferred
+		sourceColumn: [ID]
 
 	column code
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0023
-		summarizeBy: none
-		sourceColumn: code
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 4a29a529-5022-4243-981d-61bac4a4b485
+		isNameInferred
+		sourceColumn: [code]
 
 	column SortOrder
-		dataType: int64
-		formatString: 0
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0024
-		summarizeBy: none
-		sourceColumn: SortOrder
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: aa91e7dc-a751-4fc3-a33b-b9eae419bb3b
+		isNameInferred
+		sourceColumn: [SortOrder]
 
 	partition dimensions = calculated
 		mode: import
@@ -42,3 +32,4 @@ table dimensions
 				)
 
 	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0021
+

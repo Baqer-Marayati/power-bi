@@ -2,30 +2,19 @@ table DateTableCashflowAPAR
 	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1121
 
 	column Date
-		dataType: dateTime
-		formatString: General Date
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1122
-		summarizeBy: none
-		sourceColumn: Date
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: d1671705-55c8-4555-9c97-c1ae95c0f7f3
+		isNameInferred
+		sourceColumn: [Date]
 
 	column 'Month Year'
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1123
-		summarizeBy: none
-		sourceColumn: Month Year
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 89f05717-e221-487b-807d-01be001b8cec
+		isNameInferred
+		sourceColumn: [Month Year]
 
 	column IsInLast6Months_PTO
-		dataType: boolean
-		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1124
-		summarizeBy: none
-		sourceColumn: IsInLast6Months_PTO
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 7a381a39-cf6f-4999-8f52-b873aa3d5c92
+		isNameInferred
+		sourceColumn: [IsInLast6Months_PTO]
 
 	partition DateTableCashflowAPAR = calculated
 		mode: import
@@ -43,3 +32,4 @@ table DateTableCashflowAPAR
 				)
 
 	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a1121
+

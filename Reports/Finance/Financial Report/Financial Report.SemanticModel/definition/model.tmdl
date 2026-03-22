@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["Fact_PNL","Fact_BalanceSheet","Fact_SalesDetail","generalLedgerEntries","glBudgetEntries","customerLedgerEntries","vendorLedgerEntries","purchaseLines","bankAccountLedgerEntries","BudgetVsActualTable","DateTable","DateTableCashflowAPAR","DateTablePreviousCashflow","DateTableProjectedCashflow","CashflowPeriod","Period","accountingPeriods","AccountCategoryTable","dimensions","dimensionValues","accounts","Last Refresh Date","Feedback","DueCategorySortTable","DueCategorySortTable_AR","Dim_Date","Dim_Account","Dim_BSAccount","Dim_ChartRows","Dim_StatementSummaryRows","Dim_ReportRows","Dim_KPIRows","_Measures","Dim_Branch","Dim_SalesType","Dim_Department"]
+annotation PBI_QueryOrder = ["Fact_PNL","Fact_BalanceSheet","Fact_SalesDetail","customerLedgerEntries","vendorLedgerEntries","purchaseLines"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -48,5 +48,6 @@ ref table Dim_StatementSummaryRows
 ref table _Measures
 ref table Dim_ReportRows
 ref table Dim_KPIRows
+
 ref cultureInfo en-US
 

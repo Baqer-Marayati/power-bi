@@ -7,36 +7,24 @@ table accounts
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0402
 
 	column number
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0403
-		summarizeBy: none
-		sourceColumn: number
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 210042e2-df7d-46f4-8645-db8f4be3082f
+		isNameInferred
+		sourceColumn: [number]
 
 	column displayName
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0404
-		summarizeBy: none
-		sourceColumn: displayName
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: a85fcd18-ab26-49b3-8871-1bace5f08e49
+		isNameInferred
+		sourceColumn: [displayName]
 
 	column category
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0405
-		summarizeBy: none
-		sourceColumn: category
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 00e2dbde-0c19-42cf-a94d-bf3b316c315b
+		isNameInferred
+		sourceColumn: [category]
 
 	column accountType
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0406
-		summarizeBy: none
-		sourceColumn: accountType
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: a4f2aea6-5ab1-48f2-95da-067296cf5385
+		isNameInferred
+		sourceColumn: [accountType]
 
 	partition accounts = calculated
 		mode: import
@@ -71,3 +59,4 @@ table accounts
 				)
 
 	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0401
+

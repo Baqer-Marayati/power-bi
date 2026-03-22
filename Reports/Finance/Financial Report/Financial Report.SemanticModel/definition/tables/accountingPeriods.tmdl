@@ -12,38 +12,24 @@ table accountingPeriods
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0074
 
 	column id
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0075
-		summarizeBy: none
-		sourceColumn: id
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 23f5ecf2-b222-4018-952b-0810690f8de4
+		isNameInferred
+		sourceColumn: [id]
 
 	column startingDate
-		dataType: dateTime
-		formatString: Long Date
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0076
-		summarizeBy: none
-		sourceColumn: startingDate
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 12bca782-27b6-42a6-9a89-17dfe52c350b
+		isNameInferred
+		sourceColumn: [startingDate]
 
 	column name
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0077
-		summarizeBy: none
-		sourceColumn: name
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 2b5d975b-32d8-46b3-a55f-4a045e513fc5
+		isNameInferred
+		sourceColumn: [name]
 
 	column newFiscalYear
-		dataType: boolean
-		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0078
-		summarizeBy: none
-		sourceColumn: newFiscalYear
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 1cc2228f-3199-4631-80f4-85941b921428
+		isNameInferred
+		sourceColumn: [newFiscalYear]
 
 	partition accountingPeriods = calculated
 		mode: import
@@ -57,3 +43,4 @@ table accountingPeriods
 				)
 
 	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0071
+

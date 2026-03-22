@@ -4,6 +4,512 @@ cultureInfo en-US
 			{
 			  "Version": "4.1.0",
 			  "Language": "en-US",
+			  "Entities": {
+			    "table_measures.chart_row_actual": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Chart Row Actual"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Current Period": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.chart_row_ytd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Chart Row YTD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "YTD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.chart_row_ytd_ly": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Chart Row YTD LY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "YTD LY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.chart_row_var": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Chart Row Var"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Variance": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.chart_row_var_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Chart Row Var %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Variance %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "budgetvsactualtable.newdynamicexpensedisplay": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "BudgetVsActualTable",
+			          "ConceptualProperty": "NewDynamicExpenseDisplay"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Expense actual": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "budgetvsactualtable.newdynamicbudgetexpensedisplay": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "BudgetVsActualTable",
+			          "ConceptualProperty": "NewDynamicBudgetExpenseDisplay"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "budgetvsactualtable.newkpiincome_changepct": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "BudgetVsActualTable",
+			          "ConceptualProperty": "NewKPIIncome_ChangePct"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Income actual variance": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "budgetvsactualtable.expensevariancedisplay": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "BudgetVsActualTable",
+			          "ConceptualProperty": "ExpenseVarianceDisplay"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Variance": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "budgetvsactualtable.newkpiexpense_changepct": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "BudgetVsActualTable",
+			          "ConceptualProperty": "NewKPIExpense_ChangePct"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Expense actual variance": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "budgetvsactualtable.incomevariancedisplay": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "BudgetVsActualTable",
+			          "ConceptualProperty": "IncomeVarianceDisplay"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Variance": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "budgetvsactualtable.newdynamicincomedisplay": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "BudgetVsActualTable",
+			          "ConceptualProperty": "NewDynamicIncomeDisplay"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Income actual": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "budgetvsactualtable.newdynamicbudgetdisplay": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "BudgetVsActualTable",
+			          "ConceptualProperty": "NewDynamicBudgetDisplay"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "budgetvsactualtable.gltableactual": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "BudgetVsActualTable",
+			          "ConceptualProperty": "GLTableActual"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Actual": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "budgetvsactualtable.gltablebudget": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "BudgetVsActualTable",
+			          "ConceptualProperty": "GLTableBudget"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Budget": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "budgetvsactualtable.gltablevariance": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "BudgetVsActualTable",
+			          "ConceptualProperty": "GLTableVariance"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Variance": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "budgetvsactualtable.gltablevariancepct": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "BudgetVsActualTable",
+			          "ConceptualProperty": "GLTableVariancePct"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Percentage": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "generalledgerentries.no": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "generalLedgerEntries",
+			          "ConceptualProperty": "no"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Account": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "generalledgerentries.description": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "generalLedgerEntries",
+			          "ConceptualProperty": "description"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Description": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "bankaccountledgerentries.cashflow_cashgoingin_projected": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bankAccountLedgerEntries",
+			          "ConceptualProperty": "Cashflow_cashGoingIn_projected"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cash going in": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "bankaccountledgerentries.cashflow_cashgoingout_projected": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bankAccountLedgerEntries",
+			          "ConceptualProperty": "Cashflow_cashGoingOut_projected"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cash going out": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "bankaccountledgerentries.cashflow_endingcashonhand_projected": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bankAccountLedgerEntries",
+			          "ConceptualProperty": "Cashflow_endingCashOnHand_projected"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Ending cash in hand": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "bankaccountledgerentries.cashflow_cashgoingin_previous": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bankAccountLedgerEntries",
+			          "ConceptualProperty": "Cashflow_cashGoingIn_previous"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cash going in": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "bankaccountledgerentries.cashflow_cashgoingout_previous": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bankAccountLedgerEntries",
+			          "ConceptualProperty": "Cashflow_cashGoingOut_previous"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cash going out": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  },
 			  "Agents": {
 			    "Internal": {
 			      "Version": "1.1.0"

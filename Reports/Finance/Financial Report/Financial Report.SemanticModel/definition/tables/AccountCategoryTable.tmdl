@@ -2,21 +2,14 @@ table AccountCategoryTable
 	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0011
 
 	column Category
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0012
-		summarizeBy: none
-		sourceColumn: Category
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: dd3568a9-c2ac-4bd3-9058-8ee49efbe178
+		isNameInferred
+		sourceColumn: [Category]
 
 	column SortOrder
-		dataType: int64
-		formatString: 0
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0013
-		summarizeBy: none
-		sourceColumn: SortOrder
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 8be83a3a-73eb-4491-955b-b0f078fa07fa
+		isNameInferred
+		sourceColumn: [SortOrder]
 
 	partition AccountCategoryTable = calculated
 		mode: import
@@ -32,3 +25,4 @@ table AccountCategoryTable
 				)
 
 	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0011
+

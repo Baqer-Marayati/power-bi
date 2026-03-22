@@ -53,3 +53,4 @@ relationship bdf6eff5-ed06-9c9e-a1d6-eb3d062c47b2
 relationship f59f568a-b3bb-4214-870d-e4da7a840b70
 	fromColumn: Fact_BalanceSheet.AcctCode
 	toColumn: Dim_BSAccount.AcctCode
+

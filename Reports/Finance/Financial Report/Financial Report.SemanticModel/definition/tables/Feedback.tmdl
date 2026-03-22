@@ -5,12 +5,9 @@ table Feedback
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0062
 
 	column Placeholder
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0063
-		summarizeBy: none
-		sourceColumn: Placeholder
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 8be66521-6770-457b-8e98-b637eaf2740e
+		isNameInferred
+		sourceColumn: [Placeholder]
 
 	partition Feedback = calculated
 		mode: import
@@ -19,3 +16,4 @@ table Feedback
 				DATATABLE ( "Placeholder", STRING, { { "Feedback" } } )
 
 	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0061
+

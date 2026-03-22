@@ -10,8 +10,6 @@ table Fact_SalesDetail
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation UnderlyingDateTimeDataType = Date
-
 	column Year
 		dataType: int64
 		formatString: 0
@@ -176,3 +174,4 @@ table Fact_SalesDetail
 				    Source
 
 	annotation PBI_ResultType = Table
+

@@ -95,3 +95,4 @@ table purchaseLines
 				    Source
 
 	annotation PBI_ResultType = Table
+

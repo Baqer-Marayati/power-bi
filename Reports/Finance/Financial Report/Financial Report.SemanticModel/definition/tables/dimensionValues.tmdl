@@ -2,28 +2,19 @@ table dimensionValues
 	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0031
 
 	column DimensionID
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0032
-		summarizeBy: none
-		sourceColumn: DimensionID
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: f9a67346-b533-4510-aac0-aee68c57b3f2
+		isNameInferred
+		sourceColumn: [DimensionID]
 
 	column code
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0033
-		summarizeBy: none
-		sourceColumn: code
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: ae42c2aa-4608-4a67-b435-5f8fc28c7134
+		isNameInferred
+		sourceColumn: [code]
 
 	column Name
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0034
-		summarizeBy: none
-		sourceColumn: Name
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 55c8172f-a17d-4172-8fe5-f76fc6b082e1
+		isNameInferred
+		sourceColumn: [Name]
 
 	partition dimensionValues = calculated
 		mode: import
@@ -51,3 +42,4 @@ table dimensionValues
 				)
 
 	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0031
+

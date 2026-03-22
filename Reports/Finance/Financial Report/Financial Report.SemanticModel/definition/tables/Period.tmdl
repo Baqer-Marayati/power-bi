@@ -6,22 +6,14 @@ table Period
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0002
 
 	column KPI
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0003
-		summarizeBy: none
-		sourceColumn: KPI
-		sortByColumn: KPI_ID
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 848bbd2b-40d5-4432-ac8b-6a30444dc492
+		isNameInferred
+		sourceColumn: [KPI]
 
 	column KPI_ID
-		dataType: int64
-		formatString: 0
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0004
-		summarizeBy: none
-		sourceColumn: KPI_ID
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 81b0c58b-58aa-49a9-ac14-9cb9ce8233c6
+		isNameInferred
+		sourceColumn: [KPI_ID]
 
 	partition Period = calculated
 		mode: import
@@ -40,3 +32,4 @@ table Period
 				)
 
 	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0001
+

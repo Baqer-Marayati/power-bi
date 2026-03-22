@@ -2,21 +2,14 @@ table CashflowPeriod
 	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1151
 
 	column Period
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1152
-		summarizeBy: none
-		sourceColumn: Period
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: fa6cd74a-525a-4c52-97aa-32ad8592828e
+		isNameInferred
+		sourceColumn: [Period]
 
 	column SortOrder
-		dataType: int64
-		formatString: 0
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1153
-		summarizeBy: none
-		sourceColumn: SortOrder
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 6ba9e689-0c94-4624-a4d9-f6960f2e39a9
+		isNameInferred
+		sourceColumn: [SortOrder]
 
 	partition CashflowPeriod = calculated
 		mode: import
@@ -33,3 +26,4 @@ table CashflowPeriod
 				)
 
 	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a1151
+

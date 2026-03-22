@@ -2,30 +2,19 @@ table DateTableProjectedCashflow
 	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1141
 
 	column Date
-		dataType: dateTime
-		formatString: General Date
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1142
-		summarizeBy: none
-		sourceColumn: Date
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: ef33c711-96c1-4c8a-bede-432b53c41817
+		isNameInferred
+		sourceColumn: [Date]
 
 	column 'Month Year'
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1143
-		summarizeBy: none
-		sourceColumn: Month Year
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: c2070c1f-135f-47e0-a8eb-b4edb451f29d
+		isNameInferred
+		sourceColumn: [Month Year]
 
 	column IsInNext6Months
-		dataType: boolean
-		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1144
-		summarizeBy: none
-		sourceColumn: IsInNext6Months
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 3eaa437a-dddf-4691-9c81-82521734e103
+		isNameInferred
+		sourceColumn: [IsInNext6Months]
 
 	partition DateTableProjectedCashflow = calculated
 		mode: import
@@ -45,3 +34,4 @@ table DateTableProjectedCashflow
 				)
 
 	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a1141
+

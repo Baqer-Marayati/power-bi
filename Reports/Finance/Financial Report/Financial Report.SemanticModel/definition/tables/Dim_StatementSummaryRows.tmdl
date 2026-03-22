@@ -2,39 +2,24 @@ table Dim_StatementSummaryRows
 	lineageTag: 8f0d39ea-dae8-450f-8b33-68c12bbd77dc
 
 	column SortOrder
-		dataType: int64
-		formatString: 0
-		lineageTag: 98dbb8b1-4c95-4ef0-a33e-dd0f8fe0f1d7
-		summarizeBy: none
-		sourceColumn: SortOrder
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 275880c7-2fdf-413c-8d21-6e3e5e1b51cf
+		isNameInferred
+		sourceColumn: [SortOrder]
 
 	column RowLabel
-		dataType: string
-		lineageTag: 2339a0b8-4f5d-4d8e-b01c-fab4d5613744
-		summarizeBy: none
-		sourceColumn: RowLabel
-		sortByColumn: SortOrder
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: b7373e5b-afeb-4630-b422-ff009e458442
+		isNameInferred
+		sourceColumn: [RowLabel]
 
 	column CodePrefix
-		dataType: string
-		lineageTag: ba41f30a-45b8-46a3-abd1-3ff8f68f6c40
-		summarizeBy: none
-		sourceColumn: CodePrefix
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: bca6939c-f73a-487e-8917-38b640bac3f2
+		isNameInferred
+		sourceColumn: [CodePrefix]
 
 	column CodeLength
-		dataType: int64
-		formatString: 0
-		lineageTag: 09ff7d87-f46b-44f5-b29f-9664c0b1049d
-		summarizeBy: none
-		sourceColumn: CodeLength
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 78b143e8-0928-40e1-91ac-2a943a775837
+		isNameInferred
+		sourceColumn: [CodeLength]
 
 	partition Dim_StatementSummaryRows = calculated
 		mode: import
@@ -73,3 +58,4 @@ table Dim_StatementSummaryRows
 				)
 
 	annotation PBI_Id = 82dbec6e7c7b4f688299b739d1ca5895
+

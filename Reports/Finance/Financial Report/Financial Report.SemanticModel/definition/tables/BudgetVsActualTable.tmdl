@@ -346,31 +346,19 @@ table BudgetVsActualTable
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1043
 
 	column MonthStart
-		dataType: dateTime
-		formatString: General Date
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1024
-		summarizeBy: none
-		sourceColumn: MonthStart
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 1f7a6be1-37ae-4aa8-95c6-a426dc031120
+		isNameInferred
+		sourceColumn: [MonthStart]
 
 	column Month
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1025
-		summarizeBy: none
-		sourceColumn: Month
-		sortByColumn: MonthSort
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 3e7df68f-c06d-43c7-b180-6965014c2e23
+		isNameInferred
+		sourceColumn: [Month]
 
 	column MonthSort
-		dataType: int64
-		formatString: 0
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1026
-		summarizeBy: none
-		sourceColumn: MonthSort
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: be0a7b08-abd6-4795-95ef-00e860515e57
+		isNameInferred
+		sourceColumn: [MonthSort]
 
 	partition BudgetVsActualTable = calculated
 		mode: import
@@ -392,3 +380,4 @@ table BudgetVsActualTable
 				    )
 
 	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a1001
+

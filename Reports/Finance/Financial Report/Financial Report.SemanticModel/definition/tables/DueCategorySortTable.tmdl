@@ -2,22 +2,14 @@ table DueCategorySortTable
 	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0911
 
 	column DueCategory
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0912
-		summarizeBy: none
-		sourceColumn: DueCategory
-		sortByColumn: SortOrder
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: be51809a-0680-4d6c-9c31-58e1d1f3e39f
+		isNameInferred
+		sourceColumn: [DueCategory]
 
 	column SortOrder
-		dataType: int64
-		formatString: 0
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0913
-		summarizeBy: none
-		sourceColumn: SortOrder
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: 7fd36742-794f-4b2b-9b9d-76d213a8c282
+		isNameInferred
+		sourceColumn: [SortOrder]
 
 	partition DueCategorySortTable = calculated
 		mode: import
@@ -37,3 +29,4 @@ table DueCategorySortTable
 				)
 
 	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0911
+

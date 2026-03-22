@@ -129,12 +129,9 @@ table bankAccountLedgerEntries
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0517
 
 	column Anchor
-		dataType: string
-		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0514
-		summarizeBy: none
-		sourceColumn: Anchor
-
-		annotation SummarizationSetBy = Automatic
+		lineageTag: ba72f2c1-38d7-4f66-87b2-ae32f69159dd
+		isNameInferred
+		sourceColumn: [Anchor]
 
 	partition bankAccountLedgerEntries = calculated
 		mode: import
@@ -143,3 +140,4 @@ table bankAccountLedgerEntries
 				DATATABLE ( "Anchor", STRING, { { "Cashflow" } } )
 
 	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0501
+

@@ -10,8 +10,6 @@ table Fact_BalanceSheet
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation UnderlyingDateTimeDataType = Date
-
 	column Year
 		dataType: int64
 		formatString: 0
@@ -138,3 +136,4 @@ table Fact_BalanceSheet
 				    Source
 
 	annotation PBI_ResultType = Table
+
