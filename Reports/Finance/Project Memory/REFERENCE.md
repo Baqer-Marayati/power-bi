@@ -121,7 +121,7 @@ The local Mac also now has:
 - `jq`
 - `ffmpeg`
 
-`gh` is installed, but as of March 22, 2026 the saved authentication token is invalid and needs re-authentication before GitHub issue operations can be trusted again.
+`gh` is installed. Confirm a healthy login with `gh auth status` before relying on Issues/PR commands. If the keyring token is invalid, re-authenticate using **Git And GitHub** in `docs/foundation.md`.
 
 ## Learning Focus
 Use Project Memory to preserve:
