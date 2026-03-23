@@ -1,15 +1,15 @@
 # SAP Export Pipeline (Read-Only)
 
-This pipeline extracts read-only SAP Business One data from HANA and writes snapshot files for assistant analysis.
+This pipeline extracts read-only SAP Business One data and writes snapshot files for assistant analysis.
 
 ## Scope
 
-- Source: SAP Business One on HANA
+- Source: SAP Business One on HANA (recommended via ODBC DSN)
 - Access: read-only queries only
 - Companies: `ALJAZEERA`, `CANON`, `PAPERENTITY`
 - Excluded: `CANON_TEST...`
 - Output lane: `Shared/Data Drops/incoming/<YYYY-MM-DD>/`
-- Preferred format: `parquet` (falls back to `csv` only when requested)
+- Preferred execution path: Windows ODBC script (outputs CSV automatically)
 
 ## Datasets Exported
 
@@ -25,40 +25,41 @@ This pipeline extracts read-only SAP Business One data from HANA and writes snap
 - Credentials are read from environment variables.
 - Do not commit credentials into config files.
 
-## Quick Start
+## Quick Start (Windows, minimal manual)
 
 1. Copy config template:
 
-```bash
-cp "Shared/SAP Export Pipeline/config.template.json" "Shared/SAP Export Pipeline/config.json"
+```bat
+copy "Shared\SAP Export Pipeline\config.template.json" "Shared\SAP Export Pipeline\config.json"
 ```
 
-2. Set credentials in shell:
+2. Update `Shared\SAP Export Pipeline\config.json`:
+- `odbc.dsn` should match your working DSN (often `HANA_B1`)
+- keep companies as configured
 
-```bash
-export SAP_HANA_USER="readonly_user"
-export SAP_HANA_PASSWORD="readonly_password"
+3. Run once from repo root (`C:\Work\reporting-hub`):
+
+```bat
+Shared\SAP Export Pipeline\run_export.bat 2026-03-22
 ```
 
-3. Run export:
+4. Credentials behavior:
+- If `SAP_HANA_USER` and `SAP_HANA_PASSWORD` env vars are set, script uses them.
+- If not set, script tries DSN-saved credentials (`DSN=<your dsn>` only).
+- You can set env vars manually when needed.
 
-```bash
-python3 "Shared/SAP Export Pipeline/scripts/export_snapshots.py" \
-  --config "Shared/SAP Export Pipeline/config.json" \
-  --snapshot-date 2026-03-22 \
-  --format parquet
-```
+## Optional: direct PowerShell commands
 
-4. Validate:
-
-```bash
-python3 "Shared/SAP Export Pipeline/scripts/validate_snapshot.py" \
-  --snapshot-dir "Shared/Data Drops/incoming/2026-03-22"
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File "Shared/SAP Export Pipeline/scripts/export_snapshots_odbc.ps1" -ConfigPath "Shared/SAP Export Pipeline/config.json" -SnapshotDate "2026-03-22"
+powershell -NoProfile -ExecutionPolicy Bypass -File "Shared/SAP Export Pipeline/scripts/validate_snapshot_ps.ps1" -SnapshotDir "Shared/Data Drops/incoming/2026-03-22"
 ```
 
 ## Notes
 
-- If parquet dependencies are missing, install `pyarrow`.
+- This path avoids Python/HDB client auth troubleshooting in Git Bash.
 - Output file names follow:
-  - `<dataset>__<YYYY-MM-DD>__v1.parquet`
-  - `<dataset>__<YYYY-MM-DD>__v1.csv` (if csv mode)
+  - `<dataset>__<YYYY-MM-DD>__v1.csv`
+- If you still want the Python/parquet route, existing scripts remain under:
+  - `scripts/export_snapshots.py`
+  - `scripts/validate_snapshot.py`

@@ -1,4 +1,7 @@
 {
+  "odbc": {
+    "dsn": "HANA_B1"
+  },
   "hana": {
     "host": "your-hana-host",
     "port": 30015,
