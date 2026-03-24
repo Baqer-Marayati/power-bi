@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "label_period_actual_budget",
   "position": {
-    "x": 852,
-    "y": 366,
+    "x": 647,
+    "y": 410,
     "z": 10000,
     "height": 18,
     "width": 164,

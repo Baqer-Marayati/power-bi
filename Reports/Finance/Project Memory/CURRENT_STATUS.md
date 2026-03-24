@@ -1,10 +1,10 @@
 # Current Status
 
 ## Date
-- Last updated: March 22, 2026
+- Last updated: March 24, 2026
 
 ## Active Project
-- `/Users/baqer/Dropbox/Work/PowerBI/Reporting Hub/Reports/Finance/Financial Report`
+- `C:\Work\reporting-hub\Reports\Finance\Financial Report`
 
 ## Current State
 The project is a hybrid:
@@ -153,9 +153,19 @@ These pages were physically removed from the report definition during cleanup so
 - Updated those safe profitability card measures to raw IQD output (no million scaling) so low-but-real values do not collapse visually to `0M` on `Profitability Drivers`.
 - Root-cause correction on `Profitability Drivers`: rewired top profitability KPI cards to the same known-working YTD display-measure family used on `Income Statement` (`Gross Profit YTD Card Display`, `Operating Profit YTD Card Display`, `Net Profit YTD Card Display`) and updated titles accordingly.
 - Removed stale carry-over hard filters from both profitability trend charts (`IsInLast6Months_Previous` and `IsInNext6Months`) so chart/card behavior no longer depends on old cashflow helper flags.
+- Performed a minimal stale-visual cleanup on the two repurposed pages:
+- `Working Capital Health`: removed four off-canvas legacy `BudgetVsActualTable` card visuals and their remaining `visualInteractions` targets, and removed one overlapping top-left filler shape.
+- `Profitability Drivers`: removed one orphan textbox/title overlay that sat on top of the main chart area.
+- Built an automated screenshot-capture workflow (`scripts/capture-pages.ps1`) that opens the PBIP in Power BI Desktop, clicks each page tab in sequence, and saves per-page PNG screenshots to `Records/screenshots/`. This provides a visual feedback loop for layout validation without manual intervention.
+- The script uses Win32 `mouse_event` to click page tabs (Ctrl+PageDown does not navigate pages in PBI Desktop authoring view).
+- First successful automated capture confirmed: pages 1-5 render correctly; `Working Capital Health` (page 6) is functional but has sparse right-side layout; `Profitability Drivers` (page 7) still shows "--" for 3 of 4 top KPIs and mostly empty charts, indicating the YTD display measures are not returning data in the default filter context.
+- Root-cause fix on `Profitability Drivers`: deleted an off-canvas slicer (`e3072552c68bd01f571a`) that was hardcoded to `Dim_Date.Year = 2021`, which was filtering three of the four top KPI cards to a year with no data. Also deleted three other off-canvas junk visuals (shape, action button, refresh card) and removed all associated `visualInteractions`. Resized the two oversized bottom cards (`Net Margin %` and `Selected Reporting Period`) from ~327px to 140px height.
+- Layout and cleanup pass on `Working Capital Health`: deleted 11 off-canvas junk visuals (including a `budgetName` slicer hardcoded to `SAP Derived Budget`), cleaned all stale `visualInteractions`, resized the 581x406 `AR Overdue %` card to 581x145, repositioned the AP/AR due-bucket slicers and labels below it, moved the customer slicer up from Y=667 to Y=502 for a tighter layout, and added label-hidden + border styling to the AR Overdue % card.
 
 ## Retained Lessons
 - Ask "which artifact is the user actually opening?" before debugging visual differences.
 - Prefer Desktop-proven Power BI patterns over speculative JSON-only reconstruction.
 - When the user makes approved refinements directly in Desktop, preserve that Desktop result as the new visual baseline.
 - Treat packaging, integrity validation, and project-memory updates as part of done-ness, not post-work extras.
+- PBI Desktop's Ctrl+PageDown keyboard shortcut does not work for page tab navigation in authoring view; mouse clicks on the tab strip are the only reliable method for automated page switching.
+- Automated screenshot capture via Win32 API is a viable and safe alternative to Power Automate Desktop for the visual feedback loop; no PAD flow was needed.
