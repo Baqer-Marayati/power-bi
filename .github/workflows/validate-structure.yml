@@ -1,0 +1,17 @@
+name: Validate Structure
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  validate-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run structure validation
+        shell: pwsh
+        run: ./scripts/validate-structure.ps1 -RepoRoot "${{ github.workspace }}"
