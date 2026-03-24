@@ -3,10 +3,10 @@
   "name": "cb0dbe6b085d64ce9bf5",
   "position": {
     "x": 50.769230769230766,
-    "y": 379.23076923076923,
+    "y": 247.5,
     "z": 4000,
-    "height": 329.23076923076923,
-    "width": 582.30769230769226,
+    "height": 405.625,
+    "width": 579.21875,
     "tabOrder": 6000
   },
   "visual": {
@@ -20,90 +20,90 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "generalLedgerEntries"
+                      "Entity": "customerLedgerEntries"
                     }
                   },
-                  "Property": "no"
+                  "Property": "customerName"
                 }
               },
-              "queryRef": "generalLedgerEntries.no",
-              "nativeQueryRef": "Account",
-              "displayName": "Account"
+              "queryRef": "customerLedgerEntries.customerName",
+              "nativeQueryRef": "Customer",
+              "displayName": "Customer"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "generalLedgerEntries"
+                      "Entity": "customerLedgerEntries"
                     }
                   },
-                  "Property": "description"
+                  "Property": "dueDate"
                 }
               },
-              "queryRef": "generalLedgerEntries.description",
-              "nativeQueryRef": "Description",
-              "displayName": "Description"
+              "queryRef": "customerLedgerEntries.dueDate",
+              "nativeQueryRef": "Due Date",
+              "displayName": "Due Date"
             },
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "BudgetVsActualTable"
+                      "Entity": "customerLedgerEntries"
                     }
                   },
-                  "Property": "GLTableActual"
+                  "Property": "documentNo"
                 }
               },
-              "queryRef": "BudgetVsActualTable.GLTableActual",
-              "nativeQueryRef": "Actual",
-              "displayName": "Actual"
+              "queryRef": "customerLedgerEntries.documentNo",
+              "nativeQueryRef": "Document No",
+              "displayName": "Document No"
             },
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "BudgetVsActualTable"
+                      "Entity": "customerLedgerEntries"
                     }
                   },
-                  "Property": "GLTableBudget"
+                  "Property": "remainingAmount"
                 }
               },
-              "queryRef": "BudgetVsActualTable.GLTableBudget",
-              "nativeQueryRef": "Budget",
-              "displayName": "Budget"
+              "queryRef": "customerLedgerEntries.remainingAmount",
+              "nativeQueryRef": "Remaining Amount",
+              "displayName": "Remaining Amount"
             },
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "BudgetVsActualTable"
+                      "Entity": "customerLedgerEntries"
                     }
                   },
-                  "Property": "GLTableVariance"
+                  "Property": "open"
                 }
               },
-              "queryRef": "BudgetVsActualTable.GLTableVariance",
-              "nativeQueryRef": "Variance",
-              "displayName": "Variance"
+              "queryRef": "customerLedgerEntries.open",
+              "nativeQueryRef": "Open",
+              "displayName": "Open"
             },
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "BudgetVsActualTable"
+                      "Entity": "customerLedgerEntries"
                     }
                   },
-                  "Property": "GLTableVariancePct"
+                  "Property": "paymentMethodCode"
                 }
               },
-              "queryRef": "BudgetVsActualTable.GLTableVariancePct",
-              "nativeQueryRef": "Percentage",
-              "displayName": "Percentage"
+              "queryRef": "customerLedgerEntries.paymentMethodCode",
+              "nativeQueryRef": "Payment Method",
+              "displayName": "Payment Method"
             }
           ]
         }
@@ -115,10 +115,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "generalLedgerEntries"
+                    "Entity": "customerLedgerEntries"
                   }
                 },
-                "Property": "no"
+                "Property": "dueDate"
               }
             },
             "direction": "Ascending"
@@ -179,7 +179,7 @@
             }
           },
           "selector": {
-            "metadata": "generalLedgerEntries.no"
+            "metadata": "customerLedgerEntries.customerName"
           }
         },
         {
@@ -193,7 +193,7 @@
             }
           },
           "selector": {
-            "metadata": "generalLedgerEntries.description"
+            "metadata": "customerLedgerEntries.dueDate"
           }
         },
         {
@@ -207,7 +207,7 @@
             }
           },
           "selector": {
-            "metadata": "BudgetVsActualTable.GLTableActual"
+            "metadata": "customerLedgerEntries.documentNo"
           }
         },
         {
@@ -221,7 +221,7 @@
             }
           },
           "selector": {
-            "metadata": "BudgetVsActualTable.GLTableBudget"
+            "metadata": "customerLedgerEntries.remainingAmount"
           }
         },
         {
@@ -235,7 +235,7 @@
             }
           },
           "selector": {
-            "metadata": "BudgetVsActualTable.GLTableVariance"
+            "metadata": "customerLedgerEntries.open"
           }
         },
         {
@@ -249,7 +249,7 @@
             }
           },
           "selector": {
-            "metadata": "BudgetVsActualTable.GLTableVariancePct"
+            "metadata": "customerLedgerEntries.paymentMethodCode"
           }
         }
       ]
@@ -268,7 +268,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'By GL account'"
+                  "Value": "'AR Open Invoice Detail'"
                 }
               }
             }

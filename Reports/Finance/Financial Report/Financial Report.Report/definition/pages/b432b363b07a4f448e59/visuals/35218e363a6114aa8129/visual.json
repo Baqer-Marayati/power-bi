@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "35218e363a6114aa8129",
   "position": {
-    "x": 351,
-    "y": 275,
+    "x": 332,
+    "y": 145,
     "z": 13000,
-    "height": 85,
-    "width": 127,
+    "height": 88,
+    "width": 135,
     "tabOrder": 13000
   },
   "visual": {
@@ -20,15 +20,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "BudgetVsActualTable"
+                      "Entity": "vendorLedgerEntries"
                     }
                   },
-                  "Property": "NewDynamicBudgetExpenseDisplay"
+                  "Property": "Accountpayables_totalPayable"
                 }
               },
-              "queryRef": "BudgetVsActualTable.NewDynamicBudgetExpenseDisplay",
-              "nativeQueryRef": "NewDynamicBudgetExpenseDisplay",
-              "displayName": "Budget"
+              "queryRef": "vendorLedgerEntries.Accountpayables_totalPayable",
+              "nativeQueryRef": "Accountpayables_totalPayable",
+              "displayName": "AP Outstanding"
             }
           ]
         }
@@ -40,10 +40,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "BudgetVsActualTable"
+                    "Entity": "vendorLedgerEntries"
                   }
                 },
-                "Property": "NewDynamicBudgetExpenseDisplay"
+                "Property": "Accountpayables_totalPayable"
               }
             },
             "direction": "Descending"
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "14D"
                 }
               }
             }
@@ -109,7 +109,7 @@
             }
           },
           "selector": {
-            "metadata": "BudgetVsActualTable.NewDynamicBudgetExpense"
+            "metadata": "vendorLedgerEntries.Accountpayables_totalPayable"
           }
         }
       ],
@@ -164,7 +164,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Budget'"
+                  "Value": "'AP Outstanding'"
                 }
               }
             },
@@ -355,25 +355,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "c25970d340635f68479a",
-        "ordinal": 0,
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "BudgetVsActualTable"
-              }
-            },
-            "Property": "NewDynamicBudgetExpense"
-          }
-        },
-        "type": "Advanced"
-      }
-    ],
-    "filterSortOrder": "Custom"
   }
 }

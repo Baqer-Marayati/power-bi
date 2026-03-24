@@ -1,0 +1,44 @@
+table dimensions
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0021
+
+	column ID
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0022
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column code
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0023
+		summarizeBy: none
+		sourceColumn: code
+
+		annotation SummarizationSetBy = Automatic
+
+	column SortOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0024
+		summarizeBy: none
+		sourceColumn: SortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimensions = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "ID", STRING,
+				    "code", STRING,
+				    "SortOrder", INTEGER,
+				    {
+				        { "BRANCH", "Branch", 1 },
+				        { "SALESTYPE", "Sales Type", 2 },
+				        { "DEPARTMENT", "Department", 3 }
+				    }
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0021

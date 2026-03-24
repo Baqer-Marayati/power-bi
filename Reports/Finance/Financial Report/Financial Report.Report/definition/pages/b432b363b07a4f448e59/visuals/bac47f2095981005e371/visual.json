@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "bac47f2095981005e371",
   "position": {
-    "x": 949.19286321155482,
-    "y": 8.18181818181813,
+    "x": 744,
+    "y": 667,
     "z": 10000,
     "height": 32,
     "width": 190.8377230246389,
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "generalLedgerEntries"
+                      "Entity": "customerLedgerEntries"
                     }
                   },
-                  "Property": "no"
+                  "Property": "customerName"
                 }
               },
-              "queryRef": "generalLedgerEntries.no",
-              "nativeQueryRef": "no",
+              "queryRef": "customerLedgerEntries.customerName",
+              "nativeQueryRef": "customerName",
               "active": true
             }
           ]

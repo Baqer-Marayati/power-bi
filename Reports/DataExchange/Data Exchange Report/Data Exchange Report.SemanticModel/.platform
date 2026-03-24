@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Data Exchange Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4df6c0a1-aa28-438c-8110-ae622beec95c"
+  }
+}

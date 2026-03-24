@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "7072e44f513ef387ff6e",
   "position": {
-    "x": 856.27187765505516,
-    "y": 16.18181818181813,
+    "x": 646,
+    "y": 645,
     "z": 23000,
     "height": 23,
     "width": 120.89719626168224,
@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Select account'"
+                  "Value": "'Select customer'"
                 }
               }
             },
@@ -76,7 +76,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'SAP Derived Budget'"
+                  "Value": "'Receivables filter'"
                 }
               }
             },

@@ -42,7 +42,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Account category'"
+                  "Value": "'AR due bucket'"
                 }
               }
             },

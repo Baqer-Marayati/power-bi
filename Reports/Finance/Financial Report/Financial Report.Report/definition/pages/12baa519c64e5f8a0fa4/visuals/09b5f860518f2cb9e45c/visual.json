@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "bankAccountLedgerEntries"
+                      "Entity": "_Measures"
                     }
                   },
-                  "Property": "Cashflow_previousNetDisplay"
+                  "Property": "Net Margin %"
                 }
               },
-              "queryRef": "bankAccountLedgerEntries.Cashflow_previousNetDisplay",
-              "nativeQueryRef": "Cashflow_previousNetDisplay"
+              "queryRef": "_Measures.Net Margin %",
+              "nativeQueryRef": "Net Margin %"
             }
           ]
         }
@@ -39,10 +39,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "bankAccountLedgerEntries"
+                    "Entity": "_Measures"
                   }
                 },
-                "Property": "Cashflow_previousNetDisplay"
+                "Property": "Net Margin %"
               }
             },
             "direction": "Descending"
@@ -108,7 +108,7 @@
             }
           },
           "selector": {
-            "metadata": "bankAccountLedgerEntries.Cashflow_cashGoingIn"
+            "metadata": "_Measures.Net Margin %"
           }
         }
       ]
@@ -237,7 +237,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Previous month cashflow'"
+                  "Value": "'Net Margin %'"
                 }
               }
             },

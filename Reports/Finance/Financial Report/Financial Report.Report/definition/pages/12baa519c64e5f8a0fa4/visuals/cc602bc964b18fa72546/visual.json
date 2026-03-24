@@ -20,15 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "bankAccountLedgerEntries"
+                      "Entity": "_Measures"
                     }
                   },
-                  "Property": "Cashflow_cashGoingIn"
+                  "Property": "Gross Profit YTD Card Display"
                 }
               },
-              "queryRef": "bankAccountLedgerEntries.Cashflow_cashGoingIn",
-              "nativeQueryRef": "Cashflow_cashGoingIn",
-              "format": "IQD #,0.###############;(IQD #,0.###############);IQD #,0.###############"
+              "queryRef": "_Measures.Gross Profit YTD Card Display",
+              "nativeQueryRef": "Gross Profit YTD Card Display"
             }
           ]
         }
@@ -40,10 +39,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "bankAccountLedgerEntries"
+                    "Entity": "_Measures"
                   }
                 },
-                "Property": "Cashflow_cashGoingIn"
+                "Property": "Gross Profit YTD Card Display"
               }
             },
             "direction": "Descending"
@@ -109,7 +108,7 @@
             }
           },
           "selector": {
-            "metadata": "bankAccountLedgerEntries.Cashflow_cashGoingIn"
+            "metadata": "_Measures.Gross Profit YTD Card Display"
           }
         }
       ]
@@ -238,7 +237,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cash going in'"
+                  "Value": "'Gross Profit (YTD)'"
                 }
               }
             },

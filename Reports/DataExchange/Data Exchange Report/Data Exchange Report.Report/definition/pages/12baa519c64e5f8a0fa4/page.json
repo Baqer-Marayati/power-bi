@@ -1,0 +1,185 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "12baa519c64e5f8a0fa4",
+  "displayName": "Cashflow",
+  "displayOption": "FitToWidth",
+  "height": 1100,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "678e8661e2e64b9392bd",
+      "target": "8f2d62875ed0cae89d68",
+      "type": "NoFilter"
+    },
+    {
+      "source": "678e8661e2e64b9392bd",
+      "target": "cc602bc964b18fa72546",
+      "type": "NoFilter"
+    },
+    {
+      "source": "678e8661e2e64b9392bd",
+      "target": "8f341f356b63b2ee2d6b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "678e8661e2e64b9392bd",
+      "target": "34605a4efe944e90b54e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "678e8661e2e64b9392bd",
+      "target": "471154df10f27fba63d8",
+      "type": "NoFilter"
+    },
+    {
+      "source": "678e8661e2e64b9392bd",
+      "target": "0b78afa7c4ab69dee4ee",
+      "type": "NoFilter"
+    },
+    {
+      "source": "678e8661e2e64b9392bd",
+      "target": "09b5f860518f2cb9e45c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "09b5f860518f2cb9e45c",
+      "target": "678e8661e2e64b9392bd",
+      "type": "NoFilter"
+    },
+    {
+      "source": "09b5f860518f2cb9e45c",
+      "target": "471154df10f27fba63d8",
+      "type": "NoFilter"
+    },
+    {
+      "source": "09b5f860518f2cb9e45c",
+      "target": "34605a4efe944e90b54e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "09b5f860518f2cb9e45c",
+      "target": "8f341f356b63b2ee2d6b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "09b5f860518f2cb9e45c",
+      "target": "cc602bc964b18fa72546",
+      "type": "NoFilter"
+    },
+    {
+      "source": "09b5f860518f2cb9e45c",
+      "target": "8f2d62875ed0cae89d68",
+      "type": "NoFilter"
+    },
+    {
+      "source": "09b5f860518f2cb9e45c",
+      "target": "0b78afa7c4ab69dee4ee",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0b78afa7c4ab69dee4ee",
+      "target": "09b5f860518f2cb9e45c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0b78afa7c4ab69dee4ee",
+      "target": "678e8661e2e64b9392bd",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0b78afa7c4ab69dee4ee",
+      "target": "471154df10f27fba63d8",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0b78afa7c4ab69dee4ee",
+      "target": "34605a4efe944e90b54e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0b78afa7c4ab69dee4ee",
+      "target": "8f341f356b63b2ee2d6b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0b78afa7c4ab69dee4ee",
+      "target": "cc602bc964b18fa72546",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0b78afa7c4ab69dee4ee",
+      "target": "8f2d62875ed0cae89d68",
+      "type": "NoFilter"
+    },
+    {
+      "source": "471154df10f27fba63d8",
+      "target": "678e8661e2e64b9392bd",
+      "type": "NoFilter"
+    },
+    {
+      "source": "471154df10f27fba63d8",
+      "target": "8f2d62875ed0cae89d68",
+      "type": "NoFilter"
+    },
+    {
+      "source": "471154df10f27fba63d8",
+      "target": "cc602bc964b18fa72546",
+      "type": "NoFilter"
+    },
+    {
+      "source": "471154df10f27fba63d8",
+      "target": "8f341f356b63b2ee2d6b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "471154df10f27fba63d8",
+      "target": "34605a4efe944e90b54e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "471154df10f27fba63d8",
+      "target": "0b78afa7c4ab69dee4ee",
+      "type": "NoFilter"
+    },
+    {
+      "source": "471154df10f27fba63d8",
+      "target": "09b5f860518f2cb9e45c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e3072552c68bd01f571a",
+      "target": "8f2d62875ed0cae89d68",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e3072552c68bd01f571a",
+      "target": "675c32b7b1664b6050c8",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e3072552c68bd01f571a",
+      "target": "d2734e3ca27493f2ce25",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e3072552c68bd01f571a",
+      "target": "678e8661e2e64b9392bd",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e3072552c68bd01f571a",
+      "target": "471154df10f27fba63d8",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e3072552c68bd01f571a",
+      "target": "0b78afa7c4ab69dee4ee",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e3072552c68bd01f571a",
+      "target": "09b5f860518f2cb9e45c",
+      "type": "NoFilter"
+    }
+  ]
+}

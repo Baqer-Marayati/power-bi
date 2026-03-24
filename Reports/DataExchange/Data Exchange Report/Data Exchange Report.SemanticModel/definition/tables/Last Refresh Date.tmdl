@@ -1,0 +1,24 @@
+table 'Last Refresh Date'
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0081
+
+	measure LastRefreshLocalTime =
+			
+			"Last refreshed: " & FORMAT ( NOW (), "dd MMM yyyy hh:mm AM/PM" )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0082
+
+	column 'Refresh Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0083
+		summarizeBy: none
+		sourceColumn: Refresh Date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Last Refresh Date' = calculated
+		mode: import
+		source =
+				
+				ROW ( "Refresh Date", TODAY () )
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0081

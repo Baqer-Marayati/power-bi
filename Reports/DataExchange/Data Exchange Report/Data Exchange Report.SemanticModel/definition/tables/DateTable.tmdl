@@ -1,0 +1,133 @@
+table DateTable
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0201
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: General Date
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0202
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0203
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0204
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0205
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0206
+		summarizeBy: none
+		sourceColumn: Month Name
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name Short'
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0207
+		summarizeBy: none
+		sourceColumn: Month Name Short
+		sortByColumn: MonthsortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthsortOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0208
+		summarizeBy: none
+		sourceColumn: MonthsortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0209
+		summarizeBy: none
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Name'
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0210
+		summarizeBy: none
+		sourceColumn: Day Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Weekday Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0211
+		summarizeBy: none
+		sourceColumn: Weekday Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWeekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0212
+		summarizeBy: none
+		sourceColumn: IsWeekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsPreviousMonthToDate
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0213
+		summarizeBy: none
+		sourceColumn: IsPreviousMonthToDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DateTable = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS (
+				    CALENDAR ( DATE ( YEAR ( TODAY () ) - 5, 1, 1 ), EOMONTH ( TODAY (), 5 ) ),
+				    "Year", YEAR ( [Date] ),
+				    "Quarter", "Q" & FORMAT ( [Date], "Q" ),
+				    "Month", MONTH ( [Date] ),
+				    "Month Name", FORMAT ( [Date], "MMMM" ),
+				    "Month Name Short", FORMAT ( [Date], "MMM yy" ),
+				    "MonthsortOrder", YEAR ( [Date] ) * 100 + MONTH ( [Date] ),
+				    "Day", DAY ( [Date] ),
+				    "Day Name", FORMAT ( [Date], "dddd" ),
+				    "Weekday Number", WEEKDAY ( [Date], 2 ),
+				    "IsWeekend", WEEKDAY ( [Date], 2 ) > 5,
+				    "IsPreviousMonthToDate",
+				        [Date] >= EOMONTH ( TODAY (), -2 ) + 1
+				            && [Date] <= DATE ( YEAR ( EDATE ( TODAY (), -1 ) ), MONTH ( EDATE ( TODAY (), -1 ) ), DAY ( TODAY () ) )
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0201

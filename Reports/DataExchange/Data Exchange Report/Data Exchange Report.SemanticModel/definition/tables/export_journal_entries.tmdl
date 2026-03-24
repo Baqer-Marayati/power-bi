@@ -1,0 +1,87 @@
+table export_journal_entries
+	lineageTag: 72bfdb20-ddf7-4387-a7a0-f6bf89698e41
+
+	column company_code
+		dataType: string
+		lineageTag: 72bfdb20-ddf7-4387-a7a0-f6bf89698e42
+		summarizeBy: none
+		sourceColumn: company_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column journal_no
+		dataType: int64
+		formatString: 0
+		lineageTag: 72bfdb20-ddf7-4387-a7a0-f6bf89698e43
+		summarizeBy: none
+		sourceColumn: journal_no
+
+		annotation SummarizationSetBy = Automatic
+
+	column line_no
+		dataType: int64
+		formatString: 0
+		lineageTag: 72bfdb20-ddf7-4387-a7a0-f6bf89698e44
+		summarizeBy: none
+		sourceColumn: line_no
+
+		annotation SummarizationSetBy = Automatic
+
+	column posting_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 72bfdb20-ddf7-4387-a7a0-f6bf89698e45
+		summarizeBy: none
+		sourceColumn: posting_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_code
+		dataType: string
+		lineageTag: 72bfdb20-ddf7-4387-a7a0-f6bf89698e46
+		summarizeBy: none
+		sourceColumn: account_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column debit_lc
+		dataType: double
+		lineageTag: 72bfdb20-ddf7-4387-a7a0-f6bf89698e47
+		summarizeBy: sum
+		sourceColumn: debit_lc
+
+		annotation SummarizationSetBy = Automatic
+
+	column credit_lc
+		dataType: double
+		lineageTag: 72bfdb20-ddf7-4387-a7a0-f6bf89698e48
+		summarizeBy: sum
+		sourceColumn: credit_lc
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_id
+		dataType: string
+		lineageTag: 72bfdb20-ddf7-4387-a7a0-f6bf89698e49
+		summarizeBy: none
+		sourceColumn: user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition export_journal_entries = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS (
+				    'Fact_PNL',
+				    "company_code", "CANON",
+				    "journal_no", 'Fact_PNL'[TransId],
+				    "line_no", 'Fact_PNL'[LineId],
+				    "posting_date", 'Fact_PNL'[PostingDate],
+				    "account_code", 'Fact_PNL'[AcctCode],
+				    "debit_lc", 'Fact_PNL'[Debit],
+				    "credit_lc", 'Fact_PNL'[Credit],
+				    "user_id", "unknown"
+				)
+
+	annotation PBI_ResultType = Table

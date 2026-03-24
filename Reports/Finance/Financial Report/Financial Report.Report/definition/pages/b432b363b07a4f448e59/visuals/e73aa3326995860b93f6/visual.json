@@ -3,7 +3,7 @@
   "name": "e73aa3326995860b93f6",
   "position": {
     "x": 852,
-    "y": 81,
+    "y": 386,
     "z": 9000,
     "height": 32,
     "width": 164,
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Period"
+                      "Entity": "DueCategorySortTable"
                     }
                   },
-                  "Property": "KPI"
+                  "Property": "DueCategory"
                 }
               },
-              "queryRef": "Period.KPI",
-              "nativeQueryRef": "KPI",
+              "queryRef": "DueCategorySortTable.DueCategory",
+              "nativeQueryRef": "DueCategory",
               "active": true
             }
           ]
@@ -51,45 +51,11 @@
       "general": [
         {
           "properties": {
-            "filter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "p",
-                    "Entity": "Period",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "In": {
-                        "Expressions": [
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "p"
-                                }
-                              },
-                              "Property": "KPI"
-                            }
-                          }
-                        ],
-                        "Values": [
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'This fiscal year'"
-                              }
-                            }
-                          ]
-                        ]
-                      }
-                    }
-                  }
-                ]
+            "selfFilterEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
               }
             }
           }

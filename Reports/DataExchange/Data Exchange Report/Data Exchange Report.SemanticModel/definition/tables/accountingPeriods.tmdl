@@ -1,0 +1,59 @@
+table accountingPeriods
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0071
+
+	measure FiscalYearStartDate = DATE ( YEAR ( TODAY () ), 1, 1 )
+		formatString: General Date
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0072
+
+	measure FiscalYearEnd = "31/12"
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0073
+
+	measure FiscalYearDetails = "Jan-Dec"
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0074
+
+	column id
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0075
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column startingDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0076
+		summarizeBy: none
+		sourceColumn: startingDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0077
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column newFiscalYear
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0078
+		summarizeBy: none
+		sourceColumn: newFiscalYear
+
+		annotation SummarizationSetBy = Automatic
+
+	partition accountingPeriods = calculated
+		mode: import
+		source =
+				
+				ROW (
+				    "id", "FY" & FORMAT ( TODAY (), "YYYY" ),
+				    "startingDate", DATE ( YEAR ( TODAY () ), 1, 1 ),
+				    "name", "Current Fiscal Year",
+				    "newFiscalYear", TRUE ()
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0071

@@ -1,0 +1,73 @@
+snapshot:
+  owner: "Finance BI Team"
+  cadence: "weekly"
+  timezone: "Asia/Baghdad"
+  snapshot_date: "YYYY-MM-DD"
+  schema_version: "v1"
+
+delivery:
+  local_drop_path: "Shared/Data Drops/incoming/YYYY-MM-DD/"
+  github_repo: "private-repo-url"
+  github_branch_incoming: "staging"
+  github_branch_approved: "main"
+
+datasets:
+  - name: "bp_master"
+    file: "bp_master__YYYY-MM-DD__v1.csv"
+    grain: "one row per business partner"
+    required_columns:
+      - "company_code"
+      - "bp_id"
+      - "bp_type"
+      - "bp_group"
+      - "payment_terms"
+      - "active_flag"
+  - name: "item_master"
+    file: "item_master__YYYY-MM-DD__v1.csv"
+    grain: "one row per item"
+    required_columns:
+      - "company_code"
+      - "item_id"
+      - "item_group"
+      - "uom"
+      - "active_flag"
+  - name: "ar_open_items"
+    file: "ar_open_items__YYYY-MM-DD__v1.csv"
+    grain: "one row per open AR line"
+    required_columns:
+      - "company_code"
+      - "doc_no"
+      - "bp_id"
+      - "posting_date"
+      - "due_date"
+      - "open_amount_lc"
+      - "days_overdue"
+  - name: "ap_open_items"
+    file: "ap_open_items__YYYY-MM-DD__v1.csv"
+    grain: "one row per open AP line"
+    required_columns:
+      - "company_code"
+      - "doc_no"
+      - "bp_id"
+      - "posting_date"
+      - "due_date"
+      - "open_amount_lc"
+      - "days_overdue"
+  - name: "journal_entries"
+    file: "journal_entries__YYYY-MM-DD__v1.csv"
+    grain: "one row per journal line"
+    required_columns:
+      - "company_code"
+      - "journal_no"
+      - "line_no"
+      - "posting_date"
+      - "account_code"
+      - "debit_lc"
+      - "credit_lc"
+      - "user_id"
+
+validation:
+  require_manifest: true
+  require_data_dictionary: true
+  fail_if_missing_required_columns: true
+  max_null_rate_by_required_column: 0.02

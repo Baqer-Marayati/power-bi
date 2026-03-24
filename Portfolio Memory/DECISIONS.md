@@ -9,6 +9,7 @@
 
 - Shared assets should be centralized in `Shared/` when reuse is expected.
 - Report-specific live truth should remain inside each report's own docs and memory.
+- Portfolio-level exported data snapshots for assistant analysis should live under `Shared/Data Drops/`, not inside a single report module.
 
 ## Archive Decision
 

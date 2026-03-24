@@ -20,15 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "bankAccountLedgerEntries"
+                      "Entity": "_Measures"
                     }
                   },
-                  "Property": "Cashflow_endingCashInHand"
+                  "Property": "Net Profit YTD Card Display"
                 }
               },
-              "queryRef": "bankAccountLedgerEntries.Cashflow_endingCashInHand",
-              "nativeQueryRef": "Cashflow_endingCashInHand",
-              "format": "IQD #,0.###############;(IQD #,0.###############);IQD #,0.###############"
+              "queryRef": "_Measures.Net Profit YTD Card Display",
+              "nativeQueryRef": "Net Profit YTD Card Display"
             }
           ]
         }
@@ -40,10 +39,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "bankAccountLedgerEntries"
+                    "Entity": "_Measures"
                   }
                 },
-                "Property": "Cashflow_endingCashInHand"
+                "Property": "Net Profit YTD Card Display"
               }
             },
             "direction": "Descending"
@@ -109,7 +108,7 @@
             }
           },
           "selector": {
-            "metadata": "bankAccountLedgerEntries.Cashflow_endingCashInHand"
+            "metadata": "_Measures.Net Profit YTD Card Display"
           }
         }
       ]
@@ -238,7 +237,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ending cash in hand'"
+                  "Value": "'Net Profit (YTD)'"
                 }
               }
             },

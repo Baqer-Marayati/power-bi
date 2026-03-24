@@ -1,0 +1,60 @@
+table export_item_master
+	lineageTag: c32ad571-4dd3-4f0a-b55d-16fda29f0a11
+
+	column company_code
+		dataType: string
+		lineageTag: c32ad571-4dd3-4f0a-b55d-16fda29f0a12
+		summarizeBy: none
+		sourceColumn: company_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column item_id
+		dataType: string
+		lineageTag: c32ad571-4dd3-4f0a-b55d-16fda29f0a13
+		summarizeBy: none
+		sourceColumn: item_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column item_group
+		dataType: string
+		lineageTag: c32ad571-4dd3-4f0a-b55d-16fda29f0a14
+		summarizeBy: none
+		sourceColumn: item_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column uom
+		dataType: string
+		lineageTag: c32ad571-4dd3-4f0a-b55d-16fda29f0a15
+		summarizeBy: none
+		sourceColumn: uom
+
+		annotation SummarizationSetBy = Automatic
+
+	column active_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: c32ad571-4dd3-4f0a-b55d-16fda29f0a16
+		summarizeBy: none
+		sourceColumn: active_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition export_item_master = calculated
+		mode: import
+		source =
+				
+				DISTINCT (
+				    SELECTCOLUMNS (
+				        'Fact_SalesDetail',
+				        "company_code", "CANON",
+				        "item_id", 'Fact_SalesDetail'[ItemCode],
+				        "item_group", 'Fact_SalesDetail'[ItemGroupName],
+				        "uom", BLANK (),
+				        "active_flag", 1
+				    )
+				)
+
+	annotation PBI_ResultType = Table

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "1a47e31004196afa2896",
   "position": {
-    "x": 645,
-    "y": 379,
+    "x": 647,
+    "y": 247.5,
     "z": 15000,
-    "height": 329,
-    "width": 583,
+    "height": 406,
+    "width": 581,
     "tabOrder": 15000
   },
   "visual": {
@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "BudgetVsActualTable"
+                      "Entity": "customerLedgerEntries"
                     }
                   },
-                  "Property": "GLTableVariancePctDisplay"
+                  "Property": "PercentageOverdue"
                 }
               },
-              "queryRef": "BudgetVsActualTable.GLTableVariancePctDisplay",
-              "nativeQueryRef": "GLTableVariancePctDisplay"
+              "queryRef": "customerLedgerEntries.PercentageOverdue",
+              "nativeQueryRef": "PercentageOverdue"
             }
           ]
         }
@@ -40,7 +40,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Variance vs budget'"
+                  "Value": "'AR Overdue %'"
                 }
               }
             },

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "8f992cfdfbeae61a8227",
   "position": {
-    "x": 177,
-    "y": 278,
+    "x": 192,
+    "y": 145,
     "z": 6000,
-    "height": 85,
-    "width": 155,
+    "height": 88,
+    "width": 135,
     "tabOrder": 9000
   },
   "visual": {
@@ -20,15 +20,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "BudgetVsActualTable"
+                      "Entity": "customerLedgerEntries"
                     }
                   },
-                  "Property": "IncomeVarianceDisplay"
+                  "Property": "TotalOverdue_AR"
                 }
               },
-              "queryRef": "BudgetVsActualTable.IncomeVarianceDisplay",
-              "nativeQueryRef": "IncomeVarianceDisplay",
-              "displayName": "Variance"
+              "queryRef": "customerLedgerEntries.TotalOverdue_AR",
+              "nativeQueryRef": "TotalOverdue_AR",
+              "displayName": "AR Overdue"
             }
           ]
         }
@@ -40,10 +40,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "BudgetVsActualTable"
+                    "Entity": "customerLedgerEntries"
                   }
                 },
-                "Property": "IncomeVarianceDisplay"
+                "Property": "TotalOverdue_AR"
               }
             },
             "direction": "Descending"
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "14D"
                 }
               }
             }
@@ -116,7 +116,7 @@
             }
           },
           "selector": {
-            "metadata": "BudgetVsActualTable.IncomeVariane"
+            "metadata": "customerLedgerEntries.TotalOverdue_AR"
           }
         }
       ],
@@ -171,7 +171,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Variance'"
+                  "Value": "'AR Overdue'"
                 }
               }
             },

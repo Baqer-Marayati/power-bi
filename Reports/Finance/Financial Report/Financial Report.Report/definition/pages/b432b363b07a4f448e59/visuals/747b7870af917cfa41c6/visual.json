@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Actual vs Budget'"
+                  "Value": "'Working Capital Health'"
                 }
               }
             },
@@ -76,7 +76,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Key accounts against your budget, and any variances to your budget.'"
+                  "Value": "'AR/AP position, overdue exposure, and working-capital pressure.'"
                 }
               }
             }

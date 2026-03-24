@@ -1,0 +1,73 @@
+table accounts
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0401
+
+	measure GLAccountIsRowVisible =
+			
+			IF ( NOT ISBLANK ( SELECTEDVALUE ( 'accounts'[displayName] ) ), 1, BLANK () )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0402
+
+	column number
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0403
+		summarizeBy: none
+		sourceColumn: number
+
+		annotation SummarizationSetBy = Automatic
+
+	column displayName
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0404
+		summarizeBy: none
+		sourceColumn: displayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0405
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column accountType
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0406
+		summarizeBy: none
+		sourceColumn: accountType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition accounts = calculated
+		mode: import
+		source =
+				
+				DISTINCT (
+				    UNION (
+				        SELECTCOLUMNS (
+				            ADDCOLUMNS (
+				                'Fact_PNL',
+				                "AccountCategory",
+				                    SWITCH (
+				                        TRUE (),
+				                        'Fact_PNL'[PnLSection] IN { "Revenue", "Revenue Contra" }, "Income",
+				                        'Fact_PNL'[PnLSection] = "COGS", "Cost of Goods Sold",
+				                        "Expense"
+				                    )
+				            ),
+				            "number", 'Fact_PNL'[AcctCode],
+				            "displayName", 'Fact_PNL'[AcctCode] & " - " & 'Fact_PNL'[AcctName],
+				            "category", [AccountCategory],
+				            "accountType", "Posting"
+				        ),
+				        SELECTCOLUMNS (
+				            'purchaseLines',
+				            "number", 'purchaseLines'[no],
+				            "displayName", 'purchaseLines'[no],
+				            "category", "Expense",
+				            "accountType", "Posting"
+				        )
+				    )
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0401

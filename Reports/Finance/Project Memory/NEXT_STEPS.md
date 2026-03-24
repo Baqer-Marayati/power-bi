@@ -6,8 +6,8 @@
 3. Preserve the user-approved Desktop layout baseline on the 5 core finance pages and reuse it consistently instead of reintroducing older card variants or superseded Codex-only geometry assumptions.
 4. Preserve the now-confirmed branding pattern on the first five pages: grouped `image + divider shape + image` lockup backed by registered resources in `report.json`.
 5. When the user is ready, extend the approved branding direction deliberately to `Actual vs Budget` and `Cashflow` by copying the same Desktop-proven pattern rather than inventing a new one.
-6. Reopen `Actual vs Budget` and confirm the page is stable after the dimension-slicer removal and interaction cleanup.
-7. Reopen `Cashflow` and confirm the corrected `CashflowPeriod` binding and lower-section cards/charts render without stale errors.
+6. Reopen `Working Capital Health` and confirm the AR/AP rewires render cleanly (cards, due-bucket slicers, and detail table) without stale compatibility filters.
+7. Reopen `Profitability Drivers` and confirm the profitability rewires render cleanly (YTD KPI cards and both monthly trend charts) with expected interactions.
 8. Keep the root `README`, `docs/`, and GitHub templates aligned with any future project-direction changes so repository onboarding does not drift away from `Project Memory`.
 9. Keep GitHub issues current as work advances so later threads can pick up from issue state instead of reconstructing priorities from chat.
 10. Keep `AGENTS.md` and `docs/agent-manual.md` aligned with `Project Memory` whenever the project structure, read order, or operating rules change.
@@ -15,17 +15,15 @@
 
 ## Page-Specific Guidance
 
-### Actual vs Budget
-- Treat current budget as compatibility-only.
-- Keep the page working, but do not represent the current logic as confirmed SAP budget truth.
-- Watch for stale visual-level filters and benchmark placeholder defaults before assuming the measures are wrong.
-- The page no longer needs the old `Dimension` slicer in the current live shell unless a future redesign deliberately brings back a dimension-driven comparison visual.
+### Working Capital Health
+- Keep the page centered on AR/AP execution health (outstanding, overdue, and due-bucket behavior), not on compatibility budget storytelling.
+- Prefer direct `customerLedgerEntries` / `vendorLedgerEntries` bindings over reintroducing `BudgetVsActualTable` dependencies.
+- If any legacy budget-card leftovers still appear in Desktop, continue replacing them with AR/AP-focused visuals in place.
 
-### Cashflow
-- Current page can be stabilized with compatibility logic.
-- If the business later wants true bank cash movement, build a real SAP-backed bank/cash fact.
-- The existing cashflow visuals depend on helper-date flags; keep those helper columns in place unless the visuals are explicitly rewired away from them.
-- The `CashflowPeriod` slicer should be treated as suspect if screenshots still show no effect; its report binding was stale and was corrected in the latest pass, but the business logic behind it is still lightweight.
+### Profitability Drivers
+- Keep the page centered on profitability movement explanations (monthly trend and YTD outcome), not on compatibility cashflow projections.
+- Prefer `_Measures` profitability fields and `Dim_Date` monthly grain.
+- Validate axis sorting, label clarity, and interactions in Desktop after rewiring from cashflow helper-date tables.
 
 ## Future SAP Buildouts
 - Native budget domain

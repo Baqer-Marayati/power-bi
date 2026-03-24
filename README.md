@@ -10,6 +10,7 @@ It is designed to scale across multiple department-specific report projects whil
   - self-contained report modules such as Finance, HR, Sales, Service, Inventory, and Logistics
 - `Shared/`
   - reusable design, data, SQL, DAX, template, and benchmark assets
+  - includes portfolio-level snapshot exchange lane at `Shared/Data Drops/`
 - `Portfolio Memory/`
   - cross-report decisions, status, standards, and report catalog
 - `docs/`

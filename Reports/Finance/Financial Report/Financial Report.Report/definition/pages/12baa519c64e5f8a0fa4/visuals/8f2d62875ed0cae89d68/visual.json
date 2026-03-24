@@ -20,15 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "bankAccountLedgerEntries"
+                      "Entity": "_Measures"
                     }
                   },
-                  "Property": "Cashflow_endingCashInHand"
+                  "Property": "Net Revenue Card Display"
                 }
               },
-              "queryRef": "bankAccountLedgerEntries.Cashflow_endingCashInHand",
-              "nativeQueryRef": "Cashflow_endingCashInHand",
-              "format": "IQD #,0.###############;(IQD #,0.###############);IQD #,0.###############"
+              "queryRef": "_Measures.Net Revenue Card Display",
+              "nativeQueryRef": "Net Revenue Card Display"
             }
           ]
         }
@@ -40,10 +39,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "bankAccountLedgerEntries"
+                    "Entity": "_Measures"
                   }
                 },
-                "Property": "Cashflow_endingCashInHand"
+                "Property": "Net Revenue Card Display"
               }
             },
             "direction": "Descending"
@@ -102,7 +101,7 @@
             }
           },
           "selector": {
-            "metadata": "bankAccountLedgerEntries.Cashflow_endingCashInHand"
+            "metadata": "_Measures.Net Revenue Card Display"
           }
         }
       ]
@@ -231,7 +230,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cash in hand today'"
+                  "Value": "'Net Revenue'"
                 }
               }
             },

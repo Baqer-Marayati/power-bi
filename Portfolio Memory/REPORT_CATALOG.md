@@ -8,6 +8,12 @@
 - Status: Active
 - Notes: Current Al Jazeera financial reporting project
 
+### DataExchange
+
+- Module path: `Reports/DataExchange`
+- Status: Active
+- Notes: Isolated PBIP workspace for export operations; keeps Finance source untouched
+
 ## Planned Reports
 
 - HR

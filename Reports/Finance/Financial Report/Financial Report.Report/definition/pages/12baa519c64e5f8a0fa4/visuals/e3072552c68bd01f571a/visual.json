@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "e3072552c68bd01f571a",
   "position": {
-    "x": 801.80143295803475,
-    "y": 93.019447287615151,
+    "x": -3000,
+    "y": -3000,
     "z": 11000,
-    "height": 35.373592630501534,
-    "width": 438.89457523029682,
+    "height": 1,
+    "width": 1,
     "tabOrder": 11000
   },
   "visual": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "CashflowPeriod"
+                      "Entity": "Dim_Date"
                     }
                   },
-                  "Property": "Period"
+                  "Property": "Year"
                 }
               },
-              "queryRef": "CashflowPeriod.Period",
-              "nativeQueryRef": "Period",
+              "queryRef": "Dim_Date.Year",
+              "nativeQueryRef": "Year",
               "active": true
             }
           ]
@@ -58,45 +58,11 @@
                 }
               }
             },
-            "filter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "c",
-                    "Entity": "CashflowPeriod",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "In": {
-                        "Expressions": [
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "c"
-                                }
-                              },
-                              "Property": "Period"
-                            }
-                          }
-                        ],
-                        "Values": [
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'30 days'"
-                              }
-                            }
-                          ]
-                        ]
-                      }
-                    }
-                  }
-                ]
+            "selfFilterEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
               }
             },
             "outlineColor": {

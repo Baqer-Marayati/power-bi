@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "bankAccountLedgerEntries"
+                      "Entity": "_Measures"
                     }
                   },
-                  "Property": "Cashflow_turnoverSummary"
+                  "Property": "Selected Period Label"
                 }
               },
-              "queryRef": "bankAccountLedgerEntries.Cashflow_turnoverSummary",
-              "nativeQueryRef": "Cashflow_turnoverSummary"
+              "queryRef": "_Measures.Selected Period Label",
+              "nativeQueryRef": "Selected Period Label"
             }
           ]
         }
@@ -39,10 +39,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "bankAccountLedgerEntries"
+                    "Entity": "_Measures"
                   }
                 },
-                "Property": "Cashflow_turnoverSummary"
+                "Property": "Selected Period Label"
               }
             },
             "direction": "Descending"
@@ -108,7 +108,7 @@
             }
           },
           "selector": {
-            "metadata": "bankAccountLedgerEntries.Cashflow_cashGoingIn"
+            "metadata": "_Measures.Selected Period Label"
           }
         }
       ]
@@ -237,7 +237,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'AR turnover vs AP turnover'"
+                  "Value": "'Selected Reporting Period'"
                 }
               }
             },

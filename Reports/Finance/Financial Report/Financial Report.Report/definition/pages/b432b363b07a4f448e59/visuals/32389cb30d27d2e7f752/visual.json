@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "32389cb30d27d2e7f752",
   "position": {
-    "x": 645,
-    "y": 182,
+    "x": 647,
+    "y": 145,
     "z": 2000,
-    "height": 182.72727272727272,
+    "height": 88,
     "width": 285,
     "tabOrder": 6000
   },
@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "BudgetVsActualTable"
+                      "Entity": "customerLedgerEntries"
                     }
                   },
-                  "Property": "IncomeBudgetAttainmentPctDisplay"
+                  "Property": "DSO"
                 }
               },
-              "queryRef": "BudgetVsActualTable.IncomeBudgetAttainmentPctDisplay",
-              "nativeQueryRef": "IncomeBudgetAttainmentPctDisplay"
+              "queryRef": "customerLedgerEntries.DSO",
+              "nativeQueryRef": "DSO"
             }
           ]
         }
@@ -102,7 +102,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Income vs budget'"
+                  "Value": "'DSO'"
                 }
               }
             },

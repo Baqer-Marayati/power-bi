@@ -3,7 +3,7 @@
   "name": "label_period_actual_budget",
   "position": {
     "x": 852,
-    "y": 61,
+    "y": 366,
     "z": 10000,
     "height": 18,
     "width": 164,
@@ -42,7 +42,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Period'"
+                  "Value": "'AP due bucket'"
                 }
               }
             },

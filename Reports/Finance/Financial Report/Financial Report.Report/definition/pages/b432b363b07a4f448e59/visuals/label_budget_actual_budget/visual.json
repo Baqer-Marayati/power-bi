@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "label_budget_actual_budget",
   "position": {
-    "x": 1043,
-    "y": 61,
+    "x": -3000,
+    "y": -3000,
     "z": 12000,
-    "height": 18,
-    "width": 163,
+    "height": 10,
+    "width": 10,
     "tabOrder": 3000
   },
   "visual": {
@@ -42,7 +42,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Budget name'"
+                  "Value": "'Customer'"
                 }
               }
             },

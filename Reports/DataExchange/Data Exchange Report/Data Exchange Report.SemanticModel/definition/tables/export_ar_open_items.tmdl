@@ -1,0 +1,78 @@
+table export_ar_open_items
+	lineageTag: e438f5f2-4f55-430d-8f6b-95c7c95a5521
+
+	column company_code
+		dataType: string
+		lineageTag: e438f5f2-4f55-430d-8f6b-95c7c95a5522
+		summarizeBy: none
+		sourceColumn: company_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column doc_no
+		dataType: string
+		lineageTag: e438f5f2-4f55-430d-8f6b-95c7c95a5523
+		summarizeBy: none
+		sourceColumn: doc_no
+
+		annotation SummarizationSetBy = Automatic
+
+	column bp_id
+		dataType: string
+		lineageTag: e438f5f2-4f55-430d-8f6b-95c7c95a5524
+		summarizeBy: none
+		sourceColumn: bp_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column posting_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e438f5f2-4f55-430d-8f6b-95c7c95a5525
+		summarizeBy: none
+		sourceColumn: posting_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column due_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e438f5f2-4f55-430d-8f6b-95c7c95a5526
+		summarizeBy: none
+		sourceColumn: due_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column open_amount_lc
+		dataType: double
+		lineageTag: e438f5f2-4f55-430d-8f6b-95c7c95a5527
+		summarizeBy: sum
+		sourceColumn: open_amount_lc
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_overdue
+		dataType: int64
+		formatString: 0
+		lineageTag: e438f5f2-4f55-430d-8f6b-95c7c95a5528
+		summarizeBy: none
+		sourceColumn: days_overdue
+
+		annotation SummarizationSetBy = Automatic
+
+	partition export_ar_open_items = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS (
+				    FILTER ( 'customerLedgerEntries', 'customerLedgerEntries'[open] = 1 ),
+				    "company_code", "CANON",
+				    "doc_no", FORMAT ( 'customerLedgerEntries'[documentNo], "0" ),
+				    "bp_id", 'customerLedgerEntries'[customerCode],
+				    "posting_date", 'customerLedgerEntries'[postingDate],
+				    "due_date", 'customerLedgerEntries'[dueDate],
+				    "open_amount_lc", 'customerLedgerEntries'[remainingAmount],
+				    "days_overdue", MAX ( 0, DATEDIFF ( 'customerLedgerEntries'[dueDate], TODAY (), DAY ) )
+				)
+
+	annotation PBI_ResultType = Table

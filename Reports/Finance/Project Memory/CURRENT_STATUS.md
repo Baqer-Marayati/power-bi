@@ -19,8 +19,8 @@ The active report shell now contains only these 7 pages:
 - `Revenue Insights`
 - `Cost Structure`
 - `Balance Sheet`
-- `Actual vs Budget`
-- `Cashflow`
+- `Working Capital Health`
+- `Profitability Drivers`
 
 ## Removed From Active Report
 These pages were physically removed from the report definition during cleanup so the file stays sharper and lighter:
@@ -93,9 +93,9 @@ These pages were physically removed from the report definition during cleanup so
 - Restored the small due-category helper tables after verification showed that `customerLedgerEntries` and `vendorLedgerEntries` still reference them internally, even though the AR/AP pages themselves were removed.
 
 ## What Is Still Broken
-- `Actual vs Budget` and `Cashflow` are still compatibility-heavy, but the most obvious stale report-definition issues were removed in the latest pass.
-- `Actual vs Budget` still uses provisional compatibility-budget logic rather than a confirmed native SAP budget source.
-- `Cashflow` still uses compatibility cashflow logic rather than a true SAP bank-movement fact.
+- `Working Capital Health` still needs Desktop validation for final visual readability because the page shell was repurposed in place from the older `Actual vs Budget` geometry.
+- `Profitability Drivers` still needs Desktop validation for label clarity and interaction behavior after replacing cashflow bindings with profitability measures.
+- The legacy provisional budget/cashflow compatibility objects still exist in the model, but the two live page narratives are now moving toward AR/AP working-capital analysis and profitability-driver analysis.
 - Some semantic-model warning icons may still remain for compatibility tables such as `generalLedgerEntries` and `accounts`; those need to be rechecked after this cleanup pass in Power BI Desktop.
 - Most of the remaining file count is intrinsic to PBIP because pages and visuals are stored as separate definition files; the easy dead weight has now been removed.
 
@@ -138,6 +138,21 @@ These pages were physically removed from the report definition during cleanup so
 - Future validation handoffs should therefore include a fresh run of `./scripts/package-report.sh` whenever a report edit is ready for user inspection.
 - A later sync regression corrupted `definition/version.json`, `definition/report.json`, the registered custom theme, shared icon, and both logo image resources with null-byte file contents. Those files were repaired from clean sources, the package was rebuilt, and the report now opens again from the generated zip.
 - This repair confirmed that successful packaging alone is not enough as a validation step if registered resources were touched; the packaged contents must also be structurally valid.
+- Reworked the old `Actual vs Budget` page shell into `Working Capital Health` by rewiring its main cards/slicers/table to AR/AP-oriented objects (`customerLedgerEntries`, `vendorLedgerEntries`, and due-bucket helpers) so the page is no longer centered on the prior budget-compatibility narrative.
+- Reworked the old `Cashflow` page shell into `Profitability Drivers` by rewiring core cards and lead charts to stable `_Measures` profitability objects (`Net Revenue`, `Gross Profit`, `Operating Profit`, `Net Profit`, and YTD card-display measures).
+- Follow-up visual consistency pass normalized both repurposed pages to the same base canvas system as the first five pages (`1280x960`, `outspacePane` width `195`, and the standard page background color) so the report no longer has oversized trailing white space.
+- Added the same grouped top-right branding lockup (Al Jazeera logo + vertical divider + Canon logo) to both `Working Capital Health` and `Profitability Drivers` so header branding now matches the first five pages.
+- Updated both repurposed pages' report-header titles/subtitles and KPI-row placement to align more closely with the first-five-page template geometry while preserving the new working-capital and profitability logic direction.
+- Removed a stale `BudgetVsActualTable` visual-level filter that was still attached to the `Working Capital Health` AP Outstanding card, which could block values and contribute to inconsistent card behavior.
+- Replaced the hidden/off-canvas cleanup strategy with a tiny in-canvas parking strategy for obsolete visuals (`x/y=2`, `1x1`) on both repurposed pages to prevent page-width expansion and layout side effects.
+- Tightened `Working Capital Health` top KPI readability by normalizing the narrow AP card widths and reducing top-card value font size from `16D` to `14D` on the first four KPI cards.
+- Rewired `Profitability Drivers` top KPI cards to stable display measures (`Net Revenue Card Display`, `Sales Gross Profit YTD Card Display`, `Operating Expenses Card Display`, `Net Margin %`) so cards render with reliable visible values in default context.
+- Reverted temporary in-canvas parking of obsolete visuals on `Working Capital Health` and `Profitability Drivers` back to true off-canvas placement after Desktop review showed top-left visual error UI (`See details` / `Fix`) resurfacing.
+- Added three non-blank-safe profitability card measures in `_Measures.tmdl`: `Gross Profit Safe Card Display`, `Operating Profit Safe Card Display`, and `Net Profit Safe Card Display` (each uses `COALESCE(...,0)` before scaling) to prevent `--` outputs on top cards.
+- Rewired `Profitability Drivers` top KPI cards back to profitability titles (`Gross Profit`, `Operating Profit`, `Net Profit`) using those new safe display measures.
+- Updated those safe profitability card measures to raw IQD output (no million scaling) so low-but-real values do not collapse visually to `0M` on `Profitability Drivers`.
+- Root-cause correction on `Profitability Drivers`: rewired top profitability KPI cards to the same known-working YTD display-measure family used on `Income Statement` (`Gross Profit YTD Card Display`, `Operating Profit YTD Card Display`, `Net Profit YTD Card Display`) and updated titles accordingly.
+- Removed stale carry-over hard filters from both profitability trend charts (`IsInLast6Months_Previous` and `IsInNext6Months`) so chart/card behavior no longer depends on old cashflow helper flags.
 
 ## Retained Lessons
 - Ask "which artifact is the user actually opening?" before debugging visual differences.

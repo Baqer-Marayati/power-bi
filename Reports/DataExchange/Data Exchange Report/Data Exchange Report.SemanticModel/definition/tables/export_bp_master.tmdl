@@ -1,0 +1,80 @@
+table export_bp_master
+	lineageTag: b95b8e2d-63a2-48f2-94a8-c0e4d4f28f01
+
+	column company_code
+		dataType: string
+		lineageTag: b95b8e2d-63a2-48f2-94a8-c0e4d4f28f02
+		summarizeBy: none
+		sourceColumn: company_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column bp_id
+		dataType: string
+		lineageTag: b95b8e2d-63a2-48f2-94a8-c0e4d4f28f03
+		summarizeBy: none
+		sourceColumn: bp_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column bp_type
+		dataType: string
+		lineageTag: b95b8e2d-63a2-48f2-94a8-c0e4d4f28f04
+		summarizeBy: none
+		sourceColumn: bp_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column bp_group
+		dataType: string
+		lineageTag: b95b8e2d-63a2-48f2-94a8-c0e4d4f28f05
+		summarizeBy: none
+		sourceColumn: bp_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_terms
+		dataType: string
+		lineageTag: b95b8e2d-63a2-48f2-94a8-c0e4d4f28f06
+		summarizeBy: none
+		sourceColumn: payment_terms
+
+		annotation SummarizationSetBy = Automatic
+
+	column active_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: b95b8e2d-63a2-48f2-94a8-c0e4d4f28f07
+		summarizeBy: none
+		sourceColumn: active_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition export_bp_master = calculated
+		mode: import
+		source =
+				
+				DISTINCT (
+				    UNION (
+				        SELECTCOLUMNS (
+				            'customerLedgerEntries',
+				            "company_code", "CANON",
+				            "bp_id", 'customerLedgerEntries'[customerCode],
+				            "bp_type", "customer",
+				            "bp_group", BLANK (),
+				            "payment_terms", BLANK (),
+				            "active_flag", 1
+				        ),
+				        SELECTCOLUMNS (
+				            'vendorLedgerEntries',
+				            "company_code", "CANON",
+				            "bp_id", 'vendorLedgerEntries'[vendorCode],
+				            "bp_type", "vendor",
+				            "bp_group", BLANK (),
+				            "payment_terms", BLANK (),
+				            "active_flag", 1
+				        )
+				    )
+				)
+
+	annotation PBI_ResultType = Table

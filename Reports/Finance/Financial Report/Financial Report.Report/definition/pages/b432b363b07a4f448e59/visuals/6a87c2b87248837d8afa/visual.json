@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "6a87c2b87248837d8afa",
   "position": {
-    "x": 942.22222222222217,
-    "y": 183.33333333333334,
+    "x": 944,
+    "y": 145,
     "z": 3000,
-    "height": 182.22222222222223,
+    "height": 88,
     "width": 284.44444444444446,
     "tabOrder": 7000
   },
@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "BudgetVsActualTable"
+                      "Entity": "vendorLedgerEntries"
                     }
                   },
-                  "Property": "ExpenseBudgetAttainmentPctDisplay"
+                  "Property": "DPO"
                 }
               },
-              "queryRef": "BudgetVsActualTable.ExpenseBudgetAttainmentPctDisplay",
-              "nativeQueryRef": "ExpenseBudgetAttainmentPctDisplay"
+              "queryRef": "vendorLedgerEntries.DPO",
+              "nativeQueryRef": "DPO"
             }
           ]
         }
@@ -102,7 +102,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Expense vs budget'"
+                  "Value": "'DPO'"
                 }
               }
             },

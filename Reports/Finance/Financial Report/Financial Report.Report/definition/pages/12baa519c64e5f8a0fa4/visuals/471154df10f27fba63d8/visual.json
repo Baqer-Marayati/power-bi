@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DateTableProjectedCashflow"
+                      "Entity": "Dim_Date"
                     }
                   },
-                  "Property": "Month Year"
+                  "Property": "YearMonth"
                 }
               },
-              "queryRef": "DateTableProjectedCashflow.Month Year",
-              "nativeQueryRef": "Month Year",
+              "queryRef": "Dim_Date.YearMonth",
+              "nativeQueryRef": "YearMonth",
               "active": true
             }
           ],
@@ -40,30 +40,30 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "bankAccountLedgerEntries"
+                      "Entity": "_Measures"
                     }
                   },
-                  "Property": "Cashflow_cashGoingIn_projected"
+                  "Property": "Operating Profit"
                 }
               },
-              "queryRef": "bankAccountLedgerEntries.Cashflow_cashGoingIn_projected",
-              "nativeQueryRef": "Cash going in",
-              "displayName": "Cash going in"
+              "queryRef": "_Measures.Operating Profit",
+              "nativeQueryRef": "Operating Profit",
+              "displayName": "Operating Profit"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "bankAccountLedgerEntries"
+                      "Entity": "_Measures"
                     }
                   },
-                  "Property": "Cashflow_cashGoingOut_projected"
+                  "Property": "Net Profit"
                 }
               },
-              "queryRef": "bankAccountLedgerEntries.Cashflow_cashGoingOut_projected",
-              "nativeQueryRef": "Cash going out",
-              "displayName": "Cash going out"
+              "queryRef": "_Measures.Net Profit",
+              "nativeQueryRef": "Net Profit",
+              "displayName": "Net Profit"
             }
           ]
         },
@@ -74,15 +74,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "bankAccountLedgerEntries"
+                      "Entity": "_Measures"
                     }
                   },
-                  "Property": "Cashflow_endingCashOnHand_projected"
+                  "Property": "Net Margin %"
                 }
               },
-              "queryRef": "bankAccountLedgerEntries.Cashflow_endingCashOnHand_projected",
-              "nativeQueryRef": "Ending cash in hand",
-              "displayName": "Ending cash in hand"
+              "queryRef": "_Measures.Net Margin %",
+              "nativeQueryRef": "Net Margin %",
+              "displayName": "Net Margin %"
             }
           ]
         }
@@ -94,10 +94,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "DateTableProjectedCashflow"
+                    "Entity": "Dim_Date"
                   }
                 },
-                "Property": "Month Year"
+                "Property": "YearMonth"
               }
             },
             "direction": "Ascending"
@@ -214,7 +214,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Projected cashflow'"
+                  "Value": "'Operating vs Net Profit (Monthly)'"
                 }
               }
             },
@@ -381,63 +381,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "1d2715c1499521ebf3aa",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DateTableProjectedCashflow"
-              }
-            },
-            "Property": "IsInNext6Months"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "d",
-              "Entity": "DateTableProjectedCashflow",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "d"
-                          }
-                        },
-                        "Property": "IsInNext6Months"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "true"
-                        }
-                      }
-                    ]
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User"
-      }
-    ]
   }
 }

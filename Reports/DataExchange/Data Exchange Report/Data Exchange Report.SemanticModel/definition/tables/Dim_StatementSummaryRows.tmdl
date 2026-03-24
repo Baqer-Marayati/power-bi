@@ -1,0 +1,75 @@
+table Dim_StatementSummaryRows
+	lineageTag: 8f0d39ea-dae8-450f-8b33-68c12bbd77dc
+
+	column SortOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: 98dbb8b1-4c95-4ef0-a33e-dd0f8fe0f1d7
+		summarizeBy: none
+		sourceColumn: SortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column RowLabel
+		dataType: string
+		lineageTag: 2339a0b8-4f5d-4d8e-b01c-fab4d5613744
+		summarizeBy: none
+		sourceColumn: RowLabel
+		sortByColumn: SortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodePrefix
+		dataType: string
+		lineageTag: ba41f30a-45b8-46a3-abd1-3ff8f68f6c40
+		summarizeBy: none
+		sourceColumn: CodePrefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodeLength
+		dataType: int64
+		formatString: 0
+		lineageTag: 09ff7d87-f46b-44f5-b29f-9664c0b1049d
+		summarizeBy: none
+		sourceColumn: CodeLength
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_StatementSummaryRows = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "SortOrder", INTEGER,
+				    "RowLabel", STRING,
+				    "CodePrefix", STRING,
+				    "CodeLength", INTEGER,
+				    {
+				        { 410000, "41 - B2B", "41", 2 },
+				        { 420000, "42 - B2C", "42", 2 },
+				        { 430000, "43 - Commercial Items", "43", 2 },
+				        { 440000, "44 - N/A", "44", 2 },
+				        { 450000, "45 - Service", "45", 2 },
+				        { 460000, "46 - Sales Discount", "46", 2 },
+				        { 500000, "Net Revenue", "", 0 },
+				        { 510000, "51 - B2B COGS", "51", 2 },
+				        { 520000, "52 - B2C COGS", "52", 2 },
+				        { 530000, "53 - Commercial Items COGS", "53", 2 },
+				        { 540000, "54 - N/A COGS", "54", 2 },
+				        { 550000, "55 - Service COGS", "55", 2 },
+				        { 560000, "Gross Profit", "", 0 },
+				        { 610000, "61 - General & Administrative", "61", 2 },
+				        { 620000, "62 - Employee Expenses", "62", 2 },
+				        { 630000, "63 - Sales & Marketing", "63", 2 },
+				        { 640000, "64 - Travel Expenses", "64", 2 },
+				        { 650000, "65 - Finance Expense", "65", 2 },
+				        { 660000, "66 - Depreciation & Amortization", "66", 2 },
+				        { 670000, "Operating Profit", "", 0 },
+				        { 710000, "71 - Non Operating Income and Expenditure", "71", 2 },
+				        { 810000, "81 - Taxation and Extraordinary Items", "81", 2 },
+				        { 820000, "Net Profit", "", 0 }
+				    }
+				)
+
+	annotation PBI_Id = 82dbec6e7c7b4f688299b739d1ca5895

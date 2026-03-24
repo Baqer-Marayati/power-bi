@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "e1f20314253647a8b9cd",
+  "position": {
+    "x": 20,
+    "y": 1080,
+    "z": 1000,
+    "height": 245,
+    "width": 1220,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_journal_entries"
+                    }
+                  },
+                  "Property": "company_code"
+                }
+              },
+              "queryRef": "export_journal_entries.company_code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_journal_entries"
+                    }
+                  },
+                  "Property": "journal_no"
+                }
+              },
+              "queryRef": "export_journal_entries.journal_no"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_journal_entries"
+                    }
+                  },
+                  "Property": "line_no"
+                }
+              },
+              "queryRef": "export_journal_entries.line_no"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_journal_entries"
+                    }
+                  },
+                  "Property": "posting_date"
+                }
+              },
+              "queryRef": "export_journal_entries.posting_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_journal_entries"
+                    }
+                  },
+                  "Property": "account_code"
+                }
+              },
+              "queryRef": "export_journal_entries.account_code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_journal_entries"
+                    }
+                  },
+                  "Property": "debit_lc"
+                }
+              },
+              "queryRef": "export_journal_entries.debit_lc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_journal_entries"
+                    }
+                  },
+                  "Property": "credit_lc"
+                }
+              },
+              "queryRef": "export_journal_entries.credit_lc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_journal_entries"
+                    }
+                  },
+                  "Property": "user_id"
+                }
+              },
+              "queryRef": "export_journal_entries.user_id"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'journal_entries__YYYY-MM-DD__v1.csv'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

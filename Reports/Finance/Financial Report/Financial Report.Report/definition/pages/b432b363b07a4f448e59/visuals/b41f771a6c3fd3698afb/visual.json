@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "AccountCategoryTable"
+                      "Entity": "DueCategorySortTable_AR"
                     }
                   },
-                  "Property": "Category"
+                  "Property": "DueCategory"
                 }
               },
-              "queryRef": "AccountCategoryTable.Category",
-              "nativeQueryRef": "Category",
+              "queryRef": "DueCategorySortTable_AR.DueCategory",
+              "nativeQueryRef": "DueCategory",
               "active": true
             }
           ]
@@ -40,10 +40,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "AccountCategoryTable"
+                    "Entity": "DueCategorySortTable_AR"
                   }
                 },
-                "Property": "Category"
+                "Property": "DueCategory"
               }
             },
             "direction": "Ascending"
@@ -88,45 +88,11 @@
       "general": [
         {
           "properties": {
-            "filter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "a",
-                    "Entity": "AccountCategoryTable",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "In": {
-                        "Expressions": [
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "a"
-                                }
-                              },
-                              "Property": "Category"
-                            }
-                          }
-                        ],
-                        "Values": [
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'Income'"
-                              }
-                            }
-                          ]
-                        ]
-                      }
-                    }
-                  }
-                ]
+            "selfFilterEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
               }
             }
           }

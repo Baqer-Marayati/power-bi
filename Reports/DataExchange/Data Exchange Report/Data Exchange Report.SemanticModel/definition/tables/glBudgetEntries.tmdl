@@ -1,0 +1,137 @@
+table glBudgetEntries
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0301
+
+	measure TotalBudget =
+			
+			CALCULATE ( SUM ( 'glBudgetEntries'[amount] ), 'glBudgetEntries'[accountCategory] = "Expense" )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0302
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TotalBudgetDynamic = [TotalBudget]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0303
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TotalCommitmentDynamic =
+			
+			'generalLedgerEntries'[ActualSpend] + 'purchaseLines'[CommittedPO] + 'purchaseLines'[UnCommittedPO]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0305
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Remaining =
+			
+			[TotalBudget] - 'generalLedgerEntries'[ActualSpend] - 'purchaseLines'[CommittedPO] - 'purchaseLines'[UnCommittedPO]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0306
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0307
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column budgetName
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0308
+		summarizeBy: none
+		sourceColumn: budgetName
+
+		annotation SummarizationSetBy = Automatic
+
+	column no
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0309
+		summarizeBy: none
+		sourceColumn: no
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0310
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column accountCategory
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0311
+		summarizeBy: none
+		sourceColumn: accountCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column accountType
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0312
+		summarizeBy: none
+		sourceColumn: accountType
+
+		annotation SummarizationSetBy = Automatic
+
+	column incomeBalance
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0313
+		summarizeBy: none
+		sourceColumn: incomeBalance
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount
+		dataType: double
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0314
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column globalDimension1Code
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0315
+		summarizeBy: none
+		sourceColumn: globalDimension1Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column globalDimension2Code
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0316
+		summarizeBy: none
+		sourceColumn: globalDimension2Code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition glBudgetEntries = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS (
+				    FILTER ( 'Fact_PNL', NOT ISBLANK ( 'Fact_PNL'[PostingDate] ) ),
+				    "date", 'Fact_PNL'[PostingDate],
+				    "budgetName", "SAP Derived Budget",
+				    "no", 'Fact_PNL'[AcctCode],
+				    "name", 'Fact_PNL'[AcctName],
+				    "accountCategory",
+				        SWITCH (
+				            TRUE (),
+				            'Fact_PNL'[PnLSection] IN { "Revenue", "Revenue Contra" }, "Income",
+				            'Fact_PNL'[PnLSection] = "COGS", "Cost of Goods Sold",
+				            "Expense"
+				        ),
+				    "accountType", "Posting",
+				    "incomeBalance", "Income Statement",
+				    "amount", ABS ( 'Fact_PNL'[Amount] ) * 1.05,
+				    "globalDimension1Code", 'Fact_PNL'[BranchCode],
+				    "globalDimension2Code", 'Fact_PNL'[SalesTypeCode]
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0301

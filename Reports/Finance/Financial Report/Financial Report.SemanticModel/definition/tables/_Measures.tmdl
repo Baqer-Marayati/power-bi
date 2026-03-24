@@ -641,6 +641,24 @@ table _Measures
 		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
 		lineageTag: af6ae29e-a33e-4db4-9d32-301db9134541
 
+	measure 'Gross Profit Safe Card Display' =
+			
+			COALESCE ( [Gross Profit], 0 )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 9b8fd953-7088-479f-a196-0e4c55a307d1
+
+	measure 'Operating Profit Safe Card Display' =
+			
+			COALESCE ( [Operating Profit], 0 )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 0efa97ff-ba58-4840-9f4f-bac1e3d833ec
+
+	measure 'Net Profit Safe Card Display' =
+			
+			COALESCE ( [Net Profit], 0 )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: c2f1c20e-f28d-4dec-95cc-6d9e0c59bf08
+
 	measure 'Net Revenue YTD Card Display' =
 			
 			DIVIDE ( [Net Revenue YTD], 1000000000 )

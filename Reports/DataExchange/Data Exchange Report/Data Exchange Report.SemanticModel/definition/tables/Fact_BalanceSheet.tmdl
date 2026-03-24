@@ -1,0 +1,140 @@
+table Fact_BalanceSheet
+	lineageTag: 71863058-20c6-4f24-8f2b-d4eaed55637c
+
+	column PostingDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d3b13dc1-e73e-482f-b9aa-997cb5df5ad6
+		summarizeBy: none
+		sourceColumn: PostingDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 5f836765-8f8e-4cb1-b126-c60693d0d9f7
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNo
+		dataType: int64
+		formatString: 0
+		lineageTag: bfe92426-a85f-4f1c-8939-e3832fb72899
+		summarizeBy: sum
+		sourceColumn: MonthNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		dataType: string
+		lineageTag: 29423cb8-6e59-405a-b6b1-e4ae5f8029f9
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column AcctCode
+		dataType: string
+		lineageTag: 7af4eb9c-3b93-4bc3-bfd7-6a770af7dc6c
+		summarizeBy: none
+		sourceColumn: AcctCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column AcctName
+		dataType: string
+		lineageTag: 0a99aa2d-52c8-4f3d-a84a-f18ae62795a9
+		summarizeBy: none
+		sourceColumn: AcctName
+
+		annotation SummarizationSetBy = Automatic
+
+	column GroupMask
+		dataType: int64
+		formatString: 0
+		lineageTag: ca9120d7-1a70-4dc8-85a1-ec3b6f376460
+		summarizeBy: sum
+		sourceColumn: GroupMask
+
+		annotation SummarizationSetBy = Automatic
+
+	column BSSection
+		dataType: string
+		lineageTag: 9da56655-84b3-49ec-ad79-8878dcc9a334
+		summarizeBy: none
+		sourceColumn: BSSection
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: double
+		lineageTag: 32f1808e-60e8-49e7-ab2a-11bbe6ec165d
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BranchCode
+		dataType: string
+		lineageTag: f3df2e5f-f7cc-415f-ad3e-3700ad2168d9
+		summarizeBy: none
+		sourceColumn: BranchCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchName
+		dataType: string
+		lineageTag: 20ccf3e8-2015-4720-bd2f-5a12e4b38f79
+		summarizeBy: none
+		sourceColumn: BranchName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTypeCode
+		dataType: string
+		lineageTag: b5717c0c-696f-4453-8c26-91f0c1af40a1
+		summarizeBy: none
+		sourceColumn: SalesTypeCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTypeName
+		dataType: string
+		lineageTag: b6c96e0d-0ea6-4694-8f6f-d17a0bf8b0c1
+		summarizeBy: none
+		sourceColumn: SalesTypeName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentCode
+		dataType: string
+		lineageTag: c48e9e38-b9bf-4889-8285-5166a9fac3cf
+		summarizeBy: none
+		sourceColumn: DepartmentCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentName
+		dataType: string
+		lineageTag: 4d6c0fd9-78c0-45f8-8c10-2e686bc4eab9
+		summarizeBy: none
+		sourceColumn: DepartmentName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_BalanceSheet = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    T0.""RefDate"" AS ""PostingDate"",#(lf)    YEAR(T0.""RefDate"") AS ""Year"",#(lf)    MONTH(T0.""RefDate"") AS ""MonthNo"",#(lf)    TO_VARCHAR(T0.""RefDate"", 'YYYY-MM') AS ""YearMonth"",#(lf)    T1.""Account"" AS ""AcctCode"",#(lf)    T2.""AcctName"" AS ""AcctName"",#(lf)    T2.""GroupMask"" AS ""GroupMask"",#(lf)    CASE#(lf)        WHEN T2.""GroupMask"" = 1 THEN 'Assets'#(lf)        WHEN T2.""GroupMask"" = 2 THEN 'Liabilities'#(lf)        WHEN T2.""GroupMask"" = 3 THEN 'Equity'#(lf)        ELSE 'Other'#(lf)    END AS ""BSSection"",#(lf)    COALESCE(T1.""Debit"", 0) - COALESCE(T1.""Credit"", 0) AS ""Amount"",#(lf)    T1.""ProfitCode"" AS ""BranchCode"",#(lf)    B1.""PrcName"" AS ""BranchName"",#(lf)    T1.""OcrCode2"" AS ""SalesTypeCode"",#(lf)    B2.""PrcName"" AS ""SalesTypeName"",#(lf)    T1.""OcrCode3"" AS ""DepartmentCode"",#(lf)    B3.""PrcName"" AS ""DepartmentName""#(lf)FROM ""CANON"".""OJDT"" T0#(lf)INNER JOIN ""CANON"".""JDT1"" T1#(lf)    ON T0.""TransId"" = T1.""TransId""#(lf)INNER JOIN ""CANON"".""OACT"" T2#(lf)    ON T1.""Account"" = T2.""AcctCode""#(lf)LEFT JOIN ""CANON"".""OPRC"" B1#(lf)    ON T1.""ProfitCode"" = B1.""PrcCode"" AND B1.""DimCode"" = 1#(lf)LEFT JOIN ""CANON"".""OPRC"" B2#(lf)    ON T1.""OcrCode2"" = B2.""PrcCode"" AND B2.""DimCode"" = 2#(lf)LEFT JOIN ""CANON"".""OPRC"" B3#(lf)    ON T1.""OcrCode3"" = B3.""PrcCode"" AND B3.""DimCode"" = 3#(lf)WHERE T2.""GroupMask"" IN (1, 2, 3);")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

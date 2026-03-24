@@ -1,0 +1,124 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "a1b2c3d4e5f60718293a",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 1000,
+    "height": 245,
+    "width": 1220,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_bp_master"
+                    }
+                  },
+                  "Property": "company_code"
+                }
+              },
+              "queryRef": "export_bp_master.company_code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_bp_master"
+                    }
+                  },
+                  "Property": "bp_id"
+                }
+              },
+              "queryRef": "export_bp_master.bp_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_bp_master"
+                    }
+                  },
+                  "Property": "bp_type"
+                }
+              },
+              "queryRef": "export_bp_master.bp_type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_bp_master"
+                    }
+                  },
+                  "Property": "bp_group"
+                }
+              },
+              "queryRef": "export_bp_master.bp_group"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_bp_master"
+                    }
+                  },
+                  "Property": "payment_terms"
+                }
+              },
+              "queryRef": "export_bp_master.payment_terms"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_bp_master"
+                    }
+                  },
+                  "Property": "active_flag"
+                }
+              },
+              "queryRef": "export_bp_master.active_flag"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'bp_master__YYYY-MM-DD__v1.csv'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

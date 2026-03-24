@@ -41,13 +41,8 @@
             },
             "text": {
               "expr": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "bankAccountLedgerEntries"
-                    }
-                  },
-                  "Property": "CashflowPreviousGraph_caption"
+                "Literal": {
+                  "Value": "'Profitability driver trends by month'"
                 }
               }
             },

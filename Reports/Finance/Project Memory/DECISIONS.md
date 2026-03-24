@@ -39,7 +39,7 @@
 - A shared branding lockup is now part of the approved design system for the first five core finance pages: transparent `Al Jazeera Machinery` logo, thin vertical separator, and transparent `Canon` logo in the top-right header zone.
 - Match the user-approved placement rather than improvising: keep the lockup inside the white page canvas with visible top/right breathing room and do not push it flush against the page edge.
 - The approved implementation method is the Power BI Desktop-generated pattern from the user-reviewed working file: registered image resources plus a grouped `image + divider shape + image` lockup on each target page.
-- Apply that branding lockup only when explicitly appropriate for the page set in scope; as of March 22, 2026 it is intentionally applied to the first five pages and intentionally not yet applied to `Actual vs Budget` or `Cashflow`.
+- Apply that branding lockup only when explicitly appropriate for the page set in scope; as of March 22, 2026 it is intentionally applied to the first five pages and intentionally not yet applied to `Working Capital Health` or `Profitability Drivers`.
 
 ## Records Benchmark Rule
 - `Design Benchmarks` is a living benchmark folder.
@@ -69,8 +69,8 @@
 - `Revenue Insights`
 - `Cost Structure`
 - `Balance Sheet`
-- `Actual vs Budget`
-- `Cashflow`
+- `Working Capital Health`
+- `Profitability Drivers`
 - Pages outside that set are no longer part of the active report shell and should not be reintroduced unless explicitly requested.
 
 ## SAP Domain Rule

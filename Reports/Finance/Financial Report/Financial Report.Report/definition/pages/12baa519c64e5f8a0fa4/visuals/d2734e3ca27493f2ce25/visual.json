@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cashflow Insights'"
+                  "Value": "'Profitability Drivers'"
                 }
               }
             },
@@ -76,7 +76,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'All cash currently going in and out, and monthly projections.'"
+                  "Value": "'Monthly profitability movement and YTD variance story.'"
                 }
               }
             }

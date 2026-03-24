@@ -15,3 +15,4 @@
 - Future department reports should be added under `Reports/`.
 - Shared standards and reusable assets should be added under `Shared/`.
 - Cross-report planning and architecture should be recorded in `Portfolio Memory/`.
+- A shared exported-data lane for assistant analysis is now established at `Shared/Data Drops/` so data feeds remain cross-report, not Finance-only.
