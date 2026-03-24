@@ -1,3 +1,11 @@
 {
-  "recommendations": ["editorconfig.editorconfig"]
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "eamodio.gitlens",
+    "davidanson.vscode-markdownlint",
+    "redhat.vscode-yaml",
+    "usernamehw.errorlens",
+    "streetsidesoftware.code-spell-checker",
+    "ms-vscode.powershell"
+  ]
 }

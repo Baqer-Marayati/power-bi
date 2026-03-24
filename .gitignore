@@ -1,6 +1,16 @@
 .DS_Store
 **/.DS_Store
+
+# Local Cursor MCP / tooling (not portfolio source)
+.cursor/mcp/
+.cursor/mcp.json
 Exports/Server Packages/*.zip
 !Exports/Server Packages/.gitkeep
+Reports/*/Exports/Server Packages/archive/
+Reports/*/Exports/Server Packages/latest/*.zip
 Reports/*/Records/screenshots/*.png
 Reports/*/Records/Screenshots/*.png
+
+# Ad-hoc Cursor chat captures (keep folder; do not commit binaries)
+Shared/ChatContext/images/*
+!Shared/ChatContext/images/.gitkeep

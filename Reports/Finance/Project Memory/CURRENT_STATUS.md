@@ -167,6 +167,8 @@ These pages were physically removed from the report definition during cleanup so
 - Fixed `DSO` and `DPO` clipping by applying explicit card value styling (hidden built-in labels, fixed 14D value font, top alignment, and slightly taller card height) so values render fully and consistently.
 - Hard reset pass on `Profitability Drivers` date logic: added dedicated `2026+` profitability measures and rebound both monthly charts plus margin card to those measures; disabled `showAll` on category axes so pre-2026 empty months are not drawn.
 - Validation discipline updated: every targeted page fix now requires a full 7-page screenshot run, then focused review of the target pages from that set before packaging.
+- `Income Statement` management block upgraded from a static `pivotTable` to a more visual combo chart (`lineClusteredColumnComboChart`) so the area now shows a clearer management-performance story: columns for `Current Period`, `YTD`, and `YTD LY` by statement row, plus a `Variance %` trend line.
+- `Revenue Insights` item-group visual was redesigned to a segment-aware view using the user-provided B2B/B2C product tree logic: added `Dim_ItemSegmentMap` (calculated table) and a new mapped measure `Sales Revenue (Segment Mapped)` with `TREATAS` so the visual now reads as `Revenue by Product Tree (B2B/B2C)` instead of a flat item-group ranking.
 
 ## Retained Lessons
 - Ask "which artifact is the user actually opening?" before debugging visual differences.

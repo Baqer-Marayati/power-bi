@@ -11,6 +11,13 @@ alwaysApply: false
 - Main model file: `Financial Report.SemanticModel/definition/model.tmdl` (plus table `.tmdl` fragments and `relationships.tmdl`).
 - After **any** semantic change: open the PBIP in **Power BI Desktop** and confirm load, relationships, and key visuals. There is no substitute for Desktop validation.
 
+## MCP-first workflow
+
+- For semantic model tasks, prefer `powerbi-modeling-mcp` tools over direct file-only edits whenever MCP is available.
+- Start by connecting to the PBIP semantic model folder and inspecting impact/dependencies before changing measures, tables, or relationships.
+- Use conservative operation mode first (`--readonly` / inspection behavior) for analysis, then switch to write operations only when executing approved changes.
+- If MCP is unavailable in the session, continue with TMDL edits and explicitly state that MCP was not available.
+
 ## Safety (aligned with Project Memory)
 
 - Prefer **report-side rewires** and safe **compatibility aliases** over **risky custom relationships** that previously caused invalid column ID / circular patterns.

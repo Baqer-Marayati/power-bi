@@ -77,6 +77,10 @@
 - If a benchmark page is visually correct but semantically broken, preserve the shell and rewire the bindings to SAP-backed facts and measures.
 - Prefer report-side rewires and safe semantic-model aliases before attempting risky custom relationship additions.
 
+## Revenue Insights — Product Tree Rule
+- **Revenue by Product Tree (B2B/B2C)** groups revenue using **`Fact_SalesDetail[Product Tree Label]`**, computed in **Power Query** (`fnProductTreeLabel` + `SegmentMap` `#table`), not a disconnected **`Dim_ItemSegmentMap`** field on the chart axis with a bridging measure (that pattern produced a persistently blank visual).
+- The **Revenue Insights** visual binds **`Product Tree Label`** on the category axis and **`Sales Revenue`** in values. Keep **`SegmentMap`** in `Fact_SalesDetail` M aligned with **`Dim_ItemSegmentMap`** when mappings change.
+
 ## Final Page Set
 - As of March 21, 2026, the report is intentionally reduced to 7 live pages only:
 - `Executive Overview`

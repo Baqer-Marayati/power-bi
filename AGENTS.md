@@ -17,6 +17,8 @@ Start here:
 10. `Portfolio Memory/CURRENT_STATUS.md`
 11. `Portfolio Memory/DECISIONS.md`
 
+If the user refers to **screenshot lessons** or the **ChatContext** workflow, also read `Shared/ChatContext/LESSONS.md` (durable notes from past captures).
+
 Then choose the report module you are actually working on.
 
 For the current finance report:

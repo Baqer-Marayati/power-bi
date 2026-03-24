@@ -18,6 +18,7 @@
 - `Dim_StatementSummaryRows`
 - `Dim_ReportRows`
 - `Dim_KPIRows`
+- `Dim_ItemSegmentMap` (calculated segment / product-type map for sales visuals)
 - `_Measures`
 
 ## Compatibility Tables Added For Benchmark Repair
@@ -99,6 +100,12 @@
 - The report should be standardized to Iraqi dinar presentation.
 - Benchmark-derived pages still needed explicit format-string conversion because they came in with dollar formatting.
 - IQD formatting can cause clipping or crowding on cards that were originally sized for shorter benchmark value strings.
+
+## Sales — item segment map
+- `Dim_ItemSegmentMap` is a calculated mapping table for B2B/B2C-style product labels. It must appear in `Financial Report.SemanticModel/definition/model.tmdl` as `ref table Dim_ItemSegmentMap` or the table will not load.
+- **Revenue Insights — product tree bar chart** is wired to **`Fact_SalesDetail[Product Tree Label]`** (added in Power Query after `Source`) plus **`Sales Revenue`**, not to `Dim_ItemSegmentMap` on the axis. Measures that read a **disconnected** map from chart filter context often evaluate **blank for every category**; materializing the label on the fact avoids that.
+- Keep the **SegmentMap** `#table` in `Fact_SalesDetail` M in sync with `Dim_ItemSegmentMap` rows (`ProductTypeRaw` / `ProductTypeClean`) when the business mapping changes. **`fnProductTreeLabel`** resolves labels with (1) exact match on raw/clean, (2) else **longest `ProductTypeRaw` substring** contained in SAP `ItemGroupName` (handles paths like `B2B - DS Copier \ Office Copier`), (3) else the raw `ItemGroupName`. Blank / `#N/A` group names become **`Unassigned`**.
+- `Sales Revenue (Segment Mapped)` remains in the model for ad-hoc use but is not required for that visual.
 
 ## PBIP / Semantic Handling Notes
 - Visual JSON changes are often the fastest safe route for layout and binding repairs.

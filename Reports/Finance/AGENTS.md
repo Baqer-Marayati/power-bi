@@ -10,12 +10,14 @@ Read these in order:
 3. `docs/setup.md`
 4. `docs/structure.md`
 5. `docs/agent-manual.md`
-6. `Project Memory/PROJECT_DNA.md`
-7. `Project Memory/DECISIONS.md`
-8. `Project Memory/CURRENT_STATUS.md`
-9. `Project Memory/MODEL_NOTES.md`
-10. `Project Memory/NEXT_STEPS.md`
-11. `Project Memory/REFERENCE.md`
+6. `docs/workflows/mcp-operating-policy.md`
+7. `docs/workflows/definition-of-done.md`
+8. `Project Memory/PROJECT_DNA.md`
+9. `Project Memory/DECISIONS.md`
+10. `Project Memory/CURRENT_STATUS.md`
+11. `Project Memory/MODEL_NOTES.md`
+12. `Project Memory/NEXT_STEPS.md`
+13. `Project Memory/REFERENCE.md`
 
 Then inspect the active project files:
 - `Financial Report/Financial Report.pbip`
@@ -54,8 +56,10 @@ Treat this file as the universal entrypoint for future AI agents.
 - Logic first, styling second.
 - Use IQD formatting consistently.
 - Treat repeated UI elements such as KPI rows and slicer rails as shared systems.
+- For semantic-model tasks, use MCP-first workflow via `powerbi-modeling-mcp` when available.
 - Update `Project Memory` after meaningful work.
 - Rebuild `Exports/Server Packages/Financial Report - ready.zip` before user review when report files changed.
+- Close work against `docs/workflows/definition-of-done.md`.
 
 ## Update Discipline
 

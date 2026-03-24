@@ -634,6 +634,43 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+	measure 'Sales Revenue (Segment Mapped)' =
+			
+			VAR CleanName =
+			    IF (
+			        HASONEVALUE ( 'Dim_ItemSegmentMap'[ProductTypeClean] ),
+			        MIN ( 'Dim_ItemSegmentMap'[ProductTypeClean] ),
+			        BLANK ()
+			    )
+			RETURN
+			    IF (
+			        ISBLANK ( CleanName ),
+			        BLANK (),
+			        VAR GroupsMatching =
+			            FILTER (
+			                ALL ( 'Fact_SalesDetail'[ItemGroupName] ),
+			                VAR g = 'Fact_SalesDetail'[ItemGroupName]
+			                VAR RowMatch =
+			                    FILTER (
+			                        ALL ( 'Dim_ItemSegmentMap'[ProductTypeRaw], 'Dim_ItemSegmentMap'[ProductTypeClean] ),
+			                        'Dim_ItemSegmentMap'[ProductTypeRaw] = g
+			                            || 'Dim_ItemSegmentMap'[ProductTypeClean] = g
+			                    )
+			                VAR MappedClean =
+			                    MAXX ( RowMatch, 'Dim_ItemSegmentMap'[ProductTypeClean] )
+			                VAR DisplayAs =
+			                    COALESCE ( MappedClean, g )
+			                RETURN
+			                    DisplayAs = CleanName
+			            )
+			        RETURN
+			            CALCULATE ( [Sales Revenue], TREATAS ( GroupsMatching, 'Fact_SalesDetail'[ItemGroupName] ) )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 7e22cd16-c6f8-4dc3-84f1-7f17ca4be5ac
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 	measure 'Net Revenue Card Display' =
 			
 			DIVIDE ( [Net Revenue], 1000000000 )
@@ -794,5 +831,4 @@ table _Measures
 		source = { 1 }
 
 	annotation PBI_Id = a66de47ec24d4b69b6d0b9890071e46f
-
 

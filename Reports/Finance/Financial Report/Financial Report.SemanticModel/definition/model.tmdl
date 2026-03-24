@@ -41,6 +41,7 @@ ref table Dim_Date
 ref table Dim_Branch
 ref table Dim_SalesType
 ref table Dim_Department
+ref table Dim_ItemSegmentMap
 ref table Dim_Account
 ref table Dim_BSAccount
 ref table Dim_ChartRows

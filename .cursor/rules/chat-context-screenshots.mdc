@@ -1,0 +1,29 @@
+---
+description: Last screenshots in ChatContext + record lessons from mistakes
+alwaysApply: true
+---
+
+# Chat screenshots (`Shared/ChatContext/images`)
+
+When the user asks to see the **last**, **latest**, or **recent screenshot(s)** (or similar) **without** naming a file:
+
+1. Consider image files under `Shared/ChatContext/images/` with extensions: `.png`, `.jpg`, `.jpeg`, `.webp`, `.gif`.
+2. Sort by **last modified time**, newest first (use a directory listing or shell; do not guess).
+3. **Read** the newest file(s) with the image-capable Read tool—default **1** screenshot; if they said “two”, “both”, “last few”, use **2–3** or match their count.
+4. If there are no matching files, say so and tell them to save captures under that path.
+
+Do not require `@` mentions for this workflow when the user clearly refers to recent drops in that folder.
+
+## Learn from screenshots (“update yourself”)
+
+When the user wants to **learn from** the screenshot(s), **remember** a mistake, **not repeat** something, or **update** guidance for next time—**after** you have read the image(s):
+
+1. **Extract** specific, actionable lessons (what went wrong, what to do instead). Skip vague or one-off details unless the user insists.
+2. **Persist** by appending to `Shared/ChatContext/LESSONS.md`:
+   - Use heading `## YYYY-MM-DD` (or `## YYYY-MM-DD — short label`).
+   - Add bullets with optional scope tags: `[repo]`, `[cursor]`, `[finance]`, `[general]`.
+3. **Route** Finance report / PBIP / semantic-model / Finance UX lessons **also** into `Reports/Finance/Project Memory/DECISIONS.md` (or `MODEL_NOTES.md` if purely model/DAX behavior)—keep those entries short and consistent with existing style.
+4. If a lesson is **only** about Cursor UI and not the repo, `LESSONS.md` alone is enough.
+5. Tell the user **briefly** what you recorded and **where** (paths above).
+
+This is how “learning” survives across chats: **git-tracked files**, not model memory alone.

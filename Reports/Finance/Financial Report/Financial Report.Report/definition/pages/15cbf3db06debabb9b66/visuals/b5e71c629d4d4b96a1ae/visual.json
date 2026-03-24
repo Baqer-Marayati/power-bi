@@ -10,10 +10,10 @@
     "tabOrder": 16000
   },
   "visual": {
-    "visualType": "pivotTable",
+    "visualType": "lineClusteredColumnComboChart",
     "query": {
       "queryState": {
-        "Rows": {
+        "Category": {
           "projections": [
             {
               "field": {
@@ -32,7 +32,7 @@
             }
           ]
         },
-        "Values": {
+        "Y": {
           "projections": [
             {
               "field": {
@@ -78,22 +78,11 @@
               "queryRef": "_Measures.Chart Row YTD LY",
               "nativeQueryRef": "YTD LY",
               "displayName": "YTD LY"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Chart Row Var"
-                }
-              },
-              "queryRef": "_Measures.Chart Row Var",
-              "nativeQueryRef": "Variance",
-              "displayName": "Variance"
-            },
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
             {
               "field": {
                 "Measure": {
@@ -131,17 +120,30 @@
       }
     },
     "objects": {
-      "subTotals": [
+      "legend": [
         {
           "properties": {
-            "rowSubtotals": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
-            "columnSubtotals": {
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
               "expr": {
                 "Literal": {
                   "Value": "false"
@@ -221,7 +223,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Management Income Statement'"
+                  "Value": "'Management Performance Lens'"
                 }
               }
             },
@@ -239,7 +241,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "15D"
                 }
               }
             }

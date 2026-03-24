@@ -30,8 +30,7 @@
               "nativeQueryRef": "YearMonth",
               "active": true
             }
-          ],
-          "showAll": false
+          ]
         },
         "Y": {
           "projections": [
@@ -383,4 +382,3 @@
     "drillFilterOtherVisuals": true
   }
 }
-

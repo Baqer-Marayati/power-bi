@@ -1,0 +1,65 @@
+table Dim_ItemSegmentMap
+	lineageTag: 9b7b68ce-71b9-4f6a-aeeb-7ed98af8f3a1
+
+	column BusinessType
+		dataType: string
+		lineageTag: aa6e39b0-c82f-4f43-9eaa-36e1260f3a01
+		summarizeBy: none
+		sourceColumn: BusinessType
+
+		annotation SummarizationSetBy = Automatic
+
+	column GroupType
+		dataType: string
+		lineageTag: c4d23b26-d66d-49e8-9c00-0927bcbf2e22
+		summarizeBy: none
+		sourceColumn: GroupType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductTypeRaw
+		dataType: string
+		lineageTag: 70d2e2fc-d25d-4850-bfe0-b4fd94425ae1
+		summarizeBy: none
+		sourceColumn: ProductTypeRaw
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductTypeClean
+		dataType: string
+		lineageTag: 1dd44572-1f2a-4da2-bf67-7a1be6f00fc8
+		summarizeBy: none
+		sourceColumn: ProductTypeClean
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_ItemSegmentMap = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "BusinessType", STRING,
+				    "GroupType", STRING,
+				    "ProductTypeRaw", STRING,
+				    "ProductTypeClean", STRING,
+				    {
+				        { "B2B", "DS Copier", "Office Copier", "Office Copier" },
+				        { "B2B", "DS Copier", "Dims", "Dims" },
+				        { "B2B", "DS Copier", "Paper", "Paper" },
+				        { "B2B", "DS Copier", "Output Management", "Output Management" },
+				        { "B2B", "DS Copier", "Office Copier (VLP)", "Office Copier (VLP)" },
+				        { "B2B", "DS Copier", "DS Copier Accessories", "DS Copier Accessories" },
+				        { "B2B", "IPS", "Prod Sol Copier", "Prod Sol Copier" },
+				        { "B2B", "IPS", "RP", "RP" },
+				        { "B2B", "IPS", "LFP", "LFP" },
+				        { "B2B", "IPS", "WFP", "WFP" },
+				        { "B2B", "IPS", "Commercial print", "Commercial print" },
+				        { "B2B", "IPS", "IPS Accessories", "IPS Accessories" },
+				        { "B2B", "BIS", "BIS", "BIS" },
+				        { "B2C", "OPP", "MB - Machine", "Machine" },
+				        { "B2C", "OPP", "CN - Toner Cartridges", "Toner Cartridges" }
+				    }
+				)
+
+	annotation PBI_ResultType = Table
+

@@ -23,11 +23,11 @@
                       "Entity": "Fact_SalesDetail"
                     }
                   },
-                  "Property": "ItemGroupName"
+                  "Property": "Product Tree Label"
                 }
               },
-              "queryRef": "Fact_SalesDetail.ItemGroupName",
-              "nativeQueryRef": "Item Group",
+              "queryRef": "Fact_SalesDetail.Product Tree Label",
+              "nativeQueryRef": "Product tree",
               "active": true
             }
           ]
@@ -112,7 +112,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue by Item Group'"
+                  "Value": "'Revenue by Product Tree (B2B/B2C)'"
                 }
               }
             }
