@@ -1,6 +1,0 @@
-dataset_name,column_name,business_definition,data_type,is_key,nullable,sensitivity,example_value
-bp_master,bp_id,Unique business partner identifier,string,yes,no,internal,C000145
-bp_master,bp_type,Business partner type (customer or vendor),string,no,no,internal,customer
-ar_open_items,doc_no,AR document number,string,yes,no,internal,AR-100239
-ar_open_items,open_amount_lc,Open amount in local currency,decimal,no,no,confidential,1560000.50
-journal_entries,account_code,General ledger account code,string,no,no,internal,410100
