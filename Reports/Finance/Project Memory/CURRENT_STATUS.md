@@ -168,7 +168,7 @@ These pages were physically removed from the report definition during cleanup so
 - Hard reset pass on `Profitability Drivers` date logic: added dedicated `2026+` profitability measures and rebound both monthly charts plus margin card to those measures; disabled `showAll` on category axes so pre-2026 empty months are not drawn.
 - Validation discipline updated: every targeted page fix now requires a full 7-page screenshot run, then focused review of the target pages from that set before packaging.
 - `Income Statement` management block upgraded from a static `pivotTable` to a more visual combo chart (`lineClusteredColumnComboChart`) so the area now shows a clearer management-performance story: columns for `Current Period`, `YTD`, and `YTD LY` by statement row, plus a `Variance %` trend line.
-- `Revenue Insights` item-group visual was redesigned to a segment-aware view using the user-provided B2B/B2C product tree logic: added `Dim_ItemSegmentMap` (calculated table) and a new mapped measure `Sales Revenue (Segment Mapped)` with `TREATAS` so the visual now reads as `Revenue by Product Tree (B2B/B2C)` instead of a flat item-group ranking.
+- `Revenue Insights` revenue-by-segment bar chart now groups by **`Fact_SalesDetail[Item Business Type]`** from SAP **`OITM.U_BusinessType`** (item master UDF), with **`Sales Revenue`** on the axis; prior calculated map / PQ product-tree logic and `Dim_ItemSegmentMap` were removed as redundant to SAP master data.
 
 ## Retained Lessons
 - Ask "which artifact is the user actually opening?" before debugging visual differences.

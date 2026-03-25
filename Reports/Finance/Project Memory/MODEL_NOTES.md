@@ -16,9 +16,6 @@
 - `Dim_BSAccount`
 - `Dim_ChartRows`
 - `Dim_StatementSummaryRows`
-- `Dim_ReportRows`
-- `Dim_KPIRows`
-- `Dim_ItemSegmentMap` (calculated segment / product-type map for sales visuals)
 - `_Measures`
 
 ## Compatibility Tables Added For Benchmark Repair
@@ -101,11 +98,17 @@
 - Benchmark-derived pages still needed explicit format-string conversion because they came in with dollar formatting.
 - IQD formatting can cause clipping or crowding on cards that were originally sized for shorter benchmark value strings.
 
-## Sales — item segment map
-- `Dim_ItemSegmentMap` is a calculated mapping table for B2B/B2C-style product labels. It must appear in `Financial Report.SemanticModel/definition/model.tmdl` as `ref table Dim_ItemSegmentMap` or the table will not load.
-- **Revenue Insights — product tree bar chart** is wired to **`Fact_SalesDetail[Product Tree Label]`** (added in Power Query after `Source`) plus **`Sales Revenue`**, not to `Dim_ItemSegmentMap` on the axis. Measures that read a **disconnected** map from chart filter context often evaluate **blank for every category**; materializing the label on the fact avoids that.
-- Keep the **SegmentMap** `#table` in `Fact_SalesDetail` M in sync with `Dim_ItemSegmentMap` rows (`ProductTypeRaw` / `ProductTypeClean`) when the business mapping changes. **`fnProductTreeLabel`** resolves labels with (1) exact match on raw/clean, (2) else **longest `ProductTypeRaw` substring** contained in SAP `ItemGroupName` (handles paths like `B2B - DS Copier \ Office Copier`), (3) else the raw `ItemGroupName`. Blank / `#N/A` group names become **`Unassigned`**.
-- `Sales Revenue (Segment Mapped)` remains in the model for ad-hoc use but is not required for that visual.
+## Measure / helper table hygiene (2026-03)
+- Removed **unused** calculated tables **`Dim_ReportRows`** and **`Dim_KPIRows`** (no live report visuals referenced them; they only fed removed statement/KPI helper measures).
+- Pruned **~25 measures** that had **no report binding** and **no remaining in-model references** (e.g. duplicate branch/location counters, unused LY/YTD-LY helpers that only served the removed statement matrix pattern, `Sales Quantity*`, safe-card aliases, `Leverage Ratio`, `Operating Margin %`, `Net Margin %` base). **`Net Revenue LY`** is **kept** — referenced from **`generalLedgerEntries`** (`RevenueVariance`).
+- **`Opex by Account`** now aliases **`[Opex by Department]`** (identical logic; one maintenance path).
+- **Open in Desktop after pull** to confirm the model loads and no stale culture metadata warnings appear; `en-US` may still list removed measure names until Desktop re-synchronizes.
+
+## Sales — item business type (Revenue Insights)
+- **Revenue Insights** revenue-by-segment bar chart uses **`Fact_SalesDetail[Item Business Type]`** on the category axis and **`Sales Revenue`** in values.
+- **`Item Business Type`** is loaded in the **same ODBC query** as the fact: `COALESCE(NULLIF(TRIM(T3."U_BusinessType"), ''), 'Unassigned')` from **`CANON.OITM`** (alias `T3`, already joined on `ItemCode`). This is the **item master user-defined field** for business type (B2B/B2C-style classification maintained in SAP).
+- If refresh fails with an unknown column error, confirm the **technical UDF name** on `OITM` in the company database (Customization → UDF may show a different `U_...` code than `U_BusinessType`) and update the SQL in `Fact_SalesDetail.tmdl` only for that identifier.
+- Do not reintroduce a **disconnected** mapping table on the chart axis for this visual; source-of-truth for the bucket is **SAP item master**, not a static `DATATABLE` map in the model.
 
 ## PBIP / Semantic Handling Notes
 - Visual JSON changes are often the fastest safe route for layout and binding repairs.

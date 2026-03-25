@@ -101,12 +101,6 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
-	measure 'Operating Margin %' =
-			
-			DIVIDE ( [Operating Profit], [Net Revenue], 0 )
-		formatString: 0.00%;-0.00%;0.00%
-		lineageTag: 2b369278-8f84-4b8c-a58f-e00f8ab51652
-
 	measure 'Opex %' =
 			
 			DIVIDE ( [Operating Expenses Display], [Net Revenue], 0 )
@@ -143,35 +137,11 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
-	measure 'Net Margin %' =
-			
-			DIVIDE ( [Net Profit], [Net Revenue], 0 )
-		formatString: 0.00%;-0.00%;0.00%
-		lineageTag: 9c8f6a87-bf13-4d47-b7cd-0cb31ef61153
-
-	measure 'Accounts Count' =
-			
-			DISTINCTCOUNT ( 'Fact_PNL'[AcctCode] )
-		formatString: 0
-		lineageTag: f5d8b9bb-426d-4bbf-a6fd-4ffd6b4f73f4
-
 	measure Accounts =
 			
 			DISTINCTCOUNT ( 'Fact_PNL'[AcctCode] )
 		formatString: 0
 		lineageTag: f0d0c5dc-295f-460f-9f5d-a1d413eb16c6
-
-	measure 'Branch Count' =
-			
-			DISTINCTCOUNT ( 'Fact_PNL'[BranchCode] )
-		formatString: 0
-		lineageTag: 6f04c57f-a5d2-44c7-8694-75442aabfc0d
-
-	measure Locations =
-			
-			DISTINCTCOUNT ( 'Fact_PNL'[BranchCode] )
-		formatString: 0
-		lineageTag: 613d6819-8989-4608-b1ee-d31e97387d4b
 
 	measure 'Sales Types' =
 			
@@ -190,30 +160,6 @@ table _Measures
 			CALCULATE ( [Net Revenue], DATEADD ( 'Dim_Date'[Date], -1, YEAR ) )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: d27b1d3b-a0d2-4826-b58c-088a4cb4a607
-
-		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
-	measure 'Gross Profit LY' =
-			
-			CALCULATE ( [Gross Profit], DATEADD ( 'Dim_Date'[Date], -1, YEAR ) )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: 4f7aaeb7-5816-4cc8-b663-d92371888510
-
-		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
-	measure 'Operating Profit LY' =
-			
-			CALCULATE ( [Operating Profit], DATEADD ( 'Dim_Date'[Date], -1, YEAR ) )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: 7af524bb-a0a9-409a-b4d1-d40a52340b01
-
-		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
-	measure 'Net Profit LY' =
-			
-			CALCULATE ( [Net Profit], DATEADD ( 'Dim_Date'[Date], -1, YEAR ) )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: e2cd1ed2-2894-4479-b1fb-4a57cc66668a
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
@@ -246,38 +192,6 @@ table _Measures
 			CALCULATE ( [Net Profit], DATESYTD ( 'Dim_Date'[Date] ) )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 85403fd7-1044-46aa-9f1b-c8f7b2909a65
-
-		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
-	measure 'Net Revenue YTD LY' =
-			
-			CALCULATE ( [Net Revenue YTD], DATEADD ( 'Dim_Date'[Date], -1, YEAR ) )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: 79ca8319-010a-4ffc-aeda-62d808fbc568
-
-		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
-	measure 'Gross Profit YTD LY' =
-			
-			CALCULATE ( [Gross Profit YTD], DATEADD ( 'Dim_Date'[Date], -1, YEAR ) )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: eb6f0061-1dc9-416e-a757-f4a3794fd1f3
-
-		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
-	measure 'Operating Profit YTD LY' =
-			
-			CALCULATE ( [Operating Profit YTD], DATEADD ( 'Dim_Date'[Date], -1, YEAR ) )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: 4e3980fa-f72a-4972-a304-c1406d9fc9ac
-
-		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
-	measure 'Net Profit YTD LY' =
-			
-			CALCULATE ( [Net Profit YTD], DATEADD ( 'Dim_Date'[Date], -1, YEAR ) )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: bccfc9bf-eb71-4edb-9d67-4d50cd98d582
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
@@ -373,127 +287,6 @@ table _Measures
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: f5bc9c0a-b42d-4ad5-bc2a-c62e3c9236fb
 
-	measure 'Overview KPI Value' =
-			
-			VAR KPIName = SELECTEDVALUE ( 'Dim_KPIRows'[KPI Label] )
-			RETURN
-			    SWITCH (
-			        KPIName,
-			        "Net Revenue", [Net Revenue],
-			        "Gross Profit", [Gross Profit],
-			        "Gross Margin %", [Gross Margin %],
-			        "Operating Profit", [Operating Profit],
-			        "Net Profit", [Net Profit],
-			        "Net Margin %", [Net Margin %]
-			    )
-		lineageTag: 3ef3d741-8c6b-4aef-a2a2-9c21bf6d6777
-
-	measure 'Statement Actual' =
-			
-			VAR RowType = SELECTEDVALUE ( 'Dim_ReportRows'[RowType] )
-			VAR SectionName = SELECTEDVALUE ( 'Dim_ReportRows'[SectionName] )
-			VAR AcctCode = SELECTEDVALUE ( 'Dim_ReportRows'[AcctCode] )
-			VAR AccountValue =
-			    CALCULATE ( [Amount Display], TREATAS ( { AcctCode }, 'Fact_PNL'[AcctCode] ) )
-			RETURN
-			    SWITCH (
-			        TRUE (),
-			        RowType = "Header", BLANK (),
-			        RowType = "Account", AccountValue,
-			        SectionName = "Gross Revenue", [Gross Revenue],
-			        SectionName = "Revenue Adjustments", [Revenue Adjustments],
-			        SectionName = "Net Revenue", [Net Revenue],
-			        SectionName = "COGS", [COGS],
-			        SectionName = "Gross Profit", [Gross Profit],
-			        SectionName = "Operating Expenses", [Operating Expenses],
-			        SectionName = "Operating Profit", [Operating Profit],
-			        SectionName = "Other Income / Expense", [Other Income / Expense],
-			        SectionName = "Tax & Extraordinary", [Tax & Extraordinary],
-			        SectionName = "Net Profit", [Net Profit]
-			    )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: 0323ee9f-1b04-4d84-a00a-cf575bd48078
-
-		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
-	measure 'Statement YTD' =
-			
-			VAR RowType = SELECTEDVALUE ( 'Dim_ReportRows'[RowType] )
-			VAR SectionName = SELECTEDVALUE ( 'Dim_ReportRows'[SectionName] )
-			VAR AcctCode = SELECTEDVALUE ( 'Dim_ReportRows'[AcctCode] )
-			VAR AccountValue =
-			    CALCULATE (
-			        [Amount Display],
-			        DATESYTD ( 'Dim_Date'[Date] ),
-			        TREATAS ( { AcctCode }, 'Fact_PNL'[AcctCode] )
-			    )
-			RETURN
-			    SWITCH (
-			        TRUE (),
-			        RowType = "Header", BLANK (),
-			        RowType = "Account", AccountValue,
-			        SectionName = "Gross Revenue", CALCULATE ( [Gross Revenue], DATESYTD ( 'Dim_Date'[Date] ) ),
-			        SectionName = "Revenue Adjustments", CALCULATE ( [Revenue Adjustments], DATESYTD ( 'Dim_Date'[Date] ) ),
-			        SectionName = "Net Revenue", [Net Revenue YTD],
-			        SectionName = "COGS", CALCULATE ( [COGS], DATESYTD ( 'Dim_Date'[Date] ) ),
-			        SectionName = "Gross Profit", [Gross Profit YTD],
-			        SectionName = "Operating Expenses", CALCULATE ( [Operating Expenses], DATESYTD ( 'Dim_Date'[Date] ) ),
-			        SectionName = "Operating Profit", [Operating Profit YTD],
-			        SectionName = "Other Income / Expense", CALCULATE ( [Other Income / Expense], DATESYTD ( 'Dim_Date'[Date] ) ),
-			        SectionName = "Tax & Extraordinary", CALCULATE ( [Tax & Extraordinary], DATESYTD ( 'Dim_Date'[Date] ) ),
-			        SectionName = "Net Profit", [Net Profit YTD]
-			    )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: 0ab6dc5e-92fe-4ad9-afee-e2909e2097cb
-
-		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
-	measure 'Statement YTD LY' =
-			
-			VAR RowType = SELECTEDVALUE ( 'Dim_ReportRows'[RowType] )
-			VAR SectionName = SELECTEDVALUE ( 'Dim_ReportRows'[SectionName] )
-			VAR AcctCode = SELECTEDVALUE ( 'Dim_ReportRows'[AcctCode] )
-			VAR AccountValue =
-			    CALCULATE (
-			        [Amount Display],
-			        DATEADD ( DATESYTD ( 'Dim_Date'[Date] ), -1, YEAR ),
-			        TREATAS ( { AcctCode }, 'Fact_PNL'[AcctCode] )
-			    )
-			RETURN
-			    SWITCH (
-			        TRUE (),
-			        RowType = "Header", BLANK (),
-			        RowType = "Account", AccountValue,
-			        SectionName = "Gross Revenue", CALCULATE ( [Gross Revenue], DATEADD ( DATESYTD ( 'Dim_Date'[Date] ), -1, YEAR ) ),
-			        SectionName = "Revenue Adjustments", CALCULATE ( [Revenue Adjustments], DATEADD ( DATESYTD ( 'Dim_Date'[Date] ), -1, YEAR ) ),
-			        SectionName = "Net Revenue", [Net Revenue YTD LY],
-			        SectionName = "COGS", CALCULATE ( [COGS], DATEADD ( DATESYTD ( 'Dim_Date'[Date] ), -1, YEAR ) ),
-			        SectionName = "Gross Profit", [Gross Profit YTD LY],
-			        SectionName = "Operating Expenses", CALCULATE ( [Operating Expenses], DATEADD ( DATESYTD ( 'Dim_Date'[Date] ), -1, YEAR ) ),
-			        SectionName = "Operating Profit", [Operating Profit YTD LY],
-			        SectionName = "Other Income / Expense", CALCULATE ( [Other Income / Expense], DATEADD ( DATESYTD ( 'Dim_Date'[Date] ), -1, YEAR ) ),
-			        SectionName = "Tax & Extraordinary", CALCULATE ( [Tax & Extraordinary], DATEADD ( DATESYTD ( 'Dim_Date'[Date] ), -1, YEAR ) ),
-			        SectionName = "Net Profit", [Net Profit YTD LY]
-			    )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: 86291886-aa2c-4e5f-97f6-a9c5dc30fb0f
-
-		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
-	measure 'Statement Var' =
-			
-			[Statement YTD] - [Statement YTD LY]
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: eaf0f057-7a08-4e41-95f5-eb124a38194f
-
-		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
-	measure 'Statement Var %' =
-			
-			DIVIDE ( [Statement Var], [Statement YTD LY], 0 )
-		formatString: 0.00%;-0.00%;0.00%
-		lineageTag: a1953d87-a2bc-4d69-ae29-f5d57b16ad30
-
 	measure 'Opex by Department' =
 			
 			ABS (
@@ -509,12 +302,7 @@ table _Measures
 
 	measure 'Opex by Account' =
 			
-			ABS (
-			    CALCULATE (
-			        [Amount Display],
-			        KEEPFILTERS ( 'Fact_PNL'[PnLSection] = "Operating Expenses" )
-			    )
-			)
+			[Opex by Department]
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 5607c789-b5dc-43f0-9b6d-74708d9f1861
 
@@ -566,12 +354,6 @@ table _Measures
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 8fe9c10a-9f83-4ee3-a5a0-b36a80351980
 
-	measure 'Leverage Ratio' =
-			
-			DIVIDE ( [Total Liabilities], [Total Assets], 0 )
-		formatString: 0.00%;-0.00%;0.00%
-		lineageTag: cc4be699-b659-4b1f-9a1f-92de739d313c
-
 	measure 'BS Accounts' =
 			
 			DISTINCTCOUNT ( 'Fact_BalanceSheet'[AcctCode] )
@@ -600,12 +382,6 @@ table _Measures
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 5c7767e4-4680-42fe-a103-f5ac75d08f25
 
-	measure 'Sales Quantity' =
-			
-			SUM ( 'Fact_SalesDetail'[Quantity] )
-		formatString: #,0.0;-#,0.0;#,0.0
-		lineageTag: c9b4fc1f-f3fb-47cf-8b1d-d0088df931f2
-
 	measure 'Customer Count' =
 			
 			DISTINCTCOUNT ( 'Fact_SalesDetail'[CardCode] )
@@ -631,43 +407,6 @@ table _Measures
 			CALCULATE ( [Sales Gross Profit], DATESYTD ( 'Dim_Date'[Date] ) )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: c10ebccb-4d41-4468-8b12-2157980fa0ff
-
-		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
-	measure 'Sales Revenue (Segment Mapped)' =
-			
-			VAR CleanName =
-			    IF (
-			        HASONEVALUE ( 'Dim_ItemSegmentMap'[ProductTypeClean] ),
-			        MIN ( 'Dim_ItemSegmentMap'[ProductTypeClean] ),
-			        BLANK ()
-			    )
-			RETURN
-			    IF (
-			        ISBLANK ( CleanName ),
-			        BLANK (),
-			        VAR GroupsMatching =
-			            FILTER (
-			                ALL ( 'Fact_SalesDetail'[ItemGroupName] ),
-			                VAR g = 'Fact_SalesDetail'[ItemGroupName]
-			                VAR RowMatch =
-			                    FILTER (
-			                        ALL ( 'Dim_ItemSegmentMap'[ProductTypeRaw], 'Dim_ItemSegmentMap'[ProductTypeClean] ),
-			                        'Dim_ItemSegmentMap'[ProductTypeRaw] = g
-			                            || 'Dim_ItemSegmentMap'[ProductTypeClean] = g
-			                    )
-			                VAR MappedClean =
-			                    MAXX ( RowMatch, 'Dim_ItemSegmentMap'[ProductTypeClean] )
-			                VAR DisplayAs =
-			                    COALESCE ( MappedClean, g )
-			                RETURN
-			                    DisplayAs = CleanName
-			            )
-			        RETURN
-			            CALCULATE ( [Sales Revenue], TREATAS ( GroupsMatching, 'Fact_SalesDetail'[ItemGroupName] ) )
-			    )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: 7e22cd16-c6f8-4dc3-84f1-7f17ca4be5ac
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
@@ -754,30 +493,6 @@ table _Measures
 			DIVIDE ( [Total Equity], 1000000000 )
 		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
 		lineageTag: 6723fc89-f439-4143-b2ab-9fbf631c07c9
-
-	measure 'Sales Quantity YTD' =
-			
-			CALCULATE ( [Sales Quantity], DATESYTD ( 'Dim_Date'[Date] ) )
-		formatString: #,0.0;-#,0.0;#,0.0
-		lineageTag: 6333ea6e-f172-4ca1-af26-d6ab7f75a143
-
-	measure 'Gross Profit Safe Card Display' =
-			
-			COALESCE ( [Gross Profit], 0 )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: 9b8fd953-7088-479f-a196-0e4c55a307d1
-
-	measure 'Operating Profit Safe Card Display' =
-			
-			COALESCE ( [Operating Profit], 0 )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: 0efa97ff-ba58-4840-9f4f-bac1e3d833ec
-
-	measure 'Net Profit Safe Card Display' =
-			
-			COALESCE ( [Net Profit], 0 )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: c2f1c20e-f28d-4dec-95cc-6d9e0c59bf08
 
 	measure 'Net Revenue 2026+' =
 			

@@ -77,9 +77,8 @@
 - If a benchmark page is visually correct but semantically broken, preserve the shell and rewire the bindings to SAP-backed facts and measures.
 - Prefer report-side rewires and safe semantic-model aliases before attempting risky custom relationship additions.
 
-## Revenue Insights — Product Tree Rule
-- **Revenue by Product Tree (B2B/B2C)** groups revenue using **`Fact_SalesDetail[Product Tree Label]`**, computed in **Power Query** (`fnProductTreeLabel` + `SegmentMap` `#table`), not a disconnected **`Dim_ItemSegmentMap`** field on the chart axis with a bridging measure (that pattern produced a persistently blank visual).
-- The **Revenue Insights** visual binds **`Product Tree Label`** on the category axis and **`Sales Revenue`** in values. Keep **`SegmentMap`** in `Fact_SalesDetail` M aligned with **`Dim_ItemSegmentMap`** when mappings change.
+## Revenue Insights — Item business type rule
+- **Revenue by item business type** on **Revenue Insights** groups revenue by **`Fact_SalesDetail[Item Business Type]`**, sourced from SAP **`OITM.U_BusinessType`** (item master UDF) in the sales-detail SQL, with blank UDF values coalesced to **`Unassigned`**. The chart axis binds that column with **`Sales Revenue`**; do not replace this with a static in-model segment map unless product explicitly requests it.
 
 ## Final Page Set
 - As of March 21, 2026, the report is intentionally reduced to 7 live pages only:

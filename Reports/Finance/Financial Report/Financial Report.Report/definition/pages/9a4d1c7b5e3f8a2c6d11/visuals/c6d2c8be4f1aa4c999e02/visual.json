@@ -23,11 +23,11 @@
                       "Entity": "Fact_SalesDetail"
                     }
                   },
-                  "Property": "Product Tree Label"
+                  "Property": "Item Business Type"
                 }
               },
-              "queryRef": "Fact_SalesDetail.Product Tree Label",
-              "nativeQueryRef": "Product tree",
+              "queryRef": "Fact_SalesDetail.Item Business Type",
+              "nativeQueryRef": "Business type",
               "active": true
             }
           ]
@@ -112,7 +112,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue by Product Tree (B2B/B2C)'"
+                  "Value": "'Revenue by item business type (OITM UDF)'"
                 }
               }
             }
