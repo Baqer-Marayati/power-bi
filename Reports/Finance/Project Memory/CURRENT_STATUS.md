@@ -198,6 +198,8 @@ These pages were physically removed from the report definition during cleanup so
 - **User-approved return point:** `Reports/Finance/Exports/Server Packages/archive/20260326_1947__GLOBAL__Financial Report__506443d.zip` (git commit `6558e6e`)
 - Cross-page palette alignment pass: replaced all old teal/green per-visual color overrides (#223430, #E6ECE8, #DCE5E0, etc.) across 6 pages with approved navy-blue equivalents. Added descending sort to all 5 donut charts. Fixed DSO/DPO measures from FORMAT() text to numeric. Fixed KPI card title wrapping (narrow cards reduced from 12D to 10D/9D).
 - **User-approved return point:** `Reports/Finance/Exports/Server Packages/archive/20260327_0102__GLOBAL__Financial Report__0e25c09.zip` (git commit `3c845d5`)
+- Visual polish pass: restored focus mode on all pages (visualHeader.show was false on 7 chart visuals on pages 1-2; showFocusModeButton was false on 14 visuals on pages 6-7). Fixed invisible border (#F8FBFF → #C9D5E3) on 15 visuals across pages 2, 3, 6. Removed incorrect page-bg color from Operating vs Net Profit chart background.
+- **User-approved return point:** `Reports/Finance/Exports/Server Packages/archive/20260327_0142__GLOBAL__Financial Report__8229d02.zip` (git commit `5444a49`)
 
 ## Retained Lessons
 - Ask "which artifact is the user actually opening?" before debugging visual differences.
