@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "svc_p3_slicer_cust",
+  "position": {"x":8,"y":182,"z":19000,"height":36,"width":167,"tabOrder":4000},
+  "visual": {
+    "visualType": "slicer",
+    "query": {"queryState": {"Values": {"projections": [{"field": {"Column": {"Expression": {"SourceRef": {"Entity": "Dim_Customer"}},"Property": "CustomerName"}},"queryRef": "Dim_Customer.CustomerName","nativeQueryRef": "CustomerName","active": true}]}}},
+    "objects": {
+      "data": [{"properties": {"mode": {"expr": {"Literal": {"Value": "'Dropdown'"}}}}}],
+      "header": [{"properties": {"show": {"expr": {"Literal": {"Value": "false"}}}}}],
+      "selection": [{"properties": {"singleSelect": {"expr": {"Literal": {"Value": "false"}}}}}]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

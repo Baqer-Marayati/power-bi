@@ -1,0 +1,37 @@
+table Dim_Project
+	lineageTag: d1a00006-0001-4000-a006-000000000001
+
+	column ProjectCode
+		dataType: string
+		lineageTag: d1a00006-0001-4000-a006-000000000002
+		summarizeBy: none
+		sourceColumn: ProjectCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProjectName
+		dataType: string
+		lineageTag: d1a00006-0001-4000-a006-000000000003
+		summarizeBy: none
+		sourceColumn: ProjectName
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsActive
+		dataType: string
+		lineageTag: d1a00006-0001-4000-a006-000000000004
+		summarizeBy: none
+		sourceColumn: IsActive
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Project = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  P.""PrjCode"" AS ""ProjectCode"",#(lf)  P.""PrjName"" AS ""ProjectName"",#(lf)  P.""Active"" AS ""IsActive""#(lf)FROM ""CANON"".""OPRJ"" P")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

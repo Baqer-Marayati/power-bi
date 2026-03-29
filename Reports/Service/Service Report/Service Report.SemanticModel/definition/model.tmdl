@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["Fact_ServiceCalls","Fact_ServiceActivities","Fact_ServiceParts","Fact_ServiceRevenue"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Fact_ServiceCalls
+ref table Fact_ServiceActivities
+ref table Fact_ServiceParts
+ref table Fact_ServiceRevenue
+ref table Dim_Date
+ref table Dim_Employee
+ref table Dim_Customer
+ref table Dim_Item
+ref table Dim_Equipment
+ref table Dim_Project
+ref table Dim_ProblemType
+ref table _Measures
+
+ref cultureInfo en-US
+

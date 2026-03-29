@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "svc_p1_donut_status",
+  "position": {"x":860,"y":228,"z":6000,"height":264,"width":412,"tabOrder":10000},
+  "visual": {
+    "visualType": "donutChart",
+    "query": {"queryState": {"Category": {"projections": [{"field": {"Column": {"Expression": {"SourceRef": {"Entity": "Fact_ServiceCalls"}},"Property": "StatusName"}},"queryRef": "Fact_ServiceCalls.StatusName","nativeQueryRef": "StatusName","active": true}]},"Y": {"projections": [{"field": {"Measure": {"Expression": {"SourceRef": {"Entity": "_Measures"}},"Property": "Total Service Calls"}},"queryRef": "_Measures.Total Service Calls","nativeQueryRef": "Total Service Calls"}]}}},
+    "objects": {
+      "labels": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}}}}],
+      "legend": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}},"position": {"expr": {"Literal": {"Value": "'Bottom'"}}},"showTitle": {"expr": {"Literal": {"Value": "false"}}}}}]
+    },
+    "visualContainerObjects": {
+      "background": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}},"color": {"solid": {"color": {"expr": {"Literal": {"Value": "'#FFFFFF'"}}}}},"transparency": {"expr": {"Literal": {"Value": "0D"}}}}}],
+      "border": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}},"color": {"solid": {"color": {"expr": {"Literal": {"Value": "'#E2EAE6'"}}}}}}}],
+      "title": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}},"text": {"expr": {"Literal": {"Value": "'By Call Status'"}}},"fontColor": {"solid": {"color": {"expr": {"Literal": {"Value": "'#223430'"}}}}},"fontSize": {"expr": {"Literal": {"Value": "12D"}}}}}],
+      "visualHeader": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}}}}]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

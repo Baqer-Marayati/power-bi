@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "svc_p4_header",
+  "position": {"x": 184, "y": 36, "z": 20000, "height": 56, "width": 756, "tabOrder": 20000},
+  "visual": {
+    "visualType": "shape",
+    "objects": {"text": [{"properties": {"text": {"expr": {"Literal": {"Value": "''"}}}},"selector": {"id": "default"}}]},
+    "visualContainerObjects": {
+      "stylePreset": [{"properties": {"name": {"expr": {"Literal": {"Value": "'Report Header'"}}}}}],
+      "title": [{"properties": {
+        "show": {"expr": {"Literal": {"Value": "true"}}},
+        "text": {"expr": {"Literal": {"Value": "'Parts and Faults'"}}},
+        "fontFamily": {"expr": {"Literal": {"Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"}}},
+        "bold": {"expr": {"Literal": {"Value": "false"}}},
+        "fontSize": {"expr": {"Literal": {"Value": "20D"}}}
+      }}],
+      "subTitle": [{"properties": {
+        "show": {"expr": {"Literal": {"Value": "true"}}},
+        "text": {"expr": {"Literal": {"Value": "'Parts consumption, cost, and fault type breakdown.'"}}}
+      }}]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "howCreated": "InsertVisualButton"
+}

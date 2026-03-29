@@ -1,0 +1,300 @@
+table Fact_ServiceCalls
+	lineageTag: f1a00001-0001-4000-b001-000000000001
+
+	column CallID
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00001-0001-4000-b001-000000000002
+		summarizeBy: none
+		sourceColumn: CallID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreateDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f1a00001-0001-4000-b001-000000000003
+		summarizeBy: none
+		sourceColumn: CreateDate
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CreateTime
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00001-0001-4000-b001-000000000004
+		summarizeBy: none
+		sourceColumn: CreateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column CloseDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f1a00001-0001-4000-b001-000000000005
+		summarizeBy: none
+		sourceColumn: CloseDate
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CloseTime
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00001-0001-4000-b001-000000000006
+		summarizeBy: none
+		sourceColumn: CloseTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResponseDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f1a00001-0001-4000-b001-000000000007
+		summarizeBy: none
+		sourceColumn: ResponseDate
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ResponseTime
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00001-0001-4000-b001-000000000008
+		summarizeBy: none
+		sourceColumn: ResponseTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResolutionDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f1a00001-0001-4000-b001-000000000009
+		summarizeBy: none
+		sourceColumn: ResolutionDate
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ResolutionTime
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00001-0001-4000-b001-00000000000a
+		summarizeBy: none
+		sourceColumn: ResolutionTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerCode
+		dataType: string
+		lineageTag: f1a00001-0001-4000-b001-00000000000b
+		summarizeBy: none
+		sourceColumn: CustomerCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: f1a00001-0001-4000-b001-00000000000c
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCode
+		dataType: string
+		lineageTag: f1a00001-0001-4000-b001-00000000000d
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column EquipmentKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00001-0001-4000-b001-00000000000e
+		summarizeBy: none
+		sourceColumn: EquipmentKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subject
+		dataType: string
+		lineageTag: f1a00001-0001-4000-b001-00000000000f
+		summarizeBy: none
+		sourceColumn: Subject
+
+		annotation SummarizationSetBy = Automatic
+
+	column CallType
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00001-0001-4000-b001-000000000010
+		summarizeBy: none
+		sourceColumn: CallType
+
+		annotation SummarizationSetBy = Automatic
+
+	column CallTypeName
+		dataType: string
+		lineageTag: f1a00001-0001-4000-b001-000000000011
+		summarizeBy: none
+		sourceColumn: CallTypeName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProblemTypeID
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00001-0001-4000-b001-000000000012
+		summarizeBy: none
+		sourceColumn: ProblemTypeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Origin
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00001-0001-4000-b001-000000000013
+		summarizeBy: none
+		sourceColumn: Origin
+
+		annotation SummarizationSetBy = Automatic
+
+	column OriginName
+		dataType: string
+		lineageTag: f1a00001-0001-4000-b001-000000000014
+		summarizeBy: none
+		sourceColumn: OriginName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Priority
+		dataType: string
+		lineageTag: f1a00001-0001-4000-b001-000000000015
+		summarizeBy: none
+		sourceColumn: Priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00001-0001-4000-b001-000000000016
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column StatusName
+		dataType: string
+		lineageTag: f1a00001-0001-4000-b001-000000000017
+		summarizeBy: none
+		sourceColumn: StatusName
+
+		annotation SummarizationSetBy = Automatic
+
+	column AssigneeKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00001-0001-4000-b001-000000000018
+		summarizeBy: none
+		sourceColumn: AssigneeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResponderKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00001-0001-4000-b001-000000000019
+		summarizeBy: none
+		sourceColumn: ResponderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedByUserKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00001-0001-4000-b001-00000000001a
+		summarizeBy: none
+		sourceColumn: CreatedByUserKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProjectCode
+		dataType: string
+		lineageTag: f1a00001-0001-4000-b001-00000000001b
+		summarizeBy: none
+		sourceColumn: ProjectCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CounterBK
+		dataType: string
+		lineageTag: f1a00001-0001-4000-b001-00000000001c
+		summarizeBy: none
+		sourceColumn: CounterBK
+
+		annotation SummarizationSetBy = Automatic
+
+	column CounterCyan
+		dataType: string
+		lineageTag: f1a00001-0001-4000-b001-00000000001d
+		summarizeBy: none
+		sourceColumn: CounterCyan
+
+		annotation SummarizationSetBy = Automatic
+
+	column CounterMagenta
+		dataType: string
+		lineageTag: f1a00001-0001-4000-b001-00000000001e
+		summarizeBy: none
+		sourceColumn: CounterMagenta
+
+		annotation SummarizationSetBy = Automatic
+
+	column CounterYellow
+		dataType: string
+		lineageTag: f1a00001-0001-4000-b001-00000000001f
+		summarizeBy: none
+		sourceColumn: CounterYellow
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalCounter
+		dataType: string
+		lineageTag: f1a00001-0001-4000-b001-000000000020
+		summarizeBy: none
+		sourceColumn: TotalCounter
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResolutionHours
+		dataType: double
+		lineageTag: f1a00001-0001-4000-b001-000000000021
+		summarizeBy: sum
+		sourceColumn: ResolutionHours
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ResponseHours
+		dataType: double
+		lineageTag: f1a00001-0001-4000-b001-000000000022
+		summarizeBy: sum
+		sourceColumn: ResponseHours
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Fact_ServiceCalls = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  S.""callID"" AS ""CallID"",#(lf)  S.""createDate"" AS ""CreateDate"",#(lf)  S.""createTime"" AS ""CreateTime"",#(lf)  S.""closeDate"" AS ""CloseDate"",#(lf)  S.""closeTime"" AS ""CloseTime"",#(lf)  S.""respOnDate"" AS ""ResponseDate"",#(lf)  S.""respOnTime"" AS ""ResponseTime"",#(lf)  S.""resolOnDat"" AS ""ResolutionDate"",#(lf)  S.""resolOnTim"" AS ""ResolutionTime"",#(lf)  S.""customer"" AS ""CustomerCode"",#(lf)  S.""custmrName"" AS ""CustomerName"",#(lf)  S.""itemCode"" AS ""ItemCode"",#(lf)  S.""insID"" AS ""EquipmentKey"",#(lf)  S.""subject"" AS ""Subject"",#(lf)  S.""callType"" AS ""CallType"",#(lf)  COALESCE(CT.""Name"", 'Unclassified') AS ""CallTypeName"",#(lf)  COALESCE(S.""problemTyp"", 0) AS ""ProblemTypeID"",#(lf)  S.""origin"" AS ""Origin"",#(lf)  COALESCE(OG.""Name"", 'Unclassified') AS ""OriginName"",#(lf)  S.""priority"" AS ""Priority"",#(lf)  S.""status"" AS ""Status"",#(lf)  CASE S.""status""#(lf)    WHEN -1 THEN 'Closed'#(lf)    WHEN -2 THEN 'Pending'#(lf)    WHEN -3 THEN 'Open'#(lf)    WHEN 1 THEN 'Canceled'#(lf)    ELSE 'Unknown'#(lf)  END AS ""StatusName"",#(lf)  COALESCE(S.""assignee"", 0) AS ""AssigneeKey"",#(lf)  COALESCE(S.""responder"", 0) AS ""ResponderKey"",#(lf)  S.""userSign"" AS ""CreatedByUserKey"",#(lf)  S.""BPProjCode"" AS ""ProjectCode"",#(lf)  S.""U_A15"" AS ""CounterBK"",#(lf)  S.""U_A_20"" AS ""CounterCyan"",#(lf)  S.""U_A_21"" AS ""CounterMagenta"",#(lf)  S.""U_A_22"" AS ""CounterYellow"",#(lf)  S.""U_A_29"" AS ""TotalCounter"",#(lf)  CASE#(lf)    WHEN S.""closeDate"" IS NOT NULL AND S.""createDate"" IS NOT NULL THEN#(lf)      SECONDS_BETWEEN(#(lf)        ADD_SECONDS(S.""createDate"", FLOOR(S.""createTime""/100)*3600 + MOD(S.""createTime"",100)*60),#(lf)        ADD_SECONDS(S.""closeDate"", FLOOR(S.""closeTime""/100)*3600 + MOD(S.""closeTime"",100)*60)#(lf)      ) / 3600.0#(lf)    ELSE NULL#(lf)  END AS ""ResolutionHours"",#(lf)  CASE#(lf)    WHEN S.""respOnDate"" IS NOT NULL AND S.""createDate"" IS NOT NULL THEN#(lf)      SECONDS_BETWEEN(#(lf)        ADD_SECONDS(S.""createDate"", FLOOR(S.""createTime""/100)*3600 + MOD(S.""createTime"",100)*60),#(lf)        ADD_SECONDS(S.""respOnDate"", FLOOR(S.""respOnTime""/100)*3600 + MOD(S.""respOnTime"",100)*60)#(lf)      ) / 3600.0#(lf)    ELSE NULL#(lf)  END AS ""ResponseHours""#(lf)FROM ""CANON"".""OSCL"" S#(lf)LEFT JOIN ""CANON"".""OSCT"" CT ON S.""callType"" = CT.""callTypeID""#(lf)LEFT JOIN ""CANON"".""OSCO"" OG ON S.""origin"" = OG.""originID""")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

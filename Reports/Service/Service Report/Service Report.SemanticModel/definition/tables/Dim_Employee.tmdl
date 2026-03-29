@@ -1,0 +1,78 @@
+table Dim_Employee
+	lineageTag: d1a00002-0001-4000-a002-000000000001
+
+	column EmployeeKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d1a00002-0001-4000-a002-000000000002
+		summarizeBy: none
+		sourceColumn: EmployeeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeName
+		dataType: string
+		lineageTag: d1a00002-0001-4000-a002-000000000003
+		summarizeBy: none
+		sourceColumn: EmployeeName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstName
+		dataType: string
+		lineageTag: d1a00002-0001-4000-a002-000000000004
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		lineageTag: d1a00002-0001-4000-a002-000000000005
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Department
+		dataType: string
+		lineageTag: d1a00002-0001-4000-a002-000000000006
+		summarizeBy: none
+		sourceColumn: Department
+
+		annotation SummarizationSetBy = Automatic
+
+	column Position
+		dataType: string
+		lineageTag: d1a00002-0001-4000-a002-000000000007
+		summarizeBy: none
+		sourceColumn: Position
+
+		annotation SummarizationSetBy = Automatic
+
+	column Team
+		dataType: string
+		lineageTag: d1a00002-0001-4000-a002-000000000008
+		summarizeBy: none
+		sourceColumn: Team
+
+		annotation SummarizationSetBy = Automatic
+
+	column Role
+		dataType: string
+		lineageTag: d1a00002-0001-4000-a002-000000000009
+		summarizeBy: none
+		sourceColumn: Role
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Employee = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  E.""empID"" AS ""EmployeeKey"",#(lf)  TRIM(E.""firstName"") || ' ' || TRIM(E.""lastName"") AS ""EmployeeName"",#(lf)  TRIM(E.""firstName"") AS ""FirstName"",#(lf)  TRIM(E.""lastName"") AS ""LastName"",#(lf)  COALESCE(D.""Name"", 'Unknown') AS ""Department"",#(lf)  COALESCE(P.""name"", 'Unknown') AS ""Position"",#(lf)  CASE#(lf)    WHEN E.""empID"" IN (66,67,68,69,70,71) THEN 'Production'#(lf)    WHEN E.""empID"" IN (72,73,74,75,76,77,78) THEN 'Office'#(lf)    WHEN E.""empID"" = 80 THEN 'Call Center'#(lf)    ELSE 'Other'#(lf)  END AS ""Team"",#(lf)  CASE#(lf)    WHEN E.""empID"" = 80 THEN 'Dispatcher'#(lf)    ELSE 'Technician'#(lf)  END AS ""Role""#(lf)FROM ""CANON"".""OHEM"" E#(lf)LEFT JOIN ""CANON"".""OUDP"" D ON E.""dept"" = D.""Code""#(lf)LEFT JOIN ""CANON"".""OHPS"" P ON E.""position"" = P.""posID""#(lf)WHERE E.""empID"" IN (66,67,68,69,70,71,72,73,74,75,76,77,78,80)")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
