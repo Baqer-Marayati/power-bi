@@ -20,7 +20,7 @@
                 "name": {
                   "expr": {
                     "Literal": {
-                      "Value": "'Aljazeera.png'"
+                      "Value": "'Aljazeera logo.png'"
                     }
                   }
                 },
@@ -29,7 +29,7 @@
                     "ResourcePackageItem": {
                       "PackageName": "RegisteredResources",
                       "PackageType": 1,
-                      "ItemName": "Aljazeera37141862457449826.png"
+                      "ItemName": "Aljazeera_logo5594601849612262.png"
                     }
                   }
                 },

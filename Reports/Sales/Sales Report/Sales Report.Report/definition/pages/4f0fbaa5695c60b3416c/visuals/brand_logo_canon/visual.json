@@ -20,7 +20,7 @@
                 "name": {
                   "expr": {
                     "Literal": {
-                      "Value": "'Canon_RGB_XL.jpg'"
+                      "Value": "'Canon_logo_transparent.png'"
                     }
                   }
                 },
@@ -29,7 +29,7 @@
                     "ResourcePackageItem": {
                       "PackageName": "RegisteredResources",
                       "PackageType": 1,
-                      "ItemName": "Canon_RGB_XL8667947472239197.jpg"
+                      "ItemName": "Canon_logo_transparent4826537244702471.png"
                     }
                   }
                 },
