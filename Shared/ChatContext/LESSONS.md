@@ -39,3 +39,8 @@ Short, **durable** notes the assistant adds after reviewing captures in `images/
 ### 2026-03-26 — Revenue grouping source lock
 
 - `[finance]` Revenue grouping on `Revenue Insights` must use SAP item-master UDF **`OITM.U_BusinessType`** (`Fact_SalesDetail['Item Business Type']`) instead of `ItemGroupName`.
+
+### 2026-03-31 — SAP HANA connectivity + canceled document handling
+
+- `[repo]` SAP HANA credentials are stored in `Shared/SAP Export Pipeline/set_credentials.sh` (env vars `SAP_HANA_USER` / `SAP_HANA_PASSWORD`). The `hdbsql` CLI at `C:\Program Files\sap\hdbclient\hdbsql.exe` works for ad-hoc queries; PowerShell ODBC (`System.Data.Odbc`) hits a protocol-parsing error on this server.
+- `[finance]` `[sales]` When querying `OINV`/`ORIN` transactionally, **always filter `T0."CANCELED" = 'N'`**. SAP B1 keeps both the original (`CANCELED='Y'`) and cancellation (`CANCELED='C'`) documents in the same table with positive `LineTotal`. Without the filter, canceled amounts are double-counted. The GL (`OJDT/JDT1`) handles this internally (credit + debit net to zero), so GL-based reports are unaffected.
