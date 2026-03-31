@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
   "name": "e20254fdaeba942d5c2c",
-  "displayName": "Resellers",
+  "displayName": "Business Partner",
   "displayOption": "FitToWidth",
   "height": 960,
   "width": 1280,
