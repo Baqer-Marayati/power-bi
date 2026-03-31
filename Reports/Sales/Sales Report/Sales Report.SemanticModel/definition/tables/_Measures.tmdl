@@ -33,35 +33,20 @@ table _Measures
 
 	measure 'Sales Card Display' =
 			
-			VAR v = [Sales]
-			RETURN
-			    IF( ABS(v) >= 1E9,
-			        DIVIDE(v, 1E9),
-			        DIVIDE(v, 1E6)
-			    )
-		formatString: #,0.00" Bn د.ع."
+			DIVIDE ( [Sales], 1000000000 )
+		formatString: 0.00"Bn د.ع.‏";-0.00"Bn د.ع.‏";0.00"Bn د.ع.‏"
 		lineageTag: a1b2c3d4-0001-4000-8000-000000000001
 
 	measure 'COGS Card Display' =
 			
-			VAR v = [COGS]
-			RETURN
-			    IF( ABS(v) >= 1E9,
-			        DIVIDE(v, 1E9),
-			        DIVIDE(v, 1E6)
-			    )
-		formatString: #,0.00" Bn د.ع."
+			DIVIDE ( [COGS], 1000000000 )
+		formatString: 0.00"Bn د.ع.‏";-0.00"Bn د.ع.‏";0.00"Bn د.ع.‏"
 		lineageTag: a1b2c3d4-0002-4000-8000-000000000002
 
 	measure 'Profit Card Display' =
 			
-			VAR v = [Profit]
-			RETURN
-			    IF( ABS(v) >= 1E9,
-			        DIVIDE(v, 1E9),
-			        DIVIDE(v, 1E6)
-			    )
-		formatString: #,0.00" M د.ع."
+			DIVIDE ( [Profit], 1000000 )
+		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
 		lineageTag: a1b2c3d4-0003-4000-8000-000000000003
 
 	measure 'Active BP Count' =
