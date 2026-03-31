@@ -1,0 +1,132 @@
+table DateTable
+	lineageTag: d7e791d1-bfea-45b1-a0a2-e6e2e2f36694
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: 18258752-5dbb-40de-9f63-741406c60107
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: 016a9a6f-26ff-4b25-b55a-3f344a30e54a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNumber
+		formatString: 0
+		lineageTag: 6ef878c4-43fa-4c4b-b12b-9bb888f6338f
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [MonthNumber]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		formatString: 0
+		lineageTag: 204714e9-75fb-458e-a5e5-d21d4b81b66b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Day]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		lineageTag: c2168120-a9c7-4122-a6b6-4cebb8b0b673
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+		sortByColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthYear
+		lineageTag: fb3542ec-4a99-486c-8f73-eb42d9573ebc
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthYear]
+		sortByColumn: YearMonthKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		lineageTag: dbb37148-2323-471e-a565-14192e0bec0b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: 7db49437-9dae-4a62-8463-817204adba07
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearQuarter
+		lineageTag: 12a1b65a-6e4f-4c4a-aac7-b395a0692e64
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearQuarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthKey
+		formatString: 0
+		lineageTag: 37fa5b46-514e-45fb-87b4-2041b4fc28a7
+		summarizeBy: count
+		isNameInferred
+		sourceColumn: [YearMonthKey]
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterKey
+		formatString: 0
+		lineageTag: 8501a61d-3af4-4b5b-9be8-37a557f03ee3
+		summarizeBy: count
+		isNameInferred
+		sourceColumn: [QuarterKey]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DateTable = calculated
+		mode: import
+		source =
+				
+				VAR MinDate0 =
+				    MINX ( ALL ( SalesFact ), SalesFact[DocDate] )
+				VAR MaxDate0 =
+				    MAXX ( ALL ( SalesFact ), SalesFact[DocDate] )
+				
+				VAR StartDate =
+				    DATE ( YEAR ( MinDate0 ), 1, 1 )
+				VAR EndDate =
+				    MAX ( DATE ( YEAR ( MaxDate0 ), 12, 31 ), TODAY() )
+				
+				RETURN
+				ADDCOLUMNS (
+				    CALENDAR ( StartDate, EndDate ),
+				    "Year", YEAR ( [Date] ),
+				    "MonthNumber", MONTH ( [Date] ),
+				    "Day", DAY ( [Date] ),
+				    "Month", FORMAT ( [Date], "MMM" ),
+				    "MonthYear", FORMAT ( [Date], "MMM YYYY" ),
+				    "YearMonth", FORMAT ( [Date], "YYYY-MM" ),
+				    "Quarter", "Q" & FORMAT ( [Date], "Q" ),
+				    "YearQuarter", FORMAT ( [Date], "YYYY" ) & "-Q" & FORMAT ( [Date], "Q" ),
+				    "YearMonthKey", YEAR ( [Date] ) * 100 + MONTH ( [Date] ),
+				    "QuarterKey", YEAR ( [Date] ) * 10 + QUARTER ( [Date] )
+				)
+
+	annotation PBI_Id = 19ce0c01185d462ba5c1015d334af2d0
+

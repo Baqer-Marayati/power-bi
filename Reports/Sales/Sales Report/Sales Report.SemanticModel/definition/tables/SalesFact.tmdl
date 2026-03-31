@@ -1,0 +1,161 @@
+table SalesFact
+	lineageTag: 89600671-ff52-40c3-a60d-eb6be0b0470e
+
+	column DocDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5bfaa0d5-da96-4c9b-96be-ee83be31674c
+		summarizeBy: none
+		sourceColumn: DocDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessType
+		dataType: string
+		lineageTag: 82892cc0-1c9f-475e-bef0-7d1babd643e4
+		summarizeBy: none
+		sourceColumn: BusinessType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 65d16b8c-c71f-4ba2-870f-0d7605452308
+		summarizeBy: sum
+		sourceColumn: Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column COGS
+		dataType: double
+		lineageTag: 74a3ef08-36be-4616-bd74-f1804a3653f8
+		summarizeBy: sum
+		sourceColumn: COGS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BPType
+		dataType: string
+		lineageTag: d61703d8-918e-4c29-a883-59a068acf34e
+		summarizeBy: none
+		sourceColumn: BPType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_GroupType
+		dataType: string
+		lineageTag: 7d5b9c34-f903-4b47-a30c-ed2abff18fbe
+		summarizeBy: none
+		sourceColumn: U_GroupType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_ProductType
+		dataType: string
+		lineageTag: 37a0b25a-a1e4-43c2-905b-b878ee20b7d0
+		summarizeBy: none
+		sourceColumn: U_ProductType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_SegmentType
+		dataType: string
+		lineageTag: 8e5ae14f-35cf-415f-954a-bb5632f3c311
+		summarizeBy: none
+		sourceColumn: U_SegmentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemName
+		dataType: string
+		lineageTag: d5d0fb1b-2a46-4106-9a1f-fdaed7a26110
+		summarizeBy: none
+		sourceColumn: ItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCode
+		dataType: string
+		lineageTag: 0a712874-d6d1-4c36-90e1-0905ae8bd9d9
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Qty
+		dataType: double
+		formatString: #,0
+		lineageTag: c8010adb-b3f1-4581-a29a-87b6abdbafad
+		summarizeBy: sum
+		sourceColumn: Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column CardCode
+		dataType: string
+		lineageTag: e84d1722-9dd7-4b58-9369-08dd68332de2
+		summarizeBy: none
+		sourceColumn: CardCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardName
+		dataType: string
+		lineageTag: 87998341-7018-400e-a9df-1ede60fc26e2
+		summarizeBy: none
+		sourceColumn: CardName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SlpCode
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e8f6b3a-66f8-4b67-b679-0ac0b024e31b
+		summarizeBy: none
+		sourceColumn: SlpCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesPerson
+		dataType: string
+		lineageTag: acad4789-bc98-4585-9d8d-ecab393e33bf
+		summarizeBy: none
+		sourceColumn: SalesPerson
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesDept
+		dataType: string
+		lineageTag: 65d651bc-3b5b-496c-9190-08e2cf63a6c0
+		summarizeBy: none
+		sourceColumn: SalesDept
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesType
+		dataType: string
+		lineageTag: 0e4630c1-fea2-4c93-bcaf-4b72437b6efd
+		summarizeBy: none
+		sourceColumn: SalesType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SalesFact = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "/* ===========================================================#(lf)   SalesFact + Warranty + G/L COGS Adjustments#(lf)   -----------------------------------------------------------#(lf)   Logic:#(lf)   - Sales from A/R Invoice + A/R Credit Memo#(lf)   - Stock COGS from INV1/RIN1 StockValue#(lf)   - Warranty COGS from A/P Invoice item SV003#(lf)   - A/P Credit Memo for SV003 reverses warranty cost#(lf)   - Non-item A/R lines on revenue accounts (45..., 46...) stay in Sales#(lf)   - Non-item A/R lines on cost/expense accounts are excluded from Sales#(lf)   - Finance-side COGS adjustments are added from OJDT/JDT1#(lf)#(lf)   IMPORTANT:#(lf)   1) Replace the accounts in GLCOGSAdjustments with your real SAP#(lf)      finance-side COGS adjustment accounts.#(lf)   2) Do NOT include stock COGS accounts already represented by StockValue.#(lf)   3) Do NOT include the warranty account if warranty is already captured#(lf)      by SV003 in OPCH/ORPC, otherwise you will double count it.#(lf)   =========================================================== */#(lf)#(lf)WITH#(lf)InvBase AS (#(lf)    SELECT#(lf)        H.""DocEntry"",#(lf)        H.""DocDate"",#(lf)        H.""CardCode"",#(lf)        H.""SlpCode"",#(lf)        H.""DiscSum""#(lf)    FROM ""CANON"".""OINV"" H#(lf)    WHERE H.""CANCELED"" = 'N'#(lf)),#(lf)InvTotals AS (#(lf)    SELECT#(lf)        L.""DocEntry"",#(lf)        SUM(L.""LineTotal"") AS ""SumLineTotal""#(lf)    FROM ""CANON"".""INV1"" L#(lf)    GROUP BY L.""DocEntry""#(lf)),#(lf)InvLines AS (#(lf)    SELECT#(lf)        B.""DocDate""                                              AS ""DocDate"",#(lf)        C.""U_PartnerType""                                        AS ""BPType"",#(lf)        B.""CardCode""                                             AS ""CardCode"",#(lf)        C.""CardName""                                             AS ""CardName"",#(lf)        B.""SlpCode""                                              AS ""SlpCode"",#(lf)        S.""SlpName""                                              AS ""SalesPerson"",#(lf)        S.""U_SalesDept""                                          AS ""SalesDept"",#(lf)        S.""U_SalesType""                                          AS ""SalesType"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL THEN '(No Item)'#(lf)            ELSE L.""ItemCode""#(lf)        END                                                      AS ""ItemCode"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL AND L.""AcctCode"" = '4601010101' THEN 'Credit Memo'#(lf)            WHEN L.""ItemCode"" IS NULL THEN COALESCE(L.""Dscription"", 'Non-Item Revenue')#(lf)            ELSE COALESCE(I.""ItemName"", L.""Dscription"")#(lf)        END                                                      AS ""ItemName"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL AND L.""AcctCode"" = '4601010101' THEN 'Credit Memo'#(lf)            WHEN L.""ItemCode"" IS NULL THEN 'Non-Item Revenue'#(lf)            ELSE COALESCE(I.""U_BusinessType"", 'Non-Item Revenue')#(lf)        END                                                      AS ""BusinessType"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL AND L.""AcctCode"" = '4601010101' THEN 'Credit Memo'#(lf)            WHEN L.""ItemCode"" IS NULL THEN 'Non-Item Revenue'#(lf)            ELSE COALESCE(I.""U_GroupType"", 'Non-Item Revenue')#(lf)        END                                                      AS ""U_GroupType"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL AND L.""AcctCode"" = '4601010101' THEN 'Credit Memo'#(lf)            WHEN L.""ItemCode"" IS NULL THEN 'Non-Item Revenue'#(lf)            ELSE COALESCE(I.""U_ProductType"", 'Non-Item Revenue')#(lf)        END                                                      AS ""U_ProductType"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL AND L.""AcctCode"" = '4601010101' THEN 'Credit Memo'#(lf)            WHEN L.""ItemCode"" IS NULL THEN 'Non-Item Revenue'#(lf)            ELSE COALESCE(I.""U_SegmentType"", 'Non-Item Revenue')#(lf)        END                                                      AS ""U_SegmentType"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL THEN 0#(lf)            ELSE L.""Quantity""#(lf)        END                                                      AS ""Qty"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NOT NULL THEN#(lf)                (#(lf)                    L.""LineTotal""#(lf)                    + CASE#(lf)                        WHEN T.""SumLineTotal"" = 0 OR T.""SumLineTotal"" IS NULL THEN 0#(lf)                        ELSE (L.""LineTotal"" * B.""DiscSum"" * -1) / T.""SumLineTotal""#(lf)                      END#(lf)                )#(lf)            WHEN L.""ItemCode"" IS NULL#(lf)                 AND COALESCE(L.""LineTotal"", 0) <> 0#(lf)                 AND (L.""AcctCode"" LIKE '45%' OR L.""AcctCode"" LIKE '46%') THEN#(lf)                (#(lf)                    L.""LineTotal""#(lf)                    + CASE#(lf)                        WHEN T.""SumLineTotal"" = 0 OR T.""SumLineTotal"" IS NULL THEN 0#(lf)                        ELSE (L.""LineTotal"" * B.""DiscSum"" * -1) / T.""SumLineTotal""#(lf)                      END#(lf)                )#(lf)            ELSE 0#(lf)        END                                                      AS ""Sales"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL THEN 0#(lf)            ELSE L.""StockValue""#(lf)        END                                                      AS ""COGS""#(lf)#(lf)    FROM InvBase B#(lf)    JOIN ""CANON"".""INV1"" L       ON L.""DocEntry"" = B.""DocEntry""#(lf)    LEFT JOIN InvTotals T       ON T.""DocEntry"" = B.""DocEntry""#(lf)    JOIN ""CANON"".""OCRD"" C       ON C.""CardCode"" = B.""CardCode""#(lf)    LEFT JOIN ""CANON"".""OITM"" I  ON I.""ItemCode"" = L.""ItemCode""#(lf)    LEFT JOIN ""CANON"".""OSLP"" S  ON S.""SlpCode""  = B.""SlpCode""#(lf)    WHERE#(lf)        L.""ItemCode"" IS NOT NULL#(lf)        OR (#(lf)            L.""ItemCode"" IS NULL#(lf)            AND COALESCE(L.""LineTotal"", 0) <> 0#(lf)            AND (L.""AcctCode"" LIKE '45%' OR L.""AcctCode"" LIKE '46%')#(lf)        )#(lf)),#(lf)#(lf)CrBase AS (#(lf)    SELECT#(lf)        H.""DocEntry"",#(lf)        H.""DocDate"",#(lf)        H.""CardCode"",#(lf)        H.""SlpCode"",#(lf)        H.""DiscSum""#(lf)    FROM ""CANON"".""ORIN"" H#(lf)    WHERE H.""CANCELED"" = 'N'#(lf)),#(lf)CrTotals AS (#(lf)    SELECT#(lf)        L.""DocEntry"",#(lf)        SUM(L.""LineTotal"") AS ""SumLineTotal""#(lf)    FROM ""CANON"".""RIN1"" L#(lf)    GROUP BY L.""DocEntry""#(lf)),#(lf)CrLines AS (#(lf)    SELECT#(lf)        B.""DocDate""                                              AS ""DocDate"",#(lf)        C.""U_PartnerType""                                        AS ""BPType"",#(lf)        B.""CardCode""                                             AS ""CardCode"",#(lf)        C.""CardName""                                             AS ""CardName"",#(lf)        B.""SlpCode""                                              AS ""SlpCode"",#(lf)        S.""SlpName""                                              AS ""SalesPerson"",#(lf)        S.""U_SalesDept""                                          AS ""SalesDept"",#(lf)        S.""U_SalesType""                                          AS ""SalesType"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL THEN '(No Item)'#(lf)            ELSE L.""ItemCode""#(lf)        END                                                      AS ""ItemCode"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL AND L.""AcctCode"" = '4601010101' THEN 'Credit Memo'#(lf)            WHEN L.""ItemCode"" IS NULL THEN COALESCE(L.""Dscription"", 'Non-Item Revenue')#(lf)            ELSE COALESCE(I.""ItemName"", L.""Dscription"")#(lf)        END                                                      AS ""ItemName"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL AND L.""AcctCode"" = '4601010101' THEN 'Credit Memo'#(lf)            WHEN L.""ItemCode"" IS NULL THEN 'Non-Item Revenue'#(lf)            ELSE COALESCE(I.""U_BusinessType"", 'Non-Item Revenue')#(lf)        END                                                      AS ""BusinessType"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL AND L.""AcctCode"" = '4601010101' THEN 'Credit Memo'#(lf)            WHEN L.""ItemCode"" IS NULL THEN 'Non-Item Revenue'#(lf)            ELSE COALESCE(I.""U_GroupType"", 'Non-Item Revenue')#(lf)        END                                                      AS ""U_GroupType"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL AND L.""AcctCode"" = '4601010101' THEN 'Credit Memo'#(lf)            WHEN L.""ItemCode"" IS NULL THEN 'Non-Item Revenue'#(lf)            ELSE COALESCE(I.""U_ProductType"", 'Non-Item Revenue')#(lf)        END                                                      AS ""U_ProductType"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL AND L.""AcctCode"" = '4601010101' THEN 'Credit Memo'#(lf)            WHEN L.""ItemCode"" IS NULL THEN 'Non-Item Revenue'#(lf)            ELSE COALESCE(I.""U_SegmentType"", 'Non-Item Revenue')#(lf)        END                                                      AS ""U_SegmentType"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL THEN 0#(lf)            ELSE (L.""Quantity"" * -1)#(lf)        END                                                      AS ""Qty"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NOT NULL THEN#(lf)                (#(lf)                    (L.""LineTotal"" * -1)#(lf)                    + CASE#(lf)                        WHEN T.""SumLineTotal"" = 0 OR T.""SumLineTotal"" IS NULL THEN 0#(lf)                        ELSE (L.""LineTotal"" * B.""DiscSum"") / T.""SumLineTotal""#(lf)                      END#(lf)                )#(lf)            WHEN L.""ItemCode"" IS NULL#(lf)                 AND COALESCE(L.""LineTotal"", 0) <> 0#(lf)                 AND (L.""AcctCode"" LIKE '45%' OR L.""AcctCode"" LIKE '46%') THEN#(lf)                (#(lf)                    (L.""LineTotal"" * -1)#(lf)                    + CASE#(lf)                        WHEN T.""SumLineTotal"" = 0 OR T.""SumLineTotal"" IS NULL THEN 0#(lf)                        ELSE (L.""LineTotal"" * B.""DiscSum"") / T.""SumLineTotal""#(lf)                      END#(lf)                )#(lf)            ELSE 0#(lf)        END                                                      AS ""Sales"",#(lf)#(lf)        CASE#(lf)            WHEN L.""ItemCode"" IS NULL THEN 0#(lf)            ELSE (L.""StockValue"" * -1)#(lf)        END                                                      AS ""COGS""#(lf)#(lf)    FROM CrBase B#(lf)    JOIN ""CANON"".""RIN1"" L       ON L.""DocEntry"" = B.""DocEntry""#(lf)    LEFT JOIN CrTotals T        ON T.""DocEntry"" = B.""DocEntry""#(lf)    JOIN ""CANON"".""OCRD"" C       ON C.""CardCode"" = B.""CardCode""#(lf)    LEFT JOIN ""CANON"".""OITM"" I  ON I.""ItemCode"" = L.""ItemCode""#(lf)    LEFT JOIN ""CANON"".""OSLP"" S  ON S.""SlpCode""  = B.""SlpCode""#(lf)    WHERE#(lf)        L.""ItemCode"" IS NOT NULL#(lf)        OR (#(lf)            L.""ItemCode"" IS NULL#(lf)            AND COALESCE(L.""LineTotal"", 0) <> 0#(lf)            AND (L.""AcctCode"" LIKE '45%' OR L.""AcctCode"" LIKE '46%')#(lf)        )#(lf)),#(lf)#(lf)/* ===========================================================#(lf)   Warranty A/P Invoices (positive COGS)#(lf)   =========================================================== */#(lf)WarrantyAP AS (#(lf)    SELECT#(lf)        H.""DocDate""                              AS ""DocDate"",#(lf)        'Warranty'                               AS ""BPType"",#(lf)        'WARRANTY'                               AS ""CardCode"",#(lf)        'Warranty Provision'                     AS ""CardName"",#(lf)        -1                                       AS ""SlpCode"",#(lf)        'Warranty'                               AS ""SalesPerson"",#(lf)        'Warranty'                               AS ""SalesDept"",#(lf)        'Warranty'                               AS ""SalesType"",#(lf)        L.""ItemCode""                             AS ""ItemCode"",#(lf)        COALESCE(I.""ItemName"", L.""Dscription"")   AS ""ItemName"",#(lf)        COALESCE(I.""U_BusinessType"", 'Warranty') AS ""BusinessType"",#(lf)        COALESCE(I.""U_GroupType"", 'Warranty')    AS ""U_GroupType"",#(lf)        COALESCE(I.""U_ProductType"", 'Warranty')  AS ""U_ProductType"",#(lf)        COALESCE(I.""U_SegmentType"", 'Warranty')  AS ""U_SegmentType"",#(lf)        0                                        AS ""Qty"",#(lf)        0                                        AS ""Sales"",#(lf)        SUM(L.""LineTotal"")                       AS ""COGS""#(lf)    FROM ""CANON"".""OPCH"" H#(lf)    JOIN ""CANON"".""PCH1"" L       ON L.""DocEntry"" = H.""DocEntry""#(lf)    LEFT JOIN ""CANON"".""OITM"" I  ON I.""ItemCode"" = L.""ItemCode""#(lf)    WHERE H.""CANCELED"" = 'N'#(lf)      AND L.""ItemCode"" = 'SV003'#(lf)    GROUP BY#(lf)        H.""DocDate"",#(lf)        L.""ItemCode"",#(lf)        COALESCE(I.""ItemName"", L.""Dscription""),#(lf)        COALESCE(I.""U_BusinessType"", 'Warranty'),#(lf)        COALESCE(I.""U_GroupType"", 'Warranty'),#(lf)        COALESCE(I.""U_ProductType"", 'Warranty'),#(lf)        COALESCE(I.""U_SegmentType"", 'Warranty')#(lf)),#(lf)#(lf)/* ===========================================================#(lf)   Warranty A/P Credit Memos (negative COGS)#(lf)   =========================================================== */#(lf)WarrantyAPCredit AS (#(lf)    SELECT#(lf)        H.""DocDate""                              AS ""DocDate"",#(lf)        'Warranty'                               AS ""BPType"",#(lf)        'WARRANTY'                               AS ""CardCode"",#(lf)        'Warranty Provision'                     AS ""CardName"",#(lf)        -1                                       AS ""SlpCode"",#(lf)        'Warranty'                               AS ""SalesPerson"",#(lf)        'Warranty'                               AS ""SalesDept"",#(lf)        'Warranty'                               AS ""SalesType"",#(lf)        L.""ItemCode""                             AS ""ItemCode"",#(lf)        COALESCE(I.""ItemName"", L.""Dscription"")   AS ""ItemName"",#(lf)        COALESCE(I.""U_BusinessType"", 'Warranty') AS ""BusinessType"",#(lf)        COALESCE(I.""U_GroupType"", 'Warranty')    AS ""U_GroupType"",#(lf)        COALESCE(I.""U_ProductType"", 'Warranty')  AS ""U_ProductType"",#(lf)        COALESCE(I.""U_SegmentType"", 'Warranty')  AS ""U_SegmentType"",#(lf)        0                                        AS ""Qty"",#(lf)        0                                        AS ""Sales"",#(lf)        SUM(L.""LineTotal"") * -1                  AS ""COGS""#(lf)    FROM ""CANON"".""ORPC"" H#(lf)    JOIN ""CANON"".""RPC1"" L       ON L.""DocEntry"" = H.""DocEntry""#(lf)    LEFT JOIN ""CANON"".""OITM"" I  ON I.""ItemCode"" = L.""ItemCode""#(lf)    WHERE H.""CANCELED"" = 'N'#(lf)      AND L.""ItemCode"" = 'SV003'#(lf)    GROUP BY#(lf)        H.""DocDate"",#(lf)        L.""ItemCode"",#(lf)        COALESCE(I.""ItemName"", L.""Dscription""),#(lf)        COALESCE(I.""U_BusinessType"", 'Warranty'),#(lf)        COALESCE(I.""U_GroupType"", 'Warranty'),#(lf)        COALESCE(I.""U_ProductType"", 'Warranty'),#(lf)        COALESCE(I.""U_SegmentType"", 'Warranty')#(lf)),#(lf)#(lf)/* ===========================================================#(lf)   G/L-based COGS adjustments#(lf)   -----------------------------------------------------------#(lf)   REPLACE the account list below with your actual finance-side#(lf)   COGS adjustment accounts.#(lf)   Example uses placeholders only.#(lf)   =========================================================== */#(lf)GLCOGSAdjustments AS (#(lf)    SELECT#(lf)        H.""RefDate""                            AS ""DocDate"",#(lf)        'Finance COGS'                         AS ""BPType"",#(lf)        'GL-COGS'                              AS ""CardCode"",#(lf)        'Finance COGS'                         AS ""CardName"",#(lf)        -1                                     AS ""SlpCode"",#(lf)        'Finance COGS'                         AS ""SalesPerson"",#(lf)        'Finance COGS'                         AS ""SalesDept"",#(lf)        'Finance COGS'                         AS ""SalesType"",#(lf)        '(GL COGS)'                            AS ""ItemCode"",#(lf)        A.""AcctName""                           AS ""ItemName"",#(lf)        'Finance COGS'                         AS ""BusinessType"",#(lf)        'Finance COGS'                         AS ""U_GroupType"",#(lf)        'Finance COGS'                         AS ""U_ProductType"",#(lf)        'Finance COGS'                         AS ""U_SegmentType"",#(lf)        0                                      AS ""Qty"",#(lf)        0                                      AS ""Sales"",#(lf)        SUM(COALESCE(L.""Debit"", 0) - COALESCE(L.""Credit"", 0)) AS ""COGS""#(lf)    FROM ""CANON"".""OJDT"" H#(lf)    JOIN ""CANON"".""JDT1"" L ON L.""TransId"" = H.""TransId""#(lf)    LEFT JOIN ""CANON"".""OACT"" A ON A.""AcctCode"" = L.""Account""#(lf)    WHERE#(lf)        L.""Account"" IN (#(lf)            'REPLACE_WITH_ACCOUNT_1',#(lf)            'REPLACE_WITH_ACCOUNT_2',#(lf)            'REPLACE_WITH_ACCOUNT_3'#(lf)        )#(lf)    GROUP BY#(lf)        H.""RefDate"",#(lf)        A.""AcctName""#(lf)),#(lf)#(lf)BaseData AS (#(lf)    SELECT * FROM InvLines#(lf)    UNION ALL#(lf)    SELECT * FROM CrLines#(lf)    UNION ALL#(lf)    SELECT * FROM WarrantyAP#(lf)    UNION ALL#(lf)    SELECT * FROM WarrantyAPCredit#(lf)    UNION ALL#(lf)    SELECT * FROM GLCOGSAdjustments#(lf))#(lf)#(lf)SELECT#(lf)    ""DocDate"",#(lf)    ""BPType"",#(lf)    ""CardCode"",#(lf)    ""CardName"",#(lf)    ""SlpCode"",#(lf)    ""SalesPerson"",#(lf)    ""SalesDept"",#(lf)    ""SalesType"",#(lf)    ""BusinessType"",#(lf)    ""U_GroupType"",#(lf)    ""U_ProductType"",#(lf)    ""U_SegmentType"",#(lf)    ""ItemCode"",#(lf)    ""ItemName"",#(lf)    SUM(""Qty"")   AS ""Qty"",#(lf)    SUM(""Sales"") AS ""Sales"",#(lf)    SUM(""COGS"")  AS ""COGS""#(lf)FROM BaseData#(lf)GROUP BY#(lf)    ""DocDate"",#(lf)    ""BPType"",#(lf)    ""CardCode"",#(lf)    ""CardName"",#(lf)    ""SlpCode"",#(lf)    ""SalesPerson"",#(lf)    ""SalesDept"",#(lf)    ""SalesType"",#(lf)    ""BusinessType"",#(lf)    ""U_GroupType"",#(lf)    ""U_ProductType"",#(lf)    ""U_SegmentType"",#(lf)    ""ItemCode"",#(lf)    ""ItemName"";")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

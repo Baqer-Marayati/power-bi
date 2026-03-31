@@ -1,0 +1,54 @@
+table DimSalesperson
+	lineageTag: f1aad553-b407-4405-8e78-c43c16d53be0
+
+	column SlpCode
+		dataType: int64
+		formatString: 0
+		lineageTag: 25be0259-dbdc-43a2-8c78-f39705f5c775
+		summarizeBy: none
+		sourceColumn: SlpCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesPerson
+		dataType: string
+		lineageTag: 248b2289-d84f-4247-92ac-22cceeebc0c4
+		summarizeBy: none
+		sourceColumn: SalesPerson
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesDept
+		dataType: string
+		lineageTag: a2c5ef45-8b93-4bac-bcf8-34b1dfa51daf
+		summarizeBy: none
+		sourceColumn: SalesDept
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesType
+		dataType: string
+		lineageTag: 1faf0f26-1952-427f-9820-58e8327e7baf
+		summarizeBy: none
+		sourceColumn: SalesType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Active
+		dataType: string
+		lineageTag: e2bdb5bd-13c5-4f2f-a6ed-2c5ce5658670
+		summarizeBy: none
+		sourceColumn: Active
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimSalesperson = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  S.""SlpCode"",#(lf)  S.""SlpName""      AS ""SalesPerson"",#(lf)  S.""U_SalesDept""  AS ""SalesDept"",#(lf)  S.""U_SalesType""  AS ""SalesType"",#(lf)  S.""Active""#(lf)FROM ""CANON"".""OSLP"" S;")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

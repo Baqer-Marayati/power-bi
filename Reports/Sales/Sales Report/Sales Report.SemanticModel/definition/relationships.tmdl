@@ -1,0 +1,16 @@
+relationship c0a161bd-c989-95f3-2c5d-72294035dd9f
+	fromColumn: SalesFact.DocDate
+	toColumn: DateTable.Date
+
+relationship AutoDetected_ebb14e0f-feca-4953-bb8c-4c0f71e15dff
+	fromColumn: SalesFact.SlpCode
+	toColumn: DimSalesperson.SlpCode
+
+relationship AutoDetected_fd704204-9888-4975-87a5-981443403eaf
+	fromColumn: SalesFact.CardCode
+	toColumn: DimBusinessPartner.CardCode
+
+relationship AutoDetected_144becb5-0066-436a-8ef5-b706477d811b
+	fromColumn: BP_Rebate_Fact.CardCode
+	toColumn: DimBusinessPartner.CardCode
+

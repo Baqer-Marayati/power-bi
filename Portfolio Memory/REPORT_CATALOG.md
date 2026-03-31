@@ -23,8 +23,8 @@
 ### Sales
 
 - Module path: `Reports/Sales`
-- Status: Scaffolded
-- Notes: Domain module created with baseline docs/memory and company-template layout
+- Status: Active
+- Notes: Sales Analysis Report — 4-page PBIP report (Sales Overview, Sales Employees, BP Sales, BP Rebate) with SAP HANA ODBC semantic model (CANON schema). Derived from Aljazeera Master Model. Awaiting Desktop validation and visual identity alignment.
 
 ### Service
 

@@ -1,0 +1,51 @@
+table _Measures
+	lineageTag: d5ce0ed3-7f03-4a85-be25-3f25719f29ae
+
+	measure 'Margin %' =
+			
+			DIVIDE( [Profit], [Sales], 0 )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: adba81ca-30d3-4bbe-bade-f3df646bb6ab
+
+	measure Profit =
+			
+			[Sales] - [COGS]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 8bc9f273-0af0-4837-95a1-6e95d92ace89
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure Sales =
+			
+			COALESCE( SUM ( SalesFact[Sales] ), 0 )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 8f279f6e-0ff6-4793-9d5d-4c67da78d000
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure COGS =
+			
+			COALESCE( SUM ( SalesFact[COGS] ), 0 )
+		lineageTag: 998172d2-bc9c-448e-9f87-2fdb012b204b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column1
+		dataType: string
+		lineageTag: 04e1a892-aafd-4175-a5ce-2ceefa957d05
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
