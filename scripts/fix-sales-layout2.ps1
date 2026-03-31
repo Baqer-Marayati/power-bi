@@ -1,4 +1,5 @@
 $pagesDir = 'c:\Work\reporting-hub\Reports\Sales\Sales Report\Sales Report.Report\definition\pages'
+$utf8NoBom = New-Object System.Text.UTF8Encoding $False
 
 # Named visual position changes: name -> {x, width}
 $namedChanges = @{
@@ -73,7 +74,7 @@ foreach ($f in $files) {
     }
 
     if ($modified) {
-        [System.IO.File]::WriteAllText($f.FullName, $raw, [System.Text.Encoding]::UTF8)
+        [System.IO.File]::WriteAllText($f.FullName, $raw, $utf8NoBom)
     }
 }
 

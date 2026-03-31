@@ -1,4 +1,5 @@
 $pages = 'c:\Work\reporting-hub\Reports\Sales\Sales Report\Sales Report.Report\definition\pages'
+$utf8NoBom = New-Object System.Text.UTF8Encoding $False
 
 $fixes = @(
     @{ file = '0e570507214b44393b37\visuals\kpi_salesperson_count\visual.json'; from = '"2L"'; to = '"0L"' },
@@ -16,6 +17,6 @@ foreach ($fix in $fixes) {
         '("labelPrecision"[\s\S]*?"Value"\s*:\s*)' + [regex]::Escape($fix.from),
         '${1}' + $fix.to,
         [System.Text.RegularExpressions.RegexOptions]::Singleline)
-    [System.IO.File]::WriteAllText($path, $new, [System.Text.Encoding]::UTF8)
+    [System.IO.File]::WriteAllText($path, $new, $utf8NoBom)
     Write-Host "Fixed: $($fix.file)"
 }
