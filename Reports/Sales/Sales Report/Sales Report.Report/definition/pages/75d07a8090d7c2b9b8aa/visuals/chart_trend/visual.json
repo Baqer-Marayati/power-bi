@@ -10,7 +10,7 @@
     "tabOrder": 12000
   },
   "visual": {
-    "visualType": "lineClusteredColumnComboChart",
+    "visualType": "areaChart",
     "query": {
       "queryState": {
         "Category": {
@@ -42,16 +42,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Sales"
+                  "Property": "Profit"
                 }
               },
-              "queryRef": "_Measures.Sales",
-              "nativeQueryRef": "Sales"
-            }
-          ]
-        },
-        "Y2": {
-          "projections": [
+              "queryRef": "_Measures.Profit",
+              "nativeQueryRef": "Profit"
+            },
             {
               "field": {
                 "Measure": {
@@ -60,11 +56,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Profit"
+                  "Property": "Sales"
                 }
               },
-              "queryRef": "_Measures.Profit",
-              "nativeQueryRef": "Profit"
+              "queryRef": "_Measures.Sales",
+              "nativeQueryRef": "Sales"
             }
           ]
         }

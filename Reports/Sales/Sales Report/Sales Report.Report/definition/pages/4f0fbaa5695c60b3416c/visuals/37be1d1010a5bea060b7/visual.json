@@ -27,9 +27,9 @@
                 }
               },
               "queryRef": "BP_Rebate_Fact.CardName",
-              "nativeQueryRef": "Card Name",
+              "nativeQueryRef": "BP Name",
               "active": true,
-              "displayName": "Card Name"
+              "displayName": "BP Name"
             }
           ]
         },

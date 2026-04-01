@@ -10,7 +10,7 @@
     "tabOrder": 12000
   },
   "visual": {
-    "visualType": "barChart",
+    "visualType": "hundredPercentStackedColumnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -46,7 +46,8 @@
                 }
               },
               "queryRef": "_Measures.Commission Total Target",
-              "nativeQueryRef": "Total Target"
+              "nativeQueryRef": "Total Target",
+              "displayName": "Total Target"
             },
             {
               "field": {
@@ -60,10 +61,29 @@
                 }
               },
               "queryRef": "_Measures.Commission Total Sales",
-              "nativeQueryRef": "Total Sales"
+              "nativeQueryRef": "Total Sales",
+              "displayName": "Total Sales"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "Commission Total Target"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
       }
     },
     "objects": {

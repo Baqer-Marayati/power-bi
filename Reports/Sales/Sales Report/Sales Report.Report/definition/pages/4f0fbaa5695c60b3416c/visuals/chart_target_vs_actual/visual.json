@@ -10,7 +10,7 @@
     "tabOrder": 12000
   },
   "visual": {
-    "visualType": "barChart",
+    "visualType": "hundredPercentStackedColumnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -60,10 +60,29 @@
                 }
               },
               "queryRef": "_Measures.Rebate Sales",
-              "nativeQueryRef": "Rebate Sales"
+              "nativeQueryRef": "Sales",
+              "displayName": "Sales"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "Total Target"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
       }
     },
     "objects": {
