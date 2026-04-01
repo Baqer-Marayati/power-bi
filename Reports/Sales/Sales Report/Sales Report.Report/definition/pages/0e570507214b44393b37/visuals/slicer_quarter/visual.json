@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "slicer_salestype",
+  "name": "slicer_quarter",
   "position": {
     "x": 24,
-    "y": 344,
+    "y": 208,
     "z": 10000,
     "height": 32,
     "width": 136,
-    "tabOrder": 10005
+    "tabOrder": 10002
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimSalesperson"
+                      "Entity": "DateTable"
                     }
                   },
-                  "Property": "SalesType"
+                  "Property": "Quarter"
                 }
               },
-              "queryRef": "DimSalesperson.SalesType",
-              "nativeQueryRef": "SalesType",
+              "queryRef": "DateTable.Quarter",
+              "nativeQueryRef": "Quarter",
               "active": true
             }
           ]

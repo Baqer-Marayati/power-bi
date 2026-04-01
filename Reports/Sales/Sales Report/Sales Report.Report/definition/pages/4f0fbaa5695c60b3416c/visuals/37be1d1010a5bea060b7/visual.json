@@ -13,26 +13,6 @@
     "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Columns": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "BP_Rebate_Fact"
-                    }
-                  },
-                  "Property": "QuarterLabel"
-                }
-              },
-              "queryRef": "BP_Rebate_Fact.QuarterLabel",
-              "nativeQueryRef": "Quarter",
-              "active": true,
-              "displayName": "Quarter"
-            }
-          ]
-        },
         "Rows": {
           "projections": [
             {
@@ -114,9 +94,46 @@
               "queryRef": "Sum(BP_Rebate_Fact.RebateAmount)",
               "nativeQueryRef": "Rebate",
               "displayName": "Rebate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Rebate Achievement %"
+                }
+              },
+              "queryRef": "_Measures.Rebate Achievement %",
+              "nativeQueryRef": "Achievement %",
+              "displayName": "Achievement %"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "BP_Rebate_Fact"
+                      }
+                    },
+                    "Property": "Sales"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "objects": {
@@ -406,7 +423,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "366.4925729008503D"
+                  "Value": "323.18519677077154D"
                 }
               }
             }
@@ -2192,6 +2209,62 @@
             ],
             "metadata": "Sum(BP_Rebate_Fact.RebateAmount)"
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "190.62700499728157D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(BP_Rebate_Fact.Target)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "180.5066672514897D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(BP_Rebate_Fact.Sales)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "162.81863653968946D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(BP_Rebate_Fact.RebateAmount)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "151.39077458789853D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Rebate Achievement %"
+          }
         }
       ],
       "columnFormatting": [
@@ -2278,6 +2351,34 @@
           "selector": {
             "metadata": "Sum(BP_Rebate_Fact.RebateAmount)"
           }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Rebate Achievement %"
+          }
         }
       ]
     },
@@ -2344,28 +2445,7 @@
                         [
                           {
                             "Literal": {
-                              "Value": "'Q2025-Q1'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'Q2025-Q2'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'Q2025-Q3'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'Q2025-Q4'"
+                              "Value": "'TOTAL 2026'"
                             }
                           }
                         ]
