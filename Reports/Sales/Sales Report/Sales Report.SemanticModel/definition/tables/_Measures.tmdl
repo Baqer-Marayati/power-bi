@@ -86,8 +86,8 @@ table _Measures
 	measure 'Rebate Achievement %' =
 			
 			DIVIDE(
-			    SUM( BP_Rebate_Fact[Sales] ),
-			    SUM( BP_Rebate_Fact[Target] ),
+			    CALCULATE( SUM( BP_Rebate_Fact[Sales] ), BP_Rebate_Fact[SortKey] <= 4 ),
+			    CALCULATE( SUM( BP_Rebate_Fact[Target] ), BP_Rebate_Fact[SortKey] <= 4 ),
 			    0
 			)
 		formatString: 0.00%;-0.00%;0.00%
@@ -95,7 +95,7 @@ table _Measures
 
 	measure 'Total Target' =
 			
-			COALESCE( SUM( BP_Rebate_Fact[Target] ), 0 )
+			COALESCE( CALCULATE( SUM( BP_Rebate_Fact[Target] ), BP_Rebate_Fact[SortKey] <= 4 ), 0 )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: a1b2c3d4-000a-4000-8000-000000000010
 
@@ -103,7 +103,7 @@ table _Measures
 
 	measure 'Total Rebate' =
 			
-			COALESCE( SUM( BP_Rebate_Fact[RebateAmount] ), 0 )
+			COALESCE( CALCULATE( SUM( BP_Rebate_Fact[RebateAmount] ), BP_Rebate_Fact[SortKey] <= 4 ), 0 )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: a1b2c3d4-000b-4000-8000-000000000011
 
@@ -111,7 +111,7 @@ table _Measures
 
 	measure 'Rebate Sales' =
 			
-			COALESCE( SUM( BP_Rebate_Fact[Sales] ), 0 )
+			COALESCE( CALCULATE( SUM( BP_Rebate_Fact[Sales] ), BP_Rebate_Fact[SortKey] <= 4 ), 0 )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: a1b2c3d4-000c-4000-8000-000000000012
 
