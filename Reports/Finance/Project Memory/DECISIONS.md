@@ -192,5 +192,12 @@
 - A full report-folder swap is acceptable when the benchmark PBIP is the intended base and the semantic model path is rewired correctly in `definition.pbir`.
 - Keep a backup of the prior `.Report` folder before doing a full swap.
 
+## Receivables / Collections / Cash Position Layout
+- Receivables table (`recv_table`) height: **630px** (user-adjusted from 700).
+- Receivables page uses 6 KPI percentage cards (Future, 0-30, 30-60, 60-90, 90-120, 120+) at 158px wide, aligned with table width.
+- Collections page: table on left (520px), two stacked charts on right (trend line on top, type bar on bottom, each 344px tall).
+- Cash Position page: bar + donut charts on top row, "Debit vs Credit by Type" clustered column chart at bottom (replaces old Account Detail table).
+- Cash Position bar chart: zoom slider disabled (user preference).
+
 ## Records Folder
 - Store screenshots, templates, references, and inspiration files in `/Users/baqer/Dropbox/Work/PowerBI/Reporting Hub/Reports/Finance/Design Benchmarks`.

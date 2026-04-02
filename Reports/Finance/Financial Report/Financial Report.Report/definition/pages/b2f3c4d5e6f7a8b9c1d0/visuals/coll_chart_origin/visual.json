@@ -3,11 +3,11 @@
   "name": "coll_chart_origin",
   "position": {
     "x": 720,
-    "y": 236,
+    "y": 592,
     "z": 500,
-    "height": 350,
+    "height": 344,
     "width": 496,
-    "tabOrder": 500
+    "tabOrder": 600
   },
   "visual": {
     "visualType": "clusteredBarChart",

@@ -76,6 +76,16 @@
       "type": "DataFilter"
     },
     {
+      "source": "coll_slicer_bptype",
+      "target": "coll_kpi_avg_txn",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_bptype",
+      "target": "coll_chart_trend",
+      "type": "DataFilter"
+    },
+    {
       "source": "coll_slicer_sector",
       "target": "coll_table",
       "type": "DataFilter"
@@ -106,6 +116,16 @@
       "type": "DataFilter"
     },
     {
+      "source": "coll_slicer_sector",
+      "target": "coll_kpi_avg_txn",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_sector",
+      "target": "coll_chart_trend",
+      "type": "DataFilter"
+    },
+    {
       "source": "coll_slicer_collector",
       "target": "coll_table",
       "type": "DataFilter"
@@ -136,6 +156,16 @@
       "type": "DataFilter"
     },
     {
+      "source": "coll_slicer_collector",
+      "target": "coll_kpi_avg_txn",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_collector",
+      "target": "coll_chart_trend",
+      "type": "DataFilter"
+    },
+    {
       "source": "coll_slicer_customer",
       "target": "coll_table",
       "type": "DataFilter"
@@ -163,6 +193,16 @@
     {
       "source": "coll_slicer_customer",
       "target": "coll_kpi_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_kpi_avg_txn",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_chart_trend",
       "type": "DataFilter"
     }
   ]

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "recv_table",
   "position": {
-    "x": 188,
-    "y": 236,
+    "x": 188.33333333333334,
+    "y": 236.66666666666669,
     "z": 0,
-    "height": 700,
-    "width": 1028,
+    "height": 630,
+    "width": 1028.3333333333335,
     "tabOrder": 0
   },
   "visual": {

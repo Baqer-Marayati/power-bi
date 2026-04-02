@@ -10,41 +10,11 @@
     "tabOrder": 7000
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
-        "Values": {
+        "Category": {
           "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "CashPositionFact"
-                    }
-                  },
-                  "Property": "AccountCode"
-                }
-              },
-              "queryRef": "CashPositionFact.AccountCode",
-              "nativeQueryRef": "AccountCode",
-              "active": true
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "CashPositionFact"
-                    }
-                  },
-                  "Property": "AccountName"
-                }
-              },
-              "queryRef": "CashPositionFact.AccountName",
-              "nativeQueryRef": "AccountName",
-              "active": true
-            },
             {
               "field": {
                 "Column": {
@@ -59,7 +29,11 @@
               "queryRef": "CashPositionFact.AccountType",
               "nativeQueryRef": "AccountType",
               "active": true
-            },
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
             {
               "field": {
                 "Aggregation": {
@@ -78,8 +52,7 @@
               },
               "queryRef": "Sum(CashPositionFact.TotalDebit)",
               "nativeQueryRef": "Total Debit",
-              "displayName": "Total Debit",
-              "active": true
+              "displayName": "Total Debit"
             },
             {
               "field": {
@@ -99,135 +72,123 @@
               },
               "queryRef": "Sum(CashPositionFact.TotalCredit)",
               "nativeQueryRef": "Total Credit",
-              "displayName": "Total Credit",
-              "active": true
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "CashPositionFact"
-                        }
-                      },
-                      "Property": "Balance"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(CashPositionFact.Balance)",
-              "nativeQueryRef": "Balance",
-              "displayName": "Balance",
-              "active": true
+              "displayName": "Total Credit"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "CashPositionFact"
-                  }
-                },
-                "Property": "AccountCode"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ]
       }
     },
     "objects": {
-      "grid": [
+      "dataPoint": [
         {
           "properties": {
-            "textSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "11D"
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F4E79'"
+                    }
+                  }
                 }
               }
             }
+          },
+          "selector": {
+            "metadata": "Sum(CashPositionFact.TotalDebit)"
           }
-        }
-      ],
-      "columnHeaders": [
+        },
         {
           "properties": {
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#9CC3E6'"
+                    }
+                  }
                 }
               }
             }
+          },
+          "selector": {
+            "metadata": "Sum(CashPositionFact.TotalCredit)"
           }
         }
       ],
-      "total": [
+      "labels": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
                   "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
-    "visualContainerObjects": {
-      "title": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Account Detail'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "9D"
                 }
               }
             },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#223430'"
-                    }
-                  }
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1000000000D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
                 }
               }
             }
           }
         }
       ],
-      "subTitle": [
+      "legend": [
         {
           "properties": {
             "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'TopCenter'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showAxisTitle": {
               "expr": {
                 "Literal": {
                   "Value": "false"
@@ -237,6 +198,35 @@
           }
         }
       ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1000000000D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
       "background": [
         {
           "properties": {
@@ -286,6 +276,51 @@
                       "Value": "'#C9D5E3'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Debit vs Credit by Type'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#223430'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
                 }
               }
             }
