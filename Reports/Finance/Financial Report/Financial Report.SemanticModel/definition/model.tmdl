@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["Fact_PNL","Fact_BalanceSheet","Fact_SalesDetail","customerLedgerEntries","vendorLedgerEntries","purchaseLines"]
+annotation PBI_QueryOrder = ["Fact_PNL","Fact_BalanceSheet","Fact_SalesDetail","customerLedgerEntries","vendorLedgerEntries","purchaseLines","ReceivablesFact","CollectionsFact","CashPositionFact","DimBusinessPartner"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -49,6 +49,10 @@ ref table _Measures
 ref table Dim_ReportRows
 ref table Dim_KPIRows
 ref table Dim_ItemSegmentMap
+ref table ReceivablesFact
+ref table CollectionsFact
+ref table CashPositionFact
+ref table DimBusinessPartner
 
 ref cultureInfo en-US
 

@@ -92,7 +92,7 @@
 - Keep `Revenue Insights` category grouping on `Fact_SalesDetail[Item Business Type]` (from `OITM.U_BusinessType`), not `ItemGroupName`.
 
 ## Final Page Set
-- As of March 21, 2026, the report is intentionally reduced to 7 live pages only:
+- As of April 1, 2026, the report contains 10 live pages:
 - `Executive Overview`
 - `Income Statement`
 - `Revenue Insights`
@@ -100,7 +100,11 @@
 - `Balance Sheet`
 - `Working Capital Health`
 - `Profitability Drivers`
+- `Receivables`
+- `Collections`
+- `Cash Position`
 - Pages outside that set are no longer part of the active report shell and should not be reintroduced unless explicitly requested.
+- The last 3 pages were transferred from the Aljazeera Master Model and adapted to the Financial Report design system.
 
 ## Slicer And Open-State Contract (2026-03-25)
 - `Dim_Date` slicer years are intentionally constrained to start at `2026`.

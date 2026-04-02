@@ -54,3 +54,15 @@ relationship f59f568a-b3bb-4214-870d-e4da7a840b70
 	fromColumn: Fact_BalanceSheet.AcctCode
 	toColumn: Dim_BSAccount.AcctCode
 
+relationship a1b2c3d4-e5f6-7890-abcd-ef0123456781
+	fromColumn: ReceivablesFact.CardCode
+	toColumn: DimBusinessPartner.CardCode
+
+relationship a1b2c3d4-e5f6-7890-abcd-ef0123456782
+	fromColumn: CollectionsFact.CardCode
+	toColumn: DimBusinessPartner.CardCode
+
+relationship a1b2c3d4-e5f6-7890-abcd-ef0123456783
+	fromColumn: CollectionsFact.PostingDate
+	toColumn: Dim_Date.Date
+

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The Inventory Performance Report provides visibility into Canon Iraq's stock levels, warehouse distribution, product category breakdown, stock movement trends, and procurement pipeline — all sourced from SAP Business One on HANA.
+The Inventory Report provides visibility into Canon Iraq's stock levels, warehouse distribution, product category breakdown, stock movement trends, and procurement pipeline — all sourced from SAP Business One on HANA.
 
 ## Intended Audience
 

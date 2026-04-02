@@ -1,0 +1,183 @@
+table ReceivablesFact
+	lineageTag: 68c8efc6-b23d-4aa3-995a-25afe972e691
+
+	column CardCode
+		dataType: string
+		lineageTag: 803c6508-5778-4db4-8742-dc376823c2d3
+		summarizeBy: none
+		sourceColumn: CardCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardName
+		dataType: string
+		lineageTag: 713c302f-2d20-4e03-b16c-4766e7815d5a
+		summarizeBy: none
+		sourceColumn: CardName
+
+		annotation SummarizationSetBy = Automatic
+
+	column B0_30
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 1dc1de69-a7c2-46f6-b40e-061d174ef5d8
+		summarizeBy: sum
+		sourceColumn: B0_30
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column TransId
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ea76e64-9142-4222-8e6f-f53e3ca65ed0
+		summarizeBy: count
+		sourceColumn: TransId
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransType
+		dataType: string
+		lineageTag: d2bae6bb-1c8a-474c-8706-44a1802f18b6
+		summarizeBy: none
+		sourceColumn: TransType
+
+		annotation SummarizationSetBy = Automatic
+
+	column RefDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: eb7aec3a-cc1f-4d0d-a317-ff8d6e83ecd0
+		summarizeBy: none
+		sourceColumn: RefDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column DueDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3a2b2242-e314-4966-afc1-ba8b33a46e86
+		summarizeBy: none
+		sourceColumn: DueDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column BaseRef
+		dataType: string
+		lineageTag: cd9f8fc4-e5ed-4007-ae64-8aa48a06f236
+		summarizeBy: none
+		sourceColumn: BaseRef
+
+		annotation SummarizationSetBy = Automatic
+
+	column Memo
+		dataType: string
+		lineageTag: 99ed8d25-a541-4b13-bec6-50e2c7c88349
+		summarizeBy: none
+		sourceColumn: Memo
+
+		annotation SummarizationSetBy = Automatic
+
+	column OpenAmount
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 51d0386b-70ed-4de2-85cb-f11468601612
+		summarizeBy: sum
+		sourceColumn: OpenAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column DaysPastDue
+		dataType: int64
+		formatString: 0
+		lineageTag: 32a90d1e-63f5-4c0d-baf1-02faccdb3de1
+		summarizeBy: sum
+		sourceColumn: DaysPastDue
+
+		annotation SummarizationSetBy = Automatic
+
+	column FutureRemit
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: bdaf46e0-eef7-4829-85ee-ff7b49ed7732
+		summarizeBy: sum
+		sourceColumn: FutureRemit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column BPType
+		dataType: string
+		lineageTag: e9ece419-b498-4ceb-a04c-29dea511fcc8
+		summarizeBy: none
+		sourceColumn: BPType
+
+		annotation SummarizationSetBy = Automatic
+
+	column CollectorName
+		dataType: string
+		lineageTag: dd644e58-b853-4d23-8b84-7c6797e095bd
+		summarizeBy: none
+		sourceColumn: CollectorName
+
+		annotation SummarizationSetBy = Automatic
+
+	column B31_60
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: cb6f7790-3104-4a05-9144-8e21a4035e72
+		summarizeBy: sum
+		sourceColumn: B31_60
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column B61_90
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 4bfa5563-72b7-4402-8fdc-56ab3274c4d0
+		summarizeBy: sum
+		sourceColumn: B61_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column B91_120
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: a0ddfcf2-c9c8-4d6b-826c-63beea662bc4
+		summarizeBy: sum
+		sourceColumn: B91_120
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column B121Plus
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 650418cd-0679-42a9-ab2f-1685a9af9360
+		summarizeBy: sum
+		sourceColumn: B121Plus
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	partition ReceivablesFact = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "WITH OpenBP AS (#(lf)    SELECT#(lf)        J.""ShortName""                                     AS ""CardCode"",#(lf)        C.""CardName""                                      AS ""CardName"",#(lf)        C.""U_PartnerType""                                 AS ""BPType"",#(lf)        NULLIF(#(lf)            TRIM(#(lf)                COALESCE(#(lf)                    CASE#(lf)                        WHEN COALESCE(C.""QryGroup1"",'N') = 'Y' THEN 'Haleem'#(lf)                        ELSE ''#(lf)                    END,#(lf)                    ''#(lf)                )#(lf)                ||#(lf)                CASE#(lf)                    WHEN COALESCE(C.""QryGroup1"",'N') = 'Y'#(lf)                     AND COALESCE(C.""QryGroup2"",'N') = 'Y'#(lf)                    THEN ', '#(lf)                    ELSE ''#(lf)                END#(lf)                ||#(lf)                COALESCE(#(lf)                    CASE#(lf)                        WHEN COALESCE(C.""QryGroup2"",'N') = 'Y' THEN 'Saadallah'#(lf)                        ELSE ''#(lf)                    END,#(lf)                    ''#(lf)                )#(lf)            ),#(lf)            ''#(lf)        )                                                  AS ""CollectorName"",#(lf)        OJ.""TransId""                                      AS ""TransId"",#(lf)        OJ.""TransType""                                    AS ""TransType"",#(lf)        OJ.""RefDate""                                      AS ""RefDate"",#(lf)        J.""DueDate""                                       AS ""DueDate"",#(lf)        OJ.""BaseRef""                                      AS ""BaseRef"",#(lf)        COALESCE(OJ.""Memo"", J.""LineMemo"")                 AS ""Memo"",#(lf)        (COALESCE(J.""BalDueDeb"",0) - COALESCE(J.""BalDueCred"",0)) AS ""OpenAmount"",#(lf)        DAYS_BETWEEN(J.""DueDate"", CURRENT_DATE)           AS ""DaysPastDue""#(lf)    FROM ""CANON"".""JDT1"" J#(lf)    JOIN ""CANON"".""OJDT"" OJ#(lf)        ON OJ.""TransId"" = J.""TransId""#(lf)    JOIN ""CANON"".""OCRD"" C#(lf)        ON C.""CardCode"" = J.""ShortName""#(lf)       AND C.""CardType"" = 'C'#(lf)    WHERE#(lf)        (COALESCE(J.""BalDueDeb"",0) <> 0 OR COALESCE(J.""BalDueCred"",0) <> 0)#(lf)        AND J.""Account"" = '110201010102'#(lf))#(lf)SELECT#(lf)    ""CardCode"",#(lf)    ""CardName"",#(lf)    ""BPType"",#(lf)    ""CollectorName"",#(lf)    ""TransId"",#(lf)    ""TransType"",#(lf)    ""RefDate"",#(lf)    ""DueDate"",#(lf)    ""BaseRef"",#(lf)    ""Memo"",#(lf)    ""OpenAmount"",#(lf)    ""DaysPastDue"",#(lf)    CASE WHEN ""DaysPastDue"" < 0 THEN ""OpenAmount"" ELSE 0 END AS ""FutureRemit"",#(lf)    CASE WHEN ""DaysPastDue"" BETWEEN 0  AND 30  THEN ""OpenAmount"" ELSE 0 END AS ""B0_30"",#(lf)    CASE WHEN ""DaysPastDue"" BETWEEN 31 AND 60  THEN ""OpenAmount"" ELSE 0 END AS ""B31_60"",#(lf)    CASE WHEN ""DaysPastDue"" BETWEEN 61 AND 90  THEN ""OpenAmount"" ELSE 0 END AS ""B61_90"",#(lf)    CASE WHEN ""DaysPastDue"" BETWEEN 91 AND 120 THEN ""OpenAmount"" ELSE 0 END AS ""B91_120"",#(lf)    CASE WHEN ""DaysPastDue"" >= 121            THEN ""OpenAmount"" ELSE 0 END AS ""B121Plus""#(lf)FROM OpenBP#(lf)WHERE ""OpenAmount"" <> 0;")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation

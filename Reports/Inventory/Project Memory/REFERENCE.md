@@ -2,9 +2,9 @@
 
 ## Core Paths
 
-- **Active PBIP:** `Reports/Inventory/Inventory Performance Report/Inventory Performance Report.pbip`
-- **Report artifact:** `Reports/Inventory/Inventory Performance Report/Inventory Performance Report.Report/`
-- **Semantic model:** `Reports/Inventory/Inventory Performance Report/Inventory Performance Report.SemanticModel/`
+- **Active PBIP:** `Reports/Inventory/Inventory Report/Inventory Report.pbip`
+- **Report artifact:** `Reports/Inventory/Inventory Report/Inventory Report.Report/`
+- **Semantic model:** `Reports/Inventory/Inventory Report/Inventory Report.SemanticModel/`
 - **Theme file:** `Reports/Inventory/Core/themes/Inventory.PortfolioTheme.json`
 - **Portfolio visual identity:** `Shared/Standards/portfolio-visual-identity.md`
 - **Portfolio theme tokens:** `Shared/Standards/portfolio-theme.tokens.json`

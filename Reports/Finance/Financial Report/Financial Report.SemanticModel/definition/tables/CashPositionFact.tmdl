@@ -1,0 +1,68 @@
+table CashPositionFact
+	lineageTag: 151b6716-d520-4f03-b6f8-33ba564e62fc
+
+	column AccountCode
+		dataType: string
+		lineageTag: dfaf9600-5475-479b-8ed5-7d1372be19ae
+		summarizeBy: none
+		sourceColumn: AccountCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountName
+		dataType: string
+		lineageTag: ff6c4a10-e59a-40b7-b839-59aca46b34ff
+		summarizeBy: none
+		sourceColumn: AccountName
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountType
+		dataType: string
+		lineageTag: 680d5ea1-3991-4f6c-92a1-15255b784b70
+		summarizeBy: none
+		sourceColumn: AccountType
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalDebit
+		dataType: double
+		lineageTag: 90cde8cd-8628-47e9-8126-7e818ffb8785
+		summarizeBy: sum
+		sourceColumn: TotalDebit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotalCredit
+		dataType: double
+		lineageTag: 5ec1fc55-dcec-40d9-b449-b446b712be07
+		summarizeBy: sum
+		sourceColumn: TotalCredit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Balance
+		dataType: double
+		lineageTag: a220da31-d2f8-4714-9ae1-c9ecb0de8dcd
+		summarizeBy: sum
+		sourceColumn: Balance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition CashPositionFact = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    A.""AcctCode""        AS ""AccountCode"",#(lf)    A.""AcctName""        AS ""AccountName"",#(lf)    CASE#(lf)        WHEN A.""AcctCode"" LIKE '1101010101%' THEN 'Cash on Hand'#(lf)        WHEN A.""AcctCode"" LIKE '1101010102%' THEN 'Bank'#(lf)        WHEN A.""AcctCode"" LIKE '1101010103%' THEN 'POS'#(lf)        ELSE 'Other'#(lf)    END AS ""AccountType"",#(lf)    SUM(J.""Debit"")  AS ""TotalDebit"",#(lf)    SUM(J.""Credit"") AS ""TotalCredit"",#(lf)    SUM(J.""Debit"" - J.""Credit"") AS ""Balance""#(lf)FROM ""CANON"".""OACT"" A#(lf)LEFT JOIN ""CANON"".""JDT1"" J#(lf)    ON J.""Account"" = A.""AcctCode""#(lf)WHERE#(lf)    A.""AcctCode"" LIKE '1101010101%' OR#(lf)    A.""AcctCode"" LIKE '1101010102%' OR#(lf)    A.""AcctCode"" LIKE '1101010103%'#(lf)GROUP BY#(lf)    A.""AcctCode"",#(lf)    A.""AcctName""#(lf)ORDER BY#(lf)    A.""AcctCode"";")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation

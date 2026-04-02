@@ -42,7 +42,7 @@
 
 - Module path: `Reports/Inventory`
 - Status: Active
-- Notes: Inventory Performance Report — 5-page PBIP report with SAP HANA ODBC semantic model (CANON schema). Covers stock position, warehouse distribution, movements, categories, and procurement. Awaiting Desktop validation.
+- Notes: Inventory Report — 5-page PBIP report with SAP HANA ODBC semantic model (CANON schema). Covers stock position, warehouse distribution, movements, categories, and procurement. Awaiting Desktop validation.
 
 ## Planned Reports
 

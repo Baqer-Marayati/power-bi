@@ -7,7 +7,7 @@ function wf([string]$p, [string]$c) {
     [System.IO.File]::WriteAllText($p, $c, $enc)
 }
 
-$root = 'c:\Work\reporting-hub\Reports\Inventory\Inventory Performance Report\Inventory Performance Report.Report\definition\pages'
+$root = 'c:\Work\reporting-hub\Reports\Inventory\Inventory Report\Inventory Report.Report\definition\pages'
 
 # â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 # VISUAL JSON BUILDERS  (using here-strings â€“ $var interpolated, `$ for literal $)

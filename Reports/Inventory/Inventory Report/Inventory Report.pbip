@@ -4,7 +4,7 @@
   "artifacts": [
     {
       "report": {
-        "path": "Inventory Performance Report.Report"
+        "path": "Inventory Report.Report"
       }
     }
   ],

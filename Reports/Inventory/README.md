@@ -1,6 +1,6 @@
-# Inventory Performance Report Module
+# Inventory Report Module
 
-This module is the working home for the Inventory Performance Report report inside the larger Reporting Hub portfolio.
+This module is the working home for the Inventory Report report inside the larger Reporting Hub portfolio.
 
 ## Purpose
 

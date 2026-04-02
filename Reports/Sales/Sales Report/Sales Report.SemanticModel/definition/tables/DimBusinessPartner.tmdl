@@ -57,19 +57,19 @@ table DimBusinessPartner
 
 		annotation SummarizationSetBy = Automatic
 
-	column BPClass
-		dataType: string
-		lineageTag: b3c7d1e5-f9a2-4b68-8c04-1a2b3c4d5e6f
-		summarizeBy: none
-		sourceColumn: BPClass
-
-		annotation SummarizationSetBy = Automatic
-
 	column CollectorProperty
 		dataType: string
 		lineageTag: 847e70d8-fea7-4f25-8c49-2a5eae1ed96b
 		summarizeBy: none
 		sourceColumn: CollectorProperty
+
+		annotation SummarizationSetBy = Automatic
+
+	column BPClass
+		dataType: string
+		lineageTag: b3c7d1e5-f9a2-4b68-8c04-1a2b3c4d5e6f
+		summarizeBy: none
+		sourceColumn: BPClass
 
 		annotation SummarizationSetBy = Automatic
 

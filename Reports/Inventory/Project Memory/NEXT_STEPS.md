@@ -2,7 +2,7 @@
 
 ## Immediate Priority
 
-1. Open `Inventory Performance Report.pbip` in Power BI Desktop to validate connectivity and data load.
+1. Open `Inventory Report.pbip` in Power BI Desktop to validate connectivity and data load.
 2. Confirm all relationships load without errors.
 3. Adjust visual sizes and positions based on actual data rendering.
 4. Review KPI card values against SAP data for accuracy.

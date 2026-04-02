@@ -1,12 +1,12 @@
-# Inventory Performance Report Foundation
+# Inventory Report Foundation
 
 ## Purpose
 
-This is the fastest high-signal orientation file for the Inventory Performance Report module.
+This is the fastest high-signal orientation file for the Inventory Report module.
 
 ## What This Module Should Contain
 
-- the active PBIP project for Inventory Performance Report
+- the active PBIP project for Inventory Report
 - report-specific docs
 - report-specific memory
 - report-specific exports, records, and archives

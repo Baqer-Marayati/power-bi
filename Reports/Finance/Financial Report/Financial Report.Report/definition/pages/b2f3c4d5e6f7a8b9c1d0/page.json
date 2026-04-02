@@ -1,0 +1,169 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "b2f3c4d5e6f7a8b9c1d0",
+  "displayName": "Collections",
+  "displayOption": "FitToWidth",
+  "height": 960,
+  "width": 1280,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "195L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F8FBFF'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "coll_slicer_bptype",
+      "target": "coll_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_bptype",
+      "target": "coll_chart_origin",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_bptype",
+      "target": "coll_kpi_total",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_bptype",
+      "target": "coll_kpi_txn_count",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_bptype",
+      "target": "coll_kpi_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_bptype",
+      "target": "coll_kpi_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_sector",
+      "target": "coll_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_sector",
+      "target": "coll_chart_origin",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_sector",
+      "target": "coll_kpi_total",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_sector",
+      "target": "coll_kpi_txn_count",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_sector",
+      "target": "coll_kpi_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_sector",
+      "target": "coll_kpi_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_collector",
+      "target": "coll_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_collector",
+      "target": "coll_chart_origin",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_collector",
+      "target": "coll_kpi_total",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_collector",
+      "target": "coll_kpi_txn_count",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_collector",
+      "target": "coll_kpi_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_collector",
+      "target": "coll_kpi_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_chart_origin",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_kpi_total",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_kpi_txn_count",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_kpi_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_kpi_customers",
+      "type": "DataFilter"
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+table CollectionsFact
+	lineageTag: f322b2af-671b-4136-b91f-a5853be7fd55
+
+	column PostingDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d4970cca-10e0-49e6-ad39-f351b9242daf
+		summarizeBy: none
+		sourceColumn: PostingDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CardCode
+		dataType: string
+		lineageTag: 12992534-ac2b-4ff3-985f-25700d774980
+		summarizeBy: none
+		sourceColumn: CardCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardName
+		dataType: string
+		lineageTag: 0193f51e-6f58-44aa-b4d6-da547a73bf29
+		summarizeBy: none
+		sourceColumn: CardName
+
+		annotation SummarizationSetBy = Automatic
+
+	column BPType
+		dataType: string
+		lineageTag: b4f63a88-874e-401b-9915-c29762047a62
+		summarizeBy: none
+		sourceColumn: BPType
+
+		annotation SummarizationSetBy = Automatic
+
+	column CollectorName
+		dataType: string
+		lineageTag: 09679029-bc6e-4a67-b561-1dd9140667ab
+		summarizeBy: none
+		sourceColumn: CollectorName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CollectedAmount
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5e561ba2-704d-4360-86a9-8c4dd34f6891
+		summarizeBy: sum
+		sourceColumn: CollectedAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column TransId
+		dataType: int64
+		formatString: 0
+		lineageTag: 68a0d7ad-cafa-4521-9eb5-0fb9bcd36077
+		summarizeBy: count
+		sourceColumn: TransId
+
+		annotation SummarizationSetBy = Automatic
+
+	column DueDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ca601ff5-5398-4668-a06d-72bbcfaaa0fb
+		summarizeBy: none
+		sourceColumn: DueDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TransType
+		dataType: string
+		lineageTag: acb220a8-dabd-4a38-bd3f-78a86389cc28
+		summarizeBy: none
+		sourceColumn: TransType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Details
+		dataType: string
+		lineageTag: 0904c616-3df0-47f7-afa3-f208e2a991cb
+		summarizeBy: none
+		sourceColumn: Details
+
+		annotation SummarizationSetBy = Automatic
+
+	column OffsetAccount
+		dataType: string
+		lineageTag: 270c9278-ee57-4e22-b6ad-ee26410da4ca
+		summarizeBy: none
+		sourceColumn: OffsetAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2ba603f7-0dd9-4fb8-8c56-bb2b1f20c3d4
+		summarizeBy: none
+		sourceColumn: DocumentDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Origin
+		dataType: string
+		lineageTag: 82b8bac6-7abc-408b-8e2b-771f5166083b
+		summarizeBy: none
+		sourceColumn: Origin
+
+		annotation SummarizationSetBy = Automatic
+
+	column OriginNo
+		dataType: string
+		lineageTag: 3432202d-8f9b-405e-96b2-26d906a2e1b9
+		summarizeBy: none
+		sourceColumn: OriginNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column GLAccount
+		dataType: string
+		lineageTag: f9c26ec7-1fba-41c0-b51a-8d75250df643
+		summarizeBy: none
+		sourceColumn: GLAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CollectionsFact = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    J.""ShortName""                                       AS ""CardCode"",#(lf)    C.""CardName""                                        AS ""CardName"",#(lf)    C.""U_PartnerType""                                   AS ""BPType"",#(lf)    NULLIF(#(lf)        TRIM(#(lf)            COALESCE(#(lf)                CASE#(lf)                    WHEN COALESCE(C.""QryGroup1"",'N') = 'Y' THEN 'Haleem'#(lf)                    ELSE ''#(lf)                END,#(lf)                ''#(lf)            )#(lf)            ||#(lf)            CASE#(lf)                WHEN COALESCE(C.""QryGroup1"",'N') = 'Y'#(lf)                 AND COALESCE(C.""QryGroup2"",'N') = 'Y'#(lf)                THEN ', '#(lf)                ELSE ''#(lf)            END#(lf)            ||#(lf)            COALESCE(#(lf)                CASE#(lf)                    WHEN COALESCE(C.""QryGroup2"",'N') = 'Y' THEN 'Saadallah'#(lf)                    ELSE ''#(lf)                END,#(lf)                ''#(lf)            )#(lf)        ),#(lf)        ''#(lf)    )                                                   AS ""CollectorName"",#(lf)    CAST(OJ.""RefDate"" AS DATE)                          AS ""PostingDate"",#(lf)    CAST(OJ.""TaxDate"" AS DATE)                          AS ""DocumentDate"",#(lf)    CAST(J.""DueDate"" AS DATE)                           AS ""DueDate"",#(lf)    OJ.""TransId""                                        AS ""TransId"",#(lf)    OJ.""TransType""                                      AS ""TransType"",#(lf)    OJ.""BaseRef""                                        AS ""OriginNo"",#(lf)    J.""ContraAct""                                       AS ""OffsetAccount"",#(lf)    COALESCE(OJ.""Memo"", J.""LineMemo"")                   AS ""Details"",#(lf)    J.""Account""                                         AS ""GLAccount"",#(lf)    CASE#(lf)        WHEN OJ.""TransType"" = 13  THEN 'IN'#(lf)        WHEN OJ.""TransType"" = 14  THEN 'CN'#(lf)        WHEN OJ.""TransType"" = 24  THEN 'RC'#(lf)        WHEN OJ.""TransType"" = 30  THEN 'JE'#(lf)        WHEN OJ.""TransType"" = 321 THEN 'JR'#(lf)        ELSE CAST(OJ.""TransType"" AS NVARCHAR(20))#(lf)    END                                                 AS ""Origin"",#(lf)    COALESCE(J.""Credit"", 0)                             AS ""CollectedAmount""#(lf)FROM ""CANON"".""JDT1"" J#(lf)JOIN ""CANON"".""OJDT"" OJ#(lf)    ON OJ.""TransId"" = J.""TransId""#(lf)LEFT JOIN ""CANON"".""OCRD"" C#(lf)    ON C.""CardCode"" = J.""ShortName""#(lf)   AND C.""CardType"" = 'C'#(lf)WHERE#(lf)    J.""Account"" = '110201010102'#(lf)    AND COALESCE(J.""Credit"", 0) <> 0#(lf)    AND OJ.""RefDate"" >= ADD_DAYS(CURRENT_DATE, -365)#(lf)ORDER BY#(lf)    OJ.""RefDate"",#(lf)    OJ.""TransId"";")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation

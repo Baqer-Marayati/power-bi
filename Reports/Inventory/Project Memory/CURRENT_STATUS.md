@@ -7,7 +7,7 @@
 ## Current Reality
 
 - `Reports/Inventory` is now an active module with a full PBIP project.
-- The PBIP lives at `Reports/Inventory/Inventory Performance Report/Inventory Performance Report.pbip`.
+- The PBIP lives at `Reports/Inventory/Inventory Report/Inventory Report.pbip`.
 - The semantic model connects to SAP B1 HANA via ODBC DSN `HANA_B1`, querying the `CANON` schema.
 - Currency is IQD (Iraqi Dinar), consistent with the Finance module.
 - The report has 5 pages and 10 semantic model tables (3 dimensions, 6 facts, 1 measures table).
@@ -42,7 +42,7 @@
 
 ## What Needs Desktop Validation
 
-- Open `Inventory Performance Report.pbip` in Power BI Desktop.
+- Open `Inventory Report.pbip` in Power BI Desktop.
 - Confirm ODBC DSN `HANA_B1` connectivity and data load.
 - Verify all 12 relationships resolve correctly.
 - Check all 5 pages render with proper data.

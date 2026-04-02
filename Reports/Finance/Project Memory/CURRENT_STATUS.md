@@ -13,7 +13,7 @@ The project is a hybrid:
 - unsupported benchmark pages are being repaired in place, not removed
 
 ## Live Pages
-The active report shell now contains only these 7 pages:
+The active report shell now contains these 10 pages:
 - `Executive Overview`
 - `Income Statement`
 - `Revenue Insights`
@@ -21,6 +21,9 @@ The active report shell now contains only these 7 pages:
 - `Balance Sheet`
 - `Working Capital Health`
 - `Profitability Drivers`
+- `Receivables`
+- `Collections`
+- `Cash Position`
 
 ## Removed From Active Report
 These pages were physically removed from the report definition during cleanup so the file stays sharper and lighter:
@@ -200,6 +203,25 @@ These pages were physically removed from the report definition during cleanup so
 - **User-approved return point:** `Reports/Finance/Exports/Server Packages/archive/20260327_0102__GLOBAL__Financial Report__0e25c09.zip` (git commit `3c845d5`)
 - Visual polish pass: restored focus mode on all pages (visualHeader.show was false on 7 chart visuals on pages 1-2; showFocusModeButton was false on 14 visuals on pages 6-7). Fixed invisible border (#F8FBFF → #C9D5E3) on 15 visuals across pages 2, 3, 6. Removed incorrect page-bg color from Operating vs Net Profit chart background.
 - **User-approved return point:** `Reports/Finance/Exports/Server Packages/archive/20260327_0142__GLOBAL__Financial Report__8229d02.zip` (git commit `5444a49`)
+
+## Receivables, Collections, Cash Pages Transfer (2026-04-01)
+- Transferred three pages from the Aljazeera Master Model into the Financial Report: **Receivables**, **Collections**, **Cash Position**.
+- Added four new semantic-model tables from the source: `ReceivablesFact` (SAP AR aging from JDT1/OJDT/OCRD, account 110201010102), `CollectionsFact` (AR credit entries, rolling last 365 days), `CashPositionFact` (GL account balances for Cash on Hand / Bank / POS), and `DimBusinessPartner` (customer dimension with UDF fields and collector property).
+- Added relationships: `ReceivablesFact.CardCode → DimBusinessPartner.CardCode`, `CollectionsFact.CardCode → DimBusinessPartner.CardCode`, `CollectionsFact.PostingDate → Dim_Date.Date`.
+- Added 11 new measures to `_Measures.tmdl`: `Total AR Outstanding`, `Total AR Overdue`, `AR Overdue %`, `AR Customer Count`, `Total Collections`, `Collection Transaction Count`, `Cash on Hand Balance`, `Cash in Bank Balance`, `Cash in POS Balance`, `Total Cash Balance`, `Collection Rate %`.
+- Each new page was built fresh to match the Financial Report design system:
+  - Canvas: 1280×960, FitToWidth, background `#F8FBFF`
+  - Navy-blue data palette: `#1F4E79`, `#5B8DB8`, `#9CC3E6`
+  - KPI cards with navy drop shadow accent, `#C9D5E3` borders, Tahoma 18D values
+  - Dropdown slicers with label-above pattern matching the existing pages
+  - Branding lockup (Al Jazeera logo + vertical divider + Canon logo) in top-right
+  - Report header shape with page title and subtitle
+- **Receivables page**: 4 KPI cards (Total Outstanding, Overdue Amount, Overdue %, Customers), pivot table with full SAP aging buckets (Future, 0-30, 31-60, 61-90, 91-120, 120+), 5 dropdown slicers (BP Type, Sector, Solution, Industry, Collector) with slicer→visual DataFilter interactions.
+- **Collections page**: 4 KPI cards (Total Collected, Transactions, Collection Rate, Active Customers), pivot table by customer, clustered bar chart by Origin type (IN/CN/RC/JE/JR), 4 dropdown slicers (BP Type, Sector, Collector, Customer).
+- **Cash Position page**: 4 KPI cards (Total Cash Balance, Cash on Hand, Cash in Bank, Cash in POS), clustered bar chart by account name, donut chart by account type, account detail table with debit/credit/balance breakdown.
+- Report now contains 10 pages total.
+- CollectionsFact SQL was updated from the source model's hardcoded 2026 date range to a rolling `ADD_DAYS(CURRENT_DATE, -365)` filter for durability.
+- Requires Desktop refresh and validation.
 
 ## Balance Sheet Profit Period Fix (2026-04-01)
 - Root-cause fix for balance sheet equity discrepancy vs SAP: SAP's "Profit Period" line (current-year P&L result under Capital & Reserves) was missing because `Fact_BalanceSheet` only pulled `GroupMask IN (1, 2, 3)`.

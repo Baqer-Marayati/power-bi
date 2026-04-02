@@ -25,6 +25,14 @@
 - Prefer `_Measures` profitability fields and `Dim_Date` monthly grain.
 - Validate axis sorting, label clarity, and interactions in Desktop after rewiring from cashflow helper-date tables.
 
+## New Pages Validation
+- Open the PBIP in Desktop and refresh to validate the 3 new pages: `Receivables`, `Collections`, `Cash Position`.
+- Confirm `ReceivablesFact`, `CollectionsFact`, `CashPositionFact`, and `DimBusinessPartner` tables load cleanly.
+- Verify slicer interactions filter the pivot tables and KPI cards correctly on Receivables and Collections pages.
+- Verify Cash Position charts and detail table render with correct account balances.
+- Fine-tune layout spacing, card typography, and chart formatting in Desktop if needed.
+- After validation, rebuild `Exports/Server Packages/Financial Report - ready.zip`.
+
 ## Future SAP Buildouts
 - Native budget domain
 - True bank / cash movement fact

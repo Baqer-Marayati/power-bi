@@ -1,6 +1,6 @@
 # Agent Guide
 
-This file is the AI entrypoint for the Inventory Performance Report module.
+This file is the AI entrypoint for the Inventory Report module.
 
 ## Read Order
 
