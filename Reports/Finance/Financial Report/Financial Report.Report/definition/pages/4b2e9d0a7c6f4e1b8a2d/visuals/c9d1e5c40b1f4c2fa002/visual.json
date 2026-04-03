@@ -5,7 +5,7 @@
     "x": 618,
     "y": 236,
     "z": 6000,
-    "height": 216,
+    "height": 338,
     "width": 598,
     "tabOrder": 17000
   },
@@ -70,6 +70,26 @@
       }
     },
     "objects": {
+      "legend": [
+        {
+          "properties": {
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'RightCenter'"
+                }
+              }
+            }
+          }
+        }
+      ],
       "labels": [
         {
           "properties": {

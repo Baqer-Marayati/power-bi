@@ -118,10 +118,17 @@
                 }
               }
             },
-            "labelStyle": {
+            "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'Both'"
+                  "Value": "1000000D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
                 }
               }
             },

@@ -24,6 +24,7 @@ This pipeline extracts read-only SAP Business One data and writes snapshot files
 - No writes to SAP.
 - Credentials are read from environment variables.
 - Do not commit credentials into config files.
+- Local-only helpers such as `set_credentials.sh` or `credentials.env` must stay **out of git** (see repo `.gitignore`). Start from `credentials.env.example` if you use a dotenv-style file.
 
 ## Quick Start (Windows, minimal manual)
 
@@ -46,7 +47,7 @@ Shared\SAP Export Pipeline\run_export.bat 2026-03-22
 4. Credentials behavior:
 - If `SAP_HANA_USER` and `SAP_HANA_PASSWORD` env vars are set, script uses them.
 - If not set, script tries DSN-saved credentials (`DSN=<your dsn>` only).
-- You can set env vars manually when needed.
+- You can set env vars manually when needed, or copy `credentials.env.example` to `credentials.env` and load it locally (file is gitignored).
 
 ## Optional: direct PowerShell commands
 

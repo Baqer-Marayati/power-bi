@@ -8,7 +8,9 @@ param(
 $ErrorActionPreference = "Stop"
 $runner = Join-Path $RepoRoot "scripts\package-report.ps1"
 if (!(Test-Path $runner)) { throw "Portfolio packager script not found: $runner" }
-if ([string]::IsNullOrWhiteSpace($SourceDir)) { throw "Provide -SourceDir for Sales PBIP source folder." }
+if ([string]::IsNullOrWhiteSpace($SourceDir)) {
+    $SourceDir = Join-Path $RepoRoot "Reports\Sales\Sales Report"
+}
 
 powershell -ExecutionPolicy Bypass -File $runner `
     -Domain "Sales" `

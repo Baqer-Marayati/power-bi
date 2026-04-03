@@ -3,69 +3,69 @@
 ## Purpose
 This file is the page-by-page operating map for the Financial Report PBIP. Use it to understand what each page is for, what domain it depends on, and whether the current issue is mostly report wiring, semantic-model logic, or missing source data.
 
-## Working Pages
+## Working pages (current 10-page shell)
 
 ### Executive Overview
 - Purpose: top-level executive summary
 - Primary domain: existing SAP-backed summary logic
 - Status: working
-- Notes: keep current shell and KPI rhythm; treat the KPI row as a shared component system
+- Notes: KPI row is a shared component system; branding lockup top-right
 
 ### Income Statement
 - Purpose: core income statement view
 - Primary domain: `Fact_PNL`
 - Status: working
-- Notes: preserve current SAP-backed logic and current KPI-row pattern
 
 ### Revenue Insights
 - Purpose: revenue analysis
-- Primary domain: `Fact_SalesDetail`
+- Primary domain: `Fact_SalesDetail` (`Item Business Type` from SAP item master UDF)
 - Status: working
-- Notes: serves as a good reference for stable sales-domain visuals
 
 ### Cost Structure
 - Purpose: cost breakdown and structure
 - Primary domain: `Fact_PNL`
 - Status: working
-- Notes: already aligned with the current shell
 
 ### Balance Sheet
 - Purpose: balance sheet analysis
 - Primary domain: `Fact_BalanceSheet`
 - Status: working
-- Notes: use as a stable reference for SAP-backed balance logic
 
-## Pages In Active Repair
+### Working Capital Health
+- Purpose: AR/AP execution health (outstanding, overdue, due buckets)
+- Primary domain: `customerLedgerEntries`, `vendorLedgerEntries`, related dims
+- Status: working (validate in Desktop after model changes)
 
-### Actual vs Budget
-- Purpose: compare actuals with budget and variance
-- Primary domain: `glBudgetEntries`, `BudgetVsActualTable`, `generalLedgerEntries`
-- Status: active recovery page
-- Main issue type: mixed report rewiring plus placeholder budget logic
-- Notes: page can be stabilized, but true budget truth still depends on a real SAP budget source
+### Profitability Drivers
+- Purpose: profitability movement (YTD KPIs, monthly trends)
+- Primary domain: `_Measures`, `Dim_Date`
+- Status: working (validate in Desktop after model changes)
 
-### Cashflow
-- Purpose: cash-in / cash-out and short-term projection page
-- Primary domain: `bankAccountLedgerEntries`, cashflow helper dates
-- Status: active recovery page
-- Main issue type: compatibility-table limitations and helper-date wiring
-- Notes: current cashflow logic is compatibility-based, not a true bank-ledger build
+### Receivables
+- Purpose: AR outstanding, aging, customer context
+- Primary domain: `ReceivablesFact`, `DimBusinessPartner`
+- Status: working
 
-## Deferred Or Historical Pages
-- `Financial Details`
-- `Performance Details`
-- `Profit and Loss`
-- `Accounts Payable`
-- `AP Invoice Details`
-- `Accounts Receivable`
-- `AR Invoice Details`
-- `Commitment Report`
+### Collections
+- Purpose: collection activity and rates vs AR
+- Primary domain: `CollectionsFact`, `DimBusinessPartner`, `Dim_Date`
+- Status: working
 
-These pages remain part of project history and benchmark context, but they are not in the active operating queue unless the user explicitly reintroduces them.
+### Cash Position
+- Purpose: cash-on-hand / bank / POS snapshot and breakdown
+- Primary domain: `CashPositionFact` (and related measures)
+- Status: working
 
-## Operational Rules
-- Do not delete the active-repair pages.
-- Keep the Sample 2 structure unless the user requests otherwise.
-- Prefer report-side rewires before risky model relationships.
-- Keep all currency presentation in `IQD`.
-- Do not quietly move deferred pages back into active repair.
+## Deferred benchmark / historical pages
+
+These are **not** in the current `pages.json` order unless explicitly reintroduced:
+
+- `Actual vs Budget` — budget truth still depends on a real SAP budget source when revived
+- `Cashflow` — prior compatibility-based cashflow page; not the same story as **Cash Position**
+- `Financial Details`, `Performance Details`, `Profit and Loss`, `Accounts Payable`, `AP Invoice Details`, `Accounts Receivable`, `AR Invoice Details`, `Commitment Report`
+
+## Operational rules
+- Prefer **`CURRENT_STATUS.md`** and **`DECISIONS.md`** for live layout and palette numbers.
+- Prefer report-side rewires before risky model relationships on stable pages.
+- Keep currency presentation in **IQD** unless a documented exception exists.
+- Do not quietly move deferred pages back into the active shell without an explicit decision.

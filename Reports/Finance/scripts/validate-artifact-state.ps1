@@ -151,6 +151,33 @@ foreach ($pageId in $corePages) {
     }
 }
 
+# Additional working pages: page shell present (canvas background); slicer rail may use domain-specific names
+$extensionPageIds = @(
+    "b432b363b07a4f448e59",
+    "12baa519c64e5f8a0fa4",
+    "a1f2b3c4d5e6f7a8b9c0",
+    "b2f3c4d5e6f7a8b9c1d0",
+    "c3f4d5e6f7a8b9c1d2e0"
+)
+
+foreach ($pageId in $extensionPageIds) {
+    $pageJson = Join-Path $reportPagesRoot "$pageId\page.json"
+    if (!(Test-Path -LiteralPath $pageJson)) {
+        Write-Err "Missing page.json for extension page: $pageId"
+        continue
+    }
+    try {
+        $raw = Get-Content -LiteralPath $pageJson -Raw
+        if ($raw -notmatch "#F8FBFF") {
+            Write-Warn "Extension page $pageId: expected page background #F8FBFF not found in page.json (verify manually)."
+        } else {
+            Write-Ok "Extension page present with expected canvas color token: $pageId"
+        }
+    } catch {
+        Write-Err "Failed to read page.json for ${pageId}: $($_.Exception.Message)"
+    }
+}
+
 Write-Host ""
 Write-Host "Recommended usage:" -ForegroundColor Cyan
 Write-Host "1) Edit in:  $sourcePbip"

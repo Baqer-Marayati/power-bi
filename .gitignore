@@ -17,3 +17,8 @@ Reports/*/Records/Screenshots/*.png
 # Ad-hoc Cursor chat captures (keep folder; do not commit binaries)
 Shared/ChatContext/images/*
 !Shared/ChatContext/images/.gitkeep
+
+# SAP export — local credentials (use credentials.env.example as a template)
+Shared/SAP Export Pipeline/set_credentials.sh
+Shared/SAP Export Pipeline/credentials.env
+Shared/SAP Export Pipeline/.env

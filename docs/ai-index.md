@@ -33,10 +33,12 @@ Use this file as a fast routing map when an AI model receives the repository wit
 - Data exchange workflows:
   - `Reports/DataExchange/README.md`
   - `Reports/DataExchange/docs/quickstart.md`
-- Scaffolded domains (baseline structure only):
-  - `Reports/HR`
+- Additional active PBIP modules (see `REPORT_CATALOG.md`):
   - `Reports/Sales`
   - `Reports/Service`
+  - `Reports/Inventory`
+- Scaffolded domains (baseline structure only):
+  - `Reports/HR`
   - `Reports/Marketing`
 
 ## Automation Entry Points
@@ -48,6 +50,10 @@ Use this file as a fast routing map when an AI model receives the repository wit
 - Packaging and retention:
   - `scripts/package-report.ps1`
   - `scripts/archive-prune.ps1`
+- Semantic model cache (blank-on-open):
+  - `scripts/clear-model-cache.ps1`
+- Theme drift check (registered `Custom_Theme49412231581938193.json` vs `Shared/Themes/`):
+  - `scripts/validate-theme-vs-canonical.ps1`
 
 ## Common Questions
 

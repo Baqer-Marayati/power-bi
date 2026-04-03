@@ -1,21 +1,21 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/powerbi-desktop-samples/refs/heads/main/Report%20Theme%20JSON%20Schema/reportThemeSchema-2.139.json",
-  "background": "#485257",
-  "backgroundLight": "#F1F3F4",
-  "backgroundNeutral": "#F1F3F4",
+  "background": "#1F4E79",
+  "backgroundLight": "#F8FBFF",
+  "backgroundNeutral": "#D6E8F5",
   "bad": "#C13737",
   "center": "#181B1D",
   "dataColors": [
-    "#1A9C96",
-    "#23BCC3",
-    "#7DCFD9",
-    "#ABE1DF",
-    "#7ED287",
-    "#CCEC9D",
-    "#EAECAD",
-    "#5F6B6D",
-    "#3599B8",
-    "#DFBFBF",
+    "#1F4E79",
+    "#5B8DB8",
+    "#9CC3E6",
+    "#C5DCEF",
+    "#2E6DA4",
+    "#7AADCE",
+    "#163A5C",
+    "#3D7DB5",
+    "#AACFE8",
+    "#DDE9F5",
     "#4AC5BB",
     "#5F6B6D",
     "#FB8281",
@@ -581,7 +581,7 @@
           {
             "color": {
               "solid": {
-                "color": "#E4E7E9"
+                "color": "#C9D5E3"
               }
             },
             "radius": 4,

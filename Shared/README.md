@@ -3,7 +3,7 @@
 This folder is for reusable assets that should support more than one report module.
 
 Use it for:
-- themes
+- themes (`Shared/Themes/` — canonical `Custom_Theme49412231581938193.json` and README)
 - templates
 - design-system material
 - shared SQL

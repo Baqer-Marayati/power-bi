@@ -1,6 +1,6 @@
 param(
     [string]$RepoRoot = $(Split-Path -Parent $PSScriptRoot),
-    [string[]]$Domains = @("Finance", "HR", "Sales", "Service", "Marketing")
+    [string[]]$Domains = @("Finance", "HR", "Sales", "Service", "Marketing", "Inventory")
 )
 
 $ErrorActionPreference = "Stop"

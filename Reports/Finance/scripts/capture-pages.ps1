@@ -19,7 +19,8 @@
     Folder where page screenshots are saved. Defaults to Records/screenshots.
 
 .PARAMETER PageCount
-    Number of report pages to cycle through. Defaults to 7 (current Finance page count).
+    Number of report pages to cycle through. Use -1 (default) to read the count from the
+    report's definition/pages/pages.json next to the PBIP (fallback: 10).
 
 .PARAMETER LoadWaitSeconds
     Seconds to wait for PBI Desktop to fully load the report. Defaults to 45.
@@ -34,13 +35,35 @@
 param(
     [string]$PbipPath  = "C:\Work\reporting-hub\Reports\Finance\Financial Report\Financial Report.pbip",
     [string]$OutputDir = "C:\Work\reporting-hub\Reports\Finance\Records\screenshots",
-    [int]$PageCount    = 7,
+    [int]$PageCount    = -1,
     [int]$LoadWaitSeconds = 45,
     [int]$PageWaitSeconds = 4,
     [switch]$ClosePbi
 )
 
 $ErrorActionPreference = "Stop"
+
+$pbipParent = Split-Path -LiteralPath $PbipPath
+$pbipBaseName = [System.IO.Path]::GetFileNameWithoutExtension($PbipPath)
+$pagesJsonPath = Join-Path $pbipParent ("{0}.Report\definition\pages\pages.json" -f $pbipBaseName)
+if ($PageCount -lt 0) {
+    if (Test-Path -LiteralPath $pagesJsonPath) {
+        try {
+            $pagesMeta = Get-Content -LiteralPath $pagesJsonPath -Raw -Encoding UTF8 | ConvertFrom-Json
+            $n = @($pagesMeta.pageOrder).Count
+            if ($n -gt 0) { $PageCount = $n }
+        } catch {
+            Write-Warning "Could not read page count from $pagesJsonPath : $($_.Exception.Message)"
+        }
+    }
+    if ($PageCount -lt 0) {
+        $PageCount = 10
+        Write-Host "Using fallback PageCount=$PageCount (pages.json missing or empty)."
+    } else {
+        Write-Host "PageCount from pages.json: $PageCount ($pagesJsonPath)"
+    }
+}
+
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
@@ -202,7 +225,8 @@ $ox = [int]$origin.X
 $oy = [int]$origin.Y
 $tabY = $oy + $clientH - 28
 
-# Page tab center-X positions (screen coords) for the 7 Finance pages at 1470px client width.
+# Page tab center-X positions (screen coords) for Finance pages at ~1470px client width.
+# Re-measure in Desktop if tab layout changes (font scaling, page rename width).
 $tabCentersX = @(
     ($ox + 201),   # 1  Executive Overview
     ($ox + 327),   # 2  Income Statement
@@ -210,11 +234,19 @@ $tabCentersX = @(
     ($ox + 571),   # 4  Cost Structure
     ($ox + 680),   # 5  Balance Sheet
     ($ox + 824),   # 6  Working Capital Health
-    ($ox + 987)    # 7  Profitability Drivers
+    ($ox + 987),   # 7  Profitability Drivers
+    ($ox + 1125),  # 8  Receivables
+    ($ox + 1245),  # 9  Collections
+    ($ox + 1365)   # 10 Cash Position
 )
 
 Write-Host "Page tab Y=$tabY"
 Write-Host "Tab X centers: $($tabCentersX -join ', ')"
+
+if ($PageCount -gt $tabCentersX.Count) {
+    Write-Warning "PageCount ($PageCount) exceeds calibrated tab positions ($($tabCentersX.Count)); clipping to avoid bad clicks."
+    $PageCount = $tabCentersX.Count
+}
 
 $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
 

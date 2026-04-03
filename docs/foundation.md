@@ -36,12 +36,19 @@ Each report module answers question 2.
 
 ## Module State Snapshot
 
+See `Portfolio Memory/REPORT_CATALOG.md` for the authoritative list.
+
 - Active production module: `Reports/Finance`
 - Active exchange module: `Reports/DataExchange`
-- Scaffolded modules: `Reports/HR`, `Reports/Sales`, `Reports/Service`, `Reports/Marketing`
+- Additional active PBIP modules: `Reports/Sales`, `Reports/Service`, `Reports/Inventory`
+- Scaffolded modules: `Reports/HR`, `Reports/Marketing`
 
-Current active editable PBIP:
+Examples of active editable PBIP entry points:
 - `Reports/Finance/Financial Report/Financial Report.pbip`
+- `Reports/Sales/Sales Report/Sales Report.pbip`
+- `Reports/Service/Service Report/Service Report.pbip`
+- `Reports/Inventory/Inventory Report/Inventory Report.pbip`
+- `Reports/DataExchange/Data Exchange Report/Data Exchange Report.pbip`
 
 ## Structure Rules
 

@@ -24,4 +24,4 @@ As of March 22, 2026, most detailed standards still live inside the Finance modu
   - common spacing and layout rhythm where practical
 - New modules (for example `Reports/Inventory`) should inherit this standard from the start, before custom styling.
 - Any intentional deviation must be documented in that module's `Project Memory/DECISIONS.md` with a business reason.
-- Until a dedicated token file is extracted, `Reports/Finance` is the reference implementation for theme and branding behavior.
+- Token file: `Shared/Standards/portfolio-theme.tokens.json`. Canonical theme JSON copy: `Shared/Themes/Custom_Theme49412231581938193.json` (see `Shared/Themes/README.md`). `Reports/Finance` remains the primary reference implementation for how those tokens appear in a live PBIP.

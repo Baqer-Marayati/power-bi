@@ -5,7 +5,7 @@
 2. Recheck whether the right-pane warnings for `generalLedgerEntries` and `accounts` are gone after the latest cleanup pass.
 3. Preserve the user-approved Desktop layout baseline on the 5 core finance pages and reuse it consistently instead of reintroducing older card variants or superseded Codex-only geometry assumptions.
 4. Preserve the now-confirmed branding pattern on the first five pages: grouped `image + divider shape + image` lockup backed by registered resources in `report.json`.
-5. When the user is ready, extend the approved branding direction deliberately to `Actual vs Budget` and `Cashflow` by copying the same Desktop-proven pattern rather than inventing a new one.
+5. If `Actual vs Budget` or legacy `Cashflow` benchmark pages are revived, extend branding using the same Desktop-proven lockup pattern and document the decision in `DECISIONS.md` / `PAGE_MAP.md`.
 6. Reopen `Working Capital Health` and confirm the AR/AP rewires render cleanly (cards, due-bucket slicers, and detail table) without stale compatibility filters.
 7. Reopen `Profitability Drivers` and confirm the profitability rewires render cleanly (YTD KPI cards and both monthly trend charts) with expected interactions.
 8. Keep the root `README`, `docs/`, and GitHub templates aligned with any future project-direction changes so repository onboarding does not drift away from `Project Memory`.

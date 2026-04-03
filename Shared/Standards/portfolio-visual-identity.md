@@ -18,7 +18,8 @@ This file defines the shared visual identity that should be reused across all re
 
 ## Canonical Token Source
 
-- Theme resource: `Reports/Finance/Financial Report/Financial Report.Report/StaticResources/RegisteredResources/Custom_Theme49412231581938193.json`
+- **Shared canonical copy (for diff / propagation):** `Shared/Themes/Custom_Theme49412231581938193.json` (see `Shared/Themes/README.md`)
+- Theme resource (live PBIP registration): `Reports/Finance/Financial Report/Financial Report.Report/StaticResources/RegisteredResources/Custom_Theme49412231581938193.json`
 - Report registration: `Reports/Finance/Financial Report/Financial Report.Report/definition/report.json`
 - Page/card implementation reference:
   - `Reports/Finance/Financial Report/Financial Report.Report/definition/pages/*/page.json`

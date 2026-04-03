@@ -3,7 +3,7 @@
 Reporting Hub is a **domain-first reporting portfolio** designed for multi-company, multi-report development.
 
 The repository is optimized for:
-- repeatable report module onboarding (`Finance`, `HR`, `Sales`, `Service`, `Marketing`)
+- repeatable report module onboarding (`Finance`, `DataExchange`, `HR`, `Sales`, `Service`, `Marketing`, `Inventory`, …)
 - consistent agent/model navigation on first encounter
 - clear separation between source-of-truth PBIP work, shared assets, and review artifacts
 
@@ -16,13 +16,11 @@ The repository is optimized for:
 
 ## Domain Modules
 
-Current module state:
-- `Reports/Finance` - Active production module
-- `Reports/DataExchange` - Active exchange workspace
-- `Reports/HR` - Scaffolded
-- `Reports/Sales` - Scaffolded
-- `Reports/Service` - Scaffolded
-- `Reports/Marketing` - Scaffolded
+Current module state (see `Portfolio Memory/REPORT_CATALOG.md` for detail):
+- `Reports/Finance` — Active production module
+- `Reports/DataExchange` — Active exchange workspace
+- `Reports/Sales`, `Reports/Service`, `Reports/Inventory` — Active PBIP modules
+- `Reports/HR`, `Reports/Marketing` — Scaffolded
 
 ## Start Here (First Encounter)
 

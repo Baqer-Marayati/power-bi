@@ -24,13 +24,13 @@
 
 - Module path: `Reports/Sales`
 - Status: Active
-- Notes: Sales Analysis Report — 4-page PBIP report (Sales Overview, Sales Employees, BP Sales, BP Rebate) with SAP HANA ODBC semantic model (CANON schema). Derived from Aljazeera Master Model. Awaiting Desktop validation and visual identity alignment.
+- Notes: Sales Analysis Report — 5-page PBIP (Sales Overview, Sales Employees, BP Sales, BP Rebate, Commission) with SAP HANA ODBC semantic model (CANON schema). Derived from Aljazeera Master Model. Portfolio visual identity aligned; validate in Desktop after model changes.
 
 ### Service
 
 - Module path: `Reports/Service`
 - Status: Active
-- Notes: Service Performance Report — SAP HANA ODBC semantic model (CANON schema). Module activated with full docs, memory, and CANON company config. Awaiting PBIP baseline creation.
+- Notes: Service Performance Report — 5-page PBIP with SAP HANA ODBC semantic model (CANON schema). CANON company config under `Companies/CANON/`. Validate in Desktop after model or layout changes.
 
 ### Marketing
 

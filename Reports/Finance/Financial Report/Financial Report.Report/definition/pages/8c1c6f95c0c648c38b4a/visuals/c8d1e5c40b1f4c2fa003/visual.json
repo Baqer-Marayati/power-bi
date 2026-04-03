@@ -3,9 +3,9 @@
   "name": "c8d1e5c40b1f4c2fa003",
   "position": {
     "x": 188,
-    "y": 492,
+    "y": 596,
     "z": 8000,
-    "height": 220,
+    "height": 340,
     "width": 502,
     "tabOrder": 19000
   },
@@ -114,7 +114,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1000000D"
+                  "Value": "1000000000D"
                 }
               }
             },

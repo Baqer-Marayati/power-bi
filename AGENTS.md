@@ -40,22 +40,27 @@ For the current finance report:
 
 ## Module Reality
 
+Authoritative status: **`Portfolio Memory/REPORT_CATALOG.md`**.
+
 Active production module:
 - `Reports/Finance`
 
 Active exchange module:
 - `Reports/DataExchange`
 
-Scaffolded (not yet fully active) modules:
-- `Reports/HR`
+Additional active modules (PBIP + model in repo):
 - `Reports/Sales`
 - `Reports/Service`
+- `Reports/Inventory`
+
+Scaffolded (contract layout, no PBIP yet):
+- `Reports/HR`
 - `Reports/Marketing`
 
-Do not assume a scaffolded module is active until `Portfolio Memory/REPORT_CATALOG.md` marks it Active.
+Do not treat a module as active for delivery until `REPORT_CATALOG.md` marks it Active.
 
 ## Cursor / VS Code workspace
 
 - Agent rules: `.cursor/rules/` (`reporting-hub-portfolio.mdc` always applies; Finance rules apply under `Reports/Finance/` and `**/*.tmdl`).
-- Tasks: **Terminal → Run Task** (or **Tasks: Run Task**) — e.g. **Finance: Package report (ready.zip)**, **Portfolio: Scaffold new report module**.
+- Tasks: **Terminal → Run Task** (or **Tasks: Run Task**) — e.g. **Finance: Package report (ready.zip)**, **DataExchange: Open report in Power BI Desktop**, **Sales** / **Service** / **Inventory** / **DataExchange** package and cache tasks, **Portfolio: Validate custom themes vs Shared/Themes**, **Portfolio: Scaffold new report module**.
 - Shared editor defaults: `.vscode/settings.json`, `.editorconfig`.

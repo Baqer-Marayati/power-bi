@@ -9,7 +9,7 @@ alwaysApply: true
 
 - Repository **root** = portfolio layer. **`Reports/<Module>/`** = self-contained report modules.
 - **Cross-report truth:** `Portfolio Memory/`. **Reusable assets:** `Shared/`. **Archives:** history only, not active work surfaces.
-- **Active module (do not assume others exist):** `Reports/Finance`. Planned names (HR, Sales, etc.) are **not** real until created.
+- **Default deep-work module:** `Reports/Finance`. Other modules exist; confirm **`Portfolio Memory/REPORT_CATALOG.md`** before assuming scope. Planned names are **not** real until listed there as Active or Scaffolded.
 
 ## Before substantive work
 

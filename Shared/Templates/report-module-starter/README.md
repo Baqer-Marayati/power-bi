@@ -31,6 +31,8 @@ Read these in order:
 - [`Project Memory/DECISIONS.md`](Project%20Memory/DECISIONS.md)
 - [`Project Memory/CURRENT_STATUS.md`](Project%20Memory/CURRENT_STATUS.md)
 
+When authoring a new PBIP, see [`docs/pbip-snippets/README.md`](docs/pbip-snippets/README.md) for starter `page.json` and links to portfolio standards.
+
 ## Source Of Truth
 
 - The PBIP project inside this module should be the editable source of truth.
