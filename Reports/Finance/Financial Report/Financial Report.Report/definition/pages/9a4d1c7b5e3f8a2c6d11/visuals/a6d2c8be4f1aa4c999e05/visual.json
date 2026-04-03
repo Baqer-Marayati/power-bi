@@ -96,9 +96,6 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true,
-    "visualContainerObjects": {
-      
-    }
+    "drillFilterOtherVisuals": true
   }
 }

@@ -152,6 +152,66 @@
             }
           }
         }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "309.6666697161741D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "CollectionsFact.CardName"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "167.32660951498943D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(CollectionsFact.CollectedAmount)"
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(CollectionsFact.CollectedAmount)"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -275,77 +335,79 @@
           }
         }
       ],
-      "dropShadow": [{
-        "properties": {
-          "show": {
-            "expr": {
-              "Literal": {
-                "Value": "true"
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
               }
-            }
-          },
-          "color": {
-            "solid": {
-              "color": {
-                "expr": {
-                  "Literal": {
-                    "Value": "'#1F4E79'"
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C9D0D3'"
+                    }
                   }
                 }
               }
-            }
-          },
-          "position": {
-            "expr": {
-              "Literal": {
-                "Value": "'Outer'"
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outer'"
+                }
               }
-            }
-          },
-          "preset": {
-            "expr": {
-              "Literal": {
-                "Value": "'Custom'"
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bottom'"
+                }
               }
-            }
-          },
-          "angle": {
-            "expr": {
-              "Literal": {
-                "Value": "270D"
+            },
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "90L"
+                }
               }
-            }
-          },
-          "shadowDistance": {
-            "expr": {
-              "Literal": {
-                "Value": "4D"
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
               }
-            }
-          },
-          "shadowBlur": {
-            "expr": {
-              "Literal": {
-                "Value": "0D"
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
               }
-            }
-          },
-          "transparency": {
-            "expr": {
-              "Literal": {
-                "Value": "0D"
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "70L"
+                }
               }
-            }
-          },
-          "shadowSpread": {
-            "expr": {
-              "Literal": {
-                "Value": "0D"
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
               }
             }
           }
         }
-      }]
+      ]
     },
     "drillFilterOtherVisuals": true
   }
