@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "svc_p1_lbl_class",
+  "position": {"x":8,"y":164,"z":19000,"height":16,"width":167,"tabOrder":3000},
+  "visual": {
+    "visualType": "textbox",
+    "objects": {"general": [{"properties": {"paragraphs": [{"textRuns": [{"value": ""}]}]}}]},
+    "visualContainerObjects": {
+      "title": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}},"text": {"expr": {"Literal": {"Value": "'Machine Type'"}}},"fontSize": {"expr": {"Literal": {"Value": "10D"}}},"fontColor": {"solid": {"color": {"expr": {"Literal": {"Value": "'#223430'"}}}}},"fontFamily": {"expr": {"Literal": {"Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"}}}}}],
+      "border": [{"properties": {"show": {"expr": {"Literal": {"Value": "false"}}}}}],
+      "background": [{"properties": {"show": {"expr": {"Literal": {"Value": "false"}}}}}],
+      "visualHeader": [{"properties": {"show": {"expr": {"Literal": {"Value": "false"}}}}}]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

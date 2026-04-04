@@ -1,0 +1,86 @@
+table Dim_Equipment
+	lineageTag: d1a00005-0001-4000-a005-000000000001
+
+	column EquipmentKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d1a00005-0001-4000-a005-000000000002
+		summarizeBy: none
+		sourceColumn: EquipmentKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerCode
+		dataType: string
+		lineageTag: d1a00005-0001-4000-a005-000000000003
+		summarizeBy: none
+		sourceColumn: CustomerCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCode
+		dataType: string
+		lineageTag: d1a00005-0001-4000-a005-000000000004
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemName
+		dataType: string
+		lineageTag: d1a00005-0001-4000-a005-000000000005
+		summarizeBy: none
+		sourceColumn: ItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ManufacturerSN
+		dataType: string
+		lineageTag: d1a00005-0001-4000-a005-000000000006
+		summarizeBy: none
+		sourceColumn: ManufacturerSN
+
+		annotation SummarizationSetBy = Automatic
+
+	column InternalSN
+		dataType: string
+		lineageTag: d1a00005-0001-4000-a005-000000000007
+		summarizeBy: none
+		sourceColumn: InternalSN
+
+		annotation SummarizationSetBy = Automatic
+
+	column InstallLocation
+		dataType: string
+		lineageTag: d1a00005-0001-4000-a005-000000000008
+		summarizeBy: none
+		sourceColumn: InstallLocation
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: d1a00005-0001-4000-a005-000000000009
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineClass
+		dataType: string
+		lineageTag: d1a00005-0001-4000-a005-00000000000a
+		summarizeBy: none
+		sourceColumn: MachineClass
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Equipment = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  E.""insID"" AS ""EquipmentKey"",#(lf)  E.""customer"" AS ""CustomerCode"",#(lf)  E.""itemCode"" AS ""ItemCode"",#(lf)  E.""itemName"" AS ""ItemName"",#(lf)  E.""manufSN"" AS ""ManufacturerSN"",#(lf)  E.""internalSN"" AS ""InternalSN"",#(lf)  E.""instLction"" AS ""InstallLocation"",#(lf)  CASE E.""status""#(lf)    WHEN 'A' THEN 'Active'#(lf)    WHEN 'I' THEN 'Inactive'#(lf)    WHEN 'R' THEN 'Returned'#(lf)    ELSE E.""status""#(lf)  END AS ""Status"",#(lf)  CASE#(lf)    WHEN G.""ItmsGrpNam"" LIKE 'B2B - IPS%' THEN 'Production'#(lf)    WHEN G.""ItmsGrpNam"" = '#N/A' THEN 'Production'#(lf)    WHEN G.""ItmsGrpCod"" = 139 THEN 'Production'#(lf)    WHEN G.""ItmsGrpNam"" LIKE 'B2B - DS Copier%' THEN 'Office'#(lf)    WHEN G.""ItmsGrpNam"" LIKE 'B2C%' THEN 'Consumer'#(lf)    ELSE 'Other'#(lf)  END AS ""MachineClass""#(lf)FROM ""PAPERENTITY"".""OINS"" E#(lf)LEFT JOIN ""PAPERENTITY"".""OITM"" I ON E.""itemCode"" = I.""ItemCode""#(lf)LEFT JOIN ""PAPERENTITY"".""OITB"" G ON I.""ItmsGrpCod"" = G.""ItmsGrpCod""")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

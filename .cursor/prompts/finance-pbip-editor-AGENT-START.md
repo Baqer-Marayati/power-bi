@@ -46,8 +46,8 @@ Edit and repair the active PBIP project: report definitions (JSON under the .Rep
 ## Read first (in order)
 
 1. Repo root `AGENTS.md` (portfolio), then `Reports/Finance/AGENTS.md`.
-2. `Reports/Finance/Project Memory/CURRENT_STATUS.md`, `NEXT_STEPS.md`, `DECISIONS.md`, `MODEL_NOTES.md` (as needed for the task).
-3. `Reports/Finance/docs/foundation.md` for packaging and toolchain notes.
+2. `Reports/Finance/Module/Project Memory/CURRENT_STATUS.md`, `NEXT_STEPS.md`, `DECISIONS.md`, `MODEL_NOTES.md` (as needed for the task).
+3. `Reports/Finance/Module/docs/foundation.md` for packaging and toolchain notes.
 4. Open or reference the live project:
    - `Reports/Finance/Financial Report/Financial Report.pbip`
    - Semantic model: `Financial Report.SemanticModel/definition/` (`model.tmdl`, table `.tmdl`, `relationships.tmdl`)
@@ -56,13 +56,13 @@ Edit and repair the active PBIP project: report definitions (JSON under the .Rep
 ## Non-negotiables
 
 - **PBIP is the source of truth** — not PBIX. PBIX is only a review snapshot if mentioned in memory.
-- **Visual benchmark:** `Reports/Finance/Design Benchmarks/Sample 2` unless Project Memory overrides.
+- **Visual benchmark:** `Reports/Finance/Module/Design Benchmarks/Sample 2` unless Project Memory overrides.
 - **Currency:** Iraqi dinar (IQD) presentation consistently; formatting affects layout.
 - **Systems, not one-offs:** top KPI row and left-rail slicers are shared patterns — fix consistently across pages.
 - **Logic first, styling second:** fix bindings, measures, stale filters before cosmetic work.
 - **Semantic safety:** prefer report-side rewires and safe compatibility patterns over risky custom relationships; see MODEL_NOTES and DECISIONS.
-- **After meaningful changes:** update the right `Reports/Finance/Project Memory/*.md` files (CURRENT_STATUS, DECISIONS, MODEL_NOTES, NEXT_STEPS as appropriate). Do not use README as a running log.
-- **User review handoff:** when report files change and the user should verify in Power BI Desktop, remind them to rebuild the package: `Reports/Finance/scripts/package-report.sh` (or Cursor task “Finance: Package report (ready.zip)”).
+- **After meaningful changes:** update the right `Reports/Finance/Module/Project Memory/*.md` files (CURRENT_STATUS, DECISIONS, MODEL_NOTES, NEXT_STEPS as appropriate). Do not use README as a running log.
+- **User review handoff:** when report files change and the user should verify in Power BI Desktop, remind them to rebuild the package: `Reports/Finance/Module/scripts/package-report.sh` (or Cursor task “Finance: Package report (ready.zip)”).
 - **Desktop is validation:** you cannot run Power BI; assume the user validates on a Windows machine with SAP access.
 
 ## Working style

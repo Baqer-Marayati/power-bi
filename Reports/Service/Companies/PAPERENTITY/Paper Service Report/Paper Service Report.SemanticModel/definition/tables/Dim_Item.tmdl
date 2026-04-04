@@ -1,0 +1,54 @@
+table Dim_Item
+	lineageTag: d1a00004-0001-4000-a004-000000000001
+
+	column ItemCode
+		dataType: string
+		lineageTag: d1a00004-0001-4000-a004-000000000002
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemName
+		dataType: string
+		lineageTag: d1a00004-0001-4000-a004-000000000003
+		summarizeBy: none
+		sourceColumn: ItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemGroupCode
+		dataType: int64
+		formatString: 0
+		lineageTag: d1a00004-0001-4000-a004-000000000004
+		summarizeBy: none
+		sourceColumn: ItemGroupCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemGroupName
+		dataType: string
+		lineageTag: d1a00004-0001-4000-a004-000000000005
+		summarizeBy: none
+		sourceColumn: ItemGroupName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MachineClass
+		dataType: string
+		lineageTag: d1a00004-0001-4000-a004-000000000006
+		summarizeBy: none
+		sourceColumn: MachineClass
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Item = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  I.""ItemCode"",#(lf)  I.""ItemName"",#(lf)  I.""ItmsGrpCod"" AS ""ItemGroupCode"",#(lf)  G.""ItmsGrpNam"" AS ""ItemGroupName"",#(lf)  CASE#(lf)    WHEN G.""ItmsGrpNam"" LIKE 'B2B - IPS%' THEN 'Production'#(lf)    WHEN G.""ItmsGrpNam"" = '#N/A' THEN 'Production'#(lf)    WHEN G.""ItmsGrpCod"" = 139 THEN 'Production'#(lf)    WHEN G.""ItmsGrpNam"" LIKE 'B2B - DS Copier%' THEN 'Office'#(lf)    WHEN G.""ItmsGrpNam"" LIKE 'B2C%' THEN 'Consumer'#(lf)    WHEN G.""ItmsGrpCod"" IN (172,173,174,175,176,177) THEN 'Service'#(lf)    ELSE 'Other'#(lf)  END AS ""MachineClass""#(lf)FROM ""PAPERENTITY"".""OITM"" I#(lf)LEFT JOIN ""PAPERENTITY"".""OITB"" G ON I.""ItmsGrpCod"" = G.""ItmsGrpCod""")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

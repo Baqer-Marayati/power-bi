@@ -2,40 +2,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Finance: Package report (ready.zip)",
-      "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/Finance/scripts/package-report.ps1\"",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "focus": true
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Finance: Validate artifact state",
-      "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/Finance/scripts/validate-artifact-state.ps1\"",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      },
-      "problemMatcher": []
-    },
-    {
       "label": "Finance: Clear semantic model cache (cache.abf)",
       "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/Finance/scripts/clear-model-cache.ps1\"",
+      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/Finance/Module/scripts/clear-model-cache.ps1\"",
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -48,20 +17,7 @@
     {
       "label": "Portfolio: Scaffold new report module",
       "type": "shell",
-      "command": "./scripts/create-report-module.sh ${input:moduleName} '${input:reportTitle}'",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Sales: Package report (ready.zip)",
-      "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/Sales/scripts/package-report.ps1\"",
+      "command": "./Portfolio/scripts/create-report-module.sh ${input:moduleName} '${input:reportTitle}'",
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -74,20 +30,7 @@
     {
       "label": "Sales: Clear semantic model cache (cache.abf)",
       "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/Sales/scripts/clear-model-cache.ps1\"",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Service: Package report (ready.zip)",
-      "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/Service/scripts/package-report.ps1\"",
+      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/Sales/Module/scripts/clear-model-cache.ps1\"",
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -100,20 +43,7 @@
     {
       "label": "Service: Clear semantic model cache (cache.abf)",
       "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/Service/scripts/clear-model-cache.ps1\"",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Inventory: Package report (ready.zip)",
-      "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/Inventory/scripts/package-report.ps1\"",
+      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/Service/Module/scripts/clear-model-cache.ps1\"",
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -126,7 +56,7 @@
     {
       "label": "Inventory: Clear semantic model cache (cache.abf)",
       "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/Inventory/scripts/clear-model-cache.ps1\"",
+      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/Inventory/Module/scripts/clear-model-cache.ps1\"",
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -139,20 +69,7 @@
     {
       "label": "DataExchange: Open report in Power BI Desktop",
       "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/DataExchange/scripts/open-report.ps1\"",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "DataExchange: Package report (ready.zip)",
-      "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/DataExchange/scripts/package-report.ps1\"",
+      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/DataExchange/Module/scripts/open-report.ps1\"",
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -165,7 +82,7 @@
     {
       "label": "DataExchange: Clear semantic model cache (cache.abf)",
       "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/DataExchange/scripts/clear-model-cache.ps1\"",
+      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/DataExchange/Module/scripts/clear-model-cache.ps1\"",
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -176,9 +93,9 @@
       "problemMatcher": []
     },
     {
-      "label": "Portfolio: Validate custom themes vs Shared/Themes",
+      "label": "Portfolio: Validate custom themes vs Portfolio/Shared/Themes",
       "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/scripts/validate-theme-vs-canonical.ps1\" -All",
+      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Portfolio/scripts/validate-theme-vs-canonical.ps1\" -All",
       "options": {
         "cwd": "${workspaceFolder}"
       },

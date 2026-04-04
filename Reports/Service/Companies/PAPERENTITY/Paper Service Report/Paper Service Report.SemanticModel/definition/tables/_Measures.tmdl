@@ -1,0 +1,263 @@
+table _Measures
+	lineageTag: m1a00001-0001-4000-d001-000000000001
+
+	measure 'Total Service Calls' =
+			COUNTROWS ( Fact_ServiceCalls )
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000010
+
+	measure 'Open Calls' =
+			CALCULATE (
+			    COUNTROWS ( Fact_ServiceCalls ),
+			    Fact_ServiceCalls[Status] = -3
+			)
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000011
+
+	measure 'Closed Calls' =
+			CALCULATE (
+			    COUNTROWS ( Fact_ServiceCalls ),
+			    Fact_ServiceCalls[Status] = -1
+			)
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000012
+
+	measure 'Avg Calls per Day' =
+			DIVIDE (
+			    [Total Service Calls],
+			    DISTINCTCOUNT ( Fact_ServiceCalls[CreateDate] )
+			)
+		formatString: #,##0.0
+		lineageTag: m1a00001-0001-4000-d001-000000000013
+
+	measure 'Calls This Month' =
+			CALCULATE (
+			    [Total Service Calls],
+			    DATESMTD ( Dim_Date[Date] )
+			)
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000014
+
+	measure 'Avg Response Time (hrs)' =
+			AVERAGE ( Fact_ServiceCalls[ResponseHours] )
+		formatString: #,##0.0
+		lineageTag: m1a00001-0001-4000-d001-000000000020
+
+	measure 'Avg Resolution Time (hrs)' =
+			AVERAGE ( Fact_ServiceCalls[ResolutionHours] )
+		formatString: #,##0.0
+		lineageTag: m1a00001-0001-4000-d001-000000000021
+
+	measure 'Median Resolution Time (hrs)' =
+			MEDIAN ( Fact_ServiceCalls[ResolutionHours] )
+		formatString: #,##0.0
+		lineageTag: m1a00001-0001-4000-d001-000000000022
+
+	measure 'First-Time Fix Rate %' =
+			VAR ActivitySummary =
+			    SUMMARIZE (
+			        Fact_ServiceActivities,
+			        Fact_ServiceActivities[CallID],
+			        "ActCount", COUNTROWS ( Fact_ServiceActivities )
+			    )
+			VAR SingleVisitIDs =
+			    SELECTCOLUMNS (
+			        FILTER ( ActivitySummary, [ActCount] = 1 ),
+			        "CID", Fact_ServiceActivities[CallID]
+			    )
+			VAR SingleVisitClosed =
+			    CALCULATE (
+			        COUNTROWS ( Fact_ServiceCalls ),
+			        Fact_ServiceCalls[Status] = -1,
+			        Fact_ServiceCalls[CallID] IN SingleVisitIDs
+			    )
+			VAR TotalClosed = [Closed Calls]
+			RETURN
+			    DIVIDE ( SingleVisitClosed, TotalClosed )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: m1a00001-0001-4000-d001-000000000023
+
+	measure 'Total Activities' =
+			COUNTROWS ( Fact_ServiceActivities )
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000030
+
+	measure 'Total Labor Hours' =
+			SUM ( Fact_ServiceActivities[DurationHours] )
+		formatString: #,##0.0
+		lineageTag: m1a00001-0001-4000-d001-000000000031
+
+	measure 'Avg Labor Hours per Call' =
+			DIVIDE (
+			    [Total Labor Hours],
+			    DISTINCTCOUNT ( Fact_ServiceActivities[CallID] )
+			)
+		formatString: #,##0.0
+		lineageTag: m1a00001-0001-4000-d001-000000000032
+
+	measure 'Calls per Technician' =
+			DIVIDE (
+			    DISTINCTCOUNT ( Fact_ServiceActivities[CallID] ),
+			    DISTINCTCOUNT ( Fact_ServiceActivities[TechnicianKey] )
+			)
+		formatString: #,##0.0
+		lineageTag: m1a00001-0001-4000-d001-000000000033
+
+	measure 'Activities per Technician' =
+			DIVIDE (
+			    [Total Activities],
+			    DISTINCTCOUNT ( Fact_ServiceActivities[TechnicianKey] )
+			)
+		formatString: #,##0.0
+		lineageTag: m1a00001-0001-4000-d001-000000000034
+
+	measure 'Total Parts Cost' =
+			SUM ( Fact_ServiceParts[LineTotal] )
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000040
+
+	measure 'Parts Lines Delivered' =
+			COUNTROWS ( Fact_ServiceParts )
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000041
+
+	measure 'Avg Parts Cost per Call' =
+			DIVIDE (
+			    [Total Parts Cost],
+			    DISTINCTCOUNT ( Fact_ServiceParts[CallID] )
+			)
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000042
+
+	measure 'FSMA Parts Cost' =
+			CALCULATE (
+			    SUM ( Fact_ServiceParts[LineTotal] ),
+			    Fact_ServiceParts[TaxCode] IN { "FSMA", "SMA" }
+			)
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000043
+
+	measure 'Total Service Revenue' =
+			SUM ( Fact_ServiceRevenue[LineTotal] )
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000050
+
+	measure 'FSMA Revenue' =
+			CALCULATE (
+			    SUM ( Fact_ServiceRevenue[LineTotal] ),
+			    Fact_ServiceRevenue[ItemCode] = "SV002"
+			)
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000051
+
+	measure 'MPS Revenue' =
+			CALCULATE (
+			    SUM ( Fact_ServiceRevenue[LineTotal] ),
+			    Fact_ServiceRevenue[ItemCode] = "MPS"
+			)
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000052
+
+	measure 'Labour Revenue' =
+			CALCULATE (
+			    SUM ( Fact_ServiceRevenue[LineTotal] ),
+			    Fact_ServiceRevenue[ItemCode] = "SV001"
+			)
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000053
+
+	measure 'Machine Call Count' =
+			CALCULATE (
+			    COUNTROWS ( Fact_ServiceCalls ),
+			    ALLEXCEPT ( Dim_Equipment, Dim_Equipment[EquipmentKey] )
+			)
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000060
+
+	measure 'Customer Total Calls' =
+			CALCULATE (
+			    COUNTROWS ( Fact_ServiceCalls ),
+			    ALLEXCEPT ( Dim_Customer, Dim_Customer[CustomerCode] )
+			)
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000061
+
+	measure 'FSMA Revenue Allocated' =
+			VAR CustomerRevenue =
+			    CALCULATE (
+			        [FSMA Revenue],
+			        ALLEXCEPT ( Dim_Customer, Dim_Customer[CustomerCode] )
+			    )
+			VAR CustTotalCalls = [Customer Total Calls]
+			VAR MachineCalls = [Machine Call Count]
+			RETURN
+			    IF (
+			        CustTotalCalls > 0,
+			        CustomerRevenue * DIVIDE ( MachineCalls, CustTotalCalls ),
+			        0
+			    )
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000062
+
+	measure 'MPS Revenue Allocated' =
+			VAR CustomerRevenue =
+			    CALCULATE (
+			        [MPS Revenue],
+			        ALLEXCEPT ( Dim_Customer, Dim_Customer[CustomerCode] )
+			    )
+			VAR CustTotalCalls = [Customer Total Calls]
+			VAR MachineCalls = [Machine Call Count]
+			RETURN
+			    IF (
+			        CustTotalCalls > 0,
+			        CustomerRevenue * DIVIDE ( MachineCalls, CustTotalCalls ),
+			        0
+			    )
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000063
+
+	measure 'Total Revenue Allocated' =
+			[FSMA Revenue Allocated] + [MPS Revenue Allocated] + [Labour Revenue]
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000064
+
+	measure 'Net Profit per Machine' =
+			[Total Revenue Allocated] - [Total Parts Cost]
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000066
+
+	measure 'Profit Margin %' =
+			DIVIDE (
+			    [Net Profit per Machine],
+			    [Total Revenue Allocated]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: m1a00001-0001-4000-d001-000000000067
+
+	measure 'Machines per Client' =
+			DISTINCTCOUNT ( Fact_ServiceCalls[EquipmentKey] )
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000070
+
+	measure 'Calls per Client' =
+			DIVIDE (
+			    [Total Service Calls],
+			    DISTINCTCOUNT ( Fact_ServiceCalls[CustomerCode] )
+			)
+		formatString: #,##0.0
+		lineageTag: m1a00001-0001-4000-d001-000000000071
+
+	measure 'Client Profitability' =
+			[Total Service Revenue] - [Total Parts Cost]
+		formatString: #,##0
+		lineageTag: m1a00001-0001-4000-d001-000000000072
+
+	measure 'Avg Tickets per Day' =
+			[Avg Calls per Day]
+		formatString: #,##0.0
+		lineageTag: m1a00001-0001-4000-d001-000000000081
+
+	partition _Measures = calculated
+		mode: import
+		source = { 1 }
+

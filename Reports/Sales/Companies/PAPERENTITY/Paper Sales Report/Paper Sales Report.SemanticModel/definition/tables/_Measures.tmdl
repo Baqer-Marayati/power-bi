@@ -1,0 +1,214 @@
+table _Measures
+	lineageTag: d5ce0ed3-7f03-4a85-be25-3f25719f29ae
+
+	measure 'Margin %' =
+			
+			DIVIDE( [Profit], [Sales], 0 )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: adba81ca-30d3-4bbe-bade-f3df646bb6ab
+
+	measure Profit =
+			
+			[Sales] - [COGS]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 8bc9f273-0af0-4837-95a1-6e95d92ace89
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure Sales =
+			
+			COALESCE( SUM ( SalesFact[Sales] ), 0 )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 8f279f6e-0ff6-4793-9d5d-4c67da78d000
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure COGS =
+			
+			COALESCE( SUM ( SalesFact[COGS] ), 0 )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 998172d2-bc9c-448e-9f87-2fdb012b204b
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Sales Card Display' =
+			
+			DIVIDE ( [Sales], 1000000000 )
+		formatString: 0.00"Bn د.ع.‏";-0.00"Bn د.ع.‏";0.00"Bn د.ع.‏"
+		lineageTag: a1b2c3d4-0001-4000-8000-000000000001
+
+	measure 'COGS Card Display' =
+			
+			DIVIDE ( [COGS], 1000000000 )
+		formatString: 0.00"Bn د.ع.‏";-0.00"Bn د.ع.‏";0.00"Bn د.ع.‏"
+		lineageTag: a1b2c3d4-0002-4000-8000-000000000002
+
+	measure 'Profit Card Display' =
+			
+			DIVIDE ( [Profit], 1000000 )
+		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
+		lineageTag: a1b2c3d4-0003-4000-8000-000000000003
+
+	measure 'Active BP Count' =
+			
+			DISTINCTCOUNT( SalesFact[CardCode] )
+		formatString: #,0
+		lineageTag: a1b2c3d4-0004-4000-8000-000000000004
+
+	measure 'Active Salesperson Count' =
+			
+			DISTINCTCOUNT( SalesFact[SlpCode] )
+		formatString: #,0
+		lineageTag: a1b2c3d4-0005-4000-8000-000000000005
+
+	measure 'Avg Sales per BP' =
+			
+			DIVIDE( [Sales], [Active BP Count], 0 )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: a1b2c3d4-0006-4000-8000-000000000006
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Avg Sales per Salesperson' =
+			
+			DIVIDE( [Sales], [Active Salesperson Count], 0 )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: a1b2c3d4-0007-4000-8000-000000000007
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Total Qty' =
+			
+			COALESCE( SUM( SalesFact[Qty] ), 0 )
+		formatString: #,0
+		lineageTag: a1b2c3d4-0008-4000-8000-000000000008
+
+	measure 'Rebate Achievement %' =
+			
+			DIVIDE(
+			    CALCULATE( SUM( BP_Rebate_Fact[Sales] ), BP_Rebate_Fact[SortKey] <= 4 ),
+			    CALCULATE( SUM( BP_Rebate_Fact[Target] ), BP_Rebate_Fact[SortKey] <= 4 ),
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a1b2c3d4-0009-4000-8000-000000000009
+
+	measure 'Total Target' =
+			
+			COALESCE( CALCULATE( SUM( BP_Rebate_Fact[Target] ), BP_Rebate_Fact[SortKey] <= 4 ), 0 )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: a1b2c3d4-000a-4000-8000-000000000010
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Total Rebate' =
+			
+			COALESCE( CALCULATE( SUM( BP_Rebate_Fact[RebateAmount] ), BP_Rebate_Fact[SortKey] <= 4 ), 0 )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: a1b2c3d4-000b-4000-8000-000000000011
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Rebate Sales' =
+			
+			COALESCE( CALCULATE( SUM( BP_Rebate_Fact[Sales] ), BP_Rebate_Fact[SortKey] <= 4 ), 0 )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: a1b2c3d4-000c-4000-8000-000000000012
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Commission Total Target' =
+			
+			COALESCE( CALCULATE( SUM( Commission_Fact[Target] ), Commission_Fact[SortKey] <= 4, Commission_Fact[SlpCode] <> 160, Commission_Fact[SlpCode] <> 161, Commission_Fact[SlpCode] <> 167 ), 0 )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: cf01a2b3-da01-4000-8000-000000000001
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Commission Total Sales' =
+			
+			COALESCE( CALCULATE( SUM( Commission_Fact[Sales] ), Commission_Fact[SortKey] <= 4, Commission_Fact[SlpCode] <> 160, Commission_Fact[SlpCode] <> 161, Commission_Fact[SlpCode] <> 167 ), 0 )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: cf01a2b3-da02-4000-8000-000000000002
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Total Commission' =
+			
+			COALESCE( CALCULATE( SUM( Commission_Fact[CommissionAmount] ), Commission_Fact[SortKey] <= 4, Commission_Fact[SlpCode] <> 160, Commission_Fact[SlpCode] <> 161, Commission_Fact[SlpCode] <> 167 ), 0 )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: cf01a2b3-da03-4000-8000-000000000003
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Commission Achievement %' =
+			
+			DIVIDE(
+			    [Commission Total Sales],
+			    [Commission Total Target],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: cf01a2b3-da04-4000-8000-000000000004
+
+	measure 'Commission Row Target' =
+			
+			IF(
+			    ISINSCOPE( Commission_Fact[SlpName] ),
+			    CALCULATE( SUM( Commission_Fact[Target] ), Commission_Fact[SortKey] <= 4 ),
+			    CALCULATE( SUM( Commission_Fact[Target] ), Commission_Fact[SortKey] <= 4, Commission_Fact[SlpCode] <> 160, Commission_Fact[SlpCode] <> 161, Commission_Fact[SlpCode] <> 167 )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: cf01a2b3-da05-4000-8000-000000000005
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Commission Row Sales' =
+			
+			IF(
+			    ISINSCOPE( Commission_Fact[SlpName] ),
+			    CALCULATE( SUM( Commission_Fact[Sales] ), Commission_Fact[SortKey] <= 4 ),
+			    CALCULATE( SUM( Commission_Fact[Sales] ), Commission_Fact[SortKey] <= 4, Commission_Fact[SlpCode] <> 160, Commission_Fact[SlpCode] <> 161, Commission_Fact[SlpCode] <> 167 )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: cf01a2b3-da06-4000-8000-000000000006
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Commission Row Amount' =
+			
+			IF(
+			    ISINSCOPE( Commission_Fact[SlpName] ),
+			    CALCULATE( SUM( Commission_Fact[CommissionAmount] ), Commission_Fact[SortKey] <= 4 ),
+			    CALCULATE( SUM( Commission_Fact[CommissionAmount] ), Commission_Fact[SortKey] <= 4, Commission_Fact[SlpCode] <> 160, Commission_Fact[SlpCode] <> 161, Commission_Fact[SlpCode] <> 167 )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: cf01a2b3-da07-4000-8000-000000000007
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Commission Row Achievement %' =
+			
+			DIVIDE( [Commission Row Sales], [Commission Row Target], 0 )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: cf01a2b3-da08-4000-8000-000000000008
+
+	column Column1
+		dataType: string
+		lineageTag: 04e1a892-aafd-4175-a5ce-2ceefa957d05
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

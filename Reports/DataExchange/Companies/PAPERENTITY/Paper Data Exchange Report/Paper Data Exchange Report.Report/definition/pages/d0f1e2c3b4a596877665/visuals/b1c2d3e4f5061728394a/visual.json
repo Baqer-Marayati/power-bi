@@ -1,0 +1,111 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "b1c2d3e4f5061728394a",
+  "position": {
+    "x": 20,
+    "y": 285,
+    "z": 1000,
+    "height": 245,
+    "width": 1220,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_item_master"
+                    }
+                  },
+                  "Property": "company_code"
+                }
+              },
+              "queryRef": "export_item_master.company_code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_item_master"
+                    }
+                  },
+                  "Property": "item_id"
+                }
+              },
+              "queryRef": "export_item_master.item_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_item_master"
+                    }
+                  },
+                  "Property": "item_group"
+                }
+              },
+              "queryRef": "export_item_master.item_group"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_item_master"
+                    }
+                  },
+                  "Property": "uom"
+                }
+              },
+              "queryRef": "export_item_master.uom"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_item_master"
+                    }
+                  },
+                  "Property": "active_flag"
+                }
+              },
+              "queryRef": "export_item_master.active_flag"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'item_master__YYYY-MM-DD__v1.csv'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,275 @@
+table _Measures
+	lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa001
+
+	measure 'Total On Hand' = SUM ( Fact_WarehouseStock[OnHand] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa002
+
+	measure 'Total Committed' = SUM ( Fact_WarehouseStock[IsCommited] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa003
+
+	measure 'Total Available' = [Total On Hand] - [Total Committed]
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa004
+
+	measure 'Total On Order' = SUM ( Fact_WarehouseStock[OnOrder] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa005
+
+	measure 'Distinct SKUs' = DISTINCTCOUNT ( Fact_WarehouseStock[ItemCode] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa006
+
+	measure 'In-Stock SKUs' =
+			CALCULATE (
+			    DISTINCTCOUNT ( Fact_WarehouseStock[ItemCode] ),
+			    Fact_WarehouseStock[OnHand] > 0
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa007
+
+	measure 'Total SKUs' = COUNTROWS ( Dim_Item )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa008
+
+	measure 'Stock Value' = SUM ( Fact_WarehouseStock[StockValue] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa009
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Inbound Qty' = SUM ( Fact_StockMovement[InQty] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa010
+
+	measure 'Outbound Qty' = SUM ( Fact_StockMovement[OutQty] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa011
+
+	measure 'Net Movement' = [Inbound Qty] - [Outbound Qty]
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa012
+
+	measure 'Movement Count' = COUNTROWS ( Fact_StockMovement )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa013
+
+	measure 'Transfer Qty' = SUM ( Fact_Transfer[Quantity] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa014
+
+	measure 'Transfer Count' = DISTINCTCOUNT ( Fact_Transfer[DocEntry] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa015
+
+	measure 'Delivery Count' = DISTINCTCOUNT ( Fact_Delivery[DocEntry] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa016
+
+	measure 'Delivery Qty' = SUM ( Fact_Delivery[Quantity] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa017
+
+	measure 'Delivery Value' = SUM ( Fact_Delivery[LineTotal] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa018
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'PO Count' = DISTINCTCOUNT ( Fact_PurchaseOrder[DocEntry] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa019
+
+	measure 'PO Qty' = SUM ( Fact_PurchaseOrder[Quantity] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa020
+
+	measure 'PO Value' = SUM ( Fact_PurchaseOrder[LineTotal] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa021
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Open PO Count' =
+			VAR _result =
+			    CALCULATE (
+			        DISTINCTCOUNT ( Fact_PurchaseOrder[DocEntry] ),
+			        Fact_PurchaseOrder[DocStatus] = "O"
+			    )
+			RETURN
+			    IF ( ISBLANK ( _result ), 0, _result )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa022
+
+	measure 'GR Count' = DISTINCTCOUNT ( Fact_GoodsReceipt[DocEntry] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa023
+
+	measure 'GR Qty' = SUM ( Fact_GoodsReceipt[Quantity] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa024
+
+	measure 'GR Value' = SUM ( Fact_GoodsReceipt[LineTotal] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa025
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'In-Stock Rate' = DIVIDE ( [In-Stock SKUs], [Distinct SKUs], 0 )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa026
+
+	measure 'Out-of-Stock SKUs' = [Distinct SKUs] - [In-Stock SKUs]
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa027
+
+	measure 'Below Reorder Count' =
+			VAR _result =
+			    COUNTROWS (
+			        FILTER (
+			            Fact_WarehouseStock,
+			            Fact_WarehouseStock[OnHand] < Fact_WarehouseStock[MinStock]
+			                && Fact_WarehouseStock[MinStock] > 0
+			        )
+			    )
+			RETURN
+			    IF ( ISBLANK ( _result ), 0, _result )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa028
+
+	measure 'Below Reorder %' =
+			VAR _count = [Below Reorder Count]
+			VAR _total = COUNTROWS ( Fact_WarehouseStock )
+			RETURN
+			    IF ( _total > 0, DIVIDE ( _count, _total, 0 ), 0 )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa029
+
+	measure 'Avg Days Since Last Purchase' =
+			AVERAGEX (
+			    FILTER ( Dim_Item, NOT ISBLANK ( Dim_Item[LastPurDat] ) ),
+			    DATEDIFF ( Dim_Item[LastPurDat], TODAY (), DAY )
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa030
+
+	measure 'Inbound Qty PM' =
+			CALCULATE (
+			    [Inbound Qty],
+			    DATEADD ( Dim_Date[Date], -1, MONTH )
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa031
+
+	measure 'Inbound Qty MoM %' =
+			VAR _current = [Inbound Qty]
+			VAR _pm = [Inbound Qty PM]
+			RETURN
+			    IF ( _pm <> 0, DIVIDE ( _current - _pm, ABS ( _pm ) ), BLANK () )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa032
+
+	measure 'Outbound Qty PM' =
+			CALCULATE (
+			    [Outbound Qty],
+			    DATEADD ( Dim_Date[Date], -1, MONTH )
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa033
+
+	measure 'Net Movement PM' =
+			CALCULATE (
+			    [Net Movement],
+			    DATEADD ( Dim_Date[Date], -1, MONTH )
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa034
+
+	measure 'Net Movement MoM %' =
+			VAR _current = [Net Movement]
+			VAR _pm = [Net Movement PM]
+			RETURN
+			    IF ( _pm <> 0, DIVIDE ( _current - _pm, ABS ( _pm ) ), BLANK () )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa035
+
+	measure 'GR Value PM' =
+			CALCULATE (
+			    [GR Value],
+			    DATEADD ( Dim_Date[Date], -1, MONTH )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa036
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'GR Value MoM %' =
+			VAR _current = [GR Value]
+			VAR _pm = [GR Value PM]
+			RETURN
+			    IF ( _pm <> 0, DIVIDE ( _current - _pm, ABS ( _pm ) ), BLANK () )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa037
+
+	measure 'Narrative Title' =
+			VAR _value = [Stock Value]
+			VAR _belowPct = [Below Reorder %]
+			VAR _instockPct = [In-Stock Rate]
+			RETURN
+			    "Inventory Health: " &
+			    FORMAT ( _value, "#,0,,.0" ) & "M د.ع. | " &
+			    FORMAT ( _instockPct, "0.0%" ) & " In-Stock | " &
+			    FORMAT ( _belowPct, "0.0%" ) & " Below Reorder"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa038
+
+	measure 'Avg Cost' =
+			DIVIDE (
+			    SUM ( InventoryValuation[StockValue] ),
+			    SUM ( InventoryValuation[StockQty] )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa040
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'IV Stock Value' = SUM ( InventoryValuation[StockValue] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa041
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'IV Stock Qty' = SUM ( InventoryValuation[StockQty] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa042
+
+	measure 'IV Item Count' = DISTINCTCOUNT ( InventoryValuation[ItemCode] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa043
+
+	measure 'IV Warehouse Count' = DISTINCTCOUNT ( InventoryValuation[WhsName] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa044
+
+	measure 'Item Avg Cost' =
+			DIVIDE (
+			    SUM ( Fact_WarehouseStock[StockValue] ),
+			    SUM ( Fact_WarehouseStock[OnHand] )
+			)
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa045
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

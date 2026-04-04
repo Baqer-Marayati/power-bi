@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "b432b363b07a4f448e59",
+  "displayName": "Working Capital Health",
+  "displayOption": "FitToWidth",
+  "height": 960,
+  "width": 1280,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "195L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F8FBFF'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "b41f771a6c3fd3698afb",
+      "target": "8f992cfdfbeae61a8227",
+      "type": "DataFilter"
+    },
+    {
+      "source": "bac47f2095981005e371",
+      "target": "1a47e31004196afa2896",
+      "type": "DataFilter"
+    },
+    {
+      "source": "bac47f2095981005e371",
+      "target": "32389cb30d27d2e7f752",
+      "type": "DataFilter"
+    },
+    {
+      "source": "bac47f2095981005e371",
+      "target": "8f992cfdfbeae61a8227",
+      "type": "DataFilter"
+    },
+    {
+      "source": "bac47f2095981005e371",
+      "target": "ae8ed81227a557af870a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e73aa3326995860b93f6",
+      "target": "6d93125652b718636727",
+      "type": "DataFilter"
+    }
+  ]
+}

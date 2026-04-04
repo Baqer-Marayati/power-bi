@@ -1,0 +1,124 @@
+table Dim_ChartRows
+	lineageTag: 2966c65b-2ee4-456c-aec6-f0c1b5c6612a
+
+	column SortOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: ea74859e-ad78-4c9a-9948-c45f097314d7
+		summarizeBy: none
+		sourceColumn: SortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column RowLabel
+		dataType: string
+		lineageTag: 41a4d787-a0dc-4fcf-9335-a39f0bf9a30e
+		summarizeBy: none
+		sourceColumn: RowLabel
+		sortByColumn: SortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodePrefix
+		dataType: string
+		lineageTag: d761473d-a8ea-4bb2-9476-0ef0d3c0b49e
+		summarizeBy: none
+		sourceColumn: CodePrefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodeLength
+		dataType: int64
+		formatString: 0
+		lineageTag: 89633b2d-6286-4a3d-ab0a-95bc7cfcd157
+		summarizeBy: none
+		sourceColumn: CodeLength
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsTotal
+		dataType: boolean
+		formatString: General
+		lineageTag: d81d4efb-9066-46cc-a5ec-a6102d237689
+		summarizeBy: none
+		sourceColumn: IsTotal
+
+		annotation SummarizationSetBy = Automatic
+
+	column SectionName
+		dataType: string
+		lineageTag: 6070b0f9-3389-4c7d-8657-a1fd108638ca
+		summarizeBy: none
+		sourceColumn: SectionName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_ChartRows = calculated
+		mode: import
+		source =
+				
+				VAR BaseAccounts =
+				    FILTER (
+				        'Dim_Account',
+				        LEFT ( 'Dim_Account'[AcctCode], 2 )
+				            IN { "41", "42", "43", "44", "45", "46", "51", "52", "53", "54", "55", "61", "62", "63", "64", "65", "66", "71", "81" }
+				    )
+				
+				VAR SectionRows =
+				    DATATABLE (
+				        "SortOrder", INTEGER,
+				        "RowLabel", STRING,
+				        "CodePrefix", STRING,
+				        "CodeLength", INTEGER,
+				        "IsTotal", BOOLEAN,
+				        "SectionName", STRING,
+				        {
+				            { 410000, "41 - B2B", "41", 2, TRUE, "Gross Revenue" },
+				            { 420000, "42 - B2C", "42", 2, TRUE, "Gross Revenue" },
+				            { 430000, "43 - Commercial Items", "43", 2, TRUE, "Gross Revenue" },
+				            { 440000, "44 - N/A", "44", 2, TRUE, "Gross Revenue" },
+				            { 450000, "45 - Service", "45", 2, TRUE, "Gross Revenue" },
+				            { 460000, "46 - Sales Discount", "46", 2, TRUE, "Revenue Adjustments" },
+				            { 500000, "Net Revenue", "", 0, TRUE, "Net Revenue" },
+				            { 510000, "51 - B2B COGS", "51", 2, TRUE, "COGS" },
+				            { 520000, "52 - B2C COGS", "52", 2, TRUE, "COGS" },
+				            { 530000, "53 - Commercial Items COGS", "53", 2, TRUE, "COGS" },
+				            { 540000, "54 - N/A COGS", "54", 2, TRUE, "COGS" },
+				            { 550000, "55 - Service COGS", "55", 2, TRUE, "COGS" },
+				            { 560000, "Gross Profit", "", 0, TRUE, "Gross Profit" },
+				            { 610000, "61 - General & Administrative", "61", 2, TRUE, "Operating Expenses" },
+				            { 620000, "62 - Employee Expenses", "62", 2, TRUE, "Operating Expenses" },
+				            { 630000, "63 - Sales & Marketing", "63", 2, TRUE, "Operating Expenses" },
+				            { 640000, "64 - Travel Expenses", "64", 2, TRUE, "Operating Expenses" },
+				            { 650000, "65 - Finance Expense", "65", 2, TRUE, "Operating Expenses" },
+				            { 660000, "66 - Depreciation & Amortization", "66", 2, TRUE, "Operating Expenses" },
+				            { 670000, "Operating Profit", "", 0, TRUE, "Operating Profit" },
+				            { 710000, "71 - Non Operating Income and Expenditure", "71", 2, TRUE, "Other" },
+				            { 810000, "81 - Taxation and Extraordinary Items", "81", 2, TRUE, "Other" },
+				            { 820000, "Net Profit", "", 0, TRUE, "Net Profit" }
+				        }
+				    )
+				
+				VAR AccountRows =
+				    SELECTCOLUMNS (
+				        BaseAccounts,
+				        "SortOrder", VALUE ( 'Dim_Account'[AcctCode] ),
+				        "RowLabel", 'Dim_Account'[AcctCode] & " - " & 'Dim_Account'[AcctName],
+				        "CodePrefix", 'Dim_Account'[AcctCode],
+				        "CodeLength", LEN ( 'Dim_Account'[AcctCode] ),
+				        "IsTotal", FALSE,
+				        "SectionName",
+				            SWITCH (
+				                TRUE (),
+				                'Dim_Account'[PnLSection] = "Revenue", "Gross Revenue",
+				                'Dim_Account'[PnLSection] = "Revenue Contra", "Revenue Adjustments",
+				                'Dim_Account'[PnLSection] = "COGS", "COGS",
+				                'Dim_Account'[PnLSection] = "Operating Expenses", "Operating Expenses",
+				                "Other"
+				            )
+				    )
+				
+				RETURN
+				    UNION ( SectionRows, AccountRows )
+
+	annotation PBI_Id = 0d482ccda525440f8435d74bf7f5da2c

@@ -25,7 +25,7 @@ List the key folders, pages, visuals, tables, or measures touched.
 - [ ] PBIP opens cleanly
 - [ ] Target page or model area was checked
 - [ ] No known broken visuals introduced
-- [ ] Packaging rebuilt when report artifacts changed (`Reports/Finance/scripts/package-report.sh`)
+- [ ] Packaging rebuilt when report artifacts changed (`Reports/Finance/Module/scripts/package-report.sh`)
 - [ ] Project Memory updated if current truth changed
 
 ## Definition Of Done

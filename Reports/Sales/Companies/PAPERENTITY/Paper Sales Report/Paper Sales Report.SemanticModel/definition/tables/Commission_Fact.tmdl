@@ -1,0 +1,92 @@
+table Commission_Fact
+	lineageTag: cf01a2b3-4567-4890-abcd-ef0123456789
+
+	column QuarterLabel
+		dataType: string
+		lineageTag: cf01a2b3-0001-4000-8000-000000000001
+		summarizeBy: none
+		sourceColumn: QuarterLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column SortKey
+		dataType: int64
+		formatString: 0
+		lineageTag: cf01a2b3-0002-4000-8000-000000000002
+		summarizeBy: count
+		sourceColumn: SortKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SlpCode
+		dataType: int64
+		formatString: 0
+		lineageTag: cf01a2b3-0003-4000-8000-000000000003
+		summarizeBy: none
+		sourceColumn: SlpCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SlpName
+		dataType: string
+		lineageTag: cf01a2b3-0004-4000-8000-000000000004
+		summarizeBy: none
+		sourceColumn: SlpName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Target
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: cf01a2b3-0005-4000-8000-000000000005
+		summarizeBy: sum
+		sourceColumn: Target
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column Sales
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: cf01a2b3-0006-4000-8000-000000000006
+		summarizeBy: sum
+		sourceColumn: Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column AchPct
+		dataType: double
+		lineageTag: cf01a2b3-0007-4000-8000-000000000007
+		summarizeBy: sum
+		sourceColumn: AchPct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CommissionAmount
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: cf01a2b3-0008-4000-8000-000000000008
+		summarizeBy: sum
+		sourceColumn: CommissionAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	partition Commission_Fact = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "/* ===========================================================#(lf)   Commission_Fact (2026) - Quarter based + TOTAL 2026#(lf)   - Salespersons from @SALESPERSONSETUP#(lf)   - Regular: sales by SlpCode on invoices/credits#(lf)   - Ali (167): full Service Office dept sales#(lf)   - Bilal (161): full Service Production dept sales#(lf)   - Almuntadher (160): all invoices to Reseller BPs#(lf)   - Tiers from @SALESREBATE#(lf)   =========================================================== */#(lf)#(lf)WITH#(lf)/* ---- Quarter Axis ---- */#(lf)QAxis AS (#(lf)    SELECT 1 AS ""QNo"", 'Q1' AS ""QuarterLabel"" FROM DUMMY#(lf)    UNION ALL SELECT 2, 'Q2' FROM DUMMY#(lf)    UNION ALL SELECT 3, 'Q3' FROM DUMMY#(lf)    UNION ALL SELECT 4, 'Q4' FROM DUMMY#(lf)),#(lf)#(lf)/* ---- Salesperson setup per quarter ---- */#(lf)SlpSetup AS (#(lf)    SELECT#(lf)        S.""U_SlpCode""              AS ""SlpCode"",#(lf)        S.""U_SlpName""              AS ""SlpName"",#(lf)        S.""U_RebateDate""           AS ""QNo"",#(lf)        S.""U_AmountTarget""         AS ""Target"",#(lf)        S.""U_RebatePercentageAmount1"" AS ""Comm1"",#(lf)        S.""U_RebatePercentageAmount2"" AS ""Comm2"",#(lf)        S.""U_RebatePercentageAmount3"" AS ""Comm3""#(lf)    FROM ""PAPERENTITY"".""@SALESPERSONSETUP"" S#(lf)),#(lf)#(lf)/* ---- Tier ranges per quarter ---- */#(lf)Tiers AS (#(lf)    SELECT#(lf)        CASE#(lf)            WHEN ""Name"" = '2026-Q1' THEN 1#(lf)            WHEN ""Name"" = '2026-Q2' THEN 2#(lf)            WHEN ""Name"" = '2026-Q3' THEN 3#(lf)            WHEN ""Name"" = '2026-Q4' THEN 4#(lf)        END AS ""QNo"",#(lf)        ""U_FromPercentage1"" AS ""From1"", ""U_ToPercentage1"" AS ""To1"",#(lf)        ""U_FromPercentage2"" AS ""From2"", ""U_ToPercentage2"" AS ""To2"",#(lf)        ""U_FromPercentage3"" AS ""From3""#(lf)    FROM ""PAPERENTITY"".""@SALESREBATE""#(lf)    WHERE ""Name"" IN ('2026-Q1','2026-Q2','2026-Q3','2026-Q4')#(lf)),#(lf)#(lf)/* ---- Invoice totals for discount allocation ---- */#(lf)InvTotals AS (#(lf)    SELECT ""DocEntry"", SUM(""LineTotal"") AS ""DocTotal""#(lf)    FROM ""PAPERENTITY"".""INV1""#(lf)    GROUP BY ""DocEntry""#(lf)),#(lf)#(lf)/* ---- Credit totals for discount allocation ---- */#(lf)CrTotals AS (#(lf)    SELECT ""DocEntry"", SUM(""LineTotal"") AS ""DocTotal""#(lf)    FROM ""PAPERENTITY"".""RIN1""#(lf)    GROUP BY ""DocEntry""#(lf)),#(lf)#(lf)/* ---- Sales lines (with SlpCode + CardCode) ---- */#(lf)DocSales AS (#(lf)    SELECT#(lf)        H.""SlpCode"" AS ""SlpCode"",#(lf)        H.""CardCode"" AS ""CardCode"",#(lf)        H.""DocDate"" AS ""DocDate"",#(lf)        (#(lf)          L.""LineTotal""#(lf)          + CASE#(lf)                WHEN T.""DocTotal"" = 0 OR T.""DocTotal"" IS NULL THEN 0#(lf)                ELSE (L.""LineTotal"" * H.""DiscSum"" * -1) / T.""DocTotal""#(lf)            END#(lf)        ) AS ""Sales""#(lf)    FROM ""PAPERENTITY"".""OINV"" H#(lf)    JOIN ""PAPERENTITY"".""INV1"" L ON L.""DocEntry"" = H.""DocEntry""#(lf)    LEFT JOIN InvTotals T ON T.""DocEntry"" = H.""DocEntry""#(lf)    WHERE H.""CANCELED"" = 'N'#(lf)      AND H.""DocDate"" >= DATE'2026-01-01'#(lf)      AND H.""DocDate"" <= DATE'2026-12-31'#(lf)#(lf)    UNION ALL#(lf)#(lf)    SELECT#(lf)        H.""SlpCode"" AS ""SlpCode"",#(lf)        H.""CardCode"" AS ""CardCode"",#(lf)        H.""DocDate"" AS ""DocDate"",#(lf)        (#(lf)          (L.""LineTotal"" * -1)#(lf)          + CASE#(lf)                WHEN T.""DocTotal"" = 0 OR T.""DocTotal"" IS NULL THEN 0#(lf)                ELSE (L.""LineTotal"" * H.""DiscSum"") / T.""DocTotal""#(lf)            END#(lf)        ) AS ""Sales""#(lf)    FROM ""PAPERENTITY"".""ORIN"" H#(lf)    JOIN ""PAPERENTITY"".""RIN1"" L ON L.""DocEntry"" = H.""DocEntry""#(lf)    LEFT JOIN CrTotals T ON T.""DocEntry"" = H.""DocEntry""#(lf)    WHERE H.""CANCELED"" = 'N'#(lf)      AND H.""DocDate"" >= DATE'2026-01-01'#(lf)      AND H.""DocDate"" <= DATE'2026-12-31'#(lf)),#(lf)#(lf)/* ---- Regular: sales by SlpCode + quarter ---- */#(lf)SalesBySlp AS (#(lf)    SELECT#(lf)        S.""SlpCode"",#(lf)        (FLOOR( (MONTH(S.""DocDate"") - 1) / 3 ) + 1) AS ""QNo"",#(lf)        SUM(S.""Sales"") AS ""Sales""#(lf)    FROM DocSales S#(lf)    GROUP BY#(lf)        S.""SlpCode"",#(lf)        (FLOOR( (MONTH(S.""DocDate"") - 1) / 3 ) + 1)#(lf)),#(lf)#(lf)/* ---- Service Office dept total (Ali 167) ---- */#(lf)SvcOfficeSales AS (#(lf)    SELECT#(lf)        (FLOOR( (MONTH(S.""DocDate"") - 1) / 3 ) + 1) AS ""QNo"",#(lf)        SUM(S.""Sales"") AS ""Sales""#(lf)    FROM DocSales S#(lf)    JOIN ""PAPERENTITY"".""OSLP"" O ON O.""SlpCode"" = S.""SlpCode""#(lf)    WHERE O.""U_SalesDept"" = 'Service Office'#(lf)    GROUP BY (FLOOR( (MONTH(S.""DocDate"") - 1) / 3 ) + 1)#(lf)),#(lf)#(lf)/* ---- Service Production dept total (Bilal 161) ---- */#(lf)SvcProdSales AS (#(lf)    SELECT#(lf)        (FLOOR( (MONTH(S.""DocDate"") - 1) / 3 ) + 1) AS ""QNo"",#(lf)        SUM(S.""Sales"") AS ""Sales""#(lf)    FROM DocSales S#(lf)    JOIN ""PAPERENTITY"".""OSLP"" O ON O.""SlpCode"" = S.""SlpCode""#(lf)    WHERE O.""U_SalesDept"" = 'Service Production'#(lf)    GROUP BY (FLOOR( (MONTH(S.""DocDate"") - 1) / 3 ) + 1)#(lf)),#(lf)#(lf)/* ---- Reseller BP total (Almuntadher 160) ---- */#(lf)ResellerSales AS (#(lf)    SELECT#(lf)        (FLOOR( (MONTH(S.""DocDate"") - 1) / 3 ) + 1) AS ""QNo"",#(lf)        SUM(S.""Sales"") AS ""Sales""#(lf)    FROM DocSales S#(lf)    JOIN ""PAPERENTITY"".""OCRD"" C ON C.""CardCode"" = S.""CardCode""#(lf)    WHERE C.""U_PartnerType"" = 'Reseller'#(lf)    GROUP BY (FLOOR( (MONTH(S.""DocDate"") - 1) / 3 ) + 1)#(lf)),#(lf)#(lf)/* ---- Join setup x quarters, attach appropriate sales ---- */#(lf)BaseQ AS (#(lf)    SELECT#(lf)        SP.""SlpCode"",#(lf)        SP.""SlpName"",#(lf)        Q.""QNo"",#(lf)        Q.""QuarterLabel"",#(lf)        SP.""Target"",#(lf)        SP.""Comm1"", SP.""Comm2"", SP.""Comm3"",#(lf)        CASE#(lf)            WHEN SP.""SlpCode"" = 167 THEN COALESCE(SO.""Sales"", 0)#(lf)            WHEN SP.""SlpCode"" = 161 THEN COALESCE(SPR.""Sales"", 0)#(lf)            WHEN SP.""SlpCode"" = 160 THEN COALESCE(RS.""Sales"", 0)#(lf)            ELSE COALESCE(SQ.""Sales"", 0)#(lf)        END AS ""Sales"",#(lf)        T.""From1"", T.""To1"", T.""From2"", T.""To2"", T.""From3""#(lf)    FROM SlpSetup SP#(lf)    INNER JOIN QAxis Q ON Q.""QNo"" = SP.""QNo""#(lf)    LEFT JOIN SalesBySlp SQ#(lf)        ON SQ.""SlpCode"" = SP.""SlpCode""#(lf)       AND SQ.""QNo"" = Q.""QNo""#(lf)    LEFT JOIN SvcOfficeSales SO ON SO.""QNo"" = Q.""QNo""#(lf)    LEFT JOIN SvcProdSales SPR ON SPR.""QNo"" = Q.""QNo""#(lf)    LEFT JOIN ResellerSales RS ON RS.""QNo"" = Q.""QNo""#(lf)    LEFT JOIN Tiers T ON T.""QNo"" = SP.""QNo""#(lf)),#(lf)#(lf)/* ---- Calculate achievement and commission tier ---- */#(lf)CalcQ AS (#(lf)    SELECT#(lf)        ""QuarterLabel"",#(lf)        ""QNo"" AS ""SortKey"",#(lf)        ""SlpCode"",#(lf)        ""SlpName"",#(lf)        ""Target"",#(lf)        ""Sales"",#(lf)        CASE#(lf)            WHEN ""Target"" <= 0 THEN 0#(lf)            ELSE (""Sales"" / ""Target"") * 100#(lf)        END AS ""AchPct"",#(lf)        CASE#(lf)            WHEN ""Target"" <= 0 THEN 0#(lf)            WHEN ""Sales"" <= 0 THEN 0#(lf)            WHEN ((""Sales"" / ""Target"") * 100) >= ""From3""#(lf)            THEN ""Comm3""#(lf)            WHEN ((""Sales"" / ""Target"") * 100) >= ""From2""#(lf)             AND ((""Sales"" / ""Target"") * 100) <= ""To2""#(lf)            THEN ""Comm2""#(lf)            WHEN ((""Sales"" / ""Target"") * 100) >= ""From1""#(lf)             AND ((""Sales"" / ""Target"") * 100) <= ""To1""#(lf)            THEN ""Comm1""#(lf)            ELSE 0#(lf)        END AS ""CommissionAmount""#(lf)    FROM BaseQ#(lf)),#(lf)#(lf)/* ---- TOTAL 2026 (sum of 4 quarters) ---- */#(lf)Total2026 AS (#(lf)    SELECT#(lf)        'TOTAL 2026' AS ""QuarterLabel"",#(lf)        5 AS ""SortKey"",#(lf)        ""SlpCode"",#(lf)        ""SlpName"",#(lf)        SUM(""Target"") AS ""Target"",#(lf)        SUM(""Sales"") AS ""Sales"",#(lf)        CASE#(lf)            WHEN SUM(""Target"") <= 0 THEN 0#(lf)            ELSE (SUM(""Sales"") / SUM(""Target"")) * 100#(lf)        END AS ""AchPct"",#(lf)        SUM(""CommissionAmount"") AS ""CommissionAmount""#(lf)    FROM CalcQ#(lf)    GROUP BY ""SlpCode"", ""SlpName""#(lf))#(lf)#(lf)SELECT ""QuarterLabel"", ""SortKey"", ""SlpCode"", ""SlpName"", ""Target"", ""Sales"", ""AchPct"", ""CommissionAmount""#(lf)FROM CalcQ#(lf)UNION ALL#(lf)SELECT ""QuarterLabel"", ""SortKey"", ""SlpCode"", ""SlpName"", ""Target"", ""Sales"", ""AchPct"", ""CommissionAmount""#(lf)FROM Total2026")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

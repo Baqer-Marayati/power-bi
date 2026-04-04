@@ -3,9 +3,9 @@
 This module is the working home for the Al Jazeera financial reporting project in Power BI inside the larger Reporting Hub portfolio.
 
 The project combines:
-- an active SAP-backed PBIP report in `Financial Report`
-- a living visual benchmark in `Design Benchmarks`
-- durable working memory in `Project Memory`
+- active SAP-backed PBIP reports under `Companies/<CompanyCode>/` (see below)
+- a living visual benchmark in `Module/Design Benchmarks`
+- durable working memory in `Module/Project Memory`
 
 ## Repository Purpose
 
@@ -17,29 +17,24 @@ Use this repository to:
 
 ## Active Project
 
-The active editable report is:
-- `Financial Report/Financial Report.pbip`
+Each company has its own PBIP under `Companies/<CODE>/`. Open the `.pbip` in Power BI Desktop for that company.
+
+- **CANON:** `Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
+- **PAPERENTITY:** `Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip` (schema references use PAPERENTITY instead of CANON)
 
 The active benchmark is:
-- `Design Benchmarks/Sample 2`
+- `Module/Design Benchmarks/Sample 2`
 
 ## Working Areas
 
-- `Core`
-  - Shared domain baseline for cross-company Finance reporting assets.
-  - Transitional note: active PBIP currently remains under `Financial Report` until migration is complete.
 - `Companies`
-  - Company-specific config and optional overlays.
-- `Financial Report`
-  - Active PBIP source of truth for report and semantic model work.
-- `Design Benchmarks`
-  - Living design reference and benchmark shell source.
-- `Project Memory`
-  - High-signal working memory for current status, decisions, risks, and next steps.
-- `docs`
-  - Repo-facing documentation for setup, structure, data context, and page intent.
-- `scripts`
-  - Packaging, capture, retention, and validation automation for this module.
+  - One folder per company code; each contains its own PBIP (`.pbip`, `.Report`, `.SemanticModel` with a `- <CODE>` suffix).
+- `Module/` — container for module internals:
+  - `Module/Core` — shared domain baseline for cross-company Finance reporting assets; company-agnostic material belongs here first.
+  - `Module/Design Benchmarks` — living design reference and benchmark shell source.
+  - `Module/Project Memory` — high-signal working memory for current status, decisions, risks, and next steps.
+  - `Module/docs` — repo-facing documentation for setup, structure, data context, and page intent.
+  - `Module/scripts` — capture, model-cache, and structure helpers for this module (see `Module/scripts/README.md`).
 - `.github`
   - Templates for structured pull requests and issue tracking.
 
@@ -47,44 +42,43 @@ The active benchmark is:
 
 If you are continuing work on this project, read these in order:
 - [`AGENTS.md`](AGENTS.md)
-- [`docs/foundation.md`](docs/foundation.md)
-- [`docs/setup.md`](docs/setup.md)
-- [`docs/structure.md`](docs/structure.md)
-- [`docs/agent-manual.md`](docs/agent-manual.md)
-- [`Project Memory/PROJECT_DNA.md`](Project%20Memory/PROJECT_DNA.md)
-- [`Project Memory/CURRENT_STATUS.md`](Project%20Memory/CURRENT_STATUS.md)
-- [`Project Memory/DECISIONS.md`](Project%20Memory/DECISIONS.md)
-- [`Project Memory/NEXT_STEPS.md`](Project%20Memory/NEXT_STEPS.md)
+- [`Module/docs/foundation.md`](Module/docs/foundation.md)
+- [`Module/docs/setup.md`](Module/docs/setup.md)
+- [`Module/docs/structure.md`](Module/docs/structure.md)
+- [`Module/docs/agent-manual.md`](Module/docs/agent-manual.md)
+- [`Module/Project Memory/PROJECT_DNA.md`](Module/Project%20Memory/PROJECT_DNA.md)
+- [`Module/Project Memory/CURRENT_STATUS.md`](Module/Project%20Memory/CURRENT_STATUS.md)
+- [`Module/Project Memory/DECISIONS.md`](Module/Project%20Memory/DECISIONS.md)
+- [`Module/Project Memory/NEXT_STEPS.md`](Module/Project%20Memory/NEXT_STEPS.md)
 
 ## Working Rules
 
-- Treat `Financial Report` as the only active editable report.
-- Treat `PBIP` as the source of truth; use `PBIX` only as a temporary review copy if needed.
-- Use `Design Benchmarks/Sample 2` as the active visual benchmark unless memory says otherwise.
-- For packaging/review, use `Reports/Finance/scripts/package-report.ps1` and review `Exports/Server Packages/latest/Financial Report - ready.zip`.
-- Run `Reports/Finance/scripts/validate-artifact-state.ps1` when behavior looks inconsistent to confirm you are editing/reviewing the intended artifact paths.
-- Update `Project Memory` after meaningful technical or design changes.
+- Treat the relevant company PBIP under `Companies/<CODE>/` as the editable source of truth for that company.
+- Treat **PBIP** as the development master; use **PBIX** only as a temporary review or transfer snapshot if needed, and merge real changes back into PBIP.
+- Use `Module/Design Benchmarks/Sample 2` as the active visual benchmark unless memory says otherwise.
+- Use `Module/scripts/clear-model-cache.ps1` when Desktop shows stale cached model behavior after Git pulls (see `Module/scripts/README.md`).
+- Update `Module/Project Memory` after meaningful technical or design changes.
 - Keep Git commits small and descriptive.
 - Treat repeated UI patterns like KPI rows and slicer rails as shared systems; fix them consistently across pages instead of one card or one screenshot at a time.
 
 ## Project Documentation
 
 - [`AGENTS.md`](AGENTS.md)
-- [`docs/foundation.md`](docs/foundation.md)
-- [`docs/setup.md`](docs/setup.md)
-- [`docs/agent-manual.md`](docs/agent-manual.md)
-- [`docs/structure.md`](docs/structure.md)
-- [`docs/data-sources.md`](docs/data-sources.md)
-- [`docs/pages.md`](docs/pages.md)
-- [`docs/known-issues.md`](docs/known-issues.md)
-- [`docs/glossary.md`](docs/glossary.md)
-- [`docs/workflows/pbip-editing.md`](docs/workflows/pbip-editing.md)
-- [`docs/workflows/visual-repair-checklist.md`](docs/workflows/visual-repair-checklist.md)
-- [`docs/workflows/semantic-model-change-checklist.md`](docs/workflows/semantic-model-change-checklist.md)
-- [`docs/standards/naming.md`](docs/standards/naming.md)
-- [`docs/standards/currency-formatting.md`](docs/standards/currency-formatting.md)
-- [`docs/standards/page-layout-rules.md`](docs/standards/page-layout-rules.md)
-- [`CHANGELOG.md`](CHANGELOG.md)
+- [`Module/docs/foundation.md`](Module/docs/foundation.md)
+- [`Module/docs/setup.md`](Module/docs/setup.md)
+- [`Module/docs/agent-manual.md`](Module/docs/agent-manual.md)
+- [`Module/docs/structure.md`](Module/docs/structure.md)
+- [`Module/docs/data-sources.md`](Module/docs/data-sources.md)
+- [`Module/docs/pages.md`](Module/docs/pages.md)
+- [`Module/docs/known-issues.md`](Module/docs/known-issues.md)
+- [`Module/docs/glossary.md`](Module/docs/glossary.md)
+- [`Module/docs/workflows/pbip-editing.md`](Module/docs/workflows/pbip-editing.md)
+- [`Module/docs/workflows/visual-repair-checklist.md`](Module/docs/workflows/visual-repair-checklist.md)
+- [`Module/docs/workflows/semantic-model-change-checklist.md`](Module/docs/workflows/semantic-model-change-checklist.md)
+- [`Module/docs/standards/naming.md`](Module/docs/standards/naming.md)
+- [`Module/docs/standards/currency-formatting.md`](Module/docs/standards/currency-formatting.md)
+- [`Module/docs/standards/page-layout-rules.md`](Module/docs/standards/page-layout-rules.md)
+- [`Module/CHANGELOG.md`](Module/CHANGELOG.md)
 
 ## Git Workflow
 
@@ -100,8 +94,8 @@ git push
 ## Current State
 
 The current live state of the project is maintained in:
-- [`Project Memory/CURRENT_STATUS.md`](Project%20Memory/CURRENT_STATUS.md)
+- [`Module/Project Memory/CURRENT_STATUS.md`](Module/Project%20Memory/CURRENT_STATUS.md)
 
-Use `Project Memory` for evolving truth.
+Use `Module/Project Memory` for evolving truth.
 Use `AGENTS.md` for AI onboarding.
-Use `README` and `docs` for orientation and stable repo documentation.
+Use `README` and `Module/docs` for orientation and stable repo documentation.

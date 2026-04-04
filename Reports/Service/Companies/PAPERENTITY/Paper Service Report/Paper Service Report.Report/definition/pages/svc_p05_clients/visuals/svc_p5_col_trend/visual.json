@@ -1,0 +1,21 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "svc_p5_col_trend",
+  "position": {"x":184,"y":780,"z":6000,"height":172,"width":1088,"tabOrder":11000},
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {"queryState": {"Category": {"projections": [{"field": {"Column": {"Expression": {"SourceRef": {"Entity": "Dim_Date"}},"Property": "YearMonth"}},"queryRef": "Dim_Date.YearMonth","nativeQueryRef": "YearMonth","active": true}]},"Y": {"projections": [{"field": {"Measure": {"Expression": {"SourceRef": {"Entity": "_Measures"}},"Property": "Total Service Calls"}},"queryRef": "_Measures.Total Service Calls","nativeQueryRef": "Total Service Calls"}]}},"sortDefinition":{"sort":[{"field":{"Column":{"Expression":{"SourceRef":{"Entity":"Dim_Date"}},"Property":"YearMonthSort"}},"direction":"Ascending"}]}},
+    "objects": {
+      "labels": [{"properties": {"show": {"expr": {"Literal": {"Value": "false"}}}}}],
+      "valueAxis": [{"properties": {"showAxisTitle": {"expr": {"Literal": {"Value": "false"}}},"labelColor": {"solid": {"color": {"expr": {"Literal": {"Value": "'#6F7C78'"}}}}}}}],
+      "categoryAxis": [{"properties": {"showAxisTitle": {"expr": {"Literal": {"Value": "false"}}},"labelColor": {"solid": {"color": {"expr": {"Literal": {"Value": "'#6F7C78'"}}}}}}},{"properties": {"wordWrap": {"expr": {"Literal": {"Value": "false"}}}}}]
+    },
+    "visualContainerObjects": {
+      "background": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}},"color": {"solid": {"color": {"expr": {"Literal": {"Value": "'#FFFFFF'"}}}}},"transparency": {"expr": {"Literal": {"Value": "0D"}}}}}],
+      "border": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}},"color": {"solid": {"color": {"expr": {"Literal": {"Value": "'#E2EAE6'"}}}}}}}],
+      "title": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}},"text": {"expr": {"Literal": {"Value": "'Calls Trend by Month'"}}},"fontColor": {"solid": {"color": {"expr": {"Literal": {"Value": "'#223430'"}}}}},"fontSize": {"expr": {"Literal": {"Value": "12D"}}}}}],
+      "visualHeader": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}}}}]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

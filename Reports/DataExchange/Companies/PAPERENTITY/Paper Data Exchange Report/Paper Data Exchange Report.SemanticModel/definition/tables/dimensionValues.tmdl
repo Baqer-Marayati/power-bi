@@ -1,0 +1,53 @@
+table dimensionValues
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0031
+
+	column DimensionID
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0032
+		summarizeBy: none
+		sourceColumn: DimensionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column code
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0033
+		summarizeBy: none
+		sourceColumn: code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0034
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimensionValues = calculated
+		mode: import
+		source =
+				
+				UNION (
+				    SELECTCOLUMNS (
+				        FILTER ( 'Dim_Branch', NOT ISBLANK ( 'Dim_Branch'[BranchCode] ) ),
+				        "DimensionID", "BRANCH",
+				        "code", 'Dim_Branch'[BranchCode],
+				        "Name", 'Dim_Branch'[BranchName]
+				    ),
+				    SELECTCOLUMNS (
+				        FILTER ( 'Dim_SalesType', NOT ISBLANK ( 'Dim_SalesType'[SalesTypeCode] ) ),
+				        "DimensionID", "SALESTYPE",
+				        "code", 'Dim_SalesType'[SalesTypeCode],
+				        "Name", 'Dim_SalesType'[SalesTypeName]
+				    ),
+				    SELECTCOLUMNS (
+				        FILTER ( 'Dim_Department', NOT ISBLANK ( 'Dim_Department'[DepartmentCode] ) ),
+				        "DimensionID", "DEPARTMENT",
+				        "code", 'Dim_Department'[DepartmentCode],
+				        "Name", 'Dim_Department'[DepartmentName]
+				    )
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0031

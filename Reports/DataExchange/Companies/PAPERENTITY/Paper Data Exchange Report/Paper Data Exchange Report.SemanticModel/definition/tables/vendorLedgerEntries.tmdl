@@ -1,0 +1,200 @@
+table vendorLedgerEntries
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0701
+
+	measure Accountpayables_totalPayable =
+			
+			SUMX ( FILTER ( 'vendorLedgerEntries', 'vendorLedgerEntries'[open] = 1 ), 'vendorLedgerEntries'[remainingAmount] )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0702
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Accountpayables = [Accountpayables_totalPayable]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0703
+
+	measure Overduepayables =
+			
+			SUMX (
+			    FILTER ( 'vendorLedgerEntries', 'vendorLedgerEntries'[open] = 1 && 'vendorLedgerEntries'[dueDate] < TODAY () ),
+			    'vendorLedgerEntries'[remainingAmount]
+			)
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0704
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CountOfInvoices = DISTINCTCOUNT ( 'vendorLedgerEntries'[documentNo] )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0705
+
+	measure Accountpayables_notYetDue =
+			
+			SUMX (
+			    FILTER ( 'vendorLedgerEntries', 'vendorLedgerEntries'[open] = 1 && 'vendorLedgerEntries'[dueDate] >= TODAY () ),
+			    'vendorLedgerEntries'[remainingAmount]
+			)
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0706
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Accountpayables_overdue_funnel = [Overduepayables]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0707
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Accountpayables_totalPayable_funnel = [Accountpayables_totalPayable]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0726
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Accountpayables_notYetDue_funnel = [Accountpayables_notYetDue]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0727
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure InvoiceStatusPercent_Open =
+			
+			DIVIDE (
+			    COUNTROWS ( FILTER ( 'vendorLedgerEntries', 'vendorLedgerEntries'[open] = 1 && 'vendorLedgerEntries'[dueDate] >= TODAY () ) ),
+			    COUNTROWS ( 'vendorLedgerEntries' )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0708
+
+	measure InvoiceStatusPercent_Overdue =
+			
+			DIVIDE (
+			    COUNTROWS ( FILTER ( 'vendorLedgerEntries', 'vendorLedgerEntries'[open] = 1 && 'vendorLedgerEntries'[dueDate] < TODAY () ) ),
+			    COUNTROWS ( 'vendorLedgerEntries' )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0709
+
+	measure InvoiceStatusPercent_Paid =
+			
+			DIVIDE (
+			    COUNTROWS ( FILTER ( 'vendorLedgerEntries', 'vendorLedgerEntries'[open] = 0 || 'vendorLedgerEntries'[remainingAmount] = 0 ) ),
+			    COUNTROWS ( 'vendorLedgerEntries' )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0710
+
+	measure Accountpayables_ageingReport_new =
+			
+			VAR Bucket = SELECTEDVALUE ( 'DueCategorySortTable'[DueCategory] )
+			RETURN
+			    SWITCH (
+			        Bucket,
+			        "Overdue", [Overduepayables],
+			        "Due today", SUMX ( FILTER ( 'vendorLedgerEntries', 'vendorLedgerEntries'[open] = 1 && 'vendorLedgerEntries'[dueDate] = TODAY () ), 'vendorLedgerEntries'[remainingAmount] ),
+			        "Due next 30 days", SUMX ( FILTER ( 'vendorLedgerEntries', 'vendorLedgerEntries'[open] = 1 && 'vendorLedgerEntries'[dueDate] > TODAY () && 'vendorLedgerEntries'[dueDate] <= TODAY () + 30 ), 'vendorLedgerEntries'[remainingAmount] ),
+			        "Due next 60 days", SUMX ( FILTER ( 'vendorLedgerEntries', 'vendorLedgerEntries'[open] = 1 && 'vendorLedgerEntries'[dueDate] > TODAY () + 30 && 'vendorLedgerEntries'[dueDate] <= TODAY () + 60 ), 'vendorLedgerEntries'[remainingAmount] ),
+			        "Due next 90 days", SUMX ( FILTER ( 'vendorLedgerEntries', 'vendorLedgerEntries'[open] = 1 && 'vendorLedgerEntries'[dueDate] > TODAY () + 60 && 'vendorLedgerEntries'[dueDate] <= TODAY () + 90 ), 'vendorLedgerEntries'[remainingAmount] ),
+			        "Due next >90 days", SUMX ( FILTER ( 'vendorLedgerEntries', 'vendorLedgerEntries'[open] = 1 && 'vendorLedgerEntries'[dueDate] > TODAY () + 90 ), 'vendorLedgerEntries'[remainingAmount] )
+			    )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0711
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Payable Turnover Ratio' =
+			
+			VAR PurchasesLast365 =
+			    SUMX (
+			        FILTER (
+			            'vendorLedgerEntries',
+			            'vendorLedgerEntries'[postingDate] >= TODAY () - 365
+			                && 'vendorLedgerEntries'[postingDate] <= TODAY ()
+			        ),
+			        ABS ( 'vendorLedgerEntries'[amount] )
+			    )
+			RETURN IF ( [Accountpayables_totalPayable] = 0, "--", FORMAT ( DIVIDE ( PurchasesLast365, [Accountpayables_totalPayable] ), "0.0" ) )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0712
+
+	measure DPO =
+			
+			VAR PurchasesLast365 =
+			    SUMX (
+			        FILTER (
+			            'vendorLedgerEntries',
+			            'vendorLedgerEntries'[postingDate] >= TODAY () - 365
+			                && 'vendorLedgerEntries'[postingDate] <= TODAY ()
+			        ),
+			        ABS ( 'vendorLedgerEntries'[amount] )
+			    )
+			RETURN IF ( PurchasesLast365 = 0, "--", FORMAT ( DIVIDE ( [Accountpayables_totalPayable], PurchasesLast365 ) * 365, "0" ) )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0713
+
+	column postingDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0715
+		summarizeBy: none
+		sourceColumn: postingDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column dueDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0716
+		summarizeBy: none
+		sourceColumn: dueDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column documentNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0717
+		summarizeBy: none
+		sourceColumn: documentNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column vendorCode
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0718
+		summarizeBy: none
+		sourceColumn: vendorCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column vendorName
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0719
+		summarizeBy: none
+		sourceColumn: vendorName
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount
+		dataType: double
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0720
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column remainingAmount
+		dataType: double
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0721
+		summarizeBy: sum
+		sourceColumn: remainingAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column open
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0722
+		summarizeBy: none
+		sourceColumn: open
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vendorLedgerEntries = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    T0.""DocDate"" AS ""postingDate"",#(lf)    T0.""DocDueDate"" AS ""dueDate"",#(lf)    T0.""DocNum"" AS ""documentNo"",#(lf)    T0.""CardCode"" AS ""vendorCode"",#(lf)    T0.""CardName"" AS ""vendorName"",#(lf)    COALESCE(T0.""DocTotal"", 0) AS ""amount"",#(lf)    COALESCE(T0.""DocTotal"", 0) - COALESCE(T0.""PaidToDate"", 0) AS ""remainingAmount"",#(lf)    CASE WHEN T0.""DocStatus"" = 'O' THEN 1 ELSE 0 END AS ""open""#(lf)FROM ""PAPERENTITY"".""OPCH"" T0#(lf)UNION ALL#(lf)SELECT#(lf)    T0.""DocDate"" AS ""postingDate"",#(lf)    T0.""DocDueDate"" AS ""dueDate"",#(lf)    T0.""DocNum"" AS ""documentNo"",#(lf)    T0.""CardCode"" AS ""vendorCode"",#(lf)    T0.""CardName"" AS ""vendorName"",#(lf)    COALESCE(T0.""DocTotal"", 0) * -1 AS ""amount"",#(lf)    (COALESCE(T0.""DocTotal"", 0) - COALESCE(T0.""PaidToDate"", 0)) * -1 AS ""remainingAmount"",#(lf)    CASE WHEN T0.""DocStatus"" = 'O' THEN 1 ELSE 0 END AS ""open""#(lf)FROM ""PAPERENTITY"".""ORPC"" T0;")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

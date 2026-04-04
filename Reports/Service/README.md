@@ -8,30 +8,31 @@ Use this module for:
 - report-specific PBIP work
 - report-specific project memory
 - department-specific documentation
-- review exports, records, and archives
+- records and archives (as needed)
 
 ## Expected Working Areas
 
-- `docs/`
-- `Project Memory/`
-- `Core/`
-- `Companies/`
-- `scripts/`
-- `Exports/`
-- `Records/`
-- `Archive/`
-- the actual PBIP project folder once created
+- `Companies/` — **CANON** and **PAPERENTITY** each contain a PBIP (CANON: `Canon Service Report/`; PAPERENTITY: `Paper Service Report/`) plus `config/` and `overlays/` (CANON already has `config/`)
+- `Module/` — container for module internals:
+  - `Module/docs/`
+  - `Module/Project Memory/`
+  - `Module/Core/`
+  - `Module/scripts/`
+  - `Module/Records/`
+  - `Module/Archive/`
 
 ## Start Here
 
 Read these in order:
 - [`AGENTS.md`](AGENTS.md)
-- [`docs/foundation.md`](docs/foundation.md)
-- [`Project Memory/PROJECT_DNA.md`](Project%20Memory/PROJECT_DNA.md)
-- [`Project Memory/DECISIONS.md`](Project%20Memory/DECISIONS.md)
-- [`Project Memory/CURRENT_STATUS.md`](Project%20Memory/CURRENT_STATUS.md)
+- [`Module/docs/foundation.md`](Module/docs/foundation.md)
+- [`Module/Project Memory/PROJECT_DNA.md`](Module/Project%20Memory/PROJECT_DNA.md)
+- [`Module/Project Memory/DECISIONS.md`](Module/Project%20Memory/DECISIONS.md)
+- [`Module/Project Memory/CURRENT_STATUS.md`](Module/Project%20Memory/CURRENT_STATUS.md)
 
 ## Source Of Truth
 
-- The PBIP project inside this module should be the editable source of truth.
-- Temporary review artifacts should not replace the PBIP source.
+- **Primary PBIP:** `Companies/CANON/Canon Service Report/Canon Service Report.pbip`
+- **Alternate copy:** `Companies/PAPERENTITY/Paper Service Report/Paper Service Report.pbip`
+
+Work directly from PBIP; there is no `ready.zip` or server-package export step in this module.

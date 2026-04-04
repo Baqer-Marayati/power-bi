@@ -1,0 +1,98 @@
+table purchaseLines
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0801
+
+	measure CommittedPO =
+			
+			CALCULATE ( SUM ( 'purchaseLines'[amountIncludingVAT] ), 'purchaseLines'[DocumentType] = "Order" )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0802
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure UnCommittedPO =
+			
+			CALCULATE ( SUM ( 'purchaseLines'[amountIncludingVAT] ), 'purchaseLines'[DocumentType] = "Quote" )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0803
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure UnCommittedPO1 = [UnCommittedPO]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0804
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0805
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column documentNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0806
+		summarizeBy: none
+		sourceColumn: documentNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentType
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0807
+		summarizeBy: none
+		sourceColumn: DocumentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column buyFromVendorName
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0808
+		summarizeBy: none
+		sourceColumn: buyFromVendorName
+
+		annotation SummarizationSetBy = Automatic
+
+	column no
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0809
+		summarizeBy: none
+		sourceColumn: no
+
+		annotation SummarizationSetBy = Automatic
+
+	column amountIncludingVAT
+		dataType: double
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0810
+		summarizeBy: sum
+		sourceColumn: amountIncludingVAT
+
+		annotation SummarizationSetBy = Automatic
+
+	column shortcutDimension1Code
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0811
+		summarizeBy: none
+		sourceColumn: shortcutDimension1Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column shortcutDimension2Code
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0812
+		summarizeBy: none
+		sourceColumn: shortcutDimension2Code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition purchaseLines = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    T0.""DocDate"" AS ""date"",#(lf)    T0.""DocNum"" AS ""documentNo"",#(lf)    'Quote' AS ""DocumentType"",#(lf)    T0.""CardName"" AS ""buyFromVendorName"",#(lf)    COALESCE(T1.""AcctCode"", T1.""ItemCode"", '') AS ""no"",#(lf)    COALESCE(T1.""LineTotal"", 0) AS ""amountIncludingVAT"",#(lf)    T1.""OcrCode"" AS ""shortcutDimension1Code"",#(lf)    T1.""OcrCode2"" AS ""shortcutDimension2Code""#(lf)FROM ""PAPERENTITY"".""OPQT"" T0#(lf)INNER JOIN ""PAPERENTITY"".""PQT1"" T1#(lf)    ON T0.""DocEntry"" = T1.""DocEntry""#(lf)WHERE T1.""LineStatus"" = 'O'#(lf)UNION ALL#(lf)SELECT#(lf)    T0.""DocDate"" AS ""date"",#(lf)    T0.""DocNum"" AS ""documentNo"",#(lf)    'Order' AS ""DocumentType"",#(lf)    T0.""CardName"" AS ""buyFromVendorName"",#(lf)    COALESCE(T1.""AcctCode"", T1.""ItemCode"", '') AS ""no"",#(lf)    COALESCE(T1.""LineTotal"", 0) AS ""amountIncludingVAT"",#(lf)    T1.""OcrCode"" AS ""shortcutDimension1Code"",#(lf)    T1.""OcrCode2"" AS ""shortcutDimension2Code""#(lf)FROM ""PAPERENTITY"".""OPOR"" T0#(lf)INNER JOIN ""PAPERENTITY"".""POR1"" T1#(lf)    ON T0.""DocEntry"" = T1.""DocEntry""#(lf)WHERE T1.""LineStatus"" = 'O';")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

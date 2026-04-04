@@ -1,0 +1,39 @@
+table DueCategorySortTable
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0911
+
+	column DueCategory
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0912
+		summarizeBy: none
+		sourceColumn: DueCategory
+		sortByColumn: SortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column SortOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0913
+		summarizeBy: none
+		sourceColumn: SortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DueCategorySortTable = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "DueCategory", STRING,
+				    "SortOrder", INTEGER,
+				    {
+				        { "Overdue", 1 },
+				        { "Due today", 2 },
+				        { "Due next 30 days", 3 },
+				        { "Due next 60 days", 4 },
+				        { "Due next 90 days", 5 },
+				        { "Due next >90 days", 6 }
+				    }
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0911

@@ -1,0 +1,39 @@
+table Dim_KPIRows
+	lineageTag: 7640e201-2bd7-42ac-9e57-f4466ef18a16
+
+	column 'KPI Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: 45ad5eb1-27bf-49d4-ae62-f61718e7b9e7
+		summarizeBy: sum
+		sourceColumn: [KPI Order]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'KPI Label'
+		dataType: string
+		lineageTag: a8e2cf12-83ca-4e95-9b2d-c9456f78d89f
+		summarizeBy: none
+		sourceColumn: [KPI Label]
+		sortByColumn: 'KPI Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_KPIRows = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "KPI Order", INTEGER,
+				    "KPI Label", STRING,
+				    {
+				        { 1, "Net Revenue" },
+				        { 2, "Gross Profit" },
+				        { 3, "Gross Margin %" },
+				        { 4, "Operating Profit" },
+				        { 5, "Net Profit" },
+				        { 6, "Net Margin %" }
+				    }
+				)
+
+	annotation PBI_Id = 86f097c6ce65410d938f34bb17f00ad0

@@ -3,14 +3,14 @@
 ## Read Order
 
 1. `README.md`
-2. `docs/foundation.md`
-3. `Project Memory/DECISIONS.md`
-4. `Project Memory/CURRENT_STATUS.md`
-5. `Project Memory/NEXT_STEPS.md`
+2. `Module/docs/foundation.md`
+3. `Module/Project Memory/DECISIONS.md`
+4. `Module/Project Memory/CURRENT_STATUS.md`
+5. `Module/Project Memory/NEXT_STEPS.md`
 
 ## Rules
 
 - Keep HR-specific live truth inside this module.
-- Use `Core/` for shared HR baseline assets.
+- Use `Module/Core/` for shared HR baseline assets.
 - Use `Companies/` for company-specific config and overlays.
 - Rebuild package artifacts before review.

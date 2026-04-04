@@ -1,0 +1,136 @@
+table Fact_ServiceActivities
+	lineageTag: f1a00002-0001-4000-b002-000000000001
+
+	column CallID
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00002-0001-4000-b002-000000000002
+		summarizeBy: none
+		sourceColumn: CallID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActivityLine
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00002-0001-4000-b002-000000000003
+		summarizeBy: none
+		sourceColumn: ActivityLine
+
+		annotation SummarizationSetBy = Automatic
+
+	column TechnicianKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00002-0001-4000-b002-000000000004
+		summarizeBy: none
+		sourceColumn: TechnicianKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column HandledByKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00002-0001-4000-b002-000000000005
+		summarizeBy: none
+		sourceColumn: HandledByKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f1a00002-0001-4000-b002-000000000006
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = Date
+
+	column StartTime
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00002-0001-4000-b002-000000000007
+		summarizeBy: none
+		sourceColumn: StartTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndTime
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00002-0001-4000-b002-000000000008
+		summarizeBy: none
+		sourceColumn: EndTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column Duration
+		dataType: double
+		lineageTag: f1a00002-0001-4000-b002-000000000009
+		summarizeBy: sum
+		sourceColumn: Duration
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DurationType
+		dataType: string
+		lineageTag: f1a00002-0001-4000-b002-00000000000a
+		summarizeBy: none
+		sourceColumn: DurationType
+
+		annotation SummarizationSetBy = Automatic
+
+	column DurationHours
+		dataType: double
+		lineageTag: f1a00002-0001-4000-b002-00000000000b
+		summarizeBy: sum
+		sourceColumn: DurationHours
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Remark
+		dataType: string
+		lineageTag: f1a00002-0001-4000-b002-00000000000d
+		summarizeBy: none
+		sourceColumn: Remark
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerCode
+		dataType: string
+		lineageTag: f1a00002-0001-4000-b002-00000000000e
+		summarizeBy: none
+		sourceColumn: CustomerCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column EquipmentKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00002-0001-4000-b002-00000000000f
+		summarizeBy: none
+		sourceColumn: EquipmentKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCode
+		dataType: string
+		lineageTag: f1a00002-0001-4000-b002-000000000010
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_ServiceActivities = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  A.""SrcvCallID"" AS ""CallID"",#(lf)  A.""Line"" AS ""ActivityLine"",#(lf)  A.""Technician"" AS ""TechnicianKey"",#(lf)  A.""HandledBy"" AS ""HandledByKey"",#(lf)  A.""StartDate"",#(lf)  A.""StartTime"",#(lf)  A.""EndTime"",#(lf)  A.""Duration"",#(lf)  A.""DurType"" AS ""DurationType"",#(lf)  CASE A.""DurType""#(lf)    WHEN 'H' THEN A.""Duration""#(lf)    WHEN 'M' THEN A.""Duration"" / 60.0#(lf)    WHEN 'D' THEN A.""Duration"" * 8.0#(lf)    ELSE A.""Duration""#(lf)  END AS ""DurationHours"",#(lf)  A.""Remark"",#(lf)  S.""customer"" AS ""CustomerCode"",#(lf)  S.""insID"" AS ""EquipmentKey"",#(lf)  S.""itemCode"" AS ""ItemCode""#(lf)FROM ""PAPERENTITY"".""SCL6"" A#(lf)INNER JOIN ""PAPERENTITY"".""OSCL"" S ON A.""SrcvCallID"" = S.""callID""")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

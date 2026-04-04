@@ -1,0 +1,118 @@
+table Dim_ReportRows
+	lineageTag: c114ae11-224d-4b21-b3fd-35374b17a8fe
+
+	column RowLabel
+		lineageTag: 752d16f1-d456-4f4a-bfe9-cd625a02202b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [RowLabel]
+		sortByColumn: SortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column RowType
+		lineageTag: f7391465-415a-4b85-9dff-cdd4c429011a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [RowType]
+
+		annotation SummarizationSetBy = Automatic
+
+	column SectionName
+		lineageTag: 93d087e6-45ea-4096-b596-eebbacee9c94
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [SectionName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AcctCode
+		lineageTag: 43bf91da-4bf2-42b9-ad5d-d709a41950cb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AcctCode]
+
+		annotation SummarizationSetBy = Automatic
+
+	column SortOrder
+		formatString: 0
+		lineageTag: 46c1796e-8758-48c0-bdf9-3ed7e0a976b1
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [SortOrder]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_ReportRows = calculated
+		mode: import
+		source =
+				
+				VAR RevenueAccounts =
+				    SELECTCOLUMNS (
+				        FILTER ( 'Dim_Account', 'Dim_Account'[PnLSection] = "Revenue" ),
+				        "RowLabel", 'Dim_Account'[AcctName],
+				        "RowType", "Account",
+				        "SectionName", "Gross Revenue",
+				        "AcctCode", 'Dim_Account'[AcctCode],
+				        "SortOrder", 11000 + RANKX ( FILTER ( 'Dim_Account', 'Dim_Account'[PnLSection] = "Revenue" ), 'Dim_Account'[AcctCode], , ASC, DENSE )
+				    )
+				VAR ContraAccounts =
+				    SELECTCOLUMNS (
+				        FILTER ( 'Dim_Account', 'Dim_Account'[PnLSection] = "Revenue Contra" ),
+				        "RowLabel", 'Dim_Account'[AcctName],
+				        "RowType", "Account",
+				        "SectionName", "Revenue Adjustments",
+				        "AcctCode", 'Dim_Account'[AcctCode],
+				        "SortOrder", 21000 + RANKX ( FILTER ( 'Dim_Account', 'Dim_Account'[PnLSection] = "Revenue Contra" ), 'Dim_Account'[AcctCode], , ASC, DENSE )
+				    )
+				VAR COGSAccounts =
+				    SELECTCOLUMNS (
+				        FILTER ( 'Dim_Account', 'Dim_Account'[PnLSection] = "COGS" ),
+				        "RowLabel", 'Dim_Account'[AcctName],
+				        "RowType", "Account",
+				        "SectionName", "COGS",
+				        "AcctCode", 'Dim_Account'[AcctCode],
+				        "SortOrder", 31000 + RANKX ( FILTER ( 'Dim_Account', 'Dim_Account'[PnLSection] = "COGS" ), 'Dim_Account'[AcctCode], , ASC, DENSE )
+				    )
+				VAR OpexAccounts =
+				    SELECTCOLUMNS (
+				        FILTER ( 'Dim_Account', 'Dim_Account'[PnLSection] = "Operating Expenses" ),
+				        "RowLabel", 'Dim_Account'[AcctName],
+				        "RowType", "Account",
+				        "SectionName", "Operating Expenses",
+				        "AcctCode", 'Dim_Account'[AcctCode],
+				        "SortOrder", 51000 + RANKX ( FILTER ( 'Dim_Account', 'Dim_Account'[PnLSection] = "Operating Expenses" ), 'Dim_Account'[AcctCode], , ASC, DENSE )
+				    )
+				VAR OtherAccounts =
+				    SELECTCOLUMNS (
+				        FILTER ( 'Dim_Account', 'Dim_Account'[PnLSection] IN { "Other", "Unclassified" } ),
+				        "RowLabel", 'Dim_Account'[AcctName],
+				        "RowType", "Account",
+				        "SectionName", "Other Income / Expense",
+				        "AcctCode", 'Dim_Account'[AcctCode],
+				        "SortOrder", 71000 + RANKX ( FILTER ( 'Dim_Account', 'Dim_Account'[PnLSection] IN { "Other", "Unclassified" } ), 'Dim_Account'[AcctCode], , ASC, DENSE )
+				    )
+				RETURN
+				UNION (
+				    ROW ( "RowLabel", "Gross Revenue", "RowType", "Header", "SectionName", "Gross Revenue", "AcctCode", BLANK (), "SortOrder", 10000 ),
+				    RevenueAccounts,
+				    ROW ( "RowLabel", "Gross Revenue Total", "RowType", "Subtotal", "SectionName", "Gross Revenue", "AcctCode", BLANK (), "SortOrder", 19999 ),
+				    ROW ( "RowLabel", "Revenue Adjustments", "RowType", "Header", "SectionName", "Revenue Adjustments", "AcctCode", BLANK (), "SortOrder", 20000 ),
+				    ContraAccounts,
+				    ROW ( "RowLabel", "Revenue Adjustments Total", "RowType", "Subtotal", "SectionName", "Revenue Adjustments", "AcctCode", BLANK (), "SortOrder", 29999 ),
+				    ROW ( "RowLabel", "Net Revenue", "RowType", "Calc", "SectionName", "Net Revenue", "AcctCode", BLANK (), "SortOrder", 30000 ),
+				    ROW ( "RowLabel", "Cost of Goods Sold", "RowType", "Header", "SectionName", "COGS", "AcctCode", BLANK (), "SortOrder", 31000 ),
+				    COGSAccounts,
+				    ROW ( "RowLabel", "COGS Total", "RowType", "Subtotal", "SectionName", "COGS", "AcctCode", BLANK (), "SortOrder", 39999 ),
+				    ROW ( "RowLabel", "Gross Profit", "RowType", "Calc", "SectionName", "Gross Profit", "AcctCode", BLANK (), "SortOrder", 40000 ),
+				    ROW ( "RowLabel", "Operating Expenses", "RowType", "Header", "SectionName", "Operating Expenses", "AcctCode", BLANK (), "SortOrder", 50000 ),
+				    OpexAccounts,
+				    ROW ( "RowLabel", "Operating Expenses Total", "RowType", "Subtotal", "SectionName", "Operating Expenses", "AcctCode", BLANK (), "SortOrder", 59999 ),
+				    ROW ( "RowLabel", "Operating Profit", "RowType", "Calc", "SectionName", "Operating Profit", "AcctCode", BLANK (), "SortOrder", 60000 ),
+				    ROW ( "RowLabel", "Other Income / Expense", "RowType", "Header", "SectionName", "Other Income / Expense", "AcctCode", BLANK (), "SortOrder", 70000 ),
+				    OtherAccounts,
+				    ROW ( "RowLabel", "Other Income / Expense Total", "RowType", "Subtotal", "SectionName", "Other Income / Expense", "AcctCode", BLANK (), "SortOrder", 79999 ),
+				    ROW ( "RowLabel", "Net Profit", "RowType", "Calc", "SectionName", "Net Profit", "AcctCode", BLANK (), "SortOrder", 80000 )
+				)
+
+	annotation PBI_Id = 8e6b51238e724b8baa6afc1c98c45157

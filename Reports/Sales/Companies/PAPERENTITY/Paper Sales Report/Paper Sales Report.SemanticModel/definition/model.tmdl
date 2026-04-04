@@ -1,0 +1,26 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["SalesFact","_Measures","DimSalesperson","DimBusinessPartner","BP_Rebate_Fact","Commission_Fact"]
+
+annotation __TEdtr = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table SalesFact
+ref table DateTable
+ref table _Measures
+ref table DimSalesperson
+ref table DimBusinessPartner
+ref table BP_Rebate_Fact
+ref table Commission_Fact
+
+ref cultureInfo en-US
+

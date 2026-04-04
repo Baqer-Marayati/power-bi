@@ -1,0 +1,29 @@
+{
+  "odbc": {
+    "dsn": "HANA_B1"
+  },
+  "hana": {
+    "host": "hana-vm-107",
+    "port": 30013,
+    "user_env": "SAP_HANA_USER",
+    "password_env": "SAP_HANA_PASSWORD"
+  },
+  "companies": [
+    {
+      "company_code": "ALJAZEERA",
+      "schema": "ALJAZEERA"
+    },
+    {
+      "company_code": "CANON",
+      "schema": "CANON"
+    },
+    {
+      "company_code": "PAPERENTITY",
+      "schema": "PAPERENTITY"
+    }
+  ],
+  "output": {
+    "base_dir": "Shared/Data Drops/incoming",
+    "schema_version": "v1"
+  }
+}

@@ -9,8 +9,9 @@ Companies/
   <CompanyCode>/
     config/
     overlays/
-    Exports/Server Packages/
-    Records/screenshots/
+    <ReportName> - <CompanyCode>/
+      <ReportName> - <CompanyCode>.pbip
+      ...
 ```
 
-Start from `_template/` and duplicate per company.
+Start from `_template/` and duplicate per company. Work directly from PBIP; there is no zip packaging or `Exports/Server Packages/` layout under companies.

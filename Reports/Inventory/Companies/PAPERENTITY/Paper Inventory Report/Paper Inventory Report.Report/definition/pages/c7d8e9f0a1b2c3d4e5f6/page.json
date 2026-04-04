@@ -1,0 +1,124 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "c7d8e9f0a1b2c3d4e5f6",
+  "displayName": "Inventory Valuation",
+  "displayOption": "FitToWidth",
+  "height": 960,
+  "width": 1280,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "195L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F8FBFF'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "slicer_warehouse",
+      "target": "kpi_stock_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_warehouse",
+      "target": "kpi_stock_qty",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_warehouse",
+      "target": "kpi_avg_cost",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_warehouse",
+      "target": "kpi_item_count",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_warehouse",
+      "target": "kpi_gr_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_warehouse",
+      "target": "chart_donut",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_warehouse",
+      "target": "matrix_detail",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_warehouse",
+      "target": "slicer_item",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item",
+      "target": "kpi_stock_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item",
+      "target": "kpi_stock_qty",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item",
+      "target": "kpi_avg_cost",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item",
+      "target": "kpi_item_count",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item",
+      "target": "kpi_gr_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item",
+      "target": "chart_donut",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item",
+      "target": "matrix_detail",
+      "type": "DataFilter"
+    }
+  ]
+}

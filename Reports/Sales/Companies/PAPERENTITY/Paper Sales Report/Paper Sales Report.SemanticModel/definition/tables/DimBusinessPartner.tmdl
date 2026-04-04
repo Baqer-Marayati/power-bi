@@ -1,0 +1,87 @@
+table DimBusinessPartner
+	lineageTag: 24ced1a3-c4ba-4d85-9f21-e33a060b8115
+
+	column CardCode
+		dataType: string
+		lineageTag: 5a92e217-79d4-405e-b1c4-b9d855672e8b
+		summarizeBy: none
+		sourceColumn: CardCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardName
+		dataType: string
+		lineageTag: 16c186ba-5d55-42af-867c-50068d221074
+		summarizeBy: none
+		sourceColumn: CardName
+
+		annotation SummarizationSetBy = Automatic
+
+	column BPType
+		dataType: string
+		lineageTag: 13ea3dd8-4888-4df1-ba95-bb2c27bb4ba3
+		summarizeBy: none
+		sourceColumn: BPType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_SectorType
+		dataType: string
+		lineageTag: 66a51255-93be-4d96-b86e-c711710dc7f9
+		summarizeBy: none
+		sourceColumn: U_SectorType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_SolutionType
+		dataType: string
+		lineageTag: e9c6bf5a-7d73-4e68-9f01-d69fd968183f
+		summarizeBy: none
+		sourceColumn: U_SolutionType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_IndustryType
+		dataType: string
+		lineageTag: a2fddcda-6d22-4705-ada4-2570982ff539
+		summarizeBy: none
+		sourceColumn: U_IndustryType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_ProductType
+		dataType: string
+		lineageTag: 279e38d7-4073-40b5-9488-58455a0259af
+		summarizeBy: none
+		sourceColumn: U_ProductType
+
+		annotation SummarizationSetBy = Automatic
+
+	column CollectorProperty
+		dataType: string
+		lineageTag: 847e70d8-fea7-4f25-8c49-2a5eae1ed96b
+		summarizeBy: none
+		sourceColumn: CollectorProperty
+
+		annotation SummarizationSetBy = Automatic
+
+	column BPClass
+		dataType: string
+		lineageTag: b3c7d1e5-f9a2-4b68-8c04-1a2b3c4d5e6f
+		summarizeBy: none
+		sourceColumn: BPClass
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimBusinessPartner = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "/* ===========================================================#(lf)   DimBusinessPartner (Customers)#(lf)   - Includes 5 UDFs#(lf)   - Includes CollectorProperty from OPRT (PrtId)#(lf)   - Assumes exactly 1 Collector property per customer#(lf)   =========================================================== */#(lf)#(lf)WITH BP AS (#(lf)    SELECT#(lf)        C.""CardCode"",#(lf)        C.""CardName"",#(lf)        C.""U_PartnerType""   AS ""BPType"",#(lf)        C.""U_SectorType"",#(lf)        C.""U_SolutionType"",#(lf)        C.""U_IndustryType"",#(lf)        C.""U_ProductType"",#(lf)        C.""U_Class"",#(lf)#(lf)        /* Property flags */#(lf)        C.""QryGroup1"",  C.""QryGroup2"",  C.""QryGroup3"",  C.""QryGroup4"",  C.""QryGroup5"",#(lf)        C.""QryGroup6"",  C.""QryGroup7"",  C.""QryGroup8"",  C.""QryGroup9"",  C.""QryGroup10"",#(lf)        C.""QryGroup11"", C.""QryGroup12"", C.""QryGroup13"", C.""QryGroup14"", C.""QryGroup15"",#(lf)        C.""QryGroup16"", C.""QryGroup17"", C.""QryGroup18"", C.""QryGroup19"", C.""QryGroup20"",#(lf)        C.""QryGroup21"", C.""QryGroup22"", C.""QryGroup23""#(lf)#(lf)    FROM ""PAPERENTITY"".""OCRD"" C#(lf)    WHERE C.""CardType"" = 'C'#(lf)),#(lf)#(lf)BPProps AS (#(lf)    SELECT ""CardCode"", 1  AS ""PrtId"" FROM BP WHERE ""QryGroup1""  = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 2  FROM BP WHERE ""QryGroup2""  = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 3  FROM BP WHERE ""QryGroup3""  = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 4  FROM BP WHERE ""QryGroup4""  = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 5  FROM BP WHERE ""QryGroup5""  = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 6  FROM BP WHERE ""QryGroup6""  = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 7  FROM BP WHERE ""QryGroup7""  = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 8  FROM BP WHERE ""QryGroup8""  = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 9  FROM BP WHERE ""QryGroup9""  = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 10 FROM BP WHERE ""QryGroup10"" = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 11 FROM BP WHERE ""QryGroup11"" = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 12 FROM BP WHERE ""QryGroup12"" = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 13 FROM BP WHERE ""QryGroup13"" = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 14 FROM BP WHERE ""QryGroup14"" = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 15 FROM BP WHERE ""QryGroup15"" = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 16 FROM BP WHERE ""QryGroup16"" = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 17 FROM BP WHERE ""QryGroup17"" = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 18 FROM BP WHERE ""QryGroup18"" = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 19 FROM BP WHERE ""QryGroup19"" = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 20 FROM BP WHERE ""QryGroup20"" = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 21 FROM BP WHERE ""QryGroup21"" = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 22 FROM BP WHERE ""QryGroup22"" = 'Y'#(lf)    UNION ALL SELECT ""CardCode"", 23 FROM BP WHERE ""QryGroup23"" = 'Y'#(lf)),#(lf)#(lf)Collector AS (#(lf)    SELECT#(lf)        X.""CardCode"",#(lf)        MAX(P.""Name"") AS ""CollectorProperty""#(lf)    FROM BPProps X#(lf)    JOIN ""PAPERENTITY"".""OPRT"" P#(lf)        ON P.""PrtId"" = X.""PrtId""#(lf)    WHERE P.""Name"" LIKE 'Collector:%'#(lf)    GROUP BY X.""CardCode""#(lf))#(lf)#(lf)SELECT#(lf)    B.""CardCode"",#(lf)    B.""CardName"",#(lf)    B.""BPType"",#(lf)    B.""U_SectorType"",#(lf)    B.""U_SolutionType"",#(lf)    B.""U_IndustryType"",#(lf)    B.""U_ProductType"",#(lf)    COALESCE(B.""U_Class"", '-') AS ""BPClass"",#(lf)    COALESCE(C.""CollectorProperty"", '(No Collector)') AS ""CollectorProperty""#(lf)#(lf)FROM BP B#(lf)LEFT JOIN Collector C#(lf)    ON C.""CardCode"" = B.""CardCode"";")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

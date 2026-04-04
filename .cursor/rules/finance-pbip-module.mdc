@@ -1,5 +1,5 @@
 ---
-description: Finance module — PBIP source of truth, memory, packaging, design rules
+description: Finance module — PBIP source of truth, memory, multi-company layout, design rules
 globs: Reports/Finance/**
 alwaysApply: false
 ---
@@ -8,20 +8,20 @@ alwaysApply: false
 
 ## Source of truth
 
-- **Editable project:** `Reports/Finance/Financial Report/` (open `Financial Report.pbip` in Power BI Desktop).
+- **Editable projects:** under `Reports/Finance/Companies/<CODE>/Financial Report - <CODE>/` — open `Financial Report - <CODE>.pbip` in Power BI Desktop. Portfolio companies: **CANON**, **PAPERENTITY** (Paper Company).
 - **Development master:** **PBIP** only. **PBIX** = optional review/transfer snapshot; merge real changes back into PBIP.
-- **User review artifact:** rebuild `Exports/Server Packages/Financial Report - ready.zip` before asking for review when report (or registered resources/theme) changed. Script: `Reports/Finance/scripts/package-report.sh` (repo root or Finance folder — script resolves paths).
+- **Workflow:** work and review directly from PBIP in Desktop; there is no zip packaging step for this module.
 
 ## Live memory (update after meaningful work)
 
-- **Current state / handoff:** `Project Memory/CURRENT_STATUS.md`, `NEXT_STEPS.md`
-- **Durable direction:** `Project Memory/DECISIONS.md`, `PROJECT_DNA.md`
-- **Model caveats:** `Project Memory/MODEL_NOTES.md`
-- Do **not** use `README.md` or `docs/` as a status log; keep them stable.
+- **Current state / handoff:** `Module/Project Memory/CURRENT_STATUS.md`, `NEXT_STEPS.md`
+- **Durable direction:** `Module/Project Memory/DECISIONS.md`, `PROJECT_DNA.md`
+- **Model caveats:** `Module/Project Memory/MODEL_NOTES.md`
+- Do **not** use `README.md` or `Module/docs/` as a status log; keep them stable.
 
 ## Design and UX rules
 
-- **Benchmark:** `Design Benchmarks/Sample 2` unless `Project Memory` overrides.
+- **Benchmark:** `Module/Design Benchmarks/Sample 2` unless `Project Memory` overrides.
 - **Currency:** Iraqi dinar (IQD) presentation consistently; formatting affects layout, not only numbers.
 - **Systems, not one-offs:** Top KPI row and left-rail slicers are **shared patterns** across pages — fix consistently.
 - **Order:** logic first (bindings, measures, stale filters), styling second.
@@ -29,4 +29,4 @@ alwaysApply: false
 
 ## GitHub
 
-- Meaningful work can be tracked with **Issues** (see repo `.github/ISSUE_TEMPLATE/`). Local `gh` may need re-auth; see `docs/foundation.md`.
+- Meaningful work can be tracked with **Issues** (see repo `.github/ISSUE_TEMPLATE/`). Local `gh` may need re-auth; see `Module/docs/foundation.md`.

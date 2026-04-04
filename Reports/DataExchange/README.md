@@ -11,25 +11,29 @@ Use this module for:
 
 ## Expected Working Areas
 
-- `Data Exchange Report/` (isolated PBIP used for exports only)
-- `docs/`
-- `Project Memory/`
-- `Exports/`
-- `Records/`
-- `Archive/`
+- `Companies/CANON/` — **Canon Data Exchange Report** PBIP (primary export workspace)
+- `Companies/PAPERENTITY/` — **Paper Data Exchange Report** PBIP (second copy)
+- `Module/` — container for module internals:
+  - `Module/Core/` — shared baseline assets (when present)
+  - `Module/docs/`
+  - `Module/Project Memory/`
+  - `Module/scripts/`
+  - `Module/Records/`
+  - `Module/Archive/`
 
 ## Start Here
 
 Read these in order:
 - [`AGENTS.md`](AGENTS.md)
-- [`docs/foundation.md`](docs/foundation.md)
-- [`docs/quickstart.md`](docs/quickstart.md)
-- [`Project Memory/PROJECT_DNA.md`](Project%20Memory/PROJECT_DNA.md)
-- [`Project Memory/DECISIONS.md`](Project%20Memory/DECISIONS.md)
-- [`Project Memory/CURRENT_STATUS.md`](Project%20Memory/CURRENT_STATUS.md)
+- [`Module/docs/foundation.md`](Module/docs/foundation.md)
+- [`Module/docs/quickstart.md`](Module/docs/quickstart.md)
+- [`Module/Project Memory/PROJECT_DNA.md`](Module/Project%20Memory/PROJECT_DNA.md)
+- [`Module/Project Memory/DECISIONS.md`](Module/Project%20Memory/DECISIONS.md)
+- [`Module/Project Memory/CURRENT_STATUS.md`](Module/Project%20Memory/CURRENT_STATUS.md)
 
 ## Source Of Truth
 
-- The PBIP used for exports is: `Data Exchange Report/Data Exchange Report.pbip`.
-- This module is intentionally decoupled from the live Finance module.
-- Do not edit files in `Reports/Finance` when working in this module.
+- **Primary PBIP:** `Companies/CANON/Canon Data Exchange Report/Canon Data Exchange Report.pbip`
+- **Alternate copy:** `Companies/PAPERENTITY/Paper Data Exchange Report/Paper Data Exchange Report.pbip`
+
+This module is intentionally decoupled from the live Finance module. Work directly from PBIP; there is no `ready.zip` or server-package export step here. Do not edit files in `Reports/Finance` when working in this module.

@@ -1,0 +1,8 @@
+{
+  "logicalSource": "SAP_HANA",
+  "environment": "production",
+  "connectionType": "ODBC",
+  "dsnName": "HANA_B1",
+  "schema": "PAPERENTITY",
+  "domain": "Sales"
+}

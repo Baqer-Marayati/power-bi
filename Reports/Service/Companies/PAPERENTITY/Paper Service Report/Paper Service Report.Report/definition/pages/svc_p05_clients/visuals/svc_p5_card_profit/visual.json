@@ -1,0 +1,27 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "svc_p5_card_profit",
+  "position": {"x": 724, "y": 100, "z": 0, "height": 116, "width": 262, "tabOrder": 5000},
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [{"field": {"Measure": {"Expression": {"SourceRef": {"Entity": "_Measures"}}, "Property": "Client Profitability"}}, "queryRef": "_Measures.Client Profitability", "nativeQueryRef": "Client Profitability"}]
+        }
+      }
+    },
+    "objects": {
+      "label": [{"properties": {"show": {"expr": {"Literal": {"Value": "false"}}}}, "selector": {"id": "default"}}],
+      "value": [{"properties": {"fontSize": {"expr": {"Literal": {"Value": "20D"}}}, "bold": {"expr": {"Literal": {"Value": "false"}}}, "labelDisplayUnits": {"expr": {"Literal": {"Value": "0D"}}}}, "selector": {"metadata": "_Measures.Client Profitability"}}]
+    },
+    "visualContainerObjects": {
+      "background": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}}, "color": {"solid": {"color": {"expr": {"Literal": {"Value": "'#FFFFFF'"}}}}}, "transparency": {"expr": {"Literal": {"Value": "0D"}}}}}],
+      "border": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}}, "color": {"solid": {"color": {"expr": {"Literal": {"Value": "'#E6ECE8'"}}}}}}}],
+      "dropShadow": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}}, "color": {"solid": {"color": {"expr": {"Literal": {"Value": "'#1F4E79'"}}}}}, "position": {"expr": {"Literal": {"Value": "'Outer'"}}}, "preset": {"expr": {"Literal": {"Value": "'Custom'"}}}, "angle": {"expr": {"Literal": {"Value": "270D"}}}, "shadowDistance": {"expr": {"Literal": {"Value": "4D"}}}, "shadowBlur": {"expr": {"Literal": {"Value": "0D"}}}, "transparency": {"expr": {"Literal": {"Value": "0D"}}}, "shadowSpread": {"expr": {"Literal": {"Value": "0D"}}}}}],
+      "title": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}}, "text": {"expr": {"Literal": {"Value": "'Client Profitability'"}}}, "fontFamily": {"expr": {"Literal": {"Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"}}}, "fontSize": {"expr": {"Literal": {"Value": "10D"}}}, "fontColor": {"solid": {"color": {"expr": {"Literal": {"Value": "'#2E3A42'"}}}}}}}],
+      "visualHeader": [{"properties": {"show": {"expr": {"Literal": {"Value": "false"}}}}}]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

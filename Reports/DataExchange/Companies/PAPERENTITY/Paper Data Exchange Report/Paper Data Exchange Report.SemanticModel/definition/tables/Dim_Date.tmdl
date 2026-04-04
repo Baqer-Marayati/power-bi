@@ -1,0 +1,72 @@
+table Dim_Date
+	lineageTag: 38690037-13a3-4327-9476-6cf0340b6271
+
+	column Date
+		formatString: General Date
+		lineageTag: 9f26a344-508d-4d9b-a57b-618107b4cd65
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: c01acb57-cabb-486d-9f63-21dfd23bce2c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNo
+		formatString: 0
+		lineageTag: ca35937f-c6ef-4db8-9e8e-f075146b4d91
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthNo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		lineageTag: 2c96c771-6c78-4344-8d8a-0b334347e905
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthName]
+		sortByColumn: MonthNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		lineageTag: b06a28e4-63b0-4146-8361-9d75d15fdbdb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+		sortByColumn: YearMonthSort
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthSort
+		formatString: 0
+		lineageTag: 2260860c-9069-4724-b6a1-dcf783c2b5fc
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonthSort]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Date = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS (
+				    CALENDAR ( DATE ( YEAR ( TODAY () ) - 5, 1, 1 ), DATE ( YEAR ( TODAY () ), 12, 31 ) ),
+				    "Year", YEAR ( [Date] ),
+				    "MonthNo", MONTH ( [Date] ),
+				    "MonthName", FORMAT ( [Date], "MMM" ),
+				    "YearMonth", FORMAT ( [Date], "YYYY-MM" ),
+				    "YearMonthSort", YEAR ( [Date] ) * 100 + MONTH ( [Date] )
+				)
+
+	annotation PBI_Id = 3748186fb24f4f7a9756b15c3d9a3e29
+

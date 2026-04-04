@@ -5,10 +5,10 @@ This module is the working home for HR reporting in the Reporting Hub portfolio.
 ## Start Here
 
 - `AGENTS.md`
-- `docs/foundation.md`
-- `Project Memory/CURRENT_STATUS.md`
-- `Project Memory/DECISIONS.md`
-- `Project Memory/NEXT_STEPS.md`
+- `Module/docs/foundation.md`
+- `Module/Project Memory/CURRENT_STATUS.md`
+- `Module/Project Memory/DECISIONS.md`
+- `Module/Project Memory/NEXT_STEPS.md`
 
 ## Source of Truth
 

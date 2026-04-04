@@ -1,0 +1,29 @@
+table Dim_Customer
+	lineageTag: d1a00003-0001-4000-a003-000000000001
+
+	column CustomerCode
+		dataType: string
+		lineageTag: d1a00003-0001-4000-a003-000000000002
+		summarizeBy: none
+		sourceColumn: CustomerCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: d1a00003-0001-4000-a003-000000000003
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Customer = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  C.""CardCode"" AS ""CustomerCode"",#(lf)  C.""CardName"" AS ""CustomerName""#(lf)FROM ""PAPERENTITY"".""OCRD"" C#(lf)WHERE C.""CardType"" = 'C'")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

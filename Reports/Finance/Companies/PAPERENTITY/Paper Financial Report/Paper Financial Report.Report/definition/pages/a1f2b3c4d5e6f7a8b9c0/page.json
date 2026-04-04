@@ -1,0 +1,224 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "a1f2b3c4d5e6f7a8b9c0",
+  "displayName": "Receivables",
+  "displayOption": "FitToWidth",
+  "height": 960,
+  "width": 1280,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "195L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F8FBFF'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "recv_slicer_bptype",
+      "target": "recv_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_bptype",
+      "target": "recv_kpi_outstanding",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_bptype",
+      "target": "recv_kpi_overdue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_bptype",
+      "target": "recv_kpi_overdue_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_bptype",
+      "target": "recv_kpi_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_bptype",
+      "target": "recv_kpi_avg_ar",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_bptype",
+      "target": "recv_kpi_120plus",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_sector",
+      "target": "recv_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_sector",
+      "target": "recv_kpi_outstanding",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_sector",
+      "target": "recv_kpi_overdue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_sector",
+      "target": "recv_kpi_overdue_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_sector",
+      "target": "recv_kpi_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_sector",
+      "target": "recv_kpi_avg_ar",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_sector",
+      "target": "recv_kpi_120plus",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_solution",
+      "target": "recv_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_solution",
+      "target": "recv_kpi_outstanding",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_solution",
+      "target": "recv_kpi_overdue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_solution",
+      "target": "recv_kpi_overdue_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_solution",
+      "target": "recv_kpi_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_solution",
+      "target": "recv_kpi_avg_ar",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_solution",
+      "target": "recv_kpi_120plus",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_industry",
+      "target": "recv_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_industry",
+      "target": "recv_kpi_outstanding",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_industry",
+      "target": "recv_kpi_overdue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_industry",
+      "target": "recv_kpi_overdue_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_industry",
+      "target": "recv_kpi_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_industry",
+      "target": "recv_kpi_avg_ar",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_industry",
+      "target": "recv_kpi_120plus",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_collector",
+      "target": "recv_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_collector",
+      "target": "recv_kpi_outstanding",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_collector",
+      "target": "recv_kpi_overdue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_collector",
+      "target": "recv_kpi_overdue_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_collector",
+      "target": "recv_kpi_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_collector",
+      "target": "recv_kpi_avg_ar",
+      "type": "DataFilter"
+    },
+    {
+      "source": "recv_slicer_collector",
+      "target": "recv_kpi_120plus",
+      "type": "DataFilter"
+    }
+  ]
+}

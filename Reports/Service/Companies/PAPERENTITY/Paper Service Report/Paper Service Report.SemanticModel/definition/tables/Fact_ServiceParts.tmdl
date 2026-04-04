@@ -1,0 +1,117 @@
+table Fact_ServiceParts
+	lineageTag: f1a00003-0001-4000-b003-000000000001
+
+	column CallID
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00003-0001-4000-b003-000000000002
+		summarizeBy: none
+		sourceColumn: CallID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryDocEntry
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00003-0001-4000-b003-000000000003
+		summarizeBy: none
+		sourceColumn: DeliveryDocEntry
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineNum
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a00003-0001-4000-b003-000000000004
+		summarizeBy: none
+		sourceColumn: LineNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCode
+		dataType: string
+		lineageTag: f1a00003-0001-4000-b003-000000000005
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: f1a00003-0001-4000-b003-000000000006
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: double
+		lineageTag: f1a00003-0001-4000-b003-000000000007
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Price
+		dataType: double
+		lineageTag: f1a00003-0001-4000-b003-000000000008
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LineTotal
+		dataType: double
+		lineageTag: f1a00003-0001-4000-b003-000000000009
+		summarizeBy: sum
+		sourceColumn: LineTotal
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ProjectCode
+		dataType: string
+		lineageTag: f1a00003-0001-4000-b003-00000000000a
+		summarizeBy: none
+		sourceColumn: ProjectCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaxCode
+		dataType: string
+		lineageTag: f1a00003-0001-4000-b003-00000000000b
+		summarizeBy: none
+		sourceColumn: TaxCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f1a00003-0001-4000-b003-00000000000c
+		summarizeBy: none
+		sourceColumn: DeliveryDate
+
+		annotation SummarizationSetBy = Automatic
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CustomerCode
+		dataType: string
+		lineageTag: f1a00003-0001-4000-b003-00000000000d
+		summarizeBy: none
+		sourceColumn: CustomerCode
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_ServiceParts = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  L.""SrcvCallID"" AS ""CallID"",#(lf)  D.""DocEntry"" AS ""DeliveryDocEntry"",#(lf)  D.""LineNum"",#(lf)  D.""ItemCode"",#(lf)  D.""Dscription"" AS ""Description"",#(lf)  D.""Quantity"",#(lf)  D.""Price"",#(lf)  D.""LineTotal"",#(lf)  D.""Project"" AS ""ProjectCode"",#(lf)  D.""TaxCode"",#(lf)  H.""DocDate"" AS ""DeliveryDate"",#(lf)  H.""CardCode"" AS ""CustomerCode""#(lf)FROM ""PAPERENTITY"".""SCL4"" L#(lf)INNER JOIN ""PAPERENTITY"".""ODLN"" H ON L.""DocAbs"" = H.""DocEntry""#(lf)INNER JOIN ""PAPERENTITY"".""DLN1"" D ON H.""DocEntry"" = D.""DocEntry""#(lf)WHERE L.""PartType"" = 'N'")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

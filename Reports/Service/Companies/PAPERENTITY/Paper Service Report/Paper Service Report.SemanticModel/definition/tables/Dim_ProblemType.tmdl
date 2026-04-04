@@ -1,0 +1,30 @@
+table Dim_ProblemType
+	lineageTag: d1a00007-0001-4000-a007-000000000001
+
+	column ProblemTypeID
+		dataType: int64
+		formatString: 0
+		lineageTag: d1a00007-0001-4000-a007-000000000002
+		summarizeBy: none
+		sourceColumn: ProblemTypeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProblemTypeName
+		dataType: string
+		lineageTag: d1a00007-0001-4000-a007-000000000003
+		summarizeBy: none
+		sourceColumn: ProblemTypeName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_ProblemType = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  P.""prblmTypID"" AS ""ProblemTypeID"",#(lf)  P.""Name"" AS ""ProblemTypeName""#(lf)FROM ""PAPERENTITY"".""OSCP"" P")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

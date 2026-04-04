@@ -22,12 +22,14 @@ A 4-page sales analysis report covering sales performance, salesperson analysis,
 ## Start Here
 
 - `AGENTS.md`
-- `docs/foundation.md`
-- `Project Memory/CURRENT_STATUS.md`
-- `Project Memory/DECISIONS.md`
-- `Project Memory/NEXT_STEPS.md`
+- `Module/docs/foundation.md`
+- `Module/Project Memory/CURRENT_STATUS.md`
+- `Module/Project Memory/DECISIONS.md`
+- `Module/Project Memory/NEXT_STEPS.md`
 
 ## Source of Truth
 
-- **PBIP project:** `Sales Report/Sales Report.pbip`
-- Packaged artifacts are review outputs, not source-of-truth files.
+- **Primary PBIP:** `Companies/CANON/Canon Sales Report/Canon Sales Report.pbip`
+- **Alternate copy:** `Companies/PAPERENTITY/Paper Sales Report/Paper Sales Report.pbip`
+
+Work directly from PBIP; there is no `ready.zip` or server-package export step in this module.

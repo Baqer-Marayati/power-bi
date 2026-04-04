@@ -1,0 +1,109 @@
+table Dim_Date
+	lineageTag: d1a00001-0001-4000-a001-000000000001
+
+	column Date
+		formatString: General Date
+		lineageTag: d1a00001-0001-4000-a001-000000000002
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: d1a00001-0001-4000-a001-000000000003
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterNo
+		formatString: 0
+		lineageTag: d1a00001-0001-4000-a001-000000000004
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [QuarterNo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: d1a00001-0001-4000-a001-000000000005
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+		sortByColumn: QuarterNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNo
+		formatString: 0
+		lineageTag: d1a00001-0001-4000-a001-000000000006
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthNo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		lineageTag: d1a00001-0001-4000-a001-000000000007
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthName]
+		sortByColumn: MonthNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		lineageTag: d1a00001-0001-4000-a001-000000000008
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+		sortByColumn: YearMonthSort
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthSort
+		formatString: 0
+		lineageTag: d1a00001-0001-4000-a001-000000000009
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonthSort]
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekDay
+		lineageTag: d1a00001-0001-4000-a001-00000000000a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [WeekDay]
+		sortByColumn: WeekDayNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekDayNo
+		formatString: 0
+		lineageTag: d1a00001-0001-4000-a001-00000000000b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [WeekDayNo]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Date = calculated
+		mode: import
+		source =
+				ADDCOLUMNS (
+				    CALENDAR ( DATE ( 2026, 1, 1 ), DATE ( YEAR ( TODAY () ), 12, 31 ) ),
+				    "Year", YEAR ( [Date] ),
+				    "QuarterNo", ROUNDUP ( DIVIDE ( MONTH ( [Date] ), 3, 0 ), 0 ),
+				    "Quarter", "Q" & ROUNDUP ( DIVIDE ( MONTH ( [Date] ), 3, 0 ), 0 ),
+				    "MonthNo", MONTH ( [Date] ),
+				    "MonthName", FORMAT ( [Date], "MMM" ),
+				    "YearMonth", FORMAT ( [Date], "YYYY-MM" ),
+				    "YearMonthSort", YEAR ( [Date] ) * 100 + MONTH ( [Date] ),
+				    "WeekDay", FORMAT ( [Date], "ddd" ),
+				    "WeekDayNo", WEEKDAY ( [Date], 2 )
+				)
+

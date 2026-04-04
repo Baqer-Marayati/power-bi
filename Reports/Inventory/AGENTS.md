@@ -5,15 +5,22 @@ This file is the AI entrypoint for the Inventory Report module.
 ## Read Order
 
 1. `README.md`
-2. `docs/foundation.md`
-3. `Project Memory/PROJECT_DNA.md`
-4. `Project Memory/DECISIONS.md`
-5. `Project Memory/CURRENT_STATUS.md`
-6. `Project Memory/NEXT_STEPS.md`
-7. `Project Memory/REFERENCE.md`
+2. `Module/docs/foundation.md`
+3. `Module/Project Memory/PROJECT_DNA.md`
+4. `Module/Project Memory/DECISIONS.md`
+5. `Module/Project Memory/CURRENT_STATUS.md`
+6. `Module/Project Memory/NEXT_STEPS.md`
+7. `Module/Project Memory/REFERENCE.md`
+
+Then inspect the active project files (per company under `Companies/`):
+
+- `Companies/CANON/Canon Inventory Report/Canon Inventory Report.pbip`
+
+`Companies/PAPERENTITY/` holds the **Paper Inventory Report** PBIP for the second tenant copy.
 
 ## Module Rules
 
 - Keep report-specific truth inside this module.
-- Put only shared cross-report assets in the portfolio `Shared/` layer.
+- Put only shared cross-report assets in the portfolio `Portfolio/Shared/` layer.
 - Archive historical material explicitly instead of mixing it into active work folders.
+- PBIPs live under `Companies/CANON/` and `Companies/PAPERENTITY/`; work directly from PBIP (no zip packaging workflow).

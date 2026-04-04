@@ -1,0 +1,259 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "d4e5f6a7b8c9d0e1f2a3",
+  "displayName": "Product Deep Dive",
+  "displayOption": "FitToWidth",
+  "height": 960,
+  "width": 1280,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "195L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F8FBFF'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_below_reorder",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_below_reorder_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_distinct_skus",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_avg_age",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "chart_grp_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "chart_grp_donut",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "chart_avail_bar",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_below_reorder",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_below_reorder_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_distinct_skus",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_avg_age",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "chart_grp_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "chart_grp_donut",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "chart_avail_bar",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "kpi_below_reorder",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "kpi_below_reorder_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "kpi_distinct_skus",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "kpi_avg_age",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "chart_grp_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "chart_grp_donut",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "chart_avail_bar",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "kpi_below_reorder",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "kpi_below_reorder_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "kpi_distinct_skus",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "kpi_avg_age",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "chart_grp_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "chart_grp_donut",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "chart_avail_bar",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "kpi_below_reorder",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "kpi_below_reorder_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "kpi_distinct_skus",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "kpi_avg_age",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "chart_grp_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "chart_grp_donut",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "chart_avail_bar",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "kpi_below_reorder",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "kpi_below_reorder_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "kpi_distinct_skus",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "kpi_avg_age",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "chart_grp_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "chart_grp_donut",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "chart_avail_bar",
+      "type": "DataFilter"
+    }
+  ]
+}

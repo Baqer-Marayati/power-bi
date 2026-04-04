@@ -1,0 +1,161 @@
+table SalesFact
+	lineageTag: 89600671-ff52-40c3-a60d-eb6be0b0470e
+
+	column DocDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5bfaa0d5-da96-4c9b-96be-ee83be31674c
+		summarizeBy: none
+		sourceColumn: DocDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessType
+		dataType: string
+		lineageTag: 82892cc0-1c9f-475e-bef0-7d1babd643e4
+		summarizeBy: none
+		sourceColumn: BusinessType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 65d16b8c-c71f-4ba2-870f-0d7605452308
+		summarizeBy: sum
+		sourceColumn: Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column COGS
+		dataType: double
+		lineageTag: 74a3ef08-36be-4616-bd74-f1804a3653f8
+		summarizeBy: sum
+		sourceColumn: COGS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BPType
+		dataType: string
+		lineageTag: d61703d8-918e-4c29-a883-59a068acf34e
+		summarizeBy: none
+		sourceColumn: BPType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_GroupType
+		dataType: string
+		lineageTag: 7d5b9c34-f903-4b47-a30c-ed2abff18fbe
+		summarizeBy: none
+		sourceColumn: U_GroupType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_ProductType
+		dataType: string
+		lineageTag: 37a0b25a-a1e4-43c2-905b-b878ee20b7d0
+		summarizeBy: none
+		sourceColumn: U_ProductType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_SegmentType
+		dataType: string
+		lineageTag: 8e5ae14f-35cf-415f-954a-bb5632f3c311
+		summarizeBy: none
+		sourceColumn: U_SegmentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemName
+		dataType: string
+		lineageTag: d5d0fb1b-2a46-4106-9a1f-fdaed7a26110
+		summarizeBy: none
+		sourceColumn: ItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCode
+		dataType: string
+		lineageTag: 0a712874-d6d1-4c36-90e1-0905ae8bd9d9
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Qty
+		dataType: double
+		formatString: #,0
+		lineageTag: c8010adb-b3f1-4581-a29a-87b6abdbafad
+		summarizeBy: sum
+		sourceColumn: Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column CardCode
+		dataType: string
+		lineageTag: e84d1722-9dd7-4b58-9369-08dd68332de2
+		summarizeBy: none
+		sourceColumn: CardCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardName
+		dataType: string
+		lineageTag: 87998341-7018-400e-a9df-1ede60fc26e2
+		summarizeBy: none
+		sourceColumn: CardName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SlpCode
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e8f6b3a-66f8-4b67-b679-0ac0b024e31b
+		summarizeBy: none
+		sourceColumn: SlpCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesPerson
+		dataType: string
+		lineageTag: acad4789-bc98-4585-9d8d-ecab393e33bf
+		summarizeBy: none
+		sourceColumn: SalesPerson
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesDept
+		dataType: string
+		lineageTag: 65d651bc-3b5b-496c-9190-08e2cf63a6c0
+		summarizeBy: none
+		sourceColumn: SalesDept
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesType
+		dataType: string
+		lineageTag: 0e4630c1-fea2-4c93-bcaf-4b72437b6efd
+		summarizeBy: none
+		sourceColumn: SalesType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SalesFact = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "WITH InvTotals AS (#(lf)    SELECT ""DocEntry"", SUM(""LineTotal"") AS ""SumLineTotal""#(lf)    FROM ""PAPERENTITY"".""INV1""#(lf)    GROUP BY ""DocEntry""#(lf)),#(lf)CrTotals AS (#(lf)    SELECT ""DocEntry"", SUM(""LineTotal"") AS ""SumLineTotal""#(lf)    FROM ""PAPERENTITY"".""RIN1""#(lf)    GROUP BY ""DocEntry""#(lf)),#(lf)WarrantyAP AS (#(lf)    SELECT#(lf)        H.""DocDate""                              AS ""DocDate"",#(lf)        'Warranty'                               AS ""BPType"",#(lf)        'WARRANTY'                               AS ""CardCode"",#(lf)        'Warranty Provision'                     AS ""CardName"",#(lf)        -1                                       AS ""SlpCode"",#(lf)        'Warranty'                               AS ""SalesPerson"",#(lf)        'Warranty'                               AS ""SalesDept"",#(lf)        'Warranty'                               AS ""SalesType"",#(lf)        'Warranty'                               AS ""BusinessType"",#(lf)        'Warranty'                               AS ""U_GroupType"",#(lf)        'Warranty'                               AS ""U_ProductType"",#(lf)        'Warranty'                               AS ""U_SegmentType"",#(lf)        'SV003'                                  AS ""ItemCode"",#(lf)        'Warranty Provision'                     AS ""ItemName"",#(lf)        0                                        AS ""Qty"",#(lf)        0                                        AS ""Sales"",#(lf)        SUM(L.""LineTotal"")                       AS ""COGS""#(lf)    FROM ""PAPERENTITY"".""OPCH"" H#(lf)    JOIN ""PAPERENTITY"".""PCH1"" L ON L.""DocEntry"" = H.""DocEntry""#(lf)    WHERE H.""CANCELED"" = 'N'#(lf)      AND L.""ItemCode"" = 'SV003'#(lf)    GROUP BY H.""DocDate""#(lf)),#(lf)WarrantyAPCredit AS (#(lf)    SELECT#(lf)        H.""DocDate""                              AS ""DocDate"",#(lf)        'Warranty'                               AS ""BPType"",#(lf)        'WARRANTY'                               AS ""CardCode"",#(lf)        'Warranty Provision'                     AS ""CardName"",#(lf)        -1                                       AS ""SlpCode"",#(lf)        'Warranty'                               AS ""SalesPerson"",#(lf)        'Warranty'                               AS ""SalesDept"",#(lf)        'Warranty'                               AS ""SalesType"",#(lf)        'Warranty'                               AS ""BusinessType"",#(lf)        'Warranty'                               AS ""U_GroupType"",#(lf)        'Warranty'                               AS ""U_ProductType"",#(lf)        'Warranty'                               AS ""U_SegmentType"",#(lf)        'SV003'                                  AS ""ItemCode"",#(lf)        'Warranty Provision'                     AS ""ItemName"",#(lf)        0                                        AS ""Qty"",#(lf)        0                                        AS ""Sales"",#(lf)        SUM(L.""LineTotal"") * -1                  AS ""COGS""#(lf)    FROM ""PAPERENTITY"".""ORPC"" H#(lf)    JOIN ""PAPERENTITY"".""RPC1"" L ON L.""DocEntry"" = H.""DocEntry""#(lf)    WHERE H.""CANCELED"" = 'N'#(lf)      AND L.""ItemCode"" = 'SV003'#(lf)    GROUP BY H.""DocDate""#(lf))#(lf)SELECT#(lf)    T0.""DocDate"" AS ""DocDate"",#(lf)    COALESCE(C.""U_PartnerType"", 'Unknown') AS ""BPType"",#(lf)    T0.""CardCode"" AS ""CardCode"",#(lf)    T0.""CardName"" AS ""CardName"",#(lf)    T0.""SlpCode"" AS ""SlpCode"",#(lf)    COALESCE(S.""SlpName"", 'Unassigned') AS ""SalesPerson"",#(lf)    COALESCE(S.""U_SalesDept"", 'Unassigned') AS ""SalesDept"",#(lf)    COALESCE(S.""U_SalesType"", 'Unassigned') AS ""SalesType"",#(lf)    CASE WHEN T1.""ItemCode"" IS NULL THEN 'Non-Item' ELSE COALESCE(NULLIF(TRIM(I.""U_BusinessType""), ''), 'Unassigned') END AS ""BusinessType"",#(lf)    CASE WHEN T1.""ItemCode"" IS NULL THEN 'Non-Item' ELSE COALESCE(I.""U_GroupType"", 'Unassigned') END AS ""U_GroupType"",#(lf)    CASE WHEN T1.""ItemCode"" IS NULL THEN 'Non-Item' ELSE COALESCE(I.""U_ProductType"", 'Unassigned') END AS ""U_ProductType"",#(lf)    CASE WHEN T1.""ItemCode"" IS NULL THEN 'Non-Item' ELSE COALESCE(I.""U_SegmentType"", 'Unassigned') END AS ""U_SegmentType"",#(lf)    COALESCE(T1.""ItemCode"", '(No Item)') AS ""ItemCode"",#(lf)    COALESCE(I.""ItemName"", T1.""Dscription"", 'Unknown') AS ""ItemName"",#(lf)    COALESCE(T1.""Quantity"", 0) AS ""Qty"",#(lf)    COALESCE(T1.""LineTotal"", 0)#(lf)        + CASE#(lf)            WHEN TT.""SumLineTotal"" = 0 OR TT.""SumLineTotal"" IS NULL THEN 0#(lf)            ELSE (COALESCE(T1.""LineTotal"", 0) * COALESCE(T0.""DiscSum"", 0) * -1) / TT.""SumLineTotal""#(lf)          END AS ""Sales"",#(lf)    CASE#(lf)        WHEN T1.""ItemCode"" IS NULL THEN 0#(lf)        ELSE COALESCE(T1.""StockValue"", 0)#(lf)    END AS ""COGS""#(lf)FROM ""PAPERENTITY"".""OINV"" T0#(lf)INNER JOIN ""PAPERENTITY"".""INV1"" T1 ON T0.""DocEntry"" = T1.""DocEntry""#(lf)LEFT JOIN InvTotals TT ON TT.""DocEntry"" = T0.""DocEntry""#(lf)LEFT JOIN ""PAPERENTITY"".""OCRD"" C ON C.""CardCode"" = T0.""CardCode""#(lf)LEFT JOIN ""PAPERENTITY"".""OITM"" I ON I.""ItemCode"" = T1.""ItemCode""#(lf)LEFT JOIN ""PAPERENTITY"".""OSLP"" S ON S.""SlpCode"" = T0.""SlpCode""#(lf)WHERE T0.""CANCELED"" = 'N'#(lf)    AND (#(lf)    T1.""ItemCode"" IS NOT NULL#(lf)    OR (#(lf)        T1.""ItemCode"" IS NULL#(lf)        AND COALESCE(T1.""LineTotal"", 0) <> 0#(lf)        AND (T1.""AcctCode"" LIKE '45%' OR T1.""AcctCode"" LIKE '46%')#(lf)    ))#(lf)UNION ALL#(lf)SELECT#(lf)    T0.""DocDate"" AS ""DocDate"",#(lf)    COALESCE(C.""U_PartnerType"", 'Unknown') AS ""BPType"",#(lf)    T0.""CardCode"" AS ""CardCode"",#(lf)    T0.""CardName"" AS ""CardName"",#(lf)    T0.""SlpCode"" AS ""SlpCode"",#(lf)    COALESCE(S.""SlpName"", 'Unassigned') AS ""SalesPerson"",#(lf)    COALESCE(S.""U_SalesDept"", 'Unassigned') AS ""SalesDept"",#(lf)    COALESCE(S.""U_SalesType"", 'Unassigned') AS ""SalesType"",#(lf)    CASE WHEN T1.""ItemCode"" IS NULL THEN 'Non-Item' ELSE COALESCE(NULLIF(TRIM(I.""U_BusinessType""), ''), 'Unassigned') END AS ""BusinessType"",#(lf)    CASE WHEN T1.""ItemCode"" IS NULL THEN 'Non-Item' ELSE COALESCE(I.""U_GroupType"", 'Unassigned') END AS ""U_GroupType"",#(lf)    CASE WHEN T1.""ItemCode"" IS NULL THEN 'Non-Item' ELSE COALESCE(I.""U_ProductType"", 'Unassigned') END AS ""U_ProductType"",#(lf)    CASE WHEN T1.""ItemCode"" IS NULL THEN 'Non-Item' ELSE COALESCE(I.""U_SegmentType"", 'Unassigned') END AS ""U_SegmentType"",#(lf)    COALESCE(T1.""ItemCode"", '(No Item)') AS ""ItemCode"",#(lf)    COALESCE(I.""ItemName"", T1.""Dscription"", 'Unknown') AS ""ItemName"",#(lf)    COALESCE(T1.""Quantity"", 0) * -1 AS ""Qty"",#(lf)    (COALESCE(T1.""LineTotal"", 0)#(lf)        + CASE#(lf)            WHEN TT.""SumLineTotal"" = 0 OR TT.""SumLineTotal"" IS NULL THEN 0#(lf)            ELSE (COALESCE(T1.""LineTotal"", 0) * COALESCE(T0.""DiscSum"", 0) * -1) / TT.""SumLineTotal""#(lf)          END#(lf)    ) * -1 AS ""Sales"",#(lf)    CASE#(lf)        WHEN T1.""ItemCode"" IS NULL THEN 0#(lf)        ELSE COALESCE(T1.""StockValue"", 0) * -1#(lf)    END AS ""COGS""#(lf)FROM ""PAPERENTITY"".""ORIN"" T0#(lf)INNER JOIN ""PAPERENTITY"".""RIN1"" T1 ON T0.""DocEntry"" = T1.""DocEntry""#(lf)LEFT JOIN CrTotals TT ON TT.""DocEntry"" = T0.""DocEntry""#(lf)LEFT JOIN ""PAPERENTITY"".""OCRD"" C ON C.""CardCode"" = T0.""CardCode""#(lf)LEFT JOIN ""PAPERENTITY"".""OITM"" I ON I.""ItemCode"" = T1.""ItemCode""#(lf)LEFT JOIN ""PAPERENTITY"".""OSLP"" S ON S.""SlpCode"" = T0.""SlpCode""#(lf)WHERE T0.""CANCELED"" = 'N'#(lf)    AND (#(lf)    T1.""ItemCode"" IS NOT NULL#(lf)    OR (#(lf)        T1.""ItemCode"" IS NULL#(lf)        AND COALESCE(T1.""LineTotal"", 0) <> 0#(lf)        AND (T1.""AcctCode"" LIKE '45%' OR T1.""AcctCode"" LIKE '46%')#(lf)    ))#(lf)UNION ALL#(lf)SELECT * FROM WarrantyAP#(lf)UNION ALL#(lf)SELECT * FROM WarrantyAPCredit;")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

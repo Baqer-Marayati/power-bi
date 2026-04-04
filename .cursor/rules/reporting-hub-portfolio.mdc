@@ -8,22 +8,22 @@ alwaysApply: true
 ## Scope
 
 - Repository **root** = portfolio layer. **`Reports/<Module>/`** = self-contained report modules.
-- **Cross-report truth:** `Portfolio Memory/`. **Reusable assets:** `Shared/`. **Archives:** history only, not active work surfaces.
-- **Default deep-work module:** `Reports/Finance`. Other modules exist; confirm **`Portfolio Memory/REPORT_CATALOG.md`** before assuming scope. Planned names are **not** real until listed there as Active or Scaffolded.
+- **Cross-report truth:** `Portfolio/Memory/`. **Reusable assets:** `Portfolio/Shared/`. **Archives:** history only, not active work surfaces.
+- **Default deep-work module:** `Reports/Finance`. Other modules exist; confirm **`Portfolio/Memory/REPORT_CATALOG.md`** before assuming scope. Planned names are **not** real until listed there as Active or Scaffolded.
 
 ## Before substantive work
 
 1. Read root `AGENTS.md` read order (portfolio docs, then the module you touch).
-2. For Finance: `Reports/Finance/AGENTS.md` → `Reports/Finance/Project Memory/CURRENT_STATUS.md`.
+2. For Finance: `Reports/Finance/AGENTS.md` → `Reports/Finance/Module/Project Memory/CURRENT_STATUS.md`.
 3. Codex skills under `~/.codex/skills` are **not** loaded by Cursor unless mirrored in chat or rules.
 
 ## New report modules
 
-- Template: `Shared/Templates/report-module-starter`
-- Scaffold: `./scripts/create-report-module.sh <ModuleName> "<ReportTitle>"` from repo root
-- Then update `Portfolio Memory/REPORT_CATALOG.md` when a planned report becomes real.
+- Template: `Portfolio/Shared/Templates/report-module-starter`
+- Scaffold: `./Portfolio/scripts/create-report-module.sh <ModuleName> "<ReportTitle>"` from repo root
+- Then update `Portfolio/Memory/REPORT_CATALOG.md` when a planned report becomes real.
 
 ## Do not
 
-- Put report-specific live status in `Shared/` or portfolio `docs/` as a running log.
+- Put report-specific live status in `Portfolio/Shared/` or portfolio `Portfolio/docs/` as a running log.
 - Treat `PBIX` or screenshots as the editable master (Finance uses **PBIP**; see Finance rule when under `Reports/Finance/`).

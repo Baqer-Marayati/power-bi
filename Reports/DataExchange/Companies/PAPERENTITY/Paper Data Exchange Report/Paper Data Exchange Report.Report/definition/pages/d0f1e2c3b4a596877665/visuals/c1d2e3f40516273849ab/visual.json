@@ -1,0 +1,137 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "c1d2e3f40516273849ab",
+  "position": {
+    "x": 20,
+    "y": 550,
+    "z": 1000,
+    "height": 245,
+    "width": 1220,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_ar_open_items"
+                    }
+                  },
+                  "Property": "company_code"
+                }
+              },
+              "queryRef": "export_ar_open_items.company_code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_ar_open_items"
+                    }
+                  },
+                  "Property": "doc_no"
+                }
+              },
+              "queryRef": "export_ar_open_items.doc_no"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_ar_open_items"
+                    }
+                  },
+                  "Property": "bp_id"
+                }
+              },
+              "queryRef": "export_ar_open_items.bp_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_ar_open_items"
+                    }
+                  },
+                  "Property": "posting_date"
+                }
+              },
+              "queryRef": "export_ar_open_items.posting_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_ar_open_items"
+                    }
+                  },
+                  "Property": "due_date"
+                }
+              },
+              "queryRef": "export_ar_open_items.due_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_ar_open_items"
+                    }
+                  },
+                  "Property": "open_amount_lc"
+                }
+              },
+              "queryRef": "export_ar_open_items.open_amount_lc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "export_ar_open_items"
+                    }
+                  },
+                  "Property": "days_overdue"
+                }
+              },
+              "queryRef": "export_ar_open_items.days_overdue"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'ar_open_items__YYYY-MM-DD__v1.csv'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

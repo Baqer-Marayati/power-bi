@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
+  "pageOrder": [
+    "svc_p01_overview",
+    "svc_p02_techperf",
+    "svc_p03_profitab",
+    "svc_p04_partsflt",
+    "svc_p05_clients"
+  ],
+  "activePageName": "svc_p01_overview"
+}

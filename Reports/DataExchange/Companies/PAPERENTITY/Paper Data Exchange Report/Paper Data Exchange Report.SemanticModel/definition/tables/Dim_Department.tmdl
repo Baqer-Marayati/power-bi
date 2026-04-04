@@ -1,0 +1,36 @@
+table Dim_Department
+	lineageTag: 6f15b4b8-41bf-4f38-8678-d0da38c095af
+
+	column DepartmentCode
+		lineageTag: 6cdae773-2eff-4bf2-b783-43dbcb69c0a8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DepartmentCode]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentName
+		lineageTag: ee9f435b-ea3e-4b2b-afe3-f57be7219566
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DepartmentName]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Department = calculated
+		mode: import
+		source =
+				
+				FILTER(
+				    DISTINCT(
+				        SELECTCOLUMNS(
+				            'Fact_PNL',
+				            "DepartmentCode", 'Fact_PNL'[DepartmentCode],
+				            "DepartmentName", 'Fact_PNL'[DepartmentName]
+				        )
+				    ),
+				    NOT ISBLANK([DepartmentCode])
+				)
+
+	annotation PBI_Id = fca4c6fdc8f04085a7c9ae11e08c12f5
+

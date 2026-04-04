@@ -21,11 +21,11 @@ alwaysApply: false
 ## Safety (aligned with Project Memory)
 
 - Prefer **report-side rewires** and safe **compatibility aliases** over **risky custom relationships** that previously caused invalid column ID / circular patterns.
-- **Compatibility tables** (`generalLedgerEntries`, `glBudgetEntries`, cashflow helpers, etc.) may be provisional — see `Project Memory/MODEL_NOTES.md` and `DECISIONS.md` for budget/cashflow truth vs placeholders.
+- **Compatibility tables** (`generalLedgerEntries`, `glBudgetEntries`, cashflow helpers, etc.) may be provisional — see `Module/Project Memory/MODEL_NOTES.md` and `DECISIONS.md` for budget/cashflow truth vs placeholders.
 - Preserve **`Dim_Date`** as a sane, bounded calendar; avoid deriving calendars from facts in ways that reintroduce refresh cycles or blank YTD.
 - Keep **cashflow helper date tables** and their flag columns if visuals still filter on them unless you deliberately rewire those visuals.
 
 ## After edits
 
-- Update **`Project Memory/MODEL_NOTES.md`** when structure, compatibility strategy, or known risks change.
-- If the change affects pages or delivery, also update **`CURRENT_STATUS.md`** / **`NEXT_STEPS.md`** as appropriate.
+- Update **`Module/Project Memory/MODEL_NOTES.md`** when structure, compatibility strategy, or known risks change.
+- If the change affects pages or delivery, also update **`Module/Project Memory/CURRENT_STATUS.md`** / **`NEXT_STEPS.md`** as appropriate.

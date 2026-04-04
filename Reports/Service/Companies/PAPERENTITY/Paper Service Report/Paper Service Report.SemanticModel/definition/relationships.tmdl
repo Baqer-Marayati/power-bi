@@ -1,0 +1,72 @@
+relationship aa000001-0001-4000-c001-000000000001
+	fromColumn: Fact_ServiceCalls.CreateDate
+	toColumn: Dim_Date.Date
+
+relationship aa000001-0001-4000-c001-000000000002
+	fromColumn: Fact_ServiceCalls.CustomerCode
+	toColumn: Dim_Customer.CustomerCode
+
+relationship aa000001-0001-4000-c001-000000000003
+	fromColumn: Fact_ServiceCalls.EquipmentKey
+	toColumn: Dim_Equipment.EquipmentKey
+
+relationship aa000001-0001-4000-c001-000000000004
+	fromColumn: Fact_ServiceCalls.ItemCode
+	toColumn: Dim_Item.ItemCode
+
+relationship aa000001-0001-4000-c001-000000000005
+	fromColumn: Fact_ServiceCalls.ProblemTypeID
+	toColumn: Dim_ProblemType.ProblemTypeID
+
+relationship aa000001-0001-4000-c001-000000000006
+	fromColumn: Fact_ServiceCalls.AssigneeKey
+	toColumn: Dim_Employee.EmployeeKey
+
+relationship aa000002-0001-4000-c002-000000000001
+	fromColumn: Fact_ServiceActivities.StartDate
+	toColumn: Dim_Date.Date
+
+relationship aa000002-0001-4000-c002-000000000002
+	fromColumn: Fact_ServiceActivities.TechnicianKey
+	toColumn: Dim_Employee.EmployeeKey
+
+relationship aa000002-0001-4000-c002-000000000003
+	fromColumn: Fact_ServiceActivities.CustomerCode
+	toColumn: Dim_Customer.CustomerCode
+
+relationship aa000002-0001-4000-c002-000000000004
+	fromColumn: Fact_ServiceActivities.EquipmentKey
+	toColumn: Dim_Equipment.EquipmentKey
+
+relationship aa000002-0001-4000-c002-000000000005
+	fromColumn: Fact_ServiceActivities.ItemCode
+	toColumn: Dim_Item.ItemCode
+
+relationship aa000003-0001-4000-c003-000000000001
+	fromColumn: Fact_ServiceParts.DeliveryDate
+	toColumn: Dim_Date.Date
+
+relationship aa000003-0001-4000-c003-000000000002
+	fromColumn: Fact_ServiceParts.CustomerCode
+	toColumn: Dim_Customer.CustomerCode
+
+relationship aa000003-0001-4000-c003-000000000003
+	fromColumn: Fact_ServiceParts.ItemCode
+	toColumn: Dim_Item.ItemCode
+
+relationship aa000003-0001-4000-c003-000000000004
+	fromColumn: Fact_ServiceParts.ProjectCode
+	toColumn: Dim_Project.ProjectCode
+
+relationship aa000004-0001-4000-c004-000000000001
+	fromColumn: Fact_ServiceRevenue.InvoiceDate
+	toColumn: Dim_Date.Date
+
+relationship aa000004-0001-4000-c004-000000000002
+	fromColumn: Fact_ServiceRevenue.CustomerCode
+	toColumn: Dim_Customer.CustomerCode
+
+relationship aa000004-0001-4000-c004-000000000003
+	fromColumn: Fact_ServiceRevenue.ProjectCode
+	toColumn: Dim_Project.ProjectCode
+

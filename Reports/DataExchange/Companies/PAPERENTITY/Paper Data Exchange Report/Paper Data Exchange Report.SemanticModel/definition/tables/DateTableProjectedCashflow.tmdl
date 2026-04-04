@@ -1,0 +1,47 @@
+table DateTableProjectedCashflow
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1141
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1142
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Year'
+		dataType: string
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1143
+		summarizeBy: none
+		sourceColumn: Month Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsInNext6Months
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1144
+		summarizeBy: none
+		sourceColumn: IsInNext6Months
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DateTableProjectedCashflow = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS (
+				    FILTER (
+				        ADDCOLUMNS (
+				            CALENDAR ( DATE ( YEAR ( TODAY () ), MONTH ( TODAY () ), 1 ), EOMONTH ( TODAY (), 5 ) ),
+				            "MonthStart", DATE ( YEAR ( [Date] ), MONTH ( [Date] ), 1 )
+				        ),
+				        [Date] = [MonthStart]
+				    ),
+				    "Date", [Date],
+				    "Month Year", FORMAT ( [Date], "MMM yy" ),
+				    "IsInNext6Months", TRUE ()
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a1141

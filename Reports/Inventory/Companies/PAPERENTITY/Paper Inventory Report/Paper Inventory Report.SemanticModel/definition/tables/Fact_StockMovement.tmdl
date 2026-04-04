@@ -1,0 +1,87 @@
+table Fact_StockMovement
+	lineageTag: 55555555-5555-5555-5555-555555555001
+
+	column ItemCode
+		dataType: string
+		lineageTag: 55555555-5555-5555-5555-555555555002
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 55555555-5555-5555-5555-555555555003
+		summarizeBy: none
+		sourceColumn: DocDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransType
+		dataType: int64
+		formatString: 0
+		lineageTag: 55555555-5555-5555-5555-555555555004
+		summarizeBy: none
+		sourceColumn: TransType
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransTypeName
+		dataType: string
+		lineageTag: 55555555-5555-5555-5555-555555555005
+		summarizeBy: none
+		sourceColumn: TransTypeName
+
+		annotation SummarizationSetBy = Automatic
+
+	column InQty
+		dataType: double
+		lineageTag: 55555555-5555-5555-5555-555555555006
+		summarizeBy: sum
+		sourceColumn: InQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column OutQty
+		dataType: double
+		lineageTag: 55555555-5555-5555-5555-555555555007
+		summarizeBy: sum
+		sourceColumn: OutQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransValue
+		dataType: double
+		lineageTag: 55555555-5555-5555-5555-555555555008
+		summarizeBy: sum
+		sourceColumn: TransValue
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: 55555555-5555-5555-5555-555555555009
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column WhsCode
+		dataType: string
+		lineageTag: 55555555-5555-5555-5555-555555555010
+		summarizeBy: none
+		sourceColumn: WhsCode
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_StockMovement = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    T0.""ItemCode"",#(lf)    T0.""DocDate"",#(lf)    T0.""TransType"",#(lf)    CASE#(lf)        WHEN T0.""TransType"" = 13 THEN 'A/R Invoice'#(lf)        WHEN T0.""TransType"" = 14 THEN 'A/R Credit Note'#(lf)        WHEN T0.""TransType"" = 15 THEN 'Delivery'#(lf)        WHEN T0.""TransType"" = 18 THEN 'Goods Receipt PO'#(lf)        WHEN T0.""TransType"" = 19 THEN 'Goods Return'#(lf)        WHEN T0.""TransType"" = 20 THEN 'Goods Receipt'#(lf)        WHEN T0.""TransType"" = 59 THEN 'Goods Receipt'#(lf)        WHEN T0.""TransType"" = 60 THEN 'Goods Issue'#(lf)        WHEN T0.""TransType"" = 67 THEN 'Transfer'#(lf)        WHEN T0.""TransType"" = 69 THEN 'Material Revaluation'#(lf)        WHEN T0.""TransType"" = 162 THEN 'Inventory Revaluation'#(lf)        WHEN T0.""TransType"" = 310000001 THEN 'Opening Balance'#(lf)        ELSE 'Other'#(lf)    END AS ""TransTypeName"",#(lf)    T0.""InQty"",#(lf)    T0.""OutQty"",#(lf)    (T0.""InQty"" + T0.""OutQty"") * T0.""Price"" AS ""TransValue"",#(lf)    T0.""Currency"",#(lf)    T0.""LocCode"" AS ""WhsCode""#(lf)FROM ""PAPERENTITY"".""OIVL"" T0#(lf)WHERE T0.""DocDate"" >= '2026-01-01'")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
