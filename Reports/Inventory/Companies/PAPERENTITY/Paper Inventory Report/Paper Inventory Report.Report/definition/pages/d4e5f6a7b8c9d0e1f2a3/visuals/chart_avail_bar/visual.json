@@ -96,7 +96,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1000D"
+                  "Value": "1D"
                 }
               }
             },
@@ -130,7 +130,7 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1000D"
+                  "Value": "1D"
                 }
               }
             },
