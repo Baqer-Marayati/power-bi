@@ -461,7 +461,7 @@
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "0L"
+                  "Value": "2L"
                 }
               }
             }
