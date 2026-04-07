@@ -11211,6 +11211,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.591
 			          }
+			        },
+			        {
+			          "Stock Qty (T)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },

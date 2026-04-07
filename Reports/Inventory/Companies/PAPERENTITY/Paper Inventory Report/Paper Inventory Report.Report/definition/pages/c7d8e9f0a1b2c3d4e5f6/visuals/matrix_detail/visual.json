@@ -39,51 +39,6 @@
                       "Entity": "InventoryValuation"
                     }
                   },
-                  "Property": "U_GroupType"
-                }
-              },
-              "queryRef": "InventoryValuation.U_GroupType",
-              "nativeQueryRef": "U_GroupType",
-              "active": false
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "InventoryValuation"
-                    }
-                  },
-                  "Property": "U_ProductType"
-                }
-              },
-              "queryRef": "InventoryValuation.U_ProductType",
-              "nativeQueryRef": "U_ProductType",
-              "active": false
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "InventoryValuation"
-                    }
-                  },
-                  "Property": "U_SegmentType"
-                }
-              },
-              "queryRef": "InventoryValuation.U_SegmentType",
-              "nativeQueryRef": "U_SegmentType",
-              "active": false
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "InventoryValuation"
-                    }
-                  },
                   "Property": "ItemName"
                 }
               },
@@ -212,34 +167,29 @@
           },
           {
             "queryRefs": [
-              "InventoryValuation.U_GroupType"
-            ],
-            "isCollapsed": true,
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "InventoryValuation.U_ProductType"
-            ],
-            "isCollapsed": true
-          },
-          {
-            "queryRefs": [
-              "InventoryValuation.U_SegmentType"
-            ],
-            "isCollapsed": true
-          },
-          {
-            "queryRefs": [
               "InventoryValuation.ItemName"
             ],
-            "isCollapsed": true
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "InventoryValuation"
+                    }
+                  },
+                  "Property": "ItemName"
+                }
+              }
+            ],
+            "isPinned": true
           },
           {
             "queryRefs": [
               "InventoryValuation.ItemCode"
             ],
-            "isCollapsed": true
+            "isCollapsed": true,
+            "isPinned": true
           }
         ],
         "root": {}
