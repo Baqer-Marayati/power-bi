@@ -112,23 +112,18 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "InventoryValuation"
-                        }
-                      },
-                      "Property": "StockQty"
+                    "SourceRef": {
+                      "Entity": "_Measures"
                     }
                   },
-                  "Function": 0
+                  "Property": "IV Stock Qty"
                 }
               },
-              "queryRef": "Sum(InventoryValuation.StockQty)",
-              "nativeQueryRef": "Stock Qty",
-              "displayName": "Stock Qty"
+              "queryRef": "_Measures.IV Stock Qty",
+              "nativeQueryRef": "Stock Qty (T)",
+              "displayName": "Stock Qty (T)"
             },
             {
               "field": {
@@ -407,7 +402,7 @@
             }
           },
           "selector": {
-            "metadata": "Sum(InventoryValuation.StockQty)"
+            "metadata": "_Measures.IV Stock Qty"
           }
         },
         {
@@ -472,7 +467,7 @@
             }
           },
           "selector": {
-            "metadata": "Sum(InventoryValuation.StockQty)"
+            "metadata": "_Measures.IV Stock Qty"
           }
         },
         {
