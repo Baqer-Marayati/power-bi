@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Period Label"
+                  "Property": "ROI %"
                 }
               },
-              "queryRef": "_Measures.Selected Period Label",
-              "nativeQueryRef": "Selected Period Label"
+              "queryRef": "_Measures.ROI %",
+              "nativeQueryRef": "ROI %"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Selected Period Label"
+                "Property": "ROI %"
               }
             },
             "direction": "Descending"
@@ -81,7 +81,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "18D"
+                  "Value": "22D"
                 }
               }
             },
@@ -105,10 +105,17 @@
                   "Value": "1D"
                 }
               }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Period Label"
+            "metadata": "_Measures.ROI %"
           }
         }
       ]
@@ -237,7 +244,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Selected Reporting Period'"
+                  "Value": "'ROI'"
                 }
               }
             },

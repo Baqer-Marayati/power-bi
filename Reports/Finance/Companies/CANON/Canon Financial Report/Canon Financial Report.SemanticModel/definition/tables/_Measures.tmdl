@@ -802,6 +802,27 @@ table _Measures
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 1af0270a-8e0f-405a-8e1e-430b972d6b34
 
+	measure 'ROI %' =
+			
+			VAR FYStart = DATE ( YEAR ( TODAY () ), 1, 1 )
+			VAR FYEnd = DATE ( YEAR ( TODAY () ), 12, 31 )
+			VAR AnnualNetProfit =
+			    CALCULATE (
+			        [Net Profit],
+			        REMOVEFILTERS ( 'Dim_Date' ),
+			        'Dim_Date'[Date] >= FYStart,
+			        'Dim_Date'[Date] <= FYEnd
+			    )
+			VAR TotalAssetsBalance =
+			    CALCULATE (
+			        [Total Assets],
+			        REMOVEFILTERS ( 'Dim_Date' )
+			    )
+			RETURN
+			    DIVIDE ( AnnualNetProfit, TotalAssetsBalance, 0 )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a3c7e912-4f6b-4d8a-b1e5-9f2d3c5a7b01
+
 	measure 'Total AR Outstanding' =
 			
 			SUM ( ReceivablesFact[OpenAmount] )
