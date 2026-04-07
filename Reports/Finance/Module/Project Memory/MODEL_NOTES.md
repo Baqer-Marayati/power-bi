@@ -98,7 +98,14 @@
 - The `Fact_BalanceSheet` SQL was extended with a `UNION ALL` that aggregates P&L journal entries per (month, branch, sales type, department) into a synthetic equity account: `AcctCode = '_PP'`, `AcctName = 'Profit Period'`, `BSSection = 'Equity'`.
 - This makes `Total Equity`, `Equity Ratio`, the Balance Sheet Mix donut, and the Largest Accounts bar chart all match SAP automatically — no measure-level patches needed.
 - The aggregation keeps data volume low: one row per month×dimension combination rather than duplicating every individual P&L journal line.
-- Sign convention is natural: `SUM(Debit - Credit)` for P&L accounts produces positive for loss (reducing equity ABS total) and negative for profit (increasing it), which aligns with the BS `Amount` convention.
+- Sign convention is natural: `SUM(Debit - Credit)` for P&L accounts produces positive for loss (reducing equity) and negative for profit (increasing it), which aligns with the BS `Amount` convention.
+
+## Balance Sheet — Sign-aware display (2026-04-07)
+- `BS Balance Display` was changed from `ABS([BS Amount])` to a sign-aware `SUMX` that flips the sign for Liabilities and Equity sections: `IF(Section IN {"Liabilities","Equity"}, -SectionAmount, SectionAmount)`.
+- **Why:** SAP shows negative values for (a) liability accounts with abnormal debit balances (e.g. AP prepayments), (b) contra-asset accounts (accumulated depreciation), and (c) Profit Period when the company has a loss. The old `ABS()` stripped all sign information, making the report unable to match SAP at the per-account level.
+- **Top-level KPI cards are unaffected:** `Total Assets`, `Total Liabilities`, `Total Equity`, `Equity Ratio`, and all Card Display measures continue to return positive values because each uses `KEEPFILTERS(BSSection = ...)` which resolves to a single section in the `SUMX`.
+- **Per-account visuals now match SAP:** the Largest BS Accounts bar chart, Balance Sheet Mix donut, and Balance by Department chart will correctly show negative values for contra-assets, abnormal liability balances, and Profit Period losses.
+- The `Fact_BalanceSheet[Amount]` column itself is unchanged (`Debit - Credit`); the sign flip is purely in the display measure.
 
 ## Currency Notes
 - The report should be standardized to Iraqi dinar presentation.

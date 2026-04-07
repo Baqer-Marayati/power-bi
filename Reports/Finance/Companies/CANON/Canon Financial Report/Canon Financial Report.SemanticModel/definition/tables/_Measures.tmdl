@@ -530,7 +530,13 @@ table _Measures
 
 	measure 'BS Balance Display' =
 			
-			ABS ( [BS Amount] )
+			SUMX (
+			    VALUES ( 'Fact_BalanceSheet'[BSSection] ),
+			    VAR Section = 'Fact_BalanceSheet'[BSSection]
+			    VAR SectionAmount = CALCULATE ( [BS Amount] )
+			    RETURN
+			        IF ( Section IN { "Liabilities", "Equity" }, -SectionAmount, SectionAmount )
+			)
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: e2a40e60-f9b0-40ea-afb8-306bbd59c8ca
 
