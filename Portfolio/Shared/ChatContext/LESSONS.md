@@ -44,3 +44,8 @@ Short, **durable** notes the assistant adds after reviewing captures in `images/
 
 - `[repo]` SAP HANA credentials are stored in `Shared/SAP Export Pipeline/set_credentials.sh` (env vars `SAP_HANA_USER` / `SAP_HANA_PASSWORD`). The `hdbsql` CLI at `C:\Program Files\sap\hdbclient\hdbsql.exe` works for ad-hoc queries; PowerShell ODBC (`System.Data.Odbc`) hits a protocol-parsing error on this server.
 - `[finance]` `[sales]` When querying `OINV`/`ORIN` transactionally, **always filter `T0."CANCELED" = 'N'`**. SAP B1 keeps both the original (`CANCELED='Y'`) and cancellation (`CANCELED='C'`) documents in the same table with positive `LineTotal`. Without the filter, canceled amounts are double-counted. The GL (`OJDT/JDT1`) handles this internally (credit + debit net to zero), so GL-based reports are unaffected.
+
+### 2026-04-09 — PBIP page.json schema limitations
+
+- `[finance]` **`ordinal` is NOT a valid property** in page schema `2.0.0` (PBI Desktop November 2025 / v2.149). Adding it causes a hard load error: *"Property 'ordinal' has not been defined and the schema does not allow additional properties."* Page tab order must be set **manually in Desktop** by dragging tabs; it persists on save.
+- `[finance]` Do **not** invent JSON properties based on external schema docs—always verify against the **`$schema` URL version** already in the file or against what Desktop actually writes.
