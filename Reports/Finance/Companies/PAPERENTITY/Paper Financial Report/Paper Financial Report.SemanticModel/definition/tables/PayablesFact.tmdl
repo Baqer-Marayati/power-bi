@@ -1,0 +1,177 @@
+table PayablesFact
+	lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60100
+
+	column CardCode
+		dataType: string
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60101
+		summarizeBy: none
+		sourceColumn: CardCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardName
+		dataType: string
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60102
+		summarizeBy: none
+		sourceColumn: CardName
+
+		annotation SummarizationSetBy = Automatic
+
+	column VendorType
+		dataType: string
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60103
+		summarizeBy: none
+		sourceColumn: VendorType
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransId
+		dataType: int64
+		formatString: 0
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60104
+		summarizeBy: count
+		sourceColumn: TransId
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransType
+		dataType: string
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60105
+		summarizeBy: none
+		sourceColumn: TransType
+
+		annotation SummarizationSetBy = Automatic
+
+	column RefDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60106
+		summarizeBy: none
+		sourceColumn: RefDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column DueDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60107
+		summarizeBy: none
+		sourceColumn: DueDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column BaseRef
+		dataType: string
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60108
+		summarizeBy: none
+		sourceColumn: BaseRef
+
+		annotation SummarizationSetBy = Automatic
+
+	column Memo
+		dataType: string
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60109
+		summarizeBy: none
+		sourceColumn: Memo
+
+		annotation SummarizationSetBy = Automatic
+
+	column OpenAmount
+		dataType: double
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60110
+		summarizeBy: sum
+		sourceColumn: OpenAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DaysPastDue
+		dataType: int64
+		formatString: 0
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60111
+		summarizeBy: sum
+		sourceColumn: DaysPastDue
+
+		annotation SummarizationSetBy = Automatic
+
+	column FCCurrency
+		dataType: string
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60112
+		summarizeBy: none
+		sourceColumn: FCCurrency
+
+		annotation SummarizationSetBy = Automatic
+
+	column FutureRemit
+		dataType: double
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60113
+		summarizeBy: sum
+		sourceColumn: FutureRemit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column B0_30
+		dataType: double
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60114
+		summarizeBy: sum
+		sourceColumn: B0_30
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column B31_60
+		dataType: double
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60115
+		summarizeBy: sum
+		sourceColumn: B31_60
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column B61_90
+		dataType: double
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60116
+		summarizeBy: sum
+		sourceColumn: B61_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column B91_120
+		dataType: double
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60117
+		summarizeBy: sum
+		sourceColumn: B91_120
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column B121Plus
+		dataType: double
+		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60118
+		summarizeBy: sum
+		sourceColumn: B121Plus
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition PayablesFact = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "WITH OpenBP AS (#(lf)    SELECT#(lf)        J.""ShortName""                                     AS ""CardCode"",#(lf)        C.""CardName""                                      AS ""CardName"",#(lf)        C.""U_PartnerType""                                 AS ""VendorType"",#(lf)        OJ.""TransId""                                      AS ""TransId"",#(lf)        OJ.""TransType""                                    AS ""TransType"",#(lf)        OJ.""RefDate""                                      AS ""RefDate"",#(lf)        J.""DueDate""                                       AS ""DueDate"",#(lf)        OJ.""BaseRef""                                      AS ""BaseRef"",#(lf)        COALESCE(OJ.""Memo"", J.""LineMemo"")                 AS ""Memo"",#(lf)        CASE#(lf)            WHEN COALESCE(J.""FCCurrency"", '') = ''#(lf)            THEN (COALESCE(J.""BalDueCred"",0) - COALESCE(J.""BalDueDeb"",0))#(lf)            ELSE (COALESCE(J.""BalFcCred"",0) - COALESCE(J.""BalFcDeb"",0))#(lf)        END                                               AS ""OpenAmount"",#(lf)        DAYS_BETWEEN(J.""DueDate"", CURRENT_DATE)           AS ""DaysPastDue"",#(lf)        COALESCE(NULLIF(J.""FCCurrency"", ''), 'IQD')       AS ""FCCurrency""#(lf)    FROM ""PAPERENTITY"".""JDT1"" J#(lf)    JOIN ""PAPERENTITY"".""OJDT"" OJ#(lf)        ON OJ.""TransId"" = J.""TransId""#(lf)    JOIN ""PAPERENTITY"".""OCRD"" C#(lf)        ON C.""CardCode"" = J.""ShortName""#(lf)       AND C.""CardType"" = 'S'#(lf)    WHERE#(lf)        (COALESCE(J.""BalDueDeb"",0) <> 0 OR COALESCE(J.""BalDueCred"",0) <> 0)#(lf)        AND J.""Account"" IN ('210101010101', '210101010102', '210101010103')#(lf))#(lf)SELECT#(lf)    ""CardCode"",#(lf)    ""CardName"",#(lf)    ""VendorType"",#(lf)    ""TransId"",#(lf)    ""TransType"",#(lf)    ""RefDate"",#(lf)    ""DueDate"",#(lf)    ""BaseRef"",#(lf)    ""Memo"",#(lf)    ""OpenAmount"",#(lf)    ""DaysPastDue"",#(lf)    ""FCCurrency"",#(lf)    CASE WHEN ""DaysPastDue"" < 0 THEN ""OpenAmount"" ELSE 0 END AS ""FutureRemit"",#(lf)    CASE WHEN ""DaysPastDue"" BETWEEN 0  AND 30  THEN ""OpenAmount"" ELSE 0 END AS ""B0_30"",#(lf)    CASE WHEN ""DaysPastDue"" BETWEEN 31 AND 60  THEN ""OpenAmount"" ELSE 0 END AS ""B31_60"",#(lf)    CASE WHEN ""DaysPastDue"" BETWEEN 61 AND 90  THEN ""OpenAmount"" ELSE 0 END AS ""B61_90"",#(lf)    CASE WHEN ""DaysPastDue"" BETWEEN 91 AND 120 THEN ""OpenAmount"" ELSE 0 END AS ""B91_120"",#(lf)    CASE WHEN ""DaysPastDue"" >= 121            THEN ""OpenAmount"" ELSE 0 END AS ""B121Plus""#(lf)FROM OpenBP#(lf)WHERE ""OpenAmount"" <> 0;")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

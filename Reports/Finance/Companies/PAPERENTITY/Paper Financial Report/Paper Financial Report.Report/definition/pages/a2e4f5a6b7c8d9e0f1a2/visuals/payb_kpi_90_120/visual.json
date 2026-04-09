@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "32389cb30d27d2e7f752",
+  "name": "payb_kpi_90_120",
   "position": {
-    "x": 647,
-    "y": 145,
-    "z": 0,
+    "x": 735,
+    "y": 120,
+    "z": 5000,
     "height": 92,
-    "width": 285,
-    "tabOrder": 4000
+    "width": 158,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -20,14 +20,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "customerLedgerEntries"
+                      "Entity": "_Measures"
                     }
                   },
-                  "Property": "DSO"
+                  "Property": "AP % 90-120"
                 }
               },
-              "queryRef": "customerLedgerEntries.DSO",
-              "nativeQueryRef": "DSO"
+              "queryRef": "_Measures.AP % 90-120",
+              "nativeQueryRef": "AP % 90-120",
+              "active": true
             }
           ]
         }
@@ -53,6 +54,13 @@
       "value": [
         {
           "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            },
             "bold": {
               "expr": {
                 "Literal": {
@@ -60,57 +68,23 @@
                 }
               }
             },
-            "fontFamily": {
+            "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                  "Value": "0D"
                 }
               }
             },
-            "fontSize": {
+            "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "2L"
                 }
               }
             }
           },
           "selector": {
             "id": "default"
-          }
-        },
-        {
-          "properties": {
-            "labelDisplayUnits": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "customerLedgerEntries.DSO"
-          }
-        }
-      ],
-      "layout": [
-        {
-          "properties": {
-            "cellPadding": {
-              "expr": {
-                "Literal": {
-                  "Value": "8L"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'top'"
-                }
-              }
-            }
           }
         }
       ]
@@ -191,14 +165,21 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'DSO'"
+                  "Value": "'% 90-120'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "9D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },
@@ -207,7 +188,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2E3A42'"
+                      "Value": "'#333333'"
                     }
                   }
                 }

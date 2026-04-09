@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "1a47e31004196afa2896",
+  "name": "payb_kpi_30_60",
   "position": {
-    "x": 647,
-    "y": 247,
-    "z": 9000,
-    "height": 145,
-    "width": 581,
-    "tabOrder": 10000
+    "x": 387,
+    "y": 120,
+    "z": 3000,
+    "height": 92,
+    "width": 158,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -20,14 +20,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "customerLedgerEntries"
+                      "Entity": "_Measures"
                     }
                   },
-                  "Property": "PercentageOverdue"
+                  "Property": "AP % 30-60"
                 }
               },
-              "queryRef": "customerLedgerEntries.PercentageOverdue",
-              "nativeQueryRef": "PercentageOverdue"
+              "queryRef": "_Measures.AP % 30-60",
+              "nativeQueryRef": "AP % 30-60",
+              "active": true
             }
           ]
         }
@@ -56,7 +57,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "28D"
+                  "Value": "18D"
                 }
               }
             },
@@ -64,6 +65,20 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
                 }
               }
             }
@@ -75,16 +90,9 @@
       ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'AR Overdue %'"
-                }
-              }
-            },
             "show": {
               "expr": {
                 "Literal": {
@@ -92,28 +100,21 @@
                 }
               }
             },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "12D"
-                }
-              }
-            },
-            "fontColor": {
+            "color": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2E3A42'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
@@ -129,6 +130,69 @@
                   "Value": "true"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C9D5E3'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'% 30-60'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#333333'"
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -136,21 +200,7 @@
       "visualHeader": [
         {
           "properties": {
-            "showVisualWarningButton": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "showVisualErrorButton": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "showOptionsMenu": {
+            "show": {
               "expr": {
                 "Literal": {
                   "Value": "false"

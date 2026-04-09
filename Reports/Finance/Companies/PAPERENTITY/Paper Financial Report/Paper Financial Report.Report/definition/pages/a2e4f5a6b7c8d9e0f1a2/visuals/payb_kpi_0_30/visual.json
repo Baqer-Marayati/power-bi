@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "coll_kpi_txn_count",
+  "name": "payb_kpi_0_30",
   "position": {
-    "x": 399,
+    "x": 213,
     "y": 120,
     "z": 2000,
     "height": 92,
-    "width": 184,
-    "tabOrder": 5000
+    "width": 158,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -20,14 +20,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "customerLedgerEntries"
+                      "Entity": "_Measures"
                     }
                   },
-                  "Property": "DSO"
+                  "Property": "AP % 0-30"
                 }
               },
-              "queryRef": "customerLedgerEntries.DSO",
-              "nativeQueryRef": "DSO"
+              "queryRef": "_Measures.AP % 0-30",
+              "nativeQueryRef": "AP % 0-30",
+              "active": true
             }
           ]
         }
@@ -151,34 +152,6 @@
           }
         }
       ],
-      "visualHeader": [
-        {
-          "properties": {
-            "background": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            },
-            "border": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
       "title": [
         {
           "properties": {
@@ -192,14 +165,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'DSO'"
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                  "Value": "'% 0-30'"
                 }
               }
             },
@@ -207,6 +173,13 @@
               "expr": {
                 "Literal": {
                   "Value": "9D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },
@@ -218,6 +191,19 @@
                       "Value": "'#333333'"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }

@@ -1,28 +1,20 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "7072e44f513ef387ff6e",
+  "name": "payb_header",
   "position": {
-    "x": 647,
-    "y": 470,
-    "z": 13000,
-    "height": 20,
-    "width": 403,
-    "tabOrder": 2000
+    "x": 30,
+    "y": 35,
+    "z": 20000,
+    "height": 60,
+    "width": 540,
+    "tabOrder": 20000
   },
   "visual": {
     "visualType": "shape",
     "objects": {
       "text": [
         {
-          "properties": {
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'hioj'"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "id": "default"
           }
@@ -49,21 +41,21 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Select customer'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
+                  "Value": "'Accounts payable'"
                 }
               }
             },
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -76,26 +68,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Receivables filter'"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            },
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+                  "Value": "'AP aging, outstanding balances, and overdue analysis by vendor.'"
                 }
               }
             }
@@ -104,6 +77,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "howCreated": "InsertVisualButton"
+  }
 }
