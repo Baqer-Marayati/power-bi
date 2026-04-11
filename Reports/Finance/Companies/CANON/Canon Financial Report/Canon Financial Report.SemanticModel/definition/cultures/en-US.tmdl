@@ -276,19 +276,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Accountpayables_totalPayable"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "AP Outstanding": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "vendorledgerentries.overduepayables": {
 			      "Definition": {
@@ -315,19 +303,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "TotalOutstanding_AR"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "AR Outstanding": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "customerledgerentries.customername": {
 			      "Definition": {
@@ -471,19 +447,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Accountpayables_ageingReport_new"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "AP Due Bucket": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "customerledgerentries.accountreceivables_ageingreport_new": {
 			      "Definition": {
@@ -492,19 +456,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "AccountReceivables_ageingReport_new"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "AR Due Bucket": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_measures.gross_margin_": {
 			      "Definition": {

@@ -997,14 +997,20 @@ table _Measures
 
 	measure 'ROI %' =
 			
+			VAR _CutoffDate = MAX ( 'Dim_Date'[Date] )
 			VAR RetainedEarnings = 877126126.32
 			VAR PeriodProfit =
 			    CALCULATE (
 			        [BS Balance Display],
 			        'Fact_BalanceSheet'[AcctCode] = "_PP",
-			        REMOVEFILTERS ( 'Dim_Date' )
+			        FILTER ( ALL ( 'Dim_Date' ), 'Dim_Date'[Date] <= _CutoffDate )
 			    )
-			VAR Capital = [Company Capital]
+			VAR Capital =
+			    CALCULATE (
+			        [BS Balance Display],
+			        'Fact_BalanceSheet'[AcctCode] = "310101010101",
+			        FILTER ( ALL ( 'Dim_Date' ), 'Dim_Date'[Date] <= _CutoffDate )
+			    )
 			RETURN
 			    DIVIDE ( RetainedEarnings + PeriodProfit, Capital, 0 )
 		formatString: 0.00%;-0.00%;0.00%
