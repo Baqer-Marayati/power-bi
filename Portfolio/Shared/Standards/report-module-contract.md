@@ -32,13 +32,14 @@ Reports/<Domain>/
 Active report projects live **per company** under:
 
 ```text
-Companies/<CompanyCode>/<ReportName> - <CompanyCode>/
-  <ReportName> - <CompanyCode>.pbip
-  <ReportName> - <CompanyCode>.Report/
-  <ReportName> - <CompanyCode>.SemanticModel/
+Companies/<CompanyCode>/<ActualReportFolder>/
+  <ActualReportFolder>.pbip
+  <ActualReportFolder>.Report/
+  <ActualReportFolder>.SemanticModel/
 ```
 
 Example codes in this portfolio: **CANON**, **PAPERENTITY** (Paper Company). Add additional `Companies/<CODE>/` folders as needed.
+Use the real business/report folder name for that module; do not assume every module follows a synthetic `<ReportName> - <CompanyCode>` pattern.
 
 ## Folder Responsibilities
 
@@ -82,17 +83,18 @@ Example codes in this portfolio: **CANON**, **PAPERENTITY** (Paper Company). Add
 
 ## Required Operating Rules
 
-- PBIP under `Companies/<CompanyCode>/<ReportName> - <CompanyCode>/` is the editable source of truth.
-- Review and sign-off happen in **Power BI Desktop** from that PBIP (no portfolio zip packaging step).
+- PBIP under `Companies/<CompanyCode>/.../` is the editable source of truth.
+- Review and sign-off happen in **Power BI Desktop** from that PBIP.
+- Modules may add a review/package artifact flow if the module memory explicitly documents it; that does not replace PBIP as source of truth.
 - Modules must adopt the portfolio visual identity standard (shared theme/branding) unless an exception is explicitly approved and recorded in module decisions.
 - After meaningful report edits: run screenshot capture as needed, validate in Desktop, and update module memory.
-- Archive retention for historical snapshots follows each module’s documented policy (portfolio does not mandate zip build archives).
+- Archive retention for historical snapshots follows each module's documented policy.
 
 ## Naming Conventions
 
 - Domain folders: PascalCase (`Finance`, `HR`, `Sales`, `Service`, `Marketing`).
 - Company folders: short uppercase code (`CANON`, `PAPERENTITY`).
-- Report folder and PBIP: `<ReportName> - <CompanyCode>` (match the `.pbip` filename stem).
+- Report folder and PBIP stem: use the real module/company business name and keep the `.pbip`, `.Report`, and `.SemanticModel` stem aligned within that folder.
 - Screenshot folder casing: `Records/screenshots` only.
 
 ## Migration Guidance

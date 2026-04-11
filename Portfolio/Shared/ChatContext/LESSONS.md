@@ -49,3 +49,10 @@ Short, **durable** notes the assistant adds after reviewing captures in `images/
 
 - `[finance]` **`ordinal` is NOT a valid property** in page schema `2.0.0` (PBI Desktop November 2025 / v2.149). Adding it causes a hard load error: *"Property 'ordinal' has not been defined and the schema does not allow additional properties."* Page tab order must be set **manually in Desktop** by dragging tabs; it persists on save.
 - `[finance]` Do **not** invent JSON properties based on external schema docs—always verify against the **`$schema` URL version** already in the file or against what Desktop actually writes.
+
+### 2026-04-11 — Reporting Hub pathing and durable guidance refresh
+
+- `[repo]` Future agents should route through `Portfolio/Memory/ACTIVE_FOCUS.md` before guessing active project paths; several modules use real business folder names instead of a synthetic `<ReportName> - <CompanyCode>` pattern.
+- `[finance]` The live Finance source-of-truth paths are under `Reports/Finance/Companies/CANON/Canon Financial Report/` and `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/`, not the older `Reports/Finance/Financial Report/` layout.
+- `[repo]` When a “current status” file turns into a long changelog, move durable rules into `DECISIONS.md` / `MODEL_NOTES.md` and restore `CURRENT_STATUS.md` to a short current snapshot.
+- `[repo]` The portfolio has standardized on `Reports/<Domain>/Module/...`; validators, templates, CI, and docs should all match that layout.

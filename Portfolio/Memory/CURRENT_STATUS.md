@@ -2,16 +2,22 @@
 
 ## Date
 
-- Last updated: March 29, 2026
+- Last updated: April 11, 2026
 
 ## Current Reality
 
 - The repository uses a portfolio-style reporting structure instead of a single-report root layout.
-- `Reports/Finance` remains the active production report module.
-- `Reports/Inventory` is now an active module with a full PBIP project (5 pages, SAP HANA semantic model targeting CANON schema).
-- `Reports/Service` is now an active module (Service Performance Report) with SAP HANA ODBC targeting CANON schema. Awaiting PBIP baseline and page definitions.
-- A separate non-production exchange workspace exists at `Reports/DataExchange/` for extraction and transfer workflows.
+- `Reports/Finance` remains the primary production report module and the default deep-work starting point for new agents.
+- `Reports/DataExchange` is the active isolated exchange workspace for extraction and transfer workflows.
+- `Reports/Sales`, `Reports/Service`, and `Reports/Inventory` are active PBIP modules in the repo for both CANON and PAPERENTITY company copies.
+- `Reports/HR` and `Reports/Marketing` remain scaffolded modules.
 - The portfolio root is reserved for cross-report structure, documentation, shared assets, and report-module orchestration.
+
+## Current Routing
+
+- Use `REPORT_CATALOG.md` as the authoritative module-status map.
+- Use `ACTIVE_FOCUS.md` as the fastest current-project routing file and canonical PBIP path map.
+- Treat module `README.md`, `AGENTS.md`, and `Module/Project Memory/` as the next layer of truth after portfolio memory.
 
 ## Active Environments (Dual-Workstation Setup)
 
@@ -35,9 +41,9 @@
 ## Immediate Meaning
 
 - Future department reports should be added under `Reports/`.
-- Shared standards and reusable assets should be added under `../Shared/`.
-- Cross-report planning and architecture should be recorded in this folder (`Memory/`).
-- Portfolio-level exported data snapshots for assistant analysis remain under `../Shared/Data Drops/` (cross-report scope, not Finance-only).
+- Shared standards and reusable assets should be added under `Portfolio/Shared/`.
+- Cross-report planning and architecture should be recorded in `Portfolio/Memory/`.
+- Portfolio-level exported data snapshots for assistant analysis remain under `Portfolio/Shared/Data Drops/` (cross-report scope, not Finance-only).
 
 ## New Portfolio Onboarding Layer
 

@@ -2,21 +2,22 @@
 
 ## Working files (repo-relative)
 
-Main PBIP:
+Main PBIPs:
 
-- `Reports/Finance/Financial Report/Financial Report.pbip`
+- `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
+- `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
 
-Semantic model:
+Primary semantic model:
 
-- `Reports/Finance/Financial Report/Financial Report.SemanticModel/definition/model.tmdl`
+- `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.SemanticModel/definition/model.tmdl`
 
-Relationships:
+Primary relationships:
 
-- `Reports/Finance/Financial Report/Financial Report.SemanticModel/definition/relationships.tmdl`
+- `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.SemanticModel/definition/relationships.tmdl`
 
-Report pages:
+Primary report pages:
 
-- `Reports/Finance/Financial Report/Financial Report.Report/definition/pages/`
+- `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.Report/definition/pages/`
 
 GitHub repository (remote may vary by fork):
 
@@ -59,7 +60,7 @@ Use `Sample 2` as the active design source for:
 ## Current priority pages
 All **10** pages in `pages.json` are in the active operating set:
 
-`Executive Overview`, `Income Statement`, `Revenue Insights`, `Cost Structure`, `Balance Sheet`, `Working Capital Health`, `Profitability Drivers`, `Receivables`, `Collections`, `Cash Position`.
+`Financial summary`, `Profit & loss`, `Sales & revenue`, `Operating expenses`, `Balance sheet`, `ROI`, `Accounts receivable`, `Accounts payable`, `Collections`, `Cash & bank`.
 
 Deferred / historical pages are listed in `PAGE_MAP.md`.
 
@@ -117,10 +118,6 @@ Use Project Memory to preserve:
 - what repair methods have proven safe or risky
 - the user's preferred way of working
 
-## Codex skills
-Live Codex skills for this project may be stored under `~/.codex/skills`, not inside `Project Memory`, so Codex can auto-discover them across sessions.
-
-Use `Project Memory` as the project brain and the Codex skills folder as the live instruction layer.
-
-## Automations
-Do not assume a local Codex automation layer exists unless verified on the machine in use.
+## Durable Guidance
+Use `Project Memory` and repo-tracked rules as the durable instruction layer for future agents.
+Do not rely on external skill folders or chat history being present on the machine in use.

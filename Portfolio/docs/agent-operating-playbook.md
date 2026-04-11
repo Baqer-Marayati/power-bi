@@ -11,9 +11,10 @@ This playbook defines how AI agents should operate in this repository with low a
 ## Decision Routing
 
 When deciding where to write:
-- cross-domain standard -> `../Shared/` or `./`
-- domain-specific behavior -> `Reports/<Domain>/docs` or `Project Memory/DECISIONS.md`
-- active progress log -> `Project Memory/CURRENT_STATUS.md`
+- cross-domain standard -> `Portfolio/Shared/` or `Portfolio/docs/`
+- portfolio truth / current routing -> `Portfolio/Memory/`
+- domain-specific behavior -> `Reports/<Domain>/Module/docs/` or `Reports/<Domain>/Module/Project Memory/DECISIONS.md`
+- active progress log -> `Reports/<Domain>/Module/Project Memory/CURRENT_STATUS.md`
 - company-specific settings -> `Reports/<Domain>/Companies/<CompanyCode>/config`
 
 ## Safe Editing Rules
@@ -36,7 +37,8 @@ Use this order after report changes:
 
 For each domain:
 - `Core/` holds shared non-company-specific baseline assets for that domain.
-- `Companies/<CompanyCode>/<ReportName> - <CompanyCode>/` holds the editable PBIP for that company.
+- `Companies/<CompanyCode>/...` holds the editable PBIP for that company.
+- Do not assume every module uses the synthetic `<ReportName> - <CompanyCode>` naming pattern; use module docs or portfolio memory for the real path.
 - `Companies/<CompanyCode>/config` holds company profile + datasource map + publish targets.
 - `Companies/<CompanyCode>/overlays` holds optional per-company visual/model exceptions.
 

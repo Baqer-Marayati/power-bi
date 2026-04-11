@@ -3,7 +3,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$runner = Join-Path $RepoRoot "scripts\validate-structure.ps1"
+$runner = Join-Path $RepoRoot "Portfolio\scripts\validate-structure.ps1"
 if (!(Test-Path $runner)) { throw "Portfolio structure validator not found: $runner" }
 
 powershell -ExecutionPolicy Bypass -File $runner -RepoRoot $RepoRoot -Domains @("Service")

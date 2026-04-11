@@ -65,5 +65,5 @@ Prefer **slicer → data visual** (`DataFilter` / `DataFilter` equivalents). Avo
 
 ## Canonical references
 
-- Finance implementation: `Reports/Finance/Financial Report/Financial Report.Report/definition/pages/`
+- Finance implementation: `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.Report/definition/pages/`
 - Finance standards: `Reports/Finance/Module/docs/standards/page-layout-rules.md`

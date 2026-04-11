@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This file gives a fast, practical overview of how the overall reporting portfolio is organized.
+This file gives a fast, practical overview of how the reporting portfolio is organized today.
 
 Use it to understand:
 - what the repository root means
@@ -15,13 +15,13 @@ Use it to understand:
 
 - `Reports/`
   - one folder per report domain
-- `../Shared/`
-  - cross-report templates, themes, data contracts, SQL, DAX patterns, and reusable benchmarks
-- `../Memory/`
-  - portfolio-wide decisions, status, and cataloging
-- `./` (this folder)
+- `Portfolio/Shared/`
+  - cross-report templates, themes, data contracts, SQL, DAX patterns, screenshots, and reusable benchmarks
+- `Portfolio/Memory/`
+  - portfolio-wide decisions, current focus, status, and cataloging
+- `Portfolio/docs/`
   - stable portfolio-level onboarding and architecture docs
-- `../Archive/`
+- `Portfolio/Archive/`
   - retired or historical portfolio-level material
 
 ## Design Principle
@@ -31,38 +31,43 @@ The repository should answer two different questions cleanly:
 1. How does the reporting ecosystem work?
 2. How does this specific report work?
 
-The root answers question 1.
+The portfolio layer answers question 1.
 Each report module answers question 2.
 
 ## Module State Snapshot
 
-See `../Memory/REPORT_CATALOG.md` for the authoritative list.
+The authoritative module list lives in `Portfolio/Memory/REPORT_CATALOG.md`.
 
-- Active production module: `Reports/Finance`
-- Active exchange module: `Reports/DataExchange`
+- Active production focus: `Reports/Finance`
+- Active exchange workspace: `Reports/DataExchange`
 - Additional active PBIP modules: `Reports/Sales`, `Reports/Service`, `Reports/Inventory`
 - Scaffolded modules: `Reports/HR`, `Reports/Marketing`
 
-Examples of active editable PBIP entry points (repeat per company code, e.g. **CANON** and **PAPERENTITY**):
-- `Reports/Finance/Companies/<CODE>/Financial Report - <CODE>/Financial Report - <CODE>.pbip`
-- `Reports/Sales/Companies/<CODE>/Sales Report - <CODE>/Sales Report - <CODE>.pbip`
-- `Reports/Service/Companies/<CODE>/Service Report - <CODE>/Service Report - <CODE>.pbip`
-- `Reports/Inventory/Companies/<CODE>/Inventory Report - <CODE>/Inventory Report - <CODE>.pbip`
-- `Reports/DataExchange/Companies/<CODE>/Data Exchange Report - <CODE>/Data Exchange Report - <CODE>.pbip`
+For the exact current entry points, read `Portfolio/Memory/ACTIVE_FOCUS.md` before guessing company folder names.
+
+Real active PBIP examples today:
+- `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
+- `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
+- `Reports/DataExchange/Companies/CANON/Canon Data Exchange Report/Canon Data Exchange Report.pbip`
+- `Reports/Sales/Companies/CANON/Canon Sales Report/Canon Sales Report.pbip`
+- `Reports/Service/Companies/CANON/Canon Service Report/Canon Service Report.pbip`
+- `Reports/Inventory/Companies/CANON/Canon Inventory Report/Canon Inventory Report.pbip`
 
 ## Structure Rules
 
-- Put report-specific files inside the relevant `Reports/<Department>/` folder.
-- Put reusable cross-report material in `../Shared/`.
-- Put portfolio-wide decisions in `../Memory/`.
+- Put report-specific files inside the relevant `Reports/<Domain>/` module.
+- Put reusable cross-report material in `Portfolio/Shared/`.
+- Put portfolio-wide decisions and current routing in `Portfolio/Memory/`.
 - Put old or superseded material in clearly labeled archive folders.
 - Avoid mixed folders like `old`, `misc`, `backup2`, or `final final`.
-- Follow the module contract in `../Shared/Standards/report-module-contract.md`.
+- Follow the module contract in `Portfolio/Shared/Standards/report-module-contract.md`.
 
 ## First Encounter
 
 For first-time navigation, use:
 - `first-encounter.md`
+- `ai-index.md`
+- `../Memory/ACTIVE_FOCUS.md`
 
 ## Archive Rule
 
@@ -78,11 +83,5 @@ Example:
 
 ## Future Growth
 
-This portfolio is intentionally ready for:
-- `Reports/HR`
-- `Reports/Sales`
-- `Reports/Service`
-- `Reports/Inventory`
-- `Reports/Logistics`
-
-Create those only when they become real working modules.
+This portfolio is intentionally ready for more domain modules.
+Only treat a planned name as real when it is listed as Active or Scaffolded in `Portfolio/Memory/REPORT_CATALOG.md`.

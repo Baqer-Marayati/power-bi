@@ -15,9 +15,9 @@
 
 ## Modularity Decision
 
-- Shared assets should be centralized in `Shared/` when reuse is expected.
+- Shared assets should be centralized in `Portfolio/Shared/` when reuse is expected.
 - Report-specific live truth should remain inside each report's own docs and memory.
-- Portfolio-level exported data snapshots for assistant analysis should live under `Shared/Data Drops/`, not inside a single report module.
+- Portfolio-level exported data snapshots for assistant analysis should live under `Portfolio/Shared/Data Drops/`, not inside a single report module.
 
 ## Archive Decision
 
@@ -66,4 +66,10 @@
 
 - The Finance report visual language is the baseline brand system for the portfolio.
 - All current and future reports (including Inventory) should keep a unified theme across backgrounds, chart palettes, KPI styling, and overall reporting look-and-feel.
-- Portfolio-level shared standards for this live in `SHARED_STANDARDS.md`.
+- Portfolio-level shared standards for this live in `Portfolio/Memory/SHARED_STANDARDS.md`.
+
+## Pathing And Routing Decision
+
+- Real active PBIP paths are authoritative as written in `Portfolio/Memory/REPORT_CATALOG.md` and `Portfolio/Memory/ACTIVE_FOCUS.md`.
+- Do not assume a generic `<ReportName> - <CompanyCode>` folder convention when navigating active modules; several real company folders use explicit business names such as `Canon Financial Report` and `Paper Financial Report`.
+- When onboarding a new model, route through portfolio memory first, then module `README.md`, `AGENTS.md`, and `Module/Project Memory/`.

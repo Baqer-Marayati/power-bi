@@ -17,4 +17,4 @@ jobs:
 
       - name: Run structure validation
         shell: pwsh
-        run: ./scripts/validate-structure.ps1 -RepoRoot "${{ github.workspace }}"
+        run: ./Portfolio/scripts/validate-structure.ps1 -RepoRoot "${{ github.workspace }}"

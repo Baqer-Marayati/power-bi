@@ -6,7 +6,8 @@ This is a Power BI financial reporting project for management reporting, centere
 ## Active project (source of truth)
 Use this folder as the active working project (paths are repo-relative; adjust drive if your clone differs):
 
-- `Reports/Finance/Financial Report/`
+- `Reports/Finance/Companies/CANON/Canon Financial Report/`
+- `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/`
 
 Do not create parallel experiment folders unless explicitly needed.
 
@@ -32,16 +33,16 @@ Portfolio-wide tokens and layout contracts also live under `Shared/Standards/` (
 ## Main pages
 The active working set in `pages.json` includes **10** pages:
 
-1. `Executive Overview`
-2. `Income Statement`
-3. `Revenue Insights`
-4. `Cost Structure`
-5. `Balance Sheet`
-6. `Working Capital Health`
-7. `Profitability Drivers`
-8. `Receivables`
+1. `Financial summary`
+2. `Profit & loss`
+3. `Sales & revenue`
+4. `Operating expenses`
+5. `Balance sheet`
+6. `ROI`
+7. `Accounts receivable`
+8. `Accounts payable`
 9. `Collections`
-10. `Cash Position`
+10. `Cash & bank`
 
 Older benchmark-only pages (`Actual vs Budget`, `Cashflow`, and others listed in `PAGE_MAP.md`) remain **historical or deferred** unless explicitly reactivated.
 
@@ -115,7 +116,7 @@ This project responds better to deliberate, evidence-based passes than to broad 
 When a new agent thread starts:
 1. open this file first
 2. open the other files in `Project Memory`: `DECISIONS.md` and `REFERENCE.md`
-3. inspect `Financial Report`
+3. inspect the relevant company PBIP under `Companies/`
 4. re-check `Design Benchmarks` before making visual decisions
 5. update the memory files when the benchmark changes meaningfully
 6. read `CURRENT_STATUS.md`, `MODEL_NOTES.md`, and `NEXT_STEPS.md` before deep model edits

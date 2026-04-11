@@ -1,240 +1,53 @@
 # Current Status
 
 ## Date
-- Last updated: March 24, 2026
 
-## Active Project
-- `C:\Work\reporting-hub\Reports\Finance\Financial Report`
+- Last updated: April 11, 2026
+
+## Current Source Of Truth
+
+- Primary company PBIP: `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
+- Second company PBIP: `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
+- Active design benchmark: `Reports/Finance/Module/Design Benchmarks/Sample 2`
 
 ## Current State
-The project is a hybrid:
-- report shell and page language come from `Design Benchmarks/Sample 2`
-- supported logic is wired to the active SAP-backed semantic model
-- unsupported benchmark pages are being repaired in place, not removed
 
-## Live Pages
-The active report shell now contains these 10 pages:
-- `Executive Overview`
-- `Income Statement`
-- `Revenue Insights`
-- `Cost Structure`
-- `Balance Sheet`
-- `Working Capital Health`
-- `Profitability Drivers`
-- `Receivables`
-- `Collections`
-- `Cash Position`
+- Finance is the primary production module in the portfolio.
+- The report runs from company-specific PBIPs under `Companies/`, not from the older `Reports/Finance/Financial Report/` path.
+- The current shell mixes the Sample 2 design language with SAP-backed semantic model logic and later transferred AR/AP/cash pages.
+- Durable rules and historical rationale live in `DECISIONS.md` and `MODEL_NOTES.md`; this file is for the current snapshot and next validation focus.
 
-## Removed From Active Report
-These pages were physically removed from the report definition during cleanup so the file stays sharper and lighter:
-- `Financial Details`
-- `Performance Details`
-- `Accounts Receivable`
-- `Accounts Payable`
-- `AR Invoice Details`
-- `AP Invoice Details`
-- `Commitment Report`
-- `Profit and Loss`
+## Active Pages
 
-## What Was Recently Done
-- Moved the finance project into `Reports/Finance` as part of a broader portfolio-style reporting-hub restructure so future department reports can live beside it cleanly without mixing active finance work with cross-report assets.
-- Added a root `AGENTS.md` entrypoint plus `docs/agent-manual.md` so outside AI tools or future agents can recover the repo structure, read order, and documentation split without depending on prior chat history.
-- Added `docs/foundation.md` as the main high-signal startup file for environment/tooling context, GitHub wiring, skills location, packaging workflow, and automation status.
-- Added compatibility tables and measures so broken Sample 2 pages could at least bind to valid semantic objects.
-- Removed duplicate-measure load blockers that were preventing the PBIP from opening.
-- Cleared leftover benchmark drillthrough filters from `AR Invoice Details` and `AP Invoice Details`.
-- Repointed budget slicers from dead placeholder values to the current compatibility budget label.
-- Reworked several AP/AR visuals to stop depending on disconnected helper tables.
-- Replaced AP/AR bottom-right trend visuals with simpler working cards to avoid invalid helper-date dependencies.
-- Converted report-side currency formats from dollar-style strings to IQD presentation.
-- Removed `DateTableAccountReceivables` and `DateTableAccountPayables` from `model.tmdl` after rewiring away from them.
-- Applied a report-wide polish pass to slicers and KPI cards so dropdown headers fit more cleanly and narrow IQD cards are less likely to clip text.
-- Reworked the repeated five-slicer rail on the main working pages to a cleaner pattern with separate text labels above the dropdown boxes, matching the preferred no-background slicer-title direction.
-- Standardized the repeated five-slicer rail on the main working pages to a consistent order and spacing: `Year`, `Month`, `Location`, `Department`, `Sales Type`, with separate labels above the dropdown boxes.
-- Removed the `vendorLedgerEntries.CashonHand` compatibility alias and rewired the affected cards directly to `bankAccountLedgerEntries.Cashflow_endingCashInHand` to reduce a likely AP/cashflow circular dependency path.
-- Performed a safety-first cleanup pass that removed four unreferenced semantic-model table files left on disk from earlier iterations: `DateTableAccountReceivables`, `DateTableAccountPayables`, `Dim_Customer`, and `Dim_Item`.
-- Removed local junk files that should not be treated as project assets: `.DS_Store` files and the semantic-model `.pbi/cache.abf`.
-- Removed additional local-only PBIP metadata that does not define the report itself: Finder junk files and the semantic-model `.pbi` editor/local settings files.
-- Tightened `Dim_Date` from an overly wide standalone calendar (`2018-2035`) to a rolling current-year-bounded range so YTD measures stop evaluating against empty future years while still avoiding the prior `Fact_SalesDetail` cycle.
-- Restored missing helper columns on `DateTablePreviousCashflow`, `DateTableProjectedCashflow`, and `DateTableCashflowAPAR` so cashflow visuals no longer point at non-existent boolean filter fields.
-- Corrected stale report metadata on `Commitment Report`, including a table visual that still referenced `CommittmentDocumentTable` instead of `CommitmentDocumentTable`.
-- Removed a dead `ShowThisBar` filter from an `Actual vs Budget` visual; the page was still carrying a filter against a measure that no longer exists in the semantic model.
-- Cleared a stale placeholder `Select dimension` slicer filter from `Actual vs Budget` and corrected a stale `MergeDimensionSlicer` queryRef on `Commitment Report`.
-- Aligned the local month helper table used by `Profit and Loss` formatting metadata so it now stores month-name strings instead of month numbers.
-- Reworked several warning-prone helper tables to use more stable calculated-table patterns:
-- `DateTable` no longer derives its range from `generalLedgerEntries`
-- `glBudgetEntries` now derives directly from `Fact_PNL` instead of from `generalLedgerEntries`
-- `accountingPeriods` and `Last Refresh Date` no longer use dynamic `DATATABLE(...)` rows
-- `CommitmentDocumentTable` now uses a direct `SELECTCOLUMNS` projection instead of an unnecessary one-branch `UNION`
-- Qualified a few cross-table measure references explicitly in `glBudgetEntries` and `accounts` to reduce compatibility-model ambiguity.
-- Flattened the last known warning-prone compatibility chains:
-- `generalLedgerEntries` budget-facing measures now derive directly from `Fact_PNL` instead of calling back into `glBudgetEntries`
-- `accounts[GLAccountIsRowVisible]` now evaluates directly from `Fact_PNL` and `purchaseLines` instead of routing through `BudgetVsActualTable`
-- `accounts` itself no longer derives from `generalLedgerEntries`; it now builds directly from `Fact_PNL` plus `purchaseLines` so it does not inherit upstream compatibility-table warnings.
-- `generalLedgerEntries` no longer carries the unused volatile `TodayLocal` measure, and its helper date flags now anchor to the latest posted SAP date instead of `TODAY()`.
-- Applied the approved external-label slicer pattern to the remaining older sidebar/top-right slicer areas on `Commitment Report`, `Actual vs Budget`, and `Profit and Loss` so those pages use the same clean label-above-dropdown treatment as the main working pages.
-- Simplified `accounts[GLAccountIsRowVisible]` to a low-risk compatibility filter that only checks for a nonblank display name, removing its remaining cross-table dependency chain.
-- Restored missing helper objects on `generalLedgerEntries` that the report still referenced:
-- numeric variance/budget percentage measures now use proper percentage `formatString` values instead of text-returning `FORMAT(...)`
-- added `PercentRevenueVarianceColorFormat`, `PercentExpenseVarianceColorFormat`, and `PercentCOGSVarianceColorFormat`
-- restored the missing compatibility column `'Legend Label'` used by Profit and Loss visual styling metadata
-- Normalized the top KPI card typography across all pages with the main left sidebar:
-- reduced primary value size from `22D` to `20D`
-- switched top-card value and category typography to standard `Segoe UI` so IQD glyphs render with more breathing room and less clipping risk
-- Strengthened the top KPI card polish on all main-sidebar pages after the first typography pass was still too tight:
-- increased top-row KPI card height from `86` to `92`
-- switched KPI value text to `Tahoma` at `18D`, which is safer for mixed Latin + Arabic currency glyph rendering
-- Reduced the report shell to the approved 7-page set by removing the non-kept page folders from the report definition and updating `pages.json` to the new visible order.
-- Removed no-longer-needed report/model artifacts tied only to deleted pages:
-- `CommitmentDocumentTable`
-- `DimensionCodeTable`
-- `DimensionCode1Slicer`
-- `DimensionCode2Slicer`
-- `LocalDateTable_3a85b0bc-9ebc-4b88-9375-1f1e21803837`
-- `Dim_CostCenter`
-- the `Fact_PNL` -> `Dim_CostCenter` relationship
-- Restored the small due-category helper tables after verification showed that `customerLedgerEntries` and `vendorLedgerEntries` still reference them internally, even though the AR/AP pages themselves were removed.
+The active report shell currently contains these 10 pages in `pages.json` order:
+1. `Financial summary`
+2. `Profit & loss`
+3. `Sales & revenue`
+4. `Operating expenses`
+5. `Balance sheet`
+6. `ROI`
+7. `Accounts receivable`
+8. `Accounts payable`
+9. `Collections`
+10. `Cash & bank`
 
-## What Is Still Broken
-- `Working Capital Health` still needs Desktop validation for final visual readability because the page shell was repurposed in place from the older `Actual vs Budget` geometry.
-- `Profitability Drivers` still needs Desktop validation for label clarity and interaction behavior after replacing cashflow bindings with profitability measures.
-- The legacy provisional budget/cashflow compatibility objects still exist in the model, but the two live page narratives are now moving toward AR/AP working-capital analysis and profitability-driver analysis.
-- Some semantic-model warning icons may still remain for compatibility tables such as `generalLedgerEntries` and `accounts`; those need to be rechecked after this cleanup pass in Power BI Desktop.
-- Most of the remaining file count is intrinsic to PBIP because pages and visuals are stored as separate definition files; the easy dead weight has now been removed.
+## Stable Current Assumptions
 
-## Important User Direction
-- Keep the current design direction.
-- Logic first, styling second.
-- Maintain the Sample 2 shell.
-- Project Memory must always be updated after meaningful work.
+- Finance uses company-specific branding behavior: CANON pages keep the logo lockup; PAPERENTITY pages do not.
+- Main left-rail slicers remain a shared system; durable ordering and year-floor rules are recorded in `DECISIONS.md` and `LESSONS.md`.
+- `Dim_Date` lower bound is intentionally constrained to 2026 for the main report experience.
+- The report should open blank until refresh when the cache-stripped handoff flow is used.
+- Desktop-approved PBIP output is stronger evidence than speculative JSON-only assumptions.
 
-## Latest Pass
-- Reduced duplicated visuals across the kept 7-page report:
-- `Income Statement` no longer repeats the `Revenue Mix by Sales Type` donut from `Revenue Insights`; it now uses `Gross Profit Mix by Sales Type`.
-- `Executive Overview` no longer repeats the department-opex story from `Cost Structure`; the lower-right chart now shows `Net Revenue by Sales Type`.
-- Added dedicated KPI display measures for compact top cards so rendered values can show two decimal places reliably without relying on Power BI's compact-number auto-formatting.
-- Rewired the top monetary KPI cards on `Executive Overview`, `Income Statement`, `Revenue Insights`, `Cost Structure`, and `Balance Sheet` to those dedicated display measures.
-- After review screenshots showed that card-level precision settings alone were still not enough, the core monetary KPI cards were moved to dedicated numeric `... Card Display` measures with fixed `bn` or `M` scaling and two-decimal format strings.
-- `Actual vs Budget` lower-right broken chart was replaced with a stable summary card using `GLTableVariancePct` so the page stops throwing an error in that slot.
-- `Cashflow` lower-left broken chart was simplified from a fragile series-and-filter configuration to a direct previous-month cashflow chart using `Cashflow_cashGoingIn_previous` and `Cashflow_cashGoingOut_previous`.
-- Replaced the remaining live compact-text KPI display measures on the kept 7 pages so they now render explicit IQD values with two decimals instead of `bn / M` shorthand.
-- Removed the inert `Dimension` slicer from `Actual vs Budget` and cleaned the page interaction map so it no longer references deleted or non-existent visual IDs.
-- Corrected the stale `CashflowPeriod` query reference on the `Cashflow` page so the page definition is internally consistent again.
-- Follow-up screenshots confirmed the old helper-based `KPI Plain` strategy was unsafe and leaked internal captions into the first five pages' top monetary cards, so those legacy helper measures were removed from `_Measures.tmdl`.
-- The top monetary cards on `Executive Overview`, `Income Statement`, `Revenue Insights`, `Cost Structure`, and `Balance Sheet` now use an explicit title plus a hidden built-in label, with the card value bound to dedicated numeric `... Card Display` measures.
-- Those `... Card Display` measures are limited to the repeated top money cards only. They use fixed unit scaling plus measure-level format strings such as `0.00bn د.ع.‏` or `0.00M د.ع.‏` so the visuals stay valid while still rendering two decimals.
-- The remaining top-row percent/count cards on those same five pages were then moved onto the same hidden-label + explicit-title card pattern so the whole KPI row shares one typography system instead of mixing the old label-style cards with the newer monetary cards.
-- The intended standard for the first five pages is now: same quiet 9pt title treatment, same non-bold 18pt Tahoma value text, and no visibly heavier percent/count cards sitting next to the monetary cards.
-- `Executive Overview`'s `Revenue Mix by Location` donut was adjusted to render all three location labels more reliably.
-- Per user direction, `Actual vs Budget` and `Cashflow` are now intentionally left untouched while refinement continues on the first five pages only.
-- The report-branding lockup is now implemented on the first five pages only: `Executive Overview`, `Income Statement`, `Revenue Insights`, `Cost Structure`, and `Balance Sheet`.
-- The working implementation was learned from the user-edited Desktop PBIP and copied back into the source report rather than being re-guessed from screenshots.
-- The safe rendering pattern is now confirmed: two true `image` visuals plus one vertical `shape` divider, grouped together in the top-right header zone and backed by registered image resources in `report.json`.
-- The user then made a further manual layout pass directly in Desktop and that edited `Financial Report - ready` file was synced back into the source report as the new approved visual baseline.
-- That Desktop pass is now the authoritative source for the current spacing, stretching, and alignment refinements across the core pages, even where it differs from earlier Codex-standardized grid assumptions.
-- `Actual vs Budget` and `Cashflow` are still intentionally outside the branding scope for now per user direction.
-- Added a dedicated server-transfer export routine:
-- generated packages now live in `Exports/Server Packages`
-- `./scripts/package-report.sh` rebuilds the stable handoff file `Financial Report - ready.zip`
-- those generated zip artifacts are intentionally ignored by Git
-- The user reviews report changes from the packaged zip in `Exports/Server Packages`, not from the raw `PBIP` source tree.
-- Future validation handoffs should therefore include a fresh run of `./scripts/package-report.sh` whenever a report edit is ready for user inspection.
-- A later sync regression corrupted `definition/version.json`, `definition/report.json`, the registered custom theme, shared icon, and both logo image resources with null-byte file contents. Those files were repaired from clean sources, the package was rebuilt, and the report now opens again from the generated zip.
-- This repair confirmed that successful packaging alone is not enough as a validation step if registered resources were touched; the packaged contents must also be structurally valid.
-- Reworked the old `Actual vs Budget` page shell into `Working Capital Health` by rewiring its main cards/slicers/table to AR/AP-oriented objects (`customerLedgerEntries`, `vendorLedgerEntries`, and due-bucket helpers) so the page is no longer centered on the prior budget-compatibility narrative.
-- Reworked the old `Cashflow` page shell into `Profitability Drivers` by rewiring core cards and lead charts to stable `_Measures` profitability objects (`Net Revenue`, `Gross Profit`, `Operating Profit`, `Net Profit`, and YTD card-display measures).
-- Follow-up visual consistency pass normalized both repurposed pages to the same base canvas system as the first five pages (`1280x960`, `outspacePane` width `195`, and the standard page background color) so the report no longer has oversized trailing white space.
-- Added the same grouped top-right branding lockup (Al Jazeera logo + vertical divider + Canon logo) to both `Working Capital Health` and `Profitability Drivers` so header branding now matches the first five pages.
-- Updated both repurposed pages' report-header titles/subtitles and KPI-row placement to align more closely with the first-five-page template geometry while preserving the new working-capital and profitability logic direction.
-- Removed a stale `BudgetVsActualTable` visual-level filter that was still attached to the `Working Capital Health` AP Outstanding card, which could block values and contribute to inconsistent card behavior.
-- Replaced the hidden/off-canvas cleanup strategy with a tiny in-canvas parking strategy for obsolete visuals (`x/y=2`, `1x1`) on both repurposed pages to prevent page-width expansion and layout side effects.
-- Tightened `Working Capital Health` top KPI readability by normalizing the narrow AP card widths and reducing top-card value font size from `16D` to `14D` on the first four KPI cards.
-- Rewired `Profitability Drivers` top KPI cards to stable display measures (`Net Revenue Card Display`, `Sales Gross Profit YTD Card Display`, `Operating Expenses Card Display`, `Net Margin %`) so cards render with reliable visible values in default context.
-- Reverted temporary in-canvas parking of obsolete visuals on `Working Capital Health` and `Profitability Drivers` back to true off-canvas placement after Desktop review showed top-left visual error UI (`See details` / `Fix`) resurfacing.
-- Added three non-blank-safe profitability card measures in `_Measures.tmdl`: `Gross Profit Safe Card Display`, `Operating Profit Safe Card Display`, and `Net Profit Safe Card Display` (each uses `COALESCE(...,0)` before scaling) to prevent `--` outputs on top cards.
-- Rewired `Profitability Drivers` top KPI cards back to profitability titles (`Gross Profit`, `Operating Profit`, `Net Profit`) using those new safe display measures.
-- Updated those safe profitability card measures to raw IQD output (no million scaling) so low-but-real values do not collapse visually to `0M` on `Profitability Drivers`.
-- Root-cause correction on `Profitability Drivers`: rewired top profitability KPI cards to the same known-working YTD display-measure family used on `Income Statement` (`Gross Profit YTD Card Display`, `Operating Profit YTD Card Display`, `Net Profit YTD Card Display`) and updated titles accordingly.
-- Removed stale carry-over hard filters from both profitability trend charts (`IsInLast6Months_Previous` and `IsInNext6Months`) so chart/card behavior no longer depends on old cashflow helper flags.
-- Performed a minimal stale-visual cleanup on the two repurposed pages:
-- `Working Capital Health`: removed four off-canvas legacy `BudgetVsActualTable` card visuals and their remaining `visualInteractions` targets, and removed one overlapping top-left filler shape.
-- `Profitability Drivers`: removed one orphan textbox/title overlay that sat on top of the main chart area.
-- Built an automated screenshot-capture workflow (`scripts/capture-pages.ps1`) that opens the PBIP in Power BI Desktop, clicks each page tab in sequence, and saves per-page PNG screenshots to `Records/screenshots/`. This provides a visual feedback loop for layout validation without manual intervention.
-- The script uses Win32 `mouse_event` to click page tabs (Ctrl+PageDown does not navigate pages in PBI Desktop authoring view).
-- First successful automated capture confirmed: pages 1-5 render correctly; `Working Capital Health` (page 6) is functional but has sparse right-side layout; `Profitability Drivers` (page 7) still shows "--" for 3 of 4 top KPIs and mostly empty charts, indicating the YTD display measures are not returning data in the default filter context.
-- Root-cause fix on `Profitability Drivers`: deleted an off-canvas slicer (`e3072552c68bd01f571a`) that was hardcoded to `Dim_Date.Year = 2021`, which was filtering three of the four top KPI cards to a year with no data. Also deleted three other off-canvas junk visuals (shape, action button, refresh card) and removed all associated `visualInteractions`. Resized the two oversized bottom cards (`Net Margin %` and `Selected Reporting Period`) from ~327px to 140px height.
-- Layout and cleanup pass on `Working Capital Health`: deleted 11 off-canvas junk visuals (including a `budgetName` slicer hardcoded to `SAP Derived Budget`), cleaned all stale `visualInteractions`, resized the 581x406 `AR Overdue %` card to 581x145, repositioned the AP/AR due-bucket slicers and labels below it, moved the customer slicer up from Y=667 to Y=502 for a tighter layout, and added label-hidden + border styling to the AR Overdue % card.
-- Follow-up refinement per user review: further tightened `Working Capital Health` right-side control alignment (AP/AR due-bucket labels and slicers on one row, customer selector widened and aligned beneath) to remove any residual overlap risk at preview zoom levels; updated `Selected Period Label` measure logic so `Profitability Drivers` period display is clamped to the valid data horizon starting in 2026 (`Jan 2026 - Dec 2026` in current context).
-- Hard reset pass on `Working Capital Health`: removed lingering legacy container/background layers (`visualGroup` + old panel shapes) that were masking as overlap/structure issues; then cleaned interactions that still referenced those deleted layers.
-- Removed hardcoded default filters from page-6 due-bucket/customer slicers so the page no longer opens in a pre-filtered state that can hide expected records.
-- Fixed `DSO` and `DPO` clipping by applying explicit card value styling (hidden built-in labels, fixed 14D value font, top alignment, and slightly taller card height) so values render fully and consistently.
-- Hard reset pass on `Profitability Drivers` date logic: added dedicated `2026+` profitability measures and rebound both monthly charts plus margin card to those measures; disabled `showAll` on category axes so pre-2026 empty months are not drawn.
-- Validation discipline updated: every targeted page fix now requires a full 7-page screenshot run, then focused review of the target pages from that set before packaging.
-- `Income Statement` management block upgraded from a static `pivotTable` to a more visual combo chart (`lineClusteredColumnComboChart`) so the area now shows a clearer management-performance story: columns for `Current Period`, `YTD`, and `YTD LY` by statement row, plus a `Variance %` trend line.
-- `Revenue Insights` revenue-by-segment bar chart now groups by **`Fact_SalesDetail[Item Business Type]`** from SAP **`OITM.U_BusinessType`** (item master UDF), with **`Sales Revenue`** on the axis; prior calculated map / PQ product-tree logic and `Dim_ItemSegmentMap` were removed as redundant to SAP master data.
-- Stabilized sidebar slicer behavior across the five main pages by restoring the intended order `Year -> Quarter -> Month -> Location -> Department -> Sales Type` with non-overlapping label/slicer positions.
-- Hardening pass on semantic-model conformed dimensions and fact keys:
-- normalized source extract keys in `Fact_PNL`, `Fact_BalanceSheet`, and `Fact_SalesDetail` using `UPPER(TRIM(...))` for branch/location, sales type, and department codes to reduce refresh-time key drift from casing/whitespace differences.
-- rebuilt `Dim_Branch`, `Dim_Department`, and `Dim_SalesType` to produce one row per code with deterministic nonblank display names across all three facts, reducing duplicate-key and ambiguous-name behavior after refresh.
-- Root-cause pass on blank YTD cards/charts after refresh:
-- YTD measures were previously evaluating against the far-future tail of `Dim_Date` (`2000..2040`) when slicers were at `All`, which can push `DATESYTD` to a year with no fact data and return blanks.
-- updated core YTD measures (`Net/Gross/Operating/Net Profit YTD`, `Sales Revenue YTD`, `Sales Gross Profit YTD`) to clamp to the latest available fact date in current non-date filter context.
-- updated `Selected Period Label` to clamp to real fact-data min/max dates (across PNL, balance sheet, and sales) instead of raw `Dim_Date` bounds.
-- Repaired Quarter slicer source by restoring `Dim_Date[QuarterNo]` + `Dim_Date[Quarter]` in the semantic model, then re-bound explicit slicer-to-visual `DataFilter` interactions across all 7 live pages.
-- Updated `Dim_Date` calendar lower bound to `2026-01-01` so the `Year` slicer no longer exposes pre-2026 years.
-- Swapped main rail positions so `Sales Type` now sits above `Department` on the five core pages.
-- Packaging/open-state behavior is now set to blank-on-open by default: Finance package scripts strip semantic-model cache unless explicitly told to keep it.
-- User-approved return point captured after validation pass: `Reports/Finance/Exports/Server Packages/archive/20260325_2339__GLOBAL__Financial Report__1a73ec1.zip`.
-- User-approved return point captured after latest regeneration: `Reports/Finance/Exports/Server Packages/archive/20260325_2356__GLOBAL__Financial Report__1a73ec1.zip`.
-- User-approved return point captured after item-business-type UDF switch: `Reports/Finance/Exports/Server Packages/archive/20260326_0007__GLOBAL__Financial Report__1a73ec1.zip`.
-- Runtime reconciliation pass completed across all 7 live pages; resolved a top-row context mismatch on `Profitability Drivers` by aligning the revenue KPI to YTD semantics and title.
-- Display-only normalization pass completed with no semantic-model changes: `Profitability Drivers` top-left KPI now renders in `M`, and `Balance Sheet` liabilities card now renders in `bn` to match its peer cards.
-- User-approved return point captured after reconciliation + display normalization: `Reports/Finance/Exports/Server Packages/archive/20260326_1436__GLOBAL__Financial Report__2f631f6.zip`.
-- User-approved safe return point captured after slicer-function checks and SAP P&L comparison pass: `Reports/Finance/Exports/Server Packages/archive/20260326_1600__GLOBAL__Financial Report__2f631f6.zip`
-- Color palette/style pass applied from sample screenshot: replaced teal data colors with navy-blue palette (`#1A3C5C`, `#2F75B6`, `#9DC3E6` as primary three), updated page background from greenish-gray `#F4F7F5` to cool light blue-gray `#EBF0F7` on all 7 pages, updated theme root background colors to match. No layout, measure, or visual binding changes made. New package: `Reports/Finance/Exports/Server Packages/archive/20260326_1828__GLOBAL__Financial Report__506443d.zip`..
-- Slicer root-cause hardening pass completed:
-- normalized branch/location, sales-type, and department keys in all three fact extracts (`Fact_PNL`, `Fact_BalanceSheet`, `Fact_SalesDetail`) using `UPPER(TRIM(...))` with name fallbacks to code when labels are blank.
-- rebuilt `Dim_Branch`, `Dim_SalesType`, and `Dim_Department` from a union of all three facts so slicers use conformed dimensions instead of single-fact subsets.
-- rebuilt page interaction maps to clean `slicer -> data visual` links only (removed noisy filter mappings to labels/shapes/textboxes) across all 7 live pages.
-- `Revenue Insights` grouping source switched from `Fact_SalesDetail[ItemGroupName]` to SAP item-master UDF `OITM.U_BusinessType` exposed as `Fact_SalesDetail['Item Business Type']` (blank UDF values mapped to `Unassigned`).
-- Color palette/style finalized: navy-blue data colors (#1F4E79, #5B8DB8, #9CC3E6), page background #F8FBFF, card border #C9D5E3, thin navy outer drop shadow on all 38 on-canvas KPI cards as top accent line (shadowDistance 4, shadowBlur 0, shadowSpread 0, angle 270), card titles restored to clean dark 12pt text.
-- **User-approved return point:** `Reports/Finance/Exports/Server Packages/archive/20260326_1947__GLOBAL__Financial Report__506443d.zip` (git commit `6558e6e`)
-- Cross-page palette alignment pass: replaced all old teal/green per-visual color overrides (#223430, #E6ECE8, #DCE5E0, etc.) across 6 pages with approved navy-blue equivalents. Added descending sort to all 5 donut charts. Fixed DSO/DPO measures from FORMAT() text to numeric. Fixed KPI card title wrapping (narrow cards reduced from 12D to 10D/9D).
-- **User-approved return point:** `Reports/Finance/Exports/Server Packages/archive/20260327_0102__GLOBAL__Financial Report__0e25c09.zip` (git commit `3c845d5`)
-- Visual polish pass: restored focus mode on all pages (visualHeader.show was false on 7 chart visuals on pages 1-2; showFocusModeButton was false on 14 visuals on pages 6-7). Fixed invisible border (#F8FBFF → #C9D5E3) on 15 visuals across pages 2, 3, 6. Removed incorrect page-bg color from Operating vs Net Profit chart background.
-- **User-approved return point:** `Reports/Finance/Exports/Server Packages/archive/20260327_0142__GLOBAL__Financial Report__8229d02.zip` (git commit `5444a49`)
+## Current Validation Focus
 
-## Receivables, Collections, Cash Pages Transfer (2026-04-01)
-- Transferred three pages from the Aljazeera Master Model into the Financial Report: **Receivables**, **Collections**, **Cash Position**.
-- Added four new semantic-model tables from the source: `ReceivablesFact` (SAP AR aging from JDT1/OJDT/OCRD, account 110201010102), `CollectionsFact` (AR credit entries, rolling last 365 days), `CashPositionFact` (GL account balances for Cash on Hand / Bank / POS), and `DimBusinessPartner` (customer dimension with UDF fields and collector property).
-- Added relationships: `ReceivablesFact.CardCode → DimBusinessPartner.CardCode`, `CollectionsFact.CardCode → DimBusinessPartner.CardCode`, `CollectionsFact.PostingDate → Dim_Date.Date`.
-- Added 11 new measures to `_Measures.tmdl`: `Total AR Outstanding`, `Total AR Overdue`, `AR Overdue %`, `AR Customer Count`, `Total Collections`, `Collection Transaction Count`, `Cash on Hand Balance`, `Cash in Bank Balance`, `Cash in POS Balance`, `Total Cash Balance`, `Collection Rate %`.
-- Each new page was built fresh to match the Financial Report design system:
-  - Canvas: 1280×960, FitToWidth, background `#F8FBFF`
-  - Navy-blue data palette: `#1F4E79`, `#5B8DB8`, `#9CC3E6`
-  - KPI cards with navy drop shadow accent, `#C9D5E3` borders, Tahoma 18D values
-  - Dropdown slicers with label-above pattern matching the existing pages
-  - Branding lockup (Al Jazeera logo + vertical divider + Canon logo) in top-right
-  - Report header shape with page title and subtitle
-- **Receivables page**: 4 KPI cards (Total Outstanding, Overdue Amount, Overdue %, Customers), pivot table with full SAP aging buckets (Future, 0-30, 31-60, 61-90, 91-120, 120+), 5 dropdown slicers (BP Type, Sector, Solution, Industry, Collector) with slicer→visual DataFilter interactions.
-- **Collections page**: 4 KPI cards (Total Collected, Transactions, Collection Rate, Active Customers), pivot table by customer, clustered bar chart by Origin type (IN/CN/RC/JE/JR), 4 dropdown slicers (BP Type, Sector, Collector, Customer).
-- **Cash Position page**: 4 KPI cards (Total Cash Balance, Cash on Hand, Cash in Bank, Cash in POS), clustered bar chart by account name, donut chart by account type, account detail table with debit/credit/balance breakdown.
-- Report now contains 10 pages total.
-- CollectionsFact SQL was updated from the source model's hardcoded 2026 date range to a rolling `ADD_DAYS(CURRENT_DATE, -365)` filter for durability.
-- Requires Desktop refresh and validation.
+- Reopen the active company PBIPs in Power BI Desktop after meaningful model or visual changes.
+- Recheck any remaining semantic warnings on compatibility-heavy tables such as `generalLedgerEntries` and `accounts`.
+- Validate page behavior and interactions on the active 10-page shell, especially after changes to shared KPI rows, slicer rails, or transferred AR/AP/cash pages.
+- Keep packaging, review artifacts, and screenshot capture aligned with the actual workflow documented in `DECISIONS.md` and `Module/scripts/README.md`.
 
-## Balance Sheet Profit Period Fix (2026-04-01)
-- Root-cause fix for balance sheet equity discrepancy vs SAP: SAP's "Profit Period" line (current-year P&L result under Capital & Reserves) was missing because `Fact_BalanceSheet` only pulled `GroupMask IN (1, 2, 3)`.
-- Fix: added a `UNION ALL` to the BS SQL that aggregates P&L entries (`GroupMask IN (4, 5, 6, 7, 8)`) per month and dimension combination into a synthetic `_PP / Profit Period` equity account.
-- All BS measures (`Total Equity`, `Equity Ratio`, `Total Equity Card Display`), the donut chart, and the bar chart auto-correct from the data — no measure changes needed.
-- Requires a Desktop refresh to validate; the ~13M discrepancy (IQD 12,853,566.99 loss) should disappear and Total Capital & Reserves should match SAP exactly.
+## Where To Look Next
 
-## Retained Lessons
-- Ask "which artifact is the user actually opening?" before debugging visual differences.
-- Prefer Desktop-proven Power BI patterns over speculative JSON-only reconstruction.
-- When the user makes approved refinements directly in Desktop, preserve that Desktop result as the new visual baseline.
-- Treat packaging, integrity validation, and project-memory updates as part of done-ness, not post-work extras.
-- PBI Desktop's Ctrl+PageDown keyboard shortcut does not work for page tab navigation in authoring view; mouse clicks on the tab strip are the only reliable method for automated page switching.
-- Automated screenshot capture via Win32 API is a viable and safe alternative to Power Automate Desktop for the visual feedback loop; no PAD flow was needed.
-- If a page appears unchanged to the user, first verify the review artifact timestamp and rebuild `Financial Report - ready.zip` before making additional edits.
-- For repurposed PBIP pages, visual overlap symptoms are often caused by stale grouping/container visuals and slicer defaults, not only by `x/y` positions of visible visuals.
+- `DECISIONS.md` for durable project direction and company-specific constraints.
+- `MODEL_NOTES.md` for semantic-model facts, caveats, and known technical risks.
+- `NEXT_STEPS.md` for the next recommended validation and build sequence.

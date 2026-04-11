@@ -28,7 +28,7 @@ The active benchmark is:
 ## Working Areas
 
 - `Companies`
-  - One folder per company code; each contains its own PBIP (`.pbip`, `.Report`, `.SemanticModel` with a `- <CODE>` suffix).
+  - One folder per company code; each contains its own PBIP (`.pbip`, `.Report`, `.SemanticModel`) using the real company report name.
 - `Module/` — container for module internals:
   - `Module/Core` — shared domain baseline for cross-company Finance reporting assets; company-agnostic material belongs here first.
   - `Module/Design Benchmarks` — living design reference and benchmark shell source.

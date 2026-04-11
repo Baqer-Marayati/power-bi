@@ -10,7 +10,7 @@ This folder holds **cross-report** design guidance that is not a single JSON the
 | Machine-readable tokens | `Shared/Standards/portfolio-theme.tokens.json` |
 | Canvas size, slicer rail, zoning, interactions | `Shared/Standards/page-layout-spec.md` |
 | Module contract (folders, packaging) | `Shared/Standards/report-module-contract.md` |
-| Live reference implementation | `Reports/Finance/Financial Report/` (PBIP) |
+| Live reference implementation | `Reports/Finance/Companies/CANON/Canon Financial Report/` (PBIP) |
 | PBIP editing workflow | `Reports/Finance/Module/docs/standards/page-layout-rules.md` |
 
 ## What belongs here

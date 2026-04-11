@@ -54,7 +54,7 @@ Treat this file as the universal entrypoint for future AI agents.
 
 ## Core Rules
 
-- Editable report work happens in **PBIP** under `Companies/<CompanyCode>/` (e.g. CANON, PAPERENTITY). Open the company PBIP (CANON: `Canon Financial Report.pbip`; other companies: typically `Financial Report - <CODE>.pbip`) in Power BI Desktop.
+- Editable report work happens in **PBIP** under `Companies/<CompanyCode>/` (e.g. CANON, PAPERENTITY). Open the actual company PBIP path documented in this file and the module README rather than guessing a folder pattern.
 - `Module/Design Benchmarks/Sample 2` is the active visual benchmark unless `Project Memory` says otherwise.
 - Preserve the Sample 2 shell and CFO-style tone unless the user explicitly changes direction.
 - Logic first, styling second.

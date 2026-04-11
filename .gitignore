@@ -9,7 +9,8 @@ Exports/Server Packages/*.zip
 Reports/*/Exports/Server Packages/archive/
 Reports/*/Exports/Server Packages/latest/*.zip
 Reports/*/Records/screenshots/*.png
-Reports/*/Records/Screenshots/*.png
+Reports/*/Module/Records/Screenshots/*.png
+Reports/*/Module/Records/screenshots/*.png
 
 # Power BI semantic model data cache (should never be committed — always refresh on open)
 **/.pbi/cache.abf

@@ -22,7 +22,8 @@ Read this chain in order:
 5. `agent-operating-playbook.md`
 6. `ai-index.md`
 7. `../Memory/REPORT_CATALOG.md`
-8. `../Memory/CURRENT_STATUS.md`
+8. `../Memory/ACTIVE_FOCUS.md`
+9. `../Memory/CURRENT_STATUS.md`
 
 Then read the target domain module's:
 - `README.md`
@@ -43,7 +44,7 @@ Reports/<Domain>/
   README.md
   Companies/
     <CompanyCode>/
-      <ReportName> - <CompanyCode>/   # PBIP + report + model folders
+      <ActualReportFolder>/           # PBIP + report + model folders
   Module/
     Core/
     docs/
@@ -55,7 +56,8 @@ Reports/<Domain>/
 
 ## 4) Source-of-Truth Rule
 
-- PBIP files under `Companies/<CompanyCode>/<ReportName> - <CompanyCode>/` are the editable source of truth.
+- PBIP files under `Companies/<CompanyCode>/.../` are the editable source of truth.
+- Do not assume every module follows the synthetic `<ReportName> - <CompanyCode>` pattern; confirm the real path in `REPORT_CATALOG.md`, `ACTIVE_FOCUS.md`, or the module README.
 - Review and sign-off in Power BI Desktop from that PBIP.
 
 ## 5) Validation Rule

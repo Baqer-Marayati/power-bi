@@ -1,30 +1,40 @@
 # Reporting Hub
 
-Reporting Hub is a **domain-first reporting portfolio** designed for multi-company, multi-report development.
+Reporting Hub is a domain-first reporting portfolio for multi-company Power BI work.
 
-The repository is optimized for:
-- repeatable report module onboarding (`Finance`, `DataExchange`, `HR`, `Sales`, `Service`, `Marketing`, `Inventory`, …)
-- consistent agent/model navigation on first encounter
-- clear separation between source-of-truth PBIP work (per company under `Companies/<CODE>/`), shared assets, and optional records (screenshots, archives)
+The repository is organized so a new contributor or model can answer two questions quickly:
+- what the portfolio contains right now
+- where the editable source of truth lives for the module in scope
 
 ## Quick Orientation
 
-- Portfolio root = orchestration, standards, and cross-report context.
-- `Reports/<Domain>/` = domain module where report work happens.
-- `Portfolio/Shared/` = reusable assets and templates used by multiple domains.
-- `Portfolio/Memory/` = cross-report decisions, catalog, and active status.
+- Repository root = portfolio coordination, standards, shared memory, and onboarding.
+- `Reports/<Domain>/` = self-contained report module.
+- `Portfolio/Shared/` = reusable assets, templates, themes, and cross-report tooling.
+- `Portfolio/Memory/` = cross-report truth, current focus, decisions, and cataloging.
 
-## Domain Modules
+## Current Portfolio Reality
 
-Current module state (see `Portfolio/Memory/REPORT_CATALOG.md` for detail):
-- `Reports/Finance` — Active production module
-- `Reports/DataExchange` — Active exchange workspace
-- `Reports/Sales`, `Reports/Service`, `Reports/Inventory` — Active PBIP modules
-- `Reports/HR`, `Reports/Marketing` — Scaffolded
+See these files first:
+- [`Portfolio/Memory/REPORT_CATALOG.md`](Portfolio/Memory/REPORT_CATALOG.md) for authoritative module status
+- [`Portfolio/Memory/ACTIVE_FOCUS.md`](Portfolio/Memory/ACTIVE_FOCUS.md) for the current starting point and canonical PBIP paths
 
-## Start Here (First Encounter)
+Active modules today:
+- `Reports/Finance`
+- `Reports/DataExchange`
+- `Reports/Sales`
+- `Reports/Service`
+- `Reports/Inventory`
 
-Read in this order:
+Scaffolded modules:
+- `Reports/HR`
+- `Reports/Marketing`
+
+## Start Here
+
+The authoritative read order lives in [`AGENTS.md`](AGENTS.md).
+
+Recommended first-encounter flow:
 1. [`AGENTS.md`](AGENTS.md)
 2. [`Portfolio/docs/foundation.md`](Portfolio/docs/foundation.md)
 3. [`Portfolio/docs/portfolio-architecture.md`](Portfolio/docs/portfolio-architecture.md)
@@ -33,26 +43,26 @@ Read in this order:
 6. [`Portfolio/docs/agent-operating-playbook.md`](Portfolio/docs/agent-operating-playbook.md)
 7. [`Portfolio/docs/ai-index.md`](Portfolio/docs/ai-index.md)
 8. [`Portfolio/Memory/REPORT_CATALOG.md`](Portfolio/Memory/REPORT_CATALOG.md)
-9. [`Portfolio/Memory/CURRENT_STATUS.md`](Portfolio/Memory/CURRENT_STATUS.md)
+9. [`Portfolio/Memory/ACTIVE_FOCUS.md`](Portfolio/Memory/ACTIVE_FOCUS.md)
+10. [`Portfolio/Memory/CURRENT_STATUS.md`](Portfolio/Memory/CURRENT_STATUS.md)
+11. [`Portfolio/Memory/DECISIONS.md`](Portfolio/Memory/DECISIONS.md)
 
-Then open the target domain module (for example `Reports/Finance`).
+Then open the target module, starting with that module's `README.md`, `AGENTS.md`, and `Module/Project Memory/`.
 
 ## Working Rules
 
-- Keep source-of-truth edits in PBIP folders inside the relevant domain module.
-- Keep shared standards/templates in `Portfolio/Shared/` (no live status logs there).
-- Keep domain status/decisions in each module's `Project Memory/`.
-- Keep portfolio-wide truth in `Portfolio/Memory/`.
-- Validate and review in Power BI Desktop from the company PBIP folders under each module’s `Companies/<CODE>/` (no zip packaging step).
+- Keep editable report sources in PBIP folders under the relevant module's `Companies/<CODE>/`.
+- Do not assume a synthetic folder pattern such as `<ReportName> - <CODE>`; use the module docs or `REPORT_CATALOG.md` for the real company folder names.
+- Keep stable onboarding/process docs in `Portfolio/docs/` and module `Module/docs/`.
+- Keep live portfolio truth in `Portfolio/Memory/` and live module truth in `Module/Project Memory/`.
+- Follow each module's own review workflow. Some modules work directly from PBIP only; others also keep review/package artifacts.
 
 ## Module Contract
 
-All domain modules follow the standard contract in:
+All domain modules follow the baseline contract in:
 - [`Portfolio/Shared/Standards/report-module-contract.md`](Portfolio/Shared/Standards/report-module-contract.md)
-
-This contract defines required folders, company layering, PBIP layout under `Companies/<CODE>/`, and automation expectations.
 
 ## Contribution Guide
 
-Use the portfolio-level process in:
+Use the portfolio-level contribution process in:
 - [`Portfolio/CONTRIBUTING.md`](Portfolio/CONTRIBUTING.md)

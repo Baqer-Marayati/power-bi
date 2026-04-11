@@ -14,8 +14,9 @@ Start here:
 7. `Portfolio/docs/ai-index.md`
 8. `Portfolio/Shared/Standards/report-module-contract.md`
 9. `Portfolio/Memory/REPORT_CATALOG.md`
-10. `Portfolio/Memory/CURRENT_STATUS.md`
-11. `Portfolio/Memory/DECISIONS.md`
+10. `Portfolio/Memory/ACTIVE_FOCUS.md`
+11. `Portfolio/Memory/CURRENT_STATUS.md`
+12. `Portfolio/Memory/DECISIONS.md`
 
 If the user refers to **screenshot lessons** or the **ChatContext** workflow, also read `Portfolio/Shared/ChatContext/LESSONS.md` (durable notes from past captures).
 
@@ -58,6 +59,9 @@ Scaffolded (contract layout, no PBIP yet):
 - `Reports/Marketing`
 
 Do not treat a module as active for delivery until `Portfolio/Memory/REPORT_CATALOG.md` marks it Active.
+
+Default deep-work starting point:
+- `Portfolio/Memory/ACTIVE_FOCUS.md`
 
 ## Cursor / VS Code workspace
 

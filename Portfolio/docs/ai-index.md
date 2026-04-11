@@ -18,6 +18,8 @@ Use this file as a fast routing map when an AI model receives the repository wit
   - `../Shared/Standards/report-module-contract.md`
 - See which reports are active/scaffolded:
   - `../Memory/REPORT_CATALOG.md`
+- See the default current-project starting point and real PBIP entry paths:
+  - `../Memory/ACTIVE_FOCUS.md`
 - Check current portfolio truth:
   - `../Memory/CURRENT_STATUS.md`
   - `../Memory/DECISIONS.md`
@@ -41,6 +43,25 @@ Use this file as a fast routing map when an AI model receives the repository wit
   - `Reports/HR`
   - `Reports/Marketing`
 
+## Canonical Active PBIP Paths
+
+Use these exact path patterns unless newer memory files say otherwise:
+- Finance:
+  - `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
+  - `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
+- DataExchange:
+  - `Reports/DataExchange/Companies/CANON/Canon Data Exchange Report/Canon Data Exchange Report.pbip`
+  - `Reports/DataExchange/Companies/PAPERENTITY/Paper Data Exchange Report/Paper Data Exchange Report.pbip`
+- Sales:
+  - `Reports/Sales/Companies/CANON/Canon Sales Report/Canon Sales Report.pbip`
+  - `Reports/Sales/Companies/PAPERENTITY/Paper Sales Report/Paper Sales Report.pbip`
+- Service:
+  - `Reports/Service/Companies/CANON/Canon Service Report/Canon Service Report.pbip`
+  - `Reports/Service/Companies/PAPERENTITY/Paper Service Report/Paper Service Report.pbip`
+- Inventory:
+  - `Reports/Inventory/Companies/CANON/Canon Inventory Report/Canon Inventory Report.pbip`
+  - `Reports/Inventory/Companies/PAPERENTITY/Paper Inventory Report/Paper Inventory Report.pbip`
+
 ## Automation Entry Points
 
 - Structure validation:
@@ -55,7 +76,7 @@ Use this file as a fast routing map when an AI model receives the repository wit
 ## Common Questions
 
 - "Where should I add a cross-report standard?"
-  - `../Shared/` + `./` + `../Memory/DECISIONS.md`
+  - `../Shared/` + `../Memory/DECISIONS.md`
 - "Where should I add a company-specific override?"
   - `Reports/<Domain>/Companies/<CompanyCode>/overlays`
 - "Where is live status kept?"

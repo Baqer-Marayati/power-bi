@@ -8,9 +8,12 @@ alwaysApply: false
 
 ## Source of truth
 
-- **Editable projects:** under `Reports/Finance/Companies/<CODE>/Financial Report - <CODE>/` — open `Financial Report - <CODE>.pbip` in Power BI Desktop. Portfolio companies: **CANON**, **PAPERENTITY** (Paper Company).
+- **Editable projects:** use the real company PBIP folders under `Reports/Finance/Companies/<CODE>/` — do not guess a synthetic folder name.
+- **Canonical current paths:**
+  - `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
+  - `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
 - **Development master:** **PBIP** only. **PBIX** = optional review/transfer snapshot; merge real changes back into PBIP.
-- **Workflow:** work and review directly from PBIP in Desktop; there is no zip packaging step for this module.
+- **Workflow:** edit the PBIP as source of truth, and follow the review/package guidance recorded in Finance `Project Memory` when the user needs an inspection artifact.
 
 ## Live memory (update after meaningful work)
 

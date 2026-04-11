@@ -49,9 +49,10 @@ Edit and repair the active PBIP project: report definitions (JSON under the .Rep
 2. `Reports/Finance/Module/Project Memory/CURRENT_STATUS.md`, `NEXT_STEPS.md`, `DECISIONS.md`, `MODEL_NOTES.md` (as needed for the task).
 3. `Reports/Finance/Module/docs/foundation.md` for packaging and toolchain notes.
 4. Open or reference the live project:
-   - `Reports/Finance/Financial Report/Financial Report.pbip`
-   - Semantic model: `Financial Report.SemanticModel/definition/` (`model.tmdl`, table `.tmdl`, `relationships.tmdl`)
-   - Pages: `Financial Report.Report/definition/pages/`
+   - `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
+   - or `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
+   - Semantic model: `<Company Report>.SemanticModel/definition/` (`model.tmdl`, table `.tmdl`, `relationships.tmdl`)
+   - Pages: `<Company Report>.Report/definition/pages/`
 
 ## Non-negotiables
 

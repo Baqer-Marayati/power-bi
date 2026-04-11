@@ -1,7 +1,7 @@
 {
   "version": "2026-03-27",
   "source_module": "Reports/Finance",
-  "source_theme_file": "Reports/Finance/Financial Report/Financial Report.Report/StaticResources/RegisteredResources/Custom_Theme49412231581938193.json",
+  "source_theme_file": "Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.Report/StaticResources/RegisteredResources/Custom_Theme49412231581938193.json",
   "canonical_shared_copy": "Shared/Themes/Custom_Theme49412231581938193.json",
   "theme": {
     "background": "#1F4E79",

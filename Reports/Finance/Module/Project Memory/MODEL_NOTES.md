@@ -1,7 +1,8 @@
 # Model Notes
 
 ## Main Semantic Model
-- `/Users/baqer/Dropbox/Work/PowerBI/Reporting Hub/Reports/Finance/Financial Report/Financial Report.SemanticModel/definition/model.tmdl`
+- `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.SemanticModel/definition/model.tmdl`
+- `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.SemanticModel/definition/model.tmdl`
 
 ## Included Core Tables
 - `Fact_PNL`

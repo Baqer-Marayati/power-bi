@@ -14,9 +14,9 @@ Companies/
   <CompanyCode>/
     config/
     overlays/
-    <ReportName> - <CompanyCode>/
-      <ReportName> - <CompanyCode>.pbip
+    <ActualReportFolder>/
+      <ActualReportFolder>.pbip
       ...
 ```
 
-Start from `_template/` and duplicate per company. Work directly from PBIP; there is no zip packaging step.
+Start from `_template/` and duplicate per company. Use the real business/report folder name for that module, then work directly from PBIP; there is no zip packaging step.

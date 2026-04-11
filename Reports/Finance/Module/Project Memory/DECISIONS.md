@@ -18,12 +18,14 @@
 - Visual card backgrounds, borders, typography, layout, and all bindings left untouched.
 
 ## Active Project
-- Active working project: `C:\Work\reporting-hub\Reports\Finance\Financial Report`
+- Active working projects:
+  - `C:\Work\reporting-hub\Reports\Finance\Companies\CANON\Canon Financial Report`
+  - `C:\Work\reporting-hub\Reports\Finance\Companies\PAPERENTITY\Paper Financial Report`
 - Do not create parallel experiment folders unless explicitly needed.
 
 ## Domain Contract Alignment
 - Finance now follows the portfolio domain-first contract with dedicated `Core/`, `Companies/`, and `scripts/` areas.
-- Transitional rule: until full migration, `Financial Report/` remains the active PBIP source path for edits.
+- Company PBIPs under `Companies/` are the active source paths for edits; do not route new work through the older pre-portfolio folder layout.
 
 ## Source Of Truth
 - The financial PBIP project is the source of truth.
@@ -48,7 +50,7 @@
 - After any meaningful report edit that the user is expected to inspect, rebuild `Exports/Server Packages/Financial Report - ready.zip` before asking the user to review.
 - Do not rely on the user to manually zip, copy, or package the report after edits. Packaging is part of done-ness.
 - Keep zip packaging available every time (`Financial Report - ready.zip`) because it is still needed periodically.
-- Also treat `Reports/Finance/Financial Report` as the default local preview working path when validating recent edits between packaging runs.
+- Use the relevant company PBIP under `Companies/CANON/` or `Companies/PAPERENTITY/` as the local preview working path when validating recent edits between packaging runs.
 
 ## Review And Sync Rule
 - Treat the user-reviewed Desktop result as the strongest evidence of what Power BI really renders.
@@ -102,16 +104,16 @@
 
 ## Final Page Set
 - As of April 1, 2026, the report contains 10 live pages:
-- `Executive Overview`
-- `Income Statement`
-- `Revenue Insights`
-- `Cost Structure`
-- `Balance Sheet`
-- `Working Capital Health`
-- `Profitability Drivers`
-- `Receivables`
+- `Financial summary`
+- `Profit & loss`
+- `Sales & revenue`
+- `Operating expenses`
+- `Balance sheet`
+- `ROI`
+- `Accounts receivable`
+- `Accounts payable`
 - `Collections`
-- `Cash Position`
+- `Cash & bank`
 - Pages outside that set are no longer part of the active report shell and should not be reintroduced unless explicitly requested.
 - The last 3 pages were transferred from the Aljazeera Master Model and adapted to the Financial Report design system.
 
@@ -209,4 +211,4 @@
 - Cash Position bar chart: zoom slider disabled (user preference).
 
 ## Records Folder
-- Store screenshots, templates, references, and inspiration files in `/Users/baqer/Dropbox/Work/PowerBI/Reporting Hub/Reports/Finance/Design Benchmarks`.
+- Store screenshots, templates, references, and inspiration files in `Reports/Finance/Module/Design Benchmarks` or `Reports/Finance/Module/Records/` as appropriate for the artifact type and workflow.

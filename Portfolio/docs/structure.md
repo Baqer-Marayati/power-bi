@@ -16,23 +16,33 @@ Current modules:
 - `Sales`, `Service`, `Inventory` (active PBIP modules)
 - `HR`, `Marketing` (scaffolded)
 
-Active PBIPs are under each module’s `Companies/<CODE>/` (see `../Memory/REPORT_CATALOG.md`).
+Active PBIPs are under each module's `Companies/<CODE>/` (see `../Memory/REPORT_CATALOG.md` and `../Memory/ACTIVE_FOCUS.md` for real folder names).
 
-### `Shared`
+### `Portfolio/Shared`
 
 Contains reusable material shared across multiple report modules.
 
-### `Memory`
+### `Portfolio/Memory`
 
-Contains cross-report truth and planning context.
+Contains cross-report truth, current routing, decisions, and planning context.
 
-### `docs`
+### `Portfolio/docs`
 
 Contains stable portfolio-level orientation and architecture docs.
 
-### `Archive`
+### `Portfolio/Archive`
 
 Contains retired or historical portfolio-level material.
+
+### `Reports/<Domain>/Module`
+
+Contains the stable non-company scaffolding for a module:
+- `Core/`
+- `docs/`
+- `Project Memory/`
+- `scripts/`
+- `Records/`
+- `Archive/`
 
 ## Navigation Rule
 

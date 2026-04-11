@@ -14,11 +14,11 @@ Companies/
   <CompanyCode>/
     config/
     overlays/
-    <ReportName> - <CompanyCode>/
-      <ReportName> - <CompanyCode>.pbip
+    <ActualReportFolder>/
+      <ActualReportFolder>.pbip
       ...
 ```
 
 Start from `_template/` (if present) and duplicate per company.
 
-There is no zip packaging workflow; work directly from the PBIP folders.
+There is no zip packaging workflow; use the real company report folder name and work directly from the PBIP folders.

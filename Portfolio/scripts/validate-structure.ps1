@@ -1,20 +1,21 @@
 param(
     [string]$RepoRoot = $(Split-Path -Parent $PSScriptRoot),
-    [string[]]$Domains = @("Finance", "HR", "Sales", "Service", "Marketing", "Inventory")
+    [string[]]$Domains = @("Finance", "DataExchange", "HR", "Sales", "Service", "Marketing", "Inventory")
 )
 
 $ErrorActionPreference = "Stop"
 
-$requiredPaths = @(
+$requiredModulePaths = @(
     "README.md",
     "AGENTS.md",
-    "docs",
-    "Project Memory",
-    "Core",
     "Companies",
-    "scripts",
-    "Records",
-    "Archive"
+    "Module",
+    "Module\docs",
+    "Module\Project Memory",
+    "Module\Core",
+    "Module\scripts",
+    "Module\Records",
+    "Module\Archive"
 )
 
 $errors = New-Object System.Collections.Generic.List[string]
@@ -27,23 +28,36 @@ foreach ($domain in $Domains) {
         continue
     }
 
-    foreach ($rel in $requiredPaths) {
+    foreach ($rel in $requiredModulePaths) {
         $path = Join-Path $domainRoot $rel
         if (!(Test-Path $path)) {
             $errors.Add("Missing required path: Reports/$domain/$rel")
         }
     }
 
-    $recordsRoot = Join-Path $domainRoot "Records"
+    $recordsRoot = Join-Path $domainRoot "Module\Records"
     if (Test-Path $recordsRoot) {
-        $recordDirNames = @(Get-ChildItem -Path $recordsRoot -Directory -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Name)
+        $recordDirs = @(Get-ChildItem -Path $recordsRoot -Directory -ErrorAction SilentlyContinue)
+        $recordDirNames = @($recordDirs | Select-Object -ExpandProperty Name)
+        $matchingScreenshots = @($recordDirs | Where-Object { $_.Name -ieq "screenshots" })
         $hasLowerScreenshots = $recordDirNames | Where-Object { $_ -ceq "screenshots" }
         $hasUpperScreenshots = $recordDirNames | Where-Object { $_ -ceq "Screenshots" }
 
         if ($hasLowerScreenshots -and $hasUpperScreenshots) {
-            $warnings.Add("Casing drift in ${domain}: both Records/screenshots and Records/Screenshots exist.")
+            $warnings.Add("Casing drift in ${domain}: both Module/Records/screenshots and Module/Records/Screenshots exist.")
         } elseif ($hasUpperScreenshots -and -not $hasLowerScreenshots) {
-            $warnings.Add("Non-canonical casing in ${domain}: use Records/screenshots (lowercase) instead of Records/Screenshots.")
+            $onlyGitkeepPlaceholder = $false
+            if ($matchingScreenshots.Count -eq 1) {
+                $contents = @(Get-ChildItem -Path $matchingScreenshots[0].FullName -Force -ErrorAction SilentlyContinue)
+                $onlyGitkeepPlaceholder = (
+                    $contents.Count -eq 1 -and
+                    $contents[0].Name -eq ".gitkeep"
+                )
+            }
+
+            if (-not $onlyGitkeepPlaceholder) {
+                $warnings.Add("Non-canonical casing in ${domain}: use Module/Records/screenshots (lowercase) instead of Module/Records/Screenshots.")
+            }
         }
     }
 }
