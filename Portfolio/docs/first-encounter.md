@@ -90,3 +90,15 @@ If no additional context is provided:
 2. confirm target domain in `../Memory/REPORT_CATALOG.md`
 3. confirm source-of-truth path in the domain `README.md`
 4. follow contribution constraints in `../CONTRIBUTING.md`
+
+## 9) GitHub and local IDE tooling (Cursor / VS Code)
+
+This repository is already a Git project. Clone it from your GitHub remote (for example `git clone git@github.com:Baqer-Marayati/reporting-hub.git`), then work from the cloned folder as the workspace root so `.cursor/rules/`, `.vscode/`, and `AGENTS.md` resolve correctly.
+
+**Agent rules (in-repo, no download):** `.cursor/rules/` — portfolio and Finance rules apply automatically when you open this folder in Cursor.
+
+**Power BI Modeling MCP (semantic model / TMDL):** Optional but recommended for model work. Microsoft documents installation in the [Power BI Modeling MCP Server](https://github.com/microsoft/powerbi-modeling-mcp) repository (VS Code extension with Copilot, or `npx @microsoft/powerbi-modeling-mcp`). For Cursor, copy `.cursor/mcp.json.example` to `.cursor/mcp.json` and adjust if your client expects a different top-level shape; the real `mcp.json` stays local and is listed in `.gitignore`.
+
+**Skills and plugins:** Skills are not vendored inside this repo; they live in your personal skills directories (for example Cursor or Codex skill folders on your machine). Install or sync the Power BI–related skills you use from your own skill sources. Codex-style plugins, if you use them, are configured in your Codex or client plugin paths, not in Reporting Hub by default.
+
+**Finance design benchmark PBIP:** The tracked Wiise Sample 2 benchmark lives only under `Reports/Finance/Module/Design Benchmarks/Sample 2/`. Do not maintain a second copy under `Reports/Finance/Design Benchmarks/` — Power BI Desktop can create stray `.pbi` folders there if the project is opened from the wrong path; delete that duplicate if it appears. Use the VS Code task **Finance: Open design benchmark (Wiise Sample 2) in Power BI Desktop** (or run `Reports/Finance/Module/scripts/open-design-benchmark.ps1`) to open the canonical `.pbip`.

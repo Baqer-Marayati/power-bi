@@ -66,5 +66,5 @@ Default deep-work starting point:
 ## Cursor / VS Code workspace
 
 - Agent rules: `.cursor/rules/` (`reporting-hub-portfolio.mdc` always applies; Finance rules apply under `Reports/Finance/` and `**/*.tmdl`).
-- Tasks: **Terminal → Run Task** (or **Tasks: Run Task**) — e.g. **DataExchange** / **Finance** / **Sales** / **Service** / **Inventory**: open the company PBIP in Power BI Desktop; **Portfolio: Validate custom themes vs Portfolio/Shared/Themes**, **Portfolio: Scaffold new report module**, and shared scripts (structure validation, model cache clear) as needed.
+- Tasks: **Terminal → Run Task** (or **Tasks: Run Task**) — e.g. **DataExchange**: open the company PBIP in Power BI Desktop; **Finance: Open design benchmark (Wiise Sample 2) in Power BI Desktop** for the canonical benchmark PBIP; **Finance** / **Sales** / **Service** / **Inventory**: clear semantic model cache; **Portfolio: Validate custom themes vs Portfolio/Shared/Themes**, **Portfolio: Scaffold new report module**, and shared scripts (structure validation) as needed. See `Portfolio/docs/first-encounter.md` (section 9) for GitHub clone, MCP template (`.cursor/mcp.json.example`), and skills/plugins expectations.
 - Shared editor defaults: `.vscode/settings.json`, `.editorconfig`.

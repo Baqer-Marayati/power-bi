@@ -14,6 +14,7 @@ Reports/*/Module/Records/screenshots/*.png
 
 # Power BI semantic model data cache (should never be committed — always refresh on open)
 **/.pbi/cache.abf
+**/.pbi/localSettings.json
 
 # Ad-hoc Cursor chat captures (keep folder; do not commit binaries)
 Shared/ChatContext/images/*
