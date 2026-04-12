@@ -1,20 +1,227 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "svc_p4_bar_parts",
-  "position": {"x":184,"y":228,"z":6000,"height":264,"width":536,"tabOrder":9000},
+  "position": {
+    "x": 188,
+    "y": 236,
+    "z": 6000,
+    "height": 240,
+    "width": 502,
+    "tabOrder": 9000
+  },
   "visual": {
     "visualType": "clusteredBarChart",
-    "query": {"queryState": {"Category": {"projections": [{"field": {"Column": {"Expression": {"SourceRef": {"Entity": "Fact_ServiceParts"}},"Property": "Description"}},"queryRef": "Fact_ServiceParts.Description","nativeQueryRef": "Description","active": true}]},"Y": {"projections": [{"field": {"Measure": {"Expression": {"SourceRef": {"Entity": "_Measures"}},"Property": "Total Parts Cost"}},"queryRef": "_Measures.Total Parts Cost","nativeQueryRef": "Total Parts Cost"}]}}},
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_ServiceParts"
+                    }
+                  },
+                  "Property": "Description"
+                }
+              },
+              "queryRef": "Fact_ServiceParts.Description",
+              "nativeQueryRef": "Description",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Parts Cost"
+                }
+              },
+              "queryRef": "_Measures.Total Parts Cost",
+              "nativeQueryRef": "Total Parts Cost"
+            }
+          ]
+        }
+      }
+    },
     "objects": {
-      "labels": [{"properties": {"show": {"expr": {"Literal": {"Value": "false"}}}}}],
-      "valueAxis": [{"properties": {"showAxisTitle": {"expr": {"Literal": {"Value": "false"}}},"labelColor": {"solid": {"color": {"expr": {"Literal": {"Value": "'#6F7C78'"}}}}}}}],
-      "categoryAxis": [{"properties": {"showAxisTitle": {"expr": {"Literal": {"Value": "false"}}},"labelColor": {"solid": {"color": {"expr": {"Literal": {"Value": "'#6F7C78'"}}}}}}}]
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#6F7C78'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#6F7C78'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
-      "background": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}},"color": {"solid": {"color": {"expr": {"Literal": {"Value": "'#FFFFFF'"}}}}},"transparency": {"expr": {"Literal": {"Value": "0D"}}}}}],
-      "border": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}},"color": {"solid": {"color": {"expr": {"Literal": {"Value": "'#E2EAE6'"}}}}}}}],
-      "title": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}},"text": {"expr": {"Literal": {"Value": "'Top Parts by Cost'"}}},"fontColor": {"solid": {"color": {"expr": {"Literal": {"Value": "'#223430'"}}}}},"fontSize": {"expr": {"Literal": {"Value": "12D"}}}}}],
-      "visualHeader": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}}}}]
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E2EAE6'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top Parts by Cost'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#223430'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   }

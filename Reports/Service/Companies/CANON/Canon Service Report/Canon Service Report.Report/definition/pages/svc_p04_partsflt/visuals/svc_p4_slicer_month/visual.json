@@ -1,14 +1,79 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "svc_p4_slicer_month",
-  "position": {"x":8,"y":120,"z":19000,"height":36,"width":167,"tabOrder":2000},
+  "position": {
+    "x": 24,
+    "y": 140,
+    "z": 19000,
+    "height": 32,
+    "width": 136,
+    "tabOrder": 2000
+  },
   "visual": {
     "visualType": "slicer",
-    "query": {"queryState": {"Values": {"projections": [{"field": {"Column": {"Expression": {"SourceRef": {"Entity": "Dim_Date"}},"Property": "YearMonth"}},"queryRef": "Dim_Date.YearMonth","nativeQueryRef": "YearMonth","active": true}]}}},
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Date"
+                    }
+                  },
+                  "Property": "YearMonth"
+                }
+              },
+              "queryRef": "Dim_Date.YearMonth",
+              "nativeQueryRef": "YearMonth",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
     "objects": {
-      "data": [{"properties": {"mode": {"expr": {"Literal": {"Value": "'Dropdown'"}}}}}],
-      "header": [{"properties": {"show": {"expr": {"Literal": {"Value": "false"}}}}}],
-      "selection": [{"properties": {"singleSelect": {"expr": {"Literal": {"Value": "false"}}}}}]
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "header": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "singleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   }

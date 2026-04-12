@@ -51,6 +51,7 @@ table Fact_ServiceRevenue
 		sourceColumn: Quantity
 
 		annotation SummarizationSetBy = Automatic
+
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column Price
@@ -60,6 +61,7 @@ table Fact_ServiceRevenue
 		sourceColumn: Price
 
 		annotation SummarizationSetBy = Automatic
+
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column LineTotal
@@ -69,6 +71,7 @@ table Fact_ServiceRevenue
 		sourceColumn: LineTotal
 
 		annotation SummarizationSetBy = Automatic
+
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column ProjectCode
@@ -95,7 +98,6 @@ table Fact_ServiceRevenue
 		sourceColumn: InvoiceDate
 
 		annotation SummarizationSetBy = Automatic
-		annotation UnderlyingDateTimeDataType = Date
 
 	column CustomerCode
 		dataType: string

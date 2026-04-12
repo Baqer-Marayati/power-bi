@@ -1,23 +1,109 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "svc_p3_header",
-  "position": {"x": 184, "y": 36, "z": 20000, "height": 56, "width": 756, "tabOrder": 20000},
+  "position": {
+    "x": 188,
+    "y": 36,
+    "z": 20000,
+    "height": 60,
+    "width": 756,
+    "tabOrder": 20000
+  },
   "visual": {
     "visualType": "shape",
-    "objects": {"text": [{"properties": {"text": {"expr": {"Literal": {"Value": "''"}}}},"selector": {"id": "default"}}]},
+    "objects": {
+      "text": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
-      "stylePreset": [{"properties": {"name": {"expr": {"Literal": {"Value": "'Report Header'"}}}}}],
-      "title": [{"properties": {
-        "show": {"expr": {"Literal": {"Value": "true"}}},
-        "text": {"expr": {"Literal": {"Value": "'Machine Profitability'"}}},
-        "fontFamily": {"expr": {"Literal": {"Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"}}},
-        "bold": {"expr": {"Literal": {"Value": "false"}}},
-        "fontSize": {"expr": {"Literal": {"Value": "20D"}}}
-      }}],
-      "subTitle": [{"properties": {
-        "show": {"expr": {"Literal": {"Value": "true"}}},
-        "text": {"expr": {"Literal": {"Value": "'FSMA revenue allocated per customer per machine, vs parts cost.'"}}}
-      }}]
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Report Header'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Machine Profitability'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'FSMA revenue allocated per customer per machine, vs parts cost.'"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   },

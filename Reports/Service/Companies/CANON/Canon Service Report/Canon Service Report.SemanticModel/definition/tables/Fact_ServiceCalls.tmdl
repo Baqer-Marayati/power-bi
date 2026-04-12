@@ -18,7 +18,6 @@ table Fact_ServiceCalls
 		sourceColumn: CreateDate
 
 		annotation SummarizationSetBy = Automatic
-		annotation UnderlyingDateTimeDataType = Date
 
 	column CreateTime
 		dataType: int64
@@ -37,7 +36,6 @@ table Fact_ServiceCalls
 		sourceColumn: CloseDate
 
 		annotation SummarizationSetBy = Automatic
-		annotation UnderlyingDateTimeDataType = Date
 
 	column CloseTime
 		dataType: int64
@@ -56,7 +54,6 @@ table Fact_ServiceCalls
 		sourceColumn: ResponseDate
 
 		annotation SummarizationSetBy = Automatic
-		annotation UnderlyingDateTimeDataType = Date
 
 	column ResponseTime
 		dataType: int64
@@ -75,7 +72,6 @@ table Fact_ServiceCalls
 		sourceColumn: ResolutionDate
 
 		annotation SummarizationSetBy = Automatic
-		annotation UnderlyingDateTimeDataType = Date
 
 	column ResolutionTime
 		dataType: int64
@@ -231,41 +227,46 @@ table Fact_ServiceCalls
 		annotation SummarizationSetBy = Automatic
 
 	column CounterBK
-		dataType: string
+		dataType: int64
+		formatString: 0
 		lineageTag: f1a00001-0001-4000-b001-00000000001c
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: CounterBK
 
 		annotation SummarizationSetBy = Automatic
 
 	column CounterCyan
-		dataType: string
+		dataType: int64
+		formatString: 0
 		lineageTag: f1a00001-0001-4000-b001-00000000001d
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: CounterCyan
 
 		annotation SummarizationSetBy = Automatic
 
 	column CounterMagenta
-		dataType: string
+		dataType: int64
+		formatString: 0
 		lineageTag: f1a00001-0001-4000-b001-00000000001e
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: CounterMagenta
 
 		annotation SummarizationSetBy = Automatic
 
 	column CounterYellow
-		dataType: string
+		dataType: int64
+		formatString: 0
 		lineageTag: f1a00001-0001-4000-b001-00000000001f
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: CounterYellow
 
 		annotation SummarizationSetBy = Automatic
 
 	column TotalCounter
-		dataType: string
+		dataType: int64
+		formatString: 0
 		lineageTag: f1a00001-0001-4000-b001-000000000020
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: TotalCounter
 
 		annotation SummarizationSetBy = Automatic
@@ -277,6 +278,7 @@ table Fact_ServiceCalls
 		sourceColumn: ResolutionHours
 
 		annotation SummarizationSetBy = Automatic
+
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column ResponseHours
@@ -286,6 +288,7 @@ table Fact_ServiceCalls
 		sourceColumn: ResponseHours
 
 		annotation SummarizationSetBy = Automatic
+
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	partition Fact_ServiceCalls = m

@@ -1,8 +1,7 @@
 table _Measures
 	lineageTag: m1a00001-0001-4000-d001-000000000001
 
-	measure 'Total Service Calls' =
-			COUNTROWS ( Fact_ServiceCalls )
+	measure 'Total Service Calls' = COUNTROWS ( Fact_ServiceCalls )
 		formatString: #,##0
 		lineageTag: m1a00001-0001-4000-d001-000000000010
 
@@ -38,18 +37,15 @@ table _Measures
 		formatString: #,##0
 		lineageTag: m1a00001-0001-4000-d001-000000000014
 
-	measure 'Avg Response Time (hrs)' =
-			AVERAGE ( Fact_ServiceCalls[ResponseHours] )
+	measure 'Avg Response Time (hrs)' = AVERAGE ( Fact_ServiceCalls[ResponseHours] )
 		formatString: #,##0.0
 		lineageTag: m1a00001-0001-4000-d001-000000000020
 
-	measure 'Avg Resolution Time (hrs)' =
-			AVERAGE ( Fact_ServiceCalls[ResolutionHours] )
+	measure 'Avg Resolution Time (hrs)' = AVERAGE ( Fact_ServiceCalls[ResolutionHours] )
 		formatString: #,##0.0
 		lineageTag: m1a00001-0001-4000-d001-000000000021
 
-	measure 'Median Resolution Time (hrs)' =
-			MEDIAN ( Fact_ServiceCalls[ResolutionHours] )
+	measure 'Median Resolution Time (hrs)' = MEDIAN ( Fact_ServiceCalls[ResolutionHours] )
 		formatString: #,##0.0
 		lineageTag: m1a00001-0001-4000-d001-000000000022
 
@@ -77,13 +73,11 @@ table _Measures
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: m1a00001-0001-4000-d001-000000000023
 
-	measure 'Total Activities' =
-			COUNTROWS ( Fact_ServiceActivities )
+	measure 'Total Activities' = COUNTROWS ( Fact_ServiceActivities )
 		formatString: #,##0
 		lineageTag: m1a00001-0001-4000-d001-000000000030
 
-	measure 'Total Labor Hours' =
-			SUM ( Fact_ServiceActivities[DurationHours] )
+	measure 'Total Labor Hours' = SUM ( Fact_ServiceActivities[DurationHours] )
 		formatString: #,##0.0
 		lineageTag: m1a00001-0001-4000-d001-000000000031
 
@@ -111,13 +105,11 @@ table _Measures
 		formatString: #,##0.0
 		lineageTag: m1a00001-0001-4000-d001-000000000034
 
-	measure 'Total Parts Cost' =
-			SUM ( Fact_ServiceParts[LineTotal] )
+	measure 'Total Parts Cost' = SUM ( Fact_ServiceParts[LineTotal] )
 		formatString: #,##0
 		lineageTag: m1a00001-0001-4000-d001-000000000040
 
-	measure 'Parts Lines Delivered' =
-			COUNTROWS ( Fact_ServiceParts )
+	measure 'Parts Lines Delivered' = COUNTROWS ( Fact_ServiceParts )
 		formatString: #,##0
 		lineageTag: m1a00001-0001-4000-d001-000000000041
 
@@ -137,8 +129,7 @@ table _Measures
 		formatString: #,##0
 		lineageTag: m1a00001-0001-4000-d001-000000000043
 
-	measure 'Total Service Revenue' =
-			SUM ( Fact_ServiceRevenue[LineTotal] )
+	measure 'Total Service Revenue' = SUM ( Fact_ServiceRevenue[LineTotal] )
 		formatString: #,##0
 		lineageTag: m1a00001-0001-4000-d001-000000000050
 
@@ -216,13 +207,11 @@ table _Measures
 		formatString: #,##0
 		lineageTag: m1a00001-0001-4000-d001-000000000063
 
-	measure 'Total Revenue Allocated' =
-			[FSMA Revenue Allocated] + [MPS Revenue Allocated] + [Labour Revenue]
+	measure 'Total Revenue Allocated' = [FSMA Revenue Allocated] + [MPS Revenue Allocated] + [Labour Revenue]
 		formatString: #,##0
 		lineageTag: m1a00001-0001-4000-d001-000000000064
 
-	measure 'Net Profit per Machine' =
-			[Total Revenue Allocated] - [Total Parts Cost]
+	measure 'Net Profit per Machine' = [Total Revenue Allocated] - [Total Parts Cost]
 		formatString: #,##0
 		lineageTag: m1a00001-0001-4000-d001-000000000066
 
@@ -234,8 +223,7 @@ table _Measures
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: m1a00001-0001-4000-d001-000000000067
 
-	measure 'Machines per Client' =
-			DISTINCTCOUNT ( Fact_ServiceCalls[EquipmentKey] )
+	measure 'Machines per Client' = DISTINCTCOUNT ( Fact_ServiceCalls[EquipmentKey] )
 		formatString: #,##0
 		lineageTag: m1a00001-0001-4000-d001-000000000070
 
@@ -247,15 +235,18 @@ table _Measures
 		formatString: #,##0.0
 		lineageTag: m1a00001-0001-4000-d001-000000000071
 
-	measure 'Client Profitability' =
-			[Total Service Revenue] - [Total Parts Cost]
+	measure 'Client Profitability' = [Total Service Revenue] - [Total Parts Cost]
 		formatString: #,##0
 		lineageTag: m1a00001-0001-4000-d001-000000000072
 
-	measure 'Avg Tickets per Day' =
-			[Avg Calls per Day]
+	measure 'Avg Tickets per Day' = [Avg Calls per Day]
 		formatString: #,##0.0
 		lineageTag: m1a00001-0001-4000-d001-000000000081
+
+	column Value
+		lineageTag: 04bd747f-402f-4182-b785-0ec95fdf7d29
+		isNameInferred
+		sourceColumn: [Value]
 
 	partition _Measures = calculated
 		mode: import
