@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "svc_p5_bar_mach",
   "position": {
-    "x": 714,
+    "x": 188,
     "y": 500,
     "z": 6000,
     "height": 240,
-    "width": 502,
+    "width": 1028,
     "tabOrder": 10000
   },
   "visual": {

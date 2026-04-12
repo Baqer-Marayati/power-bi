@@ -1,0 +1,37 @@
+table SAP_BS_Line
+	lineageTag: c4d8e1f2-3a5b-4c7d-9e0f-1a2b3c4d5e6f
+
+	column LineOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: d5e9f2a3-4b6c-5d8e-0f1a-2b3c4d5e6f7
+		summarizeBy: sum
+		sourceColumn: [LineOrder]
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineLabel
+		dataType: string
+		lineageTag: e6f0a3b4-5c7d-6e9f-1a2b-3c4d5e6f708
+		summarizeBy: none
+		sourceColumn: [LineLabel]
+		sortByColumn: LineOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SAP_BS_Line = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "LineOrder", INTEGER,
+				    "LineLabel", STRING,
+				    {
+				        { 1, "Capital 3000100" },
+				        { 2, "Retained 3000500" },
+				        { 3, "FY P&L net (profit period)" }
+				    }
+				)
+
+	annotation PBI_Id = f7a1b4c5d6e748f9a0b1c2d3e4f5a678
+

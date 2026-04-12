@@ -41,6 +41,7 @@ The active report shell currently contains these 10 pages in `pages.json` order:
 
 ## Current Validation Focus
 
+- **PAPERENTITY:** After pull, open `Paper Financial Report.pbip` and validate the **Balance sheet** page: **Largest Balance Sheet Accounts** (all `Dim_BSAccount` names) plus the **SAP equity check** three-bar visual vs SAP (same as-of date): **3000100**, **3000500**, FY **`[Net Profit]`** through **`MAX(Dim_Date[Date])`**.
 - Reopen the active company PBIPs in Power BI Desktop after meaningful model or visual changes.
 - Recheck any remaining semantic warnings on compatibility-heavy tables such as `generalLedgerEntries` and `accounts`.
 - Validate page behavior and interactions on the active 10-page shell, especially after changes to shared KPI rows, slicer rails, or transferred AR/AP/cash pages.

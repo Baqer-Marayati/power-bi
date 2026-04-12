@@ -6,14 +6,14 @@
     "y": 236,
     "z": 6000,
     "height": 240,
-    "width": 502,
+    "width": 1028,
     "tabOrder": 9000
   },
   "visual": {
-    "visualType": "clusteredBarChart",
+    "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Category": {
+        "Rows": {
           "projections": [
             {
               "field": {
@@ -32,7 +32,7 @@
             }
           ]
         },
-        "Y": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -47,36 +47,113 @@
               },
               "queryRef": "_Measures.Total Activities",
               "nativeQueryRef": "Total Activities"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Labor Hours"
+                }
+              },
+              "queryRef": "_Measures.Total Labor Hours",
+              "nativeQueryRef": "Total Labor Hours"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "First-Time Fix Rate %"
+                }
+              },
+              "queryRef": "_Measures.First-Time Fix Rate %",
+              "nativeQueryRef": "First-Time Fix Rate %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Calls per Technician"
+                }
+              },
+              "queryRef": "_Measures.Calls per Technician",
+              "nativeQueryRef": "Calls per Technician"
             }
           ]
         }
       }
     },
     "objects": {
-      "labels": [
+      "grid": [
         {
           "properties": {
-            "show": {
+            "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "3D"
+                }
+              }
+            },
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "gridHorizontalColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E2EAE6'"
+                    }
+                  }
                 }
               }
             }
           }
         }
       ],
-      "valueAxis": [
+      "columnHeaders": [
         {
           "properties": {
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#223430'"
+                    }
+                  }
                 }
               }
             },
-            "labelColor": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontColor": {
               "solid": {
                 "color": {
                   "expr": {
@@ -90,24 +167,30 @@
           }
         }
       ],
-      "categoryAxis": [
+      "rowHeaders": [
         {
           "properties": {
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "labelColor": {
+            "fontColor": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#6F7C78'"
+                      "Value": "'#223430'"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTotals": [
+        {
+          "properties": {
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -184,7 +267,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Activities by Technician'"
+                  "Value": "'Technician Performance Summary'"
                 }
               }
             },

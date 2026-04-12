@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "svc_p5_bar_profit",
   "position": {
-    "x": 188,
-    "y": 500,
-    "z": 6000,
-    "height": 240,
-    "width": 502,
+    "x": -2000,
+    "y": -2000,
+    "z": -1,
+    "height": 0,
+    "width": 0,
     "tabOrder": 9000
   },
   "visual": {

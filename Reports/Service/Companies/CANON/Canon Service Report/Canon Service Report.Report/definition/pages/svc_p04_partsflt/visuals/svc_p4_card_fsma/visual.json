@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Avg Response Time (hrs)"
+                  "Property": "FSMA Parts Cost"
                 }
               },
-              "queryRef": "_Measures.Avg Response Time (hrs)",
-              "nativeQueryRef": "Avg Response Time (hrs)"
+              "queryRef": "_Measures.FSMA Parts Cost",
+              "nativeQueryRef": "FSMA Parts Cost"
             }
           ]
         }
@@ -76,7 +76,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Avg Response Time (hrs)"
+            "metadata": "_Measures.FSMA Parts Cost"
           }
         }
       ]
@@ -223,7 +223,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Avg Response Time (hrs)'"
+                  "Value": "'FSMA Parts Cost'"
                 }
               }
             },

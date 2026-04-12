@@ -3,14 +3,14 @@
   "name": "678e8661e2e64b9392bd",
   "position": {
     "x": 188,
-    "y": 236,
+    "y": 248,
     "z": 4000,
-    "height": 340,
-    "width": 502,
+    "height": 406,
+    "width": 506,
     "tabOrder": 4000
   },
   "visual": {
-    "visualType": "lineClusteredColumnComboChart",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -42,27 +42,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Net Revenue 2026+"
+                  "Property": "Monthly ROI %"
                 }
               },
-              "queryRef": "_Measures.Net Revenue 2026+",
-              "nativeQueryRef": "Net Revenue 2026+",
-              "displayName": "Net Revenue"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Gross Profit 2026+"
-                }
-              },
-              "queryRef": "_Measures.Gross Profit 2026+",
-              "nativeQueryRef": "Gross Profit 2026+",
-              "displayName": "Gross Profit"
+              "queryRef": "_Measures.Monthly ROI %",
+              "nativeQueryRef": "Monthly ROI %",
+              "displayName": "ROI %"
             }
           ]
         }
@@ -149,7 +134,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -177,7 +162,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue vs Gross Profit (Monthly)'"
+                  "Value": "'Monthly ROI'"
                 }
               }
             }

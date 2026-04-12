@@ -3,11 +3,11 @@
   "name": "svc_p2_slicer_month",
   "position": {
     "x": 24,
-    "y": 208,
+    "y": 276,
     "z": 19000,
     "height": 32,
     "width": 136,
-    "tabOrder": 4000
+    "tabOrder": 1003
   },
   "visual": {
     "visualType": "slicer",
@@ -23,11 +23,11 @@
                       "Entity": "Dim_Date"
                     }
                   },
-                  "Property": "YearMonth"
+                  "Property": "MonthName"
                 }
               },
-              "queryRef": "Dim_Date.YearMonth",
-              "nativeQueryRef": "YearMonth",
+              "queryRef": "Dim_Date.MonthName",
+              "nativeQueryRef": "MonthName",
               "active": true
             }
           ]
@@ -65,6 +65,13 @@
         {
           "properties": {
             "singleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "selectAllCheckboxEnabled": {
               "expr": {
                 "Literal": {
                   "Value": "false"

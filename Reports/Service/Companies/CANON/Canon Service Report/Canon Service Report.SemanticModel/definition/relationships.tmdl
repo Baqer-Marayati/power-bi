@@ -70,3 +70,7 @@ relationship aa000004-0001-4000-c004-000000000003
 	fromColumn: Fact_ServiceRevenue.ProjectCode
 	toColumn: Dim_Project.ProjectCode
 
+relationship aa000004-0001-4000-c004-000000000004
+	fromColumn: Fact_ServiceRevenue.ItemCode
+	toColumn: Dim_Item.ItemCode
+

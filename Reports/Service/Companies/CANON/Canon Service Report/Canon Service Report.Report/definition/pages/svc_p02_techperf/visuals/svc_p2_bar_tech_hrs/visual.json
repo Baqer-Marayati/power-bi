@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "svc_p2_bar_tech_hrs",
   "position": {
-    "x": 714,
-    "y": 236,
-    "z": 6000,
-    "height": 240,
-    "width": 502,
+    "x": 10,
+    "y": 764,
+    "z": -1,
+    "height": 172,
+    "width": 150,
     "tabOrder": 10000
   },
   "visual": {

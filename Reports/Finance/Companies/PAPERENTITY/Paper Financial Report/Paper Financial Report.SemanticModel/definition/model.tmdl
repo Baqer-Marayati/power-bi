@@ -54,6 +54,7 @@ ref table CollectionsFact
 ref table CashPositionFact
 ref table DimBusinessPartner
 ref table PayablesFact
+ref table SAP_BS_Line
 
 ref cultureInfo en-US
 

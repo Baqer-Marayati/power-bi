@@ -125,6 +125,13 @@
 - If refresh fails with an unknown column error, confirm the **technical UDF name** on `OITM` in the company database (Customization → UDF may show a different `U_...` code than `U_BusinessType`) and update the SQL in `Fact_SalesDetail.tmdl` only for that identifier.
 - Do not reintroduce a **disconnected** mapping table on the chart axis for this visual; source-of-truth for the bucket is **SAP item master**, not a static `DATATABLE` map in the model.
 
+## PAPERENTITY — Balance sheet: largest accounts + SAP equity check (2026-04-11)
+
+- The **Balance sheet** page keeps the **Canon-style** visual **`Largest Balance Sheet Accounts`**: **`Dim_BSAccount[AcctName]`** on the category axis and **`[BS Balance Display]`** (all balance-sheet accounts by name, sorted by balance). This is the **detailed per-account** view; it matches the **Canon** page pattern.
+- A **second** compact bar chart (**`SAP equity check (3000100 / 3000500 / FY P&L)`**, visual id `c9d1e5c40b1f4c2fa010`) sits **under** the largest-accounts bar. It uses calculated table **`SAP_BS_Line`** plus **`SAP BS Line Amount`** so **capital**, **retained earnings**, and **profit period (FY P&L net)** can be reconciled to SAP without replacing the main account list.
+- **Maintenance:** SAP account codes and the FY rule live in **`_Measures.tmdl`** / **`SAP_BS_Line.tmdl`**. If fiscal year is not calendar Jan–Dec, replace the `DATE ( YEAR ( AsOf ), 1, 1 )` start in **`SAP BS Profit Period PL`** with the company’s fiscal-year start rule.
+- **Validate in Desktop:** Reopen `Paper Financial Report.pbip`, refresh, set **`Dim_Date`** to the same as-of as SAP, and compare the small three-bar visual to SAP **Capital**, **Retained earnings**, and **Profit period**.
+
 ## PBIP / Semantic Handling Notes
 - Visual JSON changes are often the fastest safe route for layout and binding repairs.
 - Slicer polish can require structural report changes, not just font-size changes.

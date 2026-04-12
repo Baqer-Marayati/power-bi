@@ -3,11 +3,11 @@
   "name": "svc_p3_slicer_class",
   "position": {
     "x": 24,
-    "y": 140,
+    "y": 344,
     "z": 19000,
     "height": 32,
     "width": 136,
-    "tabOrder": 2000
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "slicer",

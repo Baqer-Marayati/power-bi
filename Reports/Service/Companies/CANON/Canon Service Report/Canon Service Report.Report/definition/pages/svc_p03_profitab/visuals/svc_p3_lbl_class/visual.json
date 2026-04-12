@@ -3,11 +3,11 @@
   "name": "svc_p3_lbl_class",
   "position": {
     "x": 24,
-    "y": 120,
+    "y": 324,
     "z": 19000,
     "height": 18,
     "width": 136,
-    "tabOrder": 1000
+    "tabOrder": 3300
   },
   "visual": {
     "visualType": "textbox",

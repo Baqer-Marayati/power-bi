@@ -10,7 +10,7 @@
     "tabOrder": 11000
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -42,11 +42,25 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Total Service Calls"
+                  "Property": "Total Service Revenue"
                 }
               },
-              "queryRef": "_Measures.Total Service Calls",
-              "nativeQueryRef": "Total Service Calls"
+              "queryRef": "_Measures.Total Service Revenue",
+              "nativeQueryRef": "Total Service Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Parts Cost"
+                }
+              },
+              "queryRef": "_Measures.Total Parts Cost",
+              "nativeQueryRef": "Total Parts Cost"
             }
           ]
         }
@@ -74,6 +88,33 @@
         {
           "properties": {
             "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'TopCenter'"
+                }
+              }
+            },
+            "showTitle": {
               "expr": {
                 "Literal": {
                   "Value": "false"
@@ -129,9 +170,6 @@
               }
             }
           }
-        },
-        {
-          "properties": {}
         }
       ]
     },
@@ -204,7 +242,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Calls Trend by Month'"
+                  "Value": "'Revenue vs Parts Cost Trend'"
                 }
               }
             },

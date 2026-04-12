@@ -438,19 +438,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Net Revenue 2026+"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Net Revenue": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_measures.gross_profit_2026": {
 			      "Definition": {
@@ -459,19 +447,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Gross Profit 2026+"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Gross Profit": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "vendorledgerentries.accountpayables_ageingreport_new": {
 			      "Definition": {
@@ -721,6 +697,27 @@ cultureInfo en-US
 			      "Terms": [
 			        {
 			          "Vendor Code": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.monthly_roi_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Monthly ROI %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ROI %": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

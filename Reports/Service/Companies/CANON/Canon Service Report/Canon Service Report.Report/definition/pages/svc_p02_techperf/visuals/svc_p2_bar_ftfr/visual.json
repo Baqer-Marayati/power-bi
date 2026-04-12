@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "svc_p2_bar_ftfr",
   "position": {
-    "x": 714,
+    "x": 10,
     "y": 500,
-    "z": 6000,
+    "z": -1,
     "height": 240,
-    "width": 502,
+    "width": 150,
     "tabOrder": 12000
   },
   "visual": {
