@@ -10,7 +10,7 @@
     "tabOrder": 17000
   },
   "visual": {
-    "visualType": "clusteredBarChart",
+    "visualType": "areaChart",
     "query": {
       "queryState": {
         "Category": {
@@ -78,23 +78,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Dim_Date"
-                  }
-                },
-                "Property": "YearMonthSort"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ]
       }
     },
     "objects": {
