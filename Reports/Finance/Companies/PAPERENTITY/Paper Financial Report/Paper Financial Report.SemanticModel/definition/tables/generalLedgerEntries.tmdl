@@ -314,7 +314,6 @@ table generalLedgerEntries
 				SELECTCOLUMNS (
 				    ADDCOLUMNS (
 				        'Fact_PNL',
-				        "postingDate", 'Fact_PNL'[PostingDate],
 				        "no", 'Fact_PNL'[AcctCode],
 				        "name", 'Fact_PNL'[AcctName],
 				        "description", 'Fact_PNL'[AcctName],
@@ -327,7 +326,6 @@ table generalLedgerEntries
 				            ),
 				        "accountType", "Posting",
 				        "incomeBalance", "Income Statement",
-				        "amount", 'Fact_PNL'[Amount],
 				        "AmountABS", ABS ( 'Fact_PNL'[Amount] ),
 				        "globalDimension1Code", 'Fact_PNL'[BranchCode],
 				        "globalDimension2Code", 'Fact_PNL'[SalesTypeCode],
@@ -354,14 +352,14 @@ table generalLedgerEntries
 				        "IsCurrentOrLastYear", 'Fact_PNL'[PostingDate] >= DATE ( YEAR ( LatestPostingDate ) - 1, 1, 1 ),
 				        "IsInLast6Months", 'Fact_PNL'[PostingDate] >= StartOfTrailingWindow && 'Fact_PNL'[PostingDate] <= LatestPostingDate
 				    ),
-				    "postingDate", [postingDate],
+				    "postingDate", [PostingDate],
 				    "no", [no],
 				    "name", [name],
 				    "description", [description],
 				    "accountCategory", [accountCategory],
 				    "accountType", [accountType],
 				    "incomeBalance", [incomeBalance],
-				    "amount", [amount],
+				    "amount", [Amount],
 				    "AmountABS", [AmountABS],
 				    "globalDimension1Code", [globalDimension1Code],
 				    "globalDimension2Code", [globalDimension2Code],

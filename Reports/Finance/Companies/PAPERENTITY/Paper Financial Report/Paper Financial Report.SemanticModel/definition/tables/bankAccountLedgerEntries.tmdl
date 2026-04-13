@@ -112,9 +112,9 @@ table bankAccountLedgerEntries
 
 	measure Cashflow_previousNetDisplay =
 			
-			VAR Value = [Cashflow_previousNet]
+			VAR DisplayVal = [Cashflow_previousNet]
 			RETURN
-			    IF ( ISBLANK ( Value ), BLANK (), FORMAT ( Value, "#,0.00;(#,0.00);0.00" ) & " د.ع" )
+			    IF ( ISBLANK ( DisplayVal ), BLANK (), FORMAT ( DisplayVal, "#,0.00;(#,0.00);0.00" ) & " د.ع" )
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0516
 
 	measure Cashflow_turnoverSummary =

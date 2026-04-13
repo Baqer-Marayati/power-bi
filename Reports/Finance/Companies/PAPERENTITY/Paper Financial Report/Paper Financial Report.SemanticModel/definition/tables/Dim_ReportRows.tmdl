@@ -6,7 +6,6 @@ table Dim_ReportRows
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [RowLabel]
-		sortByColumn: SortOrder
 
 		annotation SummarizationSetBy = Automatic
 

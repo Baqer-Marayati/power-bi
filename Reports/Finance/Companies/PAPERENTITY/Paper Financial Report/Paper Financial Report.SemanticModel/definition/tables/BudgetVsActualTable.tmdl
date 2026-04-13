@@ -108,7 +108,7 @@ table BudgetVsActualTable
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'ExpenseVariance 1' = [NewDynamicExpense] - [NewDynamicBudgetExpense]
+	measure BudgetExpenseVariance = [NewDynamicExpense] - [NewDynamicBudgetExpense]
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1011
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -269,7 +269,7 @@ table BudgetVsActualTable
 		formatString: #,0.00;(#,0.00);0.00
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1031
 
-	measure ExpenseVariancePlain = ['ExpenseVariance 1']
+	measure ExpenseVariancePlain = [BudgetExpenseVariance]
 		formatString: #,0.00;(#,0.00);0.00
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1032
 
@@ -287,62 +287,62 @@ table BudgetVsActualTable
 
 	measure NewDynamicIncomeDisplay =
 			
-			VAR Value = [NewDynamicIncome]
+			VAR DisplayVal = [NewDynamicIncome]
 			RETURN
-			    IF ( ISBLANK ( Value ), BLANK (), FORMAT ( Value, "#,0.00" ) & " د.ع" )
+			    IF ( ISBLANK ( DisplayVal ), BLANK (), FORMAT ( DisplayVal, "#,0.00" ) & " د.ع" )
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1035
 
 	measure NewDynamicExpenseDisplay =
 			
-			VAR Value = [NewDynamicExpense]
+			VAR DisplayVal = [NewDynamicExpense]
 			RETURN
-			    IF ( ISBLANK ( Value ), BLANK (), FORMAT ( Value, "#,0.00" ) & " د.ع" )
+			    IF ( ISBLANK ( DisplayVal ), BLANK (), FORMAT ( DisplayVal, "#,0.00" ) & " د.ع" )
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1036
 
 	measure NewDynamicBudgetDisplay =
 			
-			VAR Value = [NewDynamicBudget]
+			VAR DisplayVal = [NewDynamicBudget]
 			RETURN
-			    IF ( ISBLANK ( Value ), BLANK (), FORMAT ( Value, "#,0.00" ) & " د.ع" )
+			    IF ( ISBLANK ( DisplayVal ), BLANK (), FORMAT ( DisplayVal, "#,0.00" ) & " د.ع" )
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1037
 
 	measure NewDynamicBudgetExpenseDisplay =
 			
-			VAR Value = [NewDynamicBudgetExpense]
+			VAR DisplayVal = [NewDynamicBudgetExpense]
 			RETURN
-			    IF ( ISBLANK ( Value ), BLANK (), FORMAT ( Value, "#,0.00" ) & " د.ع" )
+			    IF ( ISBLANK ( DisplayVal ), BLANK (), FORMAT ( DisplayVal, "#,0.00" ) & " د.ع" )
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1038
 
 	measure IncomeVarianceDisplay =
 			
-			VAR Value = [IncomeVariane]
+			VAR DisplayVal = [IncomeVariane]
 			RETURN
-			    IF ( ISBLANK ( Value ), BLANK (), FORMAT ( Value, "#,0.00;(#,0.00);0.00" ) & " د.ع" )
+			    IF ( ISBLANK ( DisplayVal ), BLANK (), FORMAT ( DisplayVal, "#,0.00;(#,0.00);0.00" ) & " د.ع" )
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1039
 
 	measure ExpenseVarianceDisplay =
 			
-			VAR Value = ['ExpenseVariance 1']
+			VAR DisplayVal = [BudgetExpenseVariance]
 			RETURN
-			    IF ( ISBLANK ( Value ), BLANK (), FORMAT ( Value, "#,0.00;(#,0.00);0.00" ) & " د.ع" )
+			    IF ( ISBLANK ( DisplayVal ), BLANK (), FORMAT ( DisplayVal, "#,0.00;(#,0.00);0.00" ) & " د.ع" )
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1040
 
 	measure IncomeBudgetAttainmentPctDisplay =
 			
-			VAR Value = [IncomeBudgetAttainmentPct]
-			RETURN IF ( ISBLANK ( Value ), "--", FORMAT ( Value, "0.00%" ) )
+			VAR DisplayVal = [IncomeBudgetAttainmentPct]
+			RETURN IF ( ISBLANK ( DisplayVal ), "--", FORMAT ( DisplayVal, "0.00%" ) )
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1041
 
 	measure ExpenseBudgetAttainmentPctDisplay =
 			
-			VAR Value = [ExpenseBudgetAttainmentPct]
-			RETURN IF ( ISBLANK ( Value ), "--", FORMAT ( Value, "0.00%" ) )
+			VAR DisplayVal = [ExpenseBudgetAttainmentPct]
+			RETURN IF ( ISBLANK ( DisplayVal ), "--", FORMAT ( DisplayVal, "0.00%" ) )
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1042
 
 	measure GLTableVariancePctDisplay =
 			
-			VAR Value = [GLTableVariancePct]
-			RETURN IF ( ISBLANK ( Value ), "--", FORMAT ( Value, "0.00%" ) )
+			VAR DisplayVal = [GLTableVariancePct]
+			RETURN IF ( ISBLANK ( DisplayVal ), "--", FORMAT ( DisplayVal, "0.00%" ) )
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1043
 
 	column MonthStart
