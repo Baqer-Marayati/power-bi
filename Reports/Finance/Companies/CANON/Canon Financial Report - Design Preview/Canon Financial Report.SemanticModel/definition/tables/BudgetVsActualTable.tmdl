@@ -1,0 +1,383 @@
+table BudgetVsActualTable
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1001
+
+	measure SelectedPeriodLabel = SELECTEDVALUE ( 'Period'[KPI], "This fiscal year" )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1002
+
+	measure SelectedDimName = SELECTEDVALUE ( 'dimensions'[code], "Branch" )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1003
+
+	measure SelectedDimValue = SELECTEDVALUE ( 'dimensionValues'[code] )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1004
+
+	measure SelectedAccountCategory = SELECTEDVALUE ( 'AccountCategoryTable'[Category], "Income" )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1005
+
+	measure NewDynamicIncome =
+			
+			VAR PeriodLabel = [SelectedPeriodLabel]
+			VAR EndDate = TODAY ()
+			VAR StartDate =
+			    SWITCH (
+			        PeriodLabel,
+			        "This week", EndDate - WEEKDAY ( EndDate, 2 ) + 1,
+			        "This month", DATE ( YEAR ( EndDate ), MONTH ( EndDate ), 1 ),
+			        "This quarter", DATE ( YEAR ( EndDate ), ( QUARTER ( EndDate ) - 1 ) * 3 + 1, 1 ),
+			        "This calendar year", DATE ( YEAR ( EndDate ), 1, 1 ),
+			        DATE ( YEAR ( EndDate ), 1, 1 )
+			    )
+			RETURN
+			    CALCULATE (
+			        SUMX ( FILTER ( 'generalLedgerEntries', 'generalLedgerEntries'[accountCategory] = "Income" ), ABS ( 'generalLedgerEntries'[amount] ) ),
+			        DATESBETWEEN ( 'DateTable'[Date], StartDate, EndDate )
+			    )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1006
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure NewDynamicExpense =
+			
+			VAR PeriodLabel = [SelectedPeriodLabel]
+			VAR EndDate = TODAY ()
+			VAR StartDate =
+			    SWITCH (
+			        PeriodLabel,
+			        "This week", EndDate - WEEKDAY ( EndDate, 2 ) + 1,
+			        "This month", DATE ( YEAR ( EndDate ), MONTH ( EndDate ), 1 ),
+			        "This quarter", DATE ( YEAR ( EndDate ), ( QUARTER ( EndDate ) - 1 ) * 3 + 1, 1 ),
+			        "This calendar year", DATE ( YEAR ( EndDate ), 1, 1 ),
+			        DATE ( YEAR ( EndDate ), 1, 1 )
+			    )
+			RETURN
+			    CALCULATE (
+			        SUMX ( FILTER ( 'generalLedgerEntries', 'generalLedgerEntries'[accountCategory] = "Expense" ), ABS ( 'generalLedgerEntries'[amount] ) ),
+			        DATESBETWEEN ( 'DateTable'[Date], StartDate, EndDate )
+			    )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1007
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure NewDynamicBudget =
+			
+			VAR PeriodLabel = [SelectedPeriodLabel]
+			VAR EndDate = TODAY ()
+			VAR StartDate =
+			    SWITCH (
+			        PeriodLabel,
+			        "This week", EndDate - WEEKDAY ( EndDate, 2 ) + 1,
+			        "This month", DATE ( YEAR ( EndDate ), MONTH ( EndDate ), 1 ),
+			        "This quarter", DATE ( YEAR ( EndDate ), ( QUARTER ( EndDate ) - 1 ) * 3 + 1, 1 ),
+			        "This calendar year", DATE ( YEAR ( EndDate ), 1, 1 ),
+			        DATE ( YEAR ( EndDate ), 1, 1 )
+			    )
+			RETURN
+			    CALCULATE (
+			        SUM ( 'glBudgetEntries'[amount] ),
+			        'glBudgetEntries'[accountCategory] = "Income",
+			        DATESBETWEEN ( 'DateTable'[Date], StartDate, EndDate )
+			    )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1008
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure NewDynamicBudgetExpense =
+			
+			VAR PeriodLabel = [SelectedPeriodLabel]
+			VAR EndDate = TODAY ()
+			VAR StartDate =
+			    SWITCH (
+			        PeriodLabel,
+			        "This week", EndDate - WEEKDAY ( EndDate, 2 ) + 1,
+			        "This month", DATE ( YEAR ( EndDate ), MONTH ( EndDate ), 1 ),
+			        "This quarter", DATE ( YEAR ( EndDate ), ( QUARTER ( EndDate ) - 1 ) * 3 + 1, 1 ),
+			        "This calendar year", DATE ( YEAR ( EndDate ), 1, 1 ),
+			        DATE ( YEAR ( EndDate ), 1, 1 )
+			    )
+			RETURN
+			    CALCULATE (
+			        SUM ( 'glBudgetEntries'[amount] ),
+			        'glBudgetEntries'[accountCategory] = "Expense",
+			        DATESBETWEEN ( 'DateTable'[Date], StartDate, EndDate )
+			    )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1009
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure IncomeVariane = [NewDynamicIncome] - [NewDynamicBudget]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1010
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ExpenseVariance 1' = [NewDynamicExpense] - [NewDynamicBudgetExpense]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1011
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure NewKPIIncome_ChangePct =
+			
+			VAR Pct = DIVIDE ( [NewDynamicIncome] - [NewDynamicBudget], [NewDynamicBudget] )
+			RETURN IF ( ISBLANK ( [NewDynamicBudget] ), "--", FORMAT ( Pct, "0.0%" ) )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1012
+
+	measure NewKPIExpense_ChangePct =
+			
+			VAR Pct = DIVIDE ( [NewDynamicExpense] - [NewDynamicBudgetExpense], [NewDynamicBudgetExpense] )
+			RETURN IF ( ISBLANK ( [NewDynamicBudgetExpense] ), "--", FORMAT ( Pct, "0.0%" ) )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1013
+
+	measure RevenueCurrent =
+			
+			VAR RowMonth = MAX ( 'BudgetVsActualTable'[MonthStart] )
+			RETURN
+			    CALCULATE (
+			        SUMX ( FILTER ( 'generalLedgerEntries', 'generalLedgerEntries'[accountCategory] = "Income" ), ABS ( 'generalLedgerEntries'[amount] ) ),
+			        DATESBETWEEN ( 'DateTable'[Date], RowMonth, EOMONTH ( RowMonth, 0 ) )
+			    )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1014
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RevenuePrevious =
+			
+			VAR RowMonth = EDATE ( MAX ( 'BudgetVsActualTable'[MonthStart] ), -12 )
+			RETURN
+			    CALCULATE (
+			        SUMX ( FILTER ( 'generalLedgerEntries', 'generalLedgerEntries'[accountCategory] = "Income" ), ABS ( 'generalLedgerEntries'[amount] ) ),
+			        DATESBETWEEN ( 'DateTable'[Date], RowMonth, EOMONTH ( RowMonth, 0 ) )
+			    )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1015
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RevenueCurrentLinear = [RevenueCurrent]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1016
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ActualAmountDynamic =
+			
+			VAR DimName = [SelectedDimName]
+			VAR DimValue = [SelectedDimValue]
+			VAR Category = [SelectedAccountCategory]
+			VAR StartDate = DATE ( YEAR ( TODAY () ), 1, 1 )
+			VAR EndDate = TODAY ()
+			RETURN
+			    CALCULATE (
+			        SUMX (
+			            FILTER (
+			                'generalLedgerEntries',
+			                'generalLedgerEntries'[accountCategory] = Category
+			                    && (
+			                        ISBLANK ( DimValue )
+			                            || ( DimName = "Branch" && 'generalLedgerEntries'[globalDimension1Code] = DimValue )
+			                            || ( DimName = "Sales Type" && 'generalLedgerEntries'[globalDimension2Code] = DimValue )
+			                            || ( DimName = "Department" && 'generalLedgerEntries'[shortcutDimension3Code] = DimValue )
+			                    )
+			            ),
+			            ABS ( 'generalLedgerEntries'[amount] )
+			        ),
+			        DATESBETWEEN ( 'DateTable'[Date], StartDate, EndDate )
+			    )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1017
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure BudgetAmountDynamic =
+			
+			VAR DimName = [SelectedDimName]
+			VAR DimValue = [SelectedDimValue]
+			VAR Category = [SelectedAccountCategory]
+			VAR StartDate = DATE ( YEAR ( TODAY () ), 1, 1 )
+			VAR EndDate = TODAY ()
+			RETURN
+			    CALCULATE (
+			        SUM ( 'glBudgetEntries'[amount] ),
+			        FILTER (
+			            'glBudgetEntries',
+			            'glBudgetEntries'[accountCategory] = Category
+			                && (
+			                    ISBLANK ( DimValue )
+			                        || ( DimName = "Branch" && 'glBudgetEntries'[globalDimension1Code] = DimValue )
+			                        || ( DimName = "Sales Type" && 'glBudgetEntries'[globalDimension2Code] = DimValue )
+			                )
+			        ),
+			        DATESBETWEEN ( 'DateTable'[Date], StartDate, EndDate )
+			    )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1018
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure GLTableActual =
+			
+			VAR Category = [SelectedAccountCategory]
+			RETURN
+			    CALCULATE (
+			        SUMX ( FILTER ( 'generalLedgerEntries', 'generalLedgerEntries'[accountCategory] = Category ), ABS ( 'generalLedgerEntries'[amount] ) ),
+			        DATESBETWEEN ( 'DateTable'[Date], DATE ( YEAR ( TODAY () ), 1, 1 ), TODAY () )
+			    )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1019
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure GLTableBudget =
+			
+			VAR Category = [SelectedAccountCategory]
+			RETURN
+			    CALCULATE (
+			        SUM ( 'glBudgetEntries'[amount] ),
+			        'glBudgetEntries'[accountCategory] = Category,
+			        DATESBETWEEN ( 'DateTable'[Date], DATE ( YEAR ( TODAY () ), 1, 1 ), TODAY () )
+			    )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1020
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure GLTableVariance = [GLTableActual] - [GLTableBudget]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1021
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure GLTableVariancePct =
+			
+			VAR Pct = DIVIDE ( [GLTableVariance], [GLTableBudget] )
+			RETURN IF ( ISBLANK ( [GLTableBudget] ), BLANK (), Pct )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1022
+
+	measure DimensionGraphTitle =
+			
+			[SelectedDimName] & " " & [SelectedAccountCategory]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1023
+
+	measure NewDynamicIncomePlain = [NewDynamicIncome]
+		formatString: #,0.00
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1027
+
+	measure NewDynamicExpensePlain = [NewDynamicExpense]
+		formatString: #,0.00
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1028
+
+	measure NewDynamicBudgetPlain = [NewDynamicBudget]
+		formatString: #,0.00
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1029
+
+	measure NewDynamicBudgetExpensePlain = [NewDynamicBudgetExpense]
+		formatString: #,0.00
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1030
+
+	measure IncomeVariancePlain = [IncomeVariane]
+		formatString: #,0.00;(#,0.00);0.00
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1031
+
+	measure ExpenseVariancePlain = ['ExpenseVariance 1']
+		formatString: #,0.00;(#,0.00);0.00
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1032
+
+	measure IncomeBudgetAttainmentPct =
+			
+			DIVIDE ( [NewDynamicIncome], [NewDynamicBudget] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1033
+
+	measure ExpenseBudgetAttainmentPct =
+			
+			DIVIDE ( [NewDynamicExpense], [NewDynamicBudgetExpense] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1034
+
+	measure NewDynamicIncomeDisplay =
+			
+			VAR Value = [NewDynamicIncome]
+			RETURN
+			    IF ( ISBLANK ( Value ), BLANK (), FORMAT ( Value, "#,0.00" ) & " د.ع" )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1035
+
+	measure NewDynamicExpenseDisplay =
+			
+			VAR Value = [NewDynamicExpense]
+			RETURN
+			    IF ( ISBLANK ( Value ), BLANK (), FORMAT ( Value, "#,0.00" ) & " د.ع" )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1036
+
+	measure NewDynamicBudgetDisplay =
+			
+			VAR Value = [NewDynamicBudget]
+			RETURN
+			    IF ( ISBLANK ( Value ), BLANK (), FORMAT ( Value, "#,0.00" ) & " د.ع" )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1037
+
+	measure NewDynamicBudgetExpenseDisplay =
+			
+			VAR Value = [NewDynamicBudgetExpense]
+			RETURN
+			    IF ( ISBLANK ( Value ), BLANK (), FORMAT ( Value, "#,0.00" ) & " د.ع" )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1038
+
+	measure IncomeVarianceDisplay =
+			
+			VAR Value = [IncomeVariane]
+			RETURN
+			    IF ( ISBLANK ( Value ), BLANK (), FORMAT ( Value, "#,0.00;(#,0.00);0.00" ) & " د.ع" )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1039
+
+	measure ExpenseVarianceDisplay =
+			
+			VAR Value = ['ExpenseVariance 1']
+			RETURN
+			    IF ( ISBLANK ( Value ), BLANK (), FORMAT ( Value, "#,0.00;(#,0.00);0.00" ) & " د.ع" )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1040
+
+	measure IncomeBudgetAttainmentPctDisplay =
+			
+			VAR Value = [IncomeBudgetAttainmentPct]
+			RETURN IF ( ISBLANK ( Value ), "--", FORMAT ( Value, "0.00%" ) )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1041
+
+	measure ExpenseBudgetAttainmentPctDisplay =
+			
+			VAR Value = [ExpenseBudgetAttainmentPct]
+			RETURN IF ( ISBLANK ( Value ), "--", FORMAT ( Value, "0.00%" ) )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1042
+
+	measure GLTableVariancePctDisplay =
+			
+			VAR Value = [GLTableVariancePct]
+			RETURN IF ( ISBLANK ( Value ), "--", FORMAT ( Value, "0.00%" ) )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1043
+
+	column MonthStart
+		lineageTag: 1f7a6be1-37ae-4aa8-95c6-a426dc031120
+		isNameInferred
+		sourceColumn: [MonthStart]
+
+	column Month
+		lineageTag: 3e7df68f-c06d-43c7-b180-6965014c2e23
+		isNameInferred
+		sourceColumn: [Month]
+
+	column MonthSort
+		lineageTag: be0a7b08-abd6-4795-95ef-00e860515e57
+		isNameInferred
+		sourceColumn: [MonthSort]
+
+	partition BudgetVsActualTable = calculated
+		mode: import
+		source =
+				
+				VAR StartMonth = DATE ( YEAR ( EDATE ( TODAY (), -11 ) ), MONTH ( EDATE ( TODAY (), -11 ) ), 1 )
+				VAR EndMonth = DATE ( YEAR ( TODAY () ), MONTH ( TODAY () ), 1 )
+				RETURN
+				    DISTINCT (
+				        SELECTCOLUMNS (
+				            FILTER (
+				                CALENDAR ( StartMonth, EndMonth ),
+				                DAY ( [Date] ) = 1
+				            ),
+				            "MonthStart", [Date],
+				            "Month", FORMAT ( [Date], "MMM yy" ),
+				            "MonthSort", YEAR ( [Date] ) * 100 + MONTH ( [Date] )
+				        )
+				    )
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a1001
+

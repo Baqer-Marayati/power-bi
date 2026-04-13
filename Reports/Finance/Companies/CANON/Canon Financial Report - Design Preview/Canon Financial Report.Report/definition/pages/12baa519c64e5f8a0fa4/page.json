@@ -1,0 +1,289 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "12baa519c64e5f8a0fa4",
+  "displayName": "ROI",
+  "displayOption": "FitToWidth",
+  "height": 960,
+  "width": 1280,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "195L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F8FBFF'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "pd_slicer_year",
+      "target": "8f2d62875ed0cae89d68",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_year",
+      "target": "cc602bc964b18fa72546",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_year",
+      "target": "8f341f356b63b2ee2d6b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_year",
+      "target": "34605a4efe944e90b54e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_year",
+      "target": "678e8661e2e64b9392bd",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_year",
+      "target": "471154df10f27fba63d8",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_year",
+      "target": "09b5f860518f2cb9e45c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_year",
+      "target": "0b78afa7c4ab69dee4ee",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_quarter",
+      "target": "8f2d62875ed0cae89d68",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_quarter",
+      "target": "cc602bc964b18fa72546",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_quarter",
+      "target": "8f341f356b63b2ee2d6b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_quarter",
+      "target": "34605a4efe944e90b54e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_quarter",
+      "target": "678e8661e2e64b9392bd",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_quarter",
+      "target": "471154df10f27fba63d8",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_quarter",
+      "target": "09b5f860518f2cb9e45c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_quarter",
+      "target": "0b78afa7c4ab69dee4ee",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_month",
+      "target": "8f2d62875ed0cae89d68",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_month",
+      "target": "cc602bc964b18fa72546",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_month",
+      "target": "8f341f356b63b2ee2d6b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_month",
+      "target": "34605a4efe944e90b54e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_month",
+      "target": "678e8661e2e64b9392bd",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_month",
+      "target": "471154df10f27fba63d8",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_month",
+      "target": "09b5f860518f2cb9e45c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_month",
+      "target": "0b78afa7c4ab69dee4ee",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_location",
+      "target": "8f2d62875ed0cae89d68",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_location",
+      "target": "cc602bc964b18fa72546",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_location",
+      "target": "8f341f356b63b2ee2d6b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_location",
+      "target": "34605a4efe944e90b54e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_location",
+      "target": "678e8661e2e64b9392bd",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_location",
+      "target": "471154df10f27fba63d8",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_location",
+      "target": "09b5f860518f2cb9e45c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_location",
+      "target": "0b78afa7c4ab69dee4ee",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_salestype",
+      "target": "8f2d62875ed0cae89d68",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_salestype",
+      "target": "cc602bc964b18fa72546",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_salestype",
+      "target": "8f341f356b63b2ee2d6b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_salestype",
+      "target": "34605a4efe944e90b54e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_salestype",
+      "target": "678e8661e2e64b9392bd",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_salestype",
+      "target": "471154df10f27fba63d8",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_salestype",
+      "target": "09b5f860518f2cb9e45c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_salestype",
+      "target": "0b78afa7c4ab69dee4ee",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_department",
+      "target": "8f2d62875ed0cae89d68",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_department",
+      "target": "cc602bc964b18fa72546",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_department",
+      "target": "8f341f356b63b2ee2d6b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_department",
+      "target": "34605a4efe944e90b54e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_department",
+      "target": "678e8661e2e64b9392bd",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_department",
+      "target": "471154df10f27fba63d8",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_department",
+      "target": "09b5f860518f2cb9e45c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "pd_slicer_department",
+      "target": "0b78afa7c4ab69dee4ee",
+      "type": "DataFilter"
+    }
+  ]
+}

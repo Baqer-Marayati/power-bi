@@ -1,0 +1,51 @@
+table Dim_BSAccount
+	lineageTag: 40a4fa49-2dd3-43da-9788-693e19fc688b
+
+	column AcctCode
+		lineageTag: 9f6547cb-a30f-4ab0-a378-2892618347f5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AcctCode]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AcctName
+		lineageTag: d15f032a-c93f-4269-8ff7-a657d319975d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AcctName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column GroupMask
+		lineageTag: de5715d8-58a7-4a42-a258-203879863a32
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [GroupMask]
+
+		annotation SummarizationSetBy = Automatic
+
+	column BSSection
+		lineageTag: 8a205c7e-1e03-4337-8ce4-dbc101b57847
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [BSSection]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_BSAccount = calculated
+		mode: import
+		source =
+				
+				DISTINCT (
+				    SELECTCOLUMNS (
+				        'Fact_BalanceSheet',
+				        "AcctCode", 'Fact_BalanceSheet'[AcctCode],
+				        "AcctName", 'Fact_BalanceSheet'[AcctName],
+				        "GroupMask", 'Fact_BalanceSheet'[GroupMask],
+				        "BSSection", 'Fact_BalanceSheet'[BSSection]
+				    )
+				)
+
+	annotation PBI_Id = eb24f283423e4b9ba22f8f4ed53e398d
+

@@ -1,0 +1,28 @@
+table AccountCategoryTable
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0011
+
+	column Category
+		lineageTag: dd3568a9-c2ac-4bd3-9058-8ee49efbe178
+		isNameInferred
+		sourceColumn: [Category]
+
+	column SortOrder
+		lineageTag: 8be83a3a-73eb-4491-955b-b0f078fa07fa
+		isNameInferred
+		sourceColumn: [SortOrder]
+
+	partition AccountCategoryTable = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "Category", STRING,
+				    "SortOrder", INTEGER,
+				    {
+				        { "Income", 1 },
+				        { "Expense", 2 }
+				    }
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0011
+

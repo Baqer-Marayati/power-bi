@@ -1,0 +1,37 @@
+table DateTableProjectedCashflow
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1141
+
+	column Date
+		lineageTag: ef33c711-96c1-4c8a-bede-432b53c41817
+		isNameInferred
+		sourceColumn: [Date]
+
+	column 'Month Year'
+		lineageTag: c2070c1f-135f-47e0-a8eb-b4edb451f29d
+		isNameInferred
+		sourceColumn: [Month Year]
+
+	column IsInNext6Months
+		lineageTag: 3eaa437a-dddf-4691-9c81-82521734e103
+		isNameInferred
+		sourceColumn: [IsInNext6Months]
+
+	partition DateTableProjectedCashflow = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS (
+				    FILTER (
+				        ADDCOLUMNS (
+				            CALENDAR ( DATE ( YEAR ( TODAY () ), MONTH ( TODAY () ), 1 ), EOMONTH ( TODAY (), 5 ) ),
+				            "MonthStart", DATE ( YEAR ( [Date] ), MONTH ( [Date] ), 1 )
+				        ),
+				        [Date] = [MonthStart]
+				    ),
+				    "Date", [Date],
+				    "Month Year", FORMAT ( [Date], "MMM yy" ),
+				    "IsInNext6Months", TRUE ()
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a1141
+

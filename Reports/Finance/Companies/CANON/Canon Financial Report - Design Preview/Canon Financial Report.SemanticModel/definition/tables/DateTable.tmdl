@@ -1,0 +1,87 @@
+table DateTable
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0201
+	dataCategory: Time
+
+	column Date
+		lineageTag: 309f5598-ccbf-441c-a5c3-3f9c31b90d65
+		isNameInferred
+		sourceColumn: [Date]
+
+	column Year
+		lineageTag: 5ee3e256-1f06-41fb-b88d-2472c8e60ddb
+		isNameInferred
+		sourceColumn: [Year]
+
+	column Quarter
+		lineageTag: bbe25c95-d220-4895-907d-5708df3575ee
+		isNameInferred
+		sourceColumn: [Quarter]
+
+	column Month
+		lineageTag: 6c650eb6-4f28-4265-b391-cabd61c29924
+		isNameInferred
+		sourceColumn: [Month]
+
+	column 'Month Name'
+		lineageTag: aa025a20-de95-480a-a37a-d380c8eb7981
+		isNameInferred
+		sourceColumn: [Month Name]
+
+	column 'Month Name Short'
+		lineageTag: da7553aa-ab9e-4515-a87c-5329e06310ec
+		isNameInferred
+		sourceColumn: [Month Name Short]
+
+	column MonthsortOrder
+		lineageTag: 73031f2e-0bd6-4172-8f5b-f903e72c8ce3
+		isNameInferred
+		sourceColumn: [MonthsortOrder]
+
+	column Day
+		lineageTag: 627fe89b-13d1-43a5-99ca-f9316e433bb3
+		isNameInferred
+		sourceColumn: [Day]
+
+	column 'Day Name'
+		lineageTag: 63dce588-c7a3-46d8-9b92-931eddc68d69
+		isNameInferred
+		sourceColumn: [Day Name]
+
+	column 'Weekday Number'
+		lineageTag: 7300c2ff-be06-4f78-91a4-9ff610e9d1d9
+		isNameInferred
+		sourceColumn: [Weekday Number]
+
+	column IsWeekend
+		lineageTag: 8d57eb8a-4464-4bfd-a846-9d419ef5ad2a
+		isNameInferred
+		sourceColumn: [IsWeekend]
+
+	column IsPreviousMonthToDate
+		lineageTag: bc0a7b69-989e-4f32-a09e-c28756ad1a27
+		isNameInferred
+		sourceColumn: [IsPreviousMonthToDate]
+
+	partition DateTable = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS (
+				    CALENDAR ( DATE ( YEAR ( TODAY () ) - 5, 1, 1 ), EOMONTH ( TODAY (), 5 ) ),
+				    "Year", YEAR ( [Date] ),
+				    "Quarter", "Q" & FORMAT ( [Date], "Q" ),
+				    "Month", MONTH ( [Date] ),
+				    "Month Name", FORMAT ( [Date], "MMMM" ),
+				    "Month Name Short", FORMAT ( [Date], "MMM yy" ),
+				    "MonthsortOrder", YEAR ( [Date] ) * 100 + MONTH ( [Date] ),
+				    "Day", DAY ( [Date] ),
+				    "Day Name", FORMAT ( [Date], "dddd" ),
+				    "Weekday Number", WEEKDAY ( [Date], 2 ),
+				    "IsWeekend", WEEKDAY ( [Date], 2 ) > 5,
+				    "IsPreviousMonthToDate",
+				        [Date] >= EOMONTH ( TODAY (), -2 ) + 1
+				            && [Date] <= DATE ( YEAR ( EDATE ( TODAY (), -1 ) ), MONTH ( EDATE ( TODAY (), -1 ) ), DAY ( TODAY () ) )
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0201
+

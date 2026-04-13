@@ -1,0 +1,105 @@
+table glBudgetEntries
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0301
+
+	measure TotalBudget =
+			
+			CALCULATE ( SUM ( 'glBudgetEntries'[amount] ), 'glBudgetEntries'[accountCategory] = "Expense" )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0302
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TotalBudgetDynamic = [TotalBudget]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0303
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TotalCommitmentDynamic =
+			
+			'generalLedgerEntries'[ActualSpend] + 'purchaseLines'[CommittedPO] + 'purchaseLines'[UnCommittedPO]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0305
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Remaining =
+			
+			[TotalBudget] - 'generalLedgerEntries'[ActualSpend] - 'purchaseLines'[CommittedPO] - 'purchaseLines'[UnCommittedPO]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0306
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column date
+		lineageTag: 4ab565ce-369e-4e2c-84ae-8013fdcc41df
+		isNameInferred
+		sourceColumn: [date]
+
+	column budgetName
+		lineageTag: 8e9d1b14-6a22-4dcc-83f4-44a03bd740f1
+		isNameInferred
+		sourceColumn: [budgetName]
+
+	column no
+		lineageTag: ba70cca9-87da-4ce4-98ee-382734b8fbf3
+		isNameInferred
+		sourceColumn: [no]
+
+	column name
+		lineageTag: 7138d72f-c96c-4f83-98bd-58771d76d19d
+		isNameInferred
+		sourceColumn: [name]
+
+	column accountCategory
+		lineageTag: b6cd271c-77b0-406c-852e-510a1bceb47b
+		isNameInferred
+		sourceColumn: [accountCategory]
+
+	column accountType
+		lineageTag: ba3a9925-7f2a-4741-927a-912402690f26
+		isNameInferred
+		sourceColumn: [accountType]
+
+	column incomeBalance
+		lineageTag: ef808d8e-db39-449b-a3c2-7eb9a1242227
+		isNameInferred
+		sourceColumn: [incomeBalance]
+
+	column amount
+		lineageTag: ce44052d-3d99-413b-8488-af64bb6af9c5
+		isNameInferred
+		sourceColumn: [amount]
+
+	column globalDimension1Code
+		lineageTag: 99e1c97a-47d3-4c93-87b5-9e9f8a017979
+		isNameInferred
+		sourceColumn: [globalDimension1Code]
+
+	column globalDimension2Code
+		lineageTag: 8ee44d9f-7d23-4995-9e11-2e401e72ef07
+		isNameInferred
+		sourceColumn: [globalDimension2Code]
+
+	partition glBudgetEntries = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS (
+				    FILTER ( 'Fact_PNL', NOT ISBLANK ( 'Fact_PNL'[PostingDate] ) ),
+				    "date", 'Fact_PNL'[PostingDate],
+				    "budgetName", "SAP Derived Budget",
+				    "no", 'Fact_PNL'[AcctCode],
+				    "name", 'Fact_PNL'[AcctName],
+				    "accountCategory",
+				        SWITCH (
+				            TRUE (),
+				            'Fact_PNL'[PnLSection] IN { "Revenue", "Revenue Contra" }, "Income",
+				            'Fact_PNL'[PnLSection] = "COGS", "Cost of Goods Sold",
+				            "Expense"
+				        ),
+				    "accountType", "Posting",
+				    "incomeBalance", "Income Statement",
+				    "amount", ABS ( 'Fact_PNL'[Amount] ) * 1.05,
+				    "globalDimension1Code", 'Fact_PNL'[BranchCode],
+				    "globalDimension2Code", 'Fact_PNL'[SalesTypeCode]
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0301
+

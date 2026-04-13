@@ -1,0 +1,68 @@
+relationship 92afdcf2-08d1-5ab0-e4e5-21d8addcd1c0
+	fromColumn: Fact_PNL.PostingDate
+	toColumn: Dim_Date.Date
+
+relationship 8027f6ff-1ef9-49bf-951e-07c0d9990b7f
+	fromColumn: Fact_BalanceSheet.PostingDate
+	toColumn: Dim_Date.Date
+
+relationship 96bb9dd4-1d56-4883-b539-0baecfd4fae5
+	fromColumn: Fact_SalesDetail.PostingDate
+	toColumn: Dim_Date.Date
+
+relationship d175b744-547c-39a1-22f2-c3165dae47d8
+	fromColumn: Fact_PNL.BranchCode
+	toColumn: Dim_Branch.BranchCode
+
+relationship da73bb59-770b-40cf-992f-e0e7a77f0c26
+	fromColumn: Fact_BalanceSheet.BranchCode
+	toColumn: Dim_Branch.BranchCode
+
+relationship 2e627b13-c4fc-4bd0-a02f-125ed5cc2f90
+	fromColumn: Fact_SalesDetail.LocationCode
+	toColumn: Dim_Branch.BranchCode
+
+relationship 3f90fa1a-7ad1-43c9-91b3-8520eead77a4
+	fromColumn: Fact_PNL.SalesTypeCode
+	toColumn: Dim_SalesType.SalesTypeCode
+
+relationship 30ea54bc-bd43-4f36-b4a7-c8a23fef18bc
+	fromColumn: Fact_BalanceSheet.SalesTypeCode
+	toColumn: Dim_SalesType.SalesTypeCode
+
+relationship d2a4856b-b279-4174-91fd-75179df2f6f8
+	fromColumn: Fact_SalesDetail.SalesTypeCode
+	toColumn: Dim_SalesType.SalesTypeCode
+
+relationship 95365f41-66fc-b9e7-8ee1-6e43ea66c7e0
+	fromColumn: Fact_PNL.DepartmentCode
+	toColumn: Dim_Department.DepartmentCode
+
+relationship a5a0ca3c-5b85-4bf4-8396-53d4511b38f8
+	fromColumn: Fact_BalanceSheet.DepartmentCode
+	toColumn: Dim_Department.DepartmentCode
+
+relationship 3a2bb63d-91f3-4fe7-a01a-52401c8b31a4
+	fromColumn: Fact_SalesDetail.DepartmentCode
+	toColumn: Dim_Department.DepartmentCode
+
+relationship bdf6eff5-ed06-9c9e-a1d6-eb3d062c47b2
+	fromColumn: Fact_PNL.AcctCode
+	toColumn: Dim_Account.AcctCode
+
+relationship f59f568a-b3bb-4214-870d-e4da7a840b70
+	fromColumn: Fact_BalanceSheet.AcctCode
+	toColumn: Dim_BSAccount.AcctCode
+
+relationship a1b2c3d4-e5f6-7890-abcd-ef0123456781
+	fromColumn: ReceivablesFact.CardCode
+	toColumn: DimBusinessPartner.CardCode
+
+relationship a1b2c3d4-e5f6-7890-abcd-ef0123456782
+	fromColumn: CollectionsFact.CardCode
+	toColumn: DimBusinessPartner.CardCode
+
+relationship a1b2c3d4-e5f6-7890-abcd-ef0123456783
+	fromColumn: CollectionsFact.PostingDate
+	toColumn: Dim_Date.Date
+

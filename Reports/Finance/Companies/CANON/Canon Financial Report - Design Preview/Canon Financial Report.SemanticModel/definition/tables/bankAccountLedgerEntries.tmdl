@@ -1,0 +1,143 @@
+table bankAccountLedgerEntries
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0501
+
+	measure Cashflow_cashGoingIn =
+			
+			CALCULATE (
+			    [TotalRevenue],
+			    DATESBETWEEN ( 'DateTable'[Date], DATE ( YEAR ( TODAY () ), MONTH ( TODAY () ), 1 ), TODAY () )
+			)
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0502
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Cashflow_cashGoingOut =
+			
+			CALCULATE (
+			    [ExpenseFiltered] + [CostOfGoodsSoldFiltered],
+			    DATESBETWEEN ( 'DateTable'[Date], DATE ( YEAR ( TODAY () ), MONTH ( TODAY () ), 1 ), TODAY () )
+			)
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0503
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Cashflow_cashGoingIn_previous =
+			
+			CALCULATE ( [Cashflow_cashGoingIn], DATEADD ( 'DateTable'[Date], -1, MONTH ) )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0504
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Cashflow_cashGoingOut_previous =
+			
+			CALCULATE ( [Cashflow_cashGoingOut], DATEADD ( 'DateTable'[Date], -1, MONTH ) )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0505
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Cashflow_cashGoingIn_projected =
+			
+			AVERAGEX (
+			    { [Cashflow_cashGoingIn], [Cashflow_cashGoingIn_previous] },
+			    [Value]
+			)
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0506
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Cashflow_cashGoingOut_projected =
+			
+			AVERAGEX (
+			    { [Cashflow_cashGoingOut], [Cashflow_cashGoingOut_previous] },
+			    [Value]
+			)
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0507
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Cashflow_endingCashInHand =
+			
+			CALCULATE (
+			    SUM ( 'Fact_BalanceSheet'[Amount] ),
+			    FILTER (
+			        'Fact_BalanceSheet',
+			        CONTAINSSTRING ( LOWER ( 'Fact_BalanceSheet'[AcctName] ), "cash" )
+			            || CONTAINSSTRING ( LOWER ( 'Fact_BalanceSheet'[AcctName] ), "bank" )
+			    )
+			)
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0508
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Cashflow_endingCashOnHand_projected =
+			
+			[Cashflow_endingCashInHand] + [Cashflow_cashGoingIn_projected] - [Cashflow_cashGoingOut_projected]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0509
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Cashflow_expenses =
+			
+			VAR Legend = SELECTEDVALUE ( 'generalLedgerEntries'[LegendColumnForCashflow] )
+			RETURN
+			    SUMX (
+			        FILTER (
+			            'generalLedgerEntries',
+			            'generalLedgerEntries'[accountCategory] = "Expense"
+			                && 'generalLedgerEntries'[postingDate] >= EDATE ( TODAY (), -5 )
+			                && (
+			                    ISBLANK ( Legend )
+			                        || 'generalLedgerEntries'[LegendColumnForCashflow] = Legend
+			                )
+			        ),
+			        ABS ( 'generalLedgerEntries'[amount] )
+			    )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0510
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Cashflow_RTO = [RTO]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0511
+
+	measure Cashflow_PTO = [Payable Turnover Ratio]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0512
+
+	measure CashflowPreviousGraph_caption = "Previous month actual cashflow"
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0513
+
+	measure Cashflow_previousNet =
+			
+			[Cashflow_cashGoingIn_previous] - [Cashflow_cashGoingOut_previous]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0515
+
+	measure Cashflow_previousNetDisplay =
+			
+			VAR Value = [Cashflow_previousNet]
+			RETURN
+			    IF ( ISBLANK ( Value ), BLANK (), FORMAT ( Value, "#,0.00;(#,0.00);0.00" ) & " د.ع" )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0516
+
+	measure Cashflow_turnoverSummary =
+			
+			VAR ARValue = [Cashflow_RTO]
+			VAR APValue = [Cashflow_PTO]
+			RETURN
+			    "AR "
+			        & IF ( ISBLANK ( ARValue ), "--", FORMAT ( ARValue, "0.00" ) )
+			        & " | AP "
+			        & IF ( ISBLANK ( APValue ), "--", FORMAT ( APValue, "0.00" ) )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0517
+
+	column Anchor
+		lineageTag: ba72f2c1-38d7-4f66-87b2-ae32f69159dd
+		isNameInferred
+		sourceColumn: [Anchor]
+
+	partition bankAccountLedgerEntries = calculated
+		mode: import
+		source =
+				
+				DATATABLE ( "Anchor", STRING, { { "Cashflow" } } )
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0501
+

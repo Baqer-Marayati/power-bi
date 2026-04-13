@@ -1,0 +1,35 @@
+table DateTablePreviousCashflow
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1131
+
+	column Date
+		lineageTag: 49bdbe4f-1e8b-4dae-ae75-9d066eb5b463
+		isNameInferred
+		sourceColumn: [Date]
+
+	column 'Month Year'
+		lineageTag: 94e3ccac-ae6b-476e-a3f4-ddf3ecc20029
+		isNameInferred
+		sourceColumn: [Month Year]
+
+	column IsInLast6Months_Previous
+		lineageTag: 772a421e-12a6-4ad5-b7d2-62f8777c0541
+		isNameInferred
+		sourceColumn: [IsInLast6Months_Previous]
+
+	partition DateTablePreviousCashflow = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS (
+				    FILTER (
+				        'DateTable',
+				        'DateTable'[Date] >= DATE ( YEAR ( EDATE ( TODAY (), -5 ) ), MONTH ( EDATE ( TODAY (), -5 ) ), 1 )
+				            && 'DateTable'[Date] <= EOMONTH ( TODAY (), 0 )
+				    ),
+				    "Date", 'DateTable'[Date],
+				    "Month Year", 'DateTable'[Month Name Short],
+				    "IsInLast6Months_Previous", TRUE ()
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a1131
+

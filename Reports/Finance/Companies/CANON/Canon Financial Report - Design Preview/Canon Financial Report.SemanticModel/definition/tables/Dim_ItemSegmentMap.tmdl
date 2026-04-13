@@ -1,0 +1,53 @@
+table Dim_ItemSegmentMap
+	lineageTag: 9b7b68ce-71b9-4f6a-aeeb-7ed98af8f3a1
+
+	column BusinessType
+		lineageTag: f71c51ec-72f5-4232-a8d9-2bd44a052a93
+		isNameInferred
+		sourceColumn: [BusinessType]
+
+	column GroupType
+		lineageTag: de9c5ac8-38ca-4cba-bb27-b85ef1b11126
+		isNameInferred
+		sourceColumn: [GroupType]
+
+	column ProductTypeRaw
+		lineageTag: ca060629-2c11-4de7-9722-654f01b8450c
+		isNameInferred
+		sourceColumn: [ProductTypeRaw]
+
+	column ProductTypeClean
+		lineageTag: 0112591a-f46a-4f90-b4c7-16ec345c67a9
+		isNameInferred
+		sourceColumn: [ProductTypeClean]
+
+	partition Dim_ItemSegmentMap = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "BusinessType", STRING,
+				    "GroupType", STRING,
+				    "ProductTypeRaw", STRING,
+				    "ProductTypeClean", STRING,
+				    {
+				        { "B2B", "DS Copier", "Office Copier", "Office Copier" },
+				        { "B2B", "DS Copier", "Dims", "Dims" },
+				        { "B2B", "DS Copier", "Paper", "Paper" },
+				        { "B2B", "DS Copier", "Output Management", "Output Management" },
+				        { "B2B", "DS Copier", "Office Copier (VLP)", "Office Copier (VLP)" },
+				        { "B2B", "DS Copier", "DS Copier Accessories", "DS Copier Accessories" },
+				        { "B2B", "IPS", "Prod Sol Copier", "Prod Sol Copier" },
+				        { "B2B", "IPS", "RP", "RP" },
+				        { "B2B", "IPS", "LFP", "LFP" },
+				        { "B2B", "IPS", "WFP", "WFP" },
+				        { "B2B", "IPS", "Commercial print", "Commercial print" },
+				        { "B2B", "IPS", "IPS Accessories", "IPS Accessories" },
+				        { "B2B", "BIS", "BIS", "BIS" },
+				        { "B2C", "OPP", "MB - Machine", "Machine" },
+				        { "B2C", "OPP", "CN - Toner Cartridges", "Toner Cartridges" }
+				    }
+				)
+
+	annotation PBI_ResultType = Table
+

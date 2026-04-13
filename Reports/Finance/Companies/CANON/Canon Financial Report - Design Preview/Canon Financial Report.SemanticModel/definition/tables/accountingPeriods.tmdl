@@ -1,0 +1,46 @@
+table accountingPeriods
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0071
+
+	measure FiscalYearStartDate = DATE ( YEAR ( TODAY () ), 1, 1 )
+		formatString: General Date
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0072
+
+	measure FiscalYearEnd = "31/12"
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0073
+
+	measure FiscalYearDetails = "Jan-Dec"
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0074
+
+	column id
+		lineageTag: 23f5ecf2-b222-4018-952b-0810690f8de4
+		isNameInferred
+		sourceColumn: [id]
+
+	column startingDate
+		lineageTag: 12bca782-27b6-42a6-9a89-17dfe52c350b
+		isNameInferred
+		sourceColumn: [startingDate]
+
+	column name
+		lineageTag: 2b5d975b-32d8-46b3-a55f-4a045e513fc5
+		isNameInferred
+		sourceColumn: [name]
+
+	column newFiscalYear
+		lineageTag: 1cc2228f-3199-4631-80f4-85941b921428
+		isNameInferred
+		sourceColumn: [newFiscalYear]
+
+	partition accountingPeriods = calculated
+		mode: import
+		source =
+				
+				ROW (
+				    "id", "FY" & FORMAT ( TODAY (), "YYYY" ),
+				    "startingDate", DATE ( YEAR ( TODAY () ), 1, 1 ),
+				    "name", "Current Fiscal Year",
+				    "newFiscalYear", TRUE ()
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0071
+
