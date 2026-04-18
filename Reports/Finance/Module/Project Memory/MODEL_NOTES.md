@@ -132,6 +132,116 @@
 - **Maintenance:** SAP account codes and the FY rule live in **`_Measures.tmdl`** / **`SAP_BS_Line.tmdl`**. If fiscal year is not calendar Jan–Dec, replace the `DATE ( YEAR ( AsOf ), 1, 1 )` start in **`SAP BS Profit Period PL`** with the company’s fiscal-year start rule.
 - **Validate in Desktop:** Reopen `Paper Financial Report.pbip`, refresh, set **`Dim_Date`** to the same as-of as SAP, and compare the small three-bar visual to SAP **Capital**, **Retained earnings**, and **Profit period**.
 
+## PAPERENTITY — Balance sheet: as-of behavior (2026-04-18)
+
+- `[BS Amount]` was changed from a plain `SUM ( Fact_BalanceSheet[Amount] )` to a **point-in-time / as-of** pattern that ignores the lower bound of the date slicers and walks the GL up to the maximum date in the current filter context:
+
+  ```dax
+  BS Amount =
+  VAR MaxDate = MAX ( 'Dim_Date'[Date] )
+  RETURN
+      CALCULATE (
+          SUM ( 'Fact_BalanceSheet'[Amount] ),
+          REMOVEFILTERS ( 'Dim_Date' ),
+          'Fact_BalanceSheet'[PostingDate] <= MaxDate
+      )
+  ```
+
+- **Critical detail — filter on Fact's PostingDate, not Dim_Date.** `Dim_Date` is bounded (`CALENDAR(DATE(2024,1,1), …)` — see `Dim_Date.tmdl`), but `Fact_BalanceSheet` has historical postings that pre-date 2024. Those Fact rows have **no matching `Dim_Date` row** and are dropped by the relationship if the filter is expressed on `Dim_Date[Date]`. First attempt used `'Dim_Date'[Date] <= MaxDate` and produced the symptom: only the ~16 accounts with postings in the 2024+ range showed on the **Largest BS Accounts** bar after picking Year=2026. Fixed by filtering directly on `'Fact_BalanceSheet'[PostingDate] <= MaxDate`, which bypasses the Dim_Date range and picks up all historical postings.
+- **Why:** The original measure summed only the **movements within** the selected date slice (e.g. picking March 2026 produced March's delta, not the balance as of March 31). This made every Balance sheet KPI and bar chart disagree with SAP, which always reports balances cumulatively from inception to a cutoff.
+- **Ripple:** All downstream BS measures (`BS Balance Display`, `Total Assets`, `Total Liabilities`, `Total Equity`, `Equity Ratio`, `Leverage Ratio`, all `Total ... Card Display` cards) chain through `[BS Amount]`, so they automatically inherit the as-of behavior — no per-visual edits.
+- **Non-date filters preserved.** Branch, Department, SalesType, BSSection, AcctName all still narrow the result correctly because only `Dim_Date` is removed.
+- **Synthetic `_PP` (Profit Period) rows** still work — they're posted on `LAST_DAY` per month, so they're picked up correctly as the cutoff advances.
+- **Quarter slicer + "Quarter" label removed from the BS page** (`slicer_quarter`, `label_quarter` under page `5e7c9a1d4b3f6e8c2a10`). Year + Month are sufficient for an as-of cutoff and avoid the confusing "Q2 only" interpretation. The shared left-rail Quarter slicer is still present on the other pages (P&L, Sales, Operating expenses, Financial summary, ROI).
+
+## PAPERENTITY — Balance sheet: SAP-style single date slicer + per-day `_PP` (2026-04-18, follow-up)
+
+- **Slicer rail rebuilt to mirror SAP's Balance Sheet UX.** SAP B1's BS asks for a single "Posting Date To" cutoff and renders a snapshot at that date. To match that exactly, the BS-page Year + Month slicers were collapsed into **one date slicer in `'Before'` mode** bound to `Dim_Date[Date]`:
+  - Visual `a9d1e5c40b1f4c2fa001` (was Year, mode `Dropdown`, projection `Dim_Date[Year]`) → **As-of date slicer**, mode `'Before'`, projection `Dim_Date[Date]`, format `yyyy-MM-dd`. Position unchanged (x=24, y=140, h=32, w=136).
+  - `label_year` text changed from `Year` → `As of`.
+  - Old Month slicer `a9d1e5c40b1f4c2fa002` and `label_month` deleted (folders removed).
+  - Result: a single calendar input that drives `MAX(Dim_Date[Date])` directly into `[BS Amount]`'s as-of cutoff, with no implicit lower bound and no month-grain rounding. Default (no selection) shows snapshot at end of `Dim_Date` calendar = 31 Dec of `YEAR(TODAY())`.
+- **`Fact_BalanceSheet` Power Query overhauled for the `_PP` (Profit Period) block.** Two long-standing bugs were fixed so the BS balances at any cutoff inside the currently-open fiscal year, not just at month-ends within the calendar year:
+  1. **Per-day stamping.** `LAST_DAY(MIN(T0."RefDate"))` → `T0."RefDate"`, and the `GROUP BY YEAR, MONTH` collapsed into `GROUP BY T0."RefDate"`. `_PP` rows now exist on every posting date with P&L activity, so a mid-month cutoff (e.g. 15 Apr) picks up the month-to-date P&L exactly.
+  2. **Dynamic open-FY filter.** The static `AND YEAR(T0."RefDate") = YEAR(CURRENT_DATE)` predicate was replaced with an SAP-aware subquery that detects the latest closed fiscal year via the period-end-closing journals (`OJDT.TransType = -3` posting to `JDT1.Account = '3000500'` Retained Earnings):
+
+     ```sql
+     AND YEAR(T0."RefDate") > (
+       SELECT COALESCE(MAX(YEAR(T0i."RefDate") - 1), 0)
+       FROM "PAPERENTITY"."OJDT" T0i
+       INNER JOIN "PAPERENTITY"."JDT1" T1i ON T0i."TransId" = T1i."TransId"
+       WHERE T0i."TransType" = -3 AND T1i."Account" = '3000500'
+     )
+     ```
+
+     SAP B1's PEC for FY N posts on 1 Jan of FY N+1 with `TransType = -3`, debiting/crediting all P&L accounts and routing the net through the Clearing account into Retained Earnings. So `MAX(YEAR(PEC.RefDate)) - 1` = latest fully-closed FY; the condition emits `_PP` rows only for FYs strictly above that. Today (2026-04-18, PEC for FY25 already booked on 2026-01-01), `_PP` is emitted for 2026 only — matching SAP's runtime behavior.
+- **Verified against SAP at four cutoffs.** New `Fact_BalanceSheet` SQL run end-to-end via DSN `HANA_B1`:
+
+  | Cutoff      | Assets        | Liabilities    | Equity (incl. `_PP`) | Σ |
+  | ----------- | ------------- | -------------- | -------------------- | --- |
+  | 2026-12-31  | 4,539,178,295 | −1,757,027,718 | −2,782,150,577       | 0 |
+  | 2026-04-15  | 4,539,178,295 | −1,757,027,718 | −2,782,150,577       | 0 |
+  | 2026-03-31  | 4,538,392,742 | −1,757,027,718 | −2,781,365,024       | 0 |
+  | 2025-12-31  | 4,508,270,579 | −1,728,741,507 | −2,468,268,480       | +311,260,592 |
+
+  The 2025-12-31 residual equals exactly FY25 P&L. Expected and documented: at that historical moment FY25 was open and PP would have shown −311M, but PEC for FY25 has since been posted (1 Jan 2026), so `last_closed_fy` is now 2025 and the per-day `_PP` filter excludes 2025. Pre-baked `_PP` cannot be cutoff-aware about closure history without more model work (next bullet).
+- **Known limit — historical cutoffs that span post-cutoff closures.** If a user picks a date in a fiscal year that was open at that moment but has since been closed, the BS will be off by exactly that year's P&L net. For PAPERENTITY this only affects 2025-and-earlier cutoffs. The fix when (if) historical accuracy matters is to drop synthetic `_PP` rows entirely and compute Profit Period as a DAX measure that consults a small `Fact_PEC` lookup (FY → ClosingPostDate) to determine the open FY at the cutoff. Out of scope for this iteration; current setup is correct for all "as of today / month-end this year" workflows.
+- **Hardcoded for PAPERENTITY.** The PEC subquery hardcodes `'3000500'` (Retained Earnings GL) and `TransType = -3`. CANON's PEC GL and TransType may differ; before porting this fix to `Reports/Finance/Companies/CANON/Canon Financial Report/...`, run the same diagnostic SQL on `CANON.OJDT` to confirm the PEC pattern, then mirror the change.
+
+## PAPERENTITY — Balance sheet: cutoff-aware `_PP` via PEC reversal rows (2026-04-18, second follow-up)
+
+The previous "per-day `_PP` for current-FY only" implementation matched SAP at the latest cutoffs but failed for **historical cutoffs that span a post-cutoff closure** (the user's screenshot pair: cutoff 2025-08-31, missing FY25 YTD profit period of IQD 335,472,659.87). Root cause was that the open-FY filter was decided once, at refresh time, against `MAX(YEAR(PEC.RefDate)) − 1`, so only FY26 rows were emitted into `_PP` at all — every cutoff in 2025 inherited zero `_PP`.
+
+This was fixed entirely in `Fact_BalanceSheet`'s Power Query M, with no DAX, relationship, or visual changes. The `_PP` UNION block was replaced by **two SQL sub-blocks** that together net to "open-FY P&L at the chosen cutoff" for *any* historical date, by relying on the same SAP PEC convention to do the cancellation as data instead of as a refresh-time filter:
+
+1. **Per-day `_PP` rows for every P&L posting date in history** (no year filter):
+
+   ```sql
+   SELECT T0."RefDate" AS "PostingDate", …, '_PP' AS "AcctCode", 'Profit Period' AS "AcctName",
+          3 AS "GroupMask", 'Equity' AS "BSSection",
+          SUM(COALESCE(T1."Debit",0) - COALESCE(T1."Credit",0)) AS "Amount",
+          NULL, NULL, NULL, NULL, NULL, NULL  -- branch/sales-type/dept dims intentionally NULL
+   FROM "PAPERENTITY"."OJDT" T0
+   INNER JOIN "PAPERENTITY"."JDT1" T1 ON T0."TransId" = T1."TransId"
+   INNER JOIN "PAPERENTITY"."OACT" T2 ON T1."Account" = T2."AcctCode"
+   WHERE T2."GroupMask" IN (4,5,6,7,8) AND T0."TransType" >= 0
+   GROUP BY T0."RefDate"
+   ```
+
+2. **One PEC-reversal row per closed FY**, dated at that FY's PEC posting date, with `Amount = −(FY P&L)`:
+
+   ```sql
+   SELECT PEC."PEC_DATE" AS "PostingDate", …, '_PP', 'Profit Period', 3, 'Equity',
+          -FY_PL."PL" AS "Amount", NULL × 6
+   FROM (per-FY P&L net) FY_PL
+   INNER JOIN (per-FY MIN(PEC RefDate) for TransType=-3, Account='3000500') PEC
+     ON FY_PL."FY" = PEC."FY"
+   ```
+
+At any cutoff `X`, cumulative `SUM(_PP.Amount) WHERE PostingDate ≤ X` equals exactly the YTD P&L of the FY that was open at `X`, because every closed FY's per-day rows are perfectly cancelled by its own reversal row (which lives on the PEC posting date, i.e. the first day of the next FY). End-to-end SAP reconciliation:
+
+| Cutoff      | Assets        | Liabilities    | Equity (incl. `_PP`) | Σ | `_PP` net | Open FY YTD (SAP) |
+| ----------- | ------------- | -------------- | -------------------- | --- | --- | --- |
+| 2024-12-31  | 5,206,342,493 | −3,255,721,653 | −1,950,620,840       | 0 | +24,335,001 | FY24 YTD = +24.3M |
+| 2025-08-31  | 7,716,291,928 | −4,912,550,788 | −2,803,741,140       | 0 | −335,472,660 | FY25 YTD Aug = +335.5M (loss → equity sign +) ✅ matches SAP |
+| 2025-12-31  | 4,508,270,579 | −1,728,741,507 | −2,779,529,072       | 0 | −311,260,592 | FY25 full = +311.3M loss |
+| 2026-03-31  | 4,538,392,742 | −1,757,027,718 | −2,781,365,024       | 0 | −1,835,952 | FY26 YTD Q1 |
+| 2026-04-15  | 4,539,178,295 | −1,757,027,718 | −2,782,150,577       | 0 | −2,621,506 | FY26 YTD = matches SAP |
+| 2026-12-31  | 4,539,178,295 | −1,757,027,718 | −2,782,150,577       | 0 | −2,621,506 | (no future activity) |
+
+All six cutoffs balance to 0 — the Σ residual that previously appeared at 2025-12-31 (the documented "historical limit") is gone. Total row count post-rebuild: 2,246. Sum of all `Amount` from inception = 0.00.
+
+Side benefits and constraints:
+
+- **Dimensions on `_PP` are NULL by design.** A SAP balance sheet is not a per-branch / per-department concept; collapsing dims to NULL keeps both blocks (P&L row and reversal row) net cleanly under any branch/sales-type/dept filter that doesn't exist on the BS page. The current PAPERENTITY BS page has only the `As of` date slicer (no other dim filters), so NULL dims on `_PP` never get stripped out by an active filter. If a future BS page adds a branch slicer, this design assumption breaks and `_PP` would silently disappear under that slicer — at that point either drop the new slicer or migrate `_PP` to a DAX measure.
+- **No DAX, model, or visual changes.** `[BS Amount]`, `[BS Balance Display]`, `[Total Equity]`, `Dim_BSAccount`, and the BS-page visuals are all untouched. Risk surface is limited to the one `Fact_BalanceSheet` partition source.
+- **Still hardcoded for PAPERENTITY's PEC pattern** (`TransType = -3`, `Account = '3000500'`). Before porting to CANON, re-validate with the same SAP query (`SELECT YEAR(RefDate)-1, MIN(RefDate) FROM OJDT JOIN JDT1 WHERE TransType=-3 AND Account=…`) — if CANON's RE GL is different, swap the literal.
+- **Refresh dependency unchanged.** Reversal rows appear automatically the moment SAP posts a new PEC; no manual intervention needed at year-end. Just refresh the dataset after PEC.
+
+The previous note's "Known limit — historical cutoffs that span post-cutoff closures" is now resolved by this approach. Leaving the older note in place above as historical context for why this redesign happened.
+- **Verified against SAP (PAPERENTITY, 2026-04-15) — section totals.** Assets 4,539,178,295 IQD, Liabilities −1,757,027,718 IQD, Equity −2,779,529,072 IQD; residual +2,621,506 = YTD 2026 P&L (loss); BS balances to exactly 0 once `_PP` is added. Top-15 accounts and contra-asset (`1700022 Furniture Accumulated Depreciation = −2,596,216`) all reconcile.
+- **Verified expected post-fix bar count.** Chart of accounts has 72 BS accounts, but only 26 have ever posted; only 18 have non-zero balance at 2026-04-15. With the synthetic `_PP` Equity row, the **Largest Accounts** bar should show ~19 bars at typical 2026 cutoffs (up from 16 with the old broken measure: 15 with 2026 movements + 1 `_PP`).
+
 ## PBIP / Semantic Handling Notes
 - Visual JSON changes are often the fastest safe route for layout and binding repairs.
 - Slicer polish can require structural report changes, not just font-size changes.

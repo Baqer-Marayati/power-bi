@@ -524,7 +524,14 @@ table _Measures
 
 	measure 'BS Amount' =
 			
-			SUM ( 'Fact_BalanceSheet'[Amount] )
+			VAR MaxDate =
+			    MAX ( 'Dim_Date'[Date] )
+			RETURN
+			    CALCULATE (
+			        SUM ( 'Fact_BalanceSheet'[Amount] ),
+			        REMOVEFILTERS ( 'Dim_Date' ),
+			        'Fact_BalanceSheet'[PostingDate] <= MaxDate
+			    )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 119f7468-1ed0-4c09-b75d-fb8ed0e538ac
 

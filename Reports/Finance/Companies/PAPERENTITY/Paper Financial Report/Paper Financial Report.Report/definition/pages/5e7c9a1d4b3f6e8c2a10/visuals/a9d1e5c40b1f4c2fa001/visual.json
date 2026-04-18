@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "a9d1e5c40b1f4c2fa001",
   "position": {
-    "x": 24,
-    "y": 140,
+    "x": 23.333333333333336,
+    "y": 138.33333333333334,
     "z": 8000,
-    "height": 32,
-    "width": 136,
+    "height": 85,
+    "width": 136.66666666666669,
     "tabOrder": 0
   },
   "visual": {
@@ -23,11 +23,11 @@
                       "Entity": "Dim_Date"
                     }
                   },
-                  "Property": "Year"
+                  "Property": "Date"
                 }
               },
-              "queryRef": "Dim_Date.Year",
-              "nativeQueryRef": "Year",
+              "queryRef": "Dim_Date.Date",
+              "nativeQueryRef": "Date",
               "active": true
             }
           ]
@@ -38,10 +38,17 @@
       "data": [
         {
           "properties": {
+            "endDate": {
+              "expr": {
+                "Literal": {
+                  "Value": "datetime'2026-03-31T00:00:00'"
+                }
+              }
+            },
             "mode": {
               "expr": {
                 "Literal": {
-                  "Value": "'Dropdown'"
+                  "Value": "'Before'"
                 }
               }
             }
@@ -54,7 +61,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Year'"
+                  "Value": "'As of'"
                 }
               }
             },
@@ -75,21 +82,48 @@
           }
         }
       ],
-      "selection": [
+      "date": [
+        {
+          "properties": {}
+        }
+      ],
+      "general": [
         {
           "properties": {
-            "singleSelect": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "selectAllCheckboxEnabled": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "d",
+                    "Entity": "Dim_Date",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Comparison": {
+                        "ComparisonKind": 3,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Date"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "datetime'2026-04-01T00:00:00'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
               }
             }
           }
