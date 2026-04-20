@@ -1,7 +1,7 @@
 # Finance PBIP editor — new Agent (start here)
 
 Use a **separate Agent** when you want focused work on the **Financial Report PBIP** (report JSON + semantic model).  
-Repo root: **Reporting Hub** on branch **`main`**.
+Repo root folder: **`Power BI`** (Reporting Hub portfolio) on branch **`main`**.
 
 ---
 
@@ -37,7 +37,7 @@ Use Cursor models for **repo files**; use **Microsoft** tools when the model mus
 ## Prompt to send (copy everything inside the fence)
 
 ```
-You are the lead assistant for the Finance Power BI project inside the Reporting Hub monorepo (branch main).
+You are the lead assistant for the Finance Power BI project inside the Reporting Hub portfolio repo (root folder `Power BI`, branch `main`).
 
 ## Your job
 

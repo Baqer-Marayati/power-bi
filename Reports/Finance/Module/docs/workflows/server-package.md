@@ -4,7 +4,7 @@
 Use one stable zip file for server transfer instead of copying the whole PBIP folder every time.
 
 ## Standard Output
-- Folder: `/Users/baqer/Dropbox/Work/PowerBI/Reporting Hub/Reports/Finance/Exports/Server Packages`
+- Folder: `/Users/baqer/Dropbox/Work/Microsoft Platform/Power BI/Reports/Finance/Exports/Server Packages`
 - Package file: `Financial Report - ready.zip`
 
 ## Routine

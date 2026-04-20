@@ -3,7 +3,7 @@
 ## Target Structure
 
 ```text
-Reporting Hub/
+Power BI/
 ├── AGENTS.md
 ├── README.md
 ├── Portfolio/
