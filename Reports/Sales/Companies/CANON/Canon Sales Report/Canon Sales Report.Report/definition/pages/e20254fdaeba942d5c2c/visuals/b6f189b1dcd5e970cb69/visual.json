@@ -168,6 +168,21 @@
                       "Entity": "_Measures"
                     }
                   },
+                  "Property": "Sales Share %"
+                }
+              },
+              "queryRef": "_Measures.Sales Share %",
+              "nativeQueryRef": "Sales Share %",
+              "displayName": "Sales Share %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
                   "Property": "Sales"
                 }
               },
@@ -382,7 +397,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "422.37496448768724D"
+                  "Value": "340D"
                 }
               }
             }
@@ -396,7 +411,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "168.3520099427974D"
+                  "Value": "160D"
                 }
               }
             }
@@ -410,7 +425,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "175.1146533138887D"
+                  "Value": "160D"
                 }
               }
             }
@@ -424,7 +439,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "123.92783559818882D"
+                  "Value": "121.66666666666667D"
                 }
               }
             }
@@ -438,13 +453,27 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "117.16806271418166D"
+                  "Value": "105D"
                 }
               }
             }
           },
           "selector": {
             "metadata": "Sum(SalesFact.Qty)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "120D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Sales Share %"
           }
         }
       ],
@@ -475,6 +504,34 @@
           },
           "selector": {
             "metadata": "Sum(SalesFact.Qty)"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Sales Share %"
           }
         },
         {

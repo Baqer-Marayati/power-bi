@@ -113,6 +113,12 @@
 - Benchmark-derived pages still needed explicit format-string conversion because they came in with dollar formatting.
 - IQD formatting can cause clipping or crowding on cards that were originally sized for shorter benchmark value strings.
 
+## CANON — ROI page locked-period logic (2026-05-05)
+- `accountingPeriods` now imports Canon SAP posting periods from `CANON.OFPR`, including `startingDate`, `endingDate`, and `periodStatus`.
+- The ROI card measure (`[ROI %]`) is annual by selected `Dim_Date[Year]` only: it ignores month/quarter/location/sales-type/department slicers, sums `[Net Profit]` only for periods where `periodStatus = "Y"`, and divides by `[Company Capital]`.
+- The Monthly ROI line chart remains separate through `[Monthly ROI %]`, which annualizes monthly net profit as `DIVIDE([Net Profit], [Company Capital], 0) * 12`.
+- Desktop validation: user opened `Canon Financial Report.pbip` after the `accountingPeriods` TMDL schema fix and confirmed the ROI behavior is good.
+
 ## Measure / helper table hygiene (2026-03)
 - Removed **unused** calculated tables **`Dim_ReportRows`** and **`Dim_KPIRows`** (no live report visuals referenced them; they only fed removed statement/KPI helper measures).
 - Pruned **~25 measures** that had **no report binding** and **no remaining in-model references** (e.g. duplicate branch/location counters, unused LY/YTD-LY helpers that only served the removed statement matrix pattern, `Sales Quantity*`, safe-card aliases, `Leverage Ratio`, `Operating Margin %`, `Net Margin %` base). **`Net Revenue LY`** is **kept** — referenced from **`generalLedgerEntries`** (`RevenueVariance`).

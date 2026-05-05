@@ -10,6 +10,29 @@ Short, **durable** notes the assistant adds after reviewing captures in `images/
 
 ## Log
 
+### 2026-05-05 — Canon Sales Map manual layout
+
+- `[sales]` Preserve the user-adjusted Sales Map layout from screenshot 11: keep the left slicer rail and KPI/header band, use a large central Deneb Iraq choropleth, and place the Sales by City table as a tall right-side companion panel.
+- `[sales]` Current preferred PBIP positions on `salesmap304934iq01`: `choropleth_iraq_gov` at `x=188.33`, `y=230`, `w=773.33`, `h=690`; `matrix_city_sales` at `x=973.33`, `y=230`, `w=271.67`, `h=690`.
+- `[sales]` Do not shrink the map back to the earlier smaller layout or remove the city table when polishing the Deneb map; future changes should preserve this map/table balance unless the user asks otherwise.
+
+### 2026-05-05 — Canon Sales charts, tab order, Deneb registration (user)
+
+- `[sales]` **Sales Person** top visual: switched from **treemap** to **clustered bar chart** titled **Profit by Salesperson**; encode **Profit** only (Sales measure removed from the same axis); default sort **Profit descending**.
+- `[sales]` **Business Partner** top visual: switched from **treemap** to **bar chart** titled **Profit by Customer**; encode **Profit** only; sort **Profit descending**; legend/gradient chrome trimmed (legend off where it no longer applies).
+- `[sales]` **Tab order** in `pages.json`: **Sales Map** (`salesmap304934iq01`) sits **before Commission** in the bottom tab strip (between Business Partner and Commission). Trust `pageOrder` over memory when describing page sequence.
+- `[repo]` `[sales]` Register AppSource visuals used in PBIP: Canon Sales `report.json` includes **`publicCustomVisuals`** for **Deneb** (`deneb7E15AEF80B9E4D4F8E12924291ECE89A`) so the repo documents the dependency for Desktop/tenant policy reviews.
+
+### 2026-05-05 — Power BI Desktop: gallery selection vs canvas visual (screenshot)
+
+- `[cursor]` `[powerbi]` On **Sales Map**, the **Visualization pane can show “Shape map” selected** while the canvas choropleth is a **Deneb** custom visual. Do not diagnose map bindings from the gallery icon alone—select the **on-canvas** visual or read `visualType` in the PBIP `visual.json` (`deneb7E15AEF80B9E4D4F8E12924291ECE89A` vs `shapeMap`).
+
+### 2026-05-05 — Canon Finance ROI and posting periods (user)
+
+- `[finance]` **`accountingPeriods`** is no longer a single-row stub: imported from SAP B1 **`CANON.OFPR`** via ODBC with **start/end dates** and **`periodStatus`** (among other columns). Full behavior is recorded in `Reports/Finance/Module/Project Memory/MODEL_NOTES.md` (ROI section dated 2026-05-05).
+- `[finance]` **`[ROI %]`** (annual card) was reworked: for the **selected year(s)** on `Dim_Date`, sum **`[Net Profit]`** only over **locked** posting periods (`periodStatus = "Y"`), with **month/quarter/branch/sales-type/department** filters removed; denominator **`[Company Capital]`** with branch/sales-type/department cleared—no retained-earnings constant in the formula.
+- `[finance]` **`[Monthly ROI %]`** line chart: annualize as **`DIVIDE([Net Profit], [Company Capital], 0) * 12`** (explicit annualization factor), separate from the locked-period annual card.
+
 ### 2026-04-18 — PBIR visual category swap can silently break aggregations
 
 - `[repo]` In a PBIR `visual.json`, the row/category `Entity` must be a **dimension key column** if any of the visual's measures aggregate from a fact that isn't connected to that entity. Switching from a related dim (e.g. `Dim_Customer.CustomerName`) to a denormalized **string in another fact** (`Fact_ServiceCalls.CustomerName`) makes those measures return the **grand total on every row**, because the string is not a relationship key. Symptom: every customer's bar shows the same length.

@@ -19,6 +19,8 @@ ref table DateTable
 ref table _Measures
 ref table DimSalesperson
 ref table DimBusinessPartner
+ref table Geo_City_Reference
+ref table Geo_Governorate_Map
 ref table BP_Rebate_Fact
 ref table Commission_Fact
 

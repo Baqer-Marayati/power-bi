@@ -10,10 +10,10 @@
     "tabOrder": 12000
   },
   "visual": {
-    "visualType": "treemap",
+    "visualType": "clusteredBarChart",
     "query": {
       "queryState": {
-        "Group": {
+        "Category": {
           "projections": [
             {
               "field": {
@@ -32,22 +32,8 @@
             }
           ]
         },
-        "Values": {
+        "Y": {
           "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Sales"
-                }
-              },
-              "queryRef": "_Measures.Sales",
-              "nativeQueryRef": "Sales"
-            },
             {
               "field": {
                 "Measure": {
@@ -66,6 +52,21 @@
         }
       },
       "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "Profit"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
         "isDefaultSort": true
       }
     },
@@ -160,7 +161,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales & Profit by Salesperson'"
+                  "Value": "'Profit by Salesperson'"
                 }
               }
             },

@@ -193,6 +193,267 @@ table _Measures
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: cf01a2b3-da08-4000-8000-000000000008
 
+	measure 'Mapped Sales' =
+			
+			CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[IsMapped] = TRUE() ) )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 7d1f5a28-3001-4af7-8a20-304934000001
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Mapped Sales Card Display' =
+			
+			DIVIDE ( [Mapped Sales], 1000000000 )
+		formatString: 0.00"Bn د.ع.‏";-0.00"Bn د.ع.‏";0.00"Bn د.ع.‏"
+		lineageTag: 7d1f5a28-3002-4af7-8a20-304934000002
+
+	measure 'Mapped BP Count' =
+			
+			CALCULATE ( [Active BP Count], KEEPFILTERS ( Geo_City_Reference[IsMapped] = TRUE() ) )
+		formatString: #,0
+		lineageTag: 7d1f5a28-3003-4af7-8a20-304934000003
+
+	measure 'Mapped City Count' =
+			
+			COUNTROWS ( FILTER ( VALUES ( Geo_City_Reference[CityName] ), [Mapped Sales] <> 0 ) )
+		formatString: #,0
+		lineageTag: 7d1f5a28-3004-4af7-8a20-304934000004
+
+	measure 'Unmapped Sales' =
+			
+			CALCULATE (
+			    [Sales],
+			    FILTER (
+			        DimBusinessPartner,
+			        ISBLANK ( DimBusinessPartner[LocationGroupKey] )
+			            || NOT CONTAINS (
+			                Geo_City_Reference,
+			                Geo_City_Reference[LocationGroupKey], DimBusinessPartner[LocationGroupKey]
+			            )
+			    )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 7d1f5a28-3005-4af7-8a20-304934000005
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Unmapped Sales Card Display' =
+			
+			DIVIDE ( [Unmapped Sales], 1000000000 )
+		formatString: 0.00"Bn د.ع.‏";-0.00"Bn د.ع.‏";0.00"Bn د.ع.‏"
+		lineageTag: 7d1f5a28-3006-4af7-8a20-304934000006
+
+	measure 'Map Longitude' =
+			
+			AVERAGE ( Geo_City_Reference[Lon] )
+		formatString: 0.0000
+		lineageTag: 7d1f5a28-3008-4af7-8a20-304934000008
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Map Latitude' =
+			
+			AVERAGE ( Geo_City_Reference[Lat] )
+		formatString: 0.0000
+		lineageTag: 7d1f5a28-3009-4af7-8a20-304934000009
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Map Projected X' =
+			
+			AVERAGEX ( Geo_City_Reference, Geo_City_Reference[Lon] * PI() / 180 )
+		formatString: 0.0000
+		lineageTag: 7d1f5a28-3011-4af7-8a20-304934000011
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Map Projected Y' =
+			
+			AVERAGEX (
+			    Geo_City_Reference,
+			    LN ( TAN ( PI() / 4 + Geo_City_Reference[Lat] * PI() / 360 ) )
+			)
+		formatString: 0.0000
+		lineageTag: 7d1f5a28-3010-4af7-8a20-304934000010
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Map Bubble Radius' =
+			
+			POWER ( MAX ( [Mapped Sales], 0 ), 1.0 / 3.0 )
+		formatString: #,0
+		lineageTag: 7d1f5a28-3007-4af7-8a20-304934000007
+
+	measure 'Iraq Governorate Choropleth SVG' =
+			
+			VAR _Geo =
+			{
+				( "Al Anbar", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Al Anbar" ) ), "M200 190L216 197L247 205L282 204L284 230L306 242L317 233L317 252L329 262L330 266L335 268L335 270L344 279L368 282L372 285L392 286L408 307L399 316L387 316L384 319L397 328L398 342L395 350L384 352L371 359L341 365L379 399L362 410L353 413L337 432L337 439L330 450L330 461L324 465L319 473L318 507L260 465L207 443L145 407L62 393L69 387L66 379L52 383L47 370L54 368L34 308L159 244L182 240L200 214L200 190Z" ),
+				( "Al Muthanna", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Al Muthanna" ) ), "M378 552L393 534L408 500L427 481L431 468L444 445L447 446L457 453L463 439L468 432L463 425L472 425L477 420L513 430L512 442L509 448L511 451L511 465L506 472L503 474L503 483L545 487L554 494L563 506L569 509L569 516L579 531L572 571L572 583L568 589L567 608L559 610L440 601L378 552Z" ),
+				( "Al Qadisiyyah", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Al Qadisiyyah" ) ), "M444 445L428 442L421 433L421 430L426 430L423 422L426 419L425 415L429 411L426 403L427 396L431 393L447 395L448 387L455 385L470 374L482 378L491 384L505 399L508 413L511 417L513 429L477 420L472 425L463 425L468 432L463 439L457 453L447 446L444 445Z" ),
+				( "Babil", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Babil" ) ), "M395 350L398 342L397 328L393 323L388 323L385 320L385 317L399 316L408 321L424 318L429 328L425 337L431 342L440 341L446 348L453 349L460 356L464 357L463 362L469 364L464 368L464 371L470 374L455 385L448 387L446 396L432 393L421 387L415 392L411 393L406 376L396 364L404 353L395 350Z" ),
+				( "Baghdad", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Baghdad" ) ), "M399 316L414 302L428 303L431 305L431 315L429 317L408 321L399 316Z" ),
+				( "Basra", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Basra" ) ), "M567 606L568 589L572 583L572 571L579 531L571 520L567 507L593 498L603 501L602 496L605 485L605 462L611 455L621 453L644 454L644 473L666 473L668 509L676 513L678 519L683 519L692 528L691 533L694 536L696 542L706 548L693 548L680 540L674 539L661 542L646 536L623 535L610 539L603 546L586 585L574 600L567 606Z" ),
+				( "Dhi Qar", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Dhi Qar" ) ), "M512 429L512 419L508 413L508 405L553 404L553 406L549 408L556 413L559 425L569 435L570 445L579 451L580 458L589 464L605 462L605 485L602 496L603 501L593 498L567 507L563 506L554 494L545 487L503 483L503 474L506 472L511 465L511 451L509 448L512 442L514 431L512 429Z" ),
+				( "Diyala", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Diyala" ) ), "M429 328L423 318L431 315L431 305L428 303L414 303L411 296L413 292L417 290L419 284L417 282L417 277L422 271L422 269L418 265L411 264L411 261L416 253L419 252L424 247L423 242L426 231L425 227L428 226L436 231L437 225L440 224L440 217L446 209L458 209L461 206L465 211L472 209L478 224L483 220L491 218L492 212L502 200L501 196L507 189L511 188L513 206L507 209L505 215L510 223L510 228L500 227L496 224L495 231L490 233L491 240L497 242L500 246L497 251L499 255L494 257L487 266L489 268L495 268L505 284L512 289L511 291L522 289L525 293L520 300L526 297L529 300L520 305L517 311L512 313L508 319L501 325L479 321L462 314L452 317L447 325L441 331L435 332L434 328L429 328Z" ),
+				( "Duhok", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Duhok" ) ), "M379 64L363 65L367 72L362 76L354 77L344 70L340 70L336 71L328 82L311 85L309 82L304 84L305 81L301 77L294 79L292 75L287 74L289 66L284 67L280 63L279 56L293 55L298 48L308 40L319 43L332 40L341 44L347 44L355 48L360 47L365 50L375 49L378 51L384 50L387 45L394 43L397 46L397 52L379 64Z" ),
+				( "Erbil", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Erbil" ) ), "M344 149L351 136L350 130L356 128L359 120L377 105L381 98L393 90L402 90L411 83L408 78L394 73L390 68L379 64L397 52L397 46L394 43L409 48L409 54L404 57L408 65L412 65L415 61L422 59L431 53L444 54L442 57L446 61L452 64L453 72L448 78L461 80L464 88L459 95L452 95L446 98L437 95L433 99L430 100L430 109L435 108L436 110L441 112L441 114L432 115L431 120L443 130L452 136L453 138L439 139L432 137L428 140L419 139L414 141L398 140L393 143L379 140L375 144L369 165L360 163L359 169L354 165L352 167L344 161L346 152L344 149Z" ),
+				( "Karbala", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Karbala" ) ), "M341 365L371 359L387 351L403 352L405 355L396 364L408 380L372 393L341 365Z" ),
+				( "Kirkuk", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Kirkuk" ) ), "M424 189L412 212L408 217L394 208L384 205L373 195L346 186L337 168L347 164L353 167L356 165L359 169L360 163L369 165L375 144L379 140L393 143L398 140L414 141L419 139L428 140L433 137L441 140L439 146L444 152L442 159L447 168L440 174L437 182L433 186L424 189Z" ),
+				( "Maysan", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Maysan" ) ), "M605 462L589 464L580 458L579 451L570 445L569 435L559 425L556 413L549 407L553 406L553 403L555 401L553 395L563 390L554 376L561 368L561 361L566 347L564 345L567 342L579 349L588 359L607 370L614 370L618 368L623 370L628 375L628 380L631 381L632 384L636 387L634 394L637 394L642 397L648 407L655 415L655 419L645 443L644 454L613 454L608 458L605 462Z" ),
+				( "Najaf", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Najaf" ) ), "M318 507L319 473L324 465L330 461L330 450L337 439L337 432L353 413L362 410L379 399L372 393L408 380L410 392L415 392L421 387L431 393L426 397L426 405L429 411L425 415L426 419L423 422L426 430L421 430L421 433L428 442L444 446L431 468L427 481L408 500L393 534L378 552L318 507Z" ),
+				( "Nineveh", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Nineveh" ) ), "M282 204L247 205L216 197L200 190L204 165L211 157L211 142L202 127L205 107L212 95L242 90L279 58L284 67L289 66L287 74L292 75L294 79L301 77L305 81L304 84L309 82L311 85L328 82L336 71L340 70L344 70L354 77L362 76L367 72L363 65L371 63L377 63L389 67L394 73L408 78L411 82L406 87L399 91L391 90L381 98L377 105L359 120L356 128L350 130L351 136L347 140L344 150L333 155L322 156L308 167L309 177L322 192L282 193L282 204Z" ),
+				( "Salah al-Din", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Salah al-Din" ) ), "M408 307L392 286L372 285L368 282L344 279L335 270L335 268L330 266L329 262L317 252L317 233L306 242L284 230L282 193L322 192L309 177L308 172L309 165L322 156L333 155L344 149L346 152L343 160L347 164L337 168L346 186L373 195L384 205L394 208L408 217L412 212L424 189L429 192L448 193L454 197L453 208L446 209L440 217L440 224L437 225L436 231L428 226L425 227L426 231L423 242L424 247L419 252L416 253L411 260L411 264L418 265L422 269L422 271L417 277L417 282L419 284L417 290L413 292L411 296L414 303L408 307Z" ),
+				( "Sulaymaniyah", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Sulaymaniyah" ) ), "M453 208L454 199L451 195L429 192L424 189L433 186L437 182L440 174L447 168L442 159L444 152L439 146L441 142L439 139L453 137L431 120L432 115L441 113L435 108L430 109L430 100L438 95L446 98L459 94L467 103L474 102L478 104L478 109L480 112L478 114L481 115L484 124L483 130L484 132L497 131L502 133L511 145L532 141L539 144L550 144L551 146L546 149L531 152L527 156L529 160L526 160L528 163L526 166L528 170L538 180L536 183L541 186L538 191L533 191L531 194L523 191L523 194L520 194L521 199L518 204L513 203L511 188L507 189L501 196L502 200L492 212L491 218L483 220L478 224L472 209L465 211L461 206L458 209L453 208Z" ),
+				( "Wasit", CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[Governorate] = "Wasit" ) ), "M470 374L464 371L464 368L469 364L463 362L464 357L460 356L453 349L446 348L440 341L431 342L424 336L425 334L428 333L429 328L434 328L435 332L441 331L447 325L453 316L462 314L479 321L493 323L500 326L505 322L512 313L517 311L520 305L530 300L533 308L542 317L542 320L538 323L531 325L539 328L535 334L539 337L550 335L567 342L564 345L566 347L561 361L561 368L554 376L563 390L553 395L555 401L553 404L508 405L502 395L491 384L480 377L470 374Z" )
+			}
+			VAR _NonZero = FILTER ( _Geo, [Value2] > 0 )
+			VAR _MinSales = COALESCE ( MINX ( _NonZero, [Value2] ), 0 )
+			VAR _MaxSales = COALESCE ( MAXX ( _Geo, [Value2] ), 0 )
+			VAR _Range = _MaxSales - _MinSales
+			VAR _Paths =
+			    CONCATENATEX (
+			        _Geo,
+			        VAR _Name = [Value1]
+			        VAR _Sales = [Value2]
+			        VAR _Path = [Value3]
+			        VAR _RawRatio =
+			            IF (
+			                _Sales <= 0,
+			                0,
+			                IF ( _Range = 0, 1, DIVIDE ( _Sales - _MinSales, _Range, 0 ) )
+			            )
+			        VAR _Ratio = IF ( _Sales <= 0, 0, 0.18 + 0.82 * POWER ( _RawRatio, 0.45 ) )
+			        VAR _R = ROUND ( 235 + ( 8 - 235 ) * _Ratio, 0 )
+			        VAR _G = ROUND ( 243 + ( 62 - 243 ) * _Ratio, 0 )
+			        VAR _B = ROUND ( 251 + ( 118 - 251 ) * _Ratio, 0 )
+			        VAR _Fill = IF ( _Sales <= 0, "#F2F6FA", "rgb(" & _R & "," & _G & "," & _B & ")" )
+			        RETURN
+			            "<path d='" & _Path & "' fill='" & _Fill & "' stroke='#9FB6CC' stroke-width='1.2' vector-effect='non-scaling-stroke'><title>" & _Name & ": " & FORMAT ( _Sales, "#,0" ) & "</title></path>",
+			        ""
+			    )
+			VAR _Svg =
+			    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 740 650' preserveAspectRatio='xMidYMid meet'>"
+			        & "<rect x='0' y='0' width='740' height='650' fill='#FFFFFF'/>"
+			        & _Paths
+			        & "</svg>"
+			RETURN
+			    _Svg
+		lineageTag: 30493401-0f0e-4a2b-9c8d-000000001001
+		dataCategory: ImageUrl
+
+	measure 'Governorate Tooltip Sales' =
+			
+			IF (
+			    NOT SELECTEDVALUE ( Geo_Governorate_Map[IsAnchor], FALSE() ),
+			    [Governorate Sales]
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 30493401-2222-4a2b-9c8d-000000001001
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Governorate Tooltip Customer Count' =
+			
+			VAR _Governorates = VALUES ( Geo_Governorate_Map[Governorate] )
+			RETURN
+			    IF (
+			        NOT SELECTEDVALUE ( Geo_Governorate_Map[IsAnchor], FALSE() ),
+			        CALCULATE (
+			            [Mapped BP Count],
+			            KEEPFILTERS ( TREATAS ( _Governorates, Geo_City_Reference[Governorate] ) )
+			        )
+			    )
+		formatString: #,0
+		lineageTag: 30493401-2222-4a2b-9c8d-000000001002
+
+	measure 'Governorate Tooltip City Count' =
+			
+			VAR _Governorates = VALUES ( Geo_Governorate_Map[Governorate] )
+			RETURN
+			    IF (
+			        NOT SELECTEDVALUE ( Geo_Governorate_Map[IsAnchor], FALSE() ),
+			        CALCULATE (
+			            [Mapped City Count],
+			            KEEPFILTERS ( TREATAS ( _Governorates, Geo_City_Reference[Governorate] ) )
+			        )
+			    )
+		formatString: #,0
+		lineageTag: 30493401-2222-4a2b-9c8d-000000001003
+
+	measure 'Governorate Tooltip Plot X' =
+			
+			AVERAGE ( Geo_Governorate_Map[PlotX] )
+		formatString: 0.0
+		lineageTag: 30493401-2222-4a2b-9c8d-000000001004
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Governorate Tooltip Plot Y' =
+			
+			AVERAGE ( Geo_Governorate_Map[PlotY] )
+		formatString: 0.0
+		lineageTag: 30493401-2222-4a2b-9c8d-000000001005
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Governorate Tooltip Hit Size' =
+			
+			MAX ( Geo_Governorate_Map[HitSize] )
+		formatString: 0.0
+		lineageTag: 30493401-2222-4a2b-9c8d-000000001006
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Governorate Sales % of Total' =
+			
+			DIVIDE ( [Governorate Sales], [Company Sales], 0 )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 30493401-2222-4a2b-9c8d-000000001007
+
+	measure 'Company Sales' =
+			
+			CALCULATE (
+			    [Sales],
+			    REMOVEFILTERS ( DimSalesperson[SalesPerson] ),
+			    REMOVEFILTERS ( DimBusinessPartner[CardName] ),
+			    REMOVEFILTERS ( DimBusinessPartner[CardCode] ),
+			    REMOVEFILTERS ( DimBusinessPartner[GroupCode] ),
+			    REMOVEFILTERS ( DimBusinessPartner[GroupName] ),
+			    REMOVEFILTERS ( DimBusinessPartner[LocationGroupKey] ),
+			    REMOVEFILTERS ( SalesFact[BusinessType] ),
+			    REMOVEFILTERS ( SalesFact[U_GroupType] ),
+			    REMOVEFILTERS ( SalesFact[U_ProductType] ),
+			    REMOVEFILTERS ( SalesFact[U_SegmentType] ),
+			    REMOVEFILTERS ( SalesFact[ItemName] ),
+			    REMOVEFILTERS ( SalesFact[ItemCode] ),
+			    REMOVEFILTERS ( Geo_City_Reference ),
+			    REMOVEFILTERS ( Geo_Governorate_Map )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 30493401-3333-4a2b-9c8d-000000001001
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Sales Share %' =
+			
+			DIVIDE ( [Sales], [Company Sales], 0 )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 30493401-3333-4a2b-9c8d-000000001002
+
+	measure 'Governorate Sales' =
+			
+			VAR _Governorates = VALUES ( Geo_Governorate_Map[Governorate] )
+			RETURN
+			    CALCULATE (
+			        [Sales],
+			        KEEPFILTERS ( TREATAS ( _Governorates, Geo_City_Reference[Governorate] ) )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 30493401-2222-4a2b-9c8d-000000001008
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 	column Column1
 		dataType: string
 		lineageTag: 04e1a892-aafd-4175-a5ce-2ceefa957d05

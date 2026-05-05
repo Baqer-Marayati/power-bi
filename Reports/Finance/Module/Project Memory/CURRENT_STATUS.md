@@ -2,7 +2,7 @@
 
 ## Date
 
-- Last updated: May 3, 2026
+- Last updated: May 5, 2026
 
 ## Current Source Of Truth
 
@@ -38,6 +38,7 @@ The active report shell currently contains these 10 pages in `pages.json` order:
 - `Dim_Date` lower bound is intentionally constrained to 2026 for the main report experience.
 - The report should open blank until refresh when the cache-stripped handoff flow is used.
 - Desktop-approved PBIP output is stronger evidence than speculative JSON-only assumptions.
+- CANON ROI page is Desktop-approved with the locked-period annual ROI card and annualized monthly ROI line chart.
 
 ## Current Validation Focus
 
