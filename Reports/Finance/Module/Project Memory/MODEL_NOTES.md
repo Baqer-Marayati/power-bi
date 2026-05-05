@@ -115,9 +115,17 @@
 
 ## CANON — ROI page locked-period logic (2026-05-05)
 - `accountingPeriods` now imports Canon SAP posting periods from `CANON.OFPR`, including `startingDate`, `endingDate`, and `periodStatus`.
-- The ROI card measure (`[ROI %]`) is annual by selected `Dim_Date[Year]` only: it ignores month/quarter/location/sales-type/department slicers, sums `[Net Profit]` only for periods where `periodStatus = "Y"`, and divides by `[Company Capital]`.
-- The Monthly ROI line chart remains separate through `[Monthly ROI %]`, which annualizes monthly net profit as `DIVIDE([Net Profit], [Company Capital], 0) * 12`.
+- `[Average Company Capital]` uses account `310101010101` through `[Company Capital]`, samples capital at each of the 12 month-end dates in every selected year, sums those 12 values, and divides by 12. With the current Canon date table, this applies to 2026 only.
+- The ROI card measure (`[ROI %]`) is intentionally single-year only: Year must be explicitly filtered to one value, otherwise the card returns blank. For one selected year, it ignores month/quarter/location/sales-type/department slicers, sums `[Net Profit]` only for periods where `periodStatus = "Y"`, and divides by `[Average Company Capital]`.
+- The Monthly ROI line chart remains separate through `[Monthly ROI %]`, which annualizes monthly net profit as `DIVIDE([Net Profit], [Average Company Capital], 0) * 12`.
 - Desktop validation: user opened `Canon Financial Report.pbip` after the `accountingPeriods` TMDL schema fix and confirmed the ROI behavior is good.
+
+## PAPERENTITY — ROI page average-capital logic (2026-05-05)
+- `accountingPeriods` now imports Paper SAP posting periods from `PAPERENTITY.OFPR`, including `startingDate`, `endingDate`, and `periodStatus`; ROI year logic starts at `Dim_Date[Year] >= 2024`.
+- `[Average Company Capital]` uses account `3000100` through `[Company Capital]`, samples capital at each of the 12 month-end dates in every selected year, sums those 12 values, and divides by 12.
+- The ROI card (`[ROI %]`) mirrors the Canon locked-period pattern but is intentionally single-year only: when Year is `All`, unselected, or multiple years are selected, the card returns blank to avoid confusing multi-year ROI interpretation. For one selected year, it divides that year's locked-period `[Net Profit]` by that year's `[Average Company Capital]`. If Paper has no `periodStatus = "Y"` rows for the selected year, it falls back to that selected Paper fiscal year so the card does not render blank.
+- The Monthly ROI line chart (`[Monthly ROI %]`) remains separate and annualizes monthly net profit as `DIVIDE([Net Profit], [Average Company Capital], 0) * 12`.
+- Desktop validation still required: open `Paper Financial Report.pbip`, refresh, and check the ROI card/Monthly ROI chart against SAP period locks and month-end capital snapshots.
 
 ## Measure / helper table hygiene (2026-03)
 - Removed **unused** calculated tables **`Dim_ReportRows`** and **`Dim_KPIRows`** (no live report visuals referenced them; they only fed removed statement/KPI helper measures).

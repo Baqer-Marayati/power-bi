@@ -1005,6 +1005,9 @@ table _Measures
 	measure 'ROI %' =
 			
 			VAR SelectedYears = VALUES ( 'Dim_Date'[Year] )
+			VAR HasSingleYearSelection =
+			    ISFILTERED ( 'Dim_Date'[Year] )
+			        && COUNTROWS ( SelectedYears ) = 1
 			VAR LockedPeriods =
 			    FILTER (
 			        ALL ( accountingPeriods ),
@@ -1033,15 +1036,12 @@ table _Measures
 			                )
 			            )
 			    )
-			VAR Capital =
-			    CALCULATE (
-			        [Company Capital],
-			        REMOVEFILTERS ( 'Dim_Branch' ),
-			        REMOVEFILTERS ( 'Dim_SalesType' ),
-			        REMOVEFILTERS ( 'Dim_Department' )
-			    )
 			RETURN
-			    DIVIDE ( LockedNetProfit, Capital, 0 )
+			    IF (
+			        NOT HasSingleYearSelection,
+			        BLANK (),
+			        DIVIDE ( LockedNetProfit, [Average Company Capital], 0 )
+			    )
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: a3c7e912-4f6b-4d8a-b1e5-9f2d3c5a7b01
 
@@ -1057,10 +1057,42 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+	measure 'Average Company Capital' =
+
+			VAR SelectedYears =
+			    VALUES ( 'Dim_Date'[Year] )
+			RETURN
+			    SUMX (
+			        SelectedYears,
+			        VAR SelectedYear = 'Dim_Date'[Year]
+			        VAR MonthEndCapitalTotal =
+			            SUMX (
+			                GENERATESERIES ( 1, 12 ),
+			                VAR MonthEndDate = EOMONTH ( DATE ( SelectedYear, [Value], 1 ), 0 )
+			                VAR CapitalAtMonthEnd =
+			                    CALCULATE (
+			                        [Company Capital],
+			                        REMOVEFILTERS ( 'Dim_Date' ),
+			                        FILTER (
+			                            ALL ( 'Dim_Date'[Date] ),
+			                            'Dim_Date'[Date] <= MonthEndDate
+			                        )
+			                    )
+			                RETURN
+			                    COALESCE ( CapitalAtMonthEnd, 0 )
+			            )
+			        RETURN
+			            DIVIDE ( MonthEndCapitalTotal, 12, 0 )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: c4a1b2d3-e5f6-7890-a1b2-c3d4e5f67803
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 	measure 'Monthly ROI %' =
 			
 			VAR MonthProfit = [Net Profit]
-			VAR Capital = [Company Capital]
+			VAR Capital = [Average Company Capital]
 			RETURN
 			    DIVIDE ( MonthProfit, Capital, 0 ) * 12
 		formatString: 0.00%;-0.00%;0.00%

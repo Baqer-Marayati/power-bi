@@ -12,35 +12,68 @@ table accountingPeriods
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0074
 
 	column id
+		dataType: string
 		lineageTag: 23f5ecf2-b222-4018-952b-0810690f8de4
-		isNameInferred
-		sourceColumn: [id]
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
 
 	column startingDate
+		dataType: dateTime
+		formatString: Long Date
 		lineageTag: 12bca782-27b6-42a6-9a89-17dfe52c350b
-		isNameInferred
-		sourceColumn: [startingDate]
+		summarizeBy: none
+		sourceColumn: startingDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column name
+		dataType: string
 		lineageTag: 2b5d975b-32d8-46b3-a55f-4a045e513fc5
-		isNameInferred
-		sourceColumn: [name]
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
 
 	column newFiscalYear
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
 		lineageTag: 1cc2228f-3199-4631-80f4-85941b921428
-		isNameInferred
-		sourceColumn: [newFiscalYear]
+		summarizeBy: none
+		sourceColumn: newFiscalYear
 
-	partition accountingPeriods = calculated
+		annotation SummarizationSetBy = Automatic
+
+	column endingDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8e7b2c4d-5f61-4a9b-8c2d-1e3f4a5b6c70
+		summarizeBy: none
+		sourceColumn: endingDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column periodStatus
+		dataType: string
+		lineageTag: 9f8e7d6c-5b4a-4938-8271-0f1e2d3c4b5a
+		summarizeBy: none
+		sourceColumn: periodStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	partition accountingPeriods = m
 		mode: import
 		source =
-				
-				ROW (
-				    "id", "FY" & FORMAT ( TODAY (), "YYYY" ),
-				    "startingDate", DATE ( YEAR ( TODAY () ), 1, 1 ),
-				    "name", "Current Fiscal Year",
-				    "newFiscalYear", TRUE ()
-				)
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    ""Code"" AS ""id"",#(lf)    ""F_RefDate"" AS ""startingDate"",#(lf)    ""Name"" AS ""name"",#(lf)    CASE WHEN MONTH(""F_RefDate"") = 1 THEN TRUE ELSE FALSE END AS ""newFiscalYear"",#(lf)    ""T_RefDate"" AS ""endingDate"",#(lf)    ""PeriodStat"" AS ""periodStatus""#(lf)FROM ""PAPERENTITY"".""OFPR"""),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"id", type text}, {"startingDate", type date}, {"name", type text}, {"newFiscalYear", type logical}, {"endingDate", type date}, {"periodStatus", type text}})
+				in
+				    #"Changed Type"
 
 	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0071
 
