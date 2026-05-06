@@ -981,7 +981,7 @@ table _Measures
 		lineageTag: b2c3d4e5-f6a7-4890-b1c2-d3e4f5a60004
 
 	measure 'Average Company Capital' =
-
+			
 			VAR SelectedYears =
 			    FILTER (
 			        VALUES ( 'Dim_Date'[Year] ),
@@ -1016,7 +1016,7 @@ table _Measures
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
 	measure 'ROI %' =
-
+			
 			VAR SelectedYears =
 			    FILTER (
 			        VALUES ( 'Dim_Date'[Year] ),
@@ -1255,7 +1255,7 @@ table _Measures
 
 	measure 'SAP BS Company Capital' =
 			
-			CALCULATE ( [BS Balance Display], 'Fact_BalanceSheet'[AcctCode] = "3000100" )
+			[Company Capital]
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: f1a2b3c4-d5e6-4789-a012-b3c4d5e6f701
 
@@ -1305,13 +1305,27 @@ table _Measures
 
 	measure 'Company Capital' =
 			
-			CALCULATE (
-			    [BS Balance Display],
-			    'Fact_BalanceSheet'[AcctCode] = "3000100",
-			    REMOVEFILTERS ( 'Dim_Branch' ),
-			    REMOVEFILTERS ( 'Dim_SalesType' ),
-			    REMOVEFILTERS ( 'Dim_Department' )
-			)
+			VAR AsOf = MAX ( 'Dim_Date'[Date] )
+			VAR UseLegacyCapitalAccounts =
+			    ISBLANK ( AsOf ) || YEAR ( AsOf ) <= 2025
+			RETURN
+			    IF (
+			        UseLegacyCapitalAccounts,
+			        CALCULATE (
+			            [BS Balance Display],
+			            'Fact_BalanceSheet'[AcctCode] = "3000100",
+			            REMOVEFILTERS ( 'Dim_Branch' ),
+			            REMOVEFILTERS ( 'Dim_SalesType' ),
+			            REMOVEFILTERS ( 'Dim_Department' )
+			        ),
+			        CALCULATE (
+			            [BS Balance Display],
+			            'Fact_BalanceSheet'[AcctCode] IN { "3000000", "3000100" },
+			            REMOVEFILTERS ( 'Dim_Branch' ),
+			            REMOVEFILTERS ( 'Dim_SalesType' ),
+			            REMOVEFILTERS ( 'Dim_Department' )
+			        )
+			    )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: c4a1b2d3-e5f6-7890-a1b2-c3d4e5f67811
 

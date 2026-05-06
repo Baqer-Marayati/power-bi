@@ -122,7 +122,7 @@
 
 ## PAPERENTITY — ROI page average-capital logic (2026-05-05)
 - `accountingPeriods` now imports Paper SAP posting periods from `PAPERENTITY.OFPR`, including `startingDate`, `endingDate`, and `periodStatus`; ROI year logic starts at `Dim_Date[Year] >= 2024`.
-- `[Average Company Capital]` uses account `3000100` through `[Company Capital]`, samples capital at each of the 12 month-end dates in every selected year, sums those 12 values, and divides by 12.
+- `[Average Company Capital]` uses `[Company Capital]`, which sums balance-sheet display for **`3000100` only** when the as-of calendar year is **2025 or earlier**, and for **`3000000` + `3000100`** when the as-of year is **2026 or later** (same month-end sampling: 12 month-ends per selected year, averaged). **`SAP BS Company Capital`** now aliases `[Company Capital]` so the SAP equity check uses the same capital-base rule.
 - The ROI card (`[ROI %]`) mirrors the Canon locked-period pattern but is intentionally single-year only: when Year is `All`, unselected, or multiple years are selected, the card returns blank to avoid confusing multi-year ROI interpretation. For one selected year, it divides that year's locked-period `[Net Profit]` by that year's `[Average Company Capital]`. If Paper has no `periodStatus = "Y"` rows for the selected year, it falls back to that selected Paper fiscal year so the card does not render blank.
 - The Monthly ROI line chart (`[Monthly ROI %]`) remains separate and annualizes monthly net profit as `DIVIDE([Net Profit], [Average Company Capital], 0) * 12`.
 - Desktop validation still required: open `Paper Financial Report.pbip`, refresh, and check the ROI card/Monthly ROI chart against SAP period locks and month-end capital snapshots.
@@ -142,7 +142,7 @@
 ## PAPERENTITY — Balance sheet: largest accounts + SAP equity check (2026-04-11)
 
 - The **Balance sheet** page keeps the **Canon-style** visual **`Largest Balance Sheet Accounts`**: **`Dim_BSAccount[AcctName]`** on the category axis and **`[BS Balance Display]`** (all balance-sheet accounts by name, sorted by balance). This is the **detailed per-account** view; it matches the **Canon** page pattern.
-- A **second** compact bar chart (**`SAP equity check (3000100 / 3000500 / FY P&L)`**, visual id `c9d1e5c40b1f4c2fa010`) sits **under** the largest-accounts bar. It uses calculated table **`SAP_BS_Line`** plus **`SAP BS Line Amount`** so **capital**, **retained earnings**, and **profit period (FY P&L net)** can be reconciled to SAP without replacing the main account list.
+- A **second** compact bar chart (**`SAP equity check (capital base / 3000500 / FY P&L)`**, visual id `c9d1e5c40b1f4c2fa010`) sits **under** the largest-accounts bar. It uses calculated table **`SAP_BS_Line`** plus **`SAP BS Line Amount`** so **capital base**, **retained earnings**, and **profit period (FY P&L net)** can be reconciled to SAP without replacing the main account list.
 - **Maintenance:** SAP account codes and the FY rule live in **`_Measures.tmdl`** / **`SAP_BS_Line.tmdl`**. If fiscal year is not calendar Jan–Dec, replace the `DATE ( YEAR ( AsOf ), 1, 1 )` start in **`SAP BS Profit Period PL`** with the company’s fiscal-year start rule.
 - **Validate in Desktop:** Reopen `Paper Financial Report.pbip`, refresh, set **`Dim_Date`** to the same as-of as SAP, and compare the small three-bar visual to SAP **Capital**, **Retained earnings**, and **Profit period**.
 

@@ -27,7 +27,7 @@ table SAP_BS_Line
 				    "LineOrder", INTEGER,
 				    "LineLabel", STRING,
 				    {
-				        { 1, "Capital 3000100" },
+				        { 1, "Capital base" },
 				        { 2, "Retained 3000500" },
 				        { 3, "FY P&L net (profit period)" }
 				    }
