@@ -2,7 +2,7 @@
 
 ## Date
 
-- Last updated: March 27, 2026
+- Last updated: May 9, 2026
 
 ## Current Reality
 
@@ -10,7 +10,8 @@
 - The PBIP lives at `Reports/Inventory/Inventory Report/Inventory Report.pbip`.
 - The semantic model connects to SAP B1 HANA via ODBC DSN `HANA_B1`, querying the `CANON` schema.
 - Currency is IQD (Iraqi Dinar), consistent with the Finance module.
-- The report has 5 pages and 10 semantic model tables (3 dimensions, 6 facts, 1 measures table).
+- The CANON report now has 8 pages and 11 semantic model tables, including the stock-cover policy table for reorder/overstock analysis.
+- The CANON stock-cover policy now uses item-grain blended velocity: 35% 90-day net sales rate, 35% 180-day net sales rate, and 30% 365-day net sales rate, with policy days B2B 120, B2C 90, and other/blank 60.
 
 ## Pages
 
@@ -19,6 +20,8 @@
 3. **Stock Movements** — Inbound/outbound/net movement KPIs, monthly flow charts, movement breakdown by transaction type.
 4. **Product Categories** — Item group slicer, category analysis table, full item catalog.
 5. **Procurement** — Open PO count, on-order qty, PO value KPIs, purchase order detail table, goods receipt trend.
+6. **Stock Cover Value Exposure** — IQD financial exposure from stock-cover policy: understock reorder value, healthy value, overstock value locked, no-sales stock value, and value distributions by action/status/category.
+7. **Reorder Action List** — SKU-level buy/hold/reduce action list with sales velocity, target stock quantity, reorder quantity, and excess quantity.
 
 ## Semantic Model Tables
 
@@ -31,7 +34,8 @@
 - **Fact_Delivery** — ODLN + DLN1 (401 deliveries / 1,248 lines)
 - **Fact_GoodsReceipt** — OPDN + PDN1 (19 GRs / 355 lines)
 - **Fact_PurchaseOrder** — OPOR + POR1 (31 POs / 373 lines)
-- **_Measures** — 24 DAX measures
+- **Fact_StockCoverPolicy** — item-grain CANON policy table from OITW + invoice/credit memo sales history, with 90/180/365-day rolling net-sales quantities and blended target stock quantity
+- **_Measures** — DAX measures including stock-cover policy KPIs
 
 ## Branding
 
@@ -47,6 +51,7 @@
 - Verify all 12 relationships resolve correctly.
 - Check all 5 pages render with proper data.
 - Fine-tune visual sizing and layout after live data load.
+- Validate the new `Fact_StockCoverPolicy` refresh, relationship to `Dim_Item`, rolling-window sales quantities, blended target quantity, and Stock Cover Value Exposure / Reorder Action List visuals in Power BI Desktop.
 
 ## Known Gaps
 

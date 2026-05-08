@@ -261,6 +261,178 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+	measure 'Policy Total Qty Available' = SUM ( Fact_StockCoverPolicy[TotalQtyAvailable] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa046
+
+	measure 'Policy Total Qty Sold' = SUM ( Fact_StockCoverPolicy[TotalQtySold] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa047
+
+	measure 'Policy Sales Velocity Qty/Day' = SUM ( Fact_StockCoverPolicy[SalesVelocityQtyPerDay] )
+		formatString: #,0.00
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa048
+
+	measure 'Policy Target Stock Qty' = SUM ( Fact_StockCoverPolicy[TargetStockQty] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa049
+
+	measure 'Policy Stock Difference Qty' = SUM ( Fact_StockCoverPolicy[StockDifferenceQty] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa050
+
+	measure 'Suggested Reorder Qty' = SUM ( Fact_StockCoverPolicy[SuggestedReorderQty] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa051
+
+	measure 'Excess Stock Qty' = SUM ( Fact_StockCoverPolicy[ExcessQty] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa052
+
+	measure 'Policy Stock Value' = SUM ( Fact_StockCoverPolicy[TotalItemCost] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa058
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Policy Target Stock Value' =
+			SUMX (
+			    Fact_StockCoverPolicy,
+			    VAR _unitValue = COALESCE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
+			    RETURN
+			        Fact_StockCoverPolicy[TargetStockQty] * _unitValue
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa059
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Suggested Reorder Value' =
+			SUMX (
+			    Fact_StockCoverPolicy,
+			    VAR _unitValue = COALESCE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
+			    RETURN
+			        Fact_StockCoverPolicy[SuggestedReorderQty] * _unitValue
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa060
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Excess Stock Value' =
+			SUMX (
+			    Fact_StockCoverPolicy,
+			    VAR _unitValue = COALESCE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
+			    RETURN
+			        Fact_StockCoverPolicy[ExcessQty] * _unitValue
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa061
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Under Stock Value Gap' =
+			CALCULATE (
+			    [Suggested Reorder Value],
+			    Fact_StockCoverPolicy[StockCoverStatus] = "Under Stock"
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa062
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Healthy Stock Value' =
+			CALCULATE (
+			    [Policy Stock Value],
+			    Fact_StockCoverPolicy[StockCoverStatus] = "Equal / Healthy"
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa063
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Over Stock Value' =
+			CALCULATE (
+			    [Excess Stock Value],
+			    Fact_StockCoverPolicy[StockCoverStatus] = "Over Stock"
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa064
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'No Sales Stock Value' =
+			CALCULATE (
+			    [Policy Stock Value],
+			    Fact_StockCoverPolicy[StockCoverStatus] = "No Sales Stock"
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa065
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Under Stock Items' =
+			CALCULATE (
+			    DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] ),
+			    Fact_StockCoverPolicy[StockCoverStatus] = "Under Stock"
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa053
+
+	measure 'Equal Healthy Items' =
+			CALCULATE (
+			    DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] ),
+			    Fact_StockCoverPolicy[StockCoverStatus] = "Equal / Healthy"
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa054
+
+	measure 'Over Stock Items' =
+			CALCULATE (
+			    DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] ),
+			    Fact_StockCoverPolicy[StockCoverStatus] = "Over Stock"
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa055
+
+	measure 'No Sales Stock Items' =
+			CALCULATE (
+			    DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] ),
+			    Fact_StockCoverPolicy[StockCoverStatus] = "No Sales Stock"
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa056
+
+	measure 'Stock Cover Item Count' = DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa057
+
+	measure 'Policy Value Unit Cost' = SELECTEDVALUE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa066
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Stock Cover Exposure Value' =
+			SUMX (
+			    Fact_StockCoverPolicy,
+			    VAR _status = Fact_StockCoverPolicy[StockCoverStatus]
+			    VAR _unitValue = COALESCE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
+			    RETURN
+			        SWITCH (
+			            TRUE (),
+			            _status = "Under Stock", Fact_StockCoverPolicy[SuggestedReorderQty] * _unitValue,
+			            _status = "Over Stock", Fact_StockCoverPolicy[ExcessQty] * _unitValue,
+			            _status = "No Sales Stock", Fact_StockCoverPolicy[TotalItemCost],
+			            _status = "Equal / Healthy", Fact_StockCoverPolicy[TotalItemCost],
+			            0
+			        )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa067
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 	partition _Measures = m
 		mode: import
 		source =

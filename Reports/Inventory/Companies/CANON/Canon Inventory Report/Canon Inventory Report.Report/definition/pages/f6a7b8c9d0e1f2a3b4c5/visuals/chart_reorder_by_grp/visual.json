@@ -4,10 +4,10 @@
   "position": {
     "x": 188,
     "y": 560,
-    "z": 6000,
+    "z": 5000,
     "height": 316,
     "width": 502,
-    "tabOrder": 17000
+    "tabOrder": 16000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -42,11 +42,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Below Reorder Count"
+                  "Property": "Suggested Reorder Value"
                 }
               },
-              "queryRef": "_Measures.Below Reorder Count",
-              "nativeQueryRef": "Below Reorder"
+              "queryRef": "_Measures.Suggested Reorder Value",
+              "nativeQueryRef": "Suggested Reorder Value"
             }
           ]
         }
@@ -61,7 +61,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Below Reorder Count"
+                "Property": "Suggested Reorder Value"
               }
             },
             "direction": "Descending"
@@ -197,7 +197,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Below Reorder by Group Type'"
+                  "Value": "'Missing Reorder Value by Group Type'"
                 }
               }
             },

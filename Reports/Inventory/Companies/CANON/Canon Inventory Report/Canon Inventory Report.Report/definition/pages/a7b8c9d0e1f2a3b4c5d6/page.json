@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "a7b8c9d0e1f2a3b4c5d6",
+  "displayName": "Reorder Action List",
+  "displayOption": "FitToWidth",
+  "height": 960,
+  "width": 1280,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "195L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F8FBFF'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "slicer_item_group",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_stock_status",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    }
+  ]
+}

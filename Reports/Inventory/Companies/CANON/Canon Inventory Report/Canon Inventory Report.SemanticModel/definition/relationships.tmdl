@@ -46,3 +46,7 @@ relationship rel_po_date
 	fromColumn: Fact_PurchaseOrder.DocDate
 	toColumn: Dim_Date.Date
 
+relationship rel_stock_cover_item
+	fromColumn: Fact_StockCoverPolicy.ItemCode
+	toColumn: Dim_Item.ItemCode
+

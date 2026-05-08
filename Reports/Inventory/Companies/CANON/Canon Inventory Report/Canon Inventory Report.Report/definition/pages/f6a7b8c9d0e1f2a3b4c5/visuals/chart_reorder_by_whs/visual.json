@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Warehouse"
+                      "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "WhsName"
+                  "Property": "U_ProductType"
                 }
               },
-              "queryRef": "Dim_Warehouse.WhsName",
-              "nativeQueryRef": "Warehouse",
+              "queryRef": "Dim_Item.U_ProductType",
+              "nativeQueryRef": "U_ProductType",
               "active": true
             }
           ]
@@ -42,11 +42,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Below Reorder Count"
+                  "Property": "Excess Stock Value"
                 }
               },
-              "queryRef": "_Measures.Below Reorder Count",
-              "nativeQueryRef": "Below Reorder"
+              "queryRef": "_Measures.Excess Stock Value",
+              "nativeQueryRef": "Excess Stock Value"
             }
           ]
         }
@@ -61,7 +61,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Below Reorder Count"
+                "Property": "Excess Stock Value"
               }
             },
             "direction": "Descending"
@@ -197,7 +197,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Below Reorder by Warehouse'"
+                  "Value": "'Overstock Value by Product Type'"
                 }
               }
             },

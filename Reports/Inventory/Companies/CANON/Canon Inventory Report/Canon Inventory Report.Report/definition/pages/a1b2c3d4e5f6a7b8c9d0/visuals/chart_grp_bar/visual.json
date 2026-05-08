@@ -4,10 +4,10 @@
   "position": {
     "x": 714,
     "y": 236,
-    "z": 6000,
+    "z": 5000,
     "height": 300,
     "width": 502,
-    "tabOrder": 17000
+    "tabOrder": 16000
   },
   "visual": {
     "visualType": "donutChart",
@@ -168,7 +168,6 @@
             }
           },
           "selector": {
-            "metadata": "Fact_WarehouseStock.StockStatus",
             "data": [
               {
                 "scopeId": {
@@ -192,7 +191,8 @@
                   }
                 }
               }
-            ]
+            ],
+            "metadata": "Fact_WarehouseStock.StockStatus"
           }
         }
       ]

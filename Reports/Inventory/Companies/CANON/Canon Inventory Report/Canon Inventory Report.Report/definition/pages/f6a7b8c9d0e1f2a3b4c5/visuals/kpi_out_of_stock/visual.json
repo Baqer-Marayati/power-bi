@@ -4,10 +4,10 @@
   "position": {
     "x": 821,
     "y": 120,
-    "z": 0,
+    "z": 4000,
     "height": 92,
     "width": 184,
-    "tabOrder": 11000
+    "tabOrder": 15000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Out-of-Stock SKUs"
+                  "Property": "No Sales Stock Value"
                 }
               },
-              "queryRef": "_Measures.Out-of-Stock SKUs",
-              "nativeQueryRef": "Out-of-Stock SKUs"
+              "queryRef": "_Measures.No Sales Stock Value",
+              "nativeQueryRef": "No Sales Stock Value"
             }
           ]
         }
@@ -70,20 +70,20 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "1000000D"
                 }
               }
             },
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "1L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Out-of-Stock SKUs"
+            "metadata": "_Measures.No Sales Stock Value"
           }
         }
       ]
@@ -185,7 +185,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Out-of-Stock SKUs'"
+                  "Value": "'No-Sales Stock Value'"
                 }
               }
             },

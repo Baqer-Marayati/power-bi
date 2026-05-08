@@ -4,10 +4,10 @@
   "position": {
     "x": 188,
     "y": 236,
-    "z": 8000,
+    "z": 7000,
     "height": 300,
     "width": 502,
-    "tabOrder": 19000
+    "tabOrder": 18000
   },
   "visual": {
     "visualType": "donutChart",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_WarehouseStock"
+                      "Entity": "Fact_StockCoverPolicy"
                     }
                   },
-                  "Property": "StockStatus"
+                  "Property": "SuggestedAction"
                 }
               },
-              "queryRef": "Fact_WarehouseStock.StockStatus",
-              "nativeQueryRef": "Stock Status",
+              "queryRef": "Fact_StockCoverPolicy.SuggestedAction",
+              "nativeQueryRef": "Suggested Action",
               "active": true
             }
           ]
@@ -42,11 +42,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Distinct SKUs"
+                  "Property": "Policy Stock Value"
                 }
               },
-              "queryRef": "_Measures.Distinct SKUs",
-              "nativeQueryRef": "SKUs"
+              "queryRef": "_Measures.Policy Stock Value",
+              "nativeQueryRef": "Stock Value"
             }
           ]
         }
@@ -61,7 +61,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Distinct SKUs"
+                "Property": "Policy Stock Value"
               }
             },
             "direction": "Descending"
@@ -144,7 +144,6 @@
             }
           },
           "selector": {
-            "metadata": "Fact_WarehouseStock.StockStatus",
             "data": [
               {
                 "scopeId": {
@@ -154,21 +153,22 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Fact_WarehouseStock"
+                            "Entity": "Fact_StockCoverPolicy"
                           }
                         },
-                        "Property": "StockStatus"
+                        "Property": "SuggestedAction"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'In-Stock'"
+                        "Value": "'Good health'"
                       }
                     }
                   }
                 }
               }
-            ]
+            ],
+            "metadata": "Fact_StockCoverPolicy.SuggestedAction"
           }
         },
         {
@@ -186,7 +186,6 @@
             }
           },
           "selector": {
-            "metadata": "Fact_WarehouseStock.StockStatus",
             "data": [
               {
                 "scopeId": {
@@ -196,21 +195,148 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Fact_WarehouseStock"
+                            "Entity": "Fact_StockCoverPolicy"
                           }
                         },
-                        "Property": "StockStatus"
+                        "Property": "SuggestedAction"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Out of Stock'"
+                        "Value": "'Buy'"
                       }
                     }
                   }
                 }
               }
-            ]
+            ],
+            "metadata": "Fact_StockCoverPolicy.SuggestedAction"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C13737'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Fact_StockCoverPolicy"
+                          }
+                        },
+                        "Property": "SuggestedAction"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Reduce'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "Fact_StockCoverPolicy.SuggestedAction"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#8A8A8A'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Fact_StockCoverPolicy"
+                          }
+                        },
+                        "Property": "SuggestedAction"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Dead'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "Fact_StockCoverPolicy.SuggestedAction"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E2EAE6'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Fact_StockCoverPolicy"
+                          }
+                        },
+                        "Property": "SuggestedAction"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'No Action'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "Fact_StockCoverPolicy.SuggestedAction"
           }
         }
       ]
@@ -284,7 +410,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'In-Stock vs Out-of-Stock'"
+                  "Value": "'Current Stock Value by Suggested Action'"
                 }
               }
             },

@@ -4,7 +4,7 @@
   "position": {
     "x": 188,
     "y": 36,
-    "z": 20000,
+    "z": 19000,
     "height": 60,
     "width": 700,
     "tabOrder": 0
@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Stock Health & Aging'"
+                  "Value": "'Stock Cover Value Exposure'"
                 }
               }
             },
@@ -76,7 +76,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Reorder risk, in-stock health, and stock-level distribution — identify where attention is needed.'"
+                  "Value": "'Current stock value by policy status, plus target value, missing reorder gap, and excess value at average cost.'"
                 }
               }
             }

@@ -4,10 +4,10 @@
   "position": {
     "x": 399,
     "y": 120,
-    "z": 0,
+    "z": 3000,
     "height": 92,
     "width": 184,
-    "tabOrder": 11000
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "In-Stock Rate"
+                  "Property": "Policy Target Stock Value"
                 }
               },
-              "queryRef": "_Measures.In-Stock Rate",
-              "nativeQueryRef": "In-Stock Rate"
+              "queryRef": "_Measures.Policy Target Stock Value",
+              "nativeQueryRef": "Target Stock Value"
             }
           ]
         }
@@ -70,20 +70,20 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "1000000D"
                 }
               }
             },
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "1L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.In-Stock Rate"
+            "metadata": "_Measures.Policy Target Stock Value"
           }
         }
       ]
@@ -185,7 +185,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'In-Stock Rate'"
+                  "Value": "'Target Stock Value'"
                 }
               }
             },

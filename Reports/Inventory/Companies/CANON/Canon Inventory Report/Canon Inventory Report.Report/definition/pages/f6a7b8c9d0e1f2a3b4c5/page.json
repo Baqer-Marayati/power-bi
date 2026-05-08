@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
   "name": "f6a7b8c9d0e1f2a3b4c5",
-  "displayName": "Stock Health & Aging",
+  "displayName": "Stock Cover Value Exposure",
   "displayOption": "FitToWidth",
   "height": 960,
   "width": 1280,

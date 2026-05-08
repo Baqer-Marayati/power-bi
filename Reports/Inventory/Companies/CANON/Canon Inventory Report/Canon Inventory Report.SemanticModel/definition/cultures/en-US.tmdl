@@ -12550,6 +12550,117 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "fact_stockcoverpolicy.u_businesstype": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fact_StockCoverPolicy",
+			          "ConceptualProperty": "U_BusinessType"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "fact_stockcoverpolicy.u_grouptype": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fact_StockCoverPolicy",
+			          "ConceptualProperty": "U_GroupType"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "fact_stockcoverpolicy.u_producttype": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fact_StockCoverPolicy",
+			          "ConceptualProperty": "U_ProductType"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "fact_stockcoverpolicy.itemcode": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fact_StockCoverPolicy",
+			          "ConceptualProperty": "ItemCode"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Item Code": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_stockcoverpolicy.itemname": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fact_StockCoverPolicy",
+			          "ConceptualProperty": "ItemName"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Item Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_stockcoverpolicy.stockcoverstatus": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fact_StockCoverPolicy",
+			          "ConceptualProperty": "StockCoverStatus"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Stock Status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_stockcoverpolicy.suggestedaction": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fact_StockCoverPolicy",
+			          "ConceptualProperty": "SuggestedAction"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Suggested Action": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {

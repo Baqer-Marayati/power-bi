@@ -4,10 +4,10 @@
   "position": {
     "x": 188,
     "y": 120,
-    "z": 0,
+    "z": 1000,
     "height": 92,
     "width": 184,
-    "tabOrder": 11000
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Below Reorder Count"
+                  "Property": "Policy Stock Value"
                 }
               },
-              "queryRef": "_Measures.Below Reorder Count",
-              "nativeQueryRef": "Below Reorder Count"
+              "queryRef": "_Measures.Policy Stock Value",
+              "nativeQueryRef": "Current Stock Value"
             }
           ]
         }
@@ -70,20 +70,20 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "1000000D"
                 }
               }
             },
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "1L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Below Reorder Count"
+            "metadata": "_Measures.Policy Stock Value"
           }
         }
       ]
@@ -185,7 +185,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Below Reorder Items'"
+                  "Value": "'Current Stock Value'"
                 }
               }
             },

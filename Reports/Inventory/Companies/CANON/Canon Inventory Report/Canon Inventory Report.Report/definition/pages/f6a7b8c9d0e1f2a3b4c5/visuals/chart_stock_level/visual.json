@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_WarehouseStock"
+                      "Entity": "Fact_StockCoverPolicy"
                     }
                   },
-                  "Property": "StockLevel"
+                  "Property": "StockCoverStatus"
                 }
               },
-              "queryRef": "Fact_WarehouseStock.StockLevel",
-              "nativeQueryRef": "Stock Level",
+              "queryRef": "Fact_StockCoverPolicy.StockCoverStatus",
+              "nativeQueryRef": "Stock Cover Status",
               "active": true
             }
           ]
@@ -42,11 +42,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Distinct SKUs"
+                  "Property": "Policy Stock Value"
                 }
               },
-              "queryRef": "_Measures.Distinct SKUs",
-              "nativeQueryRef": "SKUs"
+              "queryRef": "_Measures.Policy Stock Value",
+              "nativeQueryRef": "Current Stock Value"
             }
           ]
         }
@@ -61,7 +61,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Distinct SKUs"
+                "Property": "Policy Stock Value"
               }
             },
             "direction": "Descending"
@@ -144,7 +144,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_WarehouseStock.StockLevel",
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus",
             "data": [
               {
                 "scopeId": {
@@ -154,15 +154,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Fact_WarehouseStock"
+                            "Entity": "Fact_StockCoverPolicy"
                           }
                         },
-                        "Property": "StockLevel"
+                        "Property": "StockCoverStatus"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'High'"
+                        "Value": "'Over Stock'"
                       }
                     }
                   }
@@ -186,7 +186,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_WarehouseStock.StockLevel",
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus",
             "data": [
               {
                 "scopeId": {
@@ -196,15 +196,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Fact_WarehouseStock"
+                            "Entity": "Fact_StockCoverPolicy"
                           }
                         },
-                        "Property": "StockLevel"
+                        "Property": "StockCoverStatus"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Mid'"
+                        "Value": "'Equal / Healthy'"
                       }
                     }
                   }
@@ -228,7 +228,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_WarehouseStock.StockLevel",
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus",
             "data": [
               {
                 "scopeId": {
@@ -238,15 +238,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Fact_WarehouseStock"
+                            "Entity": "Fact_StockCoverPolicy"
                           }
                         },
-                        "Property": "StockLevel"
+                        "Property": "StockCoverStatus"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Low'"
+                        "Value": "'Under Stock'"
                       }
                     }
                   }
@@ -270,7 +270,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_WarehouseStock.StockLevel",
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus",
             "data": [
               {
                 "scopeId": {
@@ -280,15 +280,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Fact_WarehouseStock"
+                            "Entity": "Fact_StockCoverPolicy"
                           }
                         },
-                        "Property": "StockLevel"
+                        "Property": "StockCoverStatus"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Out of Stock'"
+                        "Value": "'No Sales Stock'"
                       }
                     }
                   }
@@ -368,7 +368,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Stock Level Distribution'"
+                  "Value": "'Current Stock Value by Cover Status'"
                 }
               }
             },

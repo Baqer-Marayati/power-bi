@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Avg Days Since Last Purchase"
+                  "Property": "Under Stock Value Gap"
                 }
               },
-              "queryRef": "_Measures.Avg Days Since Last Purchase",
-              "nativeQueryRef": "Avg Days Since Last Purchase"
+              "queryRef": "_Measures.Under Stock Value Gap",
+              "nativeQueryRef": "Reorder Value Gap"
             }
           ]
         }
@@ -70,20 +70,20 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "1000000D"
                 }
               }
             },
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "1L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Avg Days Since Last Purchase"
+            "metadata": "_Measures.Under Stock Value Gap"
           }
         }
       ]
@@ -185,7 +185,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Avg Stock Age (Days)'"
+                  "Value": "'Missing Reorder Value'"
                 }
               }
             },
