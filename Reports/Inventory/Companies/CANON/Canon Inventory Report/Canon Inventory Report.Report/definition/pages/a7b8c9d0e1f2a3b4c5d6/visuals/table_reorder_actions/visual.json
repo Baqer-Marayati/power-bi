@@ -127,6 +127,46 @@
             },
             {
               "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Fact_StockCoverPolicy"
+                        }
+                      },
+                      "Property": "OpenPOQty"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Fact_StockCoverPolicy.OpenPOQty)",
+              "nativeQueryRef": "Open PO Qty",
+              "displayName": "Open PO Qty"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Fact_StockCoverPolicy"
+                        }
+                      },
+                      "Property": "OpenSOQty"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Fact_StockCoverPolicy.OpenSOQty)",
+              "nativeQueryRef": "Open SO Qty",
+              "displayName": "Open SO Qty"
+            },
+            {
+              "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
@@ -182,16 +222,21 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Aggregation": {
                 "Expression": {
-                  "SourceRef": {
-                    "Entity": "Fact_StockCoverPolicy"
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Fact_StockCoverPolicy"
+                      }
+                    },
+                    "Property": "OpenSOQty"
                   }
                 },
-                "Property": "SuggestedAction"
+                "Function": 0
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
@@ -390,6 +435,34 @@
             "value": {
               "expr": {
                 "Literal": {
+                  "Value": "82D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Fact_StockCoverPolicy.OpenPOQty)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "82D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Fact_StockCoverPolicy.OpenSOQty)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
                   "Value": "130D"
                 }
               }
@@ -511,6 +584,48 @@
           },
           "selector": {
             "metadata": "Sum(Fact_StockCoverPolicy.TargetStockQty)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Fact_StockCoverPolicy.OpenPOQty)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Fact_StockCoverPolicy.OpenSOQty)"
           }
         },
         {
