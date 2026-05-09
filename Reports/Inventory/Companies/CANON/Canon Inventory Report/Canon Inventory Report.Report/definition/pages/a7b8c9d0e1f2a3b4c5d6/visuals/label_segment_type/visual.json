@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "label_segment_type",
   "position": {
-    "x": 770,
-    "y": 118,
+    "x": 24,
+    "y": 398,
     "z": 9000,
     "height": 18,
     "width": 136,

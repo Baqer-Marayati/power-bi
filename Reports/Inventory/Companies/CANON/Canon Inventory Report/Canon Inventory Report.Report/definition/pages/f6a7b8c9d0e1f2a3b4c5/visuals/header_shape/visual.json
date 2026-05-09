@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Stock Cover Value Exposure'"
+                  "Value": "'Stock Cover'"
                 }
               }
             },

@@ -3,9 +3,9 @@
   "name": "table_reorder_actions",
   "position": {
     "x": 188,
-    "y": 196,
+    "y": 120,
     "z": 0,
-    "height": 680,
+    "height": 816,
     "width": 1028,
     "tabOrder": 11000
   },
@@ -347,113 +347,49 @@
       ],
       "columnWidth": [
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "126D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Fact_StockCoverPolicy.ItemCode"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "250D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Fact_StockCoverPolicy.ItemName"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "92D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Sum(Fact_StockCoverPolicy.TotalQtyAvailable)"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "82D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Sum(Fact_StockCoverPolicy.TotalQtySold)"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "78D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Sum(Fact_StockCoverPolicy.PolicyDays)"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "90D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Sum(Fact_StockCoverPolicy.TargetStockQty)"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "82D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Sum(Fact_StockCoverPolicy.OpenPOQty)"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "82D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Sum(Fact_StockCoverPolicy.OpenSOQty)"
           }
@@ -487,15 +423,7 @@
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "120D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Fact_StockCoverPolicy.SuggestedAction"
           }

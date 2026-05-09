@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "label_stock_status",
   "position": {
-    "x": 1014,
-    "y": 118,
+    "x": 24,
+    "y": 468,
     "z": 10000,
     "height": 18,
-    "width": 160,
+    "width": 136,
     "tabOrder": 10000
   },
   "visual": {

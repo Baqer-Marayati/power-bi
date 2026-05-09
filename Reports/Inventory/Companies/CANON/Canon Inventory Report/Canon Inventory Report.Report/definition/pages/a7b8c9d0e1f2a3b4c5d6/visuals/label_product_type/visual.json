@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "label_product_type",
   "position": {
-    "x": 576,
-    "y": 118,
+    "x": 24,
+    "y": 328,
     "z": 8000,
     "height": 18,
     "width": 136,

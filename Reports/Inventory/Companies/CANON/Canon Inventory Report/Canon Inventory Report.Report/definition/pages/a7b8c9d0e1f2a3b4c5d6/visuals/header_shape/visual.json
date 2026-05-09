@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Reorder Action List'"
+                  "Value": "'Reorder Actions'"
                 }
               }
             },
