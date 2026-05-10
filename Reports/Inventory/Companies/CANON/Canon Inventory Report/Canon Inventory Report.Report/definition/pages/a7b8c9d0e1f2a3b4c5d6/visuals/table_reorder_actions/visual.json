@@ -230,7 +230,7 @@
                         "Entity": "Fact_StockCoverPolicy"
                       }
                     },
-                    "Property": "OpenSOQty"
+                    "Property": "OpenPOQty"
                   }
                 },
                 "Function": 0
@@ -395,15 +395,7 @@
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "130D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Fact_StockCoverPolicy.StockCoverStatus"
           }

@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "_Measures.Over Stock Value",
-              "nativeQueryRef": "Overstock Value Locked"
+              "nativeQueryRef": "Overstock Value"
             }
           ]
         }
@@ -56,7 +56,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "18D"
+                  "Value": "16D"
                 }
               }
             },
@@ -185,7 +185,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Overstock Value Locked'"
+                  "Value": "'Overstock Value'"
                 }
               }
             },

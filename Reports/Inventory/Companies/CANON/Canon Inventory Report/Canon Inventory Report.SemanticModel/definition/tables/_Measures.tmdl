@@ -342,10 +342,10 @@ table _Measures
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
 	measure 'Healthy Stock Value' =
-			CALCULATE (
-			    [Policy Stock Value],
-			    Fact_StockCoverPolicy[StockCoverStatus] = "Equal / Healthy"
-			)
+				CALCULATE (
+				    [Policy Stock Value],
+			    Fact_StockCoverPolicy[StockCoverStatus] = "Healthy"
+				)
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa063
 
@@ -362,10 +362,10 @@ table _Measures
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
 	measure 'No Sales Stock Value' =
-			CALCULATE (
-			    [Policy Stock Value],
-			    Fact_StockCoverPolicy[StockCoverStatus] = "No Sales Stock"
-			)
+				CALCULATE (
+				    [Policy Stock Value],
+			    Fact_StockCoverPolicy[StockCoverStatus] = "No demand - QTY available"
+				)
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa065
 
@@ -380,10 +380,10 @@ table _Measures
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa053
 
 	measure 'Equal Healthy Items' =
-			CALCULATE (
-			    DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] ),
-			    Fact_StockCoverPolicy[StockCoverStatus] = "Equal / Healthy"
-			)
+				CALCULATE (
+				    DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] ),
+			    Fact_StockCoverPolicy[StockCoverStatus] = "Healthy"
+				)
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa054
 
@@ -396,10 +396,10 @@ table _Measures
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa055
 
 	measure 'No Sales Stock Items' =
-			CALCULATE (
-			    DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] ),
-			    Fact_StockCoverPolicy[StockCoverStatus] = "No Sales Stock"
-			)
+				CALCULATE (
+				    DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] ),
+			    Fact_StockCoverPolicy[StockCoverStatus] = "No demand - QTY available"
+				)
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa056
 
@@ -414,24 +414,28 @@ table _Measures
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
 	measure 'Stock Cover Exposure Value' =
-			SUMX (
-			    Fact_StockCoverPolicy,
-			    VAR _status = Fact_StockCoverPolicy[StockCoverStatus]
-			    VAR _unitValue = COALESCE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
-			    RETURN
-			        SWITCH (
-			            TRUE (),
-			            _status = "Under Stock", Fact_StockCoverPolicy[SuggestedReorderQty] * _unitValue,
-			            _status = "Over Stock", Fact_StockCoverPolicy[ExcessQty] * _unitValue,
-			            _status = "No Sales Stock", Fact_StockCoverPolicy[TotalItemCost],
-			            _status = "Equal / Healthy", Fact_StockCoverPolicy[TotalItemCost],
-			            0
-			        )
-			)
+				SUMX (
+				    Fact_StockCoverPolicy,
+				    VAR _status = Fact_StockCoverPolicy[StockCoverStatus]
+				    VAR _unitValue = COALESCE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
+				    RETURN
+				        SWITCH (
+				            TRUE (),
+				            _status = "Under Stock", Fact_StockCoverPolicy[SuggestedReorderQty] * _unitValue,
+				            _status = "Over Stock", Fact_StockCoverPolicy[ExcessQty] * _unitValue,
+			            _status = "No demand - QTY available", Fact_StockCoverPolicy[TotalItemCost],
+			            _status = "Healthy", Fact_StockCoverPolicy[TotalItemCost],
+				            0
+				        )
+				)
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa067
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Stock Cover Exposure % of Business Type' = DIVIDE ( [Stock Cover Exposure Value], CALCULATE ( [Stock Cover Exposure Value], REMOVEFILTERS ( Fact_StockCoverPolicy[StockCoverStatus] ) ), 0 )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa068
 
 	partition _Measures = m
 		mode: import

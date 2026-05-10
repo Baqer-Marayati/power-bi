@@ -10,7 +10,7 @@
     "tabOrder": 18000
   },
   "visual": {
-    "visualType": "donutChart",
+    "visualType": "barChart",
     "query": {
       "queryState": {
         "Category": {
@@ -23,12 +23,30 @@
                       "Entity": "Fact_StockCoverPolicy"
                     }
                   },
-                  "Property": "SuggestedAction"
+                  "Property": "U_BusinessType"
                 }
               },
-              "queryRef": "Fact_StockCoverPolicy.SuggestedAction",
-              "nativeQueryRef": "Suggested Action",
+              "queryRef": "Fact_StockCoverPolicy.U_BusinessType",
+              "nativeQueryRef": "Business Type",
               "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_StockCoverPolicy"
+                    }
+                  },
+                  "Property": "StockCoverStatus"
+                }
+              },
+              "queryRef": "Fact_StockCoverPolicy.StockCoverStatus",
+              "nativeQueryRef": "Cover Status"
             }
           ]
         },
@@ -42,11 +60,29 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Policy Stock Value"
+                  "Property": "Stock Cover Exposure Value"
                 }
               },
-              "queryRef": "_Measures.Policy Stock Value",
-              "nativeQueryRef": "Stock Value"
+              "queryRef": "_Measures.Stock Cover Exposure Value",
+              "nativeQueryRef": "Action Value"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Stock Cover Exposure % of Business Type"
+                }
+              },
+              "queryRef": "_Measures.Stock Cover Exposure % of Business Type",
+              "nativeQueryRef": "% of Business Type"
             }
           ]
         }
@@ -61,7 +97,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Policy Stock Value"
+                "Property": "Stock Cover Exposure Value"
               }
             },
             "direction": "Descending"
@@ -136,6 +172,47 @@
                 "color": {
                   "expr": {
                     "Literal": {
+                      "Value": "'#C13737'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Fact_StockCoverPolicy"
+                          }
+                        },
+                        "Property": "StockCoverStatus"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Over Stock'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
                       "Value": "'#1F4E79'"
                     }
                   }
@@ -156,19 +233,18 @@
                             "Entity": "Fact_StockCoverPolicy"
                           }
                         },
-                        "Property": "SuggestedAction"
+                        "Property": "StockCoverStatus"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Good health'"
+                        "Value": "'Healthy'"
                       }
                     }
                   }
                 }
               }
-            ],
-            "metadata": "Fact_StockCoverPolicy.SuggestedAction"
+            ]
           }
         },
         {
@@ -198,61 +274,18 @@
                             "Entity": "Fact_StockCoverPolicy"
                           }
                         },
-                        "Property": "SuggestedAction"
+                        "Property": "StockCoverStatus"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Buy'"
+                        "Value": "'Under Stock'"
                       }
                     }
                   }
                 }
               }
-            ],
-            "metadata": "Fact_StockCoverPolicy.SuggestedAction"
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#C13737'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Fact_StockCoverPolicy"
-                          }
-                        },
-                        "Property": "SuggestedAction"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Reduce'"
-                      }
-                    }
-                  }
-                }
-              }
-            ],
-            "metadata": "Fact_StockCoverPolicy.SuggestedAction"
+            ]
           }
         },
         {
@@ -282,19 +315,18 @@
                             "Entity": "Fact_StockCoverPolicy"
                           }
                         },
-                        "Property": "SuggestedAction"
+                        "Property": "StockCoverStatus"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Dead'"
+                        "Value": "'No demand - QTY available'"
                       }
                     }
                   }
                 }
               }
-            ],
-            "metadata": "Fact_StockCoverPolicy.SuggestedAction"
+            ]
           }
         },
         {
@@ -324,19 +356,18 @@
                             "Entity": "Fact_StockCoverPolicy"
                           }
                         },
-                        "Property": "SuggestedAction"
+                        "Property": "StockCoverStatus"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'No Action'"
+                        "Value": "'No demand - Zero QTY available'"
                       }
                     }
                   }
                 }
               }
-            ],
-            "metadata": "Fact_StockCoverPolicy.SuggestedAction"
+            ]
           }
         }
       ]
@@ -410,7 +441,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Current Stock Value by Suggested Action'"
+                  "Value": "'Action Value by Business Type'"
                 }
               }
             },
