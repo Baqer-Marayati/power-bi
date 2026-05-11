@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "slicer_quarter",
+  "name": "slicer_bpclass",
   "position": {
     "x": 24,
-    "y": 208,
+    "y": 548,
     "z": 10000,
     "height": 32,
     "width": 136,
-    "tabOrder": 10002
+    "tabOrder": 10003
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Date"
+                      "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "Quarter"
+                  "Property": "U_SegmentType"
                 }
               },
-              "queryRef": "Dim_Date.Quarter",
-              "nativeQueryRef": "Quarter",
+              "queryRef": "Dim_Item.U_SegmentType",
+              "nativeQueryRef": "Segment Type",
               "active": true
             }
           ]
@@ -79,6 +79,11 @@
               }
             }
           }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
         }
       ]
     },

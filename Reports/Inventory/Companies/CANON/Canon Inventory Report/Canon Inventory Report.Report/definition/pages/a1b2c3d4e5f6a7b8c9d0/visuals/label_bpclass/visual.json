@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "label_quarter",
+  "name": "label_bpclass",
   "position": {
     "x": 24,
-    "y": 188,
+    "y": 528,
     "z": 19000,
     "height": 18,
     "width": 136,
-    "tabOrder": 19001
+    "tabOrder": 19002
   },
   "visual": {
     "visualType": "textbox",
@@ -42,7 +42,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Quarter'"
+                  "Value": "'Segment Type'"
                 }
               }
             },

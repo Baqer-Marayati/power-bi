@@ -42,3 +42,9 @@ Use this file for approved directions and durable constraints in the Inventory R
 - **Good health** — On-hand between 90% and 110% of target.
 - **Dead** — On-hand with **no net sales in the 90/180/365-day windows** (blended velocity = 0); non-moving / obsolescence risk.
 - **No Action** — No on-hand and no demand in those windows; nothing to reorder or clear.
+
+## 2026-05-11 — Executive Summary COGS definitions
+
+- **Total COGS** means SAP actual booked cost for valid sales inventory movements: `OINM.CogsVal`, excluding canceled sales documents and netting credit/return movement types.
+- **Current Total Cost** means the same net sold quantity valued at current item cost. Current cost prefers selected-warehouse stock value/on-hand, then item `AvgPrice`, then item `LastPurPrc`; only items with no valid fallback remain zero.
+- For cost direction over time, use **Average Unit COGS** (`Total COGS / Total Sold Qty`) rather than Current Total Cost. Current Total Cost is a present-day valuation applied to sold quantity, while Average Unit COGS shows the realized sale-time cost trend.

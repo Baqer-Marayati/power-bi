@@ -608,6 +608,63 @@ table _Measures
 		formatString: #,0;-#,0;0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa078
 
+	measure 'Total Sold Qty' =
+			CALCULATE (
+			    SUMX (
+			        Fact_StockMovement,
+			        Fact_StockMovement[OutQty] - Fact_StockMovement[InQty]
+			    ),
+			    KEEPFILTERS ( Fact_StockMovement[SalesCogsIncluded] = 1 ),
+			    KEEPFILTERS ( Fact_StockMovement[TransType] IN { 13, 14, 15, 16 } )
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa082
+
+	measure 'Total COGS' =
+			CALCULATE (
+			    SUM ( Fact_StockMovement[CogsValue] ),
+			    KEEPFILTERS ( Fact_StockMovement[SalesCogsIncluded] = 1 ),
+			    KEEPFILTERS ( Fact_StockMovement[TransType] IN { 13, 14, 15, 16 } )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa083
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Average Unit COGS' = DIVIDE ( [Total COGS], [Total Sold Qty] )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa086
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Current Item Unit Cost' =
+			VAR _stockUnitCost =
+			    DIVIDE (
+			        SUM ( Fact_WarehouseStock[StockValue] ),
+			        SUM ( Fact_WarehouseStock[OnHand] )
+			    )
+			VAR _masterAvgCost = SELECTEDVALUE ( Dim_Item[AvgPrice] )
+			VAR _lastPurchaseCost = SELECTEDVALUE ( Dim_Item[LastPurPrc] )
+			VAR _validStockUnitCost = IF ( _stockUnitCost > 0, _stockUnitCost )
+			VAR _validMasterAvgCost = IF ( _masterAvgCost > 0, _masterAvgCost )
+			VAR _validLastPurchaseCost = IF ( _lastPurchaseCost > 0, _lastPurchaseCost )
+			RETURN
+			    COALESCE ( _validStockUnitCost, _validMasterAvgCost, _validLastPurchaseCost, 0 )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa085
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Current Total Cost' =
+			SUMX (
+			    VALUES ( Dim_Item[ItemCode] ),
+			    [Total Sold Qty] * [Current Item Unit Cost]
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa084
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 	partition _Measures = m
 		mode: import
 		source =
