@@ -588,9 +588,8 @@ table _Measures
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa077
 
 	/// IQD impact (numeric): SuggestedReorderQty * AvgItemCost for Buy, ExcessQty * AvgItemCost
-	/// for Reduce, item book value for Review non-mover, BLANK otherwise. Auto-scaled to K / M / B
-	/// via the conditional format string so the column sorts numerically and renders compactly
-	/// (e.g. 989,634 → "989.6 K", 12,500,000 → "12.5 M").
+	/// for Reduce, item book value for Review non-mover, BLANK otherwise. Keep this as a
+	/// plain numeric format string; table visuals render conditional format sections as literal text.
 	measure 'Reorder IQD Impact' =
 			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
 			VAR _Buy = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedReorderQty] )
@@ -606,7 +605,7 @@ table _Measures
 			        "Review non-mover", COALESCE ( _Total, _Net * _Cost ),
 			        BLANK ()
 			    )
-		formatString: [>=1000000000]#,##0.0,,," B";[>=1000000]#,##0.0,," M";[>=1000]#,##0.0," K";#,##0
+		formatString: #,0;-#,0;0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa078
 
 	partition _Measures = m
