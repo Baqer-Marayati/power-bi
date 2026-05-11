@@ -50,24 +50,6 @@
             }
           ]
         },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Stock Cover Exposure Value"
-                }
-              },
-              "queryRef": "_Measures.Stock Cover Exposure Value",
-              "nativeQueryRef": "Action Value"
-            }
-          ]
-        },
         "Tooltips": {
           "projections": [
             {
@@ -83,6 +65,24 @@
               },
               "queryRef": "_Measures.Stock Cover Exposure % of Business Type",
               "nativeQueryRef": "% of Business Type"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Stock Cover Exposure Value"
+                }
+              },
+              "queryRef": "_Measures.Stock Cover Exposure Value",
+              "nativeQueryRef": "Action Value"
             }
           ]
         }
@@ -144,13 +144,6 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
-                }
-              }
-            },
-            "labelStyle": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Both'"
                 }
               }
             },

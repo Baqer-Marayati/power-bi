@@ -2,10 +2,15 @@
 
 ## Date
 
-- Last updated: May 9, 2026
+- Last updated: May 11, 2026
 
 ## Current Reality
 
+- May 11, 2026 (pm-3) — IQD impact column width bumped to 120D and the auto-scale format string switched to standard `#,##0.0` digit pattern (`[>=1B]#,##0.0,,," B";[>=1M]…;[>=1K]…;#,##0`). The previous 95D width was clipping the trailing "K" on 5+ digit values like `145.3 K` so it visually looked like a stray vertical bar; "M" values fit because they were shorter.
+- May 11, 2026 (pm-2) — Fixed Reorder Actions sort behaviour: Move qty and IQD impact are now numeric measures (`Reorder Move Qty Value` with `+#,0;-#,0;0`, `Reorder IQD Impact` with conditional `[>=1B]/[>=1M]/[>=1K]` format string for auto-scale). Clicking the column headers now sorts by the actual amount instead of alphabetic text. Cover bar shows "— no target" for non-mover rows (TargetStockQty=0) so a missing fill is no longer mis-read as "0% of target"; ratio is also clamped to ≥0 / ≤150% so weird values can't push the fill outside the track. Dropped the now-unused `Reorder Move Qty Label` and `Reorder IQD Impact Label` text measures.
+- May 11, 2026 (pm) — Reorder Actions table re-shaped to 15 columns. Restored the rounded SVG pill on Action (`Reorder Action Pill SVG`, now with an inner `<title>` for accessible name). Item column shows only `ItemName` (bold). `Reorder Cover Bar SVG` track is thicker (12px) and the "% of target" label is now 11pt. Reference fields moved to the right end in this order: Policy → Item Code → Business Type → Group Type → Product Type → Segment Type. The table is wider than the visual frame (~1500px) so it scrolls horizontally inside the 1028px container.
+- May 11, 2026 — Reorder Actions table polished: replaced the Action / Item / Move qty SVG image measures with native text columns + measure-driven conditional formatting; Item became a two-line measure with word-wrap on. (Superseded by the 15-column re-shape later the same day — pill restored, Item back to name-only.)
+- May 11, 2026 — Reorder Actions table rebuilt as a modern native `tableEx` with Image URL SVG measures (Action pill, two-line Item cell, Cover bar with % of target, colored Move qty); columns matched the original 9-column approved mock.
 - `Reports/Inventory` is now an active module with a full PBIP project.
 - The PBIP lives at `Reports/Inventory/Inventory Report/Inventory Report.pbip`.
 - The semantic model connects to SAP B1 HANA via ODBC DSN `HANA_B1`, querying the `CANON` schema.

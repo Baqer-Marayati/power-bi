@@ -437,6 +437,178 @@ table _Measures
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa068
 
+	/// Rounded SVG pill badge for the Action column. The inner <title> element gives
+	/// the cell an accessible name (BUY / HEALTHY / REDUCE / REVIEW / IDLE) so screen
+	/// readers and any renderer that respects SVG titles get a clean label instead of
+	/// the raw data URI.
+	measure 'Reorder Action Pill SVG' =
+			VAR _Code = SELECTEDVALUE ( Fact_StockCoverPolicy[ItemCode] )
+			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
+			VAR _Lbl =
+			    SWITCH (
+			        _Act,
+			        "Buy", "BUY",
+			        "Good health", "HEALTHY",
+			        "Reduce", "REDUCE",
+			        "Review non-mover", "REVIEW",
+			        "No Action", "IDLE",
+			        UPPER ( _Act )
+			    )
+			VAR _Pal =
+			    SWITCH (
+			        _Act,
+			        "Buy", "9C2C2C|FBEAEA|E8B5B5",
+			        "Good health", "1F6240|E4F1EA|B7D9C4",
+			        "Reduce", "8A5E0F|FBF1DD|E8D49A",
+			        "Review non-mover", "4A4A4A|EDEDED|CFCFCF",
+			        "No Action", "1F4E79|E6EEF8|C0D3E8",
+			        "1F4E79|E6EEF8|C0D3E8"
+			    )
+			VAR _Fg = "#" & PATHITEM ( _Pal, 1 )
+			VAR _Bg = "#" & PATHITEM ( _Pal, 2 )
+			VAR _Bd = "#" & PATHITEM ( _Pal, 3 )
+			VAR _Svg =
+			    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' width='100' height='30'>" &
+			    "<title>" & _Lbl & "</title>" &
+			    "<rect x='2' y='3' rx='13' ry='13' width='96' height='24' fill='" & _Bg & "' stroke='" & _Bd & "' stroke-width='1'/>" &
+			    "<text x='50' y='19' text-anchor='middle' font-family='Segoe UI,Arial,sans-serif' font-size='11' font-weight='700' fill='" & _Fg & "' letter-spacing='0.6'>" & _Lbl & "</text>" &
+			    "</svg>"
+			RETURN
+			    IF ( ISBLANK ( _Code ) || ISBLANK ( _Act ), BLANK (), _Svg )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa069
+		dataCategory: ImageUrl
+
+	/// Policy days as "60d" / "120d" / "150d" for the Policy column.
+	measure 'Reorder Policy Display' =
+			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[PolicyDays] )
+			RETURN
+			    IF ( ISBLANK ( _V ), BLANK (), FORMAT ( _V, "0" ) & "d" )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa070
+
+	/// Horizontal cover bar (0-150% of target) with vertical tick at 100% and "% of target" label.
+	/// Track height is 12px (thicker) and the label uses 11px Segoe UI for legibility. When the
+	/// item has no target (non-mover / zero velocity) the label switches to "— no target" and the
+	/// fill stays empty, so the cell isn't misread as "0% of target".
+	measure 'Reorder Cover Bar SVG' =
+			VAR _Code = SELECTEDVALUE ( Fact_StockCoverPolicy[ItemCode] )
+			VAR _Net = SELECTEDVALUE ( Fact_StockCoverPolicy[NetAvailable] )
+			VAR _Tgt = SELECTEDVALUE ( Fact_StockCoverPolicy[TargetStockQty] )
+			VAR _NoTarget = ISBLANK ( _Tgt ) || _Tgt = 0
+			VAR _Ratio = IF ( _NoTarget, 0, DIVIDE ( _Net, _Tgt, 0 ) )
+			VAR _RatioCapped = MIN ( MAX ( _Ratio, 0 ), 1.5 )
+			VAR _Trk = 116
+			VAR _BarW = ROUND ( _RatioCapped / 1.5 * _Trk, 1 )
+			VAR _TickX = ROUND ( 1 / 1.5 * _Trk, 1 ) + 2
+			VAR _Color =
+			    SWITCH (
+			        TRUE (),
+			        _NoTarget, "#9AA5B5",
+			        _Ratio < 0.9, "#B33A3A",
+			        _Ratio > 1.1, "#B5811E",
+			        "#2F7A4D"
+			    )
+			VAR _Pct = IF ( _NoTarget, "— no target", FORMAT ( _Ratio * 100, "0" ) & "% of target" )
+			VAR _Svg =
+			    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' width='120' height='40'>" &
+			    "<title>" & _Pct & "</title>" &
+			    "<rect x='2' y='6' width='" & _Trk & "' height='12' rx='6' ry='6' fill='#E6EAEE'/>" &
+			    IF (
+			        _BarW > 0,
+			        "<rect x='2' y='6' width='" & _BarW & "' height='12' rx='6' ry='6' fill='" & _Color & "'/>",
+			        ""
+			    ) &
+			    "<rect x='" & _TickX & "' y='3' width='2' height='18' fill='#6B7785'/>" &
+			    "<text x='2' y='34' font-family='Segoe UI,Arial,sans-serif' font-size='11' fill='#6B7785'>" & _Pct & "</text>" &
+			    "</svg>"
+			RETURN
+			    IF ( ISBLANK ( _Code ), BLANK (), _Svg )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa071
+		dataCategory: ImageUrl
+
+	/// On hand (net available, integer rounding).
+	measure 'Reorder On Hand' =
+			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[NetAvailable] )
+			RETURN
+			    IF ( ISBLANK ( _V ), BLANK (), ROUND ( _V, 0 ) )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa072
+
+	/// Target stock qty; dash when zero/blank (dead SKUs).
+	measure 'Reorder Target Display' =
+			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[TargetStockQty] )
+			RETURN
+			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa073
+
+	/// Open PO qty; dash when zero/blank.
+	measure 'Reorder Open PO Display' =
+			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[OpenPOQty] )
+			RETURN
+			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa074
+
+	/// Sales velocity; dash when zero/blank.
+	measure 'Reorder Velocity Display' =
+			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[SalesVelocityQtyPerDay] )
+			RETURN
+			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "0.00" ) & " /d" )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa075
+
+	/// Font color for the Move qty cell (red for buy, amber for reduce/review, muted grey for —).
+	measure 'Reorder Move Qty Color' =
+			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
+			VAR _Buy = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedReorderQty] )
+			VAR _Excess = SELECTEDVALUE ( Fact_StockCoverPolicy[ExcessQty] )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        _Act = "Buy" && _Buy > 0, "#B33A3A",
+			        _Act = "Reduce" && _Excess > 0, "#B5811E",
+			        _Act = "Review non-mover" && _Excess > 0, "#B5811E",
+			        "#9AA5B5"
+			    )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa081
+
+	/// Signed numeric Move qty: +N for buy, -N for reduce/review, BLANK for healthy / no-action /
+	/// rows where there's nothing to do. The auto-scale "K"/"M"/"B" format mirrors IQD impact so
+	/// the column sorts numerically when the user clicks the header.
+	measure 'Reorder Move Qty Value' =
+			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
+			VAR _Buy = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedReorderQty] )
+			VAR _Excess = SELECTEDVALUE ( Fact_StockCoverPolicy[ExcessQty] )
+			RETURN
+			    SWITCH (
+			        _Act,
+			        "Buy", IF ( _Buy > 0, _Buy, BLANK () ),
+			        "Reduce", IF ( _Excess > 0, - _Excess, BLANK () ),
+			        "Review non-mover", IF ( _Excess > 0, - _Excess, BLANK () ),
+			        BLANK ()
+			    )
+		formatString: +#,0;-#,0;0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa077
+
+	/// IQD impact (numeric): SuggestedReorderQty * AvgItemCost for Buy, ExcessQty * AvgItemCost
+	/// for Reduce, item book value for Review non-mover, BLANK otherwise. Auto-scaled to K / M / B
+	/// via the conditional format string so the column sorts numerically and renders compactly
+	/// (e.g. 989,634 → "989.6 K", 12,500,000 → "12.5 M").
+	measure 'Reorder IQD Impact' =
+			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
+			VAR _Buy = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedReorderQty] )
+			VAR _Excess = SELECTEDVALUE ( Fact_StockCoverPolicy[ExcessQty] )
+			VAR _Net = SELECTEDVALUE ( Fact_StockCoverPolicy[NetAvailable] )
+			VAR _Cost = SELECTEDVALUE ( Fact_StockCoverPolicy[AvgItemCost] )
+			VAR _Total = SELECTEDVALUE ( Fact_StockCoverPolicy[TotalItemCost] )
+			RETURN
+			    SWITCH (
+			        _Act,
+			        "Buy", IF ( _Buy > 0, _Buy * _Cost, BLANK () ),
+			        "Reduce", IF ( _Excess > 0, _Excess * _Cost, BLANK () ),
+			        "Review non-mover", COALESCE ( _Total, _Net * _Cost ),
+			        BLANK ()
+			    )
+		formatString: [>=1000000000]#,##0.0,,," B";[>=1000000]#,##0.0,," M";[>=1000]#,##0.0," K";#,##0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa078
+
 	partition _Measures = m
 		mode: import
 		source =

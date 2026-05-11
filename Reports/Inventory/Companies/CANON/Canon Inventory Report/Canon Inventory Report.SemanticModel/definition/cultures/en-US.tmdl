@@ -12558,7 +12558,19 @@ cultureInfo en-US
 			          "ConceptualProperty": "U_BusinessType"
 			        }
 			      },
-			      "State": "Generated"
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Business Type": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    },
 			    "fact_stockcoverpolicy.u_grouptype": {
 			      "Definition": {
@@ -12567,7 +12579,19 @@ cultureInfo en-US
 			          "ConceptualProperty": "U_GroupType"
 			        }
 			      },
-			      "State": "Generated"
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Group Type": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    },
 			    "fact_stockcoverpolicy.u_producttype": {
 			      "Definition": {
@@ -12576,7 +12600,19 @@ cultureInfo en-US
 			          "ConceptualProperty": "U_ProductType"
 			        }
 			      },
-			      "State": "Generated"
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Product Type": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    },
 			    "fact_stockcoverpolicy.itemcode": {
 			      "Definition": {
@@ -12609,7 +12645,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Item Name": {
+			          "Item": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -12627,10 +12663,28 @@ cultureInfo en-US
 			          "ConceptualProperty": "StockCoverStatus"
 			        }
 			      },
+			      "State": "Generated"
+			    },
+			    "fact_stockcoverpolicy.suggestedaction": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fact_StockCoverPolicy",
+			          "ConceptualProperty": "SuggestedAction"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table_measures.reorder_action_pill_svg": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Reorder Action Pill SVG"
+			        }
+			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Stock Status": {
+			          "Action": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -12641,17 +12695,185 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "fact_stockcoverpolicy.suggestedaction": {
+			    "table_measures.reorder_cover_bar_svg": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "Fact_StockCoverPolicy",
-			          "ConceptualProperty": "SuggestedAction"
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Reorder Cover Bar SVG"
 			        }
 			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Suggested Action": {
+			          "Cover": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.reorder_on_hand": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Reorder On Hand"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "On hand": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.reorder_target_display": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Reorder Target Display"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Target": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.reorder_open_po_display": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Reorder Open PO Display"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Open PO": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.reorder_velocity_display": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Reorder Velocity Display"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Velocity": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.reorder_move_qty_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Reorder Move Qty Value"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Move qty": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.reorder_iqd_impact": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Reorder IQD Impact"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "IQD impact": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.reorder_policy_display": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Reorder Policy Display"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Policy": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fact_stockcoverpolicy.u_segmenttype": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fact_StockCoverPolicy",
+			          "ConceptualProperty": "U_SegmentType"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Segment Type": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
