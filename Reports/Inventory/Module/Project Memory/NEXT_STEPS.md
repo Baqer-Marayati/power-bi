@@ -10,11 +10,13 @@
 
 ## Near-Term Improvements
 
-1. Add Stock Value calculation using OIVL cost layers instead of AvgPrice (more accurate).
-2. Add a conditional formatting rule to highlight "#N/A" item group in the category page.
-3. Add warehouse type classification (physical location vs. sales rep) to Dim_Warehouse.
-4. Extend slow/no-sales stock analysis from the new stock-cover policy table.
-5. Add drill-through from Warehouse page to item-level detail.
+1. Validate the new Procurement & Suppliers purchase-unit-cost section in Power BI Desktop: refresh, slicer behavior, tab order, and one month/business-type spot check against SAP receipt lines.
+2. Reconcile whether OINM inbound valuation (`TransValue / InQty` for purchase-type inbound movements) should be added later as a finance diagnostic beside the GRPO paid-unit metric.
+3. Add Stock Value calculation using OIVL cost layers instead of AvgPrice (more accurate).
+4. Add a conditional formatting rule to highlight "#N/A" item group in the category page.
+5. Add warehouse type classification (physical location vs. sales rep) to Dim_Warehouse.
+6. Extend slow/no-sales stock analysis from the new stock-cover policy table.
+7. Add drill-through from Warehouse page to item-level detail.
 
 ## Future Pages
 

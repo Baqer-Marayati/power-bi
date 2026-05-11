@@ -665,6 +665,93 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+	measure 'GR Receipt Qty Positive' =
+			CALCULATE (
+			    SUM ( Fact_GoodsReceipt[Quantity] ),
+			    KEEPFILTERS ( Fact_GoodsReceipt[Quantity] > 0 )
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa087
+
+	measure 'GR Receipt Value Positive' =
+			CALCULATE (
+			    SUM ( Fact_GoodsReceipt[LineTotal] ),
+			    KEEPFILTERS ( Fact_GoodsReceipt[Quantity] > 0 ),
+			    KEEPFILTERS ( Fact_GoodsReceipt[LineTotal] > 0 )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa088
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Weighted Purchase Unit Cost' = DIVIDE ( [GR Receipt Value Positive], [GR Receipt Qty Positive] )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa089
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Weighted Purchase Unit Cost PM' =
+			CALCULATE (
+			    [Weighted Purchase Unit Cost],
+			    DATEADD ( Dim_Date[Date], -1, MONTH )
+			)
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa090
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Purchase Unit Cost MoM %' =
+			VAR _current = [Weighted Purchase Unit Cost]
+			VAR _pm = [Weighted Purchase Unit Cost PM]
+			RETURN
+			    IF ( NOT ISBLANK ( _pm ) && _pm <> 0, DIVIDE ( _current - _pm, _pm ), BLANK () )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa091
+
+	measure 'Purchase Cost Impact' =
+			VAR _delta = [Weighted Purchase Unit Cost] - [Weighted Purchase Unit Cost PM]
+			RETURN
+			    IF ( NOT ISBLANK ( _delta ), [GR Receipt Qty Positive] * _delta, BLANK () )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa092
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Average Unit COGS PM' =
+			CALCULATE (
+			    [Average Unit COGS],
+			    DATEADD ( Dim_Date[Date], -1, MONTH )
+			)
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa093
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Average Unit COGS MoM %' =
+			VAR _current = [Average Unit COGS]
+			VAR _pm = [Average Unit COGS PM]
+			RETURN
+			    IF ( NOT ISBLANK ( _pm ) && _pm <> 0, DIVIDE ( _current - _pm, _pm ), BLANK () )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa094
+
+	measure 'COGS Cost Impact' =
+			VAR _delta = [Average Unit COGS] - [Average Unit COGS PM]
+			RETURN
+			    IF ( NOT ISBLANK ( _delta ), [Total Sold Qty] * _delta, BLANK () )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa095
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'COGS Response Gap %' =
+			VAR _purchaseChange = [Purchase Unit Cost MoM %]
+			VAR _cogsChange = [Average Unit COGS MoM %]
+			RETURN
+			    IF ( NOT ISBLANK ( _purchaseChange ) && NOT ISBLANK ( _cogsChange ), _cogsChange - _purchaseChange, BLANK () )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa096
+
 	partition _Measures = m
 		mode: import
 		source =

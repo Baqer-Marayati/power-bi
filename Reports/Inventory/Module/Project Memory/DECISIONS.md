@@ -48,3 +48,9 @@ Use this file for approved directions and durable constraints in the Inventory R
 - **Total COGS** means SAP actual booked cost for valid sales inventory movements: `OINM.CogsVal`, excluding canceled sales documents and netting credit/return movement types.
 - **Current Total Cost** means the same net sold quantity valued at current item cost. Current cost prefers selected-warehouse stock value/on-hand, then item `AvgPrice`, then item `LastPurPrc`; only items with no valid fallback remain zero.
 - For cost direction over time, use **Average Unit COGS** (`Total COGS / Total Sold Qty`) rather than Current Total Cost. Current Total Cost is a present-day valuation applied to sold quantity, while Average Unit COGS shows the realized sale-time cost trend.
+
+## 2026-05-11 — Procurement purchase-cost and COGS comparison
+
+- **Paid / received unit** on Procurement & Suppliers uses Goods Receipt PO receipt lines: positive `Fact_GoodsReceipt[LineTotal] / Fact_GoodsReceipt[Quantity]` from `OPDN/PDN1`.
+- The page compares that inbound purchase-cost trend with **Average Unit COGS** from sales/outbound movements, but keeps the two definitions separate because receipt cost can affect realized COGS with timing and valuation lag.
+- Blank `Dim_Item[U_BusinessType]` values are normalized to `#N/A` in the CANON item dimension query so business-type slicers and trend series do not show unlabeled phantom buckets.
