@@ -35,13 +35,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_StockCoverPolicy"
+                      "Entity": "Dim_Item"
                     }
                   },
                   "Property": "ItemName"
                 }
               },
-              "queryRef": "Fact_StockCoverPolicy.ItemName",
+              "queryRef": "Dim_Item.ItemName",
               "nativeQueryRef": "Item",
               "displayName": "Item"
             },
@@ -170,13 +170,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_StockCoverPolicy"
+                      "Entity": "Dim_Item"
                     }
                   },
                   "Property": "ItemCode"
                 }
               },
-              "queryRef": "Fact_StockCoverPolicy.ItemCode",
+              "queryRef": "Dim_Item.ItemCode",
               "nativeQueryRef": "Item Code",
               "displayName": "Item Code"
             },
@@ -185,13 +185,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_StockCoverPolicy"
+                      "Entity": "Dim_Item"
                     }
                   },
                   "Property": "U_BusinessType"
                 }
               },
-              "queryRef": "Fact_StockCoverPolicy.U_BusinessType",
+              "queryRef": "Dim_Item.U_BusinessType",
               "nativeQueryRef": "Business Type",
               "displayName": "Business Type"
             },
@@ -200,13 +200,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_StockCoverPolicy"
+                      "Entity": "Dim_Item"
                     }
                   },
                   "Property": "U_GroupType"
                 }
               },
-              "queryRef": "Fact_StockCoverPolicy.U_GroupType",
+              "queryRef": "Dim_Item.U_GroupType",
               "nativeQueryRef": "Group Type",
               "displayName": "Group Type"
             },
@@ -215,13 +215,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_StockCoverPolicy"
+                      "Entity": "Dim_Item"
                     }
                   },
                   "Property": "U_ProductType"
                 }
               },
-              "queryRef": "Fact_StockCoverPolicy.U_ProductType",
+              "queryRef": "Dim_Item.U_ProductType",
               "nativeQueryRef": "Product Type",
               "displayName": "Product Type"
             },
@@ -230,13 +230,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_StockCoverPolicy"
+                      "Entity": "Dim_Item"
                     }
                   },
                   "Property": "U_SegmentType"
                 }
               },
-              "queryRef": "Fact_StockCoverPolicy.U_SegmentType",
+              "queryRef": "Dim_Item.U_SegmentType",
               "nativeQueryRef": "Segment Type",
               "displayName": "Segment Type"
             }
@@ -468,7 +468,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.ItemName"
+            "metadata": "Dim_Item.ItemName"
           }
         },
         {
@@ -594,31 +594,31 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.ItemCode"
+            "metadata": "Dim_Item.ItemCode"
           }
         },
         {
           "properties": {},
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_BusinessType"
+            "metadata": "Dim_Item.U_BusinessType"
           }
         },
         {
           "properties": {},
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_GroupType"
+            "metadata": "Dim_Item.U_GroupType"
           }
         },
         {
           "properties": {},
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_ProductType"
+            "metadata": "Dim_Item.U_ProductType"
           }
         },
         {
           "properties": {},
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_SegmentType"
+            "metadata": "Dim_Item.U_SegmentType"
           }
         }
       ],
@@ -648,7 +648,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.ItemName"
+            "metadata": "Dim_Item.ItemName"
           }
         },
         {
@@ -812,7 +812,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.ItemCode"
+            "metadata": "Dim_Item.ItemCode"
           }
         },
         {
@@ -826,7 +826,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_BusinessType"
+            "metadata": "Dim_Item.U_BusinessType"
           }
         },
         {
@@ -840,7 +840,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_GroupType"
+            "metadata": "Dim_Item.U_GroupType"
           }
         },
         {
@@ -854,7 +854,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_ProductType"
+            "metadata": "Dim_Item.U_ProductType"
           }
         },
         {
@@ -868,7 +868,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_SegmentType"
+            "metadata": "Dim_Item.U_SegmentType"
           }
         }
       ]
@@ -964,5 +964,91 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "filter_has_policy_action",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_StockCoverPolicy"
+              }
+            },
+            "Property": "SuggestedAction"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "Fact_StockCoverPolicy",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "And": {
+                  "Left": {
+                    "Not": {
+                      "Expression": {
+                        "Comparison": {
+                          "ComparisonKind": 0,
+                          "Left": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "f"
+                                }
+                              },
+                              "Property": "SuggestedAction"
+                            }
+                          },
+                          "Right": {
+                            "Literal": {
+                              "Value": "''"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "Right": {
+                    "Not": {
+                      "Expression": {
+                        "Comparison": {
+                          "ComparisonKind": 0,
+                          "Left": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "f"
+                                }
+                              },
+                              "Property": "SuggestedAction"
+                            }
+                          },
+                          "Right": {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
   }
 }

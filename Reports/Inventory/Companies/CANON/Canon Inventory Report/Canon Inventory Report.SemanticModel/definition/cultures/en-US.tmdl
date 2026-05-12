@@ -12578,19 +12578,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "U_BusinessType"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Business Type": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "fact_stockcoverpolicy.u_grouptype": {
 			      "Definition": {
@@ -12599,19 +12587,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "U_GroupType"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Group Type": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "fact_stockcoverpolicy.u_producttype": {
 			      "Definition": {
@@ -12620,19 +12596,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "U_ProductType"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Product Type": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "fact_stockcoverpolicy.itemcode": {
 			      "Definition": {
@@ -12641,19 +12605,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "ItemCode"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Item Code": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "fact_stockcoverpolicy.itemname": {
 			      "Definition": {
@@ -12662,19 +12614,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "ItemName"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Item": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "fact_stockcoverpolicy.stockcoverstatus": {
 			      "Definition": {
@@ -12890,19 +12830,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "U_SegmentType"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Segment Type": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_measures.total_sold_qty": {
 			      "Definition": {
@@ -12932,19 +12860,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Total COGS"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Total COGS": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_measures.current_total_cost": {
 			      "Definition": {
@@ -12953,19 +12869,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Current Total Cost"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Current Total Cost": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "table_measures.gr_receipt_qty_positive": {
 			      "Definition": {
@@ -13061,6 +12965,16 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
+			          "Item COGS": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
 			          "Avg Unit COGS": {
 			            "State": "Suggested",
 			            "Source": {
@@ -13146,6 +13060,66 @@ cultureInfo en-US
 			      "Terms": [
 			        {
 			          "COGS impact": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.current_item_unit_cost": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Current Item Unit Cost"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table_measures.cost_trend_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Cost Trend %"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table_measures.sold_weighted_avg_current_unit_cost": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Sold Weighted Avg Current Unit Cost"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Current Item Cost": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.cost_trend_label": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Cost Trend Label"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cost Trend": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

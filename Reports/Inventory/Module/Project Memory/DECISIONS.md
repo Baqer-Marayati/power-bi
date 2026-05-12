@@ -54,3 +54,7 @@ Use this file for approved directions and durable constraints in the Inventory R
 - **Paid / received unit** on Procurement & Suppliers uses Goods Receipt PO receipt lines: positive `Fact_GoodsReceipt[LineTotal] / Fact_GoodsReceipt[Quantity]` from `OPDN/PDN1`.
 - The page compares that inbound purchase-cost trend with **Average Unit COGS** from sales/outbound movements, but keeps the two definitions separate because receipt cost can affect realized COGS with timing and valuation lag.
 - Blank `Dim_Item[U_BusinessType]` values are normalized to `#N/A` in the CANON item dimension query so business-type slicers and trend series do not show unlabeled phantom buckets.
+
+## 2026-05-12 — Executive Summary sold-mix cost trend
+
+- The **Qty and Cost by Business Type** table compares realized **Average Unit COGS** with **Sold Weighted Avg Current Unit Cost**. Group rows use sold-quantity weighting across SKUs, not stock-value/on-hand weighting, so the displayed **Current Item Cost** and **Cost Trend** describe the same sold mix at every drill grain.

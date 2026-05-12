@@ -133,12 +133,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Total COGS"
+                  "Property": "Average Unit COGS"
                 }
               },
-              "queryRef": "_Measures.Total COGS",
-              "nativeQueryRef": "Total COGS",
-              "displayName": "Total COGS"
+              "queryRef": "_Measures.Average Unit COGS",
+              "nativeQueryRef": "Item COGS",
+              "displayName": "Item COGS"
             },
             {
               "field": {
@@ -148,12 +148,27 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Current Total Cost"
+                  "Property": "Sold Weighted Avg Current Unit Cost"
                 }
               },
-              "queryRef": "_Measures.Current Total Cost",
-              "nativeQueryRef": "Current Total Cost",
-              "displayName": "Current Total Cost"
+              "queryRef": "_Measures.Sold Weighted Avg Current Unit Cost",
+              "nativeQueryRef": "Current Item Cost",
+              "displayName": "Current Item Cost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Cost Trend Label"
+                }
+              },
+              "queryRef": "_Measures.Cost Trend Label",
+              "nativeQueryRef": "Cost Trend",
+              "displayName": "Cost Trend"
             }
           ]
         }
@@ -280,7 +295,14 @@
             "imageHeight": {
               "expr": {
                 "Literal": {
-                  "Value": "80D"
+                  "Value": "20D"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
                 }
               }
             },
@@ -357,7 +379,33 @@
                   "Value": "false"
                 }
               }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures"
+                        }
+                      },
+                      "Property": "Cost Trend Color"
+                    }
+                  }
+                }
+              }
             }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "_Measures.Cost Trend Label"
           }
         }
       ],
@@ -395,7 +443,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "448.57142560567786D"
+                  "Value": "395D"
                 }
               }
             }
@@ -409,7 +457,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "120D"
+                  "Value": "92.14285714285714D"
                 }
               }
             }
@@ -423,13 +471,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "227.14285714285714D"
+                  "Value": "185D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Total COGS"
+            "metadata": "_Measures.Average Unit COGS"
           }
         },
         {
@@ -437,13 +485,27 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "220.00002564503677D"
+                  "Value": "175.0000052844319D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Current Total Cost"
+            "metadata": "_Measures.Sold Weighted Avg Current Unit Cost"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "169.28571428571428D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Cost Trend Label"
           }
         }
       ],
@@ -501,7 +563,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Total COGS"
+            "metadata": "_Measures.Average Unit COGS"
           }
         },
         {
@@ -529,7 +591,35 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Current Total Cost"
+            "metadata": "_Measures.Sold Weighted Avg Current Unit Cost"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Cost Trend Label"
           }
         }
       ]
@@ -564,5 +654,59 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "filter_only_sold_items",
+        "ordinal": 0,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Total Sold Qty"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "m",
+              "Entity": "_Measures",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 2,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "m"
+                        }
+                      },
+                      "Property": "Total Sold Qty"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
   }
 }

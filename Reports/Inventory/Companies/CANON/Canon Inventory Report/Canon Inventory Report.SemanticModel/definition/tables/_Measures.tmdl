@@ -752,6 +752,64 @@ table _Measures
 		formatString: +0.0%;-0.0%;0.0%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa096
 
+	/// Cost trend % = (sold-qty weighted current unit cost − realized average unit COGS)
+	/// / realized average unit COGS. Positive means today's replacement cost for the
+	/// sold mix is higher than the realized sold-period cost; negative means lower.
+	measure 'Cost Trend %' =
+			VAR _current = [Sold Weighted Avg Current Unit Cost]
+			VAR _realized = [Average Unit COGS]
+			RETURN
+			    IF (
+			        ISBLANK ( _realized ) || _realized = 0 || ISBLANK ( _current ),
+			        BLANK (),
+			        DIVIDE ( _current - _realized, _realized )
+			    )
+		formatString: ▲ +0.0%;▼ -0.0%;● 0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa0a1
+
+	measure 'Cost Trend Color' =
+			VAR _t = [Cost Trend %]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _t ), "#6B7785",
+			        _t > 0.0005, "#9C2C2C",
+			        _t < -0.0005, "#1F6240",
+			        "#4A4A4A"
+			    )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa0a2
+
+	measure 'Sold Weighted Avg Current Unit Cost' =
+			VAR _soldQty = [Total Sold Qty]
+			RETURN
+			    IF (
+			        ISBLANK ( _soldQty ) || _soldQty = 0,
+			        BLANK (),
+			        DIVIDE (
+			            SUMX (
+			                VALUES ( Dim_Item[ItemCode] ),
+			                CALCULATE ( [Total Sold Qty] ) * CALCULATE ( [Current Item Unit Cost] )
+			            ),
+			            _soldQty
+			        )
+			    )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa0a5
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Cost Trend Label' =
+			VAR _t = [Cost Trend %]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _t ), BLANK (),
+			        _t > 0.0005, "▲ +" & FORMAT ( _t, "0.0%" ),
+			        _t < -0.0005, "▼ " & FORMAT ( _t, "0.0%" ),
+			        "● 0.0%"
+			    )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa0a4
+
 	partition _Measures = m
 		mode: import
 		source =
