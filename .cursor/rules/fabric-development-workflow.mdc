@@ -1,0 +1,28 @@
+---
+description: Fabric Development Workspace — copy from Reports, edit under Fabric, push for sync
+alwaysApply: true
+---
+
+# Fabric Development Workspace workflow
+
+When work is meant to show up in **Microsoft Fabric** after **Git sync**, follow this repo convention:
+
+## Where to edit
+
+1. **Module home (canonical PBIP):** `Reports/<Domain>/Companies/<CompanyCode>/...` — long-term module layout; use for work that is *not* Fabric-sync-first unless the user says otherwise.
+2. **Fabric iteration copy:** `Fabric/DevelopmentWorkspace/` — PBIP + report + semantic model tree that Fabric connects to via GitHub. **For Fabric review cycles, edit this copy**, not the `Reports/...` PBIP, unless the user explicitly asks to change the module copy or merge back.
+
+## Starting a Fabric-bound pass
+
+- **Copy or sync** the target company PBIP from `Reports/<Domain>/Companies/<CompanyCode>/` into `Fabric/DevelopmentWorkspace/` (match the layout Fabric expects, e.g. `Canon Inventory Report.pbip` and sibling `*.Report` / `*.SemanticModel` folders). Use the same structure already used for reports checked into `Fabric/DevelopmentWorkspace/`.
+
+## After making changes
+
+- **Commit** only files that belong to the Fabric change (no unrelated local WIP).
+- **Push** to GitHub (`origin`, usually `main`) when the change set is ready for the user to **Sync in Fabric** and review—unless the user explicitly asks to hold the push.
+- If push fails (auth/network), report the error and leave clear `git status` / next step; do not assume the user saw the change in Fabric until push succeeds.
+
+## Clarifications
+
+- Screenshot review and Fabric UI validation stay with the human; the agent supplies repo + Git state for sync.
+- If the user wants the same edits reflected in `Reports/...`, that is a **separate copy-back or merge** step—confirm before duplicating large diffs.

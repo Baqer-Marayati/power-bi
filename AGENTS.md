@@ -63,8 +63,16 @@ Do not treat a module as active for delivery until `Portfolio/Memory/REPORT_CATA
 Default deep-work starting point:
 - `Portfolio/Memory/ACTIVE_FOCUS.md`
 
+## Fabric Development Workspace (Git → Fabric sync)
+
+When the goal is to **review in Microsoft Fabric** after **GitHub sync**:
+
+- **Working copy:** `Fabric/DevelopmentWorkspace/` — open the `.pbip` here and apply report/semantic-model edits intended for Fabric.
+- **Module copy:** `Reports/<Domain>/Companies/<CompanyCode>/...` — copy *from* here *into* `Fabric/DevelopmentWorkspace/` when starting a Fabric-bound pass; avoid editing the module PBIP for Fabric-only iteration unless you are explicitly merging or reconciling.
+- **Delivery:** After a coherent change, **commit scoped files and push** to GitHub so you can **Sync** in Fabric. Details: `Portfolio/docs/agent-operating-playbook.md` (Fabric Development Workspace).
+
 ## Cursor / VS Code workspace
 
-- Agent rules: `.cursor/rules/` (`reporting-hub-portfolio.mdc` always applies; Finance rules apply under `Reports/Finance/` and `**/*.tmdl`).
+- Agent rules: `.cursor/rules/` (`reporting-hub-portfolio.mdc` and `fabric-development-workflow.mdc` always apply; Finance rules apply under `Reports/Finance/` and `**/*.tmdl`).
 - Tasks: **Terminal → Run Task** (or **Tasks: Run Task**) — e.g. **DataExchange**: open the company PBIP in Power BI Desktop; **Finance: Open design benchmark (Wiise Sample 2) in Power BI Desktop** for the canonical benchmark PBIP; **Finance** / **Sales** / **Service** / **Inventory**: clear semantic model cache; **Portfolio: Validate custom themes vs Portfolio/Shared/Themes**, **Portfolio: Scaffold new report module**, and shared scripts (structure validation) as needed. See `Portfolio/docs/first-encounter.md` (section 9) for a second Mac or Cursor account: GitHub clone, MCP template (`.cursor/mcp.json.example`), and skills/plugins expectations.
 - Shared editor defaults: `.vscode/settings.json`, `.editorconfig`.

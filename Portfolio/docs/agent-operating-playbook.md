@@ -33,6 +33,16 @@ Use this order after report changes:
 4. targeted page review
 5. memory/status update
 
+## Fabric Development Workspace (Git-connected Fabric)
+
+Use this when PBIP changes must appear in **Fabric** after **Git sync** from this repository.
+
+1. **Layout:** `Fabric/DevelopmentWorkspace/` holds the PBIP pair (for example `Canon Inventory Report.pbip`, `Canon Inventory Report.Report/`, `Canon Inventory Report.SemanticModel/`) that Fabric’s workspace tracks.
+2. **Start of work:** **Copy or sync** the target company PBIP from `Reports/<Domain>/Companies/<CompanyCode>/` into `Fabric/DevelopmentWorkspace/` so Fabric and the module stay aligned in content; then work in **`Fabric/DevelopmentWorkspace/`** for that review cycle.
+3. **Edit rule:** For Fabric-first delivery, change definitions under `Fabric/DevelopmentWorkspace/` only. Treat `Reports/.../Companies/...` as the module’s canonical home; reconcile back when the user wants both trees identical.
+4. **Git:** When a change set is ready for service review, **commit** (narrow scope) and **push** to GitHub (`origin`, typically `main`) unless the user asks to wait. The user **Sync**’s in Fabric to pull the commit.
+5. **Agent default:** After Fabric-bound PBIP/TMDL edits, **push** so the remote matches local; an unpushed commit is not visible in Fabric.
+
 ## Multi-Company Pattern
 
 For each domain:
