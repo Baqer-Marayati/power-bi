@@ -69,6 +69,11 @@
       "source": "slicer_stock_status",
       "target": "table_reorder_actions",
       "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_search",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
     }
   ]
 }

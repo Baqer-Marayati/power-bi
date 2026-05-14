@@ -50,3 +50,7 @@ relationship rel_stock_cover_item
 	fromColumn: Fact_StockCoverPolicy.ItemCode
 	toColumn: Dim_Item.ItemCode
 
+relationship rel_iv_item
+	fromColumn: InventoryValuation.ItemCode
+	toColumn: Dim_Item.ItemCode
+

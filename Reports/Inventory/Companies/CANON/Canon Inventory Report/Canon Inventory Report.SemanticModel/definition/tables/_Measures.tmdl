@@ -810,6 +810,13 @@ table _Measures
 			    )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa0a4
 
+	/// Open SO qty; dash when zero/blank.
+	measure 'Reorder Open SO Display' =
+			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[OpenSOQty] )
+			RETURN
+			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa076
+
 	partition _Measures = m
 		mode: import
 		source =

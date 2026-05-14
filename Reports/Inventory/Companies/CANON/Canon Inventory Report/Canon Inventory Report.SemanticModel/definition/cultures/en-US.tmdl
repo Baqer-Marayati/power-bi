@@ -528,6 +528,22 @@ cultureInfo en-US
 			      ],
 			      "NameType": "Name"
 			    },
+			    "dim_item.item_search": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Dim_Item",
+			          "ConceptualProperty": "ItemSearch"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "item search": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
 			    "dim_item.item_type": {
 			      "Definition": {
 			        "Binding": {
@@ -12729,6 +12745,27 @@ cultureInfo en-US
 			      "Terms": [
 			        {
 			          "Open PO": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.reorder_open_so_display": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Reorder Open SO Display"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Open SO": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

@@ -48,6 +48,10 @@
       }
     ]
   },
+  "publicCustomVisuals": [
+    "PowerSlicerA96234ADB8D143D1837FEC426BB34781",
+    "SmartFilterBySQLBI1458262140625"
+  ],
   "resourcePackages": [
     {
       "name": "RegisteredResources",

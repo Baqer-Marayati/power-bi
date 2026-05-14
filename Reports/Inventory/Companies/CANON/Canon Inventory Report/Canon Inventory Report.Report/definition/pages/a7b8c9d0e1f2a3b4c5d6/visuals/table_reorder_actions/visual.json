@@ -113,6 +113,21 @@
                       "Entity": "_Measures"
                     }
                   },
+                  "Property": "Reorder Open SO Display"
+                }
+              },
+              "queryRef": "_Measures.Reorder Open SO Display",
+              "nativeQueryRef": "Open SO",
+              "displayName": "Open SO"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
                   "Property": "Reorder Velocity Display"
                 }
               },
@@ -532,6 +547,20 @@
             "value": {
               "expr": {
                 "Literal": {
+                  "Value": "75D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Reorder Open SO Display"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
                   "Value": "85D"
                 }
               }
@@ -705,6 +734,20 @@
           },
           "selector": {
             "metadata": "_Measures.Reorder Open PO Display"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Reorder Open SO Display"
           }
         },
         {

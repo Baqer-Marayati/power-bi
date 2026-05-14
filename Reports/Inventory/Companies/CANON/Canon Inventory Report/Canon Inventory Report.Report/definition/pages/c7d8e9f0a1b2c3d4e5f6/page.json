@@ -86,6 +86,11 @@
       "type": "DataFilter"
     },
     {
+      "source": "slicer_warehouse",
+      "target": "slicer_item_search",
+      "type": "DataFilter"
+    },
+    {
       "source": "slicer_item",
       "target": "kpi_stock_value",
       "type": "DataFilter"
@@ -117,6 +122,41 @@
     },
     {
       "source": "slicer_item",
+      "target": "matrix_detail",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_search",
+      "target": "kpi_stock_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_search",
+      "target": "kpi_stock_qty",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_search",
+      "target": "kpi_avg_cost",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_search",
+      "target": "kpi_item_count",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_search",
+      "target": "kpi_gr_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_search",
+      "target": "chart_donut",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_search",
       "target": "matrix_detail",
       "type": "DataFilter"
     }
