@@ -1,0 +1,324 @@
+table Fact_StockCoverPolicy
+	lineageTag: cc000000-0000-0000-0000-000000000001
+
+	column U_BusinessType
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000002
+		summarizeBy: none
+		sourceColumn: U_BusinessType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_GroupType
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000003
+		summarizeBy: none
+		sourceColumn: U_GroupType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_ProductType
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000004
+		summarizeBy: none
+		sourceColumn: U_ProductType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_SegmentType
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000005
+		summarizeBy: none
+		sourceColumn: U_SegmentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCode
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000006
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemName
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000007
+		summarizeBy: none
+		sourceColumn: ItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalQtyAvailable
+		dataType: double
+		lineageTag: cc000000-0000-0000-0000-000000000008
+		summarizeBy: sum
+		sourceColumn: TotalQtyAvailable
+
+		annotation SummarizationSetBy = Automatic
+
+	column AvgItemCost
+		dataType: double
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: cc000000-0000-0000-0000-000000000009
+		summarizeBy: none
+		sourceColumn: AvgItemCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column TotalItemCost
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: cc000000-0000-0000-0000-000000000010
+		summarizeBy: sum
+		sourceColumn: TotalItemCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column TotalQtySold
+		dataType: double
+		lineageTag: cc000000-0000-0000-0000-000000000011
+		summarizeBy: sum
+		sourceColumn: TotalQtySold
+
+		annotation SummarizationSetBy = Automatic
+
+	column AvgItemPrice
+		dataType: double
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: cc000000-0000-0000-0000-000000000012
+		summarizeBy: none
+		sourceColumn: AvgItemPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column SellingDurationDays
+		dataType: int64
+		formatString: 0
+		lineageTag: cc000000-0000-0000-0000-000000000013
+		summarizeBy: sum
+		sourceColumn: SellingDurationDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column PolicyDays
+		dataType: int64
+		formatString: 0
+		lineageTag: cc000000-0000-0000-0000-000000000014
+		summarizeBy: none
+		sourceColumn: PolicyDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesVelocityQtyPerDay
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000015
+		summarizeBy: sum
+		sourceColumn: SalesVelocityQtyPerDay
+
+		annotation SummarizationSetBy = Automatic
+
+	column TargetStockQty
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000016
+		summarizeBy: sum
+		sourceColumn: TargetStockQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockDifferenceQty
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000017
+		summarizeBy: sum
+		sourceColumn: StockDifferenceQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column SuggestedReorderQty
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000018
+		summarizeBy: sum
+		sourceColumn: SuggestedReorderQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column ExcessQty
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000019
+		summarizeBy: sum
+		sourceColumn: ExcessQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockCoverStatus
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000020
+		summarizeBy: none
+		sourceColumn: StockCoverStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column SuggestedAction
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000021
+		summarizeBy: none
+		sourceColumn: SuggestedAction
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesQty90Days
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000022
+		summarizeBy: sum
+		sourceColumn: SalesQty90Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesQty180Days
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000023
+		summarizeBy: sum
+		sourceColumn: SalesQty180Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesQty365Days
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000024
+		summarizeBy: sum
+		sourceColumn: SalesQty365Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesVelocity90Days
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000025
+		summarizeBy: sum
+		sourceColumn: SalesVelocity90Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesVelocity180Days
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000026
+		summarizeBy: sum
+		sourceColumn: SalesVelocity180Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesVelocity365Days
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000027
+		summarizeBy: sum
+		sourceColumn: SalesVelocity365Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value =
+			VAR _unit =
+			    COALESCE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        Fact_StockCoverPolicy[StockCoverStatus] = "Under Stock",
+			            Fact_StockCoverPolicy[SuggestedReorderQty] * _unit,
+			        Fact_StockCoverPolicy[StockCoverStatus] = "Over Stock",
+			            Fact_StockCoverPolicy[ExcessQty] * _unit,
+			        Fact_StockCoverPolicy[StockCoverStatus] = "Healthy",
+			            Fact_StockCoverPolicy[TotalItemCost],
+			        Fact_StockCoverPolicy[StockCoverStatus] = "No demand - QTY available",
+			            Fact_StockCoverPolicy[TotalItemCost],
+			        Fact_StockCoverPolicy[StockCoverStatus] = "No demand - Zero QTY available",
+			            0,
+			        0
+			    )
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: cc000000-0000-0000-0000-000000000028
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column OpenPOQty
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000029
+		summarizeBy: sum
+		sourceColumn: OpenPOQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column OpenSOQty
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000030
+		summarizeBy: sum
+		sourceColumn: OpenSOQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetAvailable
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000031
+		summarizeBy: sum
+		sourceColumn: NetAvailable
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_StockCoverPolicy = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "WITH#(lf)  SalesLines AS (#(lf)      SELECT B.""ItemCode"" AS ""ItemCode"", A.""DocDate"" AS ""DocDate"",#(lf)             B.""Quantity""            AS ""Qty"",#(lf)             B.""StockValue""          AS ""COGS"",#(lf)             B.""LineTotal""           AS ""SalesValue""#(lf)      FROM ""CANON"".""OINV"" A JOIN ""CANON"".""INV1"" B ON A.""DocEntry""=B.""DocEntry""#(lf)      WHERE A.""CANCELED""='N' AND A.""DocType""='I'#(lf)        AND IFNULL(B.""ItemCode"",'')<>''#(lf)        AND A.""DocDate"" >= '2026-01-01'#(lf)      UNION ALL#(lf)      SELECT B.""ItemCode"" AS ""ItemCode"", A.""DocDate"" AS ""DocDate"",#(lf)             B.""Quantity"" * -1 AS ""Qty"", B.""StockValue"" * -1 AS ""COGS"", B.""LineTotal"" * -1 AS ""SalesValue""#(lf)      FROM ""CANON"".""ORIN"" A JOIN ""CANON"".""RIN1"" B ON A.""DocEntry""=B.""DocEntry""#(lf)      WHERE A.""CANCELED""='N' AND A.""DocType""='I'#(lf)        AND IFNULL(B.""ItemCode"",'')<>''#(lf)        AND A.""DocDate"" >= '2026-01-01'#(lf)      UNION ALL#(lf)      SELECT B.""ItemCode"" AS ""ItemCode"", A.""DocDate"" AS ""DocDate"",#(lf)             B.""Quantity"" AS ""Qty"", B.""StockValue"" AS ""COGS"", B.""LineTotal"" AS ""SalesValue""#(lf)      FROM ""ALJAZEERA"".""OINV"" A JOIN ""ALJAZEERA"".""INV1"" B ON A.""DocEntry""=B.""DocEntry""#(lf)      WHERE A.""CANCELED""='N' AND A.""DocType""='I'#(lf)        AND IFNULL(B.""ItemCode"",'')<>''#(lf)        AND A.""DocDate"" < '2026-01-01'#(lf)        AND A.""CardCode"" NOT IN ('CUS0001159','CUS0001091','JAZC000345')#(lf)      UNION ALL#(lf)      SELECT B.""ItemCode"" AS ""ItemCode"", A.""DocDate"" AS ""DocDate"",#(lf)             B.""Quantity"" * -1 AS ""Qty"", B.""StockValue"" * -1 AS ""COGS"", B.""LineTotal"" * -1 AS ""SalesValue""#(lf)      FROM ""ALJAZEERA"".""ORIN"" A JOIN ""ALJAZEERA"".""RIN1"" B ON A.""DocEntry""=B.""DocEntry""#(lf)      WHERE A.""CANCELED""='N' AND A.""DocType""='I'#(lf)        AND IFNULL(B.""ItemCode"",'')<>''#(lf)        AND A.""DocDate"" < '2026-01-01'#(lf)        AND A.""CardCode"" NOT IN ('CUS0001159','CUS0001091','JAZC000345')#(lf)  ),#(lf)  Sales AS (#(lf)      SELECT ""ItemCode"" AS ""ItemCode"",#(lf)             SUM(""Qty"") AS ""TotalQtySold"",#(lf)             SUM(""COGS"") AS ""TotalCOGS"",#(lf)             SUM(""SalesValue"") AS ""TotalItemSales"",#(lf)             MIN(""DocDate"") AS ""MinDocDate"",#(lf)             MAX(""DocDate"") AS ""MaxDocDate""#(lf)      FROM SalesLines#(lf)      GROUP BY ""ItemCode""#(lf)  ),#(lf)  Rolling AS (#(lf)      SELECT ""ItemCode"" AS ""ItemCode"",#(lf)             SUM(CASE WHEN ""DocDate"" >= ADD_DAYS(CURRENT_DATE, -90 ) THEN ""Qty"" ELSE 0 END) AS ""SalesQty90Days"",#(lf)             SUM(CASE WHEN ""DocDate"" >= ADD_DAYS(CURRENT_DATE, -180) THEN ""Qty"" ELSE 0 END) AS ""SalesQty180Days"",#(lf)             SUM(CASE WHEN ""DocDate"" >= ADD_DAYS(CURRENT_DATE, -365) THEN ""Qty"" ELSE 0 END) AS ""SalesQty365Days""#(lf)      FROM SalesLines#(lf)      GROUP BY ""ItemCode""#(lf)  ),#(lf)  Stock AS (#(lf)      SELECT W.""ItemCode"" AS ""ItemCode"",#(lf)             SUM(W.""OnHand"")                       AS ""TotalQtyAvailable"",#(lf)             SUM(W.""StockValue"")                    AS ""TotalAvgCostValue""#(lf)      FROM ""CANON"".""OITW"" W#(lf)      INNER JOIN ""CANON"".""OWHS"" H ON W.""WhsCode"" = H.""WhsCode""#(lf)      WHERE H.""WhsName"" IN ('Dora', 'Erbil', 'Sadoon', 'Showroom Ilwea')#(lf)      GROUP BY W.""ItemCode""#(lf)  ),#(lf)  OpenPO AS (#(lf)      SELECT B.""ItemCode"" AS ""ItemCode"", SUM(B.""OpenQty"") AS ""OpenPOQty""#(lf)      FROM ""CANON"".""OPOR"" A JOIN ""CANON"".""POR1"" B ON A.""DocEntry""=B.""DocEntry""#(lf)      WHERE A.""DocStatus""='O' AND B.""LineStatus""='O'#(lf)        AND IFNULL(B.""ItemCode"",'')<>''#(lf)      GROUP BY B.""ItemCode""#(lf)  ),#(lf)  OpenSO AS (#(lf)      SELECT B.""ItemCode"" AS ""ItemCode"", SUM(B.""OpenQty"") AS ""OpenSOQty""#(lf)      FROM ""CANON"".""ORDR"" A JOIN ""CANON"".""RDR1"" B ON A.""DocEntry""=B.""DocEntry""#(lf)      WHERE A.""DocStatus""='O' AND B.""LineStatus""='O'#(lf)        AND IFNULL(B.""ItemCode"",'')<>''#(lf)      GROUP BY B.""ItemCode""#(lf)  ),#(lf)  Base AS (#(lf)      SELECT#(lf)          COALESCE(I.""U_BusinessType"",'#N/A') AS ""U_BusinessType"",#(lf)          COALESCE(I.""U_GroupType"",   '#N/A') AS ""U_GroupType"",#(lf)          COALESCE(I.""U_ProductType"", '#N/A') AS ""U_ProductType"",#(lf)          COALESCE(I.""U_SegmentType"", '#N/A') AS ""U_SegmentType"",#(lf)          I.""ItemCode"" AS ""ItemCode"",#(lf)          I.""ItemName"" AS ""ItemName"",#(lf)          COALESCE(ST.""TotalQtyAvailable"",0)    AS ""TotalQtyAvailable"",#(lf)          CASE WHEN COALESCE(ST.""TotalQtyAvailable"",0)=0 THEN 0#(lf)               ELSE COALESCE(ST.""TotalAvgCostValue"",0)/ST.""TotalQtyAvailable"" END AS ""AvgItemCost"",#(lf)          COALESCE(ST.""TotalAvgCostValue"",0)    AS ""TotalItemCost"",#(lf)          COALESCE(S.""TotalQtySold"",0)          AS ""TotalQtySold"",#(lf)          CASE WHEN COALESCE(S.""TotalQtySold"",0)=0 THEN 0#(lf)               ELSE COALESCE(S.""TotalItemSales"",0)/S.""TotalQtySold"" END AS ""AvgItemPrice"",#(lf)          CASE WHEN COALESCE(S.""TotalQtySold"",0)=0 THEN 0#(lf)               WHEN DAYS_BETWEEN(S.""MinDocDate"", S.""MaxDocDate"") <= 0 THEN 1#(lf)               ELSE DAYS_BETWEEN(S.""MinDocDate"", S.""MaxDocDate"") END AS ""SellingDurationDays"",#(lf)          S.""MinDocDate""                        AS ""FirstSaleDate"",#(lf)          DAYS_BETWEEN(S.""MinDocDate"", CURRENT_DATE) AS ""DaysSinceFirstSale"",#(lf)          COALESCE(R.""SalesQty90Days"", 0)       AS ""SalesQty90Days"",#(lf)          COALESCE(R.""SalesQty180Days"",0)       AS ""SalesQty180Days"",#(lf)          COALESCE(R.""SalesQty365Days"",0)       AS ""SalesQty365Days"",#(lf)          COALESCE(PO.""OpenPOQty"",0)            AS ""OpenPOQty"",#(lf)          COALESCE(SO.""OpenSOQty"",0)            AS ""OpenSOQty""#(lf)      FROM ""CANON"".""OITM"" I#(lf)      LEFT JOIN Sales   S  ON S.""ItemCode""  = I.""ItemCode""#(lf)      LEFT JOIN Rolling R  ON R.""ItemCode""  = I.""ItemCode""#(lf)      LEFT JOIN Stock   ST ON ST.""ItemCode"" = I.""ItemCode""#(lf)      LEFT JOIN OpenPO  PO ON PO.""ItemCode"" = I.""ItemCode""#(lf)      LEFT JOIN OpenSO  SO ON SO.""ItemCode"" = I.""ItemCode""#(lf)      WHERE I.""InvntItem"" = 'Y'#(lf)  )#(lf)SELECT * FROM Base#(lf)"),
+				    AddEffDays365 = Table.AddColumn(Source, "EffDays365", each let d = if [DaysSinceFirstSale] = null then 0 else [DaysSinceFirstSale] in if d < 1 then 1 else (if d > 365 then 365 else d), Int64.Type),
+				    AddEffDays180 = Table.AddColumn(AddEffDays365, "EffDays180", each let d = [DaysSinceFirstSale] in if d = null or d < 1 then 1 else (if d > 180 then 180 else d), Int64.Type),
+				    AddEffDays90  = Table.AddColumn(AddEffDays180, "EffDays90",  each let d = [DaysSinceFirstSale] in if d = null or d < 1 then 1 else (if d > 90  then 90  else d), Int64.Type),
+				    AddV90  = Table.AddColumn(AddEffDays90,  "SalesVelocity90Days",  each [SalesQty90Days]  / [EffDays90],  type number),
+				    AddV180 = Table.AddColumn(AddV90,        "SalesVelocity180Days", each [SalesQty180Days] / [EffDays180], type number),
+				    AddV365 = Table.AddColumn(AddV180,       "SalesVelocity365Days", each [SalesQty365Days] / [EffDays365], type number),
+				    AddPolicy = Table.AddColumn(AddV365, "PolicyDays", each if [U_BusinessType] = "B2B" then 150 else if [U_BusinessType] = "B2C" then 120 else 60, Int64.Type),
+				    AddBlend = Table.AddColumn(AddPolicy, "SalesVelocityQtyPerDay", each
+				        let
+				            life = if [DaysSinceFirstSale] = null then 0 else [DaysSinceFirstSale],
+				            w = if [U_BusinessType] = "B2B" then [w90=0.15, w180=0.35, w365=0.50]
+				                else if [U_BusinessType] = "B2C" then [w90=0.25, w180=0.45, w365=0.30]
+				                else [w90=0.40, w180=0.35, w365=0.25],
+				            adj = if life < 180 then [w90=1, w180=0, w365=0]
+				                  else if life < 365 then [w90=w[w90], w180=w[w180]+w[w365], w365=0]
+				                  else w
+				        in
+				            adj[w90]*[SalesVelocity90Days] + adj[w180]*[SalesVelocity180Days] + adj[w365]*[SalesVelocity365Days],
+				        type number),
+				    AddNetAvail = Table.AddColumn(AddBlend, "NetAvailable", each [TotalQtyAvailable] + [OpenPOQty] - [OpenSOQty], type number),
+				    AddTarget = Table.AddColumn(AddNetAvail, "TargetStockQty", each [SalesVelocityQtyPerDay] * Number.From([PolicyDays]), type number),
+				    AddDiff = Table.AddColumn(AddTarget, "StockDifferenceQty", each [NetAvailable] - [TargetStockQty], type number),
+				    AddReorder = Table.AddColumn(AddDiff, "SuggestedReorderQty", each if [SalesVelocityQtyPerDay] = 0 then 0 else if [NetAvailable] < [TargetStockQty] * 0.9 then [TargetStockQty] - [NetAvailable] else 0, type number),
+				    AddExcess = Table.AddColumn(AddReorder, "ExcessQty", each if [SalesVelocityQtyPerDay] = 0 and [NetAvailable] > 0 then [NetAvailable] else if [NetAvailable] > [TargetStockQty] * 1.1 then [NetAvailable] - [TargetStockQty] else 0, type number),
+				    AddStatus = Table.AddColumn(AddExcess, "StockCoverStatus", each if [SalesVelocityQtyPerDay] = 0 and [NetAvailable] > 0 then "No demand - QTY available" else if [SalesVelocityQtyPerDay] = 0 then "No demand - Zero QTY available" else if [NetAvailable] < [TargetStockQty] * 0.9 then "Under Stock" else if [NetAvailable] > [TargetStockQty] * 1.1 then "Over Stock" else "Healthy", type text),
+				    AddAction = Table.AddColumn(AddStatus, "SuggestedAction", each if [SalesVelocityQtyPerDay] = 0 and [NetAvailable] > 0 then "Review non-mover" else if [SalesVelocityQtyPerDay] = 0 then "No Action" else if [NetAvailable] < [TargetStockQty] * 0.9 then "Buy" else if [NetAvailable] > [TargetStockQty] * 1.1 then "Reduce" else "Good health", type text),
+				    Final = Table.RemoveColumns(AddAction, {"EffDays90","EffDays180","EffDays365","FirstSaleDate","DaysSinceFirstSale"})
+				in
+				    Final
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,831 @@
+table _Measures
+	lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa001
+
+	measure 'Total On Hand' = SUM ( Fact_WarehouseStock[OnHand] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa002
+
+	measure 'Total Committed' = SUM ( Fact_WarehouseStock[IsCommited] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa003
+
+	measure 'Total Available' = [Total On Hand] - [Total Committed]
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa004
+
+	measure 'Total On Order' = SUM ( Fact_WarehouseStock[OnOrder] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa005
+
+	measure 'Distinct SKUs' = DISTINCTCOUNT ( Fact_WarehouseStock[ItemCode] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa006
+
+	measure 'In-Stock SKUs' =
+			CALCULATE (
+			    DISTINCTCOUNT ( Fact_WarehouseStock[ItemCode] ),
+			    Fact_WarehouseStock[OnHand] > 0
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa007
+
+	measure 'Total SKUs' = COUNTROWS ( Dim_Item )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa008
+
+	measure 'Stock Value' = SUM ( Fact_WarehouseStock[StockValue] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa009
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Inbound Qty' = SUM ( Fact_StockMovement[InQty] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa010
+
+	measure 'Outbound Qty' = SUM ( Fact_StockMovement[OutQty] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa011
+
+	measure 'Net Movement' = [Inbound Qty] - [Outbound Qty]
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa012
+
+	measure 'Movement Count' = COUNTROWS ( Fact_StockMovement )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa013
+
+	measure 'Transfer Qty' = SUM ( Fact_Transfer[Quantity] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa014
+
+	measure 'Transfer Count' = DISTINCTCOUNT ( Fact_Transfer[DocEntry] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa015
+
+	measure 'Delivery Count' = DISTINCTCOUNT ( Fact_Delivery[DocEntry] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa016
+
+	measure 'Delivery Qty' = SUM ( Fact_Delivery[Quantity] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa017
+
+	measure 'Delivery Value' = SUM ( Fact_Delivery[LineTotal] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa018
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'PO Count' = DISTINCTCOUNT ( Fact_PurchaseOrder[DocEntry] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa019
+
+	measure 'PO Qty' = SUM ( Fact_PurchaseOrder[Quantity] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa020
+
+	measure 'PO Value' = SUM ( Fact_PurchaseOrder[LineTotal] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa021
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Open PO Count' =
+			VAR _result =
+			    CALCULATE (
+			        DISTINCTCOUNT ( Fact_PurchaseOrder[DocEntry] ),
+			        Fact_PurchaseOrder[DocStatus] = "O"
+			    )
+			RETURN
+			    IF ( ISBLANK ( _result ), 0, _result )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa022
+
+	measure 'GR Count' = DISTINCTCOUNT ( Fact_GoodsReceipt[DocEntry] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa023
+
+	measure 'GR Qty' = SUM ( Fact_GoodsReceipt[Quantity] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa024
+
+	measure 'GR Value' = SUM ( Fact_GoodsReceipt[LineTotal] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa025
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'In-Stock Rate' = DIVIDE ( [In-Stock SKUs], [Distinct SKUs], 0 )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa026
+
+	measure 'Out-of-Stock SKUs' = [Distinct SKUs] - [In-Stock SKUs]
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa027
+
+	measure 'Below Reorder Count' =
+			VAR _result =
+			    COUNTROWS (
+			        FILTER (
+			            Fact_WarehouseStock,
+			            Fact_WarehouseStock[OnHand] < Fact_WarehouseStock[MinStock]
+			                && Fact_WarehouseStock[MinStock] > 0
+			        )
+			    )
+			RETURN
+			    IF ( ISBLANK ( _result ), 0, _result )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa028
+
+	measure 'Below Reorder %' =
+			VAR _count = [Below Reorder Count]
+			VAR _total = COUNTROWS ( Fact_WarehouseStock )
+			RETURN
+			    IF ( _total > 0, DIVIDE ( _count, _total, 0 ), 0 )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa029
+
+	measure 'Avg Days Since Last Purchase' =
+			AVERAGEX (
+			    FILTER ( Dim_Item, NOT ISBLANK ( Dim_Item[LastPurDat] ) ),
+			    DATEDIFF ( Dim_Item[LastPurDat], TODAY (), DAY )
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa030
+
+	measure 'Inbound Qty PM' =
+			CALCULATE (
+			    [Inbound Qty],
+			    DATEADD ( Dim_Date[Date], -1, MONTH )
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa031
+
+	measure 'Inbound Qty MoM %' =
+			VAR _current = [Inbound Qty]
+			VAR _pm = [Inbound Qty PM]
+			RETURN
+			    IF ( _pm <> 0, DIVIDE ( _current - _pm, ABS ( _pm ) ), BLANK () )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa032
+
+	measure 'Outbound Qty PM' =
+			CALCULATE (
+			    [Outbound Qty],
+			    DATEADD ( Dim_Date[Date], -1, MONTH )
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa033
+
+	measure 'Net Movement PM' =
+			CALCULATE (
+			    [Net Movement],
+			    DATEADD ( Dim_Date[Date], -1, MONTH )
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa034
+
+	measure 'Net Movement MoM %' =
+			VAR _current = [Net Movement]
+			VAR _pm = [Net Movement PM]
+			RETURN
+			    IF ( _pm <> 0, DIVIDE ( _current - _pm, ABS ( _pm ) ), BLANK () )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa035
+
+	measure 'GR Value PM' =
+			CALCULATE (
+			    [GR Value],
+			    DATEADD ( Dim_Date[Date], -1, MONTH )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa036
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'GR Value MoM %' =
+			VAR _current = [GR Value]
+			VAR _pm = [GR Value PM]
+			RETURN
+			    IF ( _pm <> 0, DIVIDE ( _current - _pm, ABS ( _pm ) ), BLANK () )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa037
+
+	measure 'Narrative Title' =
+			VAR _value = [Stock Value]
+			VAR _belowPct = [Below Reorder %]
+			VAR _instockPct = [In-Stock Rate]
+			RETURN
+			    "Inventory Health: " &
+			    FORMAT ( _value, "#,0,,.0" ) & "M د.ع. | " &
+			    FORMAT ( _instockPct, "0.0%" ) & " In-Stock | " &
+			    FORMAT ( _belowPct, "0.0%" ) & " Below Reorder"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa038
+
+	measure 'Avg Cost' =
+			DIVIDE (
+			    SUM ( InventoryValuation[StockValue] ),
+			    SUM ( InventoryValuation[StockQty] )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa040
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'IV Stock Value' = SUM ( InventoryValuation[StockValue] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa041
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'IV Stock Qty' = SUM ( InventoryValuation[StockQty] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa042
+
+	measure 'IV Item Count' = DISTINCTCOUNT ( InventoryValuation[ItemCode] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa043
+
+	measure 'IV Warehouse Count' = DISTINCTCOUNT ( InventoryValuation[WhsName] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa044
+
+	measure 'Item Avg Cost' =
+			DIVIDE (
+			    SUM ( Fact_WarehouseStock[StockValue] ),
+			    SUM ( Fact_WarehouseStock[OnHand] )
+			)
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa045
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Policy Total Qty Available' = SUM ( Fact_StockCoverPolicy[TotalQtyAvailable] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa046
+
+	measure 'Policy Total Qty Sold' = SUM ( Fact_StockCoverPolicy[TotalQtySold] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa047
+
+	measure 'Policy Sales Velocity Qty/Day' = SUM ( Fact_StockCoverPolicy[SalesVelocityQtyPerDay] )
+		formatString: #,0.00
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa048
+
+	measure 'Policy Target Stock Qty' = SUM ( Fact_StockCoverPolicy[TargetStockQty] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa049
+
+	measure 'Policy Stock Difference Qty' = SUM ( Fact_StockCoverPolicy[StockDifferenceQty] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa050
+
+	measure 'Suggested Reorder Qty' = SUM ( Fact_StockCoverPolicy[SuggestedReorderQty] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa051
+
+	measure 'Excess Stock Qty' = SUM ( Fact_StockCoverPolicy[ExcessQty] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa052
+
+	measure 'Policy Stock Value' = SUM ( Fact_StockCoverPolicy[TotalItemCost] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa058
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Policy Target Stock Value' =
+			SUMX (
+			    Fact_StockCoverPolicy,
+			    VAR _unitValue = COALESCE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
+			    RETURN
+			        Fact_StockCoverPolicy[TargetStockQty] * _unitValue
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa059
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Suggested Reorder Value' =
+			SUMX (
+			    Fact_StockCoverPolicy,
+			    VAR _unitValue = COALESCE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
+			    RETURN
+			        Fact_StockCoverPolicy[SuggestedReorderQty] * _unitValue
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa060
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Excess Stock Value' =
+			SUMX (
+			    Fact_StockCoverPolicy,
+			    VAR _unitValue = COALESCE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
+			    RETURN
+			        Fact_StockCoverPolicy[ExcessQty] * _unitValue
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa061
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Under Stock Value Gap' =
+			CALCULATE (
+			    [Suggested Reorder Value],
+			    Fact_StockCoverPolicy[StockCoverStatus] = "Under Stock"
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa062
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Healthy Stock Value' =
+				CALCULATE (
+				    [Policy Stock Value],
+			    Fact_StockCoverPolicy[StockCoverStatus] = "Healthy"
+				)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa063
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Over Stock Value' =
+			CALCULATE (
+			    [Excess Stock Value],
+			    Fact_StockCoverPolicy[StockCoverStatus] = "Over Stock"
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa064
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'No Sales Stock Value' =
+				CALCULATE (
+				    [Policy Stock Value],
+			    Fact_StockCoverPolicy[StockCoverStatus] = "No demand - QTY available"
+				)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa065
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Under Stock Items' =
+			CALCULATE (
+			    DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] ),
+			    Fact_StockCoverPolicy[StockCoverStatus] = "Under Stock"
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa053
+
+	measure 'Equal Healthy Items' =
+				CALCULATE (
+				    DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] ),
+			    Fact_StockCoverPolicy[StockCoverStatus] = "Healthy"
+				)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa054
+
+	measure 'Over Stock Items' =
+			CALCULATE (
+			    DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] ),
+			    Fact_StockCoverPolicy[StockCoverStatus] = "Over Stock"
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa055
+
+	measure 'No Sales Stock Items' =
+				CALCULATE (
+				    DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] ),
+			    Fact_StockCoverPolicy[StockCoverStatus] = "No demand - QTY available"
+				)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa056
+
+	measure 'Stock Cover Item Count' = DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa057
+
+	measure 'Policy Value Unit Cost' = SELECTEDVALUE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa066
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Stock Cover Exposure Value' =
+				SUMX (
+				    Fact_StockCoverPolicy,
+				    VAR _status = Fact_StockCoverPolicy[StockCoverStatus]
+				    VAR _unitValue = COALESCE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
+				    RETURN
+				        SWITCH (
+				            TRUE (),
+				            _status = "Under Stock", Fact_StockCoverPolicy[SuggestedReorderQty] * _unitValue,
+				            _status = "Over Stock", Fact_StockCoverPolicy[ExcessQty] * _unitValue,
+			            _status = "No demand - QTY available", Fact_StockCoverPolicy[TotalItemCost],
+			            _status = "Healthy", Fact_StockCoverPolicy[TotalItemCost],
+				            0
+				        )
+				)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa067
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Stock Cover Exposure % of Business Type' = DIVIDE ( [Stock Cover Exposure Value], CALCULATE ( [Stock Cover Exposure Value], REMOVEFILTERS ( Fact_StockCoverPolicy[StockCoverStatus] ) ), 0 )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa068
+
+	/// Rounded SVG pill badge for the Action column. The inner <title> element gives
+	/// the cell an accessible name (BUY / HEALTHY / REDUCE / REVIEW / IDLE) so screen
+	/// readers and any renderer that respects SVG titles get a clean label instead of
+	/// the raw data URI.
+	measure 'Reorder Action Pill SVG' =
+			VAR _Code = SELECTEDVALUE ( Fact_StockCoverPolicy[ItemCode] )
+			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
+			VAR _Lbl =
+			    SWITCH (
+			        _Act,
+			        "Buy", "BUY",
+			        "Good health", "HEALTHY",
+			        "Reduce", "REDUCE",
+			        "Review non-mover", "REVIEW",
+			        "No Action", "IDLE",
+			        UPPER ( _Act )
+			    )
+			VAR _Pal =
+			    SWITCH (
+			        _Act,
+			        "Buy", "9C2C2C|FBEAEA|E8B5B5",
+			        "Good health", "1F6240|E4F1EA|B7D9C4",
+			        "Reduce", "8A5E0F|FBF1DD|E8D49A",
+			        "Review non-mover", "4A4A4A|EDEDED|CFCFCF",
+			        "No Action", "1F4E79|E6EEF8|C0D3E8",
+			        "1F4E79|E6EEF8|C0D3E8"
+			    )
+			VAR _Fg = "#" & PATHITEM ( _Pal, 1 )
+			VAR _Bg = "#" & PATHITEM ( _Pal, 2 )
+			VAR _Bd = "#" & PATHITEM ( _Pal, 3 )
+			VAR _Svg =
+			    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' width='100' height='30'>" &
+			    "<title>" & _Lbl & "</title>" &
+			    "<rect x='2' y='3' rx='13' ry='13' width='96' height='24' fill='" & _Bg & "' stroke='" & _Bd & "' stroke-width='1'/>" &
+			    "<text x='50' y='19' text-anchor='middle' font-family='Segoe UI,Arial,sans-serif' font-size='11' font-weight='700' fill='" & _Fg & "' letter-spacing='0.6'>" & _Lbl & "</text>" &
+			    "</svg>"
+			RETURN
+			    IF ( ISBLANK ( _Code ) || ISBLANK ( _Act ), BLANK (), _Svg )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa069
+		dataCategory: ImageUrl
+
+	/// Policy days as "60d" / "120d" / "150d" for the Policy column.
+	measure 'Reorder Policy Display' =
+			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[PolicyDays] )
+			RETURN
+			    IF ( ISBLANK ( _V ), BLANK (), FORMAT ( _V, "0" ) & "d" )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa070
+
+	/// Horizontal cover bar (0-150% of target) with vertical tick at 100% and "% of target" label.
+	/// Track height is 12px (thicker) and the label uses 11px Segoe UI for legibility. When the
+	/// item has no target (non-mover / zero velocity) the label switches to "— no target" and the
+	/// fill stays empty, so the cell isn't misread as "0% of target".
+	measure 'Reorder Cover Bar SVG' =
+			VAR _Code = SELECTEDVALUE ( Fact_StockCoverPolicy[ItemCode] )
+			VAR _Net = SELECTEDVALUE ( Fact_StockCoverPolicy[NetAvailable] )
+			VAR _Tgt = SELECTEDVALUE ( Fact_StockCoverPolicy[TargetStockQty] )
+			VAR _NoTarget = ISBLANK ( _Tgt ) || _Tgt = 0
+			VAR _Ratio = IF ( _NoTarget, 0, DIVIDE ( _Net, _Tgt, 0 ) )
+			VAR _RatioCapped = MIN ( MAX ( _Ratio, 0 ), 1.5 )
+			VAR _Trk = 116
+			VAR _BarW = ROUND ( _RatioCapped / 1.5 * _Trk, 1 )
+			VAR _TickX = ROUND ( 1 / 1.5 * _Trk, 1 ) + 2
+			VAR _Color =
+			    SWITCH (
+			        TRUE (),
+			        _NoTarget, "#9AA5B5",
+			        _Ratio < 0.9, "#B33A3A",
+			        _Ratio > 1.1, "#B5811E",
+			        "#2F7A4D"
+			    )
+			VAR _Pct = IF ( _NoTarget, "— no target", FORMAT ( _Ratio * 100, "0" ) & "% of target" )
+			VAR _Svg =
+			    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' width='120' height='40'>" &
+			    "<title>" & _Pct & "</title>" &
+			    "<rect x='2' y='6' width='" & _Trk & "' height='12' rx='6' ry='6' fill='#E6EAEE'/>" &
+			    IF (
+			        _BarW > 0,
+			        "<rect x='2' y='6' width='" & _BarW & "' height='12' rx='6' ry='6' fill='" & _Color & "'/>",
+			        ""
+			    ) &
+			    "<rect x='" & _TickX & "' y='3' width='2' height='18' fill='#6B7785'/>" &
+			    "<text x='2' y='34' font-family='Segoe UI,Arial,sans-serif' font-size='11' fill='#6B7785'>" & _Pct & "</text>" &
+			    "</svg>"
+			RETURN
+			    IF ( ISBLANK ( _Code ), BLANK (), _Svg )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa071
+		dataCategory: ImageUrl
+
+	/// On hand (net available, integer rounding).
+	measure 'Reorder On Hand' =
+			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[NetAvailable] )
+			RETURN
+			    IF ( ISBLANK ( _V ), BLANK (), ROUND ( _V, 0 ) )
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa072
+
+	/// Target stock qty; dash when zero/blank (dead SKUs).
+	measure 'Reorder Target Display' =
+			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[TargetStockQty] )
+			RETURN
+			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa073
+
+	/// Open PO qty; dash when zero/blank.
+	measure 'Reorder Open PO Display' =
+			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[OpenPOQty] )
+			RETURN
+			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa074
+
+	/// Sales velocity; dash when zero/blank.
+	measure 'Reorder Velocity Display' =
+			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[SalesVelocityQtyPerDay] )
+			RETURN
+			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "0.00" ) & " /d" )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa075
+
+	/// Font color for the Move qty cell (red for buy, amber for reduce/review, muted grey for —).
+	measure 'Reorder Move Qty Color' =
+			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
+			VAR _Buy = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedReorderQty] )
+			VAR _Excess = SELECTEDVALUE ( Fact_StockCoverPolicy[ExcessQty] )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        _Act = "Buy" && _Buy > 0, "#B33A3A",
+			        _Act = "Reduce" && _Excess > 0, "#B5811E",
+			        _Act = "Review non-mover" && _Excess > 0, "#B5811E",
+			        "#9AA5B5"
+			    )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa081
+
+	/// Signed numeric Move qty: +N for buy, -N for reduce/review, BLANK for healthy / no-action /
+	/// rows where there's nothing to do. The auto-scale "K"/"M"/"B" format mirrors IQD impact so
+	/// the column sorts numerically when the user clicks the header.
+	measure 'Reorder Move Qty Value' =
+			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
+			VAR _Buy = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedReorderQty] )
+			VAR _Excess = SELECTEDVALUE ( Fact_StockCoverPolicy[ExcessQty] )
+			RETURN
+			    SWITCH (
+			        _Act,
+			        "Buy", IF ( _Buy > 0, _Buy, BLANK () ),
+			        "Reduce", IF ( _Excess > 0, - _Excess, BLANK () ),
+			        "Review non-mover", IF ( _Excess > 0, - _Excess, BLANK () ),
+			        BLANK ()
+			    )
+		formatString: +#,0;-#,0;0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa077
+
+	/// IQD impact (numeric): SuggestedReorderQty * AvgItemCost for Buy, ExcessQty * AvgItemCost
+	/// for Reduce, item book value for Review non-mover, BLANK otherwise. Keep this as a
+	/// plain numeric format string; table visuals render conditional format sections as literal text.
+	measure 'Reorder IQD Impact' =
+			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
+			VAR _Buy = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedReorderQty] )
+			VAR _Excess = SELECTEDVALUE ( Fact_StockCoverPolicy[ExcessQty] )
+			VAR _Net = SELECTEDVALUE ( Fact_StockCoverPolicy[NetAvailable] )
+			VAR _Cost = SELECTEDVALUE ( Fact_StockCoverPolicy[AvgItemCost] )
+			VAR _Total = SELECTEDVALUE ( Fact_StockCoverPolicy[TotalItemCost] )
+			RETURN
+			    SWITCH (
+			        _Act,
+			        "Buy", IF ( _Buy > 0, _Buy * _Cost, BLANK () ),
+			        "Reduce", IF ( _Excess > 0, _Excess * _Cost, BLANK () ),
+			        "Review non-mover", COALESCE ( _Total, _Net * _Cost ),
+			        BLANK ()
+			    )
+		formatString: #,0;-#,0;0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa078
+
+	measure 'Total Sold Qty' =
+			CALCULATE (
+			    SUMX (
+			        Fact_StockMovement,
+			        Fact_StockMovement[OutQty] - Fact_StockMovement[InQty]
+			    ),
+			    KEEPFILTERS ( Fact_StockMovement[SalesCogsIncluded] = 1 ),
+			    KEEPFILTERS ( Fact_StockMovement[TransType] IN { 13, 14, 15, 16 } )
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa082
+
+	measure 'Total COGS' =
+			CALCULATE (
+			    SUM ( Fact_StockMovement[CogsValue] ),
+			    KEEPFILTERS ( Fact_StockMovement[SalesCogsIncluded] = 1 ),
+			    KEEPFILTERS ( Fact_StockMovement[TransType] IN { 13, 14, 15, 16 } )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa083
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Average Unit COGS' = DIVIDE ( [Total COGS], [Total Sold Qty] )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa086
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Current Item Unit Cost' =
+			VAR _stockUnitCost =
+			    DIVIDE (
+			        SUM ( Fact_WarehouseStock[StockValue] ),
+			        SUM ( Fact_WarehouseStock[OnHand] )
+			    )
+			VAR _masterAvgCost = SELECTEDVALUE ( Dim_Item[AvgPrice] )
+			VAR _lastPurchaseCost = SELECTEDVALUE ( Dim_Item[LastPurPrc] )
+			VAR _validStockUnitCost = IF ( _stockUnitCost > 0, _stockUnitCost )
+			VAR _validMasterAvgCost = IF ( _masterAvgCost > 0, _masterAvgCost )
+			VAR _validLastPurchaseCost = IF ( _lastPurchaseCost > 0, _lastPurchaseCost )
+			RETURN
+			    COALESCE ( _validStockUnitCost, _validMasterAvgCost, _validLastPurchaseCost, 0 )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa085
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Current Total Cost' =
+			SUMX (
+			    VALUES ( Dim_Item[ItemCode] ),
+			    [Total Sold Qty] * [Current Item Unit Cost]
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa084
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'GR Receipt Qty Positive' =
+			CALCULATE (
+			    SUM ( Fact_GoodsReceipt[Quantity] ),
+			    KEEPFILTERS ( Fact_GoodsReceipt[Quantity] > 0 )
+			)
+		formatString: #,0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa087
+
+	measure 'GR Receipt Value Positive' =
+			CALCULATE (
+			    SUM ( Fact_GoodsReceipt[LineTotal] ),
+			    KEEPFILTERS ( Fact_GoodsReceipt[Quantity] > 0 ),
+			    KEEPFILTERS ( Fact_GoodsReceipt[LineTotal] > 0 )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa088
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Weighted Purchase Unit Cost' = DIVIDE ( [GR Receipt Value Positive], [GR Receipt Qty Positive] )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa089
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Weighted Purchase Unit Cost PM' =
+			CALCULATE (
+			    [Weighted Purchase Unit Cost],
+			    DATEADD ( Dim_Date[Date], -1, MONTH )
+			)
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa090
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Purchase Unit Cost MoM %' =
+			VAR _current = [Weighted Purchase Unit Cost]
+			VAR _pm = [Weighted Purchase Unit Cost PM]
+			RETURN
+			    IF ( NOT ISBLANK ( _pm ) && _pm <> 0, DIVIDE ( _current - _pm, _pm ), BLANK () )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa091
+
+	measure 'Purchase Cost Impact' =
+			VAR _delta = [Weighted Purchase Unit Cost] - [Weighted Purchase Unit Cost PM]
+			RETURN
+			    IF ( NOT ISBLANK ( _delta ), [GR Receipt Qty Positive] * _delta, BLANK () )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa092
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Average Unit COGS PM' =
+			CALCULATE (
+			    [Average Unit COGS],
+			    DATEADD ( Dim_Date[Date], -1, MONTH )
+			)
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa093
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Average Unit COGS MoM %' =
+			VAR _current = [Average Unit COGS]
+			VAR _pm = [Average Unit COGS PM]
+			RETURN
+			    IF ( NOT ISBLANK ( _pm ) && _pm <> 0, DIVIDE ( _current - _pm, _pm ), BLANK () )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa094
+
+	measure 'COGS Cost Impact' =
+			VAR _delta = [Average Unit COGS] - [Average Unit COGS PM]
+			RETURN
+			    IF ( NOT ISBLANK ( _delta ), [Total Sold Qty] * _delta, BLANK () )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa095
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'COGS Response Gap %' =
+			VAR _purchaseChange = [Purchase Unit Cost MoM %]
+			VAR _cogsChange = [Average Unit COGS MoM %]
+			RETURN
+			    IF ( NOT ISBLANK ( _purchaseChange ) && NOT ISBLANK ( _cogsChange ), _cogsChange - _purchaseChange, BLANK () )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa096
+
+	/// Cost trend % = (sold-qty weighted current unit cost − realized average unit COGS)
+	/// / realized average unit COGS. Positive means today's replacement cost for the
+	/// sold mix is higher than the realized sold-period cost; negative means lower.
+	measure 'Cost Trend %' =
+			VAR _current = [Sold Weighted Avg Current Unit Cost]
+			VAR _realized = [Average Unit COGS]
+			RETURN
+			    IF (
+			        ISBLANK ( _realized ) || _realized = 0 || ISBLANK ( _current ),
+			        BLANK (),
+			        DIVIDE ( _current - _realized, _realized )
+			    )
+		formatString: ▲ +0.0%;▼ -0.0%;● 0.0%
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa0a1
+
+	measure 'Cost Trend Color' =
+			VAR _t = [Cost Trend %]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _t ), "#6B7785",
+			        _t > 0.0005, "#9C2C2C",
+			        _t < -0.0005, "#1F6240",
+			        "#4A4A4A"
+			    )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa0a2
+
+	measure 'Sold Weighted Avg Current Unit Cost' =
+			VAR _soldQty = [Total Sold Qty]
+			RETURN
+			    IF (
+			        ISBLANK ( _soldQty ) || _soldQty = 0,
+			        BLANK (),
+			        DIVIDE (
+			            SUMX (
+			                VALUES ( Dim_Item[ItemCode] ),
+			                CALCULATE ( [Total Sold Qty] ) * CALCULATE ( [Current Item Unit Cost] )
+			            ),
+			            _soldQty
+			        )
+			    )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa0a5
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Cost Trend Label' =
+			VAR _t = [Cost Trend %]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _t ), BLANK (),
+			        _t > 0.0005, "▲ +" & FORMAT ( _t, "0.0%" ),
+			        _t < -0.0005, "▼ " & FORMAT ( _t, "0.0%" ),
+			        "● 0.0%"
+			    )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa0a4
+
+	/// Open SO qty; dash when zero/blank.
+	measure 'Reorder Open SO Display' =
+			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[OpenSOQty] )
+			RETURN
+			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa076
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

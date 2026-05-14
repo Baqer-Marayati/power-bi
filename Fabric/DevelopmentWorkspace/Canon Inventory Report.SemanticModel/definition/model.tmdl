@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["Dim_Item","Dim_Warehouse","Fact_WarehouseStock","Fact_StockMovement","Fact_Transfer","Fact_Delivery","Fact_GoodsReceipt","Fact_PurchaseOrder","Fact_StockCoverPolicy","_Measures","InventoryValuation"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Dim_Item
+ref table Dim_Warehouse
+ref table Dim_Date
+ref table Fact_WarehouseStock
+ref table Fact_StockMovement
+ref table Fact_Transfer
+ref table Fact_Delivery
+ref table Fact_GoodsReceipt
+ref table Fact_PurchaseOrder
+ref table Fact_StockCoverPolicy
+ref table _Measures
+ref table InventoryValuation
+
+ref cultureInfo en-US
+

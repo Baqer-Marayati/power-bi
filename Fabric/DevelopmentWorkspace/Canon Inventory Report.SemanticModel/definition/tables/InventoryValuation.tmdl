@@ -1,0 +1,100 @@
+table InventoryValuation
+	lineageTag: bb000000-0000-0000-0000-000000000001
+
+	column WhsName
+		dataType: string
+		lineageTag: bb000000-0000-0000-0000-000000000002
+		summarizeBy: none
+		sourceColumn: WhsName
+
+		annotation SummarizationSetBy = Automatic
+
+	column WhsCode
+		dataType: string
+		lineageTag: bb000000-0000-0000-0000-000000000003
+		summarizeBy: none
+		sourceColumn: WhsCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCode
+		dataType: string
+		lineageTag: bb000000-0000-0000-0000-000000000004
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemName
+		dataType: string
+		lineageTag: bb000000-0000-0000-0000-000000000005
+		summarizeBy: none
+		sourceColumn: ItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_BusinessType
+		dataType: string
+		lineageTag: bb000000-0000-0000-0000-000000000006
+		summarizeBy: none
+		sourceColumn: U_BusinessType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_GroupType
+		dataType: string
+		lineageTag: bb000000-0000-0000-0000-000000000007
+		summarizeBy: none
+		sourceColumn: U_GroupType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_ProductType
+		dataType: string
+		lineageTag: bb000000-0000-0000-0000-000000000008
+		summarizeBy: none
+		sourceColumn: U_ProductType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_SegmentType
+		dataType: string
+		lineageTag: bb000000-0000-0000-0000-000000000009
+		summarizeBy: none
+		sourceColumn: U_SegmentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockQty
+		dataType: double
+		lineageTag: bb000000-0000-0000-0000-000000000010
+		summarizeBy: sum
+		sourceColumn: StockQty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column StockValue
+		dataType: double
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: bb000000-0000-0000-0000-000000000011
+		summarizeBy: sum
+		sourceColumn: StockValue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	partition InventoryValuation = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    T2.""WhsName"",#(lf)    T0.""WhsCode"",#(lf)    T1.""ItemCode"",#(lf)    T1.""ItemName"",#(lf)    T1.""U_BusinessType"",#(lf)    T1.""U_GroupType"",#(lf)    T1.""U_ProductType"",#(lf)    T1.""U_SegmentType"",#(lf)    SUM(T0.""OnHand"")      AS ""StockQty"",#(lf)    SUM(T0.""StockValue"")  AS ""StockValue""#(lf)FROM ""CANON"".""OITW"" T0#(lf)INNER JOIN ""CANON"".""OITM"" T1 ON T0.""ItemCode"" = T1.""ItemCode""#(lf)INNER JOIN ""CANON"".""OWHS"" T2 ON T0.""WhsCode"" = T2.""WhsCode""#(lf)WHERE T1.""InvntItem"" = 'Y'#(lf)AND T2.""WhsName"" IN ('Dora', 'Erbil', 'Sadoon', 'Showroom Ilwea')#(lf)GROUP BY#(lf)    T2.""WhsName"",#(lf)    T0.""WhsCode"",#(lf)    T1.""ItemCode"",#(lf)    T1.""ItemName"",#(lf)    T1.""U_BusinessType"",#(lf)    T1.""U_GroupType"",#(lf)    T1.""U_ProductType"",#(lf)    T1.""U_SegmentType""")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

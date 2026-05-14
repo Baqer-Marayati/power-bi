@@ -1,0 +1,104 @@
+table Fact_GoodsReceipt
+	lineageTag: 88888888-8888-8888-8888-888888888001
+
+	column DocEntry
+		dataType: int64
+		formatString: 0
+		lineageTag: 88888888-8888-8888-8888-888888888002
+		summarizeBy: none
+		sourceColumn: DocEntry
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocNum
+		dataType: int64
+		formatString: 0
+		lineageTag: 88888888-8888-8888-8888-888888888003
+		summarizeBy: none
+		sourceColumn: DocNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 88888888-8888-8888-8888-888888888004
+		summarizeBy: none
+		sourceColumn: DocDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardCode
+		dataType: string
+		lineageTag: 88888888-8888-8888-8888-888888888005
+		summarizeBy: none
+		sourceColumn: CardCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardName
+		dataType: string
+		lineageTag: 88888888-8888-8888-8888-888888888006
+		summarizeBy: none
+		sourceColumn: CardName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCode
+		dataType: string
+		lineageTag: 88888888-8888-8888-8888-888888888007
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemDescription
+		dataType: string
+		lineageTag: 88888888-8888-8888-8888-888888888008
+		summarizeBy: none
+		sourceColumn: ItemDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: double
+		lineageTag: 88888888-8888-8888-8888-888888888009
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price
+		dataType: double
+		lineageTag: 88888888-8888-8888-8888-888888888010
+		summarizeBy: none
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineTotal
+		dataType: double
+		lineageTag: 88888888-8888-8888-8888-888888888011
+		summarizeBy: sum
+		sourceColumn: LineTotal
+
+		annotation SummarizationSetBy = Automatic
+
+	column WhsCode
+		dataType: string
+		lineageTag: 88888888-8888-8888-8888-888888888012
+		summarizeBy: none
+		sourceColumn: WhsCode
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_GoodsReceipt = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    T0.""DocEntry"",#(lf)    T0.""DocNum"",#(lf)    T0.""DocDate"",#(lf)    T0.""CardCode"",#(lf)    T0.""CardName"",#(lf)    T1.""ItemCode"",#(lf)    T1.""Dscription"" AS ""ItemDescription"",#(lf)    T1.""Quantity"",#(lf)    T1.""Price"",#(lf)    T1.""LineTotal"",#(lf)    T1.""WhsCode""#(lf)FROM ""CANON"".""OPDN"" T0#(lf)INNER JOIN ""CANON"".""PDN1"" T1 ON T0.""DocEntry"" = T1.""DocEntry""#(lf)WHERE T1.""ItemCode"" IS NOT NULL AND T1.""ItemCode"" <> ''#(lf)AND T0.""DocDate"" >= '2026-01-01'")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

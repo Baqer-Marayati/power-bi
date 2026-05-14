@@ -1,0 +1,125 @@
+table Fact_WarehouseStock
+	lineageTag: 44444444-4444-4444-4444-444444444001
+
+	column ItemCode
+		dataType: string
+		lineageTag: 44444444-4444-4444-4444-444444444002
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column WhsCode
+		dataType: string
+		lineageTag: 44444444-4444-4444-4444-444444444003
+		summarizeBy: none
+		sourceColumn: WhsCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column OnHand
+		dataType: double
+		lineageTag: 44444444-4444-4444-4444-444444444004
+		summarizeBy: sum
+		sourceColumn: OnHand
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsCommited
+		dataType: double
+		lineageTag: 44444444-4444-4444-4444-444444444005
+		summarizeBy: sum
+		sourceColumn: IsCommited
+
+		annotation SummarizationSetBy = Automatic
+
+	column OnOrder
+		dataType: double
+		lineageTag: 44444444-4444-4444-4444-444444444006
+		summarizeBy: sum
+		sourceColumn: OnOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column MinStock
+		dataType: double
+		lineageTag: 44444444-4444-4444-4444-444444444007
+		summarizeBy: sum
+		sourceColumn: MinStock
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaxStock
+		dataType: double
+		lineageTag: 44444444-4444-4444-4444-444444444008
+		summarizeBy: sum
+		sourceColumn: MaxStock
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockStatus =
+			IF (
+			    Fact_WarehouseStock[OnHand] > 0,
+			    "In-Stock",
+			    "Out of Stock"
+			)
+		lineageTag: 44444444-4444-4444-4444-444444444009
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockLevel =
+			IF (
+			    Fact_WarehouseStock[MinStock] > 0
+			        || Fact_WarehouseStock[MaxStock] > 0,
+			    IF (
+			        Fact_WarehouseStock[OnHand] < Fact_WarehouseStock[MinStock],
+			        "Low",
+			        IF (
+			            Fact_WarehouseStock[MaxStock] > 0
+			                && Fact_WarehouseStock[OnHand]
+			                    >= Fact_WarehouseStock[MaxStock] * 0.7,
+			            "High",
+			            "Mid"
+			        )
+			    ),
+			    IF (
+			        Fact_WarehouseStock[OnHand] <= 0,
+			        "Out of Stock",
+			        IF (
+			            Fact_WarehouseStock[OnHand] <= 10,
+			            "Low",
+			            IF (
+			                Fact_WarehouseStock[OnHand] <= 100,
+			                "Mid",
+			                "High"
+			            )
+			        )
+			    )
+			)
+		lineageTag: 44444444-4444-4444-4444-444444444010
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockValue
+		dataType: double
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: 44444444-4444-4444-4444-444444444011
+		summarizeBy: sum
+		sourceColumn: StockValue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	partition Fact_WarehouseStock = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    T0.""ItemCode"",#(lf)    T0.""WhsCode"",#(lf)    T0.""OnHand"",#(lf)    T0.""IsCommited"",#(lf)    T0.""OnOrder"",#(lf)    T0.""MinStock"",#(lf)    T0.""MaxStock"",#(lf)    T0.""StockValue""#(lf)FROM ""CANON"".""OITW"" T0#(lf)INNER JOIN ""CANON"".""OITM"" T1 ON T0.""ItemCode"" = T1.""ItemCode""#(lf)INNER JOIN ""CANON"".""OWHS"" T2 ON T0.""WhsCode"" = T2.""WhsCode""#(lf)WHERE T2.""WhsName"" IN ('Dora', 'Erbil', 'Sadoon', 'Showroom Ilwea')#(lf)AND T1.""InvntItem"" = 'Y'#(lf)AND (T0.""OnHand"" <> 0 OR T0.""IsCommited"" <> 0 OR T0.""OnOrder"" <> 0)")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
