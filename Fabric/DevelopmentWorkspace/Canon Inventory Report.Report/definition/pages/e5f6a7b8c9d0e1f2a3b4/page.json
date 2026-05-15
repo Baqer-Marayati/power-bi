@@ -46,6 +46,41 @@
   },
   "visualInteractions": [
     {
+      "source": "slicer_year",
+      "target": "kpi_purchase_unit_cost",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "kpi_purchase_mom",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "kpi_purchase_impact",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "kpi_avg_cogs",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "kpi_cogs_mom",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "chart_purchase_vs_cogs",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "table_cost_impact",
+      "type": "DataFilter"
+    },
+    {
       "source": "slicer_quarter",
       "target": "kpi_purchase_unit_cost",
       "type": "DataFilter"
@@ -253,6 +288,216 @@
     {
       "source": "slicer_segment_type",
       "target": "table_cost_impact",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "kpi_landed_unit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "kpi_landed_mom",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "kpi_largest_driver",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "kpi_addon_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "chart_landed_bridge",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "chart_landed_mix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_landed_unit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_landed_mom",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_largest_driver",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_addon_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "chart_landed_bridge",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "chart_landed_mix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_landed_unit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_landed_mom",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_largest_driver",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_addon_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "chart_landed_bridge",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "chart_landed_mix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "kpi_landed_unit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "kpi_landed_mom",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "kpi_largest_driver",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "kpi_addon_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "chart_landed_bridge",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "chart_landed_mix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "kpi_landed_unit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "kpi_landed_mom",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "kpi_largest_driver",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "kpi_addon_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "chart_landed_bridge",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "chart_landed_mix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "kpi_landed_unit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "kpi_landed_mom",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "kpi_largest_driver",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "kpi_addon_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "chart_landed_bridge",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "chart_landed_mix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "kpi_landed_unit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "kpi_landed_mom",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "kpi_largest_driver",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "kpi_addon_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "chart_landed_bridge",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "chart_landed_mix",
       "type": "DataFilter"
     }
   ]

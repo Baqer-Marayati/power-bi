@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "slicer_item_group",
+  "name": "slicer_year",
   "position": {
     "x": 24,
-    "y": 418,
-    "z": 9000,
+    "y": 138,
+    "z": 9900,
     "height": 32,
     "width": 136,
-    "tabOrder": 2000
+    "tabOrder": 1500
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Item"
+                      "Entity": "Dim_Date"
                     }
                   },
-                  "Property": "U_BusinessType"
+                  "Property": "Year"
                 }
               },
-              "queryRef": "Dim_Item.U_BusinessType",
-              "nativeQueryRef": "U_BusinessType",
+              "queryRef": "Dim_Date.Year",
+              "nativeQueryRef": "Year",
               "active": true
             }
           ]
@@ -79,11 +79,6 @@
               }
             }
           }
-        }
-      ],
-      "general": [
-        {
-          "properties": {}
         }
       ]
     },

@@ -1,19 +1,38 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "kpi_cogs_mom",
+  "name": "chart_landed_bridge",
   "position": {
-    "x": 1032,
-    "y": 120,
-    "z": 25000,
-    "height": 92,
-    "width": 184,
-    "tabOrder": 25000
+    "x": 188,
+    "y": 324,
+    "z": 29400,
+    "height": 280,
+    "width": 502,
+    "tabOrder": 28400
   },
   "visual": {
-    "visualType": "cardVisual",
+    "visualType": "waterfallChart",
     "query": {
       "queryState": {
-        "Data": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_LandedCostBridge"
+                    }
+                  },
+                  "Property": "BridgeStep"
+                }
+              },
+              "queryRef": "Dim_LandedCostBridge.BridgeStep",
+              "nativeQueryRef": "Bridge step",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
           "projections": [
             {
               "field": {
@@ -23,18 +42,35 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Average Unit COGS MoM %"
+                  "Property": "Landed Cost Bridge Value"
                 }
               },
-              "queryRef": "_Measures.Average Unit COGS MoM %",
-              "nativeQueryRef": "COGS MoM %"
+              "queryRef": "_Measures.Landed Cost Bridge Value",
+              "nativeQueryRef": "Landed unit bridge"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Dim_LandedCostBridge"
+                  }
+                },
+                "Property": "StepSort"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
     },
     "objects": {
-      "label": [
+      "labels": [
         {
           "properties": {
             "show": {
@@ -44,39 +80,33 @@
                 }
               }
             }
-          },
-          "selector": {
-            "id": "default"
           }
         }
       ],
-      "value": [
+      "valueAxis": [
         {
           "properties": {
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "18D"
-                }
-              }
-            },
-            "bold": {
+            "showAxisTitle": {
               "expr": {
                 "Literal": {
                   "Value": "false"
                 }
               }
             },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "1L"
+                  "Value": "0L"
                 }
               }
             }
-          },
-          "selector": {
-            "metadata": "_Measures.Average Unit COGS MoM %"
           }
         }
       ]
@@ -128,35 +158,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#C9D5E3'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "visualHeader": [
-        {
-          "properties": {
-            "background": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            },
-            "border": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#E2EAE6'"
                     }
                   }
                 }
@@ -178,21 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'COGS MoM %'"
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
+                  "Value": "'Why Did Landed Unit Cost Change?'"
                 }
               }
             },
@@ -201,9 +189,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2E3A42'"
+                      "Value": "'#223430'"
                     }
                   }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
                 }
               }
             }
@@ -220,63 +215,17 @@
                 }
               }
             },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1F4E79'"
-                    }
-                  }
-                }
-              }
-            },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Outer'"
-                }
-              }
-            },
             "preset": {
               "expr": {
                 "Literal": {
-                  "Value": "'Custom'"
-                }
-              }
-            },
-            "angle": {
-              "expr": {
-                "Literal": {
-                  "Value": "270D"
-                }
-              }
-            },
-            "shadowDistance": {
-              "expr": {
-                "Literal": {
-                  "Value": "4D"
-                }
-              }
-            },
-            "shadowBlur": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "'Bottom'"
                 }
               }
             },
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "shadowSpread": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "70L"
                 }
               }
             }

@@ -30,6 +30,7 @@
 | ODLN + DLN1 | Delivery Notes | 401 / 1,248 |
 | OPDN + PDN1 | Goods Receipt PO | 19 / 355 |
 | OPOR + POR1 | Purchase Orders | 31 / 373 |
+| OIPF + IPF1 + IPF2 + OALC | SAP B1 Landed Cost header, receipt-line allocations, cost lines, and landed-cost codes | Validate on refresh |
 
 ## Key Facts
 

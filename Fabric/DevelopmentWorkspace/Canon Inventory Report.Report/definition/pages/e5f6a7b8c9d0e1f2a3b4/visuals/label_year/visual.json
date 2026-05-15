@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "label_item_group",
+  "name": "label_year",
   "position": {
     "x": 24,
-    "y": 398,
-    "z": 15000,
+    "y": 118,
+    "z": 18500,
     "height": 18,
     "width": 136,
-    "tabOrder": 8000
+    "tabOrder": 10500
   },
   "visual": {
     "visualType": "textbox",
@@ -42,7 +42,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Business Type'"
+                  "Value": "'Year'"
                 }
               }
             },

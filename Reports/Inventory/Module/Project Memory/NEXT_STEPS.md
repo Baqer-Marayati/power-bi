@@ -2,21 +2,20 @@
 
 ## Immediate Priority
 
-1. Open `Canon Inventory Report.pbip` in Power BI Desktop to validate connectivity and data load.
-2. Confirm all relationships load without errors.
-3. Validate `Fact_StockCoverPolicy` against the SAP Query Manager export (`Stock Report.xlsx`) for sample SKUs.
-4. Adjust Stock Cover Health and Reorder Action List visual sizes based on actual data rendering.
-5. Review KPI card values against SAP data for accuracy.
+1. Open the Fabric-bound `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip` in Power BI Desktop and refresh the new landed-cost tables.
+2. Validate the standard SAP B1 landed-cost query fields against CANON HANA (`OIPF/IPF1/IPF2/OALC`), especially `IPF1.OrigLine`, `TtlExpndSC/TtlExpndLC`, `IPF2.CostSumSC/CostSum`, and `OALC.CostCateg`.
+3. Sample a landed-cost document and confirm `Landed unit = supplier base + SAP landed add-ons` within rounding; inspect `_Measures[Landed Bridge Residual]`.
+4. Test Year × Quarter × Month plus item/category slicers on the new landed cards, bridge, mix chart, paid-unit-vs-COGS line chart, and detail table.
+5. Validate `Fact_StockCoverPolicy` against the SAP Query Manager export (`Stock Report.xlsx`) for sample SKUs.
 
 ## Near-Term Improvements
 
-1. Validate the new Procurement & Suppliers purchase-unit-cost section in Power BI Desktop: refresh, slicer behavior, tab order, and one month/business-type spot check against SAP receipt lines.
-2. Reconcile whether OINM inbound valuation (`TransValue / InQty` for purchase-type inbound movements) should be added later as a finance diagnostic beside the GRPO paid-unit metric.
-3. Add Stock Value calculation using OIVL cost layers instead of AvgPrice (more accurate).
-4. Add a conditional formatting rule to highlight "#N/A" item group in the category page.
-5. Add warehouse type classification (physical location vs. sales rep) to Dim_Warehouse.
-6. Extend slow/no-sales stock analysis from the new stock-cover policy table.
-7. Add drill-through from Warehouse page to item-level detail.
+1. Reconcile whether OINM inbound valuation (`TransValue / InQty` for purchase-type inbound movements) should be added later as a finance diagnostic beside the GRPO paid-unit and true landed-unit metrics.
+2. Add Stock Value calculation using OIVL cost layers instead of AvgPrice (more accurate).
+3. Add a conditional formatting rule to highlight "#N/A" item group in the category page.
+4. Add warehouse type classification (physical location vs. sales rep) to Dim_Warehouse.
+5. Extend slow/no-sales stock analysis from the new stock-cover policy table.
+6. Add drill-through from Warehouse page to item-level detail.
 
 ## Future Pages
 

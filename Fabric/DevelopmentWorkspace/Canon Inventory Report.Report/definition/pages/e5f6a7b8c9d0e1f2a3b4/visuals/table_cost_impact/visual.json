@@ -3,9 +3,9 @@
   "name": "table_cost_impact",
   "position": {
     "x": 188,
-    "y": 560,
+    "y": 792,
     "z": 28000,
-    "height": 376,
+    "height": 144,
     "width": 1028,
     "tabOrder": 27000
   },
@@ -113,6 +113,51 @@
                       "Entity": "_Measures"
                     }
                   },
+                  "Property": "Landed Unit Cost"
+                }
+              },
+              "queryRef": "_Measures.Landed Unit Cost",
+              "nativeQueryRef": "Landed unit",
+              "displayName": "Landed unit"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Landed Unit Cost Delta"
+                }
+              },
+              "queryRef": "_Measures.Landed Unit Cost Delta",
+              "nativeQueryRef": "MoM landed delta",
+              "displayName": "MoM landed delta"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Largest Landed Cost Driver"
+                }
+              },
+              "queryRef": "_Measures.Largest Landed Cost Driver",
+              "nativeQueryRef": "Top landed cost category",
+              "displayName": "Top landed cost category"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
                   "Property": "Purchase Unit Cost MoM %"
                 }
               },
@@ -208,7 +253,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Purchase Cost Impact"
+                "Property": "Landed Cost Materiality"
               }
             },
             "direction": "Descending"

@@ -60,6 +60,13 @@
                 }
               }
             },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
             "labelPrecision": {
               "expr": {
                 "Literal": {

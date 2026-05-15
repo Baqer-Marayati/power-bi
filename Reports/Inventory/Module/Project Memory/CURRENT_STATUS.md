@@ -2,10 +2,11 @@
 
 ## Date
 
-- Last updated: May 12, 2026
+- Last updated: May 15, 2026
 
 ## Current Reality
 
+- May 15, 2026 — Fabric-bound CANON Inventory **Procurement & Suppliers** now has the landed-cost semantic/report scaffold in `Fabric/DevelopmentWorkspace`: `Fact_GoodsReceipt` includes `PDN1.LineNum`; new landed-cost model objects (`Fact_LandedCostAllocation`, `Dim_LandedCostCategory`, `Dim_LandedCostBridge`) import standard SAP B1 LC sources (`OIPF/IPF1/IPF2/OALC`) and expose landed unit, MoM, category-driver, bridge, add-on %, residual, and materiality measures. The page adds landed headline cards, a landed-unit bridge, a landed-cost mix trend, and extends the detail table while preserving the paid-unit-vs-COGS context. Static JSON parsing and offline TMDL load passed; live SAP refresh/Desktop validation is still required because local `HANA_B1` ODBC metadata was unavailable on this Mac.
 - May 13, 2026 (am-3) — Moved CANON Inventory **Executive Summary** Cost Trend dynamic font-color binding from `columnFormatting` to the pivotTable `values` object with the Cost Trend measure selector. The prior column-formatting wildcard loaded after enum correction but still did not affect rendered value text.
 - May 13, 2026 (am-2) — Fixed PBIP load error introduced by the Cost Trend data-cell wildcard selector. Power BI Desktop November 2025 expects `dataViewWildcard.matchingOption` as a numeric enum; changed `InstancesAndTotals` from string to `0`.
 - May 13, 2026 (am-1) — Corrected CANON Inventory **Executive Summary** Cost Trend font-color selector after screenshot review showed the labels were still not coloring by sign. The trend column keeps normal metadata formatting for alignment/bold, while `_Measures[Cost Trend Color]` is now applied through a pivotTable data-cell wildcard selector (`InstancesAndTotals`) so the rendered value text should be red for positive/increase and green for negative/decrease.

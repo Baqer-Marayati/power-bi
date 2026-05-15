@@ -1,0 +1,58 @@
+table Dim_LandedCostBridge
+	lineageTag: b0c0d0e0-f003-4001-8001-000000000001
+
+	column BridgeStep
+		dataType: string
+		lineageTag: b0c0d0e0-f003-4001-8001-000000000002
+		summarizeBy: none
+		sourceColumn: [BridgeStep]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReportingCategory
+		dataType: string
+		lineageTag: b0c0d0e0-f003-4001-8001-000000000003
+		summarizeBy: none
+		sourceColumn: [ReportingCategory]
+
+		annotation SummarizationSetBy = Automatic
+
+	column StepType
+		dataType: string
+		lineageTag: b0c0d0e0-f003-4001-8001-000000000004
+		summarizeBy: none
+		sourceColumn: [StepType]
+
+		annotation SummarizationSetBy = Automatic
+
+	column StepSort
+		dataType: int64
+		formatString: 0
+		lineageTag: b0c0d0e0-f003-4001-8001-000000000005
+		summarizeBy: none
+		sourceColumn: [StepSort]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_LandedCostBridge = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "BridgeStep", STRING,
+				    "ReportingCategory", STRING,
+				    "StepType", STRING,
+				    "StepSort", INTEGER,
+				    {
+				        { "Prior month landed unit", BLANK (), "Start", 1 },
+				        { "Supplier base", "Supplier base", "Driver", 2 },
+				        { "Transport", "Transport", "Driver", 3 },
+				        { "Unloading", "Unloading", "Driver", 4 },
+				        { "Tax / duty", "Tax / duty", "Driver", 5 },
+				        { "Other", "Other", "Driver", 6 },
+				        { "Current month landed unit", BLANK (), "End", 7 }
+				    }
+				)
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,179 @@
+table Fact_LandedCostAllocation
+	lineageTag: b0c0d0e0-f002-4001-8001-000000000001
+
+	column LcDocEntry
+		dataType: int64
+		formatString: 0
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000002
+		summarizeBy: none
+		sourceColumn: LcDocEntry
+
+		annotation SummarizationSetBy = Automatic
+
+	column LcDocNum
+		dataType: int64
+		formatString: 0
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000003
+		summarizeBy: none
+		sourceColumn: LcDocNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column LcDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000004
+		summarizeBy: none
+		sourceColumn: LcDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReceiptDocEntry
+		dataType: int64
+		formatString: 0
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000005
+		summarizeBy: none
+		sourceColumn: ReceiptDocEntry
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReceiptLineNum
+		dataType: int64
+		formatString: 0
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000006
+		summarizeBy: none
+		sourceColumn: ReceiptLineNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceBaseType
+		dataType: int64
+		formatString: 0
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000007
+		summarizeBy: none
+		sourceColumn: SourceBaseType
+
+		annotation SummarizationSetBy = Automatic
+
+	column SupplierCode
+		dataType: string
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000008
+		summarizeBy: none
+		sourceColumn: SupplierCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SupplierName
+		dataType: string
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000009
+		summarizeBy: none
+		sourceColumn: SupplierName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCode
+		dataType: string
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000010
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemDescription
+		dataType: string
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000011
+		summarizeBy: none
+		sourceColumn: ItemDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReceiptQty
+		dataType: double
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000012
+		summarizeBy: sum
+		sourceColumn: ReceiptQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column LandedCostCode
+		dataType: string
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000013
+		summarizeBy: none
+		sourceColumn: LandedCostCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column LandedCostName
+		dataType: string
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000014
+		summarizeBy: none
+		sourceColumn: LandedCostName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReportingCategory
+		dataType: string
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000015
+		summarizeBy: none
+		sourceColumn: ReportingCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column LandedCostAmount
+		dataType: double
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000016
+		summarizeBy: sum
+		sourceColumn: LandedCostAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column SupplierBaseAmount
+		dataType: double
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000017
+		summarizeBy: sum
+		sourceColumn: SupplierBaseAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddOnAmount
+		dataType: double
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000018
+		summarizeBy: sum
+		sourceColumn: AddOnAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column CostAllocationMethod
+		dataType: string
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000019
+		summarizeBy: none
+		sourceColumn: CostAllocationMethod
+
+		annotation SummarizationSetBy = Automatic
+
+	column AllocationWeight
+		dataType: double
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000020
+		summarizeBy: sum
+		sourceColumn: AllocationWeight
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReceiptLineKey
+		dataType: string
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000021
+		summarizeBy: none
+		sourceColumn: ReceiptLineKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_LandedCostAllocation = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "WITH RowBase AS (#(lf)    SELECT#(lf)        H.""DocEntry"" AS ""LcDocEntry"",#(lf)        H.""DocNum"" AS ""LcDocNum"",#(lf)        H.""DocDate"" AS ""LcDate"",#(lf)        R.""BaseEntry"" AS ""ReceiptDocEntry"",#(lf)        R.""OrigLine"" AS ""ReceiptLineNum"",#(lf)        R.""BaseType"" AS ""SourceBaseType"",#(lf)        COALESCE(R.""CardCode"", GRH.""CardCode"") AS ""SupplierCode"",#(lf)        GRH.""CardName"" AS ""SupplierName"",#(lf)        R.""ItemCode"",#(lf)        R.""Dscription"" AS ""ItemDescription"",#(lf)        R.""Quantity"" AS ""ReceiptQty"",#(lf)        COALESCE(R.""FobValue"", R.""LineTotal"", R.""PriceFOB"" * R.""Quantity"", 0) AS ""SupplierBaseAmount"",#(lf)        COALESCE(NULLIF(R.""TtlExpndSC"", 0), NULLIF(R.""TtlExpndLC"", 0), NULLIF(R.""FobValue"", 0), NULLIF(R.""Quantity"", 0), 1) AS ""AllocationWeight"",#(lf)        SUM(COALESCE(NULLIF(R.""TtlExpndSC"", 0), NULLIF(R.""TtlExpndLC"", 0), NULLIF(R.""FobValue"", 0), NULLIF(R.""Quantity"", 0), 1)) OVER (PARTITION BY H.""DocEntry"") AS ""DocAllocationWeight""#(lf)    FROM ""CANON"".""OIPF"" H#(lf)    INNER JOIN ""CANON"".""IPF1"" R ON H.""DocEntry"" = R.""DocEntry""#(lf)    LEFT JOIN ""CANON"".""OPDN"" GRH ON R.""BaseEntry"" = GRH.""DocEntry"" AND R.""BaseType"" = 20#(lf)    WHERE R.""ItemCode"" IS NOT NULL AND R.""ItemCode"" <> ''#(lf)      AND COALESCE(GRH.""DocDate"", H.""DocDate"") >= '2026-01-01'#(lf)), CostLines AS (#(lf)    SELECT#(lf)        C.""DocEntry"",#(lf)        C.""LineNum"" AS ""CostLineNum"",#(lf)        C.""AlcCode"" AS ""LandedCostCode"",#(lf)        COALESCE(A.""AlcName"", C.""AlcCode"") AS ""LandedCostName"",#(lf)        CASE#(lf)            WHEN LOWER(COALESCE(A.""AlcName"", '') || ' ' || COALESCE(C.""AlcCode"", '')) LIKE '%freight%'#(lf)              OR LOWER(COALESCE(A.""AlcName"", '') || ' ' || COALESCE(C.""AlcCode"", '')) LIKE '%shipping%'#(lf)              OR LOWER(COALESCE(A.""AlcName"", '') || ' ' || COALESCE(C.""AlcCode"", '')) LIKE '%transport%'#(lf)              OR LOWER(COALESCE(A.""AlcName"", '') || ' ' || COALESCE(C.""AlcCode"", '')) LIKE '%delivery%' THEN 'Transport'#(lf)            WHEN LOWER(COALESCE(A.""AlcName"", '') || ' ' || COALESCE(C.""AlcCode"", '')) LIKE '%unload%'#(lf)              OR LOWER(COALESCE(A.""AlcName"", '') || ' ' || COALESCE(C.""AlcCode"", '')) LIKE '%handling%'#(lf)              OR LOWER(COALESCE(A.""AlcName"", '') || ' ' || COALESCE(C.""AlcCode"", '')) LIKE '%terminal%' THEN 'Unloading'#(lf)            WHEN LOWER(COALESCE(A.""AlcName"", '') || ' ' || COALESCE(C.""AlcCode"", '') || ' ' || COALESCE(A.""CostCateg"", '')) LIKE '%custom%'#(lf)              OR LOWER(COALESCE(A.""AlcName"", '') || ' ' || COALESCE(C.""AlcCode"", '') || ' ' || COALESCE(A.""CostCateg"", '')) LIKE '%duty%'#(lf)              OR LOWER(COALESCE(A.""AlcName"", '') || ' ' || COALESCE(C.""AlcCode"", '') || ' ' || COALESCE(A.""CostCateg"", '')) LIKE '%tax%'#(lf)              OR LOWER(COALESCE(A.""AlcName"", '') || ' ' || COALESCE(C.""AlcCode"", '') || ' ' || COALESCE(A.""CostCateg"", '')) LIKE '%vat%'#(lf)              OR LOWER(COALESCE(A.""AlcName"", '') || ' ' || COALESCE(C.""AlcCode"", '') || ' ' || COALESCE(A.""CostCateg"", '')) LIKE '%excise%' THEN 'Tax / duty'#(lf)            ELSE 'Other'#(lf)        END AS ""ReportingCategory"",#(lf)        C.""OhType"" AS ""CostAllocationMethod"",#(lf)        COALESCE(C.""CostSumSC"", C.""CostSum"", 0) AS ""CostAmount""#(lf)    FROM ""CANON"".""IPF2"" C#(lf)    LEFT JOIN ""CANON"".""OALC"" A ON C.""AlcCode"" = A.""AlcCode""#(lf)    WHERE COALESCE(C.""CostSumSC"", C.""CostSum"", 0) <> 0#(lf))#(lf)SELECT#(lf)    RB.""LcDocEntry"",#(lf)    RB.""LcDocNum"",#(lf)    RB.""LcDate"",#(lf)    RB.""ReceiptDocEntry"",#(lf)    RB.""ReceiptLineNum"",#(lf)    RB.""SourceBaseType"",#(lf)    RB.""SupplierCode"",#(lf)    RB.""SupplierName"",#(lf)    RB.""ItemCode"",#(lf)    RB.""ItemDescription"",#(lf)    RB.""ReceiptQty"",#(lf)    'BASE' AS ""LandedCostCode"",#(lf)    'Supplier base' AS ""LandedCostName"",#(lf)    'Supplier base' AS ""ReportingCategory"",#(lf)    RB.""SupplierBaseAmount"" AS ""LandedCostAmount"",#(lf)    RB.""SupplierBaseAmount"",#(lf)    0 AS ""AddOnAmount"",#(lf)    'Base receipt value' AS ""CostAllocationMethod"",#(lf)    RB.""AllocationWeight"",#(lf)    TO_VARCHAR(RB.""ReceiptDocEntry"") || '-' || TO_VARCHAR(RB.""ReceiptLineNum"") AS ""ReceiptLineKey""#(lf)FROM RowBase RB#(lf)UNION ALL#(lf)SELECT#(lf)    RB.""LcDocEntry"",#(lf)    RB.""LcDocNum"",#(lf)    RB.""LcDate"",#(lf)    RB.""ReceiptDocEntry"",#(lf)    RB.""ReceiptLineNum"",#(lf)    RB.""SourceBaseType"",#(lf)    RB.""SupplierCode"",#(lf)    RB.""SupplierName"",#(lf)    RB.""ItemCode"",#(lf)    RB.""ItemDescription"",#(lf)    RB.""ReceiptQty"",#(lf)    CL.""LandedCostCode"",#(lf)    CL.""LandedCostName"",#(lf)    CL.""ReportingCategory"",#(lf)    CASE WHEN RB.""DocAllocationWeight"" <> 0 THEN CL.""CostAmount"" * RB.""AllocationWeight"" / RB.""DocAllocationWeight"" ELSE 0 END AS ""LandedCostAmount"",#(lf)    0 AS ""SupplierBaseAmount"",#(lf)    CASE WHEN RB.""DocAllocationWeight"" <> 0 THEN CL.""CostAmount"" * RB.""AllocationWeight"" / RB.""DocAllocationWeight"" ELSE 0 END AS ""AddOnAmount"",#(lf)    CL.""CostAllocationMethod"",#(lf)    RB.""AllocationWeight"",#(lf)    TO_VARCHAR(RB.""ReceiptDocEntry"") || '-' || TO_VARCHAR(RB.""ReceiptLineNum"") AS ""ReceiptLineKey""#(lf)FROM RowBase RB#(lf)INNER JOIN CostLines CL ON RB.""LcDocEntry"" = CL.""DocEntry""")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

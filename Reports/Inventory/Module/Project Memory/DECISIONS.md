@@ -55,6 +55,13 @@ Use this file for approved directions and durable constraints in the Inventory R
 - The page compares that inbound purchase-cost trend with **Average Unit COGS** from sales/outbound movements, but keeps the two definitions separate because receipt cost can affect realized COGS with timing and valuation lag.
 - Blank `Dim_Item[U_BusinessType]` values are normalized to `#N/A` in the CANON item dimension query so business-type slicers and trend series do not show unlabeled phantom buckets.
 
+## 2026-05-15 — Procurement landed-cost extension
+
+- **Landed unit cost** must come from SAP B1 Landed Cost allocation data, not inferred from GRPO paid line totals. The Fabric iteration uses standard SAP B1 LC tables (`OIPF`, `IPF1`, `IPF2`, `OALC`) as the source contract.
+- `Fact_GoodsReceipt` keeps the paid/received unit story from `OPDN/PDN1`, now including `PDN1.LineNum` so landed-cost rows can reconcile at receipt-line grain.
+- Landed-cost categories are reported through `Dim_LandedCostCategory`: `Supplier base`, `Transport`, `Unloading`, `Tax / duty`, and `Other`. Actual SAP landed-cost codes remain visible through the dimension and are bucketed by code/name/category keywords.
+- Because live CANON HANA metadata was not reachable from this Mac, the LC query must be validated in Power BI Desktop/Fabric refresh against the actual CANON schema before treating the landed values as signed off.
+
 ## 2026-05-12 — Executive Summary sold-mix cost trend
 
 - The **Qty and Cost by Business Type** table compares realized **Average Unit COGS** with **Sold Weighted Avg Current Unit Cost**. Group rows use sold-quantity weighting across SKUs, not stock-value/on-hand weighting, so the displayed **Current Item Cost** and **Cost Trend** describe the same sold mix at every drill grain.

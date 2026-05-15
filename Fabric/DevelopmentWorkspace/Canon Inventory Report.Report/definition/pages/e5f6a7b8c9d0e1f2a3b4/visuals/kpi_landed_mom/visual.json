@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "kpi_cogs_mom",
+  "name": "kpi_landed_mom",
   "position": {
-    "x": 1032,
-    "y": 120,
-    "z": 25000,
-    "height": 92,
-    "width": 184,
-    "tabOrder": 25000
+    "x": 446,
+    "y": 226,
+    "z": 29100,
+    "height": 76,
+    "width": 244,
+    "tabOrder": 28100
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Average Unit COGS MoM %"
+                  "Property": "Landed Unit Cost MoM %"
                 }
               },
-              "queryRef": "_Measures.Average Unit COGS MoM %",
-              "nativeQueryRef": "COGS MoM %"
+              "queryRef": "_Measures.Landed Unit Cost MoM %",
+              "nativeQueryRef": "Landed unit MoM %"
             }
           ]
         }
@@ -76,7 +76,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Average Unit COGS MoM %"
+            "metadata": "_Measures.Landed Unit Cost MoM %"
           }
         }
       ]
@@ -137,34 +137,6 @@
           }
         }
       ],
-      "visualHeader": [
-        {
-          "properties": {
-            "background": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            },
-            "border": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
       "title": [
         {
           "properties": {
@@ -178,7 +150,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'COGS MoM %'"
+                  "Value": "'Landed Unit MoM %'"
                 }
               }
             },
