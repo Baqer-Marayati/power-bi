@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "filter_tree_header",
+  "name": "label_salestype",
   "position": {
-    "x": 30,
-    "y": 108,
-    "z": 20000,
-    "height": 24,
-    "width": 126,
-    "tabOrder": 9001
+    "x": 24,
+    "y": 324,
+    "z": 19000,
+    "height": 18,
+    "width": 136,
+    "tabOrder": 19004
   },
   "visual": {
     "visualType": "textbox",
@@ -42,14 +42,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Filter Tree'"
+                  "Value": "'Business Type'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "10D"
                 }
               }
             },
