@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "chart_grp_value",
   "position": {
-    "x": 540,
-    "y": 265.5,
+    "x": 188,
+    "y": 236,
     "z": 6000,
-    "height": 337.5,
+    "height": 300,
     "width": 1028,
     "tabOrder": 19000
   },

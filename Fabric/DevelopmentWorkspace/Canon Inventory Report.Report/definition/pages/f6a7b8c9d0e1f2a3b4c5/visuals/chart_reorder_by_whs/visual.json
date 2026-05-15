@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "chart_reorder_by_whs",
   "position": {
-    "x": 1066,
-    "y": 630,
+    "x": 714,
+    "y": 560,
     "z": 6000,
-    "height": 355.5,
+    "height": 316,
     "width": 502,
     "tabOrder": 17000
   },

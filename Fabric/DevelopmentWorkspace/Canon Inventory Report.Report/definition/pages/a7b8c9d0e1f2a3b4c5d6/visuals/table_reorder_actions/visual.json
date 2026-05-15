@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "table_reorder_actions",
   "position": {
-    "x": 540,
-    "y": 135,
+    "x": 188,
+    "y": 120,
     "z": 0,
-    "height": 918,
+    "height": 816,
     "width": 1028,
     "tabOrder": 11000
   },

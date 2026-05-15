@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "slicer_item",
   "position": {
-    "x": 40,
-    "y": 1240,
-    "z": 12010,
-    "height": 36,
-    "width": 276,
+    "x": 12.5,
+    "y": 289.16666666666669,
+    "z": 7000,
+    "height": 31.666666666666668,
+    "width": 163.33333333333334,
     "tabOrder": 1000
   },
   "visual": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Item"
+                      "Entity": "InventoryValuation"
                     }
                   },
-                  "Property": "U_ProductType"
+                  "Property": "ItemName"
                 }
               },
-              "queryRef": "Dim_Item.U_ProductType",
-              "nativeQueryRef": "Product Type",
+              "queryRef": "InventoryValuation.ItemName",
+              "nativeQueryRef": "ItemName1",
               "active": true
             }
           ]
@@ -51,6 +51,20 @@
       "header": [
         {
           "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Item Name'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "show": {
               "expr": {
                 "Literal": {

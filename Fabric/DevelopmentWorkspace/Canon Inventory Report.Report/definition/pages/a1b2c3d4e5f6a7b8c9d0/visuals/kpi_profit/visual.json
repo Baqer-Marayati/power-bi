@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "kpi_profit",
   "position": {
-    "x": 1140,
-    "y": 135,
+    "x": 722,
+    "y": 120,
     "z": 0,
-    "height": 104,
-    "width": 270,
+    "height": 92,
+    "width": 251,
     "tabOrder": 11002
   },
   "visual": {

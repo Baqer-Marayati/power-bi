@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "chart_donut",
   "position": {
-    "x": 540.333,
+    "x": 188.33333333333334,
     "y": 236.66666666666669,
     "z": 6000,
-    "height": 286.6666666666667,
+    "height": 286.66666666666669,
     "width": 1028.3333333333335,
     "tabOrder": 10000
   },

@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "header_shape",
   "position": {
-    "x": 540,
-    "y": 40.5,
+    "x": 188,
+    "y": 36,
     "z": 20000,
-    "height": 67.5,
+    "height": 60,
     "width": 700,
     "tabOrder": 0
   },
@@ -76,7 +76,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Purchase orders, restocking costs, and supplier performance \u2014 track your procurement pipeline.'"
+                  "Value": "'Purchase orders, restocking costs, and supplier performance — track your procurement pipeline.'"
                 }
               }
             }

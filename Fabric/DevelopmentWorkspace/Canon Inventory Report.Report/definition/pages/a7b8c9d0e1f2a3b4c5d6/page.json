@@ -3,8 +3,8 @@
   "name": "a7b8c9d0e1f2a3b4c5d6",
   "displayName": "Reorder Actions",
   "displayOption": "FitToWidth",
-  "height": 1080,
-  "width": 1920,
+  "height": 960,
+  "width": 1280,
   "objects": {
     "outspacePane": [
       {
@@ -12,7 +12,7 @@
           "width": {
             "expr": {
               "Literal": {
-                "Value": "0L"
+                "Value": "195L"
               }
             }
           }
