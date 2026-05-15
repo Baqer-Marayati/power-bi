@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "label_year",
+  "name": "filter_tree_subtitle",
   "position": {
-    "x": 24,
-    "y": 120,
-    "z": 19000,
+    "x": 30,
+    "y": 132,
+    "z": 20000,
     "height": 18,
-    "width": 136,
-    "tabOrder": 19000
+    "width": 126,
+    "tabOrder": 9002
   },
   "visual": {
     "visualType": "textbox",
@@ -42,14 +42,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Year'"
+                  "Value": "'Searchable hierarchy filters'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "8D"
                 }
               }
             },
@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1F4E79'"
+                      "Value": "'#6E7F8D'"
                     }
                   }
                 }
@@ -67,7 +67,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             }

@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "label_salesdept",
+  "name": "filter_tree_note",
   "position": {
-    "x": 24,
-    "y": 392,
-    "z": 19000,
-    "height": 18,
-    "width": 136,
-    "tabOrder": 19006
+    "x": 30,
+    "y": 904,
+    "z": 20000,
+    "height": 24,
+    "width": 126,
+    "tabOrder": 9006
   },
   "visual": {
     "visualType": "textbox",
@@ -42,14 +42,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Group Type'"
+                  "Value": "'Location/Stock: detail pages'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "7D"
                 }
               }
             },
@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1F4E79'"
+                      "Value": "'#6E7F8D'"
                     }
                   }
                 }
@@ -67,7 +67,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             }

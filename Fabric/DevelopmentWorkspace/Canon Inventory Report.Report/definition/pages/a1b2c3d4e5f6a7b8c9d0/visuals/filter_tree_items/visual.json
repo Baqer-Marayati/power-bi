@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "slicer_item_search",
+  "name": "filter_tree_items",
   "position": {
-    "x": 18,
-    "y": 596,
+    "x": 30,
+    "y": 562,
     "z": 19000,
-    "height": 148,
-    "width": 150,
-    "tabOrder": 10010
+    "height": 332,
+    "width": 126,
+    "tabOrder": 9005
   },
   "visual": {
     "visualType": "PowerSlicerA96234ADB8D143D1837FEC426BB34781",
@@ -28,7 +28,8 @@
               },
               "queryRef": "Dim_Item.ItemSearch",
               "nativeQueryRef": "Item search",
-              "active": true
+              "active": true,
+              "displayName": "Item search"
             }
           ]
         }
@@ -41,28 +42,28 @@
             "slicerSettings": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\"slicerType\":\"HIERARCHY\",\"slicerStyle\":\"CHECKBOX\",\"slicerView\":\"CANVAS\",\"isPopupCentered\":false,\"selectAll\":false,\"selectAllText\":\"All items\",\"selectAllTextFontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"selectAllTextSize\":16,\"selectAllTextColor\":\"rgba(77, 77, 77, 1)\",\"selectAllBackgroundColor\":\"rgba(255, 255, 255, 1)\",\"selectAllStyling\":[\"bold\"],\"singleSelection\":false,\"keepSelectedItemsAtTop\":true,\"hideBlank\":false,\"hideBlanks\":\"NONE\",\"isCustomTextForNullOrBlankValues\":false,\"customTextForNullOrBlankValues\":\"NA\",\"displayChildAsParent\":true,\"isSearchOpen\":true,\"expandedType\":\"ALLEXPANDED\",\"desiredLevel\":\"1\",\"expandIcon\":\"CHEVRON\",\"selectedTickMark\":true,\"parentNodesInBold\":false,\"childNodeCount\":false,\"showSelectedCountCanvas\":false,\"showSelectedCountPopup\":false,\"aggType\":\"SUM\",\"selectedItemsColor\":\"rgba(46, 58, 66, 1)\",\"selectedItemsFontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"selectedItemsTextSize\":9,\"clearTextColor\":\"rgba(31, 78, 121, 1)\",\"selectedItemsBackgroundColor\":\"rgba(255, 255, 255, 1)\",\"checkboxStyle\":\"FILLED\",\"progressBar\":false,\"progressBarColor\":\"rgba(228, 228, 235, 1)\",\"progressBarFillColor\":\"rgba(74, 105, 226, 1)\",\"globalBorder\":false,\"globalBorderWidth\":1,\"globalBorderColor\":\"rgba(240, 240, 240, 1)\",\"nonSelectedCheckboxColor\":\"rgba(31, 78, 121, 1)\"}'"
+                  "Value": "'{\"slicerType\":\"HIERARCHY\",\"slicerStyle\":\"CHECKBOX\",\"slicerView\":\"CANVAS\",\"isPopupCentered\":false,\"selectAll\":false,\"selectAllText\":\"All items\",\"selectAllTextFontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"selectAllTextSize\":10,\"selectAllTextColor\":\"rgba(77, 77, 77, 1)\",\"selectAllBackgroundColor\":\"rgba(255, 255, 255, 1)\",\"selectAllStyling\":[\"bold\"],\"singleSelection\":false,\"keepSelectedItemsAtTop\":true,\"hideBlank\":false,\"hideBlanks\":\"NONE\",\"isCustomTextForNullOrBlankValues\":false,\"customTextForNullOrBlankValues\":\"NA\",\"displayChildAsParent\":true,\"isSearchOpen\":true,\"expandedType\":\"ALLEXPANDED\",\"desiredLevel\":\"1\",\"expandIcon\":\"CHEVRON\",\"selectedTickMark\":true,\"parentNodesInBold\":true,\"childNodeCount\":false,\"showSelectedCountCanvas\":true,\"showSelectedCountPopup\":false,\"aggType\":\"SUM\",\"selectedItemsColor\":\"rgba(46, 58, 66, 1)\",\"selectedItemsFontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"selectedItemsTextSize\":8,\"clearTextColor\":\"rgba(31, 78, 121, 1)\",\"selectedItemsBackgroundColor\":\"rgba(255, 255, 255, 1)\",\"checkboxStyle\":\"FILLED\",\"progressBar\":false,\"progressBarColor\":\"rgba(228, 228, 235, 1)\",\"progressBarFillColor\":\"rgba(74, 105, 226, 1)\",\"globalBorder\":false,\"globalBorderWidth\":1,\"globalBorderColor\":\"rgba(240, 240, 240, 1)\",\"nonSelectedCheckboxColor\":\"rgba(31, 78, 121, 1)\"}'"
                 }
               }
             },
             "searchBarStyling": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\"show\":true,\"autoTitle\":false,\"titleText\":\"Item search\",\"color\":\"rgba(31, 78, 121, 1)\",\"backgroundColor\":\"rgba(255, 255, 255, 1)\",\"buttonTitleBackgroundColor\":\"rgba(255, 255, 255, 1)\",\"fontSize\":11,\"fontFamily\":\"\\\"Segoe UI Semibold\\\", wf_segoe-ui_semibold, helvetica, arial, sans-serif\",\"topBottomPadding\":3,\"titleAlignment\":\"left\",\"showSelectedItemsCountBesideTitle\":false,\"border\":true,\"borderColor\":\"rgba(201, 213, 227, 1)\",\"borderSize\":1,\"borderDirection\":[\"BOTTOM\"],\"styling\":[\"bold\"],\"searchIcon\":true,\"searchIconColor\":\"rgba(31, 78, 121, 1)\",\"searchIconMouseoverColor\":\"rgba(31, 78, 121, 1)\",\"searchIconSize\":12,\"filterIcon\":false,\"filterIconColor\":\"rgba(138, 138, 138, 1)\",\"filterIconMouseoverColor\":\"rgba(34, 34, 34, 1)\",\"filterIconSize\":18,\"sortIcon\":false,\"sortIconColor\":\"rgba(138, 138, 138, 1)\",\"sortIconMouseoverColor\":\"rgba(34, 34, 34, 1)\",\"sortIconSize\":18,\"clearIcon\":true,\"clearIconColor\":\"rgba(31, 78, 121, 1)\",\"clearIconMouseoverColor\":\"rgba(31, 78, 121, 1)\",\"clearIconSize\":12,\"expandIcon\":false,\"expandIconColor\":\"rgba(138, 138, 138, 1)\",\"expandIconMouseoverColor\":\"rgba(34, 34, 34, 1)\",\"expandIconSize\":18,\"expandCollapseListIcon\":false,\"expandCollapseListIconColor\":\"rgba(138, 138, 138, 1)\",\"expandCollapseListIconMouseoverColor\":\"rgba(34, 34, 34, 1)\",\"expandCollapseListIconSize\":18,\"threeDotIcon\":false,\"threeDotIconColor\":\"rgba(138, 138, 138, 1)\",\"threeDotIconMouseoverColor\":\"rgba(34, 34, 34, 1)\",\"threeDotIconSize\":18,\"rankingIcon\":false,\"rankingIconColor\":\"rgba(138, 138, 138, 1)\",\"rankingIconMouseoverColor\":\"rgba(34, 34, 34, 1)\",\"rankingIconSize\":18}'"
+                  "Value": "'{\"show\":true,\"autoTitle\":false,\"titleText\":\"Items - search code or name\",\"color\":\"rgba(31, 78, 121, 1)\",\"backgroundColor\":\"rgba(255, 255, 255, 1)\",\"buttonTitleBackgroundColor\":\"rgba(255, 255, 255, 1)\",\"fontSize\":10,\"fontFamily\":\"\\\"Segoe UI Semibold\\\", wf_segoe-ui_semibold, helvetica, arial, sans-serif\",\"topBottomPadding\":2,\"titleAlignment\":\"left\",\"showSelectedItemsCountBesideTitle\":false,\"border\":true,\"borderColor\":\"rgba(201, 213, 227, 1)\",\"borderSize\":1,\"borderDirection\":[\"BOTTOM\"],\"styling\":[\"bold\"],\"searchIcon\":true,\"searchIconColor\":\"rgba(31, 78, 121, 1)\",\"searchIconMouseoverColor\":\"rgba(31, 78, 121, 1)\",\"searchIconSize\":12,\"filterIcon\":false,\"filterIconColor\":\"rgba(138, 138, 138, 1)\",\"filterIconMouseoverColor\":\"rgba(34, 34, 34, 1)\",\"filterIconSize\":18,\"sortIcon\":false,\"sortIconColor\":\"rgba(138, 138, 138, 1)\",\"sortIconMouseoverColor\":\"rgba(34, 34, 34, 1)\",\"sortIconSize\":18,\"clearIcon\":true,\"clearIconColor\":\"rgba(31, 78, 121, 1)\",\"clearIconMouseoverColor\":\"rgba(31, 78, 121, 1)\",\"clearIconSize\":12,\"expandIcon\":false,\"expandIconColor\":\"rgba(138, 138, 138, 1)\",\"expandIconMouseoverColor\":\"rgba(34, 34, 34, 1)\",\"expandIconSize\":18,\"expandCollapseListIcon\":false,\"expandCollapseListIconColor\":\"rgba(138, 138, 138, 1)\",\"expandCollapseListIconMouseoverColor\":\"rgba(34, 34, 34, 1)\",\"expandCollapseListIconSize\":18,\"threeDotIcon\":false,\"threeDotIconColor\":\"rgba(138, 138, 138, 1)\",\"threeDotIconMouseoverColor\":\"rgba(34, 34, 34, 1)\",\"threeDotIconSize\":18,\"rankingIcon\":false,\"rankingIconColor\":\"rgba(138, 138, 138, 1)\",\"rankingIconMouseoverColor\":\"rgba(34, 34, 34, 1)\",\"rankingIconSize\":18}'"
                 }
               }
             },
             "headerStyling": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\"SHOW_IN_LEFT_MENU\":true,\"show\":false,\"color\":\"rgba(46, 58, 66, 1)\",\"backgroundColor\":\"rgba(255, 255, 255, 1)\",\"fontSize\":9,\"fontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"topBottomPadding\":8,\"border\":false,\"borderColor\":\"rgba(240, 240, 240, 1)\",\"borderSize\":1,\"borderDirection\":[\"BOTTOM\"],\"styling\":[\"bold\"],\"categoryAlignment\":\"left\",\"valueAlignment\":\"right\",\"borderRadius\":0,\"valueFontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\"}'"
+                  "Value": "'{\"SHOW_IN_LEFT_MENU\":true,\"show\":false,\"color\":\"rgba(46, 58, 66, 1)\",\"backgroundColor\":\"rgba(255, 255, 255, 1)\",\"fontSize\":8,\"fontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"topBottomPadding\":2,\"border\":false,\"borderColor\":\"rgba(240, 240, 240, 1)\",\"borderSize\":1,\"borderDirection\":[\"BOTTOM\"],\"styling\":[\"bold\"],\"categoryAlignment\":\"left\",\"valueAlignment\":\"right\",\"borderRadius\":0,\"valueFontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\"}'"
                 }
               }
             },
             "cellStyling": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\"applyStylesByLevel\":\"GLOBAL\",\"stylesByLevel\":[{\"commonTextSize\":true,\"commonFontFamily\":true,\"fontSize\":9,\"valueFontSize\":9,\"fontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"valueFontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"topBottomPadding\":2,\"borderBottom\":false,\"borderBottomColor\":\"rgba(240, 240, 240, 1)\",\"borderBottomSize\":1,\"styling\":[],\"categoryAlignment\":\"left\",\"valueAlignment\":\"right\",\"wordwrap\":false}],\"SHOW_IN_LEFT_MENU\":true,\"commonTextSize\":true,\"commonFontFamily\":true,\"fontSize\":9,\"valueFontSize\":9,\"fontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"valueFontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"topBottomPadding\":2,\"borderBottom\":false,\"borderBottomColor\":\"rgba(240, 240, 240, 1)\",\"borderBottomSize\":1,\"applyBorderBottomOnlyForParentNodes\":true,\"styling\":[],\"categoryAlignment\":\"left\",\"valueAlignment\":\"right\",\"wordwrap\":false}'"
+                  "Value": "'{\"applyStylesByLevel\":\"GLOBAL\",\"stylesByLevel\":[{\"commonTextSize\":true,\"commonFontFamily\":true,\"fontSize\":8,\"valueFontSize\":8,\"fontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"valueFontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"topBottomPadding\":1,\"borderBottom\":false,\"borderBottomColor\":\"rgba(240, 240, 240, 1)\",\"borderBottomSize\":1,\"styling\":[],\"categoryAlignment\":\"left\",\"valueAlignment\":\"right\",\"wordwrap\":false}],\"SHOW_IN_LEFT_MENU\":true,\"commonTextSize\":true,\"commonFontFamily\":true,\"fontSize\":8,\"valueFontSize\":8,\"fontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"valueFontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\",\"topBottomPadding\":1,\"borderBottom\":false,\"borderBottomColor\":\"rgba(240, 240, 240, 1)\",\"borderBottomSize\":1,\"applyBorderBottomOnlyForParentNodes\":true,\"styling\":[],\"categoryAlignment\":\"left\",\"valueAlignment\":\"right\",\"wordwrap\":false}'"
                 }
               }
             },
@@ -76,7 +77,7 @@
             "theme": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\"themeStatus\":\"changed\",\"type\":\"custom\",\"themeDefinitionType\":\"default\",\"themeName\":\"canon_item_search\",\"custom_themeName\":\"canon_item_search\",\"custom_primary\":\"rgba(31, 78, 121, 1)\",\"custom_secondary\":\"rgba(248, 251, 255, 1)\",\"custom_textDefault\":\"rgba(46, 58, 66, 1)\",\"custom_textSelected\":\"rgba(46, 58, 66, 1)\",\"custom_rowBackgroundDefault\":\"rgba(255, 255, 255, 1)\",\"custom_rowBackgroundMouseover\":\"rgba(248, 251, 255, 1)\",\"custom_progressBarColor\":\"rgba(201, 213, 227, 1)\",\"custom_allBorders\":\"rgba(201, 213, 227, 1)\",\"custom_titleBarBackground\":\"rgba(255, 255, 255, 1)\",\"custom_allIconsDefault\":\"rgba(31, 78, 121, 1)\",\"custom_allIconsMouseoverOrSelected\":\"rgba(31, 78, 121, 1)\",\"custom_titleBarIconSize\":12,\"custom_fontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\"}'"
+                  "Value": "'{\"themeStatus\":\"changed\",\"type\":\"custom\",\"themeDefinitionType\":\"default\",\"themeName\":\"canon_filter_tree\",\"custom_themeName\":\"canon_filter_tree\",\"custom_primary\":\"rgba(31, 78, 121, 1)\",\"custom_secondary\":\"rgba(248, 251, 255, 1)\",\"custom_textDefault\":\"rgba(46, 58, 66, 1)\",\"custom_textSelected\":\"rgba(46, 58, 66, 1)\",\"custom_rowBackgroundDefault\":\"rgba(255, 255, 255, 1)\",\"custom_rowBackgroundMouseover\":\"rgba(248, 251, 255, 1)\",\"custom_progressBarColor\":\"rgba(201, 213, 227, 1)\",\"custom_allBorders\":\"rgba(201, 213, 227, 1)\",\"custom_titleBarBackground\":\"rgba(255, 255, 255, 1)\",\"custom_allIconsDefault\":\"rgba(31, 78, 121, 1)\",\"custom_allIconsMouseoverOrSelected\":\"rgba(31, 78, 121, 1)\",\"custom_titleBarIconSize\":12,\"custom_fontFamily\":\"\\\"Segoe UI\\\", wf_segoe-ui_normal, helvetica, arial, sans-serif\"}'"
                 }
               }
             },
@@ -144,18 +145,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#C9D5E3'"
-                    }
-                  }
+                  "Value": "false"
                 }
               }
             }
@@ -206,11 +196,6 @@
           }
         }
       ]
-    },
-    "syncGroup": {
-      "groupName": "ItemSearch",
-      "fieldChanges": true,
-      "filterChanges": true
     },
     "drillFilterOtherVisuals": true
   }
