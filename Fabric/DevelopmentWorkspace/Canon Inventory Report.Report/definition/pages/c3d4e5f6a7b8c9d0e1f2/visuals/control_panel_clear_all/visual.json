@@ -2,16 +2,29 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "control_panel_clear_all",
   "position": {
-    "x": 52,
-    "y": 908,
-    "z": 13010,
-    "width": 128,
-    "height": 40,
-    "tabOrder": 13010
+    "x": 56,
+    "y": 954,
+    "z": 13200,
+    "width": 180,
+    "height": 38,
+    "tabOrder": 13200
   },
   "visual": {
     "visualType": "actionButton",
     "objects": {
+      "icon": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
       "text": [
         {
           "properties": {
@@ -32,7 +45,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10.5D"
+                  "Value": "9.5D"
                 }
               }
             },
@@ -100,6 +113,24 @@
           "selector": {
             "id": "default"
           }
+        },
+        {
+          "properties": {
+            "fillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EFF5FB'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "hover"
+          }
         }
       ],
       "outline": [
@@ -162,7 +193,7 @@
             "bookmark": {
               "expr": {
                 "Literal": {
-                  "Value": "'panel_clear_all'"
+                  "Value": "'clear_all_c3d4e5f6'"
                 }
               }
             },

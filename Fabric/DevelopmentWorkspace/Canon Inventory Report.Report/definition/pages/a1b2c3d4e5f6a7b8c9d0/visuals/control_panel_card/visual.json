@@ -3,10 +3,10 @@
   "name": "control_panel_card",
   "position": {
     "x": 28,
-    "y": 48,
+    "y": 36,
     "z": 7000,
-    "width": 337,
-    "height": 987,
+    "width": 470,
+    "height": 1008,
     "tabOrder": 7000
   },
   "visual": {

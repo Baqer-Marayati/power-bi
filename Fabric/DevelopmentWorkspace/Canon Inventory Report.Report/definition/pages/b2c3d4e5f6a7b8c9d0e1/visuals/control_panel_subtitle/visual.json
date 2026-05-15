@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "control_panel_subtitle",
   "position": {
-    "x": 52,
-    "y": 102,
+    "x": 56,
+    "y": 90,
     "z": 13001,
-    "width": 280,
+    "width": 390,
     "height": 24,
     "tabOrder": 13001
   },
@@ -49,7 +49,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "9.5D"
                 }
               }
             },

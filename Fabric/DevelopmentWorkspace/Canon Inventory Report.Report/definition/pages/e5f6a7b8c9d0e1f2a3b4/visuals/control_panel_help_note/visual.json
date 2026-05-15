@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "control_panel_help_note",
   "position": {
-    "x": 188,
-    "y": 908,
-    "z": 13011,
-    "width": 150,
-    "height": 40,
-    "tabOrder": 13011
+    "x": 252,
+    "y": 952,
+    "z": 13201,
+    "width": 194,
+    "height": 46,
+    "tabOrder": 13201
   },
   "visual": {
     "visualType": "textbox",
@@ -42,14 +42,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Help / notes: use panel filters and page navigator.'"
+                  "Value": "'Use Clear all to reset panel filters.'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "8.5D"
                 }
               }
             },

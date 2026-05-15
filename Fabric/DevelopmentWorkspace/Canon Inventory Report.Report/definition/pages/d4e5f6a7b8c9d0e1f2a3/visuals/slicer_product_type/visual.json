@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "slicer_product_type",
   "position": {
-    "x": 52,
-    "y": 710,
+    "x": 40,
+    "y": 1240,
     "z": 12010,
     "height": 36,
     "width": 276,

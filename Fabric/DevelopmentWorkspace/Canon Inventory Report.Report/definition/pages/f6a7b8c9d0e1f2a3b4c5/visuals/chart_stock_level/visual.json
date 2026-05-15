@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "chart_stock_level",
   "position": {
-    "x": 931,
+    "x": 1066,
     "y": 265.5,
     "z": 8000,
     "height": 337.5,

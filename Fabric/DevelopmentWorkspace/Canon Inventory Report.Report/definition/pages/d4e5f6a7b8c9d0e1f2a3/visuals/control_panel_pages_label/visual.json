@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "control_panel_pages_label",
   "position": {
-    "x": 52,
-    "y": 148,
+    "x": 56,
+    "y": 128,
     "z": 13002,
-    "width": 280,
+    "width": 390,
     "height": 22,
     "tabOrder": 13002
   },
@@ -49,7 +49,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "11.5D"
                 }
               }
             },

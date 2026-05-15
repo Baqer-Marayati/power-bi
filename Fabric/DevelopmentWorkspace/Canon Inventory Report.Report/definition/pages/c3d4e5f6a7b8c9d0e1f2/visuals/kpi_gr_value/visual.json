@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "kpi_gr_value",
   "position": {
-    "x": 1249,
+    "x": 1384,
     "y": 135,
     "z": 0,
     "height": 103.5,

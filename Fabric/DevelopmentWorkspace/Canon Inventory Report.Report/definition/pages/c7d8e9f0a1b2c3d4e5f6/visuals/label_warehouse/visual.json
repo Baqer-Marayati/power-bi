@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "label_warehouse",
   "position": {
-    "x": 52,
-    "y": 612,
+    "x": 40,
+    "y": 1240,
     "z": 13020,
     "height": 20,
     "width": 276,

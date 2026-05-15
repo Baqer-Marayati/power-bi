@@ -1,0 +1,83 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.0.0/schema.json",
+  "displayName": "Clear all - Procurement & Suppliers",
+  "name": "clear_all_e5f6a7b8",
+  "options": {
+    "suppressDisplay": true,
+    "suppressActiveSection": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "e5f6a7b8c9d0e1f2a3b4",
+    "sections": {
+      "e5f6a7b8c9d0e1f2a3b4": {
+        "visualContainers": {
+          "panel_slicer_year": {
+            "filters": {
+              "byName": {},
+              "byExpr": [],
+              "byType": [],
+              "byTransientState": []
+            }
+          },
+          "panel_slicer_quarter": {
+            "filters": {
+              "byName": {},
+              "byExpr": [],
+              "byType": [],
+              "byTransientState": []
+            }
+          },
+          "panel_slicer_month": {
+            "filters": {
+              "byName": {},
+              "byExpr": [],
+              "byType": [],
+              "byTransientState": []
+            }
+          },
+          "panel_slicer_business": {
+            "filters": {
+              "byName": {},
+              "byExpr": [],
+              "byType": [],
+              "byTransientState": []
+            }
+          },
+          "panel_slicer_group": {
+            "filters": {
+              "byName": {},
+              "byExpr": [],
+              "byType": [],
+              "byTransientState": []
+            }
+          },
+          "panel_slicer_product": {
+            "filters": {
+              "byName": {},
+              "byExpr": [],
+              "byType": [],
+              "byTransientState": []
+            }
+          },
+          "panel_slicer_segment": {
+            "filters": {
+              "byName": {},
+              "byExpr": [],
+              "byType": [],
+              "byTransientState": []
+            }
+          },
+          "panel_slicer_item_search": {
+            "filters": {
+              "byName": {},
+              "byExpr": [],
+              "byType": [],
+              "byTransientState": []
+            }
+          }
+        }
+      }
+    }
+  }
+}

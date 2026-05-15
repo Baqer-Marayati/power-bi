@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "control_panel_title",
   "position": {
-    "x": 52,
-    "y": 72,
+    "x": 56,
+    "y": 60,
     "z": 13000,
-    "width": 280,
-    "height": 28,
+    "width": 390,
+    "height": 30,
     "tabOrder": 13000
   },
   "visual": {

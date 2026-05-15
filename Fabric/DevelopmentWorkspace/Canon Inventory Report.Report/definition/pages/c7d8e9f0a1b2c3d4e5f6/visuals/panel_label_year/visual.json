@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "panel_label_year",
   "position": {
-    "x": 52,
-    "y": 456,
-    "z": 13020,
-    "height": 20,
-    "width": 276,
-    "tabOrder": 13020
+    "x": 56.0,
+    "y": 484,
+    "z": 13100,
+    "width": 198.0,
+    "height": 18,
+    "tabOrder": 13100
   },
   "visual": {
     "visualType": "textbox",
@@ -49,7 +49,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "9.5D"
                 }
               }
             },
@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1F4E79'"
+                      "Value": "'#2E3A42'"
                     }
                   }
                 }
