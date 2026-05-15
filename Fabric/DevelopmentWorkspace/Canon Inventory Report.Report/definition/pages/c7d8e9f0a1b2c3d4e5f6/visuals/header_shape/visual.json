@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "header_shape",
   "position": {
-    "x": 186.36363636363635,
-    "y": 42.424242424242422,
+    "x": 403.364,
+    "y": 42.42424242424242,
     "z": 11000,
     "height": 59.090909090909086,
     "width": 700,
@@ -76,7 +76,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Stock value breakdown by business type, group, product and segment — drill into valuation details.'"
+                  "Value": "'Stock value breakdown by business type, group, product and segment \u2014 drill into valuation details.'"
                 }
               }
             }

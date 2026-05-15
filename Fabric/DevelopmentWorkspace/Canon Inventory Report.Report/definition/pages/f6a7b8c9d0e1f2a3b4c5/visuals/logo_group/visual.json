@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "logo_group",
   "position": {
-    "x": 948.88888888888891,
-    "y": 40,
+    "x": 1165.889,
+    "y": 45,
     "z": 20000,
-    "height": 50,
+    "height": 56.25,
     "width": 267.77777777777777,
     "tabOrder": 20000
   },

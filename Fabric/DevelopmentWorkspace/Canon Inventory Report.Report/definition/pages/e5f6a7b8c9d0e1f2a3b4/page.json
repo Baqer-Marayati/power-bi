@@ -3,8 +3,8 @@
   "name": "e5f6a7b8c9d0e1f2a3b4",
   "displayName": "Procurement & Suppliers",
   "displayOption": "FitToWidth",
-  "height": 960,
-  "width": 1280,
+  "height": 1080,
+  "width": 1920,
   "objects": {
     "outspacePane": [
       {
@@ -12,7 +12,7 @@
           "width": {
             "expr": {
               "Literal": {
-                "Value": "195L"
+                "Value": "0L"
               }
             }
           }

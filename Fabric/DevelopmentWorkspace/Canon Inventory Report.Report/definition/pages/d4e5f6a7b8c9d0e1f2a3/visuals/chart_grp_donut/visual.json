@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "chart_grp_donut",
   "position": {
-    "x": 188,
-    "y": 560,
+    "x": 405,
+    "y": 630,
     "z": 7000,
-    "height": 316,
+    "height": 355.5,
     "width": 502,
     "tabOrder": 20000
   },

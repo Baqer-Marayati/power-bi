@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "slicer_product_type",
   "position": {
-    "x": 24,
-    "y": 488,
-    "z": 11000,
-    "height": 32,
-    "width": 136,
+    "x": 52,
+    "y": 710,
+    "z": 12010,
+    "height": 36,
+    "width": 276,
     "tabOrder": 4000
   },
   "visual": {
@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "Dim_Item.U_ProductType",
-              "nativeQueryRef": "U_ProductType",
+              "nativeQueryRef": "Product Type",
               "active": true
             }
           ]

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "control_panel_nav",
+  "position": {
+    "x": 52,
+    "y": 176,
+    "z": 12000,
+    "width": 286,
+    "height": 220,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "pageNavigator",
+    "objects": {},
+    "visualContainerObjects": {},
+    "drillFilterOtherVisuals": true
+  },
+  "howCreated": "InsertVisualButton"
+}

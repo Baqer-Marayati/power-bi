@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "kpi_margin",
   "position": {
-    "x": 989,
-    "y": 120,
+    "x": 1206,
+    "y": 135,
     "z": 0,
-    "height": 92,
+    "height": 103.5,
     "width": 251,
     "tabOrder": 11003
   },

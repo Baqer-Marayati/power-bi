@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "slicer_group_type",
   "position": {
-    "x": 24,
-    "y": 278,
-    "z": 1000,
-    "height": 32,
-    "width": 136,
+    "x": 52,
+    "y": 476,
+    "z": 12010,
+    "height": 36,
+    "width": 276,
     "tabOrder": 1000
   },
   "visual": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Item"
+                      "Entity": "Dim_Date"
                     }
                   },
-                  "Property": "U_GroupType"
+                  "Property": "Year"
                 }
               },
-              "queryRef": "Dim_Item.U_GroupType",
-              "nativeQueryRef": "U_GroupType",
+              "queryRef": "Dim_Date.Year",
+              "nativeQueryRef": "Year",
               "active": true
             }
           ]

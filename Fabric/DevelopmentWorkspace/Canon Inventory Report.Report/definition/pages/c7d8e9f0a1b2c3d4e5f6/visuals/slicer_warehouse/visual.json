@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "slicer_warehouse",
   "position": {
-    "x": 12.5,
-    "y": 208.33333333333334,
-    "z": 8000,
-    "height": 31.666666666666668,
-    "width": 163.33333333333334,
+    "x": 52,
+    "y": 632,
+    "z": 12010,
+    "height": 36,
+    "width": 276,
     "tabOrder": 2000
   },
   "visual": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "InventoryValuation"
+                      "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "WhsName"
+                  "Property": "U_BusinessType"
                 }
               },
-              "queryRef": "InventoryValuation.WhsName",
-              "nativeQueryRef": "WhsName",
+              "queryRef": "Dim_Item.U_BusinessType",
+              "nativeQueryRef": "Business Type",
               "active": true
             }
           ]
@@ -51,20 +51,6 @@
       "header": [
         {
           "properties": {
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Warehouse'"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
             "show": {
               "expr": {
                 "Literal": {

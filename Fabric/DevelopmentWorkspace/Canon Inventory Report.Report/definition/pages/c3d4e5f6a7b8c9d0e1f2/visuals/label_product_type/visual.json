@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "label_product_type",
   "position": {
-    "x": 24,
-    "y": 468,
-    "z": 17000,
-    "height": 18,
-    "width": 136,
+    "x": 52,
+    "y": 690,
+    "z": 13020,
+    "height": 20,
+    "width": 276,
     "tabOrder": 10000
   },
   "visual": {
@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#223430'"
+                      "Value": "'#1F4E79'"
                     }
                   }
                 }
@@ -67,7 +67,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif"
                 }
               }
             }

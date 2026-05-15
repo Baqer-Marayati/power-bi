@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "chart_transfer_trend",
   "position": {
-    "x": 714,
-    "y": 560,
+    "x": 931,
+    "y": 630,
     "z": 6000,
-    "height": 316,
+    "height": 355.5,
     "width": 502,
     "tabOrder": 13000
   },

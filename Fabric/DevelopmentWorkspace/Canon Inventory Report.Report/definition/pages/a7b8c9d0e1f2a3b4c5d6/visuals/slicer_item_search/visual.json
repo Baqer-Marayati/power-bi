@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "slicer_item_search",
   "position": {
-    "x": 18,
-    "y": 536,
+    "x": 40,
+    "y": 1200,
     "z": 10000,
     "height": 148,
     "width": 150,
