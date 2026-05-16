@@ -3,9 +3,9 @@
   "name": "table_cost_impact",
   "position": {
     "x": 188,
-    "y": 716,
+    "y": 708,
     "z": 28000,
-    "height": 220,
+    "height": 228,
     "width": 1028,
     "tabOrder": 27000
   },
@@ -692,7 +692,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'LC Doc -> Supplier + Broker -> Item Cost Context'"
+                  "Value": "'LC Document, Supplier, Broker and Item Cost Context'"
                 }
               }
             },

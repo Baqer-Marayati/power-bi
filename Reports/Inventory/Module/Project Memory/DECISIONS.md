@@ -81,3 +81,27 @@ Use this file for approved directions and durable constraints in the Inventory R
 ## 2026-05-12 — Executive Summary sold-mix cost trend
 
 - The **Qty and Cost by Business Type** table compares realized **Average Unit COGS** with **Sold Weighted Avg Current Unit Cost**. Group rows use sold-quantity weighting across SKUs, not stock-value/on-hand weighting, so the displayed **Current Item Cost** and **Cost Trend** describe the same sold mix at every drill grain.
+
+## 2026-05-16 — Procurement & Suppliers: KPI strip and chart UX (screenshot review)
+
+### Single KPI row (approved meanings)
+
+Keep **one** headline card row only. Each card in plain language:
+
+- **Paid / Received Unit** — Average supplier price per unit when goods are received (GRPO / receipt-line basis).
+- **Landed Unit Cost** — Average full unit cost in warehouse: supplier base plus freight, duty, insurance, handling, and other allocated LC add-ons.
+- **Add-On % of Landed** — Share of landed cost that is add-ons vs supplier base (logistics/tax burden at a glance).
+- **Largest Driver** — The landed-cost category that contributes most to landed unit cost under current filters. Must resolve to a **named category** (and optional value); do **not** leave a permanent blank/`--` placeholder.
+- **Average Unit COGS** — Average booked unit cost on outbound sales (`Total COGS / sold qty` story); comparable in spirit to procurement unit costs but **different grain and timing** than receipt landed cost.
+
+### Second-row customs cards
+
+- **Remove** the three-card strip (**Header Customs Projection**, **Booked Customs Fees**, **Customs Gap**) from the page layout while values are empty or untrusted — empty KPI tiles read as broken reporting.
+- If customs reconciliation becomes production-ready, prefer **one** optional KPI or **detail/table + waterfall** context rather than reintroducing a second full card row.
+
+### Other visuals (recommended polish)
+
+- **Waterfall (*Why Did Landed Unit Cost Change?*)** — State **what moves** (e.g. month vs prior month or vs walk start) in title/subtitle so it matches **Analyze by**. Use the **same category colors** as the stacked mix chart (single legend mental model).
+- **Stacked columns (*Landed Cost Mix by Month*)** — Keep category order stable (e.g. supplier base first or consistent stack order); avoid dense data labels unless needed for finance sign-off.
+- **Line chart (*Paid Unit, Landed Unit and Average Unit COGS*)** — Short footnote or subtitle that **COGS is sales-time** while **paid/landed are receipt/LC-time**, so users do not over-interpret gaps. Align series colors with KPI/card emphasis where possible.
+- **Detail table (*LC Doc → Supplier + Broker → Item*)** — Most rows show **Unknown broker** in screenshots; add a broker data-quality treatment (filter, grouped “Unknown”, or on-page note) so the table does not imply false precision. Keep LC Status / Analyze-by behavior consistent with the glossary note (**Open + Closed LC default**; **Closed** for official finance view).

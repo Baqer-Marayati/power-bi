@@ -3,7 +3,7 @@
   "name": "text_lc_status_note",
   "position": {
     "x": 188,
-    "y": 278,
+    "y": 238,
     "z": 29650,
     "height": 16,
     "width": 1028,
@@ -42,7 +42,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Default includes Open + Closed LC. Filter LC Status to Closed for Finance / official view.'"
+                  "Value": "'Default includes Open + Closed LC. Use LC Status = Closed for the official finance view.'"
                 }
               }
             },

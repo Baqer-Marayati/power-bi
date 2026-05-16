@@ -3,9 +3,9 @@
   "name": "chart_landed_mix",
   "position": {
     "x": 714,
-    "y": 296,
+    "y": 260,
     "z": 29500,
-    "height": 220,
+    "height": 240,
     "width": 502,
     "tabOrder": 28500
   },
@@ -229,7 +229,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Landed Cost Mix by Month (Analyze by selector)'"
+                  "Value": "'Landed Cost Mix by Month'"
                 }
               }
             },

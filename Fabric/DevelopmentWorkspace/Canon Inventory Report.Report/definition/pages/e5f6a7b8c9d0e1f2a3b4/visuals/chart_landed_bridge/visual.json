@@ -3,9 +3,9 @@
   "name": "chart_landed_bridge",
   "position": {
     "x": 188,
-    "y": 296,
+    "y": 260,
     "z": 29400,
-    "height": 220,
+    "height": 240,
     "width": 502,
     "tabOrder": 28400
   },
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Why Did Landed Unit Cost Change? (Analyze by selector)'"
+                  "Value": "'Landed Unit Cost Change by Selected Driver'"
                 }
               }
             },

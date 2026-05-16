@@ -361,111 +361,6 @@
       "type": "DataFilter"
     },
     {
-      "source": "slicer_year",
-      "target": "kpi_customs_projected",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_year",
-      "target": "kpi_customs_actual",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_year",
-      "target": "kpi_customs_variance",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_quarter",
-      "target": "kpi_customs_projected",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_quarter",
-      "target": "kpi_customs_actual",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_quarter",
-      "target": "kpi_customs_variance",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_month",
-      "target": "kpi_customs_projected",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_month",
-      "target": "kpi_customs_actual",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_month",
-      "target": "kpi_customs_variance",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_item_group",
-      "target": "kpi_customs_projected",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_item_group",
-      "target": "kpi_customs_actual",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_item_group",
-      "target": "kpi_customs_variance",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_group_type",
-      "target": "kpi_customs_projected",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_group_type",
-      "target": "kpi_customs_actual",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_group_type",
-      "target": "kpi_customs_variance",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_product_type",
-      "target": "kpi_customs_projected",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_product_type",
-      "target": "kpi_customs_actual",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_product_type",
-      "target": "kpi_customs_variance",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_segment_type",
-      "target": "kpi_customs_projected",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_segment_type",
-      "target": "kpi_customs_actual",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_segment_type",
-      "target": "kpi_customs_variance",
-      "type": "DataFilter"
-    },
-    {
       "source": "slicer_analyze_by",
       "target": "kpi_purchase_unit_cost",
       "type": "DataFilter"
@@ -488,21 +383,6 @@
     {
       "source": "slicer_analyze_by",
       "target": "kpi_avg_cogs",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_analyze_by",
-      "target": "kpi_customs_projected",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_analyze_by",
-      "target": "kpi_customs_actual",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_analyze_by",
-      "target": "kpi_customs_variance",
       "type": "DataFilter"
     },
     {
@@ -552,21 +432,6 @@
     },
     {
       "source": "slicer_broker",
-      "target": "kpi_customs_projected",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_broker",
-      "target": "kpi_customs_actual",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_broker",
-      "target": "kpi_customs_variance",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_broker",
       "target": "chart_landed_bridge",
       "type": "DataFilter"
     },
@@ -608,21 +473,6 @@
     {
       "source": "slicer_lc_document_status",
       "target": "kpi_avg_cogs",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_lc_document_status",
-      "target": "kpi_customs_projected",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_lc_document_status",
-      "target": "kpi_customs_actual",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_lc_document_status",
-      "target": "kpi_customs_variance",
       "type": "DataFilter"
     },
     {

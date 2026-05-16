@@ -3,9 +3,9 @@
   "name": "chart_purchase_vs_cogs",
   "position": {
     "x": 188,
-    "y": 536,
+    "y": 520,
     "z": 27000,
-    "height": 160,
+    "height": 168,
     "width": 1028,
     "tabOrder": 26000
   },
@@ -277,7 +277,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Paid Unit, Landed Unit and Average Unit COGS'"
+                  "Value": "'Paid, Landed and COGS Unit Cost Trend'"
                 }
               }
             },
