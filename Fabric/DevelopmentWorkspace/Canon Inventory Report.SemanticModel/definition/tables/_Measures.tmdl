@@ -437,6 +437,21 @@ table _Measures
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa068
 
+	/// Reorder Actions table guard: suppress rows where the policy fact grain is ambiguous (more
+	/// than one Fact_StockCoverPolicy row in context). Those rows collapse SELECTEDVALUE(...) to blank
+	/// and leak into the Dim_Item-named table slice under slicers such as Stock Status.
+	measure 'Reorder Table Row Keeper' =
+			VAR NumPolicyRows =
+			    CALCULATE ( COUNTROWS ( Fact_StockCoverPolicy ) )
+			RETURN
+			    IF (
+			        HASONEVALUE ( Dim_Item[ItemCode] )
+			            && NumPolicyRows = 1,
+			        1
+			    )
+		formatString: 0
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa068a
+
 	/// Rounded SVG pill badge for the Action column. The inner <title> element gives
 	/// the cell an accessible name (BUY / HEALTHY / REDUCE / REVIEW / IDLE) so screen
 	/// readers and any renderer that respects SVG titles get a clean label instead of
