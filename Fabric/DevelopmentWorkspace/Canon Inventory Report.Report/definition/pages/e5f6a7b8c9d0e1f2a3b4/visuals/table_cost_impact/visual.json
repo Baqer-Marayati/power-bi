@@ -306,6 +306,27 @@
       "rowHeaders": [
         {
           "properties": {
+            "showExpandCollapseButtons": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "stepped": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "steppedLayoutIndentation": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            },
             "bold": {
               "expr": {
                 "Literal": {
