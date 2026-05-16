@@ -42,10 +42,10 @@
                       "Entity": "Dim_LandedCostCategory"
                     }
                   },
-                  "Property": "ReportingCategory"
+                  "Property": "ChartCategory"
                 }
               },
-              "queryRef": "Dim_LandedCostCategory.ReportingCategory",
+              "queryRef": "Dim_LandedCostCategory.ChartCategory",
               "nativeQueryRef": "Add-on category"
             }
           ]
@@ -187,12 +187,12 @@
                             "Entity": "Dim_LandedCostCategory"
                           }
                         },
-                        "Property": "ReportingCategory"
+                        "Property": "ChartCategory"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Transport'"
+                        "Value": "'\u00A0\u00A0Transport'"
                       }
                     }
                   }
@@ -228,12 +228,12 @@
                             "Entity": "Dim_LandedCostCategory"
                           }
                         },
-                        "Property": "ReportingCategory"
+                        "Property": "ChartCategory"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Unloading'"
+                        "Value": "'\u00A0\u00A0Unloading'"
                       }
                     }
                   }
@@ -269,12 +269,12 @@
                             "Entity": "Dim_LandedCostCategory"
                           }
                         },
-                        "Property": "ReportingCategory"
+                        "Property": "ChartCategory"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Tax / duty'"
+                        "Value": "'\u00A0\u00A0Tax / duty'"
                       }
                     }
                   }
@@ -310,12 +310,12 @@
                             "Entity": "Dim_LandedCostCategory"
                           }
                         },
-                        "Property": "ReportingCategory"
+                        "Property": "ChartCategory"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Insurance'"
+                        "Value": "'\u00A0\u00A0Insurance'"
                       }
                     }
                   }
@@ -351,12 +351,12 @@
                             "Entity": "Dim_LandedCostCategory"
                           }
                         },
-                        "Property": "ReportingCategory"
+                        "Property": "ChartCategory"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Other'"
+                        "Value": "'\u00A0\u00A0Other'"
                       }
                     }
                   }
