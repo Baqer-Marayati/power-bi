@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_purchase_vs_cogs",
   "position": {
-    "x": 188,
-    "y": 236,
-    "z": 27000,
-    "height": 300,
-    "width": 1028,
-    "tabOrder": 26000
+    "x": 187.5,
+    "y": 222.5,
+    "z": 18000,
+    "height": 297.5,
+    "width": 515,
+    "tabOrder": 21000
   },
   "visual": {
     "visualType": "lineChart",
@@ -32,6 +32,24 @@
             }
           ]
         },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_LandedCostCategory"
+                    }
+                  },
+                  "Property": "ReportingCategory"
+                }
+              },
+              "queryRef": "Dim_LandedCostCategory.ReportingCategory",
+              "nativeQueryRef": "Add-on category"
+            }
+          ]
+        },
         "Y": {
           "projections": [
             {
@@ -42,25 +60,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Weighted Purchase Unit Cost"
+                  "Property": "Category % of landed"
                 }
               },
-              "queryRef": "_Measures.Weighted Purchase Unit Cost",
-              "nativeQueryRef": "Paid / received unit"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Average Unit COGS"
-                }
-              },
-              "queryRef": "_Measures.Average Unit COGS",
-              "nativeQueryRef": "Average Unit COGS"
+              "queryRef": "_Measures.Category % of landed",
+              "nativeQueryRef": "Category % of landed"
             }
           ]
         }
@@ -152,6 +156,213 @@
                 }
               }
             }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F4E79'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Dim_LandedCostCategory"
+                          }
+                        },
+                        "Property": "ReportingCategory"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Transport'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2A9D8F'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Dim_LandedCostCategory"
+                          }
+                        },
+                        "Property": "ReportingCategory"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Unloading'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#D9822B'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Dim_LandedCostCategory"
+                          }
+                        },
+                        "Property": "ReportingCategory"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Tax / duty'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7B61FF'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Dim_LandedCostCategory"
+                          }
+                        },
+                        "Property": "ReportingCategory"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Insurance'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#8A94A6'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Dim_LandedCostCategory"
+                          }
+                        },
+                        "Property": "ReportingCategory"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Other'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
           }
         }
       ],
@@ -263,7 +474,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Paid Unit Cost vs Average Unit COGS'"
+                  "Value": "'monthly % of landed by category'"
                 }
               }
             },
@@ -334,8 +545,93 @@
             }
           }
         }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'ReportPage'"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'tt_landed_addon_m01'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "exclude_supplier_base_add_on_trend",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_LandedCostCategory"
+              }
+            },
+            "Property": "ReportingCategory"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Dim_LandedCostCategory",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "d"
+                            }
+                          },
+                          "Property": "ReportingCategory"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "'Supplier base'"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
   }
 }

@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "slicer_item_search",
   "position": {
     "x": 18,
     "y": 536,
-    "z": 10000,
+    "z": 11000,
     "height": 148,
     "width": 150,
-    "tabOrder": 5001
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "PowerSlicerA96234ADB8D143D1837FEC426BB34781",
@@ -119,6 +119,11 @@
         }
       ],
       "general": [
+        {
+          "properties": {}
+        }
+      ],
+      "title": [
         {
           "properties": {}
         }

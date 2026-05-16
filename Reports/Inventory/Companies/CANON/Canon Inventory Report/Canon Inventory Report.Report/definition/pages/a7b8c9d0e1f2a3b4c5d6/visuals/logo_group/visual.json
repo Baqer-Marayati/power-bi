@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "logo_group",
   "position": {
     "x": 948.88888888888891,
     "y": 40,
-    "z": 12000,
+    "z": 13000,
     "height": 50,
     "width": 267.77777777777777,
-    "tabOrder": 12000
+    "tabOrder": 13000
   },
   "visualGroup": {
     "displayName": "Logo Group",

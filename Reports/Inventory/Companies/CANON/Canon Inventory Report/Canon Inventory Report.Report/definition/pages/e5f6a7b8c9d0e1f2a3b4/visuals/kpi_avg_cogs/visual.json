@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_avg_cogs",
   "position": {
     "x": 821,
     "y": 120,
-    "z": 24000,
+    "z": 17000,
     "height": 92,
     "width": 184,
-    "tabOrder": 24000
+    "tabOrder": 20000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Average Unit COGS"
+                  "Property": "Selected Largest Landed Cost Driver"
                 }
               },
-              "queryRef": "_Measures.Average Unit COGS",
-              "nativeQueryRef": "Average Unit COGS"
+              "queryRef": "_Measures.Selected Largest Landed Cost Driver",
+              "nativeQueryRef": "Largest add-on"
             }
           ]
         }
@@ -56,27 +56,38 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "18D"
+                  "Value": "12D"
                 }
               }
             },
-            "labelDisplayUnits": {
+            "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "false"
                 }
               }
             },
-            "labelPrecision": {
+            "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "'Tahoma'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2E3A42'"
+                    }
+                  }
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Average Unit COGS"
+            "metadata": "_Measures.Selected Largest Landed Cost Driver"
           }
         }
       ]
@@ -178,7 +189,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Average Unit COGS'"
+                  "Value": "'Largest add-on'"
                 }
               }
             },
@@ -192,7 +203,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "9D"
                 }
               }
             },

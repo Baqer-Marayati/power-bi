@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_purchase_unit_cost",
   "position": {
     "x": 188,
     "y": 120,
-    "z": 21000,
+    "z": 15000,
     "height": 92,
     "width": 184,
-    "tabOrder": 21000
+    "tabOrder": 15000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Weighted Purchase Unit Cost"
+                  "Property": "Selected Landed Supplier Base Amount"
                 }
               },
-              "queryRef": "_Measures.Weighted Purchase Unit Cost",
-              "nativeQueryRef": "Paid / received unit"
+              "queryRef": "_Measures.Selected Landed Supplier Base Amount",
+              "nativeQueryRef": "Total purchase (IQD)"
             }
           ]
         }
@@ -56,7 +56,32 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "18D"
+                  "Value": "14D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tahoma'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2E3A42'"
+                    }
+                  }
                 }
               }
             },
@@ -76,7 +101,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Weighted Purchase Unit Cost"
+            "metadata": "_Measures.Selected Landed Supplier Base Amount"
           }
         }
       ]
@@ -178,7 +203,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Paid / Received Unit'"
+                  "Value": "'Total purchase (IQD)'"
                 }
               }
             },
@@ -192,7 +217,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "9D"
                 }
               }
             },

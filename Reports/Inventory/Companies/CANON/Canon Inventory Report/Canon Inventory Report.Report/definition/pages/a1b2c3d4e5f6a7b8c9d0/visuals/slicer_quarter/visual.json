@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "slicer_quarter",
   "position": {
     "x": 24,
@@ -7,7 +7,7 @@
     "z": 10000,
     "height": 32,
     "width": 136,
-    "tabOrder": 10002
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "slicer",

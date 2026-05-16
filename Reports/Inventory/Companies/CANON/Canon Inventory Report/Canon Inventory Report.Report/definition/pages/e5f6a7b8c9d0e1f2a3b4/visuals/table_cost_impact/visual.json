@@ -1,48 +1,50 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "table_cost_impact",
   "position": {
-    "x": 188,
-    "y": 560,
-    "z": 28000,
-    "height": 376,
-    "width": 1028,
-    "tabOrder": 27000
+    "x": 187.14285714285717,
+    "y": 537.14285714285722,
+    "z": 19000,
+    "height": 407.14285714285717,
+    "width": 1028.5714285714287,
+    "tabOrder": 22000
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Values": {
+        "Rows": {
           "projections": [
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_GoodsReceipt"
+                      "Entity": "Fact_LandedCostAllocation"
                     }
                   },
-                  "Property": "CardName"
+                  "Property": "LcDocNum"
                 }
               },
-              "queryRef": "Fact_GoodsReceipt.CardName",
-              "nativeQueryRef": "Supplier",
-              "displayName": "Supplier"
+              "queryRef": "Fact_LandedCostAllocation.LcDocNum",
+              "nativeQueryRef": "LC Doc",
+              "active": true,
+              "displayName": "LC Doc"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Item"
+                      "Entity": "Fact_LandedCostAllocation"
                     }
                   },
-                  "Property": "ItemName"
+                  "Property": "ItemDescription"
                 }
               },
-              "queryRef": "Dim_Item.ItemName",
+              "queryRef": "Fact_LandedCostAllocation.ItemDescription",
               "nativeQueryRef": "Item",
+              "active": false,
               "displayName": "Item"
             },
             {
@@ -50,15 +52,35 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Item"
+                      "Entity": "Fact_LandedCostAllocation"
                     }
                   },
-                  "Property": "U_BusinessType"
+                  "Property": "ItemCode"
                 }
               },
-              "queryRef": "Dim_Item.U_BusinessType",
-              "nativeQueryRef": "Business Type",
-              "displayName": "Business Type"
+              "queryRef": "Fact_LandedCostAllocation.ItemCode",
+              "nativeQueryRef": "Item code",
+              "active": false,
+              "displayName": "Item code"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected LC Document Date"
+                }
+              },
+              "queryRef": "_Measures.Selected LC Document Date",
+              "nativeQueryRef": "LC date",
+              "displayName": "LC date"
             },
             {
               "field": {
@@ -68,12 +90,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "GR Receipt Qty Positive"
+                  "Property": "Selected Landed Receipt Qty"
                 }
               },
-              "queryRef": "_Measures.GR Receipt Qty Positive",
-              "nativeQueryRef": "Receipt qty",
-              "displayName": "Receipt qty"
+              "queryRef": "_Measures.Selected Landed Receipt Qty",
+              "nativeQueryRef": "Receipt Qty",
+              "displayName": "Receipt Qty"
             },
             {
               "field": {
@@ -83,12 +105,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "GR Receipt Value Positive"
+                  "Property": "Selected Landed Supplier Base Amount"
                 }
               },
-              "queryRef": "_Measures.GR Receipt Value Positive",
-              "nativeQueryRef": "Receipt value",
-              "displayName": "Receipt value"
+              "queryRef": "_Measures.Selected Landed Supplier Base Amount",
+              "nativeQueryRef": "Supplier IQD total",
+              "displayName": "Supplier IQD total"
             },
             {
               "field": {
@@ -98,12 +120,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Weighted Purchase Unit Cost"
+                  "Property": "Selected Supplier Base Unit Cost"
                 }
               },
-              "queryRef": "_Measures.Weighted Purchase Unit Cost",
-              "nativeQueryRef": "Paid unit",
-              "displayName": "Paid unit"
+              "queryRef": "_Measures.Selected Supplier Base Unit Cost",
+              "nativeQueryRef": "Supplier IQD / unit",
+              "displayName": "Supplier IQD / unit"
             },
             {
               "field": {
@@ -113,12 +135,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Purchase Unit Cost MoM %"
+                  "Property": "Selected Landed Add-On Amount"
                 }
               },
-              "queryRef": "_Measures.Purchase Unit Cost MoM %",
-              "nativeQueryRef": "Paid MoM %",
-              "displayName": "Paid MoM %"
+              "queryRef": "_Measures.Selected Landed Add-On Amount",
+              "nativeQueryRef": "Add-on IQD",
+              "displayName": "Add-on IQD"
             },
             {
               "field": {
@@ -128,12 +150,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Average Unit COGS"
+                  "Property": "Selected Landed Unit Cost"
                 }
               },
-              "queryRef": "_Measures.Average Unit COGS",
-              "nativeQueryRef": "Avg Unit COGS",
-              "displayName": "Avg Unit COGS"
+              "queryRef": "_Measures.Selected Landed Unit Cost",
+              "nativeQueryRef": "Landed IQD / unit",
+              "displayName": "Landed IQD / unit"
             },
             {
               "field": {
@@ -143,12 +165,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Average Unit COGS MoM %"
+                  "Property": "Selected Landed Uplift % vs Supplier Base"
                 }
               },
-              "queryRef": "_Measures.Average Unit COGS MoM %",
-              "nativeQueryRef": "COGS MoM %",
-              "displayName": "COGS MoM %"
+              "queryRef": "_Measures.Selected Landed Uplift % vs Supplier Base",
+              "nativeQueryRef": "Add-on % (vs. supplier)",
+              "displayName": "Add-on % (vs. supplier)"
             },
             {
               "field": {
@@ -158,42 +180,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "COGS Response Gap %"
+                  "Property": "Selected Top Add-On Category"
                 }
               },
-              "queryRef": "_Measures.COGS Response Gap %",
-              "nativeQueryRef": "Response gap",
-              "displayName": "Response gap"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Purchase Cost Impact"
-                }
-              },
-              "queryRef": "_Measures.Purchase Cost Impact",
-              "nativeQueryRef": "Receipt impact",
-              "displayName": "Receipt impact"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "COGS Cost Impact"
-                }
-              },
-              "queryRef": "_Measures.COGS Cost Impact",
-              "nativeQueryRef": "COGS impact",
-              "displayName": "COGS impact"
+              "queryRef": "_Measures.Selected Top Add-On Category",
+              "nativeQueryRef": "Largest add-on",
+              "displayName": "Largest add-on"
             }
           ]
         }
@@ -208,7 +200,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Purchase Cost Impact"
+                "Property": "Selected Landed Add-On Amount"
               }
             },
             "direction": "Descending"
@@ -216,16 +208,118 @@
         ]
       }
     },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "Fact_LandedCostAllocation.LcDocNum"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_LandedCostAllocation"
+                    }
+                  },
+                  "Property": "LcDocNum"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Fact_LandedCostAllocation.ItemDescription"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Fact_LandedCostAllocation.ItemCode"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
     "objects": {
-      "values": [
+      "grid": [
         {
           "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "gridHorizontalColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E2EAE6'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "showExpandCollapseButtons": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "stepped": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "steppedLayoutIndentation": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "fontColor": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#5C6B66'"
+                      "Value": "'#223430'"
                     }
                   }
                 }
@@ -241,6 +335,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'Center'"
+                }
+              }
+            },
+            "titleAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
                 }
               }
             },
@@ -276,29 +377,15 @@
           }
         }
       ],
-      "grid": [
+      "values": [
         {
           "properties": {
-            "textSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "gridHorizontal": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "gridHorizontalColor": {
+            "fontColor": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E2EAE6'"
+                      "Value": "'#5C6B66'"
                     }
                   }
                 }
@@ -307,32 +394,38 @@
           }
         }
       ],
-      "total": [
+      "subTotals": [
         {
           "properties": {
-            "totals": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E8F0F6'"
+                    }
+                  }
+                }
+              }
+            },
+            "applyToHeaders": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
+          },
+          "selector": {
+            "id": "Row"
           }
         }
       ],
       "columnWidth": [
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "220D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
-            "metadata": "Fact_GoodsReceipt.CardName"
+            "metadata": "Fact_LandedCostAllocation.LcDocNum"
           }
         },
         {
@@ -340,13 +433,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "300D"
+                  "Value": "380D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Dim_Item.ItemName"
+            "metadata": "Fact_LandedCostAllocation.ItemDescription"
           }
         },
         {
@@ -360,7 +453,13 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.U_BusinessType"
+            "metadata": "Fact_LandedCostAllocation.ItemCode"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "_Measures.Selected LC Document Date"
           }
         },
         {
@@ -368,13 +467,27 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "120D"
+                  "Value": "100D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.GR Receipt Qty Positive"
+            "metadata": "_Measures.Selected Landed Receipt Qty"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "150D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Selected Landed Supplier Base Amount"
           }
         },
         {
@@ -388,35 +501,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.GR Receipt Value Positive"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "120D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Measures.Weighted Purchase Unit Cost"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "110D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Measures.Purchase Unit Cost MoM %"
+            "metadata": "_Measures.Selected Supplier Base Unit Cost"
           }
         },
         {
@@ -430,35 +515,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Average Unit COGS"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "110D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Measures.Average Unit COGS MoM %"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "110D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Measures.COGS Response Gap %"
+            "metadata": "_Measures.Selected Landed Add-On Amount"
           }
         },
         {
@@ -472,7 +529,13 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Purchase Cost Impact"
+            "metadata": "_Measures.Selected Landed Unit Cost"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "_Measures.Selected Landed Uplift % vs Supplier Base"
           }
         },
         {
@@ -486,7 +549,205 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.COGS Cost Impact"
+            "metadata": "_Measures.Selected Top Add-On Category"
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Selected Landed Receipt Qty"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Selected Landed Supplier Base Amount"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Selected Supplier Base Unit Cost"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Selected Landed Add-On Amount"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Selected Landed Unit Cost"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Selected Landed Uplift % vs Supplier Base"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Selected Top Add-On Category"
           }
         }
       ]
@@ -560,7 +821,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top Receipt Cost Movers and COGS Context'"
+                  "Value": "'Top landed-cost lines (by LC document)'"
                 }
               }
             },

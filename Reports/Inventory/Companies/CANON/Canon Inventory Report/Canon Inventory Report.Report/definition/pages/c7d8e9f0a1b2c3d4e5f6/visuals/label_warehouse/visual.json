@@ -1,10 +1,10 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "label_warehouse",
   "position": {
     "x": 18.571428571428573,
     "y": 188.57142857142858,
-    "z": 10000,
+    "z": 11000,
     "height": 17.142857142857142,
     "width": 135.71428571428572,
     "tabOrder": 4000

@@ -1,0 +1,35 @@
+table DateSpineChoice
+	lineageTag: d5a7e001-916b-4a6b-a404-000000000001
+
+	column AnalyzeBy
+		dataType: string
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000002
+		summarizeBy: none
+		sourceColumn: [AnalyzeBy]
+		sortByColumn: Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort
+		dataType: int64
+		formatString: 0
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000003
+		summarizeBy: none
+		sourceColumn: [Sort]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DateSpineChoice = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "AnalyzeBy", STRING,
+				    "Sort", INTEGER,
+				    {
+				        { "LC posting date", 1 },
+				        { "Receipt date", 2 }
+				    }
+				)
+
+	annotation PBI_ResultType = Table
+

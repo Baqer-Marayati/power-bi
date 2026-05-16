@@ -50,6 +50,18 @@ relationship rel_stock_cover_item
 	fromColumn: Fact_StockCoverPolicy.ItemCode
 	toColumn: Dim_Item.ItemCode
 
+relationship rel_lc_item
+	fromColumn: Fact_LandedCostAllocation.ItemCode
+	toColumn: Dim_Item.ItemCode
+
+relationship rel_lc_date
+	fromColumn: Fact_LandedCostAllocation.LcDate
+	toColumn: Dim_Date.Date
+
+relationship rel_lc_category
+	fromColumn: Fact_LandedCostAllocation.LandedCostCode
+	toColumn: Dim_LandedCostCategory.LandedCostCode
+
 relationship rel_iv_item
 	fromColumn: InventoryValuation.ItemCode
 	toColumn: Dim_Item.ItemCode

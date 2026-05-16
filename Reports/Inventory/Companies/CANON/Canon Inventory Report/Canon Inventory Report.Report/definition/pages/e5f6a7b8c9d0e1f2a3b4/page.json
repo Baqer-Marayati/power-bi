@@ -1,7 +1,7 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "e5f6a7b8c9d0e1f2a3b4",
-  "displayName": "Procurement & Suppliers",
+  "displayName": "Procurement & landed cost",
   "displayOption": "FitToWidth",
   "height": 960,
   "width": 1280,
@@ -46,28 +46,33 @@
   },
   "visualInteractions": [
     {
+      "source": "slicer_year",
+      "target": "kpi_purchase_unit_cost",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "kpi_avg_cogs",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "chart_purchase_vs_cogs",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "table_cost_impact",
+      "type": "DataFilter"
+    },
+    {
       "source": "slicer_quarter",
       "target": "kpi_purchase_unit_cost",
       "type": "DataFilter"
     },
     {
       "source": "slicer_quarter",
-      "target": "kpi_purchase_mom",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_quarter",
-      "target": "kpi_purchase_impact",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_quarter",
       "target": "kpi_avg_cogs",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_quarter",
-      "target": "kpi_cogs_mom",
       "type": "DataFilter"
     },
     {
@@ -87,22 +92,7 @@
     },
     {
       "source": "slicer_month",
-      "target": "kpi_purchase_mom",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_month",
-      "target": "kpi_purchase_impact",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_month",
       "target": "kpi_avg_cogs",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_month",
-      "target": "kpi_cogs_mom",
       "type": "DataFilter"
     },
     {
@@ -122,22 +112,7 @@
     },
     {
       "source": "slicer_item_group",
-      "target": "kpi_purchase_mom",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_item_group",
-      "target": "kpi_purchase_impact",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_item_group",
       "target": "kpi_avg_cogs",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_item_group",
-      "target": "kpi_cogs_mom",
       "type": "DataFilter"
     },
     {
@@ -157,22 +132,7 @@
     },
     {
       "source": "slicer_group_type",
-      "target": "kpi_purchase_mom",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_group_type",
-      "target": "kpi_purchase_impact",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_group_type",
       "target": "kpi_avg_cogs",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_group_type",
-      "target": "kpi_cogs_mom",
       "type": "DataFilter"
     },
     {
@@ -192,22 +152,7 @@
     },
     {
       "source": "slicer_product_type",
-      "target": "kpi_purchase_mom",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_product_type",
-      "target": "kpi_purchase_impact",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_product_type",
       "target": "kpi_avg_cogs",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_product_type",
-      "target": "kpi_cogs_mom",
       "type": "DataFilter"
     },
     {
@@ -227,22 +172,7 @@
     },
     {
       "source": "slicer_segment_type",
-      "target": "kpi_purchase_mom",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_segment_type",
-      "target": "kpi_purchase_impact",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_segment_type",
       "target": "kpi_avg_cogs",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_segment_type",
-      "target": "kpi_cogs_mom",
       "type": "DataFilter"
     },
     {
@@ -253,6 +183,146 @@
     {
       "source": "slicer_segment_type",
       "target": "table_cost_impact",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "kpi_landed_unit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "kpi_largest_driver",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "kpi_addon_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_year",
+      "target": "chart_landed_mix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_landed_unit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_largest_driver",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_addon_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "chart_landed_mix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_landed_unit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_largest_driver",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_addon_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "chart_landed_mix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "kpi_landed_unit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "kpi_largest_driver",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "kpi_addon_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "chart_landed_mix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "kpi_landed_unit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "kpi_largest_driver",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "kpi_addon_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "chart_landed_mix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "kpi_landed_unit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "kpi_largest_driver",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "kpi_addon_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "chart_landed_mix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "kpi_landed_unit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "kpi_largest_driver",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "kpi_addon_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "chart_landed_mix",
       "type": "DataFilter"
     }
   ]
