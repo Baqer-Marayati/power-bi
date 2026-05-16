@@ -1251,7 +1251,21 @@ table _Measures
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000123
 
-	measure 'Selected Add-On Share of Landed %' = [Selected Landed Add-On % of Landed]
+	measure 'Selected Total Landed Cost Amount' =
+			CALCULATE (
+			    [Selected Landed Cost Amount],
+			    REMOVEFILTERS ( Dim_LandedCostCategory )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000136
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Selected Add-On Share of Landed %' =
+			DIVIDE (
+			    [Selected Landed Add-On Amount],
+			    [Selected Total Landed Cost Amount]
+			)
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000124
 

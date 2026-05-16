@@ -106,11 +106,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Landed Cost Amount"
+                  "Property": "Selected Total Landed Cost Amount"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Cost Amount",
-              "nativeQueryRef": "Landed amount"
+              "queryRef": "_Measures.Selected Total Landed Cost Amount",
+              "nativeQueryRef": "Total landed amount"
             },
             {
               "field": {
