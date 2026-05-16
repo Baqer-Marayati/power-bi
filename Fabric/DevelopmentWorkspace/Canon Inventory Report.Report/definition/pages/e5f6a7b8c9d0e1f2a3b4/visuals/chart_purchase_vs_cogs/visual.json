@@ -3,9 +3,9 @@
   "name": "chart_purchase_vs_cogs",
   "position": {
     "x": 188,
-    "y": 520,
+    "y": 492,
     "z": 27000,
-    "height": 168,
+    "height": 178,
     "width": 1028,
     "tabOrder": 26000
   },
@@ -74,7 +74,7 @@
                 }
               },
               "queryRef": "_Measures.Average Unit COGS",
-              "nativeQueryRef": "Average Unit COGS"
+              "nativeQueryRef": "Sales-time avg unit COGS"
             }
           ]
         }
@@ -277,7 +277,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Paid, Landed and COGS Unit Cost Trend'"
+                  "Value": "'Paid Unit, Landed Unit and Sold COGS Trend'"
                 }
               }
             },

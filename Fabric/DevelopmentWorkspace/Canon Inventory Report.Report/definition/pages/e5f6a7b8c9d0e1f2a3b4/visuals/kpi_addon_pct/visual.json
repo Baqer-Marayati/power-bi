@@ -67,6 +67,24 @@
                 }
               }
             },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tahoma'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2E3A42'"
+                    }
+                  }
+                }
+              }
+            },
             "labelPrecision": {
               "expr": {
                 "Literal": {
@@ -76,7 +94,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Landed Add-On % of Landed"
+            "metadata": "_Measures.Selected Landed Add-On % of Landed"
           }
         }
       ]
@@ -164,7 +182,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "9D"
                 }
               }
             },

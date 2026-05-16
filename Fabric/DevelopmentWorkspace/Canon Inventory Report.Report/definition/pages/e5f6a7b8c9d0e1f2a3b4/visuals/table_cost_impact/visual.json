@@ -3,9 +3,9 @@
   "name": "table_cost_impact",
   "position": {
     "x": 188,
-    "y": 708,
+    "y": 690,
     "z": 28000,
-    "height": 228,
+    "height": 246,
     "width": 1028,
     "tabOrder": 27000
   },
@@ -23,12 +23,42 @@
                       "Entity": "Fact_LandedCostAllocation"
                     }
                   },
-                  "Property": "ReceiptLineKey"
+                  "Property": "LcDocNum"
                 }
               },
-              "queryRef": "Fact_LandedCostAllocation.ReceiptLineKey",
-              "nativeQueryRef": "Receipt line",
-              "displayName": "Receipt line"
+              "queryRef": "Fact_LandedCostAllocation.LcDocNum",
+              "nativeQueryRef": "LC Doc",
+              "displayName": "LC Doc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_LandedCostAllocation"
+                    }
+                  },
+                  "Property": "LcDate"
+                }
+              },
+              "queryRef": "Fact_LandedCostAllocation.LcDate",
+              "nativeQueryRef": "LC Date",
+              "displayName": "LC Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_LandedCostAllocation"
+                    }
+                  },
+                  "Property": "LcDocumentStatus"
+                }
+              },
+              "queryRef": "Fact_LandedCostAllocation.LcDocumentStatus",
+              "nativeQueryRef": "LC Status",
+              "displayName": "LC Status"
             },
             {
               "field": {
@@ -68,25 +98,10 @@
                       "Entity": "Fact_LandedCostAllocation"
                     }
                   },
-                  "Property": "LcDocNum"
+                  "Property": "ItemDescription"
                 }
               },
-              "queryRef": "Fact_LandedCostAllocation.LcDocNum",
-              "nativeQueryRef": "LC Doc",
-              "displayName": "LC Doc"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Dim_Item"
-                    }
-                  },
-                  "Property": "ItemName"
-                }
-              },
-              "queryRef": "Dim_Item.ItemName",
+              "queryRef": "Fact_LandedCostAllocation.ItemDescription",
               "nativeQueryRef": "Item",
               "displayName": "Item"
             },
@@ -107,18 +122,18 @@
             },
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "_Measures"
+                      "Entity": "Fact_LandedCostAllocation"
                     }
                   },
-                  "Property": "GR Receipt Qty Positive"
+                  "Property": "ReportingCategory"
                 }
               },
-              "queryRef": "_Measures.GR Receipt Qty Positive",
-              "nativeQueryRef": "Receipt qty",
-              "displayName": "Receipt qty"
+              "queryRef": "Fact_LandedCostAllocation.ReportingCategory",
+              "nativeQueryRef": "Landed Category",
+              "displayName": "Landed Category"
             },
             {
               "field": {
@@ -128,12 +143,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "GR Receipt Value Positive"
+                  "Property": "Selected Landed Receipt Qty"
                 }
               },
-              "queryRef": "_Measures.GR Receipt Value Positive",
-              "nativeQueryRef": "Receipt value",
-              "displayName": "Receipt value"
+              "queryRef": "_Measures.Selected Landed Receipt Qty",
+              "nativeQueryRef": "Receipt Qty",
+              "displayName": "Receipt Qty"
             },
             {
               "field": {
@@ -143,12 +158,42 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Weighted Purchase Unit Cost"
+                  "Property": "Selected Landed Supplier Base Amount"
                 }
               },
-              "queryRef": "_Measures.Weighted Purchase Unit Cost",
-              "nativeQueryRef": "Paid unit",
-              "displayName": "Paid unit"
+              "queryRef": "_Measures.Selected Landed Supplier Base Amount",
+              "nativeQueryRef": "Supplier Base Amount",
+              "displayName": "Supplier Base Amount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Landed Add-On Amount"
+                }
+              },
+              "queryRef": "_Measures.Selected Landed Add-On Amount",
+              "nativeQueryRef": "Add-On Amount",
+              "displayName": "Add-On Amount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Landed Cost Amount"
+                }
+              },
+              "queryRef": "_Measures.Selected Landed Cost Amount",
+              "nativeQueryRef": "Landed Amount",
+              "displayName": "Landed Amount"
             },
             {
               "field": {
@@ -162,128 +207,8 @@
                 }
               },
               "queryRef": "_Measures.Selected Landed Unit Cost",
-              "nativeQueryRef": "Landed unit",
-              "displayName": "Landed unit"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Selected Landed Unit Cost Delta"
-                }
-              },
-              "queryRef": "_Measures.Selected Landed Unit Cost Delta",
-              "nativeQueryRef": "MoM landed delta",
-              "displayName": "MoM landed delta"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Selected Largest Landed Cost Driver"
-                }
-              },
-              "queryRef": "_Measures.Selected Largest Landed Cost Driver",
-              "nativeQueryRef": "Top landed cost category",
-              "displayName": "Top landed cost category"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Purchase Unit Cost MoM %"
-                }
-              },
-              "queryRef": "_Measures.Purchase Unit Cost MoM %",
-              "nativeQueryRef": "Paid MoM %",
-              "displayName": "Paid MoM %"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Average Unit COGS"
-                }
-              },
-              "queryRef": "_Measures.Average Unit COGS",
-              "nativeQueryRef": "Avg Unit COGS",
-              "displayName": "Avg Unit COGS"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Average Unit COGS MoM %"
-                }
-              },
-              "queryRef": "_Measures.Average Unit COGS MoM %",
-              "nativeQueryRef": "COGS MoM %",
-              "displayName": "COGS MoM %"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "COGS Response Gap %"
-                }
-              },
-              "queryRef": "_Measures.COGS Response Gap %",
-              "nativeQueryRef": "Response gap",
-              "displayName": "Response gap"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Purchase Cost Impact"
-                }
-              },
-              "queryRef": "_Measures.Purchase Cost Impact",
-              "nativeQueryRef": "Receipt impact",
-              "displayName": "Receipt impact"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "COGS Cost Impact"
-                }
-              },
-              "queryRef": "_Measures.COGS Cost Impact",
-              "nativeQueryRef": "COGS impact",
-              "displayName": "COGS impact"
+              "nativeQueryRef": "Landed Unit",
+              "displayName": "Landed Unit"
             }
           ]
         }
@@ -298,7 +223,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Selected Landed Cost Materiality"
+                "Property": "Selected Landed Cost Amount"
               }
             },
             "direction": "Descending"
@@ -422,7 +347,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_LandedCostAllocation.ReceiptLineKey"
+            "metadata": "Fact_LandedCostAllocation.LcDocNum"
           }
         },
         {
@@ -450,7 +375,7 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.ItemName"
+            "metadata": "Fact_LandedCostAllocation.ItemDescription"
           }
         },
         {
@@ -478,7 +403,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.GR Receipt Qty Positive"
+            "metadata": "_Measures.Selected Landed Receipt Qty"
           }
         },
         {
@@ -492,7 +417,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.GR Receipt Value Positive"
+            "metadata": "_Measures.Selected Landed Supplier Base Amount"
           }
         },
         {
@@ -506,7 +431,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Weighted Purchase Unit Cost"
+            "metadata": "_Measures.Selected Landed Add-On Amount"
           }
         },
         {
@@ -520,7 +445,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Purchase Unit Cost MoM %"
+            "metadata": "_Measures.Selected Landed Cost Amount"
           }
         },
         {
@@ -534,7 +459,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Average Unit COGS"
+            "metadata": "_Measures.Selected Landed Unit Cost"
           }
         },
         {
@@ -548,7 +473,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Average Unit COGS MoM %"
+            "metadata": "Fact_LandedCostAllocation.LcDate"
           }
         },
         {
@@ -562,7 +487,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.COGS Response Gap %"
+            "metadata": "Fact_LandedCostAllocation.LcDocumentStatus"
           }
         },
         {
@@ -576,7 +501,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Purchase Cost Impact"
+            "metadata": "Fact_LandedCostAllocation.ReportingCategory"
           }
         },
         {
@@ -590,7 +515,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.COGS Cost Impact"
+            "metadata": "Dim_Item.U_BusinessType"
           }
         },
         {
@@ -692,7 +617,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'LC Document, Supplier, Broker and Item Cost Context'"
+                  "Value": "'LC Detail by Supplier, Broker, Item and Landed Category'"
                 }
               }
             },

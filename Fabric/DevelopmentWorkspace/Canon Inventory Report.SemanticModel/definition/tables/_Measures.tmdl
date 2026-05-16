@@ -860,32 +860,40 @@ table _Measures
 			VAR _drivers =
 			    FILTER (
 			        ADDCOLUMNS (
-			            VALUES ( Dim_LandedCostCategory[ReportingCategory] ),
-			            "_delta", [Landed Unit Cost Delta by Category],
-			            "_absDelta", ABS ( [Landed Unit Cost Delta by Category] )
+			            FILTER (
+			                VALUES ( Dim_LandedCostCategory[ReportingCategory] ),
+			                Dim_LandedCostCategory[ReportingCategory] <> "Supplier base"
+			            ),
+			            "_amount", [Landed Add-On Amount],
+			            "_absAmount", ABS ( [Landed Add-On Amount] )
 			        ),
-			        NOT ISBLANK ( [_delta] ) && ABS ( [_delta] ) > 0.01
+			        NOT ISBLANK ( [_amount] ) && ABS ( [_amount] ) > 0.01
 			    )
-			VAR _top = TOPN ( 1, _drivers, [_absDelta], DESC, Dim_LandedCostCategory[ReportingCategory], ASC )
+			VAR _top = TOPN ( 1, _drivers, [_absAmount], DESC, Dim_LandedCostCategory[ReportingCategory], ASC )
 			VAR _category = MAXX ( _top, Dim_LandedCostCategory[ReportingCategory] )
-			VAR _delta = MAXX ( _top, [_delta] )
-			VAR _amt = FORMAT ( ABS ( _delta ), "#,0.00" )
-			VAR _sign = IF ( _delta >= 0, "+", "-" )
+			VAR _amount = MAXX ( _top, [_amount] )
+			VAR _amt = FORMAT ( DIVIDE ( ABS ( _amount ), 1000000 ), "#,0.0" ) & "M"
 			RETURN
-			    IF ( ISBLANK ( _category ), BLANK (), _category & " " & _sign & _amt & " د.ع." )
+			    IF ( ISBLANK ( _category ), BLANK (), _category & " " & _amt & " د.ع." )
 		lineageTag: b0c0d0e0-f010-4001-8001-000000000013
 
 	measure 'Landed Cost Bridge Value' =
 			VAR _stepType = SELECTEDVALUE ( Dim_LandedCostBridge[StepType] )
 			VAR _category = SELECTEDVALUE ( Dim_LandedCostBridge[ReportingCategory] )
-			RETURN
+			VAR _receiptQty =
+			    CALCULATE ( [Landed Receipt Qty], REMOVEFILTERS ( Dim_LandedCostCategory ) )
+			VAR _value =
 			    SWITCH (
-			        _stepType,
-			        "Start", [Landed Unit Cost PM],
-			        "End", [Landed Unit Cost],
-			        "Driver", CALCULATE ( [Landed Unit Cost Delta by Category], TREATAS ( { _category }, Dim_LandedCostCategory[ReportingCategory] ) ),
-			        BLANK ()
+			        TRUE (),
+			        _stepType = "Total", [Landed Unit Cost],
+			        _category = "Supplier base", DIVIDE ( [Landed Supplier Base Amount], _receiptQty ),
+			        CALCULATE (
+			            DIVIDE ( [Landed Add-On Amount], _receiptQty ),
+			            TREATAS ( { _category }, Dim_LandedCostCategory[ReportingCategory] )
+			        )
 			    )
+			RETURN
+			    IF ( NOT ISBLANK ( _value ) && ABS ( _value ) > 0.0001, _value, BLANK () )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
 		lineageTag: b0c0d0e0-f010-4001-8001-000000000014
 
@@ -1023,6 +1031,21 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+	measure 'Selected Landed Supplier Base Amount' =
+			VAR _dates = VALUES ( Dim_Date[Date] )
+			VAR _choice = [Selected Date Spine Label]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        _choice = "Receipt date",
+			            CALCULATE ( [Landed Supplier Base Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
+			        CALCULATE ( [Landed Supplier Base Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000120
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 	measure 'Selected Landed Receipt Qty' =
 			VAR _dates = VALUES ( Dim_Date[Date] )
 			VAR _choice = [Selected Date Spine Label]
@@ -1111,32 +1134,40 @@ table _Measures
 			VAR _drivers =
 			    FILTER (
 			        ADDCOLUMNS (
-			            VALUES ( Dim_LandedCostCategory[ReportingCategory] ),
-			            "_delta", [Selected Landed Unit Cost Delta by Category],
-			            "_absDelta", ABS ( [Selected Landed Unit Cost Delta by Category] )
+			            FILTER (
+			                VALUES ( Dim_LandedCostCategory[ReportingCategory] ),
+			                Dim_LandedCostCategory[ReportingCategory] <> "Supplier base"
+			            ),
+			            "_amount", [Selected Landed Add-On Amount],
+			            "_absAmount", ABS ( [Selected Landed Add-On Amount] )
 			        ),
-			        NOT ISBLANK ( [_delta] ) && ABS ( [_delta] ) > 0.01
+			        NOT ISBLANK ( [_amount] ) && ABS ( [_amount] ) > 0.01
 			    )
-			VAR _top = TOPN ( 1, _drivers, [_absDelta], DESC, Dim_LandedCostCategory[ReportingCategory], ASC )
+			VAR _top = TOPN ( 1, _drivers, [_absAmount], DESC, Dim_LandedCostCategory[ReportingCategory], ASC )
 			VAR _category = MAXX ( _top, Dim_LandedCostCategory[ReportingCategory] )
-			VAR _delta = MAXX ( _top, [_delta] )
-			VAR _amt = FORMAT ( ABS ( _delta ), "#,0.00" )
-			VAR _sign = IF ( _delta >= 0, "+", "-" )
+			VAR _amount = MAXX ( _top, [_amount] )
+			VAR _amt = FORMAT ( DIVIDE ( ABS ( _amount ), 1000000 ), "#,0.0" ) & "M"
 			RETURN
-			    IF ( ISBLANK ( _category ), BLANK (), _category & " " & _sign & _amt & " د.ع." )
+			    IF ( ISBLANK ( _category ), BLANK (), _category & " " & _amt & " د.ع." )
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000113
 
 	measure 'Selected Landed Cost Bridge Value' =
 			VAR _stepType = SELECTEDVALUE ( Dim_LandedCostBridge[StepType] )
 			VAR _category = SELECTEDVALUE ( Dim_LandedCostBridge[ReportingCategory] )
-			RETURN
+			VAR _receiptQty =
+			    CALCULATE ( [Selected Landed Receipt Qty], REMOVEFILTERS ( Dim_LandedCostCategory ) )
+			VAR _value =
 			    SWITCH (
-			        _stepType,
-			        "Start", [Selected Landed Unit Cost PM],
-			        "End", [Selected Landed Unit Cost],
-			        "Driver", CALCULATE ( [Selected Landed Unit Cost Delta by Category], TREATAS ( { _category }, Dim_LandedCostCategory[ReportingCategory] ) ),
-			        BLANK ()
+			        TRUE (),
+			        _stepType = "Total", [Selected Landed Unit Cost],
+			        _category = "Supplier base", DIVIDE ( [Selected Landed Supplier Base Amount], _receiptQty ),
+			        CALCULATE (
+			            DIVIDE ( [Selected Landed Add-On Amount], _receiptQty ),
+			            TREATAS ( { _category }, Dim_LandedCostCategory[ReportingCategory] )
+			        )
 			    )
+			RETURN
+			    IF ( NOT ISBLANK ( _value ) && ABS ( _value ) > 0.0001, _value, BLANK () )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000114
 

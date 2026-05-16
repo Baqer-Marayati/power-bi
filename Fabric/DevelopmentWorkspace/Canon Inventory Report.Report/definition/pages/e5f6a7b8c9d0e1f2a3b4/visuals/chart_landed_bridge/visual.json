@@ -3,14 +3,14 @@
   "name": "chart_landed_bridge",
   "position": {
     "x": 188,
-    "y": 260,
+    "y": 222,
     "z": 29400,
-    "height": 240,
+    "height": 250,
     "width": 502,
     "tabOrder": 28400
   },
   "visual": {
-    "visualType": "waterfallChart",
+    "visualType": "columnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -46,7 +46,7 @@
                 }
               },
               "queryRef": "_Measures.Selected Landed Cost Bridge Value",
-              "nativeQueryRef": "Landed unit bridge"
+              "nativeQueryRef": "IQD per unit"
             }
           ]
         }
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Landed Unit Cost Change by Selected Driver'"
+                  "Value": "'Landed Unit Cost Build-Up'"
                 }
               }
             },

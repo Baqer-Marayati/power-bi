@@ -22,6 +22,7 @@ table Dim_LandedCostCategory
 		lineageTag: b0c0d0e0-f001-4001-8001-000000000004
 		summarizeBy: none
 		sourceColumn: ReportingCategory
+		sortByColumn: CategorySort
 
 		annotation SummarizationSetBy = Automatic
 

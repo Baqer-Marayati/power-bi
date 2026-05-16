@@ -44,14 +44,13 @@ table Dim_LandedCostBridge
 				    "StepType", STRING,
 				    "StepSort", INTEGER,
 				    {
-				        { "Prior month landed unit", BLANK (), "Start", 1 },
-				        { "Supplier base", "Supplier base", "Driver", 2 },
-				        { "Transport", "Transport", "Driver", 3 },
-				        { "Unloading", "Unloading", "Driver", 4 },
-				        { "Tax / duty", "Tax / duty", "Driver", 5 },
-				        { "Insurance", "Insurance", "Driver", 6 },
-				        { "Other", "Other", "Driver", 7 },
-				        { "Current month landed unit", BLANK (), "End", 8 }
+				        { "Supplier base", "Supplier base", "Component", 1 },
+				        { "Tax / duty", "Tax / duty", "Component", 2 },
+				        { "Insurance", "Insurance", "Component", 3 },
+				        { "Transport / Shipping", "Transport", "Component", 4 },
+				        { "Unloading", "Unloading", "Component", 5 },
+				        { "Other", "Other", "Component", 6 },
+				        { "Total landed unit cost", BLANK (), "Total", 7 }
 				    }
 				)
 
