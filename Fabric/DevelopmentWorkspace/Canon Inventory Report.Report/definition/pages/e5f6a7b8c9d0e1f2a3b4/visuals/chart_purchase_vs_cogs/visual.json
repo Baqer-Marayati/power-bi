@@ -32,22 +32,26 @@
             }
           ]
         },
-        "Y": {
+        "Series": {
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "_Measures"
+                      "Entity": "Dim_LandedCostCategory"
                     }
                   },
-                  "Property": "Selected Landed Uplift % vs Supplier Base"
+                  "Property": "ReportingCategory"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Uplift % vs Supplier Base",
-              "nativeQueryRef": "Add-on % (vs. supplier)"
-            },
+              "queryRef": "Dim_LandedCostCategory.ReportingCategory",
+              "nativeQueryRef": "Add-on category"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
             {
               "field": {
                 "Measure": {
@@ -60,21 +64,7 @@
                 }
               },
               "queryRef": "_Measures.Selected Add-On Share of Landed %",
-              "nativeQueryRef": "Add-on % (of landed)"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Selected Top Driver Share %"
-                }
-              },
-              "queryRef": "_Measures.Selected Top Driver Share %",
-              "nativeQueryRef": "Top driver share"
+              "nativeQueryRef": "Category % of landed"
             }
           ]
         },
@@ -102,6 +92,20 @@
                       "Entity": "_Measures"
                     }
                   },
+                  "Property": "Selected Add-On IQD Per Unit"
+                }
+              },
+              "queryRef": "_Measures.Selected Add-On IQD Per Unit",
+              "nativeQueryRef": "Add-on IQD / unit"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
                   "Property": "Selected Landed Cost Amount"
                 }
               },
@@ -116,11 +120,67 @@
                       "Entity": "_Measures"
                     }
                   },
+                  "Property": "Selected Add-On Share of Landed PM"
+                }
+              },
+              "queryRef": "_Measures.Selected Add-On Share of Landed PM",
+              "nativeQueryRef": "Prior month % of landed"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Add-On Share of Landed MoM pp"
+                }
+              },
+              "queryRef": "_Measures.Selected Add-On Share of Landed MoM pp",
+              "nativeQueryRef": "MoM change (pp)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
                   "Property": "Selected Landed Receipt Qty"
                 }
               },
               "queryRef": "_Measures.Selected Landed Receipt Qty",
               "nativeQueryRef": "Receipt quantity"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Add-On Category Share %"
+                }
+              },
+              "queryRef": "_Measures.Selected Add-On Category Share %",
+              "nativeQueryRef": "Share of add-ons"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Add-On Category Rank"
+                }
+              },
+              "queryRef": "_Measures.Selected Add-On Category Rank",
+              "nativeQueryRef": "Category rank"
             }
           ]
         }
@@ -323,7 +383,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Landed-cost % trend (by month)'"
+                  "Value": "'Add-on category % of landed (by month)'"
                 }
               }
             },
@@ -397,5 +457,63 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "exclude_supplier_base_add_on_trend",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_LandedCostCategory"
+              }
+            },
+            "Property": "ReportingCategory"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Dim_LandedCostCategory",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "d"
+                            }
+                          },
+                          "Property": "ReportingCategory"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "'Supplier base'"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
   }
 }

@@ -1255,6 +1255,42 @@ table _Measures
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000124
 
+	measure 'Selected Add-On Share of Landed PM' =
+			CALCULATE (
+			    [Selected Add-On Share of Landed %],
+			    DATEADD ( Dim_Date[Date], -1, MONTH )
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000133
+
+	measure 'Selected Add-On Share of Landed MoM pp' =
+			VAR _current = [Selected Add-On Share of Landed %]
+			VAR _prior = [Selected Add-On Share of Landed PM]
+			RETURN
+			    IF ( NOT ISBLANK ( _current ) && NOT ISBLANK ( _prior ), _current - _prior, BLANK () )
+		formatString: +0.0\ "pp";-0.0\ "pp";0.0\ "pp"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000134
+
+	measure 'Selected Add-On Category Rank' =
+			VAR _category = SELECTEDVALUE ( Dim_LandedCostCategory[ReportingCategory] )
+			RETURN
+			    IF (
+			        ISBLANK ( _category ) || _category = "Supplier base",
+			        BLANK (),
+			        RANKX (
+			            FILTER (
+			                ALLSELECTED ( Dim_LandedCostCategory[ReportingCategory] ),
+			                Dim_LandedCostCategory[ReportingCategory] <> "Supplier base"
+			            ),
+			            CALCULATE ( ABS ( [Selected Landed Add-On Amount] ) ),
+			            ,
+			            DESC,
+			            DENSE
+			        )
+			    )
+		formatString: #,0
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000135
+
 	measure 'Selected Add-On Category Share %' =
 			DIVIDE (
 			    [Selected Landed Add-On Amount],
