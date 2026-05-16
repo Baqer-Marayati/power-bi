@@ -67,38 +67,6 @@
               "nativeQueryRef": "Category % of landed"
             }
           ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Add-on IQD (M)"
-                }
-              },
-              "queryRef": "_Measures.Add-on IQD (M)",
-              "nativeQueryRef": "Add-on IQD"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "MoM change pp"
-                }
-              },
-              "queryRef": "_Measures.MoM change pp",
-              "nativeQueryRef": "MoM change"
-            }
-          ]
         }
       },
       "sortDefinition": {
@@ -572,6 +540,33 @@
               "expr": {
                 "Literal": {
                   "Value": "70L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'ReportPage'"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'tt_landed_addon_m01'"
                 }
               }
             }
