@@ -3,10 +3,15 @@
   "name": "tt_landed_addon_m01",
   "displayName": "TT Landed add-on by month",
   "displayOption": "ActualSize",
-  "height": 240,
-  "width": 320,
+  "height": 210,
+  "width": 380,
   "type": "Tooltip",
   "visibility": "HiddenInViewMode",
+  "pageBinding": {
+    "name": "tt_landed_addon_binding_m01",
+    "type": "Tooltip",
+    "parameters": []
+  },
   "objects": {
     "background": [
       {
