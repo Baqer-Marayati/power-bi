@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "kpi_largest_driver",
   "position": {
-    "x": 704,
-    "y": 226,
+    "x": 821,
+    "y": 120,
     "z": 29200,
-    "height": 76,
-    "width": 244,
-    "tabOrder": 28200
+    "height": 92,
+    "width": 184,
+    "tabOrder": 24000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -56,7 +56,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             },

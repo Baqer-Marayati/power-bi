@@ -62,6 +62,12 @@ Use this file for approved directions and durable constraints in the Inventory R
 - Landed-cost categories are reported through `Dim_LandedCostCategory`: `Supplier base`, `Transport`, `Unloading`, `Tax / duty`, and `Other`. Actual SAP landed-cost codes remain visible through the dimension and are bucketed by code/name/category keywords.
 - Because live CANON HANA metadata was not reachable from this Mac, the LC query must be validated in Power BI Desktop/Fabric refresh against the actual CANON schema before treating the landed values as signed off.
 
+## 2026-05-16 — Procurement landed-cost source correction and layout rule
+
+- Do **not** assume CANON landed-cost rows are `IPF1.BaseType = 20`. The May 16 pull showed the populated IPF1 rows under base types `18` and `69`; the Fabric query should use `OIPF` + `IPF1` as the landed-cost document truth and use `IPF1` original-base fields/fallbacks rather than filtering to GRPO-only joins.
+- `Insurance` is a landed-cost reporting category for CANON because `OALC/IPF2` contains a material Insurance landed-cost code; keep it separate from generic `Other`.
+- Procurement & Suppliers should keep one top KPI row like sibling Inventory pages. If landed-cost analytics need more context, add it in the bridge, trend, and detail table rather than adding a second KPI-card row.
+
 ## 2026-05-12 — Executive Summary sold-mix cost trend
 
 - The **Qty and Cost by Business Type** table compares realized **Average Unit COGS** with **Sold Weighted Avg Current Unit Cost**. Group rows use sold-quantity weighting across SKUs, not stock-value/on-hand weighting, so the displayed **Current Item Cost** and **Cost Trend** describe the same sold mix at every drill grain.

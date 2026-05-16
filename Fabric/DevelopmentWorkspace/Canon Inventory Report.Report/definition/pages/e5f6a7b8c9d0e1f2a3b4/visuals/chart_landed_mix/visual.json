@@ -3,14 +3,14 @@
   "name": "chart_landed_mix",
   "position": {
     "x": 714,
-    "y": 324,
+    "y": 236,
     "z": 29500,
     "height": 280,
     "width": 502,
     "tabOrder": 28500
   },
   "visual": {
-    "visualType": "stackedColumnChart",
+    "visualType": "columnChart",
     "query": {
       "queryState": {
         "Category": {

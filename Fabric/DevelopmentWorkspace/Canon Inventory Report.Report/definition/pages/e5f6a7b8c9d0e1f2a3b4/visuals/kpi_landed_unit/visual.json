@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "kpi_landed_unit",
   "position": {
-    "x": 188,
-    "y": 226,
+    "x": 399,
+    "y": 120,
     "z": 29000,
-    "height": 76,
-    "width": 244,
-    "tabOrder": 28000
+    "height": 92,
+    "width": 184,
+    "tabOrder": 22000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -157,7 +157,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Landed Unit'"
+                  "Value": "'Landed Unit Cost'"
                 }
               }
             },

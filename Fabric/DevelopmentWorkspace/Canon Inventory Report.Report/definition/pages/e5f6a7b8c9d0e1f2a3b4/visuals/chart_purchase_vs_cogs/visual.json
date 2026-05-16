@@ -3,9 +3,9 @@
   "name": "chart_purchase_vs_cogs",
   "position": {
     "x": 188,
-    "y": 628,
+    "y": 536,
     "z": 27000,
-    "height": 144,
+    "height": 160,
     "width": 1028,
     "tabOrder": 26000
   },
@@ -47,6 +47,20 @@
               },
               "queryRef": "_Measures.Weighted Purchase Unit Cost",
               "nativeQueryRef": "Paid / received unit"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Landed Unit Cost"
+                }
+              },
+              "queryRef": "_Measures.Landed Unit Cost",
+              "nativeQueryRef": "Landed unit cost"
             },
             {
               "field": {
@@ -263,7 +277,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Paid Unit Cost vs Average Unit COGS'"
+                  "Value": "'Paid Unit, Landed Unit and Average Unit COGS'"
                 }
               }
             },

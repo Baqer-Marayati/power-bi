@@ -49,8 +49,9 @@ table Dim_LandedCostBridge
 				        { "Transport", "Transport", "Driver", 3 },
 				        { "Unloading", "Unloading", "Driver", 4 },
 				        { "Tax / duty", "Tax / duty", "Driver", 5 },
-				        { "Other", "Other", "Driver", 6 },
-				        { "Current month landed unit", BLANK (), "End", 7 }
+				        { "Insurance", "Insurance", "Driver", 6 },
+				        { "Other", "Other", "Driver", 7 },
+				        { "Current month landed unit", BLANK (), "End", 8 }
 				    }
 				)
 

@@ -2,11 +2,12 @@
 
 ## Immediate Priority
 
-1. Open the Fabric-bound `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip` in Power BI Desktop and refresh the new landed-cost tables.
-2. Validate the standard SAP B1 landed-cost query fields against CANON HANA (`OIPF/IPF1/IPF2/OALC`), especially `IPF1.OrigLine`, `TtlExpndSC/TtlExpndLC`, `IPF2.CostSumSC/CostSum`, and `OALC.CostCateg`.
-3. Sample a landed-cost document and confirm `Landed unit = supplier base + SAP landed add-ons` within rounding; inspect `_Measures[Landed Bridge Residual]`.
-4. Test Year × Quarter × Month plus item/category slicers on the new landed cards, bridge, mix chart, paid-unit-vs-COGS line chart, and detail table.
-5. Validate `Fact_StockCoverPolicy` against the SAP Query Manager export (`Stock Report.xlsx`) for sample SKUs.
+1. Open the Fabric-bound `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip` in Power BI Desktop/Fabric and refresh the landed-cost tables after the May 16 source correction.
+2. Validate the corrected SAP B1 landed-cost query against CANON HANA using the populated `IPF1.BaseType` values from the data pull (`18` and `69`), plus `IPF1.OriBAbsEnt`, `IPF1.OriBLinNum`, `TtlExpndSC/TtlExpndLC`, `IPF2.CostSumSC/CostSum`, and `OALC.CostCateg`.
+3. Sample a landed-cost document and confirm `Landed unit = supplier base + SAP landed add-ons` within rounding; inspect `_Measures[Landed Bridge Residual]`, especially Customs Fees, Shipping Cost, Unloade Fees, and Insurance.
+4. In the app, confirm **Procurement & Suppliers** has no missing-custom-visual error, one top KPI row, the tightened slicer rail, the landed-cost mix column chart, and the paid/landed/COGS trend.
+5. Test Year × Quarter × Month plus item/category slicers on the new landed cards, bridge, mix chart, paid-unit/landed-unit/COGS line chart, and detail table.
+6. Validate `Fact_StockCoverPolicy` against the SAP Query Manager export (`Stock Report.xlsx`) for sample SKUs.
 
 ## Near-Term Improvements
 
