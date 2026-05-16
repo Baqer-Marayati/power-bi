@@ -1026,7 +1026,7 @@ table _Measures
 			            CALCULATE ( [Landed Add-On Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
 			        CALCULATE ( [Landed Add-On Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) )
 			    )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000103
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
@@ -1041,7 +1041,7 @@ table _Measures
 			            CALCULATE ( [Landed Supplier Base Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
 			        CALCULATE ( [Landed Supplier Base Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) )
 			    )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000120
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
@@ -1127,7 +1127,7 @@ table _Measures
 			VAR _landed = [Selected Landed Cost Amount]
 			RETURN
 			    IF ( NOT ISBLANK ( _landed ) && _landed <> 0, DIVIDE ( [Selected Landed Add-On Amount], _landed ), BLANK () )
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000112
 
 	measure 'Selected Largest Landed Cost Driver' =
@@ -1146,9 +1146,9 @@ table _Measures
 			VAR _top = TOPN ( 1, _drivers, [_absAmount], DESC, Dim_LandedCostCategory[ReportingCategory], ASC )
 			VAR _category = MAXX ( _top, Dim_LandedCostCategory[ReportingCategory] )
 			VAR _amount = MAXX ( _top, [_amount] )
-			VAR _amt = FORMAT ( DIVIDE ( ABS ( _amount ), 1000000 ), "#,0.0" ) & "M"
+			VAR _amt = FORMAT ( DIVIDE ( ABS ( _amount ), 1000000 ), "#,0.00" ) & "M"
 			RETURN
-			    IF ( ISBLANK ( _category ), BLANK (), _category & " · " & _amt & "M" )
+			    IF ( ISBLANK ( _category ), BLANK (), _category & " · " & _amt )
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000113
 
 	measure 'Selected Landed Cost Bridge Value' =

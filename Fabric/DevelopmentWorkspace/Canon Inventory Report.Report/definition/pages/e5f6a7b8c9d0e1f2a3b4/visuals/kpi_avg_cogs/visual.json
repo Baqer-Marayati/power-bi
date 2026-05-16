@@ -84,17 +84,6 @@
                   }
                 }
               }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#2E3A42'"
-                    }
-                  }
-                }
-              }
             }
           },
           "selector": {
