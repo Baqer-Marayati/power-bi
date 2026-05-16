@@ -983,6 +983,227 @@ table _Measures
 			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa076
 
+	/// Date-selector label used by Procurement visuals. Default is LC posting date so existing landed-cost behavior is preserved when no slicer value is selected.
+	measure 'Selected Date Spine Label' = SELECTEDVALUE ( DateSpineChoice[AnalyzeBy], "LC posting date" )
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000101
+
+	measure 'Selected Landed Cost Amount' =
+			VAR _dates = VALUES ( Dim_Date[Date] )
+			VAR _choice = [Selected Date Spine Label]
+			RETURN
+			    SWITCH (
+			        _choice,
+			        "Receipt date",
+			            CALCULATE ( [Landed Cost Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
+			        CALCULATE ( [Landed Cost Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000102
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Selected Landed Add-On Amount' =
+			VAR _dates = VALUES ( Dim_Date[Date] )
+			VAR _choice = [Selected Date Spine Label]
+			RETURN
+			    SWITCH (
+			        _choice,
+			        "Receipt date",
+			            CALCULATE ( [Landed Add-On Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
+			        CALCULATE ( [Landed Add-On Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000103
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Selected Landed Receipt Qty' =
+			VAR _dates = VALUES ( Dim_Date[Date] )
+			VAR _choice = [Selected Date Spine Label]
+			RETURN
+			    SWITCH (
+			        _choice,
+			        "Receipt date",
+			            CALCULATE ( [Landed Receipt Qty], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
+			        CALCULATE ( [Landed Receipt Qty], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) )
+			    )
+		formatString: #,0
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000104
+
+	measure 'Selected Landed Unit Cost' = DIVIDE ( [Selected Landed Cost Amount], [Selected Landed Receipt Qty] )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000105
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Selected Landed Unit Cost PM' =
+			CALCULATE (
+			    [Selected Landed Unit Cost],
+			    DATEADD ( Dim_Date[Date], -1, MONTH )
+			)
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000106
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Selected Landed Unit Cost Delta' =
+			VAR _current = [Selected Landed Unit Cost]
+			VAR _pm = [Selected Landed Unit Cost PM]
+			RETURN
+			    IF ( NOT ISBLANK ( _current ) && NOT ISBLANK ( _pm ), _current - _pm, BLANK () )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000107
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Selected Landed Unit Cost MoM %' =
+			VAR _current = [Selected Landed Unit Cost]
+			VAR _pm = [Selected Landed Unit Cost PM]
+			RETURN
+			    IF ( NOT ISBLANK ( _pm ) && _pm <> 0, DIVIDE ( _current - _pm, _pm ), BLANK () )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000108
+
+	measure 'Selected Landed Category Cost Per Unit' =
+			DIVIDE (
+			    [Selected Landed Cost Amount],
+			    CALCULATE ( [Selected Landed Receipt Qty], REMOVEFILTERS ( Dim_LandedCostCategory ) )
+			)
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000109
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Selected Landed Category Cost Per Unit PM' =
+			CALCULATE (
+			    [Selected Landed Category Cost Per Unit],
+			    DATEADD ( Dim_Date[Date], -1, MONTH )
+			)
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000110
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Selected Landed Unit Cost Delta by Category' =
+			VAR _current = [Selected Landed Category Cost Per Unit]
+			VAR _pm = [Selected Landed Category Cost Per Unit PM]
+			RETURN
+			    IF ( NOT ISBLANK ( _current ) && NOT ISBLANK ( _pm ), _current - _pm, BLANK () )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000111
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Selected Landed Add-On % of Landed' =
+			VAR _landed = [Selected Landed Cost Amount]
+			RETURN
+			    IF ( NOT ISBLANK ( _landed ) && _landed <> 0, DIVIDE ( [Selected Landed Add-On Amount], _landed ), BLANK () )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000112
+
+	measure 'Selected Largest Landed Cost Driver' =
+			VAR _drivers =
+			    FILTER (
+			        ADDCOLUMNS (
+			            VALUES ( Dim_LandedCostCategory[ReportingCategory] ),
+			            "_delta", [Selected Landed Unit Cost Delta by Category],
+			            "_absDelta", ABS ( [Selected Landed Unit Cost Delta by Category] )
+			        ),
+			        NOT ISBLANK ( [_delta] )
+			    )
+			VAR _top = TOPN ( 1, _drivers, [_absDelta], DESC, Dim_LandedCostCategory[ReportingCategory], ASC )
+			VAR _category = MAXX ( _top, Dim_LandedCostCategory[ReportingCategory] )
+			VAR _delta = MAXX ( _top, [_delta] )
+			RETURN
+			    IF ( ISBLANK ( _category ), BLANK (), _category & " " & FORMAT ( _delta, "+#,0.00;-#,0.00;0.00" ) & " د.ع." )
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000113
+
+	measure 'Selected Landed Cost Bridge Value' =
+			VAR _stepType = SELECTEDVALUE ( Dim_LandedCostBridge[StepType] )
+			VAR _category = SELECTEDVALUE ( Dim_LandedCostBridge[ReportingCategory] )
+			RETURN
+			    SWITCH (
+			        _stepType,
+			        "Start", [Selected Landed Unit Cost PM],
+			        "End", [Selected Landed Unit Cost],
+			        "Driver", CALCULATE ( [Selected Landed Unit Cost Delta by Category], TREATAS ( { _category }, Dim_LandedCostCategory[ReportingCategory] ) ),
+			        BLANK ()
+			    )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000114
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Selected Landed Cost Materiality' =
+			VAR _delta = [Selected Landed Unit Cost Delta]
+			RETURN
+			    IF ( NOT ISBLANK ( _delta ), ABS ( _delta * [Selected Landed Receipt Qty] ), BLANK () )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000115
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'LC Customs Projected' =
+			VAR _dates = VALUES ( Dim_Date[Date] )
+			VAR _choice = [Selected Date Spine Label]
+			RETURN
+			    SWITCH (
+			        _choice,
+			        "Receipt date",
+			            CALCULATE (
+			                SUMX ( SUMMARIZE ( Fact_LandedCostAllocation, Fact_LandedCostAllocation[LcDocEntry], "_projected", MAX ( Fact_LandedCostAllocation[LcCustomsProjected] ) ), [_projected] ),
+			                REMOVEFILTERS ( Dim_Date ),
+			                REMOVEFILTERS ( Dim_LandedCostCategory ),
+			                TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] )
+			            ),
+			        CALCULATE (
+			            SUMX ( SUMMARIZE ( Fact_LandedCostAllocation, Fact_LandedCostAllocation[LcDocEntry], "_projected", MAX ( Fact_LandedCostAllocation[LcCustomsProjected] ) ), [_projected] ),
+			            REMOVEFILTERS ( Dim_Date ),
+			            REMOVEFILTERS ( Dim_LandedCostCategory ),
+			            TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] )
+			        )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000116
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'LC Customs Actual' =
+			VAR _dates = VALUES ( Dim_Date[Date] )
+			VAR _choice = [Selected Date Spine Label]
+			RETURN
+			    SWITCH (
+			        _choice,
+			        "Receipt date",
+			            CALCULATE (
+			                SUMX ( SUMMARIZE ( Fact_LandedCostAllocation, Fact_LandedCostAllocation[LcDocEntry], "_actual", MAX ( Fact_LandedCostAllocation[LcCustomsActual] ) ), [_actual] ),
+			                REMOVEFILTERS ( Dim_Date ),
+			                REMOVEFILTERS ( Dim_LandedCostCategory ),
+			                TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] )
+			            ),
+			        CALCULATE (
+			            SUMX ( SUMMARIZE ( Fact_LandedCostAllocation, Fact_LandedCostAllocation[LcDocEntry], "_actual", MAX ( Fact_LandedCostAllocation[LcCustomsActual] ) ), [_actual] ),
+			            REMOVEFILTERS ( Dim_Date ),
+			            REMOVEFILTERS ( Dim_LandedCostCategory ),
+			            TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] )
+			        )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000117
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'LC Customs Variance' = [LC Customs Actual] - [LC Customs Projected]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000118
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'LC Customs Variance %' = DIVIDE ( [LC Customs Variance], [LC Customs Projected] )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000119
+
+
 	partition _Measures = m
 		mode: import
 		source =

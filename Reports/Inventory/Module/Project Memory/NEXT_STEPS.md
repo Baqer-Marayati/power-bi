@@ -2,12 +2,14 @@
 
 ## Immediate Priority
 
-1. Open the Fabric-bound `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip` in Power BI Desktop/Fabric and refresh the landed-cost tables after the May 16 source correction.
-2. Validate the corrected SAP B1 landed-cost query against CANON HANA using the populated `IPF1.BaseType` values from the data pull (`18` and `69`), plus `IPF1.OriBAbsEnt`, `IPF1.OriBLinNum`, `TtlExpndSC/TtlExpndLC`, `IPF2.CostSumSC/CostSum`, and `OALC.CostCateg`.
-3. Sample a landed-cost document and confirm `Landed unit = supplier base + SAP landed add-ons` within rounding; inspect `_Measures[Landed Bridge Residual]`, especially Customs Fees, Shipping Cost, Unloade Fees, and Insurance.
-4. In the app, confirm **Procurement & Suppliers** has no missing-custom-visual error, one top KPI row, the tightened slicer rail, the landed-cost mix column chart, and the paid/landed/COGS trend.
-5. Test Year × Quarter × Month plus item/category slicers on the new landed cards, bridge, mix chart, paid-unit/landed-unit/COGS line chart, and detail table.
-6. Validate `Fact_StockCoverPolicy` against the SAP Query Manager export (`Stock Report.xlsx`) for sample SKUs.
+1. Open the Fabric-bound `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip` in Power BI Desktop/Fabric and refresh the landed-cost tables after the enhanced OIPF header additions.
+2. Validate the corrected SAP B1 landed-cost query against CANON HANA using populated `IPF1.BaseType` values (`18` and `69`), `IPF1.OriBAbsEnt`, `IPF1.OriBLinNum`, `TtlExpndSC/TtlExpndLC`, `IPF2.CostSumSC/CostSum`, `OALC.CostCateg`, and the new `OIPF.AgentCode/AgentName`, `OpenForLaC`, `DocStatus`, `ExCustomSC`, `ActCustSC`, `ExpCustom`, `ActCustom`, `CustDate`, and `incCustom` fields.
+3. Spot-check LC 100008: confirm broker `VE-00052`, vendor `VE-00080`, open/closed status, customs values, and landed-unit total reconcile within rounding.
+4. Test the **Analyze by** slicer on **Receipt date** vs **LC posting date**. Confirm landed cards, bridge, mix, customs strip, and detail table shift as expected; document any flat results caused by receipt-date fallback for non-GRPO landed-cost rows.
+5. Create and test the Desktop/Fabric bookmark buttons for **View all LC** and **Finance / Closed LC** if the source-generated LC Status slicer behaves correctly after refresh. The source file currently exposes the status slicer and finance note; bookmark state still needs Desktop authoring/validation.
+6. In the app, confirm **Procurement & Suppliers** has no missing-custom-visual error, one top KPI row, the metric glossary, Analyze by / Broker / LC Status slicers, customs mini-cards, the landed-cost mix column chart, and the paid/landed/COGS trend.
+7. Test Year × Quarter × Month plus item/category/broker/status slicers on the new landed cards, bridge, mix chart, paid-unit/landed-unit/COGS line chart, customs strip, and detail table.
+8. Validate `Fact_StockCoverPolicy` against the SAP Query Manager export (`Stock Report.xlsx`) for sample SKUs.
 
 ## Near-Term Improvements
 

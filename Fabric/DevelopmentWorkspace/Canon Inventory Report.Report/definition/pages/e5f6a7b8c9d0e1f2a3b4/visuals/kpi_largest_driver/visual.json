@@ -23,10 +23,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Largest Landed Cost Driver"
+                  "Property": "Selected Largest Landed Cost Driver"
                 }
               },
-              "queryRef": "_Measures.Largest Landed Cost Driver",
+              "queryRef": "_Measures.Selected Largest Landed Cost Driver",
               "nativeQueryRef": "Largest driver"
             }
           ]

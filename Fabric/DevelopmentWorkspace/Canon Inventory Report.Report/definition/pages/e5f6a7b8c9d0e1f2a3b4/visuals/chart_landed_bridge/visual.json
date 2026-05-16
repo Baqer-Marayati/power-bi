@@ -3,9 +3,9 @@
   "name": "chart_landed_bridge",
   "position": {
     "x": 188,
-    "y": 236,
+    "y": 296,
     "z": 29400,
-    "height": 280,
+    "height": 220,
     "width": 502,
     "tabOrder": 28400
   },
@@ -42,10 +42,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Landed Cost Bridge Value"
+                  "Property": "Selected Landed Cost Bridge Value"
                 }
               },
-              "queryRef": "_Measures.Landed Cost Bridge Value",
+              "queryRef": "_Measures.Selected Landed Cost Bridge Value",
               "nativeQueryRef": "Landed unit bridge"
             }
           ]
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Why Did Landed Unit Cost Change?'"
+                  "Value": "'Why Did Landed Unit Cost Change? (Analyze by selector)'"
                 }
               }
             },

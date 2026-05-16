@@ -3,9 +3,9 @@
   "name": "chart_landed_mix",
   "position": {
     "x": 714,
-    "y": 236,
+    "y": 296,
     "z": 29500,
-    "height": 280,
+    "height": 220,
     "width": 502,
     "tabOrder": 28500
   },
@@ -60,10 +60,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Landed Category Cost Per Unit"
+                  "Property": "Selected Landed Category Cost Per Unit"
                 }
               },
-              "queryRef": "_Measures.Landed Category Cost Per Unit",
+              "queryRef": "_Measures.Selected Landed Category Cost Per Unit",
               "nativeQueryRef": "IQD per unit"
             }
           ]
@@ -229,7 +229,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Landed Cost Mix by Month (IQD per Unit)'"
+                  "Value": "'Landed Cost Mix by Month (Analyze by selector)'"
                 }
               }
             },

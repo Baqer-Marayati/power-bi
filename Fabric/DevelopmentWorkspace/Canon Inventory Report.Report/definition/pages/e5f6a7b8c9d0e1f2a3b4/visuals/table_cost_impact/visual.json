@@ -20,15 +20,45 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_GoodsReceipt"
+                      "Entity": "Fact_LandedCostAllocation"
                     }
                   },
-                  "Property": "CardName"
+                  "Property": "SupplierName"
                 }
               },
-              "queryRef": "Fact_GoodsReceipt.CardName",
+              "queryRef": "Fact_LandedCostAllocation.SupplierName",
               "nativeQueryRef": "Supplier",
               "displayName": "Supplier"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_LandedCostAllocation"
+                    }
+                  },
+                  "Property": "BrokerName"
+                }
+              },
+              "queryRef": "Fact_LandedCostAllocation.BrokerName",
+              "nativeQueryRef": "Broker",
+              "displayName": "Broker"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_LandedCostAllocation"
+                    }
+                  },
+                  "Property": "LcDocNum"
+                }
+              },
+              "queryRef": "Fact_LandedCostAllocation.LcDocNum",
+              "nativeQueryRef": "LC Doc",
+              "displayName": "LC Doc"
             },
             {
               "field": {
@@ -113,10 +143,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Landed Unit Cost"
+                  "Property": "Selected Landed Unit Cost"
                 }
               },
-              "queryRef": "_Measures.Landed Unit Cost",
+              "queryRef": "_Measures.Selected Landed Unit Cost",
               "nativeQueryRef": "Landed unit",
               "displayName": "Landed unit"
             },
@@ -128,10 +158,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Landed Unit Cost Delta"
+                  "Property": "Selected Landed Unit Cost Delta"
                 }
               },
-              "queryRef": "_Measures.Landed Unit Cost Delta",
+              "queryRef": "_Measures.Selected Landed Unit Cost Delta",
               "nativeQueryRef": "MoM landed delta",
               "displayName": "MoM landed delta"
             },
@@ -143,10 +173,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Largest Landed Cost Driver"
+                  "Property": "Selected Largest Landed Cost Driver"
                 }
               },
-              "queryRef": "_Measures.Largest Landed Cost Driver",
+              "queryRef": "_Measures.Selected Largest Landed Cost Driver",
               "nativeQueryRef": "Top landed cost category",
               "displayName": "Top landed cost category"
             },
@@ -253,7 +283,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Landed Cost Materiality"
+                "Property": "Selected Landed Cost Materiality"
               }
             },
             "direction": "Descending"
@@ -371,13 +401,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "220D"
+                  "Value": "190D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Fact_GoodsReceipt.CardName"
+            "metadata": "Fact_LandedCostAllocation.SupplierName"
           }
         },
         {
@@ -533,6 +563,34 @@
           "selector": {
             "metadata": "_Measures.COGS Cost Impact"
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "160D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_LandedCostAllocation.BrokerName"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_LandedCostAllocation.LcDocNum"
+          }
         }
       ]
     },
@@ -605,7 +663,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top Receipt Cost Movers and Landed-Cost Context'"
+                  "Value": "'LC Doc -> Supplier + Broker -> Item Cost Context'"
                 }
               }
             },

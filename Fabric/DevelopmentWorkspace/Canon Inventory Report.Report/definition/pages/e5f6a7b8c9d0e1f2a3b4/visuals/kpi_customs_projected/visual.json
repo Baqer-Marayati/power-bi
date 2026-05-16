@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "kpi_landed_unit",
+  "name": "kpi_customs_projected",
   "position": {
-    "x": 399,
-    "y": 120,
-    "z": 29000,
-    "height": 92,
-    "width": 184,
-    "tabOrder": 22000
+    "x": 188,
+    "y": 236,
+    "z": 29700,
+    "height": 42,
+    "width": 240,
+    "tabOrder": 28700
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Landed Unit Cost"
+                  "Property": "LC Customs Projected"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Unit Cost",
-              "nativeQueryRef": "Landed unit"
+              "queryRef": "_Measures.LC Customs Projected",
+              "nativeQueryRef": "Customs projected"
             }
           ]
         }
@@ -56,7 +56,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "18D"
+                  "Value": "12D"
                 }
               }
             },
@@ -77,13 +77,13 @@
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "0L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Landed Unit Cost"
+            "metadata": "_Measures.LC Customs Projected"
           }
         }
       ]
@@ -157,7 +157,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Landed Unit Cost'"
+                  "Value": "'Customs - Projected'"
                 }
               }
             },
@@ -171,7 +171,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "9D"
                 }
               }
             },

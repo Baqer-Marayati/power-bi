@@ -23,10 +23,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Landed Add-On % of Landed"
+                  "Property": "Selected Landed Add-On % of Landed"
                 }
               },
-              "queryRef": "_Measures.Landed Add-On % of Landed",
+              "queryRef": "_Measures.Selected Landed Add-On % of Landed",
               "nativeQueryRef": "Add-on % of landed"
             }
           ]

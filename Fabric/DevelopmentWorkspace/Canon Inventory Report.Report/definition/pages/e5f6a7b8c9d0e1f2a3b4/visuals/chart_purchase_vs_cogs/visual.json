@@ -56,10 +56,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Landed Unit Cost"
+                  "Property": "Selected Landed Unit Cost"
                 }
               },
-              "queryRef": "_Measures.Landed Unit Cost",
+              "queryRef": "_Measures.Selected Landed Unit Cost",
               "nativeQueryRef": "Landed unit cost"
             },
             {

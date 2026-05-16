@@ -68,6 +68,14 @@ Use this file for approved directions and durable constraints in the Inventory R
 - `Insurance` is a landed-cost reporting category for CANON because `OALC/IPF2` contains a material Insurance landed-cost code; keep it separate from generic `Other`.
 - Procurement & Suppliers should keep one top KPI row like sibling Inventory pages. If landed-cost analytics need more context, add it in the bridge, trend, and detail table rather than adding a second KPI-card row.
 
+## 2026-05-16 — Fabric Procurement LC enhanced controls
+
+- For the Fabric-only Procurement & Suppliers pass, use **Path A**: duplicate verified `OIPF` header attributes onto `Fact_LandedCostAllocation` rather than adding a separate LC-header fact table or relationship chain.
+- Broker is sourced from verified `OIPF.AgentCode` / `OIPF.AgentName` metadata and exposed directly on the landed-cost allocation fact for the Broker slicer and detail table.
+- LC status uses verified `OIPF.OpenForLaC` first (`Y` = Open, `N` = Closed) with `OIPF.DocStatus` as a fallback display/status signal. Treat this as source-schema aligned but still requiring Desktop/Fabric refresh validation against live CANON data.
+- Customs mini-block uses verified `OIPF.ExCustomSC`/`ExpCustom` for projected customs and `OIPF.ActCustSC`/`ActCustom` for actual customs, summed once per LC document in DAX to avoid allocation-row duplication.
+- The date toggle is a disconnected `DateSpineChoice` table. Landed measures branch between `Fact_LandedCostAllocation[LcDate]` and `Fact_LandedCostAllocation[ReceiptDate]` with `TREATAS`; receipt date falls back to LC posting date when no GRPO date is available from the current source path.
+
 ## 2026-05-12 — Executive Summary sold-mix cost trend
 
 - The **Qty and Cost by Business Type** table compares realized **Average Unit COGS** with **Sold Weighted Avg Current Unit Cost**. Group rows use sold-quantity weighting across SKUs, not stock-value/on-hand weighting, so the displayed **Current Item Cost** and **Cost Trend** describe the same sold mix at every drill grain.
