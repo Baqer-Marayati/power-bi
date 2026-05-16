@@ -23,12 +23,28 @@
                       "Entity": "Fact_LandedCostAllocation"
                     }
                   },
+                  "Property": "LcDate"
+                }
+              },
+              "queryRef": "Fact_LandedCostAllocation.LcDate",
+              "nativeQueryRef": "LC date",
+              "active": true,
+              "displayName": "LC date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_LandedCostAllocation"
+                    }
+                  },
                   "Property": "LcDocNum"
                 }
               },
               "queryRef": "Fact_LandedCostAllocation.LcDocNum",
               "nativeQueryRef": "LC Doc",
-              "active": true,
+              "active": false,
               "displayName": "LC Doc"
             },
             {
@@ -39,13 +55,29 @@
                       "Entity": "Fact_LandedCostAllocation"
                     }
                   },
-                  "Property": "LcMatrixLine"
+                  "Property": "LcMatrixItemDescription"
                 }
               },
-              "queryRef": "Fact_LandedCostAllocation.LcMatrixLine",
-              "nativeQueryRef": "Receipt line / item",
+              "queryRef": "Fact_LandedCostAllocation.LcMatrixItemDescription",
+              "nativeQueryRef": "Item",
               "active": false,
-              "displayName": "Receipt line / item"
+              "displayName": "Item"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_LandedCostAllocation"
+                    }
+                  },
+                  "Property": "ItemCode"
+                }
+              },
+              "queryRef": "Fact_LandedCostAllocation.ItemCode",
+              "nativeQueryRef": "Item code",
+              "active": false,
+              "displayName": "Item code"
             }
           ]
         },
@@ -65,6 +97,21 @@
               "queryRef": "_Measures.Selected Landed Receipt Qty",
               "nativeQueryRef": "Receipt Qty",
               "displayName": "Receipt Qty"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected LC Document Total Landed IQD"
+                }
+              },
+              "queryRef": "_Measures.Selected LC Document Total Landed IQD",
+              "nativeQueryRef": "LC doc total IQD",
+              "displayName": "LC doc total IQD"
             },
             {
               "field": {
@@ -170,6 +217,25 @@
         "levels": [
           {
             "queryRefs": [
+              "Fact_LandedCostAllocation.LcDate"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_LandedCostAllocation"
+                    }
+                  },
+                  "Property": "LcDate"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
               "Fact_LandedCostAllocation.LcDocNum"
             ],
             "isCollapsed": true,
@@ -189,7 +255,14 @@
           },
           {
             "queryRefs": [
-              "Fact_LandedCostAllocation.LcMatrixLine"
+              "Fact_LandedCostAllocation.LcMatrixItemDescription"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Fact_LandedCostAllocation.ItemCode"
             ],
             "isCollapsed": true,
             "isPinned": true
@@ -353,6 +426,20 @@
             "value": {
               "expr": {
                 "Literal": {
+                  "Value": "118D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_LandedCostAllocation.LcDate"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
                   "Value": "130D"
                 }
               }
@@ -367,13 +454,27 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "420D"
+                  "Value": "380D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Fact_LandedCostAllocation.LcMatrixLine"
+            "metadata": "Fact_LandedCostAllocation.LcMatrixItemDescription"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "120D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_LandedCostAllocation.ItemCode"
           }
         },
         {
@@ -388,6 +489,20 @@
           },
           "selector": {
             "metadata": "_Measures.Selected Landed Receipt Qty"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "150D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Selected LC Document Total Landed IQD"
           }
         },
         {
@@ -488,6 +603,34 @@
           },
           "selector": {
             "metadata": "_Measures.Selected Landed Receipt Qty"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Selected LC Document Total Landed IQD"
           }
         },
         {
