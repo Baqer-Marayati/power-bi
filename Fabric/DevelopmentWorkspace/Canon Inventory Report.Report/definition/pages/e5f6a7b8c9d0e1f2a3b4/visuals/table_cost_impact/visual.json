@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "table_cost_impact",
   "position": {
     "x": 187.14285714285717,
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_LandedCostAllocation"
+                      "Entity": "Dim_Date"
                     }
                   },
-                  "Property": "LcDate"
+                  "Property": "Date"
                 }
               },
-              "queryRef": "Fact_LandedCostAllocation.LcDate",
+              "queryRef": "Dim_Date.Date",
               "nativeQueryRef": "LC date",
               "active": true,
               "displayName": "LC date"
@@ -217,7 +217,7 @@
         "levels": [
           {
             "queryRefs": [
-              "Fact_LandedCostAllocation.LcDate"
+              "Dim_Date.Date"
             ],
             "isCollapsed": true,
             "identityKeys": [
@@ -225,10 +225,10 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_LandedCostAllocation"
+                      "Entity": "Dim_Date"
                     }
                   },
-                  "Property": "LcDate"
+                  "Property": "Date"
                 }
               }
             ],
@@ -432,7 +432,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_LandedCostAllocation.LcDate"
+            "metadata": "Dim_Date.Date"
           }
         },
         {
