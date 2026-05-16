@@ -863,13 +863,15 @@ table _Measures
 			            "_delta", [Landed Unit Cost Delta by Category],
 			            "_absDelta", ABS ( [Landed Unit Cost Delta by Category] )
 			        ),
-			        NOT ISBLANK ( [_delta] )
+			        NOT ISBLANK ( [_delta] ) && ABS ( [_delta] ) > 0.01
 			    )
 			VAR _top = TOPN ( 1, _drivers, [_absDelta], DESC, Dim_LandedCostCategory[ReportingCategory], ASC )
 			VAR _category = MAXX ( _top, Dim_LandedCostCategory[ReportingCategory] )
 			VAR _delta = MAXX ( _top, [_delta] )
+			VAR _amt = FORMAT ( ABS ( _delta ), "#,0.00" )
+			VAR _sign = IF ( _delta >= 0, "+", "-" )
 			RETURN
-			    IF ( ISBLANK ( _category ), BLANK (), _category & " " & FORMAT ( _delta, "+#,0.00;-#,0.00;0.00" ) & " د.ع." )
+			    IF ( ISBLANK ( _category ), BLANK (), _category & " " & _sign & _amt & " د.ع." )
 		lineageTag: b0c0d0e0-f010-4001-8001-000000000013
 
 	measure 'Landed Cost Bridge Value' =
@@ -983,8 +985,11 @@ table _Measures
 			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa076
 
-	/// Date-selector label used by Procurement visuals. Default is LC posting date so existing landed-cost behavior is preserved when no slicer value is selected.
-	measure 'Selected Date Spine Label' = SELECTEDVALUE ( DateSpineChoice[AnalyzeBy], "LC posting date" )
+	/// Date-selector label used by Procurement visuals. When the slicer shows All / multi-select, SELECTEDVALUE is unreliable; fall back to LC posting date.
+	measure 'Selected Date Spine Label' =
+			VAR _n = COUNTROWS ( ALLSELECTED ( DateSpineChoice[AnalyzeBy] ) )
+			RETURN
+			    SWITCH ( TRUE (), _n = 1, MAX ( DateSpineChoice[AnalyzeBy] ), "LC posting date" )
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000101
 
 	measure 'Selected Landed Cost Amount' =
@@ -992,8 +997,8 @@ table _Measures
 			VAR _choice = [Selected Date Spine Label]
 			RETURN
 			    SWITCH (
-			        _choice,
-			        "Receipt date",
+			        TRUE (),
+			        _choice = "Receipt date",
 			            CALCULATE ( [Landed Cost Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
 			        CALCULATE ( [Landed Cost Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) )
 			    )
@@ -1007,8 +1012,8 @@ table _Measures
 			VAR _choice = [Selected Date Spine Label]
 			RETURN
 			    SWITCH (
-			        _choice,
-			        "Receipt date",
+			        TRUE (),
+			        _choice = "Receipt date",
 			            CALCULATE ( [Landed Add-On Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
 			        CALCULATE ( [Landed Add-On Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) )
 			    )
@@ -1022,8 +1027,8 @@ table _Measures
 			VAR _choice = [Selected Date Spine Label]
 			RETURN
 			    SWITCH (
-			        _choice,
-			        "Receipt date",
+			        TRUE (),
+			        _choice = "Receipt date",
 			            CALCULATE ( [Landed Receipt Qty], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
 			        CALCULATE ( [Landed Receipt Qty], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) )
 			    )
@@ -1109,13 +1114,15 @@ table _Measures
 			            "_delta", [Selected Landed Unit Cost Delta by Category],
 			            "_absDelta", ABS ( [Selected Landed Unit Cost Delta by Category] )
 			        ),
-			        NOT ISBLANK ( [_delta] )
+			        NOT ISBLANK ( [_delta] ) && ABS ( [_delta] ) > 0.01
 			    )
 			VAR _top = TOPN ( 1, _drivers, [_absDelta], DESC, Dim_LandedCostCategory[ReportingCategory], ASC )
 			VAR _category = MAXX ( _top, Dim_LandedCostCategory[ReportingCategory] )
 			VAR _delta = MAXX ( _top, [_delta] )
+			VAR _amt = FORMAT ( ABS ( _delta ), "#,0.00" )
+			VAR _sign = IF ( _delta >= 0, "+", "-" )
 			RETURN
-			    IF ( ISBLANK ( _category ), BLANK (), _category & " " & FORMAT ( _delta, "+#,0.00;-#,0.00;0.00" ) & " د.ع." )
+			    IF ( ISBLANK ( _category ), BLANK (), _category & " " & _sign & _amt & " د.ع." )
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000113
 
 	measure 'Selected Landed Cost Bridge Value' =
@@ -1148,8 +1155,8 @@ table _Measures
 			VAR _choice = [Selected Date Spine Label]
 			RETURN
 			    SWITCH (
-			        _choice,
-			        "Receipt date",
+			        TRUE (),
+			        _choice = "Receipt date",
 			            CALCULATE (
 			                SUMX ( SUMMARIZE ( Fact_LandedCostAllocation, Fact_LandedCostAllocation[LcDocEntry], "_projected", MAX ( Fact_LandedCostAllocation[LcCustomsProjected] ) ), [_projected] ),
 			                REMOVEFILTERS ( Dim_Date ),
@@ -1173,8 +1180,8 @@ table _Measures
 			VAR _choice = [Selected Date Spine Label]
 			RETURN
 			    SWITCH (
-			        _choice,
-			        "Receipt date",
+			        TRUE (),
+			        _choice = "Receipt date",
 			            CALCULATE (
 			                SUMX ( SUMMARIZE ( Fact_LandedCostAllocation, Fact_LandedCostAllocation[LcDocEntry], "_actual", MAX ( Fact_LandedCostAllocation[LcCustomsActual] ) ), [_actual] ),
 			                REMOVEFILTERS ( Dim_Date ),

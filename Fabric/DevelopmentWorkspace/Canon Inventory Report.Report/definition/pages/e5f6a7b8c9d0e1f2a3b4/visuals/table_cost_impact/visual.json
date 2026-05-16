@@ -23,6 +23,21 @@
                       "Entity": "Fact_LandedCostAllocation"
                     }
                   },
+                  "Property": "ReceiptLineKey"
+                }
+              },
+              "queryRef": "Fact_LandedCostAllocation.ReceiptLineKey",
+              "nativeQueryRef": "Receipt line",
+              "displayName": "Receipt line"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_LandedCostAllocation"
+                    }
+                  },
                   "Property": "SupplierName"
                 }
               },
@@ -396,6 +411,20 @@
         }
       ],
       "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "110D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_LandedCostAllocation.ReceiptLineKey"
+          }
+        },
         {
           "properties": {
             "value": {

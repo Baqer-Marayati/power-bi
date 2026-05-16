@@ -103,3 +103,9 @@ Short, **durable** notes the assistant adds after reviewing captures in `images/
 - `[finance]` The live Finance source-of-truth paths are under `Reports/Finance/Companies/CANON/Canon Financial Report/` and `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/`, not the older `Reports/Finance/Financial Report/` layout.
 - `[repo]` When a “current status” file turns into a long changelog, move durable rules into `DECISIONS.md` / `MODEL_NOTES.md` and restore `CURRENT_STATUS.md` to a short current snapshot.
 - `[repo]` The portfolio has standardized on `Reports/<Domain>/Module/...`; validators, templates, CI, and docs should all match that layout.
+
+### 2026-05-16 — Canon Inventory Procurement landed-cost page (Fabric)
+
+- `[repo]` `[powerbi]` **Fact text columns + Dim_Item in the same table:** without a grain column that uniquely identifies the landed-cost/receipt line (`ReceiptLineKey`, `LcDocEntry` + receipt keys, etc.), **Supplier/Broker from `Fact_LandedCostAllocation` show blank** because Power BI cannot resolve a single value per row when multiple LC rows exist per item.
+- `[repo]` `[powerbi]` **`FORMAT(value, "+#,0.00;-#,0.00;0.00")` on Arabic-IQ (`ar-IQ`) culture can corrupt card text** (e.g. stray `{`). Prefer explicit sign concatenation with `FORMAT(ABS(value), "#,0.00")`.
+- `[repo]` `[powerbi]` **`SELECTEDVALUE` on a disconnected slicer when “All” / multi-value context applies:** use `COUNTROWS(ALLSELECTED(...))` and fall back to a safe default instead of relying only on `SELECTEDVALUE(..., default)`; pair with `SWITCH(TRUE(), condition, …, defaultExpr)` so measures never return blank from an unmatched `SWITCH`.
