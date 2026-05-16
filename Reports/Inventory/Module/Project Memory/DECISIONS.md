@@ -75,6 +75,8 @@ Use this file for approved directions and durable constraints in the Inventory R
 - LC status uses verified `OIPF.OpenForLaC` first (`Y` = Open, `N` = Closed) with `OIPF.DocStatus` as a fallback display/status signal. Treat this as source-schema aligned but still requiring Desktop/Fabric refresh validation against live CANON data.
 - Customs mini-block uses verified `OIPF.ExCustomSC`/`ExpCustom` for projected customs and `OIPF.ActCustSC`/`ActCustom` for actual customs, summed once per LC document in DAX to avoid allocation-row duplication.
 - The date toggle is a disconnected `DateSpineChoice` table. Landed measures branch between `Fact_LandedCostAllocation[LcDate]` and `Fact_LandedCostAllocation[ReceiptDate]` with `TREATAS`; receipt date falls back to LC posting date when no GRPO date is available from the current source path.
+- SAP diagnostics on May 16 proved Canon's populated LC allocation rows use `IPF1.BaseType`/`OriBDocTyp` patterns `18` and `69`, with zero matches when OPDN is joined through a hard `OriBDocTyp = '20'` predicate. The Fabric query must not require `OriBDocTyp = '20'` for receipt-date lookup.
+- For booked landed add-ons, prefer `IPF2.CostSum` (local/booked amount) over `IPF2.CostSumSC`; `CostSumSC` is only a fallback. The visible customs actual should come from IPF2/OALC `Tax / duty` booked lines, while OIPF header customs remains a projection/reference signal.
 
 ## 2026-05-12 — Executive Summary sold-mix cost trend
 

@@ -774,6 +774,7 @@ table _Measures
 			SUMX (
 			    SUMMARIZE (
 			        Fact_LandedCostAllocation,
+			        Fact_LandedCostAllocation[LcDocEntry],
 			        Fact_LandedCostAllocation[ReceiptDocEntry],
 			        Fact_LandedCostAllocation[ReceiptLineNum],
 			        Fact_LandedCostAllocation[ItemCode],
@@ -1176,25 +1177,11 @@ table _Measures
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
 	measure 'LC Customs Actual' =
-			VAR _dates = VALUES ( Dim_Date[Date] )
-			VAR _choice = [Selected Date Spine Label]
-			RETURN
-			    SWITCH (
-			        TRUE (),
-			        _choice = "Receipt date",
-			            CALCULATE (
-			                SUMX ( SUMMARIZE ( Fact_LandedCostAllocation, Fact_LandedCostAllocation[LcDocEntry], "_actual", MAX ( Fact_LandedCostAllocation[LcCustomsActual] ) ), [_actual] ),
-			                REMOVEFILTERS ( Dim_Date ),
-			                REMOVEFILTERS ( Dim_LandedCostCategory ),
-			                TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] )
-			            ),
-			        CALCULATE (
-			            SUMX ( SUMMARIZE ( Fact_LandedCostAllocation, Fact_LandedCostAllocation[LcDocEntry], "_actual", MAX ( Fact_LandedCostAllocation[LcCustomsActual] ) ), [_actual] ),
-			            REMOVEFILTERS ( Dim_Date ),
-			            REMOVEFILTERS ( Dim_LandedCostCategory ),
-			            TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] )
-			        )
-			    )
+			CALCULATE (
+			    [Selected Landed Add-On Amount],
+			    REMOVEFILTERS ( Dim_LandedCostCategory ),
+			    TREATAS ( { "Tax / duty" }, Dim_LandedCostCategory[ReportingCategory] )
+			)
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000117
 

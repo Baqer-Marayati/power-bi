@@ -2,10 +2,10 @@
 
 ## Immediate Priority
 
-1. Open the Fabric-bound `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip` in Power BI Desktop/Fabric and refresh the landed-cost tables after the enhanced OIPF header additions.
-2. Validate the corrected SAP B1 landed-cost query against CANON HANA using populated `IPF1.BaseType` values (`18` and `69`), `IPF1.OriBAbsEnt`, `IPF1.OriBLinNum`, `TtlExpndSC/TtlExpndLC`, `IPF2.CostSumSC/CostSum`, `OALC.CostCateg`, and the new `OIPF.AgentCode/AgentName`, `OpenForLaC`, `DocStatus`, `ExCustomSC`, `ActCustSC`, `ExpCustom`, `ActCustom`, `CustDate`, and `incCustom` fields.
-3. Spot-check LC 100008: confirm broker `VE-00052`, vendor `VE-00080`, open/closed status, customs values, and landed-unit total reconcile within rounding.
-4. Test the **Analyze by** slicer on **Receipt date** vs **LC posting date**. Confirm landed cards, bridge, mix, customs strip, and detail table shift as expected; document any flat results caused by receipt-date fallback for non-GRPO landed-cost rows.
+1. Open the Fabric-bound `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip` in Power BI Desktop/Fabric and refresh the landed-cost tables after the May 16 semantic correction.
+2. Validate that `Fact_LandedCostAllocation` now populates receipt date through `OriBAbsEnt -> OPDN.DocEntry` without requiring `OriBDocTyp = '20'`, and that IPF2 add-ons use booked/local `CostSum` before `CostSumSC`.
+3. Spot-check LC 100008: confirm broker `VE-00052`, vendor `VE-00080`, open status, header customs projection/actual = 0, booked customs fees from IPF2/OALC where applicable, and landed-unit total reconcile within rounding.
+4. Test the **Analyze by** slicer on **Receipt date** vs **LC posting date**. The May 16 diagnostic pull showed matched receipt and LC dates currently have 0-day delta, so a flat toggle result can be data-truth rather than a visual bug.
 5. Create and test the Desktop/Fabric bookmark buttons for **View all LC** and **Finance / Closed LC** if the source-generated LC Status slicer behaves correctly after refresh. The source file currently exposes the status slicer and finance note; bookmark state still needs Desktop authoring/validation.
 6. In the app, confirm **Procurement & Suppliers** has no missing-custom-visual error, one top KPI row, the metric glossary, Analyze by / Broker / LC Status slicers, customs mini-cards, the landed-cost mix column chart, and the paid/landed/COGS trend.
 7. Test Year × Quarter × Month plus item/category/broker/status slicers on the new landed cards, bridge, mix chart, paid-unit/landed-unit/COGS line chart, customs strip, and detail table.
