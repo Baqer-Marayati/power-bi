@@ -35,13 +35,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Item"
+                      "Entity": "Fact_StockCoverPolicy"
                     }
                   },
                   "Property": "ItemName"
                 }
               },
-              "queryRef": "Dim_Item.ItemName",
+              "queryRef": "Fact_StockCoverPolicy.ItemName",
               "nativeQueryRef": "Item",
               "displayName": "Item"
             },
@@ -185,13 +185,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Item"
+                      "Entity": "Fact_StockCoverPolicy"
                     }
                   },
                   "Property": "ItemCode"
                 }
               },
-              "queryRef": "Dim_Item.ItemCode",
+              "queryRef": "Fact_StockCoverPolicy.ItemCode",
               "nativeQueryRef": "Item Code",
               "displayName": "Item Code"
             },
@@ -200,13 +200,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Item"
+                      "Entity": "Fact_StockCoverPolicy"
                     }
                   },
                   "Property": "U_BusinessType"
                 }
               },
-              "queryRef": "Dim_Item.U_BusinessType",
+              "queryRef": "Fact_StockCoverPolicy.U_BusinessType",
               "nativeQueryRef": "Business Type",
               "displayName": "Business Type"
             },
@@ -215,13 +215,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Item"
+                      "Entity": "Fact_StockCoverPolicy"
                     }
                   },
                   "Property": "U_GroupType"
                 }
               },
-              "queryRef": "Dim_Item.U_GroupType",
+              "queryRef": "Fact_StockCoverPolicy.U_GroupType",
               "nativeQueryRef": "Group Type",
               "displayName": "Group Type"
             },
@@ -230,13 +230,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Item"
+                      "Entity": "Fact_StockCoverPolicy"
                     }
                   },
                   "Property": "U_ProductType"
                 }
               },
-              "queryRef": "Dim_Item.U_ProductType",
+              "queryRef": "Fact_StockCoverPolicy.U_ProductType",
               "nativeQueryRef": "Product Type",
               "displayName": "Product Type"
             },
@@ -245,13 +245,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Item"
+                      "Entity": "Fact_StockCoverPolicy"
                     }
                   },
                   "Property": "U_SegmentType"
                 }
               },
-              "queryRef": "Dim_Item.U_SegmentType",
+              "queryRef": "Fact_StockCoverPolicy.U_SegmentType",
               "nativeQueryRef": "Segment Type",
               "displayName": "Segment Type"
             }
@@ -483,7 +483,7 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.ItemName"
+            "metadata": "Fact_StockCoverPolicy.ItemName"
           }
         },
         {
@@ -623,31 +623,31 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.ItemCode"
+            "metadata": "Fact_StockCoverPolicy.ItemCode"
           }
         },
         {
           "properties": {},
           "selector": {
-            "metadata": "Dim_Item.U_BusinessType"
+            "metadata": "Fact_StockCoverPolicy.U_BusinessType"
           }
         },
         {
           "properties": {},
           "selector": {
-            "metadata": "Dim_Item.U_GroupType"
+            "metadata": "Fact_StockCoverPolicy.U_GroupType"
           }
         },
         {
           "properties": {},
           "selector": {
-            "metadata": "Dim_Item.U_ProductType"
+            "metadata": "Fact_StockCoverPolicy.U_ProductType"
           }
         },
         {
           "properties": {},
           "selector": {
-            "metadata": "Dim_Item.U_SegmentType"
+            "metadata": "Fact_StockCoverPolicy.U_SegmentType"
           }
         }
       ],
@@ -677,7 +677,7 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.ItemName"
+            "metadata": "Fact_StockCoverPolicy.ItemName"
           }
         },
         {
@@ -855,7 +855,7 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.ItemCode"
+            "metadata": "Fact_StockCoverPolicy.ItemCode"
           }
         },
         {
@@ -869,7 +869,7 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.U_BusinessType"
+            "metadata": "Fact_StockCoverPolicy.U_BusinessType"
           }
         },
         {
@@ -883,7 +883,7 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.U_GroupType"
+            "metadata": "Fact_StockCoverPolicy.U_GroupType"
           }
         },
         {
@@ -897,7 +897,7 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.U_ProductType"
+            "metadata": "Fact_StockCoverPolicy.U_ProductType"
           }
         },
         {
@@ -911,7 +911,7 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.U_SegmentType"
+            "metadata": "Fact_StockCoverPolicy.U_SegmentType"
           }
         }
       ]

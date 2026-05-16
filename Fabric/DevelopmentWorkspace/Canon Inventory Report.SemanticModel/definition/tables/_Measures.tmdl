@@ -437,15 +437,14 @@ table _Measures
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa068
 
-	/// Reorder Actions table guard: suppress rows where the policy fact grain is ambiguous (more
-	/// than one Fact_StockCoverPolicy row in context). Those rows collapse SELECTEDVALUE(...) to blank
-	/// and leak into the Dim_Item-named table slice under slicers such as Stock Status.
+	/// Reorder Actions table guard: keep the table on the stock-cover policy grain so slicers
+	/// cannot surface dimension-only rows whose SELECTEDVALUE(...) reorder measures would go blank.
 	measure 'Reorder Table Row Keeper' =
 			VAR NumPolicyRows =
 			    CALCULATE ( COUNTROWS ( Fact_StockCoverPolicy ) )
 			RETURN
 			    IF (
-			        HASONEVALUE ( Dim_Item[ItemCode] )
+			        HASONEVALUE ( Fact_StockCoverPolicy[ItemCode] )
 			            && NumPolicyRows = 1,
 			        1
 			    )
