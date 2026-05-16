@@ -105,12 +105,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected LC Document Total Landed IQD"
+                  "Property": "Selected Landed Supplier Base Amount"
                 }
               },
-              "queryRef": "_Measures.Selected LC Document Total Landed IQD",
-              "nativeQueryRef": "LC doc total IQD",
-              "displayName": "LC doc total IQD"
+              "queryRef": "_Measures.Selected Landed Supplier Base Amount",
+              "nativeQueryRef": "Supplier IQD total",
+              "displayName": "Supplier IQD total"
             },
             {
               "field": {
@@ -503,7 +503,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected LC Document Total Landed IQD"
+            "metadata": "_Measures.Selected Landed Supplier Base Amount"
           }
         },
         {
@@ -631,7 +631,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected LC Document Total Landed IQD"
+            "metadata": "_Measures.Selected Landed Supplier Base Amount"
           }
         },
         {

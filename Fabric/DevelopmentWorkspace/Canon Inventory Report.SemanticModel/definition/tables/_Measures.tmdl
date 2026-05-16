@@ -1073,22 +1073,6 @@ table _Measures
 		formatString: Long Date
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000141
 
-	/// Full landed IQD for the LC document at the current LC Doc + filter context (repeats on each receipt line).
-	measure 'Selected LC Document Total Landed IQD' =
-			CALCULATE (
-			    [Selected Landed Cost Amount],
-			    REMOVEFILTERS (
-			        Fact_LandedCostAllocation[ItemCode],
-			        Fact_LandedCostAllocation[ItemDescription],
-			        Fact_LandedCostAllocation[ReceiptLineNum],
-			        Fact_LandedCostAllocation[ReceiptLineKey]
-			    )
-			)
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: d5a7e001-916b-4a6b-a404-000000000140
-
-		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
 	measure 'Selected Landed Unit Cost' = DIVIDE ( [Selected Landed Cost Amount], [Selected Landed Receipt Qty] )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000105
