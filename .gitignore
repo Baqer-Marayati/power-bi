@@ -24,3 +24,9 @@ Shared/ChatContext/images/*
 Shared/SAP Export Pipeline/set_credentials.sh
 Shared/SAP Export Pipeline/credentials.env
 Shared/SAP Export Pipeline/.env
+
+# Power BI REST API — local automation credentials (never commit)
+Portfolio/scripts/powerbi-api-local.env
+
+# SAP HANA — local read-only connection for dev/metadata checks (never commit)
+Portfolio/scripts/hana-b1-readonly.env

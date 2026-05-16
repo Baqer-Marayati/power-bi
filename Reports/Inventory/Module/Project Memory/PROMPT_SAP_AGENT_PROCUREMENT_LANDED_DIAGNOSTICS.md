@@ -4,7 +4,12 @@ Use this on the **SAP HANA / Business One** machine that can query schema **`CAN
 
 ## Outputs
 
-Write CSVs + one **`README_Canon_Procurement_LC_diag_<YYYYMMDD>.md`** under a dated folder (e.g. `Desktop\Canon_PBIP_DataPull_<timestamp>\`), **no credentials** in files.
+Save **all** results on the agent machine’s **Desktop** (easy handoff)—not Documents, not temp.
+
+- **Windows:** `%USERPROFILE%\Desktop\Canon_PBIP_DataPull_<YYYYMMDD_HHMMSS>\`
+- **macOS/Linux:** `~/Desktop/Canon_PBIP_DataPull_<YYYYMMDD_HHMMSS>/`
+
+Inside that folder, write CSVs plus one **`README_Canon_Procurement_LC_diag_<YYYYMMDD>.md`**; **no credentials** in files. If Desktop is inaccessible, fall back only to **`Public\Desktop`** on Windows **or** the user home root with **`Desktop_UNAVAILABLE_`** prefixed to the folder name, and note the path in the README.
 
 ## 1) LC header spot-check (DocNum = 100008 if present)
 
@@ -49,4 +54,4 @@ For sample **`IPF1`** rows tied to **`OPDN`**, compare **`OPDN.DocDate`** vs **`
 - [ ] `IPF1.BaseType` histogram for filtered period  
 - [ ] Short README interpreting whether blanks/zeros are **expected** or **join bugs**
 
-When done, paste the folder path back into chat so the PBIP model can be aligned to findings.
+When done, paste the **full Desktop folder path** (the `Canon_PBIP_DataPull_<timestamp>` directory) back into chat so the PBIP model can be aligned to findings.
