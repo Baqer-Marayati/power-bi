@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Add-On Share of Landed %"
+                  "Property": "Selected Landed Add-On Amount"
                 }
               },
-              "queryRef": "_Measures.Selected Add-On Share of Landed %",
-              "nativeQueryRef": "Add-on % (of landed)"
+              "queryRef": "_Measures.Selected Landed Add-On Amount",
+              "nativeQueryRef": "Total add-ons (IQD)"
             }
           ]
         }
@@ -85,16 +85,23 @@
                 }
               }
             },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "1L"
+                  "Value": "0L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Add-On Share of Landed %"
+            "metadata": "_Measures.Selected Landed Add-On Amount"
           }
         }
       ]
@@ -168,7 +175,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Add-On % (of landed)'"
+                  "Value": "'Total add-ons (IQD)'"
                 }
               }
             },

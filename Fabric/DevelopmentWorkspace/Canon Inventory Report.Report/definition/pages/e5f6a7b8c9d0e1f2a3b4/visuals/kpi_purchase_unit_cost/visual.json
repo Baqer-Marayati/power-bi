@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Landed Uplift % vs Supplier Base"
+                  "Property": "Selected Landed Supplier Base Amount"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Uplift % vs Supplier Base",
-              "nativeQueryRef": "Add-on % (vs. supplier)"
+              "queryRef": "_Measures.Selected Landed Supplier Base Amount",
+              "nativeQueryRef": "Total purchase (IQD)"
             }
           ]
         }
@@ -95,13 +95,13 @@
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "1L"
+                  "Value": "0L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Landed Uplift % vs Supplier Base"
+            "metadata": "_Measures.Selected Landed Supplier Base Amount"
           }
         }
       ]
@@ -203,7 +203,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Add-On % (vs. supplier)'"
+                  "Value": "'Total purchase (IQD)'"
                 }
               }
             },

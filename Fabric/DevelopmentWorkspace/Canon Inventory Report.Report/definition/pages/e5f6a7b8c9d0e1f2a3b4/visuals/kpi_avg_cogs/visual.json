@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Supplier Base Unit Cost"
+                  "Property": "Selected Largest Landed Cost Driver"
                 }
               },
-              "queryRef": "_Measures.Selected Supplier Base Unit Cost",
-              "nativeQueryRef": "Supplier cost / unit"
+              "queryRef": "_Measures.Selected Largest Landed Cost Driver",
+              "nativeQueryRef": "Largest add-on"
             }
           ]
         }
@@ -56,7 +56,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             },
@@ -85,23 +85,20 @@
                 }
               }
             },
-            "labelDisplayUnits": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "labelPrecision": {
-              "expr": {
-                "Literal": {
-                  "Value": "2L"
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2E3A42'"
+                    }
+                  }
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Supplier Base Unit Cost"
+            "metadata": "_Measures.Selected Largest Landed Cost Driver"
           }
         }
       ]
@@ -203,7 +200,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Supplier cost / unit'"
+                  "Value": "'Largest add-on'"
                 }
               }
             },

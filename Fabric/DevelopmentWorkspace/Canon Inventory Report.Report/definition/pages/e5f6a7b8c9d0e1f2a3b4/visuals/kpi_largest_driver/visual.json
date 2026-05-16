@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Largest Landed Cost Driver"
+                  "Property": "Selected Landed Add-On % of Landed"
                 }
               },
-              "queryRef": "_Measures.Selected Largest Landed Cost Driver",
-              "nativeQueryRef": "Largest add-on"
+              "queryRef": "_Measures.Selected Landed Add-On % of Landed",
+              "nativeQueryRef": "Add-on % of landed"
             }
           ]
         }
@@ -56,7 +56,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "14D"
                 }
               }
             },
@@ -84,10 +84,17 @@
                   }
                 }
               }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
+                }
+              }
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Largest Landed Cost Driver"
+            "metadata": "_Measures.Selected Landed Add-On % of Landed"
           }
         }
       ]
@@ -161,7 +168,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Largest add-on'"
+                  "Value": "'Add-on % of landed'"
                 }
               }
             },

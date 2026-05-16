@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Landed Unit Cost"
+                  "Property": "Selected Add-On IQD Per Unit"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Unit Cost",
-              "nativeQueryRef": "Landed cost / unit"
+              "queryRef": "_Measures.Selected Add-On IQD Per Unit",
+              "nativeQueryRef": "Add-on IQD / unit"
             }
           ]
         }
@@ -101,7 +101,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Landed Unit Cost"
+            "metadata": "_Measures.Selected Add-On IQD Per Unit"
           }
         }
       ]
@@ -175,7 +175,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Landed cost / unit'"
+                  "Value": "'Add-on IQD / unit'"
                 }
               }
             },

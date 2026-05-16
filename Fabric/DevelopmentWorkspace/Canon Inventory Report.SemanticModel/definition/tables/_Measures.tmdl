@@ -1234,6 +1234,13 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+	/// Add-on IQD per receipt unit; uses same Selected landed date spine + qty as KPI row (slicer-aligned).
+	measure 'Selected Add-On IQD Per Unit' = DIVIDE ( [Selected Landed Add-On Amount], [Selected Landed Receipt Qty] )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000132
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 	measure 'Selected Landed Uplift Amount' = [Selected Landed Add-On Amount]
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000122
