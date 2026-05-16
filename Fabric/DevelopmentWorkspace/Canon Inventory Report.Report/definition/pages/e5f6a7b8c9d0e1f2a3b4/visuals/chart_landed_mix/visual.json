@@ -257,7 +257,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Add-on categories (excl. supplier)'"
+                  "Value": "'IQD by category'"
                 }
               }
             },

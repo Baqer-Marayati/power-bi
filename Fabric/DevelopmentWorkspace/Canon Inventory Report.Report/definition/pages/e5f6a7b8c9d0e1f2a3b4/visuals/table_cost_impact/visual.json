@@ -38,6 +38,21 @@
                       "Entity": "Fact_LandedCostAllocation"
                     }
                   },
+                  "Property": "ReceiptLineNum"
+                }
+              },
+              "queryRef": "Fact_LandedCostAllocation.ReceiptLineNum",
+              "nativeQueryRef": "Receipt Line",
+              "displayName": "Receipt Line"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_LandedCostAllocation"
+                    }
+                  },
                   "Property": "LcDocumentStatus"
                 }
               },
@@ -74,6 +89,21 @@
               "queryRef": "Fact_LandedCostAllocation.BrokerName",
               "nativeQueryRef": "Broker",
               "displayName": "Broker"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_LandedCostAllocation"
+                    }
+                  },
+                  "Property": "ItemCode"
+                }
+              },
+              "queryRef": "Fact_LandedCostAllocation.ItemCode",
+              "nativeQueryRef": "Item Code",
+              "displayName": "Item Code"
             },
             {
               "field": {
@@ -370,6 +400,20 @@
             "value": {
               "expr": {
                 "Literal": {
+                  "Value": "90D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_LandedCostAllocation.ReceiptLineNum"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
                   "Value": "190D"
                 }
               }
@@ -377,6 +421,20 @@
           },
           "selector": {
             "metadata": "Fact_LandedCostAllocation.SupplierName"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "110D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_LandedCostAllocation.ItemCode"
           }
         },
         {
@@ -624,7 +682,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Exceptions (ranked)'"
+                  "Value": "'Top landed-cost lines'"
                 }
               }
             },

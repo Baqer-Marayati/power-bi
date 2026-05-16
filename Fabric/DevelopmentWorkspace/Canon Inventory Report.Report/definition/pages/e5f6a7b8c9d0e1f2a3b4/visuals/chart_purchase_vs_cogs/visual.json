@@ -474,7 +474,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Add-on category % of landed (by month)'"
+                  "Value": "'monthly % of landed by category'"
                 }
               }
             },
