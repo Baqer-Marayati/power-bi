@@ -1305,6 +1305,18 @@ table _Measures
 		formatString: #,0
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000135
 
+	measure 'Category % of landed' = [Selected Add-On Share of Landed %]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000137
+
+	measure 'Add-on IQD (M)' = DIVIDE ( [Selected Landed Add-On Amount], 1000000 )
+		formatString: #,0.0\ "M د.ع.‏";-#,0.0\ "M د.ع.‏";0.0\ "M د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000138
+
+	measure 'MoM change pp' = [Selected Add-On Share of Landed MoM pp]
+		formatString: +0.0\ "pp";-0.0\ "pp";0.0\ "pp"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000139
+
 	measure 'Selected Add-On Category Share %' =
 			DIVIDE (
 			    [Selected Landed Add-On Amount],

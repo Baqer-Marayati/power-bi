@@ -60,10 +60,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Add-On Share of Landed %"
+                  "Property": "Category % of landed"
                 }
               },
-              "queryRef": "_Measures.Selected Add-On Share of Landed %",
+              "queryRef": "_Measures.Category % of landed",
               "nativeQueryRef": "Category % of landed"
             }
           ]
@@ -78,11 +78,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Landed Add-On Amount"
+                  "Property": "Add-on IQD (M)"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Add-On Amount",
-              "nativeQueryRef": "Add-on amount"
+              "queryRef": "_Measures.Add-on IQD (M)",
+              "nativeQueryRef": "Add-on IQD"
             },
             {
               "field": {
@@ -92,95 +92,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Add-On IQD Per Unit"
+                  "Property": "MoM change pp"
                 }
               },
-              "queryRef": "_Measures.Selected Add-On IQD Per Unit",
-              "nativeQueryRef": "Add-on IQD / unit"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Selected Total Landed Cost Amount"
-                }
-              },
-              "queryRef": "_Measures.Selected Total Landed Cost Amount",
-              "nativeQueryRef": "Total landed amount"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Selected Add-On Share of Landed PM"
-                }
-              },
-              "queryRef": "_Measures.Selected Add-On Share of Landed PM",
-              "nativeQueryRef": "Prior month % of landed"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Selected Add-On Share of Landed MoM pp"
-                }
-              },
-              "queryRef": "_Measures.Selected Add-On Share of Landed MoM pp",
-              "nativeQueryRef": "MoM change (pp)"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Selected Landed Receipt Qty"
-                }
-              },
-              "queryRef": "_Measures.Selected Landed Receipt Qty",
-              "nativeQueryRef": "Receipt quantity"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Selected Add-On Category Share %"
-                }
-              },
-              "queryRef": "_Measures.Selected Add-On Category Share %",
-              "nativeQueryRef": "Share of add-ons"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Selected Add-On Category Rank"
-                }
-              },
-              "queryRef": "_Measures.Selected Add-On Category Rank",
-              "nativeQueryRef": "Category rank"
+              "queryRef": "_Measures.MoM change pp",
+              "nativeQueryRef": "MoM change"
             }
           ]
         }
@@ -272,6 +188,213 @@
                 }
               }
             }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F4E79'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Dim_LandedCostCategory"
+                          }
+                        },
+                        "Property": "ReportingCategory"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Transport'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2A9D8F'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Dim_LandedCostCategory"
+                          }
+                        },
+                        "Property": "ReportingCategory"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Unloading'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#D9822B'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Dim_LandedCostCategory"
+                          }
+                        },
+                        "Property": "ReportingCategory"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Tax / duty'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7B61FF'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Dim_LandedCostCategory"
+                          }
+                        },
+                        "Property": "ReportingCategory"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Insurance'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#8A94A6'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Dim_LandedCostCategory"
+                          }
+                        },
+                        "Property": "ReportingCategory"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Other'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
           }
         }
       ],
