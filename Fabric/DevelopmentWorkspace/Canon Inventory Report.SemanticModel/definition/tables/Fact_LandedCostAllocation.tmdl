@@ -167,6 +167,18 @@ table Fact_LandedCostAllocation
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Receipt key + item; used as the leaf row in the landed-cost matrix (one expand under LC Doc).
+	column LcMatrixLine =
+			Fact_LandedCostAllocation[ReceiptLineKey]
+			    & " · "
+			    & Fact_LandedCostAllocation[ItemCode]
+			    & " · "
+			    & Fact_LandedCostAllocation[ItemDescription]
+		lineageTag: b0c0d0e0-f002-4001-8001-000000000035
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	column ReceiptDate
 		dataType: dateTime
 		formatString: Long Date
