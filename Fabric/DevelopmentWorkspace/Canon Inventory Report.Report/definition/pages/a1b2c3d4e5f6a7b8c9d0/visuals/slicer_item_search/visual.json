@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "slicer_item_search",
   "position": {
     "x": 18,
@@ -119,6 +119,11 @@
         }
       ],
       "general": [
+        {
+          "properties": {}
+        }
+      ],
+      "title": [
         {
           "properties": {}
         }

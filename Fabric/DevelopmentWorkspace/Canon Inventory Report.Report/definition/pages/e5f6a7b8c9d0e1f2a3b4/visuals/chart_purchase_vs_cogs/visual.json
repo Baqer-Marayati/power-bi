@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_purchase_vs_cogs",
   "position": {
-    "x": 188,
-    "y": 492,
+    "x": 187.5,
+    "y": 222.5,
     "z": 27000,
-    "height": 178,
-    "width": 1028,
+    "height": 297.5,
+    "width": 515,
     "tabOrder": 26000
   },
   "visual": {

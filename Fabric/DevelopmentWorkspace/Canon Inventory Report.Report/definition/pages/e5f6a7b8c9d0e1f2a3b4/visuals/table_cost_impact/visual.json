@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "table_cost_impact",
   "position": {
-    "x": 188,
-    "y": 690,
+    "x": 187.14285714285717,
+    "y": 537.14285714285722,
     "z": 28000,
-    "height": 246,
-    "width": 1028,
+    "height": 407.14285714285717,
+    "width": 1028.5714285714287,
     "tabOrder": 27000
   },
   "visual": {
@@ -450,15 +450,7 @@
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "110D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Selected Landed Uplift % vs Supplier Base"
           }

@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_landed_mix",
   "position": {
-    "x": 714,
-    "y": 222,
+    "x": 713.75,
+    "y": 222.5,
     "z": 29500,
-    "height": 250,
-    "width": 502,
+    "height": 297.5,
+    "width": 502.5,
     "tabOrder": 28500
   },
   "visual": {
@@ -29,24 +29,6 @@
               "queryRef": "Dim_LandedCostCategory.ReportingCategory",
               "nativeQueryRef": "Add-on category",
               "active": true
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Selected Landed Add-On Amount"
-                }
-              },
-              "queryRef": "_Measures.Selected Landed Add-On Amount",
-              "nativeQueryRef": "Add-on amount"
             }
           ]
         },
@@ -93,6 +75,24 @@
               },
               "queryRef": "_Measures.Selected Landed Receipt Qty",
               "nativeQueryRef": "Receipt quantity"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Landed Add-On Amount"
+                }
+              },
+              "queryRef": "_Measures.Selected Landed Add-On Amount",
+              "nativeQueryRef": "Add-on amount"
             }
           ]
         }
