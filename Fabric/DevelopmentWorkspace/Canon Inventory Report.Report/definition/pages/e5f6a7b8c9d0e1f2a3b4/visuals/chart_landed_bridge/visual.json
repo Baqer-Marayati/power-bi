@@ -226,7 +226,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'From Supplier Price to Landed Cost'"
+                  "Value": "'Unit cost: supplier → landed'"
                 }
               }
             },

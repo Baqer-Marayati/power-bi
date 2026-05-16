@@ -46,7 +46,7 @@
                 }
               },
               "queryRef": "_Measures.Selected Landed Uplift % vs Supplier Base",
-              "nativeQueryRef": "Landed uplift"
+              "nativeQueryRef": "Add-on % (vs. supplier)"
             },
             {
               "field": {
@@ -60,7 +60,7 @@
                 }
               },
               "queryRef": "_Measures.Selected Add-On Share of Landed %",
-              "nativeQueryRef": "Add-on share"
+              "nativeQueryRef": "Add-on % (of landed)"
             },
             {
               "field": {
@@ -323,7 +323,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Landed Cost Pressure by Month'"
+                  "Value": "'Landed-cost % trend (by month)'"
                 }
               }
             },

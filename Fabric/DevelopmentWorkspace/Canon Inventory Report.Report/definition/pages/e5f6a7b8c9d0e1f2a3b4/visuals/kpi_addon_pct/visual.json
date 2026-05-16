@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "_Measures.Selected Add-On Share of Landed %",
-              "nativeQueryRef": "Add-on share"
+              "nativeQueryRef": "Add-on % (of landed)"
             }
           ]
         }
@@ -168,7 +168,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Add-On Share'"
+                  "Value": "'Add-On % (of landed)'"
                 }
               }
             },

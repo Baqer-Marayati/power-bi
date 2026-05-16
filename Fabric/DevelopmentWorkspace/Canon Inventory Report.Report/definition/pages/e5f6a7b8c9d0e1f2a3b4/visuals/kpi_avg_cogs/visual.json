@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "_Measures.Selected Supplier Base Unit Cost",
-              "nativeQueryRef": "Supplier base / unit"
+              "nativeQueryRef": "Supplier cost / unit"
             }
           ]
         }
@@ -203,7 +203,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Supplier Base / Unit'"
+                  "Value": "'Supplier cost / unit'"
                 }
               }
             },

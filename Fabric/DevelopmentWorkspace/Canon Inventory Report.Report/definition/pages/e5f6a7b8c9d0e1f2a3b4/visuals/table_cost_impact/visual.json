@@ -147,8 +147,8 @@
                 }
               },
               "queryRef": "_Measures.Selected Supplier Base Unit Cost",
-              "nativeQueryRef": "Supplier Base / Unit",
-              "displayName": "Supplier Base / Unit"
+              "nativeQueryRef": "Supplier IQD / unit",
+              "displayName": "Supplier IQD / unit"
             },
             {
               "field": {
@@ -162,8 +162,8 @@
                 }
               },
               "queryRef": "_Measures.Selected Landed Add-On Amount",
-              "nativeQueryRef": "Add-On Amount",
-              "displayName": "Add-On Amount"
+              "nativeQueryRef": "Add-on IQD",
+              "displayName": "Add-on IQD"
             },
             {
               "field": {
@@ -177,8 +177,8 @@
                 }
               },
               "queryRef": "_Measures.Selected Landed Unit Cost",
-              "nativeQueryRef": "Landed / Unit",
-              "displayName": "Landed / Unit"
+              "nativeQueryRef": "Landed IQD / unit",
+              "displayName": "Landed IQD / unit"
             },
             {
               "field": {
@@ -192,8 +192,8 @@
                 }
               },
               "queryRef": "_Measures.Selected Landed Uplift % vs Supplier Base",
-              "nativeQueryRef": "Uplift %",
-              "displayName": "Uplift %"
+              "nativeQueryRef": "Add-on % (vs. supplier)",
+              "displayName": "Add-on % (vs. supplier)"
             },
             {
               "field": {
@@ -207,8 +207,8 @@
                 }
               },
               "queryRef": "_Measures.Selected Top Add-On Category",
-              "nativeQueryRef": "Top Driver",
-              "displayName": "Top Driver"
+              "nativeQueryRef": "Largest add-on",
+              "displayName": "Largest add-on"
             },
             {
               "field": {
@@ -632,7 +632,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Where to Investigate'"
+                  "Value": "'Exceptions (ranked)'"
                 }
               }
             },

@@ -257,7 +257,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Where Add-On Cost Comes From'"
+                  "Value": "'Add-ons by category'"
                 }
               }
             },

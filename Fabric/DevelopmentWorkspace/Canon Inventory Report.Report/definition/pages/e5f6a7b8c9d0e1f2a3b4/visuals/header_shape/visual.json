@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Procurement & Landed Cost Control'"
+                  "Value": "'Procurement & landed cost'"
                 }
               }
             },
@@ -76,7 +76,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Supplier base, add-ons, final landed cost, drivers, exceptions, and monthly pressure.'"
+                  "Value": "'Supplier cost, add-ons, and what to review next.'"
                 }
               }
             }

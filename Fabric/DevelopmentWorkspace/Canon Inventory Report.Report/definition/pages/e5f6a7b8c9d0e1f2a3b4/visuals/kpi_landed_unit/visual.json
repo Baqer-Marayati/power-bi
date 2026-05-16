@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "_Measures.Selected Landed Unit Cost",
-              "nativeQueryRef": "Landed / unit"
+              "nativeQueryRef": "Landed cost / unit"
             }
           ]
         }
@@ -175,7 +175,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Landed / Unit'"
+                  "Value": "'Landed cost / unit'"
                 }
               }
             },

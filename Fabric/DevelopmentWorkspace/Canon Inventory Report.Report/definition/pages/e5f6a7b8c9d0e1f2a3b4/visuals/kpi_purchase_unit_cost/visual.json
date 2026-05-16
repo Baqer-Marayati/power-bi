@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "_Measures.Selected Landed Uplift % vs Supplier Base",
-              "nativeQueryRef": "Landed uplift"
+              "nativeQueryRef": "Add-on % (vs. supplier)"
             }
           ]
         }
@@ -203,7 +203,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Landed Uplift'"
+                  "Value": "'Add-On % (vs. supplier)'"
                 }
               }
             },
