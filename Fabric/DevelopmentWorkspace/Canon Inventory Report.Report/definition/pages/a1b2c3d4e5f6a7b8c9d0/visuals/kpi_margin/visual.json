@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_margin",
   "position": {
     "x": 989,
     "y": 120,
-    "z": 0,
+    "z": 4000,
     "height": 92,
     "width": 251,
-    "tabOrder": 11003
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "cardVisual",

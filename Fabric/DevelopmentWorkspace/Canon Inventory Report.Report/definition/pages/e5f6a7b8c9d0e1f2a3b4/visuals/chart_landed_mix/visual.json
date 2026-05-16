@@ -4,13 +4,13 @@
   "position": {
     "x": 713.75,
     "y": 222.5,
-    "z": 29500,
+    "z": 23000,
     "height": 297.5,
     "width": 502.5,
-    "tabOrder": 28500
+    "tabOrder": 23000
   },
   "visual": {
-    "visualType": "barChart",
+    "visualType": "columnChart",
     "query": {
       "queryState": {
         "Category": {

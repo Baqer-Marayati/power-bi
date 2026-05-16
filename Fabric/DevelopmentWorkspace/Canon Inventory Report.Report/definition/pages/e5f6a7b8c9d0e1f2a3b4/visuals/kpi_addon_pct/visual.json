@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_addon_pct",
   "position": {
     "x": 399,
     "y": 120,
-    "z": 29300,
+    "z": 22000,
     "height": 92,
     "width": 184,
-    "tabOrder": 23000
+    "tabOrder": 18000
   },
   "visual": {
     "visualType": "cardVisual",

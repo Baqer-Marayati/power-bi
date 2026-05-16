@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_profit",
   "position": {
     "x": 722,
     "y": 120,
-    "z": 0,
+    "z": 5000,
     "height": 92,
     "width": 251,
-    "tabOrder": 11002
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "cardVisual",

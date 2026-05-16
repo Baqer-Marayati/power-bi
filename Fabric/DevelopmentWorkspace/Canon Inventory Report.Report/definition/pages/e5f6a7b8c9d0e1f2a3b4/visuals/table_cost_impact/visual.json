@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "table_cost_impact",
   "position": {
     "x": 187.14285714285717,
     "y": 537.14285714285722,
-    "z": 28000,
+    "z": 19000,
     "height": 407.14285714285717,
     "width": 1028.5714285714287,
-    "tabOrder": 27000
+    "tabOrder": 22000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -423,15 +423,7 @@
       ],
       "columnWidth": [
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "260D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Fact_LandedCostAllocation.LcDocNum"
           }
@@ -465,15 +457,7 @@
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "130D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Selected LC Document Date"
           }
@@ -549,15 +533,7 @@
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "130D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Selected Landed Uplift % vs Supplier Base"
           }

@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_landed_unit",
   "position": {
     "x": 1032,
     "y": 120,
-    "z": 29000,
+    "z": 20000,
     "height": 92,
     "width": 184,
-    "tabOrder": 22000
+    "tabOrder": 17000
   },
   "visual": {
     "visualType": "cardVisual",

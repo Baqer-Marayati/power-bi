@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_mix",
   "position": {
     "x": 724.28571428571433,
@@ -7,7 +7,7 @@
     "z": 0,
     "height": 317.14285714285717,
     "width": 515.71428571428578,
-    "tabOrder": 12001
+    "tabOrder": 15000
   },
   "visual": {
     "visualType": "lineChart",

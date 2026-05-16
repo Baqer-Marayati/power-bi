@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_purchase_unit_cost",
   "position": {
     "x": 188,
     "y": 120,
-    "z": 21000,
+    "z": 15000,
     "height": 92,
     "width": 184,
-    "tabOrder": 21000
+    "tabOrder": 15000
   },
   "visual": {
     "visualType": "cardVisual",
