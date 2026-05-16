@@ -20,22 +20,6 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Date"
-                    }
-                  },
-                  "Property": "Date"
-                }
-              },
-              "queryRef": "Dim_Date.Date",
-              "nativeQueryRef": "LC date",
-              "active": true,
-              "displayName": "LC date"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
                       "Entity": "Fact_LandedCostAllocation"
                     }
                   },
@@ -44,7 +28,7 @@
               },
               "queryRef": "Fact_LandedCostAllocation.LcDocNum",
               "nativeQueryRef": "LC Doc",
-              "active": false,
+              "active": true,
               "displayName": "LC Doc"
             },
             {
@@ -55,10 +39,10 @@
                       "Entity": "Fact_LandedCostAllocation"
                     }
                   },
-                  "Property": "LcMatrixItemDescription"
+                  "Property": "ItemDescription"
                 }
               },
-              "queryRef": "Fact_LandedCostAllocation.LcMatrixItemDescription",
+              "queryRef": "Fact_LandedCostAllocation.ItemDescription",
               "nativeQueryRef": "Item",
               "active": false,
               "displayName": "Item"
@@ -83,6 +67,21 @@
         },
         "Values": {
           "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected LC Document Date"
+                }
+              },
+              "queryRef": "_Measures.Selected LC Document Date",
+              "nativeQueryRef": "LC date",
+              "displayName": "LC date"
+            },
             {
               "field": {
                 "Measure": {
@@ -217,25 +216,6 @@
         "levels": [
           {
             "queryRefs": [
-              "Dim_Date.Date"
-            ],
-            "isCollapsed": true,
-            "identityKeys": [
-              {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Dim_Date"
-                    }
-                  },
-                  "Property": "Date"
-                }
-              }
-            ],
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
               "Fact_LandedCostAllocation.LcDocNum"
             ],
             "isCollapsed": true,
@@ -255,7 +235,7 @@
           },
           {
             "queryRefs": [
-              "Fact_LandedCostAllocation.LcMatrixItemDescription"
+              "Fact_LandedCostAllocation.ItemDescription"
             ],
             "isCollapsed": true,
             "isPinned": true
@@ -447,21 +427,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "118D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Dim_Date.Date"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "130D"
+                  "Value": "260D"
                 }
               }
             }
@@ -481,7 +447,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_LandedCostAllocation.LcMatrixItemDescription"
+            "metadata": "Fact_LandedCostAllocation.ItemDescription"
           }
         },
         {
@@ -496,6 +462,20 @@
           },
           "selector": {
             "metadata": "Fact_LandedCostAllocation.ItemCode"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "130D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Selected LC Document Date"
           }
         },
         {

@@ -1059,6 +1059,20 @@ table _Measures
 		formatString: #,0
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000104
 
+	/// LC posting date for the current LC document; repeats under item rows for context.
+	measure 'Selected LC Document Date' =
+			CALCULATE (
+			    MAX ( Fact_LandedCostAllocation[LcDate] ),
+			    REMOVEFILTERS (
+			        Fact_LandedCostAllocation[ItemCode],
+			        Fact_LandedCostAllocation[ItemDescription],
+			        Fact_LandedCostAllocation[ReceiptLineNum],
+			        Fact_LandedCostAllocation[ReceiptLineKey]
+			    )
+			)
+		formatString: Long Date
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000141
+
 	/// Full landed IQD for the LC document at the current LC Doc + filter context (repeats on each receipt line).
 	measure 'Selected LC Document Total Landed IQD' =
 			CALCULATE (
@@ -1067,8 +1081,7 @@ table _Measures
 			        Fact_LandedCostAllocation[ItemCode],
 			        Fact_LandedCostAllocation[ItemDescription],
 			        Fact_LandedCostAllocation[ReceiptLineNum],
-			        Fact_LandedCostAllocation[ReceiptLineKey],
-			        Fact_LandedCostAllocation[LcMatrixItemDescription]
+			        Fact_LandedCostAllocation[ReceiptLineKey]
 			    )
 			)
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
