@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "kpi_avg_cogs",
   "position": {
-    "x": 1032,
+    "x": 821,
     "y": 120,
     "z": 24000,
     "height": 92,
@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Average Unit COGS"
+                  "Property": "Selected Supplier Base Unit Cost"
                 }
               },
-              "queryRef": "_Measures.Average Unit COGS",
-              "nativeQueryRef": "Average Unit COGS"
+              "queryRef": "_Measures.Selected Supplier Base Unit Cost",
+              "nativeQueryRef": "Supplier base / unit"
             }
           ]
         }
@@ -101,7 +101,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Average Unit COGS"
+            "metadata": "_Measures.Selected Supplier Base Unit Cost"
           }
         }
       ]
@@ -203,7 +203,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Average Unit COGS'"
+                  "Value": "'Supplier Base / Unit'"
                 }
               }
             },

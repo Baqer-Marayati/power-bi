@@ -42,11 +42,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Weighted Purchase Unit Cost"
+                  "Property": "Selected Landed Uplift % vs Supplier Base"
                 }
               },
-              "queryRef": "_Measures.Weighted Purchase Unit Cost",
-              "nativeQueryRef": "Paid / received unit"
+              "queryRef": "_Measures.Selected Landed Uplift % vs Supplier Base",
+              "nativeQueryRef": "Landed uplift"
             },
             {
               "field": {
@@ -56,11 +56,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Landed Unit Cost"
+                  "Property": "Selected Add-On Share of Landed %"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Unit Cost",
-              "nativeQueryRef": "Landed unit cost"
+              "queryRef": "_Measures.Selected Add-On Share of Landed %",
+              "nativeQueryRef": "Add-on share"
             },
             {
               "field": {
@@ -70,11 +70,57 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Average Unit COGS"
+                  "Property": "Selected Top Driver Share %"
                 }
               },
-              "queryRef": "_Measures.Average Unit COGS",
-              "nativeQueryRef": "Sales-time avg unit COGS"
+              "queryRef": "_Measures.Selected Top Driver Share %",
+              "nativeQueryRef": "Top driver share"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Landed Add-On Amount"
+                }
+              },
+              "queryRef": "_Measures.Selected Landed Add-On Amount",
+              "nativeQueryRef": "Add-on amount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Landed Cost Amount"
+                }
+              },
+              "queryRef": "_Measures.Selected Landed Cost Amount",
+              "nativeQueryRef": "Landed amount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Landed Receipt Qty"
+                }
+              },
+              "queryRef": "_Measures.Selected Landed Receipt Qty",
+              "nativeQueryRef": "Receipt quantity"
             }
           ]
         }
@@ -277,7 +323,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Paid Unit, Landed Unit and Sold COGS Trend'"
+                  "Value": "'Landed Cost Pressure by Month'"
                 }
               }
             },

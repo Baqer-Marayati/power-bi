@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Weighted Purchase Unit Cost"
+                  "Property": "Selected Landed Uplift % vs Supplier Base"
                 }
               },
-              "queryRef": "_Measures.Weighted Purchase Unit Cost",
-              "nativeQueryRef": "Paid / received unit"
+              "queryRef": "_Measures.Selected Landed Uplift % vs Supplier Base",
+              "nativeQueryRef": "Landed uplift"
             }
           ]
         }
@@ -95,13 +95,13 @@
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "1L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Weighted Purchase Unit Cost"
+            "metadata": "_Measures.Selected Landed Uplift % vs Supplier Base"
           }
         }
       ]
@@ -203,7 +203,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Paid / Received Unit'"
+                  "Value": "'Landed Uplift'"
                 }
               }
             },

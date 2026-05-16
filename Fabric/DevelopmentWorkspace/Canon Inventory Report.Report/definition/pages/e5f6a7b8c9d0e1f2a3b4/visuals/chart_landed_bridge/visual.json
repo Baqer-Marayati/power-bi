@@ -49,6 +49,52 @@
               "nativeQueryRef": "IQD per unit"
             }
           ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Landed Supplier Base Amount"
+                }
+              },
+              "queryRef": "_Measures.Selected Landed Supplier Base Amount",
+              "nativeQueryRef": "Supplier base amount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Landed Add-On Amount"
+                }
+              },
+              "queryRef": "_Measures.Selected Landed Add-On Amount",
+              "nativeQueryRef": "Add-on amount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Landed Receipt Qty"
+                }
+              },
+              "queryRef": "_Measures.Selected Landed Receipt Qty",
+              "nativeQueryRef": "Receipt quantity"
+            }
+          ]
         }
       },
       "sortDefinition": {
@@ -180,7 +226,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Landed Unit Cost Build-Up'"
+                  "Value": "'From Supplier Price to Landed Cost'"
                 }
               }
             },

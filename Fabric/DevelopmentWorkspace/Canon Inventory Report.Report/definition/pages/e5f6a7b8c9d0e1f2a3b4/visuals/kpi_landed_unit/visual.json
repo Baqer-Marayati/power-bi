@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "kpi_landed_unit",
   "position": {
-    "x": 399,
+    "x": 1032,
     "y": 120,
     "z": 29000,
     "height": 92,
@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "_Measures.Selected Landed Unit Cost",
-              "nativeQueryRef": "Landed unit"
+              "nativeQueryRef": "Landed / unit"
             }
           ]
         }
@@ -175,7 +175,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Landed Unit Cost'"
+                  "Value": "'Landed / Unit'"
                 }
               }
             },

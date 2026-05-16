@@ -38,21 +38,6 @@
                       "Entity": "Fact_LandedCostAllocation"
                     }
                   },
-                  "Property": "LcDate"
-                }
-              },
-              "queryRef": "Fact_LandedCostAllocation.LcDate",
-              "nativeQueryRef": "LC Date",
-              "displayName": "LC Date"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Fact_LandedCostAllocation"
-                    }
-                  },
                   "Property": "LcDocumentStatus"
                 }
               },
@@ -113,12 +98,27 @@
                       "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "U_BusinessType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "Dim_Item.U_BusinessType",
-              "nativeQueryRef": "Business Type",
-              "displayName": "Business Type"
+              "queryRef": "Dim_Item.ItemGroup",
+              "nativeQueryRef": "Item Group",
+              "displayName": "Item Group"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Item"
+                    }
+                  },
+                  "Property": "U_ProductType"
+                }
+              },
+              "queryRef": "Dim_Item.U_ProductType",
+              "nativeQueryRef": "Product Type",
+              "displayName": "Product Type"
             },
             {
               "field": {
@@ -128,12 +128,12 @@
                       "Entity": "Fact_LandedCostAllocation"
                     }
                   },
-                  "Property": "ReportingCategory"
+                  "Property": "ReceiptDate"
                 }
               },
-              "queryRef": "Fact_LandedCostAllocation.ReportingCategory",
-              "nativeQueryRef": "Landed Category",
-              "displayName": "Landed Category"
+              "queryRef": "Fact_LandedCostAllocation.ReceiptDate",
+              "nativeQueryRef": "Receipt Date",
+              "displayName": "Receipt Date"
             },
             {
               "field": {
@@ -143,27 +143,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Landed Receipt Qty"
+                  "Property": "Selected Supplier Base Unit Cost"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Receipt Qty",
-              "nativeQueryRef": "Receipt Qty",
-              "displayName": "Receipt Qty"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Selected Landed Supplier Base Amount"
-                }
-              },
-              "queryRef": "_Measures.Selected Landed Supplier Base Amount",
-              "nativeQueryRef": "Supplier Base Amount",
-              "displayName": "Supplier Base Amount"
+              "queryRef": "_Measures.Selected Supplier Base Unit Cost",
+              "nativeQueryRef": "Supplier Base / Unit",
+              "displayName": "Supplier Base / Unit"
             },
             {
               "field": {
@@ -188,12 +173,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Landed Cost Amount"
+                  "Property": "Selected Landed Unit Cost"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Cost Amount",
-              "nativeQueryRef": "Landed Amount",
-              "displayName": "Landed Amount"
+              "queryRef": "_Measures.Selected Landed Unit Cost",
+              "nativeQueryRef": "Landed / Unit",
+              "displayName": "Landed / Unit"
             },
             {
               "field": {
@@ -203,12 +188,42 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Landed Unit Cost"
+                  "Property": "Selected Landed Uplift % vs Supplier Base"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Unit Cost",
-              "nativeQueryRef": "Landed Unit",
-              "displayName": "Landed Unit"
+              "queryRef": "_Measures.Selected Landed Uplift % vs Supplier Base",
+              "nativeQueryRef": "Uplift %",
+              "displayName": "Uplift %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Top Add-On Category"
+                }
+              },
+              "queryRef": "_Measures.Selected Top Add-On Category",
+              "nativeQueryRef": "Top Driver",
+              "displayName": "Top Driver"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Landed Receipt Qty"
+                }
+              },
+              "queryRef": "_Measures.Selected Landed Receipt Qty",
+              "nativeQueryRef": "Receipt Qty",
+              "displayName": "Receipt Qty"
             }
           ]
         }
@@ -223,7 +238,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Selected Landed Cost Amount"
+                "Property": "Selected Landed Add-On Amount"
               }
             },
             "direction": "Descending"
@@ -389,7 +404,7 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.U_BusinessType"
+            "metadata": "Dim_Item.ItemGroup"
           }
         },
         {
@@ -417,7 +432,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Landed Supplier Base Amount"
+            "metadata": "_Measures.Selected Supplier Base Unit Cost"
           }
         },
         {
@@ -445,7 +460,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Landed Cost Amount"
+            "metadata": "_Measures.Selected Landed Uplift % vs Supplier Base"
           }
         },
         {
@@ -473,7 +488,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_LandedCostAllocation.LcDate"
+            "metadata": "Fact_LandedCostAllocation.ReceiptDate"
           }
         },
         {
@@ -501,7 +516,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_LandedCostAllocation.ReportingCategory"
+            "metadata": "_Measures.Selected Top Add-On Category"
           }
         },
         {
@@ -515,7 +530,7 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.U_BusinessType"
+            "metadata": "Dim_Item.U_ProductType"
           }
         },
         {
@@ -617,7 +632,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'LC Detail by Supplier, Broker, Item and Landed Category'"
+                  "Value": "'Where to Investigate'"
                 }
               }
             },

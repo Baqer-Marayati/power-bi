@@ -1228,6 +1228,120 @@ table _Measures
 		formatString: +0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000119
 
+	measure 'Selected Supplier Base Unit Cost' = DIVIDE ( [Selected Landed Supplier Base Amount], [Selected Landed Receipt Qty] )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000121
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Selected Landed Uplift Amount' = [Selected Landed Add-On Amount]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000122
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Selected Landed Uplift % vs Supplier Base' = DIVIDE ( [Selected Landed Uplift Amount], [Selected Landed Supplier Base Amount] )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000123
+
+	measure 'Selected Add-On Share of Landed %' = [Selected Landed Add-On % of Landed]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000124
+
+	measure 'Selected Add-On Category Share %' =
+			DIVIDE (
+			    [Selected Landed Add-On Amount],
+			    CALCULATE ( [Selected Landed Add-On Amount], REMOVEFILTERS ( Dim_LandedCostCategory ) )
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000125
+
+	measure 'Selected Transport % of Landed' =
+			DIVIDE (
+			    CALCULATE (
+			        [Selected Landed Add-On Amount],
+			        REMOVEFILTERS ( Dim_LandedCostCategory ),
+			        TREATAS ( { "Transport" }, Dim_LandedCostCategory[ReportingCategory] )
+			    ),
+			    [Selected Landed Cost Amount]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000126
+
+	measure 'Selected Tax Duty % of Landed' =
+			DIVIDE (
+			    CALCULATE (
+			        [Selected Landed Add-On Amount],
+			        REMOVEFILTERS ( Dim_LandedCostCategory ),
+			        TREATAS ( { "Tax / duty" }, Dim_LandedCostCategory[ReportingCategory] )
+			    ),
+			    [Selected Landed Cost Amount]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000127
+
+	measure 'Selected Insurance % of Landed' =
+			DIVIDE (
+			    CALCULATE (
+			        [Selected Landed Add-On Amount],
+			        REMOVEFILTERS ( Dim_LandedCostCategory ),
+			        TREATAS ( { "Insurance" }, Dim_LandedCostCategory[ReportingCategory] )
+			    ),
+			    [Selected Landed Cost Amount]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000128
+
+	measure 'Selected Unloading / Other % of Landed' =
+			DIVIDE (
+			    CALCULATE (
+			        [Selected Landed Add-On Amount],
+			        REMOVEFILTERS ( Dim_LandedCostCategory ),
+			        TREATAS ( { "Unloading", "Other" }, Dim_LandedCostCategory[ReportingCategory] )
+			    ),
+			    [Selected Landed Cost Amount]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000129
+
+	measure 'Selected Top Driver Share %' =
+			VAR _drivers =
+			    FILTER (
+			        ADDCOLUMNS (
+			            FILTER (
+			                VALUES ( Dim_LandedCostCategory[ReportingCategory] ),
+			                Dim_LandedCostCategory[ReportingCategory] <> "Supplier base"
+			            ),
+			            "_amount", [Selected Landed Add-On Amount],
+			            "_absAmount", ABS ( [Selected Landed Add-On Amount] )
+			        ),
+			        NOT ISBLANK ( [_amount] ) && ABS ( [_amount] ) > 0.01
+			    )
+			VAR _top = TOPN ( 1, _drivers, [_absAmount], DESC, Dim_LandedCostCategory[ReportingCategory], ASC )
+			VAR _amount = MAXX ( _top, ABS ( [_amount] ) )
+			RETURN
+			    DIVIDE ( _amount, ABS ( [Selected Landed Uplift Amount] ) )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000130
+
+	measure 'Selected Top Add-On Category' =
+			VAR _drivers =
+			    FILTER (
+			        ADDCOLUMNS (
+			            FILTER (
+			                VALUES ( Dim_LandedCostCategory[ReportingCategory] ),
+			                Dim_LandedCostCategory[ReportingCategory] <> "Supplier base"
+			            ),
+			            "_amount", [Selected Landed Add-On Amount],
+			            "_absAmount", ABS ( [Selected Landed Add-On Amount] )
+			        ),
+			        NOT ISBLANK ( [_amount] ) && ABS ( [_amount] ) > 0.01
+			    )
+			VAR _top = TOPN ( 1, _drivers, [_absAmount], DESC, Dim_LandedCostCategory[ReportingCategory], ASC )
+			RETURN
+			    MAXX ( _top, Dim_LandedCostCategory[ReportingCategory] )
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000131
+
 
 	partition _Measures = m
 		mode: import

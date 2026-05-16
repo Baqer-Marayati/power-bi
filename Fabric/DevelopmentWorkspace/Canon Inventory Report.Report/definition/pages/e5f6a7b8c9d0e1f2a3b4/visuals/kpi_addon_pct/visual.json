@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "kpi_addon_pct",
   "position": {
-    "x": 610,
+    "x": 399,
     "y": 120,
     "z": 29300,
     "height": 92,
@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Landed Add-On % of Landed"
+                  "Property": "Selected Add-On Share of Landed %"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Add-On % of Landed",
-              "nativeQueryRef": "Add-on % of landed"
+              "queryRef": "_Measures.Selected Add-On Share of Landed %",
+              "nativeQueryRef": "Add-on share"
             }
           ]
         }
@@ -94,7 +94,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Landed Add-On % of Landed"
+            "metadata": "_Measures.Selected Add-On Share of Landed %"
           }
         }
       ]
@@ -168,7 +168,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Add-On % of Landed'"
+                  "Value": "'Add-On Share'"
                 }
               }
             },

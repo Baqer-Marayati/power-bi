@@ -45,9 +45,9 @@ table Dim_LandedCostBridge
 				    "StepSort", INTEGER,
 				    {
 				        { "Supplier base", "Supplier base", "Component", 1 },
-				        { "Tax / duty", "Tax / duty", "Component", 2 },
-				        { "Insurance", "Insurance", "Component", 3 },
-				        { "Transport / Shipping", "Transport", "Component", 4 },
+				        { "Transport / Shipping", "Transport", "Component", 2 },
+				        { "Tax / duty", "Tax / duty", "Component", 3 },
+				        { "Insurance", "Insurance", "Component", 4 },
 				        { "Unloading", "Unloading", "Component", 5 },
 				        { "Other", "Other", "Component", 6 },
 				        { "Total landed unit cost", BLANK (), "Total", 7 }

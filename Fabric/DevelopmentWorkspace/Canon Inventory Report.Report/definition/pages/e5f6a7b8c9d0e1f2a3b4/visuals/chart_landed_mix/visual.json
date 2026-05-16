@@ -10,29 +10,10 @@
     "tabOrder": 28500
   },
   "visual": {
-    "visualType": "columnChart",
+    "visualType": "barChart",
     "query": {
       "queryState": {
         "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Dim_Date"
-                    }
-                  },
-                  "Property": "YearMonth"
-                }
-              },
-              "queryRef": "Dim_Date.YearMonth",
-              "nativeQueryRef": "Month",
-              "active": true
-            }
-          ]
-        },
-        "Series": {
           "projections": [
             {
               "field": {
@@ -46,7 +27,8 @@
                 }
               },
               "queryRef": "Dim_LandedCostCategory.ReportingCategory",
-              "nativeQueryRef": "Landed cost category"
+              "nativeQueryRef": "Add-on category",
+              "active": true
             }
           ]
         },
@@ -67,22 +49,68 @@
               "nativeQueryRef": "Add-on amount"
             }
           ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Add-On Category Share %"
+                }
+              },
+              "queryRef": "_Measures.Selected Add-On Category Share %",
+              "nativeQueryRef": "Share of add-ons"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Add-On Share of Landed %"
+                }
+              },
+              "queryRef": "_Measures.Selected Add-On Share of Landed %",
+              "nativeQueryRef": "Share of landed"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Selected Landed Receipt Qty"
+                }
+              },
+              "queryRef": "_Measures.Selected Landed Receipt Qty",
+              "nativeQueryRef": "Receipt quantity"
+            }
+          ]
         }
       },
       "sortDefinition": {
         "sort": [
           {
             "field": {
-              "Column": {
+              "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Dim_Date"
+                    "Entity": "_Measures"
                   }
                 },
-                "Property": "MonthNo"
+                "Property": "Selected Landed Add-On Amount"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
@@ -229,7 +257,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Landed Add-On Mix by Month'"
+                  "Value": "'Where Add-On Cost Comes From'"
                 }
               }
             },
