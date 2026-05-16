@@ -1148,7 +1148,7 @@ table _Measures
 			VAR _amount = MAXX ( _top, [_amount] )
 			VAR _amt = FORMAT ( DIVIDE ( ABS ( _amount ), 1000000 ), "#,0.0" ) & "M"
 			RETURN
-			    IF ( ISBLANK ( _category ), BLANK (), _category & " " & _amt & " د.ع." )
+			    IF ( ISBLANK ( _category ), BLANK (), _category & " · " & _amt & "M" )
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000113
 
 	measure 'Selected Landed Cost Bridge Value' =

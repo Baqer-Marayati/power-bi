@@ -257,7 +257,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Add-ons by category'"
+                  "Value": "'Add-on categories (excl. supplier)'"
                 }
               }
             },
@@ -311,5 +311,63 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "exclude_supplier_base_add_on_mix",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_LandedCostCategory"
+              }
+            },
+            "Property": "ReportingCategory"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Dim_LandedCostCategory",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "d"
+                            }
+                          },
+                          "Property": "ReportingCategory"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "'Supplier base'"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
   }
 }
