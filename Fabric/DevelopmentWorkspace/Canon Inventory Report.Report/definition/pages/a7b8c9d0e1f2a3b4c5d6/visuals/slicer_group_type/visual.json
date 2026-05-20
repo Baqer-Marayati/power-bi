@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Dim_Item"
+                      "Entity": "Fact_StockCoverPolicy"
                     }
                   },
                   "Property": "U_GroupType"
                 }
               },
-              "queryRef": "Dim_Item.U_GroupType",
+              "queryRef": "Fact_StockCoverPolicy.U_GroupType",
               "nativeQueryRef": "U_GroupType",
               "active": true
             }

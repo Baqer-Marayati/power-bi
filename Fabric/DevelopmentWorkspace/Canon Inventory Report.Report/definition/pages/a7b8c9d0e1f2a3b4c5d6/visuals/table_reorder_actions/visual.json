@@ -772,22 +772,6 @@
                   "Value": "'Right'"
                 }
               }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures"
-                        }
-                      },
-                      "Property": "Reorder Move Qty Color"
-                    }
-                  }
-                }
-              }
             }
           },
           "selector": {
