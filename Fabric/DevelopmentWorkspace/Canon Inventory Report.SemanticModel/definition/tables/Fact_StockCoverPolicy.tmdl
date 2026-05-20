@@ -49,6 +49,14 @@ table Fact_StockCoverPolicy
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Single field for Reorder Actions item search (code and name on policy grain).
+	column ItemSearch = Fact_StockCoverPolicy[ItemCode] & " · " & Fact_StockCoverPolicy[ItemName]
+		lineageTag: cc000000-0000-0000-0000-000000000032
+		summarizeBy: none
+		sortByColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
 	column TotalQtyAvailable
 		dataType: double
 		lineageTag: cc000000-0000-0000-0000-000000000008
