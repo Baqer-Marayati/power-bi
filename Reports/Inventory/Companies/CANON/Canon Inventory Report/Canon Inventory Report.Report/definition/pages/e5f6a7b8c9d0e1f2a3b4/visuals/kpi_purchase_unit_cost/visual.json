@@ -23,10 +23,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Landed Supplier Base Amount"
+                  "Property": "Procurement KPI Supplier Total"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Supplier Base Amount",
+              "queryRef": "_Measures.Procurement KPI Supplier Total",
               "nativeQueryRef": "Total purchase (IQD)"
             }
           ]
@@ -101,7 +101,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Landed Supplier Base Amount"
+            "metadata": "_Measures.Procurement KPI Supplier Total"
           }
         }
       ]

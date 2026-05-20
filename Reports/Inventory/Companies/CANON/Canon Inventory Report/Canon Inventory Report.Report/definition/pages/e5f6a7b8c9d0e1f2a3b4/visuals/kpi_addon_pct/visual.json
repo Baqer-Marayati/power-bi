@@ -23,10 +23,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Landed Add-On Amount"
+                  "Property": "Procurement KPI Add-On Total"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Add-On Amount",
+              "queryRef": "_Measures.Procurement KPI Add-On Total",
               "nativeQueryRef": "Total add-ons (IQD)"
             }
           ]
@@ -101,7 +101,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Landed Add-On Amount"
+            "metadata": "_Measures.Procurement KPI Add-On Total"
           }
         }
       ]

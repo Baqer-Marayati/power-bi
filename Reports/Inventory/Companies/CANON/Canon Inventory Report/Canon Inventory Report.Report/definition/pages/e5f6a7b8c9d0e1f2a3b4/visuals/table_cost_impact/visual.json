@@ -90,10 +90,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Landed Receipt Qty"
+                  "Property": "Procurement KPI Receipt Qty"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Receipt Qty",
+              "queryRef": "_Measures.Procurement KPI Receipt Qty",
               "nativeQueryRef": "Receipt Qty",
               "displayName": "Receipt Qty"
             },
@@ -105,10 +105,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Landed Supplier Base Amount"
+                  "Property": "Procurement KPI Supplier Total"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Supplier Base Amount",
+              "queryRef": "_Measures.Procurement KPI Supplier Total",
               "nativeQueryRef": "Supplier IQD total",
               "displayName": "Supplier IQD total"
             },
@@ -135,10 +135,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Landed Add-On Amount"
+                  "Property": "Procurement KPI Add-On Total"
                 }
               },
-              "queryRef": "_Measures.Selected Landed Add-On Amount",
+              "queryRef": "_Measures.Procurement KPI Add-On Total",
               "nativeQueryRef": "Add-on IQD",
               "displayName": "Add-on IQD"
             },
@@ -200,7 +200,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Selected Landed Add-On Amount"
+                "Property": "Procurement KPI Add-On Total"
               }
             },
             "direction": "Descending"
@@ -473,7 +473,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Landed Receipt Qty"
+            "metadata": "_Measures.Procurement KPI Receipt Qty"
           }
         },
         {
@@ -487,7 +487,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Landed Supplier Base Amount"
+            "metadata": "_Measures.Procurement KPI Supplier Total"
           }
         },
         {
@@ -515,7 +515,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Landed Add-On Amount"
+            "metadata": "_Measures.Procurement KPI Add-On Total"
           }
         },
         {
@@ -579,7 +579,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Landed Receipt Qty"
+            "metadata": "_Measures.Procurement KPI Receipt Qty"
           }
         },
         {
@@ -607,7 +607,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Landed Supplier Base Amount"
+            "metadata": "_Measures.Procurement KPI Supplier Total"
           }
         },
         {
@@ -663,7 +663,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Landed Add-On Amount"
+            "metadata": "_Measures.Procurement KPI Add-On Total"
           }
         },
         {
@@ -821,7 +821,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top landed-cost lines (by LC document)'"
+                  "Value": "'Top landed-cost lines (closed LC documents)'"
                 }
               }
             },

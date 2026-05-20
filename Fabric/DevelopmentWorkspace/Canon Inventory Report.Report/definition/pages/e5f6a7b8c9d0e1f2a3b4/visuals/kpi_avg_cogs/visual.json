@@ -23,10 +23,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Largest Landed Cost Driver"
+                  "Property": "Procurement KPI Largest Add-On"
                 }
               },
-              "queryRef": "_Measures.Selected Largest Landed Cost Driver",
+              "queryRef": "_Measures.Procurement KPI Largest Add-On",
               "nativeQueryRef": "Largest add-on"
             }
           ]
@@ -87,7 +87,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Largest Landed Cost Driver"
+            "metadata": "_Measures.Procurement KPI Largest Add-On"
           }
         }
       ]

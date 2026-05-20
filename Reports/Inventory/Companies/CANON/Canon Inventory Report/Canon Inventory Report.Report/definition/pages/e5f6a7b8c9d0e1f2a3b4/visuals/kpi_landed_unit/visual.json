@@ -23,10 +23,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Selected Add-On IQD Per Unit"
+                  "Property": "Procurement KPI Add-On Per Unit"
                 }
               },
-              "queryRef": "_Measures.Selected Add-On IQD Per Unit",
+              "queryRef": "_Measures.Procurement KPI Add-On Per Unit",
               "nativeQueryRef": "Add-on IQD / unit"
             }
           ]
@@ -101,7 +101,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Selected Add-On IQD Per Unit"
+            "metadata": "_Measures.Procurement KPI Add-On Per Unit"
           }
         }
       ]

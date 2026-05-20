@@ -1015,15 +1015,87 @@ table _Measures
 			    SWITCH ( TRUE (), _n = 1, MAX ( DateSpineChoice[AnalyzeBy] ), "LC posting date" )
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000101
 
+	/// Procurement KPI + table totals: per LC doc on rows; sum of docs on cards / matrix total (matches closed-LC table).
+	measure 'Procurement KPI Supplier Total' =
+			IF (
+			    HASONEVALUE ( Fact_LandedCostAllocation[LcDocNum] ),
+			    [Selected Landed Supplier Base Amount],
+			    SUMX (
+			        CALCULATETABLE (
+			            VALUES ( Fact_LandedCostAllocation[LcDocNum] ),
+			            ALLSELECTED ( Fact_LandedCostAllocation[LcDocNum] )
+			        ),
+			        CALCULATE ( [Selected Landed Supplier Base Amount] )
+			    )
+			)
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000142
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Procurement KPI Add-On Total' =
+			IF (
+			    HASONEVALUE ( Fact_LandedCostAllocation[LcDocNum] ),
+			    [Selected Landed Add-On Amount],
+			    SUMX (
+			        CALCULATETABLE (
+			            VALUES ( Fact_LandedCostAllocation[LcDocNum] ),
+			            ALLSELECTED ( Fact_LandedCostAllocation[LcDocNum] )
+			        ),
+			        CALCULATE ( [Selected Landed Add-On Amount] )
+			    )
+			)
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000143
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Procurement KPI Receipt Qty' =
+			IF (
+			    HASONEVALUE ( Fact_LandedCostAllocation[LcDocNum] ),
+			    [Selected Landed Receipt Qty],
+			    SUMX (
+			        CALCULATETABLE (
+			            VALUES ( Fact_LandedCostAllocation[LcDocNum] ),
+			            ALLSELECTED ( Fact_LandedCostAllocation[LcDocNum] )
+			        ),
+			        CALCULATE ( [Selected Landed Receipt Qty] )
+			    )
+			)
+		formatString: #,0
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000144
+
+	measure 'Procurement KPI Add-On % of Landed' =
+			VAR _supplier = [Procurement KPI Supplier Total]
+			VAR _addon = [Procurement KPI Add-On Total]
+			RETURN
+			    DIVIDE ( _addon, _supplier + _addon )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000145
+
+	measure 'Procurement KPI Add-On Per Unit' =
+			DIVIDE ( [Procurement KPI Add-On Total], [Procurement KPI Receipt Qty] )
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000146
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Procurement KPI Largest Add-On' = [Selected Largest Landed Cost Driver]
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000147
+
 	measure 'Selected Landed Cost Amount' =
 			VAR _dates = VALUES ( Dim_Date[Date] )
 			VAR _choice = [Selected Date Spine Label]
 			RETURN
 			    SWITCH (
 			        TRUE (),
-			        _choice = "Receipt date",
+			        _choice = "Receipt date" && COUNTROWS ( _dates ) > 0,
 			            CALCULATE ( [Landed Cost Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
-			        CALCULATE ( [Landed Cost Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) )
+			        _choice = "Receipt date",
+			            [Landed Cost Amount],
+			        COUNTROWS ( _dates ) > 0,
+			            CALCULATE ( [Landed Cost Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) ),
+			        [Landed Cost Amount]
 			    )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000102
@@ -1036,9 +1108,13 @@ table _Measures
 			RETURN
 			    SWITCH (
 			        TRUE (),
-			        _choice = "Receipt date",
+			        _choice = "Receipt date" && COUNTROWS ( _dates ) > 0,
 			            CALCULATE ( [Landed Add-On Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
-			        CALCULATE ( [Landed Add-On Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) )
+			        _choice = "Receipt date",
+			            [Landed Add-On Amount],
+			        COUNTROWS ( _dates ) > 0,
+			            CALCULATE ( [Landed Add-On Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) ),
+			        [Landed Add-On Amount]
 			    )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000103
@@ -1051,9 +1127,13 @@ table _Measures
 			RETURN
 			    SWITCH (
 			        TRUE (),
-			        _choice = "Receipt date",
+			        _choice = "Receipt date" && COUNTROWS ( _dates ) > 0,
 			            CALCULATE ( [Landed Supplier Base Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
-			        CALCULATE ( [Landed Supplier Base Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) )
+			        _choice = "Receipt date",
+			            [Landed Supplier Base Amount],
+			        COUNTROWS ( _dates ) > 0,
+			            CALCULATE ( [Landed Supplier Base Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) ),
+			        [Landed Supplier Base Amount]
 			    )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000120
@@ -1066,9 +1146,13 @@ table _Measures
 			RETURN
 			    SWITCH (
 			        TRUE (),
-			        _choice = "Receipt date",
+			        _choice = "Receipt date" && COUNTROWS ( _dates ) > 0,
 			            CALCULATE ( [Landed Receipt Qty], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
-			        CALCULATE ( [Landed Receipt Qty], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) )
+			        _choice = "Receipt date",
+			            [Landed Receipt Qty],
+			        COUNTROWS ( _dates ) > 0,
+			            CALCULATE ( [Landed Receipt Qty], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) ),
+			        [Landed Receipt Qty]
 			    )
 		formatString: #,0
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000104
