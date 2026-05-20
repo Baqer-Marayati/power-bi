@@ -5,7 +5,7 @@
     "x": 18,
     "y": 536,
     "z": 11000,
-    "height": 148,
+    "height": 56,
     "width": 150,
     "tabOrder": 6000
   },
@@ -41,7 +41,7 @@
             "mode": {
               "expr": {
                 "Literal": {
-                  "Value": "'Basic'"
+                  "Value": "'Dropdown'"
                 }
               }
             }
@@ -51,10 +51,10 @@
       "general": [
         {
           "properties": {
-            "orientation": {
+            "selfFilterEnabled": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
                 }
               }
             },
@@ -145,37 +145,6 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "items": [
-        {
-          "properties": {
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#2E3A42'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "11D"
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Segoe UI'"
                 }
               }
             }
