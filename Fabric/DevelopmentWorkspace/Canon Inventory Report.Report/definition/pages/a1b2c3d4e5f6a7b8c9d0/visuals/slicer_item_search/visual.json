@@ -114,13 +114,6 @@
                 }
               }
             },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "11D"
-                }
-              }
-            },
             "bold": {
               "expr": {
                 "Literal": {
@@ -162,13 +155,6 @@
                       "Value": "'#2E3A42'"
                     }
                   }
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "11D"
                 }
               }
             }
