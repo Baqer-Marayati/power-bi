@@ -821,7 +821,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top landed-cost lines (by LC document)'"
+                  "Value": "'Top landed-cost lines (closed LC documents)'"
                 }
               }
             },
