@@ -109,3 +109,8 @@ Short, **durable** notes the assistant adds after reviewing captures in `images/
 - `[repo]` `[powerbi]` **Fact text columns + Dim_Item in the same table:** without a grain column that uniquely identifies the landed-cost/receipt line (`ReceiptLineKey`, `LcDocEntry` + receipt keys, etc.), **Supplier/Broker from `Fact_LandedCostAllocation` show blank** because Power BI cannot resolve a single value per row when multiple LC rows exist per item.
 - `[repo]` `[powerbi]` **`FORMAT(value, "+#,0.00;-#,0.00;0.00")` on Arabic-IQ (`ar-IQ`) culture can corrupt card text** (e.g. stray `{`). Prefer explicit sign concatenation with `FORMAT(ABS(value), "#,0.00")`.
 - `[repo]` `[powerbi]` **`SELECTEDVALUE` on a disconnected slicer when “All” / multi-value context applies:** use `COUNTROWS(ALLSELECTED(...))` and fall back to a safe default instead of relying only on `SELECTEDVALUE(..., default)`; pair with `SWITCH(TRUE(), condition, …, defaultExpr)` so measures never return blank from an unmatched `SWITCH`.
+
+### 2026-05-20 — Canon LC Closed Document vs OpenForLaC (SAP + Fabric)
+
+- `[repo]` `[inventory]` SAP **Closed Document** on landed cost (`OIPF`) = **`DocStatus = 'C'`** only. **`OpenForLaC`** (`Y`/`N`) is a different allocation-workflow flag — do not use it (alone or OR'd with `DocStatus`) for closed-only filters.
+- `[repo]` `[inventory]` Validate with SAP UI: LC **100005** with **Closed Document** unchecked must not appear when Procurement filters `IsLcClosed = 1` after semantic refresh.
