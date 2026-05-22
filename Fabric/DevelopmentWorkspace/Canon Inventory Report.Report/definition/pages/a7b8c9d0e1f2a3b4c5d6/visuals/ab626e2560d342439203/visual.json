@@ -356,6 +356,11 @@
         }
       ]
     },
+    "syncGroup": {
+      "groupName": "ItemSearch",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "drillFilterOtherVisuals": true
   }
 }

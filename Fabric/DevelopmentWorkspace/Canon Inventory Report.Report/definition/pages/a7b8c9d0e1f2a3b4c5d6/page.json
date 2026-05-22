@@ -46,7 +46,32 @@
   },
   "visualInteractions": [
     {
+      "source": "50f785398f878bc38ea3",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
+      "source": "90d50ff465af0c0d7246",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8be851c912329a577cba",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e4e737e007145f08acf3",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
       "source": "slicer_stock_status",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ab626e2560d342439203",
       "target": "table_reorder_actions",
       "type": "DataFilter"
     }
