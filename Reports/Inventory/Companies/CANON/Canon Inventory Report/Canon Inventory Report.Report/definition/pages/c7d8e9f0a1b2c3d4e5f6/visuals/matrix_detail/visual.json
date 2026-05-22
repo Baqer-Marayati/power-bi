@@ -128,7 +128,7 @@
               },
               "queryRef": "Sum(InventoryValuation.StockQty)",
               "nativeQueryRef": "Stock Qty",
-              "displayName": "Stock Qty"
+              "displayName": "Total Quantity"
             },
             {
               "field": {
@@ -616,7 +616,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Valuation Detail'"
+                  "Value": "'Stock Value Detail'"
                 }
               }
             },

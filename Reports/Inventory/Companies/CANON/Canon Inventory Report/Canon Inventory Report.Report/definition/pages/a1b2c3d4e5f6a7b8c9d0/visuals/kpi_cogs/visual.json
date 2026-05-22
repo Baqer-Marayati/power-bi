@@ -177,7 +177,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Available Qty'"
+                  "Value": "'Available to Sell'"
                 }
               }
             },

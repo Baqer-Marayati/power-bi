@@ -177,7 +177,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'On Order Qty'"
+                  "Value": "'On Purchase Order'"
                 }
               }
             },

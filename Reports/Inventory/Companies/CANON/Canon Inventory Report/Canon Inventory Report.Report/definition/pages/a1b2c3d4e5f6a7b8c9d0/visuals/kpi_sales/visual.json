@@ -177,7 +177,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total Qty'"
+                  "Value": "'Total Quantity'"
                 }
               }
             },

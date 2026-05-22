@@ -235,7 +235,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Stock Qty'"
+                  "Value": "'Total Quantity'"
                 }
               }
             },

@@ -177,7 +177,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Committed Qty'"
+                  "Value": "'Reserved / Committed'"
                 }
               }
             },

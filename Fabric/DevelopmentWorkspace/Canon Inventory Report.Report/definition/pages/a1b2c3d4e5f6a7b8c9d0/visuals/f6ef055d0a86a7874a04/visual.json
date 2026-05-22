@@ -645,7 +645,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Qty and Cost by Business Type'"
+                  "Value": "'Quantity & Cost by Business Type'"
                 }
               }
             },

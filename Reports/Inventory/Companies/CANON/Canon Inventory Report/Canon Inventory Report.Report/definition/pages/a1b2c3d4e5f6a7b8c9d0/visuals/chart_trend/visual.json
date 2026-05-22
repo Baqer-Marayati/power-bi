@@ -157,7 +157,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Monthly Total COGS vs Current Total Cost'"
+                  "Value": "'Monthly Unit Cost vs Current Unit Cost'"
                 }
               }
             },

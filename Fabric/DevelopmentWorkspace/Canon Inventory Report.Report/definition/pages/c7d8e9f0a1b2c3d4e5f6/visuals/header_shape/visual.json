@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Inventory Valuation'"
+                  "Value": "'Stock Value'"
                 }
               }
             },
@@ -83,7 +83,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Stock value breakdown by business type, group, product and segment — drill into valuation details.'"
+                  "Value": "'What your stock is worth, by category.'"
                 }
               }
             },

@@ -83,7 +83,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Track quantity movement, availability, and product mix at a glance.'"
+                  "Value": "'Quantities and unit costs at a glance.'"
                 }
               }
             },

@@ -630,7 +630,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Average Unit COGS Trend by Business Type'"
+                  "Value": "'Unit Cost Trend by Business Type'"
                 }
               }
             },

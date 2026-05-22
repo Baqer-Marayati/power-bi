@@ -185,7 +185,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Valued Items'"
+                  "Value": "'Items in Stock'"
                 }
               }
             },
