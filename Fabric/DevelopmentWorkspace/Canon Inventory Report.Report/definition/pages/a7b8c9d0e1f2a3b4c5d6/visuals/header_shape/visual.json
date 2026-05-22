@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Reorder Actions'"
+                  "Value": "'Stock Actions'"
                 }
               }
             },
@@ -83,7 +83,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'SKU-level buy, hold, and reduce decisions from sales velocity and target stock-cover policy.'"
+                  "Value": "'Which items to buy, hold, or reduce, and by how much.'"
                 }
               }
             },

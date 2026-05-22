@@ -368,7 +368,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Action Value by Cover Status'"
+                  "Value": "'Stock Value by Status'"
                 }
               }
             },

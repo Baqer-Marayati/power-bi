@@ -434,7 +434,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Action Value by Business Type'"
+                  "Value": "'Stock Value by Business Type'"
                 }
               }
             },

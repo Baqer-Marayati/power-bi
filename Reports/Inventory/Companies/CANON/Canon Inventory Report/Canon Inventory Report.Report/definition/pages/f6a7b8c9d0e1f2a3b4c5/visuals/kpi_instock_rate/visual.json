@@ -185,7 +185,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Target Stock Value'"
+                  "Value": "'Target Value'"
                 }
               }
             },

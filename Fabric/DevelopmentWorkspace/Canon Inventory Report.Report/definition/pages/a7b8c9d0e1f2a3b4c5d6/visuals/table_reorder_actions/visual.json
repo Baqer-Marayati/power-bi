@@ -57,8 +57,8 @@
                 }
               },
               "queryRef": "_Measures.Reorder Cover Bar SVG",
-              "nativeQueryRef": "Cover",
-              "displayName": "Cover"
+              "nativeQueryRef": "Stock vs Target",
+              "displayName": "Stock vs Target"
             },
             {
               "field": {
@@ -72,8 +72,8 @@
                 }
               },
               "queryRef": "_Measures.Reorder On Hand",
-              "nativeQueryRef": "On hand",
-              "displayName": "On hand"
+              "nativeQueryRef": "In Stock",
+              "displayName": "In Stock"
             },
             {
               "field": {
@@ -88,7 +88,7 @@
               },
               "queryRef": "_Measures.Reorder Target Display",
               "nativeQueryRef": "Target",
-              "displayName": "Target"
+              "displayName": "Target Qty"
             },
             {
               "field": {
@@ -132,8 +132,8 @@
                 }
               },
               "queryRef": "_Measures.Reorder Velocity Display",
-              "nativeQueryRef": "Velocity",
-              "displayName": "Velocity"
+              "nativeQueryRef": "Sales Rate",
+              "displayName": "Sales Rate"
             },
             {
               "field": {
@@ -147,8 +147,8 @@
                 }
               },
               "queryRef": "_Measures.Reorder Move Qty Value",
-              "nativeQueryRef": "Move qty",
-              "displayName": "Move qty"
+              "nativeQueryRef": "Recommended quantity",
+              "displayName": "Recommended quantity"
             },
             {
               "field": {
@@ -162,8 +162,8 @@
                 }
               },
               "queryRef": "_Measures.Reorder IQD Impact",
-              "nativeQueryRef": "IQD impact",
-              "displayName": "IQD impact"
+              "nativeQueryRef": "Value Impact",
+              "displayName": "Value Impact"
             },
             {
               "field": {

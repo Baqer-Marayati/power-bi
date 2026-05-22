@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Stock Cover'"
+                  "Value": "'Stock Health'"
                 }
               }
             },
@@ -76,7 +76,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Current stock value by policy status, plus target value, missing reorder gap, and excess value at average cost.'"
+                  "Value": "'See overstock, understock, and stock that is not moving.'"
                 }
               }
             }

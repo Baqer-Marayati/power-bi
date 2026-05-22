@@ -185,7 +185,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Non-Moving Stock Value'"
+                  "Value": "'Slow / Dead Stock'"
                 }
               }
             },
