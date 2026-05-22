@@ -1,13 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
-  "name": "brand_logo_canon",
+  "name": "10c51d0eb96bd19da735",
   "position": {
-    "x": 191.28358208955225,
+    "x": 0,
     "y": 0,
-    "z": 22000,
+    "z": 21000,
     "height": 63,
-    "width": 164.71641791044777,
-    "tabOrder": 2000
+    "width": 164.71641791044777
   },
   "visual": {
     "visualType": "image",
@@ -20,7 +19,7 @@
                 "name": {
                   "expr": {
                     "Literal": {
-                      "Value": "'Canon_logo_transparent.png'"
+                      "Value": "'Aljazeera logo.png'"
                     }
                   }
                 },
@@ -29,7 +28,7 @@
                     "ResourcePackageItem": {
                       "PackageName": "RegisteredResources",
                       "PackageType": 1,
-                      "ItemName": "Canon_logo_transparent4826537244702471.png"
+                      "ItemName": "Aljazeera_logo5594601849612262.png"
                     }
                   }
                 },
@@ -48,5 +47,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "brand_group"
+  "parentGroupName": "7ef594a73f80b008b82a"
 }

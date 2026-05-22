@@ -1,13 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
-  "name": "brand_divider",
+  "name": "a28ef607c4f7a019edb9",
   "position": {
     "x": 177.99999999999997,
     "y": 3.78,
     "z": 23000,
     "height": 50.4,
-    "width": 17.268656716417908,
-    "tabOrder": 0
+    "width": 17.268656716417908
   },
   "visual": {
     "visualType": "shape",
@@ -76,5 +75,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "brand_group"
+  "parentGroupName": "7ef594a73f80b008b82a"
 }
