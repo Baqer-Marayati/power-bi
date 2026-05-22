@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "chart_stock_level",
   "position": {
-    "x": 3309.567934512064,
-    "y": 378.0263671875,
+    "x": 1166.8984797316791,
+    "y": 265.5,
     "z": 8000,
-    "height": 480.5419921875,
-    "width": 1209.0509333018622,
+    "height": 337.5,
+    "width": 625.372726457062,
     "tabOrder": 19000
   },
   "visual": {

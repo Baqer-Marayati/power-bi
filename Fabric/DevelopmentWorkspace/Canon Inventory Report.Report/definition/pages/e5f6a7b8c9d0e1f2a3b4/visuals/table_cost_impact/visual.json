@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "table_cost_impact",
   "position": {
-    "x": 2040.6493682009464,
-    "y": 860.3989955357143,
+    "x": 510.55965924970855,
+    "y": 604.2857142857143,
     "z": 19000,
-    "height": 652.1641322544643,
-    "width": 2477.28136590023,
+    "height": 458.03571428571433,
+    "width": 1281.3556148238038,
     "tabOrder": 22000
   },
   "visual": {

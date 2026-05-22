@@ -82,47 +82,7 @@
     },
     {
       "source": "slicer_warehouse",
-      "target": "slicer_item",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_warehouse",
       "target": "slicer_item_search",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_item",
-      "target": "kpi_stock_value",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_item",
-      "target": "kpi_stock_qty",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_item",
-      "target": "kpi_avg_cost",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_item",
-      "target": "kpi_item_count",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_item",
-      "target": "kpi_gr_value",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_item",
-      "target": "chart_donut",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_item",
-      "target": "matrix_detail",
       "type": "DataFilter"
     },
     {

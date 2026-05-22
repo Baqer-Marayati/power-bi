@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_purchase_unit_cost",
   "position": {
-    "x": 2042.7137693391962,
-    "y": 192.216796875,
+    "x": 511.627455595395,
+    "y": 135.0,
     "z": 15000,
-    "height": 147.3662109375,
-    "width": 443.1581110110411,
+    "height": 103.5,
+    "width": 229.22028220736934,
     "tabOrder": 15000
   },
   "visual": {

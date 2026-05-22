@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "chart_reorder_by_grp",
   "position": {
-    "x": 2042.7137693391962,
-    "y": 897.01171875,
+    "x": 511.627455595395,
+    "y": 630.0,
     "z": 5000,
-    "height": 506.1708984375,
-    "width": 1209.0509333018622,
+    "height": 355.5,
+    "width": 625.372726457062,
     "tabOrder": 16000
   },
   "visual": {

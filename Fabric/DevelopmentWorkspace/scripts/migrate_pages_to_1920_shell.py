@@ -172,6 +172,9 @@ def literal_str(expr_obj) -> str | None:
 
 def transform_content_position(pos: dict) -> None:
     x, y, w, h = pos["x"], pos["y"], pos["width"], pos["height"]
+    # Skip if content was already shifted to the 1920 shell main area.
+    if x >= NEW_MAIN_X - 10:
+        return
     if x >= OLD_MAIN_X - 8:
         pos["x"] = NEW_MAIN_X + (x - OLD_MAIN_X) * SX
         pos["width"] = w * SX
@@ -425,11 +428,34 @@ def update_page_json(page_path: Path) -> None:
     save_json(page_path, data)
 
 
+def prune_visual_interactions(page_dir: Path) -> None:
+    page_path = page_dir / "page.json"
+    data = load_json(page_path)
+    interactions = data.get("visualInteractions")
+    if not interactions:
+        return
+    visuals_dir = page_dir / "visuals"
+    visual_names = {
+        v.name
+        for v in visuals_dir.iterdir()
+        if v.is_dir() and (v / "visual.json").exists()
+    }
+    pruned = [
+        item
+        for item in interactions
+        if item.get("source") in visual_names and item.get("target") in visual_names
+    ]
+    if len(pruned) != len(interactions):
+        data["visualInteractions"] = pruned
+        save_json(page_path, data)
+
+
 def migrate_page(page_id: str, ref_dir: Path, dropdown_tpl: dict, search_tpl: dict, kpi_tpl: dict, chart_vco: dict, table_vco: dict, ref_header: dict) -> None:
     page_dir = REPORT_PAGES / page_id
     visuals_dir = page_dir / "visuals"
 
     update_page_json(page_dir / "page.json")
+    prune_visual_interactions(page_dir)
 
     # Remove old labels, logo shell, and orphan visuals
     for child in list(visuals_dir.iterdir()):

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_addon_pct",
   "position": {
-    "x": 2550.900516205119,
-    "y": 192.216796875,
+    "x": 774.4833226918893,
+    "y": 135.0,
     "z": 22000,
-    "height": 147.3662109375,
-    "width": 443.1581110110411,
+    "height": 103.5,
+    "width": 229.22028220736934,
     "tabOrder": 18000
   },
   "visual": {

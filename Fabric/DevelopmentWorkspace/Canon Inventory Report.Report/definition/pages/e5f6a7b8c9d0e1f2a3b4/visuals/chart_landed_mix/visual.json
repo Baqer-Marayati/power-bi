@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_landed_mix",
   "position": {
-    "x": 3308.9658175134077,
-    "y": 356.4019775390625,
+    "x": 1166.5870391308538,
+    "y": 250.3125,
     "z": 23000,
-    "height": 476.5374755859375,
-    "width": 1210.2551672991744,
+    "height": 334.6875,
+    "width": 625.9956076587124,
     "tabOrder": 23000
   },
   "visual": {
