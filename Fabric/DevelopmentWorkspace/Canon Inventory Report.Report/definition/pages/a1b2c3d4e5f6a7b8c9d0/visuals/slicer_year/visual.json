@@ -3,9 +3,9 @@
   "name": "slicer_year",
   "position": {
     "x": 16,
-    "y": 118,
+    "y": 116,
     "z": 13000,
-    "height": 56,
+    "height": 68,
     "width": 324,
     "tabOrder": 2000
   },
@@ -86,7 +86,7 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "11D"
                 }
               }
             },
@@ -217,7 +217,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#9DB4CE'"
+                      "Value": "'#D4E2EF'"
                     }
                   }
                 }
@@ -233,7 +233,7 @@
             "width": {
               "expr": {
                 "Literal": {
-                  "Value": "1.5D"
+                  "Value": "1D"
                 }
               }
             }
@@ -277,28 +277,28 @@
             "top": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "10D"
                 }
               }
             },
             "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "10D"
                 }
               }
             },
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "14D"
                 }
               }
             },
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "14D"
                 }
               }
             }
