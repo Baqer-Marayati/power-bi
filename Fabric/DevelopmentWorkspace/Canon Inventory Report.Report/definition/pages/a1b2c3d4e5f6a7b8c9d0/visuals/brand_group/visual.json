@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "brand_group",
   "position": {
-    "x": 1168.0324419009225,
-    "y": 40,
+    "x": 1505.1156298320611,
+    "y": 45.0,
     "z": 24000,
-    "height": 50,
-    "width": 268,
+    "height": 56.25,
+    "width": 345.3422818791946,
     "tabOrder": 24000
   },
   "visualGroup": {

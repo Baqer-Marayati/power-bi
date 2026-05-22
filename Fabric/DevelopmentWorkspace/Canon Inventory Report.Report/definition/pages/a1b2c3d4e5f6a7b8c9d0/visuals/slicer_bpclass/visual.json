@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "slicer_bpclass",
   "position": {
-    "x": 36.9858666570679,
-    "y": 617.77777777777771,
+    "x": 47.65964025608749,
+    "y": 694.9999999999999,
     "z": 21000,
-    "height": 68.571428571428569,
-    "width": 335.71428571428572,
+    "height": 77.14285714285714,
+    "width": 432.59827420901246,
     "tabOrder": 9000
   },
   "visual": {

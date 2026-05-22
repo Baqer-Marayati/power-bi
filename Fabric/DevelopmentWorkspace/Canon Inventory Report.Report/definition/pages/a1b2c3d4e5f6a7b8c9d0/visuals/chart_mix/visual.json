@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_mix",
   "position": {
-    "x": 943.31815618663745,
-    "y": 230.00000000000003,
+    "x": 1215.5509126700294,
+    "y": 258.75000000000006,
     "z": 0,
-    "height": 317.14285714285717,
-    "width": 515.71428571428578,
+    "height": 356.78571428571433,
+    "width": 664.5445829338447,
     "tabOrder": 16000
   },
   "visual": {
