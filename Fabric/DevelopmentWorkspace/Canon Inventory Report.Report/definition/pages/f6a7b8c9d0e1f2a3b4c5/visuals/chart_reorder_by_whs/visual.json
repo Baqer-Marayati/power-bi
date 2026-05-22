@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "chart_reorder_by_whs",
   "position": {
-    "x": 1166.8984797316791,
-    "y": 630.0,
+    "x": 3309.567934512064,
+    "y": 897.01171875,
     "z": 6000,
-    "height": 355.5,
-    "width": 625.372726457062,
+    "height": 506.1708984375,
+    "width": 1209.0509333018622,
     "tabOrder": 17000
   },
   "visual": {
@@ -175,9 +175,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E2EAE6'"
+                      "Value": "'#C9D5E3'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
                 }
               }
             }
@@ -201,21 +208,35 @@
                 }
               }
             },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#223430'"
-                    }
-                  }
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "13D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2E3A42'"
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }

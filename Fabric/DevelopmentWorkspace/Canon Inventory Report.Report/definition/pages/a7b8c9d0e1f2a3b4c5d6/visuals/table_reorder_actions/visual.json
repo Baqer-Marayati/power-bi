@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "table_reorder_actions",
   "position": {
-    "x": 511.627455595395,
-    "y": 135.0,
+    "x": 2042.7137693391962,
+    "y": 192.216796875,
     "z": 0,
-    "height": 918.0,
-    "width": 1280.643750593346,
+    "height": 1307.07421875,
+    "width": 2475.9050984747296,
     "tabOrder": 12000
   },
   "visual": {

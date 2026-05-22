@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_largest_driver",
   "position": {
-    "x": 1037.3391897883835,
-    "y": 135.0,
+    "x": 3059.087263071041,
+    "y": 192.216796875,
     "z": 21000,
-    "height": 103.5,
-    "width": 229.22028220736934,
+    "height": 147.3662109375,
+    "width": 443.1581110110411,
     "tabOrder": 19000
   },
   "visual": {
