@@ -46,32 +46,7 @@
   },
   "visualInteractions": [
     {
-      "source": "slicer_item_group",
-      "target": "table_reorder_actions",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_group_type",
-      "target": "table_reorder_actions",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_product_type",
-      "target": "table_reorder_actions",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_segment_type",
-      "target": "table_reorder_actions",
-      "type": "DataFilter"
-    },
-    {
       "source": "slicer_stock_status",
-      "target": "table_reorder_actions",
-      "type": "DataFilter"
-    },
-    {
-      "source": "slicer_item_search",
       "target": "table_reorder_actions",
       "type": "DataFilter"
     }

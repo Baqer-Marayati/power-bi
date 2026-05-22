@@ -3,10 +3,11 @@
   "name": "brand_group",
   "position": {
     "x": 1492.2449052598247,
-    "y": 46.81481481481482,
-    "width": 356,
+    "y": 46.814814814814817,
+    "z": 10000,
     "height": 63,
-    "z": 24000
+    "width": 356,
+    "tabOrder": 2000
   },
   "visualGroup": {
     "displayName": "Group 1",

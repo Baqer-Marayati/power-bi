@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_stock_level",
   "position": {
     "x": 1202.2614259768648,
@@ -7,7 +7,7 @@
     "z": 8000,
     "height": 358.40625,
     "width": 664.462890625,
-    "tabOrder": 19000
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "donutChart",
@@ -144,7 +144,6 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.StockCoverStatus",
             "data": [
               {
                 "scopeId": {
@@ -168,7 +167,8 @@
                   }
                 }
               }
-            ]
+            ],
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus"
           }
         },
         {
@@ -186,7 +186,6 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.StockCoverStatus",
             "data": [
               {
                 "scopeId": {
@@ -210,7 +209,8 @@
                   }
                 }
               }
-            ]
+            ],
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus"
           }
         },
         {
@@ -228,7 +228,6 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.StockCoverStatus",
             "data": [
               {
                 "scopeId": {
@@ -252,7 +251,8 @@
                   }
                 }
               }
-            ]
+            ],
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus"
           }
         },
         {
@@ -270,7 +270,6 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.StockCoverStatus",
             "data": [
               {
                 "scopeId": {
@@ -294,7 +293,8 @@
                   }
                 }
               }
-            ]
+            ],
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus"
           }
         }
       ]

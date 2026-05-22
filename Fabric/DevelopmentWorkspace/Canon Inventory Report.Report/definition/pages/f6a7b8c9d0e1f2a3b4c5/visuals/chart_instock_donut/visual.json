@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_instock_donut",
   "position": {
     "x": 511.627455595395,
@@ -7,7 +7,7 @@
     "z": 7000,
     "height": 358.40625,
     "width": 664.462890625,
-    "tabOrder": 18000
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "barChart",

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_reorder_by_whs",
   "position": {
     "x": 1202.2614259768648,
@@ -7,7 +7,7 @@
     "z": 6000,
     "height": 381.65625,
     "width": 664.462890625,
-    "tabOrder": 17000
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "clusteredBarChart",
