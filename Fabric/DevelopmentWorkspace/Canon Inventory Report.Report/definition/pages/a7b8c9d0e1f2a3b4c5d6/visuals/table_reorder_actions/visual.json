@@ -3,10 +3,10 @@
   "name": "table_reorder_actions",
   "position": {
     "x": 511.627455595395,
-    "y": 135.0,
-    "z": 0,
-    "height": 918.0,
-    "width": 1280.643750593346,
+    "y": 136.81481481481484,
+    "z": 9000,
+    "height": 893.1851851851852,
+    "width": 1355.5973154362418,
     "tabOrder": 12000
   },
   "visual": {
@@ -406,7 +406,7 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "14D"
                 }
               }
             },
@@ -445,7 +445,7 @@
             "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "6D"
+                  "Value": "2D"
                 }
               }
             }
@@ -467,7 +467,15 @@
       ],
       "columnWidth": [
         {
-          "properties": {},
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            }
+          },
           "selector": {
             "metadata": "_Measures.Reorder Action Pill SVG"
           }
@@ -477,7 +485,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "210D"
+                  "Value": "248.6248351455116D"
                 }
               }
             }
@@ -491,7 +499,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "150D"
+                  "Value": "177.58916796107974D"
                 }
               }
             }
@@ -505,7 +513,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "75D"
+                  "Value": "88.79458398053987D"
                 }
               }
             }
@@ -519,7 +527,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "70D"
+                  "Value": "82.87494504850388D"
                 }
               }
             }
@@ -533,7 +541,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "75D"
+                  "Value": "88.79458398053987D"
                 }
               }
             }
@@ -547,7 +555,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "75D"
+                  "Value": "88.79458398053987D"
                 }
               }
             }
@@ -561,7 +569,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "85D"
+                  "Value": "100.63386184461184D"
                 }
               }
             }
@@ -575,7 +583,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "85D"
+                  "Value": "100.63386184461184D"
                 }
               }
             }
@@ -589,7 +597,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "145D"
+                  "Value": "171.66952902904373D"
                 }
               }
             }
@@ -603,7 +611,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "65D"
+                  "Value": "76.95530611646788D"
                 }
               }
             }
@@ -617,7 +625,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "110D"
+                  "Value": "130.2320565047918D"
                 }
               }
             }
@@ -627,25 +635,57 @@
           }
         },
         {
-          "properties": {},
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            }
+          },
           "selector": {
             "metadata": "Fact_StockCoverPolicy.U_BusinessType"
           }
         },
         {
-          "properties": {},
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            }
+          },
           "selector": {
             "metadata": "Fact_StockCoverPolicy.U_GroupType"
           }
         },
         {
-          "properties": {},
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            }
+          },
           "selector": {
             "metadata": "Fact_StockCoverPolicy.U_ProductType"
           }
         },
         {
-          "properties": {},
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            }
+          },
           "selector": {
             "metadata": "Fact_StockCoverPolicy.U_SegmentType"
           }

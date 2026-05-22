@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "kpi_gr_value",
   "position": {
-    "x": 1563.0509239813719,
-    "y": 135.0,
+    "x": 786.8704090155295,
+    "y": 136.81481481481484,
     "z": 1000,
     "height": 103.5,
-    "width": 229.22028220736934,
+    "width": 254.62550175570382,
     "tabOrder": 6000
   },
   "visual": {
@@ -83,7 +83,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Total On Hand"
+            "metadata": "_Measures.IV Warehouse Count"
           }
         },
         {
@@ -91,14 +91,28 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "21D"
+                  "Value": "18D"
                 }
               }
             },
             "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
                 }
               }
             }

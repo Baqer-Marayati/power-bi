@@ -40,6 +40,7 @@ PANEL_X = 55
 PANEL_Y = 136.66666666666669
 PANEL_W = 428.33333333333337
 PANEL_BOTTOM_PAD = 24
+EXEC_PANEL_H = 893.33333333333337
 
 HEADER_POS = {
     "x": 511.627455595395,
@@ -47,6 +48,7 @@ HEADER_POS = {
     "width": 695.83892617449658,
     "height": 67.5,
 }
+KPI_Y = 136.81481481481484
 BRAND_GROUP_POS = {
     "x": 1492.2449052598247,
     "y": 46.814814814814817,
@@ -114,7 +116,7 @@ SLICER_HEADER_DEFAULTS: dict[str, str] = {
 
 SLICER_Z_START = 15000
 HEADER_Z = 23000
-MAIN_CONTENT_MIN_Y = 128.0
+MAIN_CONTENT_MIN_Y = KPI_Y
 
 CHART_TYPES = (
     "areaChart",
@@ -314,6 +316,27 @@ def slicer_header_from_label(page_dir: Path, slicer_name: str, slicer_data: dict
     return default
 
 
+def fix_kpi_card_formatting(target: dict) -> None:
+    query_ref = None
+    try:
+        query_ref = target["visual"]["query"]["queryState"]["Data"]["projections"][0]["queryRef"]
+    except (KeyError, IndexError, TypeError):
+        pass
+    value_props = {
+        "fontSize": {"expr": {"Literal": {"Value": "18D"}}},
+        "bold": {"expr": {"Literal": {"Value": "false"}}},
+        "labelDisplayUnits": {"expr": {"Literal": {"Value": "0D"}}},
+        "labelPrecision": {"expr": {"Literal": {"Value": "2L"}}},
+    }
+    entries = [{"properties": dict(value_props), "selector": {"id": "default"}}]
+    if query_ref:
+        entries.insert(0, {"properties": dict(value_props), "selector": {"metadata": query_ref}})
+    target["visual"]["objects"]["value"] = entries
+    title = target["visual"]["visualContainerObjects"]["title"][0]["properties"]
+    title["fontSize"] = {"expr": {"Literal": {"Value": "12D"}}}
+    title["bold"] = {"expr": {"Literal": {"Value": "false"}}}
+
+
 def apply_kpi_style(target: dict, template: dict) -> None:
     title_text = None
     vco = target.get("visual", {}).get("visualContainerObjects", {})
@@ -337,7 +360,11 @@ def apply_kpi_style(target: dict, template: dict) -> None:
             "expr": {"Literal": {"Value": f"'{title_text}'"}}
         }
 
-    transform_content_position(target["position"])
+    fix_kpi_card_formatting(target)
+
+    if keep_pos.get("y", 0) < KPI_Y - 1:
+        keep_pos["y"] = KPI_Y
+    target["position"] = keep_pos
     if keep_tab is not None:
         target["position"]["tabOrder"] = keep_tab
     if keep_z is not None:
@@ -493,7 +520,9 @@ def migrate_page(page_id: str, ref_dir: Path, dropdown_tpl: dict, search_tpl: di
         panel["position"]["x"] = PANEL_X
         panel["position"]["y"] = PANEL_Y
         panel["position"]["width"] = PANEL_W
-        panel["position"]["height"] = compute_panel_height(last_bottom)
+        panel["position"]["height"] = max(compute_panel_height(last_bottom), EXEC_PANEL_H)
+        if len(dropdown_names) <= len(EXEC_FILTER_STACK):
+            panel["position"]["height"] = EXEC_PANEL_H
         panel["position"]["z"] = 8000
         save_json(panel_path, panel)
 

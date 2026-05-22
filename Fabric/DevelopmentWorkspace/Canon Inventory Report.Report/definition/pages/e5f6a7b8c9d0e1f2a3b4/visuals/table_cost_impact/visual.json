@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "table_cost_impact",
   "position": {
-    "x": 510.55965924970855,
-    "y": 604.2857142857143,
+    "x": 511.627455595395,
+    "y": 648.28125,
     "z": 19000,
-    "height": 458.03571428571433,
-    "width": 1281.3556148238038,
+    "height": 381.65625,
+    "width": 1355.5973154362418,
     "tabOrder": 22000
   },
   "visual": {
@@ -258,7 +258,7 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "14D"
                 }
               }
             },
@@ -277,6 +277,13 @@
                       "Value": "'#E2EAE6'"
                     }
                   }
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
                 }
               }
             }
@@ -423,7 +430,15 @@
       ],
       "columnWidth": [
         {
-          "properties": {},
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            }
+          },
           "selector": {
             "metadata": "Fact_LandedCostAllocation.LcDocNum"
           }
@@ -433,7 +448,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "380D"
+                  "Value": "396.25152297367066D"
                 }
               }
             }
@@ -447,7 +462,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "120D"
+                  "Value": "125.13205988642233D"
                 }
               }
             }
@@ -457,7 +472,15 @@
           }
         },
         {
-          "properties": {},
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            }
+          },
           "selector": {
             "metadata": "_Measures.Selected LC Document Date"
           }
@@ -467,7 +490,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "100D"
+                  "Value": "104.2767165720186D"
                 }
               }
             }
@@ -481,7 +504,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "150D"
+                  "Value": "156.4150748580279D"
                 }
               }
             }
@@ -495,7 +518,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "140D"
+                  "Value": "145.98740320082604D"
                 }
               }
             }
@@ -509,7 +532,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "130D"
+                  "Value": "135.5597315436242D"
                 }
               }
             }
@@ -523,7 +546,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "140D"
+                  "Value": "145.98740320082604D"
                 }
               }
             }
@@ -533,7 +556,15 @@
           }
         },
         {
-          "properties": {},
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            }
+          },
           "selector": {
             "metadata": "_Measures.Selected Landed Uplift % vs Supplier Base"
           }
@@ -543,7 +574,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "140D"
+                  "Value": "145.98740320082604D"
                 }
               }
             }

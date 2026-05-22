@@ -3,10 +3,10 @@
   "name": "chart_reorder_by_grp",
   "position": {
     "x": 511.627455595395,
-    "y": 630.0,
+    "y": 648.28125,
     "z": 5000,
-    "height": 355.5,
-    "width": 625.372726457062,
+    "height": 381.65625,
+    "width": 664.462890625,
     "tabOrder": 16000
   },
   "visual": {
