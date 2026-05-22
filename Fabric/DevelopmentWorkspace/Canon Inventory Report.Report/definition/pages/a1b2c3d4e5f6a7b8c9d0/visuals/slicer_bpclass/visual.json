@@ -81,23 +81,6 @@
           }
         }
       ],
-      "general": [
-        {
-          "properties": {
-            "outlineColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#C9D5E3'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
       "items": [
         {
           "properties": {
@@ -114,17 +97,6 @@
                   "expr": {
                     "Literal": {
                       "Value": "'#485257'"
-                    }
-                  }
-                }
-              }
-            },
-            "background": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
