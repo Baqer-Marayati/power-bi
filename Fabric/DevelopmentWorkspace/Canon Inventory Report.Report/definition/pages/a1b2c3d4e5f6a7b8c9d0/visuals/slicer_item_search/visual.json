@@ -3,10 +3,10 @@
   "name": "slicer_item_search",
   "position": {
     "x": 24,
-    "y": 596,
+    "y": 578,
     "z": 21000,
-    "height": 148,
-    "width": 280,
+    "height": 162,
+    "width": 304,
     "tabOrder": 9000
   },
   "visual": {
@@ -120,6 +120,13 @@
                   "Value": "true"
                 }
               }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
             }
           }
         }
@@ -155,6 +162,13 @@
                       "Value": "'#2E3A42'"
                     }
                   }
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
                 }
               }
             }

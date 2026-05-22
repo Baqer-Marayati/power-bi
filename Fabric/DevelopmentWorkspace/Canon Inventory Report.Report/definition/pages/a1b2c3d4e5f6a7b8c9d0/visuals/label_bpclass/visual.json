@@ -3,10 +3,10 @@
   "name": "label_bpclass",
   "position": {
     "x": 24,
-    "y": 528,
+    "y": 508,
     "z": 14000,
-    "height": 18,
-    "width": 280,
+    "height": 20,
+    "width": 304,
     "tabOrder": 18000
   },
   "visual": {
@@ -49,7 +49,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "11D"
                 }
               }
             },
