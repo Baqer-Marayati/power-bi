@@ -3,8 +3,8 @@
   "name": "table_cost_impact",
   "position": {
     "x": 511.627455595395,
-    "y": 648.28125,
-    "z": 4000,
+    "y": 663.0,
+    "z": 9000,
     "height": 381.65625,
     "width": 1355.5973154362418,
     "tabOrder": 9000
@@ -430,15 +430,7 @@
       ],
       "columnWidth": [
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "0.0D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Fact_LandedCostAllocation.LcDocNum"
           }
@@ -472,15 +464,7 @@
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "0.0D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Selected LC Document Date"
           }
@@ -556,15 +540,7 @@
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "0.0D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Selected Landed Uplift % vs Supplier Base"
           }

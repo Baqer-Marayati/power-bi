@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_out_of_stock",
   "position": {
-    "x": 1612.5992692759328,
-    "y": 136.81481481481484,
+    "x": 1337.3563158557984,
+    "y": 152.0,
     "z": 4000,
     "height": 103.5,
     "width": 254.62550175570382,

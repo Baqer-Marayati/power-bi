@@ -3,9 +3,9 @@
   "name": "table_reorder_actions",
   "position": {
     "x": 511.627455595395,
-    "y": 136.81481481481484,
-    "z": 1000,
-    "height": 893.18518518518522,
+    "y": 152.0,
+    "z": 9000,
+    "height": 878.0,
     "width": 1355.5973154362418,
     "tabOrder": 4000
   },
@@ -467,15 +467,7 @@
       ],
       "columnWidth": [
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "0.0D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Reorder Action Pill SVG"
           }
@@ -635,57 +627,25 @@
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "0.0D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Fact_StockCoverPolicy.U_BusinessType"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "0.0D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Fact_StockCoverPolicy.U_GroupType"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "0.0D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Fact_StockCoverPolicy.U_ProductType"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "0.0D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "Fact_StockCoverPolicy.U_SegmentType"
           }
