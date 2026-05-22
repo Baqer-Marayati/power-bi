@@ -481,7 +481,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'monthly % of landed by category'"
+                  "Value": "'Monthly import-cost mix'"
                 }
               }
             },

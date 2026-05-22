@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "_Measures.Procurement KPI Add-On Total",
-              "nativeQueryRef": "Total add-ons (IQD)"
+              "nativeQueryRef": "Import & Handling Costs"
             }
           ]
         }
@@ -235,7 +235,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total add-ons (IQD)'"
+                  "Value": "'Import & Handling Costs'"
                 }
               }
             },

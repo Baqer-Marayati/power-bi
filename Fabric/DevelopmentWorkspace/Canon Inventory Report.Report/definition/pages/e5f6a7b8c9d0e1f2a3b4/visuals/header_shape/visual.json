@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Procurement & landed cost'"
+                  "Value": "'Landed Cost'"
                 }
               }
             },
@@ -83,7 +83,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Supplier cost, add-ons, and what to review next.'"
+                  "Value": "'Supplier price plus import costs (freight, duty, insurance, handling) for closed import documents.'"
                 }
               }
             },

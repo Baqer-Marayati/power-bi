@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "_Measures.Procurement KPI Supplier Total",
-              "nativeQueryRef": "Total purchase (IQD)"
+              "nativeQueryRef": "Supplier Cost"
             }
           ]
         }
@@ -203,7 +203,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total purchase (IQD)'"
+                  "Value": "'Supplier Cost'"
                 }
               }
             },

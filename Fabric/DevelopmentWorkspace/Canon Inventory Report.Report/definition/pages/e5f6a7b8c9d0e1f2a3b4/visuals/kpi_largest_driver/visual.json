@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "_Measures.Procurement KPI Add-On % of Landed",
-              "nativeQueryRef": "Add-on % of landed"
+              "nativeQueryRef": "Import Cost Share %"
             }
           ]
         }
@@ -235,7 +235,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Add-on % of landed'"
+                  "Value": "'Import Cost Share %'"
                 }
               }
             },

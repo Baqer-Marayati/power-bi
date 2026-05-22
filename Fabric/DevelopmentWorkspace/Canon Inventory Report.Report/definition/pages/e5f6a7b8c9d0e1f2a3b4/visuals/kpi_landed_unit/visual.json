@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "_Measures.Procurement KPI Add-On Per Unit",
-              "nativeQueryRef": "Add-on IQD / unit"
+              "nativeQueryRef": "Import Cost per Unit"
             }
           ]
         }
@@ -235,7 +235,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Add-on IQD / unit'"
+                  "Value": "'Import Cost per Unit'"
                 }
               }
             },

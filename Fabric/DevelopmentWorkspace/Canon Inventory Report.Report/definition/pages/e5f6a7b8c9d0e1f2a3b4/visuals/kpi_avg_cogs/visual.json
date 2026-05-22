@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "_Measures.Procurement KPI Largest Add-On",
-              "nativeQueryRef": "Largest add-on"
+              "nativeQueryRef": "Largest Import Cost"
             }
           ]
         }
@@ -235,7 +235,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Largest add-on'"
+                  "Value": "'Largest Import Cost'"
                 }
               }
             },
