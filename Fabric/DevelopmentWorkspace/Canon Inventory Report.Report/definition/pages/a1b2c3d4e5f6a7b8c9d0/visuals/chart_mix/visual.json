@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_mix",
   "position": {
-    "x": 1202.680188097793,
-    "y": 260.56481481481489,
+    "x": 1203.7687634903605,
+    "y": 262.40123456790121,
     "z": 0,
     "height": 356.78571428571433,
     "width": 664.54458293384471,

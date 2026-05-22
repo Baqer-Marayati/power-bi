@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_stock_value",
   "position": {
-    "x": 511.627455595395,
-    "y": 152.0,
+    "x": 511.66666666666669,
+    "y": 136.66666666666669,
     "z": 4000,
-    "height": 103.5,
-    "width": 254.62550175570382,
+    "height": 103.33333333333334,
+    "width": 255,
     "tabOrder": 9000
   },
   "visual": {

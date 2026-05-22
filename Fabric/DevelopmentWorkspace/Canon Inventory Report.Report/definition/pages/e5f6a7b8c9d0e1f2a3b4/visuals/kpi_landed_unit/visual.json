@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_landed_unit",
   "position": {
-    "x": 1612.5992692759328,
-    "y": 152.0,
+    "x": 1613.3333333333335,
+    "y": 136.66666666666669,
     "z": 5000,
-    "height": 103.5,
-    "width": 254.62550175570382,
+    "height": 103.33333333333334,
+    "width": 253.33333333333334,
     "tabOrder": 4000
   },
   "visual": {

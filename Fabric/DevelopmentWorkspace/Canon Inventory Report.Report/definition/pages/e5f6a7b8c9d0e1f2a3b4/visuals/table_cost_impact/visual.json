@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "table_cost_impact",
   "position": {
-    "x": 511.627455595395,
-    "y": 663.0,
+    "x": 511.66666666666669,
+    "y": 653.33333333333337,
     "z": 9000,
-    "height": 381.65625,
-    "width": 1355.5973154362418,
+    "height": 376.66666666666669,
+    "width": 1355,
     "tabOrder": 9000
   },
   "visual": {
@@ -200,10 +200,10 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Procurement KPI Add-On Total"
+                "Property": "Selected LC Document Date"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }
@@ -470,71 +470,31 @@
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "104.2767165720186D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Procurement KPI Receipt Qty"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "156.4150748580279D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Procurement KPI Supplier Total"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "145.98740320082604D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Selected Supplier Base Unit Cost"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "135.5597315436242D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Procurement KPI Add-On Total"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "145.98740320082604D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Selected Landed Unit Cost"
           }

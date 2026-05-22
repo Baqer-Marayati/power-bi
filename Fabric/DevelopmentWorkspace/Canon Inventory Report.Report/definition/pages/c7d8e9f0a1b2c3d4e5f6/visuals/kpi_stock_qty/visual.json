@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_stock_qty",
   "position": {
-    "x": 786.8704090155295,
-    "y": 152.0,
+    "x": 787.14285714285722,
+    "y": 137.14285714285714,
     "z": 3000,
-    "height": 103.5,
-    "width": 254.62550175570382,
+    "height": 102.85714285714286,
+    "width": 254.28571428571431,
     "tabOrder": 8000
   },
   "visual": {
