@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "panel_filter_dropdowns",
   "position": {
-    "x": 2.857142857142857,
-    "y": 101.42857142857143,
+    "x": 29.843009514210756,
+    "y": 116.34920634920636,
     "z": 8000,
-    "height": 617.1428571428572,
-    "width": 344.28571428571433,
+    "height": 587.14285714285722,
+    "width": 350,
     "tabOrder": 1000
   },
   "visual": {
@@ -130,7 +130,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -169,14 +169,28 @@
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "0D"
                 }
               }
             },
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "0D"
+                }
+              }
+            },
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }

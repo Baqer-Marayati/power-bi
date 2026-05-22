@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "slicer_year",
   "position": {
-    "x": 15.71015478244609,
-    "y": 126.20408163265303,
+    "x": 36.9858666570679,
+    "y": 124.92063492063492,
     "z": 15000,
-    "height": 68,
-    "width": 324,
+    "height": 68.571428571428569,
+    "width": 335.71428571428572,
     "tabOrder": 3000
   },
   "visual": {
