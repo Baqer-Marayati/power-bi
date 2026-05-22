@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "brand_logo_aj",
   "position": {
-    "x": 0.0,
-    "y": 0.0,
+    "x": 0,
+    "y": 0,
     "z": 21000,
-    "height": 56.25,
-    "width": 159.78523489932886,
+    "height": 63,
+    "width": 164.71641791044777,
     "tabOrder": 1000
   },
   "visual": {

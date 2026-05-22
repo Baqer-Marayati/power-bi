@@ -2,15 +2,30 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "brand_group",
   "position": {
-    "x": 1505.1156298320611,
-    "y": 45.0,
+    "x": 1492.2449052598247,
+    "y": 46.814814814814817,
     "z": 24000,
-    "height": 56.25,
-    "width": 345.3422818791946,
+    "height": 63,
+    "width": 356,
     "tabOrder": 24000
   },
   "visualGroup": {
     "displayName": "Group 1",
-    "groupMode": "ScaleMode"
+    "groupMode": "ScaleMode",
+    "objects": {
+      "lockAspect": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
   }
 }

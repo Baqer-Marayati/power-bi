@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "header_shape",
   "position": {
-    "x": 524.4981801676314,
-    "y": 40.5,
+    "x": 511.627455595395,
+    "y": 42.314814814814817,
     "z": 23000,
     "height": 67.5,
-    "width": 695.8389261744966,
+    "width": 695.83892617449658,
     "tabOrder": 2000
   },
   "visual": {
@@ -66,6 +66,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
             }
           }
         }
@@ -77,6 +84,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'Track quantity movement, availability, and product mix at a glance.'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
                 }
               }
             }
