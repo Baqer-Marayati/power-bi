@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "slicer_month",
   "position": {
-    "x": 24,
+    "x": 28,
     "y": 270,
     "z": 9000,
     "height": 36,
