@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_trend",
   "position": {
-    "x": 398.57142857142856,
+    "x": 348.57142857142856,
     "y": 230.00000000000003,
     "z": 9000,
     "height": 318.5714285714286,
