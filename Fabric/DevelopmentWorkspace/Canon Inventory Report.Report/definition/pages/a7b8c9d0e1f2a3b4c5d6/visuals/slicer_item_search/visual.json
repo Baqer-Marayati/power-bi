@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "slicer_item_search",
   "position": {
-    "x": 18.285714285714285,
-    "y": 535.51020408163265,
+    "x": 66.66666666666667,
+    "y": 637.4331187689387,
     "z": 11000,
-    "height": 178.9387755102041,
-    "width": 150.20408163265307,
+    "height": 184,
+    "width": 404,
     "tabOrder": 6000
   },
   "visual": {
@@ -51,6 +51,13 @@
       "general": [
         {
           "properties": {
+            "orientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
             "selfFilterEnabled": {
               "expr": {
                 "Literal": {
@@ -58,21 +65,10 @@
                 }
               }
             },
-            "outlineColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#C9D5E3'"
-                    }
-                  }
-                }
-              }
-            },
-            "orientation": {
+            "outlineWeight": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "1D"
                 }
               }
             }
@@ -120,6 +116,20 @@
                   "Value": "true"
                 }
               }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
             }
           }
         }
@@ -140,11 +150,35 @@
                   "Value": "false"
                 }
               }
+            }
+          }
+        }
+      ],
+      "items": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2E3A42'"
+                    }
+                  }
+                }
+              }
             },
-            "selectAllCheckboxEnabled": {
+            "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "14D"
+                }
+              }
+            },
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
@@ -175,6 +209,17 @@
                   "Value": "false"
                 }
               }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CED9E6'"
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -185,7 +230,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -197,6 +242,20 @@
                       "Value": "'#C9D5E3'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
                 }
               }
             }
@@ -217,8 +276,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
                     }
                   }
                 }
@@ -247,40 +307,59 @@
           }
         }
       ],
-      "padding": [
+      "dropShadow": [
         {
           "properties": {
-            "top": {
+            "angle": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "90L"
                 }
               }
             },
-            "bottom": {
+            "shadowDistance": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "10L"
                 }
               }
             },
-            "left": {
+            "shadowBlur": {
               "expr": {
                 "Literal": {
-                  "Value": "6D"
+                  "Value": "10L"
                 }
               }
             },
-            "right": {
+            "shadowSpread": {
               "expr": {
                 "Literal": {
-                  "Value": "6D"
+                  "Value": "3L"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "70L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
           }
         }
       ]
+    },
+    "syncGroup": {
+      "groupName": "ItemSearch",
+      "fieldChanges": true,
+      "filterChanges": true
     },
     "drillFilterOtherVisuals": true
   }

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "table_cost_impact",
   "position": {
-    "x": 187.14285714285717,
-    "y": 537.14285714285722,
+    "x": 510.55965924970855,
+    "y": 604.2857142857143,
     "z": 19000,
-    "height": 407.14285714285717,
-    "width": 1028.5714285714287,
+    "height": 458.03571428571433,
+    "width": 1281.3556148238038,
     "tabOrder": 22000
   },
   "visual": {
@@ -787,21 +787,10 @@
       "border": [
         {
           "properties": {
-            "show": {
+            "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#E2EAE6'"
-                    }
-                  }
+                  "Value": "14D"
                 }
               }
             }
@@ -818,21 +807,17 @@
                 }
               }
             },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "text": {
               "expr": {
                 "Literal": {
                   "Value": "'Top landed-cost lines (closed LC documents)'"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#223430'"
-                    }
-                  }
                 }
               }
             },
@@ -869,17 +854,31 @@
       "dropShadow": [
         {
           "properties": {
-            "show": {
+            "angle": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "90L"
                 }
               }
             },
-            "preset": {
+            "shadowDistance": {
               "expr": {
                 "Literal": {
-                  "Value": "'Bottom'"
+                  "Value": "10L"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
                 }
               }
             },
@@ -887,6 +886,13 @@
               "expr": {
                 "Literal": {
                   "Value": "70L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
