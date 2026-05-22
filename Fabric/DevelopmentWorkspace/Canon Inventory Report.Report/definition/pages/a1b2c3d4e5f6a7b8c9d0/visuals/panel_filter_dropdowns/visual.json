@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "panel_filter_dropdowns",
   "position": {
-    "x": 2.8571428571428572,
+    "x": 2.857142857142857,
     "y": 101.42857142857143,
     "z": 8000,
-    "height": 617.14285714285722,
-    "width": 344.28571428571433,
+    "height": 617.1428571428572,
+    "width": 394.28571428571433,
     "tabOrder": 1000
   },
   "visual": {

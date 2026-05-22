@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "slicer_salestype",
   "position": {
-    "x": 15.710154782446089,
+    "x": 15.71015478244609,
     "y": 372.20408163265296,
     "z": 18000,
     "height": 68,
-    "width": 324,
+    "width": 374,
     "tabOrder": 6000
   },
   "visual": {
