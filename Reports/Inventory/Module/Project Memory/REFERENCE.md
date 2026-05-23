@@ -2,12 +2,24 @@
 
 ## Core Paths
 
-- **Active PBIP:** `Reports/Inventory/Inventory Report/Inventory Report.pbip`
-- **Report artifact:** `Reports/Inventory/Inventory Report/Inventory Report.Report/`
-- **Semantic model:** `Reports/Inventory/Inventory Report/Inventory Report.SemanticModel/`
+- **CANON module PBIP:** `Reports/Inventory/Companies/CANON/Canon Inventory Report/Canon Inventory Report.pbip`
+- **PAPERENTITY module PBIP:** `Reports/Inventory/Companies/PAPERENTITY/Paper Inventory Report/Paper Inventory Report.pbip`
+- **Fabric iteration copy (Git → Fabric sync):** `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`
 - **Theme file:** `Reports/Inventory/Module/Core/themes/Inventory.PortfolioTheme.json`
-- **Portfolio visual identity:** `Shared/Standards/portfolio-visual-identity.md`
-- **Portfolio theme tokens:** `Shared/Standards/portfolio-theme.tokens.json`
+- **Portfolio visual identity:** `Portfolio/Shared/Standards/portfolio-visual-identity.md`
+- **Portfolio theme tokens:** `Portfolio/Shared/Standards/portfolio-theme.tokens.json`
+
+## CANON report pages (current tab names)
+
+| Order | Page ID | Tab name | Former name |
+|-------|---------|----------|-------------|
+| 1 | `a1b2c3d4e5f6a7b8c9d0` | Inventory Overview | Executive Summary |
+| 2 | `c7d8e9f0a1b2c3d4e5f6` | Stock Value | Inventory Valuation |
+| 3 | `f6a7b8c9d0e1f2a3b4c5` | Stock Health | Stock Cover |
+| 4 | `a7b8c9d0e1f2a3b4c5d6` | Stock Actions | Reorder Actions |
+| 5 | `e5f6a7b8c9d0e1f2a3b4` | Landed Cost | Procurement & landed cost |
+
+Canvas: **1920 × 1080** on all pages. Hidden tooltip: `tt_landed_addon_m01`.
 
 ## Data Source
 

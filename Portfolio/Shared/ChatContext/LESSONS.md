@@ -114,3 +114,11 @@ Short, **durable** notes the assistant adds after reviewing captures in `images/
 
 - `[repo]` `[inventory]` SAP **Closed Document** on landed cost (`OIPF`) = **`DocStatus = 'C'`** only. **`OpenForLaC`** (`Y`/`N`) is a different allocation-workflow flag — do not use it (alone or OR'd with `DocStatus`) for closed-only filters.
 - `[repo]` `[inventory]` Validate with SAP UI: LC **100005** with **Closed Document** unchecked must not appear when Procurement filters `IsLcClosed = 1` after semantic refresh.
+
+### 2026-05-22 — Canon Inventory management-friendly naming
+
+- `[inventory]` **Import Cost Share %** (KPI / monthly mix) = import & handling ÷ **(supplier + import)** — “what share of total landed spend is extras.” **Import Cost % of Supplier** (Shipments table) = import ÷ **supplier only** — “how much extra on top of the supplier bill.” Same numerator, different denominators; both belong on Landed Cost page.
+- `[inventory]` Do **not** rename **Import & Handling Costs** to **Total Landed Cost** on KPI cards — that card is only the extra-cost slice; total landed = supplier + import.
+- `[inventory]` **Management naming pass (May 2026):** page tabs are Inventory Overview, Stock Value, Stock Health, Stock Actions, Landed Cost. User-preserved labels: **Overstock Value**, **Overstock Value by Product Type**, **Open PO**, **Open SO**, **Stock Status**, **LC Doc**. **Move qty** → **Recommended quantity**. Full map in `Reports/Inventory/Module/Project Memory/DECISIONS.md`.
+- `[repo]` `[powerbi]` PBIR title literals with apostrophes (e.g. `Today's`) break JSON parse — use “is not” / “Current Unit Cost” instead of escaped apostrophes in `Literal` values.
+- `[inventory]` When applying display renames across Fabric + module copies, update **both** `Fabric/DevelopmentWorkspace/` and `Reports/Inventory/Companies/CANON/` and validate JSON before commit.

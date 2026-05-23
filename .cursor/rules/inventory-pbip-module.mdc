@@ -1,0 +1,33 @@
+---
+description: Inventory Report module — Fabric sync, management naming, landed cost, stock cover. Applies under Reports/Inventory/ and Fabric/DevelopmentWorkspace/Canon Inventory*.
+globs:
+  - Reports/Inventory/**
+  - Fabric/DevelopmentWorkspace/Canon Inventory Report.*
+alwaysApply: false
+---
+
+# Inventory Report (CANON)
+
+## Before editing
+
+1. `Reports/Inventory/AGENTS.md`
+2. `Reports/Inventory/Module/Project Memory/DECISIONS.md` (naming, stock cover, landed cost)
+3. `Reports/Inventory/Module/Project Memory/REFERENCE.md` (page IDs)
+
+## Fabric vs module
+
+- **Fabric review:** edit `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`
+- **Module home:** `Reports/Inventory/Companies/CANON/Canon Inventory Report/`
+- Mirror display-label / report-definition changes to both unless user scopes to one copy.
+
+## Do not undo (user-approved)
+
+- Page tabs: Inventory Overview, Stock Value, Stock Health, Stock Actions, Landed Cost
+- Labels: **Overstock Value**, **Open PO**, **Open SO**, **Stock Status**, **LC Doc**
+- Landed Cost: **Import & Handling Costs** is not **Total Landed Cost**
+
+## Archive
+
+Completed prompts/handoffs live in `Reports/Inventory/Module/Archive/` — not active `Project Memory/`.
+
+Codex skill: `powerbi-inventory-report` (`~/.codex/skills/`).

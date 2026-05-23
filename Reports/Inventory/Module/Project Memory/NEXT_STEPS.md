@@ -2,7 +2,8 @@
 
 ## Immediate Priority
 
-1. Open the Fabric-bound `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip` in Power BI Desktop/Fabric and refresh the landed-cost tables after the May 16 semantic correction.
+1. **Fabric sync validation** — after the May 22–23 management naming pass (`265fea0`–`c7deb2e`), open `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip` in Fabric and confirm all five page tabs, KPI titles, chart titles, and Shipments column headers render as renamed.
+2. Open the Fabric-bound PBIP in Power BI Desktop/Fabric and refresh the landed-cost tables after the May 16 semantic correction.
 2. Validate that `Fact_LandedCostAllocation` now populates receipt date through `OriBAbsEnt -> OPDN.DocEntry` without requiring `OriBDocTyp = '20'`, and that IPF2 add-ons use booked/local `CostSum` before `CostSumSC`.
 3. Spot-check LC 100008: confirm broker `VE-00052`, vendor `VE-00080`, open status, header customs projection/actual = 0, booked customs fees from IPF2/OALC where applicable, and landed-unit total reconcile within rounding.
 4. Test the **Analyze by** slicer on **Receipt date** vs **LC posting date**. The May 16 diagnostic pull showed matched receipt and LC dates currently have 0-day delta, so a flat toggle result can be data-truth rather than a visual bug.

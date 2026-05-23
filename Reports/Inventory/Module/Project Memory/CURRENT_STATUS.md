@@ -2,9 +2,16 @@
 
 ## Date
 
-- Last updated: May 17, 2026
+- Last updated: May 23, 2026
 
-## Current Reality
+## Current snapshot
+
+- **May 22–23, 2026** — Management-friendly **display labels** applied to all five CANON Inventory pages in `Fabric/DevelopmentWorkspace` and `Reports/Inventory/Companies/CANON` (commits `265fea0`–`c7deb2e`). Page tabs: **Inventory Overview**, **Stock Value**, **Stock Health**, **Stock Actions**, **Landed Cost**. Measure names unchanged; see `DECISIONS.md` (2026-05-22) for approved vocabulary and user exceptions (Overstock, Open PO/SO, LC Doc).
+- **May 17, 2026** — Reorder Actions slicer leak fixed: table rows anchored on `Fact_StockCoverPolicy` grain with `Reorder Table Row Keeper` visual filter.
+- Active Fabric iteration: `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`. Module copy: `Reports/Inventory/Companies/CANON/Canon Inventory Report/`.
+- Completed one-off prompts/handoffs archived to `Module/Archive/2026-05-23-completed-prompts-handoffs/`.
+
+## Historical detail (May 2026)
 
 - May 17, 2026 — **Reorder Actions** (`table_reorder_actions`): the slicer leak was deeper than the first visual-filter guard. The table row anchors are now back on `Fact_StockCoverPolicy` (`ItemName`, `ItemCode`, Business/Group/Product/Segment Type), so **Stock Status** fact slicers and `Dim_Item` slicers both constrain the policy fact row set before reorder measures render. `_Measures[Reorder Table Row Keeper]` now guards `Fact_StockCoverPolicy[ItemCode]` grain (`HASONEVALUE` + one visible policy row), and the table keeps the visual filter **Reorder Table Row Keeper > 0**. Applied to both `Fabric/DevelopmentWorkspace` and `Reports/Inventory/Companies/CANON/Canon Inventory Report` semantic/report copies for parity.
 - May 16, 2026 (pm-10) — Fabric-bound CANON Inventory **Procurement & landed cost** visual titles were simplified to `monthly % of landed by category`, `IQD by category`, and `Top landed-cost lines`. The landed-cost detail table now includes `Item Code` and `Receipt Line` so LC rows can be audited at a clearer receipt-line/item grain.
@@ -50,22 +57,20 @@
 - May 11, 2026 (pm) — Reorder Actions table re-shaped to 15 columns. Restored the rounded SVG pill on Action (`Reorder Action Pill SVG`, now with an inner `<title>` for accessible name). Item column shows only `ItemName` (bold). `Reorder Cover Bar SVG` track is thicker (12px) and the "% of target" label is now 11pt. Reference fields moved to the right end in this order: Policy → Item Code → Business Type → Group Type → Product Type → Segment Type. The table is wider than the visual frame (~1500px) so it scrolls horizontally inside the 1028px container.
 - May 11, 2026 — Reorder Actions table polished: replaced the Action / Item / Move qty SVG image measures with native text columns + measure-driven conditional formatting; Item became a two-line measure with word-wrap on. (Superseded by the 15-column re-shape later the same day — pill restored, Item back to name-only.)
 - May 11, 2026 — Reorder Actions table rebuilt as a modern native `tableEx` with Image URL SVG measures (Action pill, two-line Item cell, Cover bar with % of target, colored Move qty); columns matched the original 9-column approved mock.
-- `Reports/Inventory` is now an active module with a full PBIP project.
-- The PBIP lives at `Reports/Inventory/Inventory Report/Inventory Report.pbip`.
+- `Reports/Inventory` is an active module with full PBIP projects under `Companies/CANON/` and `Companies/PAPERENTITY/`.
+- The CANON PBIP lives at `Reports/Inventory/Companies/CANON/Canon Inventory Report/Canon Inventory Report.pbip`.
 - The semantic model connects to SAP B1 HANA via ODBC DSN `HANA_B1`, querying the `CANON` schema.
 - Currency is IQD (Iraqi Dinar), consistent with the Finance module.
-- The CANON report now has 8 pages and 11 semantic model tables, including the stock-cover policy table for reorder/overstock analysis.
+- The CANON report has **5** user-facing pages (+ hidden landed-cost tooltip), **1920×1080** canvas, and semantic model tables including `Fact_StockCoverPolicy` and `Fact_LandedCostAllocation`.
 - The CANON stock-cover policy now uses item-grain blended velocity: 35% 90-day net sales rate, 35% 180-day net sales rate, and 30% 365-day net sales rate, with policy days B2B 120, B2C 90, and other/blank 60.
 
-## Pages
+## Pages (current)
 
-1. **Inventory Overview** — KPI cards (Total SKUs, In-Stock, On Hand, Committed, Available, Stock Value), bar charts by warehouse and item group.
-2. **Warehouse Distribution** — Warehouse slicer, warehouse detail table, stock comparison chart, monthly transfer trend.
-3. **Stock Movements** — Inbound/outbound/net movement KPIs, monthly flow charts, movement breakdown by transaction type.
-4. **Product Categories** — Item group slicer, category analysis table, full item catalog.
-5. **Procurement** — Open PO count, on-order qty, PO value KPIs, purchase order detail table, goods receipt trend.
-6. **Stock Cover Value Exposure** — IQD financial exposure from stock-cover policy: understock reorder value, healthy value, overstock value locked, no-sales stock value, and value distributions by action/status/category.
-7. **Reorder Action List** — SKU-level buy/hold/reduce action list with sales velocity, target stock quantity, reorder quantity, and excess quantity.
+1. **Inventory Overview** (`a1b2c3d4e5f6a7b8c9d0`) — KPI quantities, unit-cost trends, quantity & cost matrix.
+2. **Stock Value** (`c7d8e9f0a1b2c3d4e5f6`) — stock worth by business type / group / product / segment.
+3. **Stock Health** (`f6a7b8c9d0e1f2a3b4c5`) — policy-based overstock, understock, slow/dead stock value exposure.
+4. **Stock Actions** (`a7b8c9d0e1f2a3b4c5d6`) — SKU-level buy / hold / reduce action table.
+5. **Landed Cost** (`e5f6a7b8c9d0e1f2a3b4`) — closed LC documents: supplier cost, import & handling, Shipments detail.
 
 ## Semantic Model Tables
 

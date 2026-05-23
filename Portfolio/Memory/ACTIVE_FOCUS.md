@@ -36,5 +36,6 @@ Use these exact paths instead of guessing a naming pattern:
 
 - `Reports/Finance` remains the primary production module.
 - `Reports/DataExchange` is the isolated export workspace and should stay separate from Finance edits.
+- **Inventory (CANON):** for Fabric review cycles edit `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`; keep module copy at `Reports/Inventory/Companies/CANON/` in sync for the same label/report changes. Page tab names (May 2026): Inventory Overview, Stock Value, Stock Health, Stock Actions, Landed Cost — see `Reports/Inventory/Module/Project Memory/DECISIONS.md`.
 - PAPERENTITY is a permanent second company copy across active modules, not a temporary experiment.
 - Do not rename or move active PBIP folders as part of documentation cleanup.

@@ -2,12 +2,13 @@
 
 ## Date
 
-- Last updated: April 24, 2026
+- Last updated: May 23, 2026
 
 ## Current Reality
 
 - The repository uses a portfolio-style reporting structure instead of a single-report root layout.
 - `Reports/Finance` remains the primary production report module and the default deep-work starting point for new agents.
+- `Reports/Inventory` is an active Fabric iteration target: CANON Inventory Report management naming and landed-cost work ship via `Fabric/DevelopmentWorkspace/` (May 2026).
 - `Reports/DataExchange` is the active isolated exchange workspace for extraction and transfer workflows.
 - `Reports/Sales`, `Reports/Service`, and `Reports/Inventory` are active PBIP modules in the repo for both CANON and PAPERENTITY company copies.
 - `Reports/HR` and `Reports/Marketing` remain scaffolded modules.

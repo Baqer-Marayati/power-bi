@@ -105,3 +105,44 @@ Keep **one** headline card row only. Each card in plain language:
 - **Stacked columns (*Landed Cost Mix by Month*)** — Keep category order stable (e.g. supplier base first or consistent stack order); avoid dense data labels unless needed for finance sign-off.
 - **Line chart (*Add-on category % of landed by month*)** — The middle landed-cost trend should show add-on reporting categories over time, with one comparable Y-axis: **category add-on amount as % of total landed cost**. Exclude **Supplier base** from this visual, and keep the old **Top driver share %** out of the chart because it compresses the smaller operational category trends. Use distinct fixed colors by category and keep tooltips short: category %, add-on IQD in millions, and MoM pp change.
 - **Detail table (*LC Doc → Receipt Line → Supplier + Broker → Item Code + Item*)** — Most rows show **Unknown broker** in screenshots; add a broker data-quality treatment (filter, grouped “Unknown”, or on-page note) so the table does not imply false precision. Keep LC Status / Analyze-by behavior consistent with the glossary note (**Open + Closed LC default**; **Closed** for official finance view).
+
+## 2026-05-22 — Management-friendly page and label naming (CANON Inventory)
+
+Approved **display labels only** (measure/column names in the semantic model unchanged unless explicitly requested). Applied in **Fabric/DevelopmentWorkspace** and **Reports/Inventory/Companies/CANON** for parity; pushed to `main` (`265fea0`–`c7deb2e`).
+
+### Navigation (page tabs)
+
+| Page ID | Old tab name | Approved tab name |
+|---------|--------------|-------------------|
+| `a1b2c3d4e5f6a7b8c9d0` | Executive Summary | **Inventory Overview** |
+| `c7d8e9f0a1b2c3d4e5f6` | Inventory Valuation | **Stock Value** |
+| `f6a7b8c9d0e1f2a3b4c5` | Stock Cover | **Stock Health** |
+| `a7b8c9d0e1f2a3b4c5d6` | Reorder Actions | **Stock Actions** |
+| `e5f6a7b8c9d0e1f2a3b4` | Procurement & landed cost | **Landed Cost** |
+
+Hidden tooltip page `tt_landed_addon_m01` — no rename.
+
+### User exceptions (do not “improve” away)
+
+- **Stock Health:** keep **Overstock Value** and **Overstock Value by Product Type** — do **not** rename to “Excess Stock”.
+- **Stock Actions:** keep **Open PO**, **Open SO**, and **Stock Status** slicer label; **Move qty** → **Recommended quantity**.
+- **Landed Cost / Shipments table:** keep **LC Doc** column header.
+
+### Landed Cost KPI and table vocabulary
+
+- **Supplier Cost** — supplier invoice total (was “Total purchase (IQD)”).
+- **Import & Handling Costs** — freight, duty, insurance, unloading, etc. (was “Total add-ons (IQD)”). **Not** the same as total landed cost.
+- **Import Cost Share %** — import ÷ (supplier + import); headline KPI and monthly mix chart logic.
+- **Largest Import Cost** — top add-on category + amount.
+- **Import Cost per Unit** — import ÷ receipt qty.
+- **Shipments** — table title (was “Top landed-cost lines…”).
+- Table column **Import Cost % of Supplier** — import ÷ supplier only (different denominator from Import Cost Share %).
+
+Do **not** rename “Import & Handling Costs” to **Total Landed Cost** — that would mislabel a partial amount.
+
+### Naming principles for future Inventory label work
+
+- Page tab ↔ page header should match.
+- Drop redundant “(IQD)” on cards when numbers are already IQD-formatted.
+- Prefer plain language for management; keep SAP field names (**LC Doc**, **Open PO/SO**) when the team uses them daily.
+- When renaming in PBIR JSON, avoid apostrophes in `Literal` values (invalid JSON); use “is not” instead of “isn’t”.

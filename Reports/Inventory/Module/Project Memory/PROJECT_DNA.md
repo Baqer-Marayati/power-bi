@@ -35,9 +35,12 @@ The Inventory Report provides visibility into Canon Iraq's stock levels, warehou
 
 ## Report Structure
 
-Five pages:
-1. Inventory Overview (dashboard landing page)
-2. Warehouse Distribution (per-warehouse analysis)
-3. Stock Movements (inbound/outbound flow)
-4. Product Categories (item group breakdown)
-5. Procurement (purchase orders and goods receipts)
+Five CANON pages (management-friendly tab names as of May 2026):
+
+1. **Inventory Overview** — quantities, unit-cost trend, quantity & cost by business type
+2. **Stock Value** — current stock worth by category
+3. **Stock Health** — overstock / understock / slow-dead stock vs policy
+4. **Stock Actions** — item-level buy, hold, reduce list
+5. **Landed Cost** — closed import documents: supplier cost, import & handling, shipments detail
+
+Label vocabulary and user exceptions: `DECISIONS.md` (2026-05-22 naming section).
