@@ -141,7 +141,7 @@
                   "Property": "Avg Cost"
                 }
               },
-              "queryRef": "InventoryValuation.Avg Cost",
+              "queryRef": "_Measures.Avg Cost",
               "nativeQueryRef": "Avg Cost1"
             },
             {
@@ -428,7 +428,7 @@
             }
           },
           "selector": {
-            "metadata": "InventoryValuation.Avg Cost"
+            "metadata": "_Measures.Avg Cost"
           }
         },
         {
@@ -514,7 +514,7 @@
             }
           },
           "selector": {
-            "metadata": "InventoryValuation.Avg Cost"
+            "metadata": "_Measures.Avg Cost"
           }
         },
         {
