@@ -1,0 +1,29 @@
+table CashflowPeriod
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1151
+
+	column Period
+		lineageTag: fa6cd74a-525a-4c52-97aa-32ad8592828e
+		isNameInferred
+		sourceColumn: [Period]
+
+	column SortOrder
+		lineageTag: 6ba9e689-0c94-4624-a4d9-f6960f2e39a9
+		isNameInferred
+		sourceColumn: [SortOrder]
+
+	partition CashflowPeriod = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "Period", STRING,
+				    "SortOrder", INTEGER,
+				    {
+				        { "30 days", 1 },
+				        { "60 days", 2 },
+				        { "90 days", 3 }
+				    }
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a1151
+

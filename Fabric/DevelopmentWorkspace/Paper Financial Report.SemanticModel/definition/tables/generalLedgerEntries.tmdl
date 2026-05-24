@@ -1,0 +1,319 @@
+table generalLedgerEntries
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0101
+
+	measure TotalRevenue =
+			
+			ABS ( [Net Revenue] )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0103
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RevenueFiltered = [TotalRevenue]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0104
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ExpenseFiltered =
+			
+			ABS ( [Operating Expenses] + [Other Income / Expense] + [Tax & Extraordinary] )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0105
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CostOfGoodsSoldFiltered = ABS ( [COGS] )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0106
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure GrossProfit = [Gross Profit]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0107
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure NetProfit = [Net Profit]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0108
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RevenueBudgetCompat =
+			
+			CALCULATE (
+			    SUMX (
+			        FILTER ( 'Fact_PNL', 'Fact_PNL'[PnLSection] IN { "Revenue", "Revenue Contra" } ),
+			        ABS ( 'Fact_PNL'[Amount] ) * 1.05
+			    )
+			)
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0109
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ExpenseBudgetCompat =
+			
+			CALCULATE (
+			    SUMX (
+			        FILTER ( 'Fact_PNL', NOT ( 'Fact_PNL'[PnLSection] IN { "Revenue", "Revenue Contra", "COGS" } ) ),
+			        ABS ( 'Fact_PNL'[Amount] ) * 1.05
+			    )
+			)
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0110
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure COGSBudgetCompat =
+			
+			CALCULATE (
+			    SUMX (
+			        FILTER ( 'Fact_PNL', 'Fact_PNL'[PnLSection] = "COGS" ),
+			        ABS ( 'Fact_PNL'[Amount] ) * 1.05
+			    )
+			)
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0111
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure GrossProfit_Budget = [RevenueBudgetCompat] - [COGSBudgetCompat]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0112
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure GrossProfit_gaugeValue = [GrossProfit]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0113
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure NetProfit_Budget = [RevenueBudgetCompat] - [COGSBudgetCompat] - [ExpenseBudgetCompat]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0114
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure NetProfit_gaugeValue = [NetProfit]
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0115
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RevenueVariance =
+			
+			VAR PrevValue = [Net Revenue LY]
+			RETURN DIVIDE ( [Net Revenue] - PrevValue, ABS ( PrevValue ) )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0116
+
+	measure ExpenseVariance =
+			
+			VAR PrevValue =
+			    CALCULATE (
+			        ABS ( [Operating Expenses] + [Other Income / Expense] + [Tax & Extraordinary] ),
+			        DATEADD ( 'Dim_Date'[Date], -1, YEAR )
+			    )
+			RETURN DIVIDE ( [ExpenseFiltered] - PrevValue, ABS ( PrevValue ) )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0117
+
+	measure CostOfGoodsSoldVariance =
+			
+			VAR PrevValue = CALCULATE ( ABS ( [COGS] ), DATEADD ( 'Dim_Date'[Date], -1, YEAR ) )
+			RETURN DIVIDE ( [CostOfGoodsSoldFiltered] - PrevValue, ABS ( PrevValue ) )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0118
+
+	measure Budgetpercent =
+			
+			DIVIDE ( [TotalRevenue] - [RevenueBudgetCompat], [RevenueBudgetCompat] )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0119
+
+	measure NetProfitBudgetpercent =
+			
+			DIVIDE ( [NetProfit] - [NetProfit_Budget], ABS ( [NetProfit_Budget] ) )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0120
+
+	measure PercentRevenueVarianceColorFormat =
+			
+			IF (
+			    ISBLANK ( [RevenueVariance] ),
+			    "#223430",
+			    IF ( [RevenueVariance] >= 0, "#1D7F5F", "#C43D3D" )
+			)
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0140
+
+	measure PercentExpenseVarianceColorFormat =
+			
+			IF (
+			    ISBLANK ( [ExpenseVariance] ),
+			    "#223430",
+			    IF ( [ExpenseVariance] <= 0, "#1D7F5F", "#C43D3D" )
+			)
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0141
+
+	measure PercentCOGSVarianceColorFormat =
+			
+			IF (
+			    ISBLANK ( [CostOfGoodsSoldVariance] ),
+			    "#223430",
+			    IF ( [CostOfGoodsSoldVariance] <= 0, "#1D7F5F", "#C43D3D" )
+			)
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0142
+
+	measure ActualSpend =
+			
+			CALCULATE (
+			    SUMX (
+			        FILTER ( 'Fact_PNL', NOT ( 'Fact_PNL'[PnLSection] IN { "Revenue", "Revenue Contra", "COGS" } ) ),
+			        ABS ( 'Fact_PNL'[Amount] )
+			    )
+			)
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0121
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column postingDate
+		lineageTag: 199c528b-f8e7-4430-85da-c7229704e7b0
+		isNameInferred
+		sourceColumn: [postingDate]
+
+	column no
+		lineageTag: be5592d6-74bd-4c0d-95a7-7c72181f6d63
+		isNameInferred
+		sourceColumn: [no]
+
+	column name
+		lineageTag: c00cf2d1-a267-462c-9730-dbe321f93d5e
+		isNameInferred
+		sourceColumn: [name]
+
+	column description
+		lineageTag: 7b820c94-b5c5-4a9c-9613-b7c8a95990ca
+		isNameInferred
+		sourceColumn: [description]
+
+	column accountCategory
+		lineageTag: a8c9e244-b444-4760-8a0b-8e408035d5bc
+		isNameInferred
+		sourceColumn: [accountCategory]
+
+	column accountType
+		lineageTag: e05626e9-28ad-4f63-a08a-13502111879e
+		isNameInferred
+		sourceColumn: [accountType]
+
+	column incomeBalance
+		lineageTag: d9d320b1-e09c-4b1b-b845-9b0ea1981c1d
+		isNameInferred
+		sourceColumn: [incomeBalance]
+
+	column amount
+		lineageTag: 7cfdb5da-df73-41ec-9c60-2ae78aa8c057
+		isNameInferred
+		sourceColumn: [amount]
+
+	column AmountABS
+		lineageTag: 0f6da60c-4dce-4f38-8a62-b7a12149c221
+		isNameInferred
+		sourceColumn: [AmountABS]
+
+	column globalDimension1Code
+		lineageTag: 29f62c55-0f09-44cc-b365-849ca11865f5
+		isNameInferred
+		sourceColumn: [globalDimension1Code]
+
+	column globalDimension2Code
+		lineageTag: 25d5a295-38a2-4259-9b8e-4553d8f7c24f
+		isNameInferred
+		sourceColumn: [globalDimension2Code]
+
+	column shortcutDimension3Code
+		lineageTag: 1c16bed9-2c75-4423-b0fd-113278fd7a0b
+		isNameInferred
+		sourceColumn: [shortcutDimension3Code]
+
+	column LegendColumnForCashflow
+		lineageTag: 7b2f2b7d-efbf-45a4-b7f1-220754bd39bf
+		isNameInferred
+		sourceColumn: [LegendColumnForCashflow]
+
+	column 'Legend Label'
+		lineageTag: 9237cecd-0a32-4600-a59d-3eb985ee438d
+		isNameInferred
+		sourceColumn: [Legend Label]
+
+	column IsCurrentOrLastYear
+		lineageTag: ef6e4bdb-50f7-4980-9b26-ba3b54c76ee7
+		isNameInferred
+		sourceColumn: [IsCurrentOrLastYear]
+
+	column IsInLast6Months
+		lineageTag: c51072ce-cbf4-4cd6-9c48-442fafc660da
+		isNameInferred
+		sourceColumn: [IsInLast6Months]
+
+	partition generalLedgerEntries = calculated
+		mode: import
+		source =
+				
+				VAR LatestPostingDate =
+				    CALCULATE ( MAX ( 'Fact_PNL'[PostingDate] ), REMOVEFILTERS ( 'Fact_PNL' ) )
+				VAR StartOfCurrentYear = DATE ( YEAR ( LatestPostingDate ), 1, 1 )
+				VAR StartOfTrailingWindow = EDATE ( LatestPostingDate, -5 )
+				RETURN
+				SELECTCOLUMNS (
+				    ADDCOLUMNS (
+				        'Fact_PNL',
+				        "no", 'Fact_PNL'[AcctCode],
+				        "name", 'Fact_PNL'[AcctName],
+				        "description", 'Fact_PNL'[AcctName],
+				        "accountCategory",
+				            SWITCH (
+				                TRUE (),
+				                'Fact_PNL'[PnLSection] IN { "Revenue", "Revenue Contra" }, "Income",
+				                'Fact_PNL'[PnLSection] = "COGS", "Cost of Goods Sold",
+				                "Expense"
+				            ),
+				        "accountType", "Posting",
+				        "incomeBalance", "Income Statement",
+				        "AmountABS", ABS ( 'Fact_PNL'[Amount] ),
+				        "globalDimension1Code", 'Fact_PNL'[BranchCode],
+				        "globalDimension2Code", 'Fact_PNL'[SalesTypeCode],
+				        "shortcutDimension3Code", 'Fact_PNL'[DepartmentCode],
+				        "LegendColumnForCashflow",
+				            SWITCH (
+				                TRUE (),
+				                'Fact_PNL'[PnLSection] = "Revenue", "Cash In",
+				                'Fact_PNL'[PnLSection] = "COGS", "COGS",
+				                LEFT ( 'Fact_PNL'[AcctCode], 2 ) = "61", "General & Administrative",
+				                LEFT ( 'Fact_PNL'[AcctCode], 2 ) = "62", "Employee Expenses",
+				                LEFT ( 'Fact_PNL'[AcctCode], 2 ) = "63", "Sales & Marketing",
+				                LEFT ( 'Fact_PNL'[AcctCode], 2 ) = "64", "Travel Expenses",
+				                LEFT ( 'Fact_PNL'[AcctCode], 2 ) = "65", "Finance Expense",
+				                LEFT ( 'Fact_PNL'[AcctCode], 2 ) = "66", "Depreciation & Amortization",
+				                "Other Expenses"
+				            ),
+				        "Legend Label",
+				            IF (
+				                YEAR ( 'Fact_PNL'[PostingDate] ) = YEAR ( LatestPostingDate ),
+				                "Current Year",
+				                "Last Year"
+				            ),
+				        "IsCurrentOrLastYear", 'Fact_PNL'[PostingDate] >= DATE ( YEAR ( LatestPostingDate ) - 1, 1, 1 ),
+				        "IsInLast6Months", 'Fact_PNL'[PostingDate] >= StartOfTrailingWindow && 'Fact_PNL'[PostingDate] <= LatestPostingDate
+				    ),
+				    "postingDate", [PostingDate],
+				    "no", [no],
+				    "name", [name],
+				    "description", [description],
+				    "accountCategory", [accountCategory],
+				    "accountType", [accountType],
+				    "incomeBalance", [incomeBalance],
+				    "amount", [Amount],
+				    "AmountABS", [AmountABS],
+				    "globalDimension1Code", [globalDimension1Code],
+				    "globalDimension2Code", [globalDimension2Code],
+				    "shortcutDimension3Code", [shortcutDimension3Code],
+				    "LegendColumnForCashflow", [LegendColumnForCashflow],
+				    "Legend Label", [Legend Label],
+				    "IsCurrentOrLastYear", [IsCurrentOrLastYear],
+				    "IsInLast6Months", [IsInLast6Months]
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0101
+

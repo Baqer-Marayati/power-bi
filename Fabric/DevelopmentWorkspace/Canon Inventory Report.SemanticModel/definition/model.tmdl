@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["Dim_Item","Dim_Warehouse","Fact_WarehouseStock","Fact_StockMovement","Fact_Transfer","Fact_Delivery","Fact_GoodsReceipt","Fact_PurchaseOrder","Fact_StockCoverPolicy","Dim_LandedCostCategory","Fact_LandedCostAllocation","Dim_LandedCostBridge","DateSpineChoice","_Measures","InventoryValuation"]
+annotation PBI_QueryOrder = ["Dim_Item","Dim_Warehouse","Fact_WarehouseStock","Fact_StockMovement","Fact_Transfer","Fact_Delivery","Fact_GoodsReceipt","Fact_PurchaseOrder","Fact_StockCoverPolicy","Dim_LandedCostCategory","Fact_LandedCostAllocation","_Measures","InventoryValuation"]
 
 annotation PBI_ProTooling = ["DevMode"]
 

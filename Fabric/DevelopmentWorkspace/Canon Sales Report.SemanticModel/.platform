@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Aljazeera Master Model"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "461b4dba-abfd-4382-85db-a1c0e9420a7e"
+  }
+}

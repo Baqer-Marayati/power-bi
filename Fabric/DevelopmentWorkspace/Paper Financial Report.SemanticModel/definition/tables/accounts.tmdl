@@ -1,0 +1,62 @@
+table accounts
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0401
+
+	measure GLAccountIsRowVisible =
+			
+			IF ( NOT ISBLANK ( SELECTEDVALUE ( 'accounts'[displayName] ) ), 1, BLANK () )
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0402
+
+	column number
+		lineageTag: 210042e2-df7d-46f4-8645-db8f4be3082f
+		isNameInferred
+		sourceColumn: [number]
+
+	column displayName
+		lineageTag: a85fcd18-ab26-49b3-8871-1bace5f08e49
+		isNameInferred
+		sourceColumn: [displayName]
+
+	column category
+		lineageTag: 00e2dbde-0c19-42cf-a94d-bf3b316c315b
+		isNameInferred
+		sourceColumn: [category]
+
+	column accountType
+		lineageTag: a4f2aea6-5ab1-48f2-95da-067296cf5385
+		isNameInferred
+		sourceColumn: [accountType]
+
+	partition accounts = calculated
+		mode: import
+		source =
+				
+				DISTINCT (
+				    UNION (
+				        SELECTCOLUMNS (
+				            ADDCOLUMNS (
+				                'Fact_PNL',
+				                "AccountCategory",
+				                    SWITCH (
+				                        TRUE (),
+				                        'Fact_PNL'[PnLSection] IN { "Revenue", "Revenue Contra" }, "Income",
+				                        'Fact_PNL'[PnLSection] = "COGS", "Cost of Goods Sold",
+				                        "Expense"
+				                    )
+				            ),
+				            "number", 'Fact_PNL'[AcctCode],
+				            "displayName", 'Fact_PNL'[AcctCode] & " - " & 'Fact_PNL'[AcctName],
+				            "category", [AccountCategory],
+				            "accountType", "Posting"
+				        ),
+				        SELECTCOLUMNS (
+				            'purchaseLines',
+				            "number", 'purchaseLines'[no],
+				            "displayName", 'purchaseLines'[no],
+				            "category", "Expense",
+				            "accountType", "Posting"
+				        )
+				    )
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0401
+

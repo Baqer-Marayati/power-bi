@@ -1,0 +1,259 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "e5f6a7b8c9d0e1f2a3b4",
+  "displayName": "Procurement & Suppliers",
+  "displayOption": "FitToWidth",
+  "height": 960,
+  "width": 1280,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "195L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F8FBFF'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_open_po",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_on_order",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_po_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_gr_qty",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "chart_po_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "chart_gr_col",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "chart_po_by_grp",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_open_po",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_on_order",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_po_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_gr_qty",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "chart_po_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "chart_gr_col",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "chart_po_by_grp",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "kpi_open_po",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "kpi_on_order",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "kpi_po_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "kpi_gr_qty",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "chart_po_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "chart_gr_col",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_item_group",
+      "target": "chart_po_by_grp",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "kpi_open_po",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "kpi_on_order",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "kpi_po_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "kpi_gr_qty",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "chart_po_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "chart_gr_col",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_group_type",
+      "target": "chart_po_by_grp",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "kpi_open_po",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "kpi_on_order",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "kpi_po_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "kpi_gr_qty",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "chart_po_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "chart_gr_col",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_product_type",
+      "target": "chart_po_by_grp",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "kpi_open_po",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "kpi_on_order",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "kpi_po_value",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "kpi_gr_qty",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "chart_po_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "chart_gr_col",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_segment_type",
+      "target": "chart_po_by_grp",
+      "type": "DataFilter"
+    }
+  ]
+}

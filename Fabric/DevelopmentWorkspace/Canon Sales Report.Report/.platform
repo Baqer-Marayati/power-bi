@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Aljazeera Master Model"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "234582a1-8dd9-4a67-8c51-a0defa4c69c2"
+  }
+}

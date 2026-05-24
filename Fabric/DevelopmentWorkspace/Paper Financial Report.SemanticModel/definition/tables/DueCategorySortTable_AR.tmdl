@@ -1,0 +1,32 @@
+table DueCategorySortTable_AR
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0921
+
+	column DueCategory
+		lineageTag: 348a0b55-58b3-4b1d-a532-d68b9afaa73b
+		isNameInferred
+		sourceColumn: [DueCategory]
+
+	column SortOrder
+		lineageTag: d6e7164c-86b6-47d1-86eb-990f4ec62da3
+		isNameInferred
+		sourceColumn: [SortOrder]
+
+	partition DueCategorySortTable_AR = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "DueCategory", STRING,
+				    "SortOrder", INTEGER,
+				    {
+				        { "Overdue >90 days", 1 },
+				        { "Overdue 61-90 days", 2 },
+				        { "Overdue 31-60 days", 3 },
+				        { "Overdue 1-30 days", 4 },
+				        { "Due next 30 days", 5 },
+				        { "Still on time", 6 }
+				    }
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0921
+

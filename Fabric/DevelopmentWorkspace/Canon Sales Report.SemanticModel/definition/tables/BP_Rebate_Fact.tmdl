@@ -1,0 +1,99 @@
+table BP_Rebate_Fact
+	lineageTag: 6abec1fc-8797-47c1-8cdd-b8aa903c0ef4
+
+	column CardCode
+		dataType: string
+		lineageTag: 46681770-cd5a-488b-a8b2-5e9b4fa5e15f
+		summarizeBy: none
+		sourceColumn: CardCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardName
+		dataType: string
+		lineageTag: b4a342c1-ca45-47c5-95b1-504e914cf745
+		summarizeBy: none
+		sourceColumn: CardName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: e760e63e-1df0-4370-951c-37735d120b46
+		summarizeBy: sum
+		sourceColumn: Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column QuarterLabel
+		dataType: string
+		lineageTag: 0ff428e0-3bca-428c-a5b9-d9461eea2881
+		summarizeBy: none
+		sourceColumn: QuarterLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Target
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 9664cba2-c0ad-4414-b107-ea75a1c0be41
+		summarizeBy: sum
+		sourceColumn: Target
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column RebateAmount
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 0b44e21a-fad1-48f2-a607-a2ea1321f33e
+		summarizeBy: sum
+		sourceColumn: RebateAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column SortKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b5ecedcd-3a90-4a01-8bdc-9f8404dac09e
+		summarizeBy: count
+		sourceColumn: SortKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column BPType
+		dataType: string
+		lineageTag: 2045fb8b-b5f3-4ad5-b02a-9d59cc36dfb4
+		summarizeBy: none
+		sourceColumn: BPType
+
+		annotation SummarizationSetBy = Automatic
+
+	column AchPct
+		dataType: double
+		lineageTag: fe74e7a8-2d50-4b39-aa5f-395511206380
+		summarizeBy: sum
+		sourceColumn: AchPct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition BP_Rebate_Fact = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "/* ===========================================================#(lf)   BP_Rebate_Fact (2026 only) - Quarter based + TOTAL 2026#(lf)   - Resellers only (OCRD.U_PartnerType = 'Reseller')#(lf)   - Sales from AR Invoices/Credits with header discount allocation#(lf)   - Target from OCRD.U_MonthlyTarget (Quarter Target = Monthly * 3)#(lf)   - Rebate tiers from ""CANON"".""@REBATECALENDAR"" (Name = 'YYYY-MM')#(lf)     Using quarter first month: 2026-01 / 2026-04 / 2026-07 / 2026-10#(lf)   - Above 100%: 1% on target + 1.25% on (Sales - Target) ONLY#(lf)   =========================================================== */#(lf)#(lf)WITH#(lf)/* ---- Quarter Axis (only 2026 Q1..Q4) ---- */#(lf)QAxis AS (#(lf)    SELECT 1 AS ""QNo"", 'Q1' AS ""QuarterLabel"", '2026-01' AS ""RuleMonth"" FROM DUMMY#(lf)    UNION ALL SELECT 2, 'Q2', '2026-04' FROM DUMMY#(lf)    UNION ALL SELECT 3, 'Q3', '2026-07' FROM DUMMY#(lf)    UNION ALL SELECT 4, 'Q4', '2026-10' FROM DUMMY#(lf)),#(lf)#(lf)/* ---- Reseller list + monthly target ---- */#(lf)Resellers AS (#(lf)    SELECT#(lf)        C.""CardCode"",#(lf)        C.""CardName"",#(lf)        C.""U_PartnerType""      AS ""BPType"",#(lf)        COALESCE(C.""U_MonthlyTarget"", 0) AS ""MonthlyTarget""#(lf)    FROM ""CANON"".""OCRD"" C#(lf)    WHERE COALESCE(C.""U_PartnerType"",'') = 'Reseller'#(lf)),#(lf)#(lf)/* ---- Invoice totals for discount allocation ---- */#(lf)InvTotals AS (#(lf)    SELECT ""DocEntry"", SUM(""LineTotal"") AS ""DocTotal""#(lf)    FROM ""CANON"".""INV1""#(lf)    GROUP BY ""DocEntry""#(lf)),#(lf)#(lf)/* ---- Credit totals for discount allocation ---- */#(lf)CrTotals AS (#(lf)    SELECT ""DocEntry"", SUM(""LineTotal"") AS ""DocTotal""#(lf)    FROM ""CANON"".""RIN1""#(lf)    GROUP BY ""DocEntry""#(lf)),#(lf)#(lf)/* ---- Document sales lines (Sales only; rebate uses revenue) ---- */#(lf)DocSales AS (#(lf)#(lf)    /* A/R Invoices */#(lf)    SELECT#(lf)        H.""DocDate"" AS ""DocDate"",#(lf)        H.""CardCode"" AS ""CardCode"",#(lf)        (#(lf)          L.""LineTotal""#(lf)          + CASE#(lf)                WHEN T.""DocTotal"" = 0 OR T.""DocTotal"" IS NULL THEN 0#(lf)                ELSE (L.""LineTotal"" * H.""DiscSum"" * -1) / T.""DocTotal""#(lf)            END#(lf)        ) AS ""Sales""#(lf)    FROM ""CANON"".""OINV"" H#(lf)    JOIN ""CANON"".""INV1"" L ON L.""DocEntry"" = H.""DocEntry""#(lf)    LEFT JOIN InvTotals T ON T.""DocEntry"" = H.""DocEntry""#(lf)    WHERE H.""CANCELED"" = 'N'#(lf)      AND H.""DocDate"" >= DATE'2026-01-01'#(lf)      AND H.""DocDate"" <= DATE'2026-12-31'#(lf)#(lf)    UNION ALL#(lf)#(lf)    /* A/R Credit Memos (negative) */#(lf)    SELECT#(lf)        H.""DocDate"" AS ""DocDate"",#(lf)        H.""CardCode"" AS ""CardCode"",#(lf)        (#(lf)          (L.""LineTotal"" * -1)#(lf)          + CASE#(lf)                WHEN T.""DocTotal"" = 0 OR T.""DocTotal"" IS NULL THEN 0#(lf)                ELSE (L.""LineTotal"" * H.""DiscSum"") / T.""DocTotal""#(lf)            END#(lf)        ) AS ""Sales""#(lf)    FROM ""CANON"".""ORIN"" H#(lf)    JOIN ""CANON"".""RIN1"" L ON L.""DocEntry"" = H.""DocEntry""#(lf)    LEFT JOIN CrTotals T ON T.""DocEntry"" = H.""DocEntry""#(lf)    WHERE H.""CANCELED"" = 'N'#(lf)      AND H.""DocDate"" >= DATE'2026-01-01'#(lf)      AND H.""DocDate"" <= DATE'2026-12-31'#(lf)),#(lf)#(lf)/* ---- Sales aggregated by BP + Quarter number ---- */#(lf)SalesByQuarter AS (#(lf)    SELECT#(lf)        S.""CardCode"",#(lf)        (FLOOR( (MONTH(S.""DocDate"") - 1) / 3 ) + 1) AS ""QNo"",#(lf)        SUM(S.""Sales"") AS ""Sales""#(lf)    FROM DocSales S#(lf)    GROUP BY#(lf)        S.""CardCode"",#(lf)        (FLOOR( (MONTH(S.""DocDate"") - 1) / 3 ) + 1)#(lf)),#(lf)#(lf)/* ---- Join resellers x quarters to force showing zeros ---- */#(lf)BaseQ AS (#(lf)    SELECT#(lf)        R.""CardCode"",#(lf)        R.""CardName"",#(lf)        R.""BPType"",#(lf)        Q.""QNo"",#(lf)        Q.""QuarterLabel"",#(lf)        Q.""RuleMonth"",#(lf)        (R.""MonthlyTarget"" * 3) AS ""Target"",#(lf)        COALESCE(SQ.""Sales"", 0) AS ""Sales""#(lf)    FROM Resellers R#(lf)    CROSS JOIN QAxis Q#(lf)    LEFT JOIN SalesByQuarter SQ#(lf)        ON SQ.""CardCode"" = R.""CardCode""#(lf)       AND SQ.""QNo"" = Q.""QNo""#(lf)),#(lf)#(lf)/* ---- Attach rebate tiers from @REBATECALENDAR ---- */#(lf)WithRules AS (#(lf)    SELECT#(lf)        B.*,#(lf)#(lf)        /* Tier 2: 80..99.99 */#(lf)        COALESCE(RC.""U_FromPercentage2"", 80) AS ""From2"",#(lf)        COALESCE(RC.""U_ToPercentage2"",   99.99) AS ""To2"",#(lf)        COALESCE(RC.""U_RebatePercentage2"", 0.75) AS ""Rate2"",#(lf)#(lf)        /* Tier 3: 100..100 */#(lf)        COALESCE(RC.""U_FromPercentage3"", 100) AS ""From3"",#(lf)        COALESCE(RC.""U_ToPercentage3"",   100) AS ""To3"",#(lf)        COALESCE(RC.""U_RebatePercentage3"", 1) AS ""Rate3"",#(lf)#(lf)        /* Tier 4: 100.1.. */#(lf)        COALESCE(RC.""U_FromPercentage4"", 100.1) AS ""From4"",#(lf)        COALESCE(RC.""U_RebatePercentage4"", 1.25) AS ""Rate4""#(lf)#(lf)    FROM BaseQ B#(lf)    LEFT JOIN ""CANON"".""@REBATECALENDAR"" RC#(lf)        ON RC.""Name"" = B.""RuleMonth""#(lf)),#(lf)#(lf)/* ---- Calculate rebate per quarter row ---- */#(lf)CalcQ AS (#(lf)    SELECT#(lf)        ""QuarterLabel"",#(lf)        ""QNo"" AS ""SortKey"",#(lf)        ""CardCode"",#(lf)        ""CardName"",#(lf)        ""BPType"",#(lf)        ""Target"",#(lf)        ""Sales"",#(lf)#(lf)        CASE#(lf)            WHEN ""Target"" <= 0 THEN 0#(lf)            ELSE (""Sales"" / ""Target"") * 100#(lf)        END AS ""AchPct"",#(lf)#(lf)        CASE#(lf)            WHEN ""Target"" <= 0 THEN 0#(lf)            WHEN ""Sales"" <= 0 THEN 0#(lf)#(lf)            /* 80..99.99 => Rate2% of Sales */#(lf)            WHEN ((""Sales"" / ""Target"") * 100) >= ""From2""#(lf)             AND ((""Sales"" / ""Target"") * 100) <= ""To2""#(lf)            THEN ""Sales"" * (""Rate2"" / 100)#(lf)#(lf)            /* exactly 100% (or >=100 but we treat >100 in next case) */#(lf)            WHEN ""Sales"" = ""Target""#(lf)            THEN ""Sales"" * (""Rate3"" / 100)#(lf)#(lf)            /* > 100% => 1% on Target + 1.25% on the EXTRA part only */#(lf)            WHEN ""Sales"" > ""Target""#(lf)            THEN (""Target"" * (""Rate3"" / 100)) + ((""Sales"" - ""Target"") * (""Rate4"" / 100))#(lf)#(lf)            ELSE 0#(lf)        END AS ""RebateAmount""#(lf)    FROM WithRules#(lf)),#(lf)#(lf)/* ---- TOTAL 2026 (sum of 4 quarters; not re-tiered annually) ---- */#(lf)Total2026 AS (#(lf)    SELECT#(lf)        'TOTAL 2026' AS ""QuarterLabel"",#(lf)        5 AS ""SortKey"",#(lf)        ""CardCode"",#(lf)        ""CardName"",#(lf)        ""BPType"",#(lf)        SUM(""Target"") AS ""Target"",#(lf)        SUM(""Sales"")  AS ""Sales"",#(lf)        CASE#(lf)            WHEN SUM(""Target"") <= 0 THEN 0#(lf)            ELSE (SUM(""Sales"") / SUM(""Target"")) * 100#(lf)        END AS ""AchPct"",#(lf)        SUM(""RebateAmount"") AS ""RebateAmount""#(lf)    FROM CalcQ#(lf)    GROUP BY ""CardCode"",""CardName"",""BPType""#(lf))#(lf)#(lf)SELECT#(lf)    ""QuarterLabel"",#(lf)    ""SortKey"",#(lf)    ""CardCode"",#(lf)    ""CardName"",#(lf)    ""BPType"",#(lf)    ""Target"",#(lf)    ""Sales"",#(lf)    ""AchPct"",#(lf)    ""RebateAmount""#(lf)FROM CalcQ#(lf)#(lf)UNION ALL#(lf)#(lf)SELECT#(lf)    ""QuarterLabel"",#(lf)    ""SortKey"",#(lf)    ""CardCode"",#(lf)    ""CardName"",#(lf)    ""BPType"",#(lf)    ""Target"",#(lf)    ""Sales"",#(lf)    ""AchPct"",#(lf)    ""RebateAmount""#(lf)FROM Total2026")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,154 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "b2c3d4e5f6a7b8c9d0e1",
+  "displayName": "Warehouse Distribution",
+  "displayOption": "FitToWidth",
+  "height": 960,
+  "width": 1280,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "195L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F8FBFF'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_on_hand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_committed",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_available",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "kpi_on_order",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "chart_whs_compare",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "chart_stock_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_quarter",
+      "target": "chart_transfer_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_on_hand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_committed",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_available",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "kpi_on_order",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "chart_whs_compare",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "chart_stock_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_month",
+      "target": "chart_transfer_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_warehouse",
+      "target": "kpi_on_hand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_warehouse",
+      "target": "kpi_committed",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_warehouse",
+      "target": "kpi_available",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_warehouse",
+      "target": "kpi_on_order",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_warehouse",
+      "target": "chart_whs_compare",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_warehouse",
+      "target": "chart_stock_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_warehouse",
+      "target": "chart_transfer_trend",
+      "type": "DataFilter"
+    }
+  ]
+}
