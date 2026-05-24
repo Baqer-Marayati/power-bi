@@ -1015,6 +1015,16 @@ table _Measures
 			    SWITCH ( TRUE (), _n = 1, MAX ( DateSpineChoice[AnalyzeBy] ), "LC posting date" )
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000101
 
+	/// Shipments table guard: hide LC doc rows with no allocation lines under active filters (e.g. item search).
+	measure 'Shipment Table Row Keeper' =
+			IF (
+			    NOT ISINSCOPE ( Fact_LandedCostAllocation[LcDocNum] ),
+			    1,
+			    IF ( CALCULATE ( COUNTROWS ( Fact_LandedCostAllocation ) ) >= 1, 1 )
+			)
+		formatString: 0
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000148
+
 	/// Procurement KPI + table totals: per LC doc on rows; sum of docs on cards / matrix total (matches closed-LC table).
 	measure 'Procurement KPI Supplier Total' =
 			IF (

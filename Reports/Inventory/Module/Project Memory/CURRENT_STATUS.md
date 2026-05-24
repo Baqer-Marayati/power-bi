@@ -2,10 +2,11 @@
 
 ## Date
 
-- Last updated: May 23, 2026
+- Last updated: May 24, 2026
 
 ## Current snapshot
 
+- **May 24, 2026** — Landed Cost **Shipments** table item-search leak fixed: `_Measures[Shipment Table Row Keeper]` + visual filter on `table_cost_impact` hide LC doc rows with no lines for the selected item (same Row Keeper pattern as Reorder Actions). Fabric + CANON module copies aligned.
 - **May 22–23, 2026** — Management-friendly **display labels** applied to all five CANON Inventory pages in `Fabric/DevelopmentWorkspace` and `Reports/Inventory/Companies/CANON` (commits `265fea0`–`c7deb2e`). Page tabs: **Inventory Overview**, **Stock Value**, **Stock Health**, **Stock Actions**, **Landed Cost**. Measure names unchanged; see `DECISIONS.md` (2026-05-22) for approved vocabulary and user exceptions (Overstock, Open PO/SO, LC Doc).
 - **May 17, 2026** — Reorder Actions slicer leak fixed: table rows anchored on `Fact_StockCoverPolicy` grain with `Reorder Table Row Keeper` visual filter.
 - Active Fabric iteration: `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`. Module copy: `Reports/Inventory/Companies/CANON/Canon Inventory Report/`.
