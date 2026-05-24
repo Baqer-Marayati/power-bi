@@ -21,6 +21,11 @@ Use this file for approved directions and durable constraints in the Inventory R
 - Stock Value measure uses `AvgPrice` from OITM as interim approach; OIVL cost layers recommended for future accuracy.
 - `Dim_Date` is a DAX calculated calendar (Dec 2025 – Dec 2026) to match the SAP data window.
 
+## 2026-05-24 — Film item 150-day policy override
+
+- Nine **#N/A** film SKUs (`NP-C-0710*` PG variants) use an **item-level 150-day** `PolicyDays` override in `Fact_StockCoverPolicy`; all other `#N/A`/blank items remain **60 days**. B2B **150** and B2C **120** defaults unchanged.
+- Override list is maintained in the M query (`PolicyFilm150ItemCodes`); target qty, cover status, reorder/excess, and Stock Health / Reorder Actions all recompute from the new target on refresh.
+
 ## 2026-05-08 — CANON stock-cover policy
 
 - Added quantity-based stock-cover policy for CANON inventory: B2B targets 120 days, B2C targets 90 days, and `#N/A`/blank targets 60 days.

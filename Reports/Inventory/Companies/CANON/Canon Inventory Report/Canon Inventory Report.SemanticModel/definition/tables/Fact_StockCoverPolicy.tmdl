@@ -296,7 +296,8 @@ table Fact_StockCoverPolicy
 				    AddV90  = Table.AddColumn(AddEffDays90,  "SalesVelocity90Days",  each [SalesQty90Days]  / [EffDays90],  type number),
 				    AddV180 = Table.AddColumn(AddV90,        "SalesVelocity180Days", each [SalesQty180Days] / [EffDays180], type number),
 				    AddV365 = Table.AddColumn(AddV180,       "SalesVelocity365Days", each [SalesQty365Days] / [EffDays365], type number),
-				    AddPolicy = Table.AddColumn(AddV365, "PolicyDays", each if [U_BusinessType] = "B2B" then 150 else if [U_BusinessType] = "B2C" then 120 else 60, Int64.Type),
+				    PolicyFilm150ItemCodes = {"NP-C-0710MBK(PG)-RB","NP-C-0710BK(PG)-RB","NP-C-0710C(PG) RB","NP-C-0710C(PG)-RB","NP-C-0710M(PG) RB","NP-C-0710M(PG)-RB","NP-C-0710M(PG) CA","NP-C-0710M(PG)-CA","NP-C-0710C(PG) CA","NP-C-0710C(PG)-CA","NP-C-0710Y(PG) RB","NP-C-0710Y(PG)-RB","NP-C-0710Y(PG) CA","NP-C-0710Y(PG)-CA","NP-C-0710MBK(PG)-CA"},
+				    AddPolicy = Table.AddColumn(AddV365, "PolicyDays", each if List.Contains(PolicyFilm150ItemCodes, [ItemCode]) then 150 else if [U_BusinessType] = "B2B" then 150 else if [U_BusinessType] = "B2C" then 120 else 60, Int64.Type),
 				    AddBlend = Table.AddColumn(AddPolicy, "SalesVelocityQtyPerDay", each
 				        let
 				            life = if [DaysSinceFirstSale] = null then 0 else [DaysSinceFirstSale],
