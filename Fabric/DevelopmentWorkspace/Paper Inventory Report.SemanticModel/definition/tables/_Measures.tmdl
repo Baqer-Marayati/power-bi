@@ -1,21 +1,30 @@
 table _Measures
 	lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa001
 
-		measure 'Total Committed' = SUM ( Fact_WarehouseStock[IsCommited] ) / 1000
+	measure 'Total On Hand' = SUM ( Fact_WarehouseStock[OnHand] ) / 1000
+		formatString: #,0.00" T"
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa002
+
+
+	measure 'Total Committed' = SUM ( Fact_WarehouseStock[IsCommited] ) / 1000
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa003
+
 
 	measure 'Total Available' = [Total On Hand] - [Total Committed]
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa004
 
+
 	measure 'Total On Order' = SUM ( Fact_WarehouseStock[OnOrder] ) / 1000
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa005
 
+
 	measure 'Distinct SKUs' = DISTINCTCOUNT ( Fact_WarehouseStock[ItemCode] )
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa006
+
 
 	measure 'In-Stock SKUs' =
 			CALCULATE (
@@ -25,9 +34,11 @@ table _Measures
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa007
 
+
 	measure 'Total SKUs' = COUNTROWS ( Dim_Item )
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa008
+
 
 	measure 'Stock Value' = SUM ( Fact_WarehouseStock[StockValue] )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
@@ -35,37 +46,46 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Inbound Qty' = SUM ( Fact_StockMovement[InQty] ) / 1000
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa010
+
 
 	measure 'Outbound Qty' = SUM ( Fact_StockMovement[OutQty] ) / 1000
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa011
 
+
 	measure 'Net Movement' = [Inbound Qty] - [Outbound Qty]
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa012
+
 
 	measure 'Movement Count' = COUNTROWS ( Fact_StockMovement )
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa013
 
+
 	measure 'Transfer Qty' = SUM ( Fact_Transfer[Quantity] ) / 1000
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa014
+
 
 	measure 'Transfer Count' = DISTINCTCOUNT ( Fact_Transfer[DocEntry] )
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa015
 
+
 	measure 'Delivery Count' = DISTINCTCOUNT ( Fact_Delivery[DocEntry] )
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa016
 
+
 	measure 'Delivery Qty' = SUM ( Fact_Delivery[Quantity] ) / 1000
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa017
+
 
 	measure 'Delivery Value' = SUM ( Fact_Delivery[LineTotal] )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
@@ -73,19 +93,23 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'PO Count' = DISTINCTCOUNT ( Fact_PurchaseOrder[DocEntry] )
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa019
 
+
 	measure 'PO Qty' = SUM ( Fact_PurchaseOrder[Quantity] ) / 1000
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa020
+
 
 	measure 'PO Value' = SUM ( Fact_PurchaseOrder[LineTotal] )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa021
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Open PO Count' =
 			VAR _result =
@@ -98,13 +122,16 @@ table _Measures
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa022
 
+
 	measure 'GR Count' = DISTINCTCOUNT ( Fact_GoodsReceipt[DocEntry] )
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa023
 
+
 	measure 'GR Qty' = SUM ( Fact_GoodsReceipt[Quantity] ) / 1000
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa024
+
 
 	measure 'GR Value' = SUM ( Fact_GoodsReceipt[LineTotal] )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
@@ -112,13 +139,16 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'In-Stock Rate' = DIVIDE ( [In-Stock SKUs], [Distinct SKUs], 0 )
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa026
 
+
 	measure 'Out-of-Stock SKUs' = [Distinct SKUs] - [In-Stock SKUs]
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa027
+
 
 	measure 'Below Reorder Count' =
 			VAR _result =
@@ -134,6 +164,7 @@ table _Measures
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa028
 
+
 	measure 'Below Reorder %' =
 			VAR _count = [Below Reorder Count]
 			VAR _total = COUNTROWS ( Fact_WarehouseStock )
@@ -141,6 +172,7 @@ table _Measures
 			    IF ( _total > 0, DIVIDE ( _count, _total, 0 ), 0 )
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa029
+
 
 	measure 'Avg Days Since Last Purchase' =
 			AVERAGEX (
@@ -150,6 +182,7 @@ table _Measures
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa030
 
+
 	measure 'Inbound Qty PM' =
 			CALCULATE (
 			    [Inbound Qty],
@@ -157,6 +190,7 @@ table _Measures
 			)
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa031
+
 
 	measure 'Inbound Qty MoM %' =
 			VAR _current = [Inbound Qty]
@@ -166,6 +200,7 @@ table _Measures
 		formatString: +0.0%;-0.0%;0.0%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa032
 
+
 	measure 'Outbound Qty PM' =
 			CALCULATE (
 			    [Outbound Qty],
@@ -173,6 +208,7 @@ table _Measures
 			)
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa033
+
 
 	measure 'Net Movement PM' =
 			CALCULATE (
@@ -182,6 +218,7 @@ table _Measures
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa034
 
+
 	measure 'Net Movement MoM %' =
 			VAR _current = [Net Movement]
 			VAR _pm = [Net Movement PM]
@@ -189,6 +226,7 @@ table _Measures
 			    IF ( _pm <> 0, DIVIDE ( _current - _pm, ABS ( _pm ) ), BLANK () )
 		formatString: +0.0%;-0.0%;0.0%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa035
+
 
 	measure 'GR Value PM' =
 			CALCULATE (
@@ -200,6 +238,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'GR Value MoM %' =
 			VAR _current = [GR Value]
 			VAR _pm = [GR Value PM]
@@ -207,6 +246,7 @@ table _Measures
 			    IF ( _pm <> 0, DIVIDE ( _current - _pm, ABS ( _pm ) ), BLANK () )
 		formatString: +0.0%;-0.0%;0.0%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa037
+
 
 	measure 'Narrative Title' =
 			VAR _value = [Stock Value]
@@ -221,6 +261,7 @@ table _Measures
 			    FORMAT ( _belowPct, "0.0%" ) & " Below Reorder"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa038
 
+
 	measure 'Avg Cost' =
 			DIVIDE (
 			    SUM ( InventoryValuation[StockValue] ),
@@ -231,23 +272,28 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'IV Stock Value' = SUM ( InventoryValuation[StockValue] )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa041
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'IV Stock Qty' = SUM ( InventoryValuation[StockQty] ) / 1000
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa042
+
 
 	measure 'IV Item Count' = DISTINCTCOUNT ( InventoryValuation[ItemCode] )
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa043
 
+
 	measure 'IV Warehouse Count' = DISTINCTCOUNT ( InventoryValuation[WhsName] )
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa044
+
 
 	measure 'Item Avg Cost' =
 			DIVIDE (
@@ -258,39 +304,49 @@ table _Measures
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa045
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+
 	measure 'Policy Total Qty Available' = SUM ( Fact_StockCoverPolicy[TotalQtyAvailable] ) / 1000
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa046
+
 
 	measure 'Policy Total Qty Sold' = SUM ( Fact_StockCoverPolicy[TotalQtySold] ) / 1000
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa047
 
+
 	measure 'Policy Sales Velocity Qty/Day' = SUM ( Fact_StockCoverPolicy[SalesVelocityQtyPerDay] ) / 1000
 		formatString: #,0.00
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa048
+
 
 	measure 'Policy Target Stock Qty' = SUM ( Fact_StockCoverPolicy[TargetStockQty] ) / 1000
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa049
 
+
 	measure 'Policy Stock Difference Qty' = SUM ( Fact_StockCoverPolicy[StockDifferenceQty] ) / 1000
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa050
 
+
 	measure 'Suggested Reorder Qty' = SUM ( Fact_StockCoverPolicy[SuggestedReorderQty] )
-		formatString: #,0.00" T"
+		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa051
 
+
 	measure 'Excess Stock Qty' = SUM ( Fact_StockCoverPolicy[ExcessQty] )
-		formatString: #,0.00" T"
+		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa052
+
 
 	measure 'Policy Stock Value' = SUM ( Fact_StockCoverPolicy[TotalItemCost] )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa058
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Policy Target Stock Value' =
 			SUMX (
@@ -304,6 +360,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Suggested Reorder Value' =
 			SUMX (
 			    Fact_StockCoverPolicy,
@@ -315,6 +372,7 @@ table _Measures
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa060
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Excess Stock Value' =
 			SUMX (
@@ -328,6 +386,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Under Stock Value Gap' =
 			CALCULATE (
 			    [Suggested Reorder Value],
@@ -337,6 +396,7 @@ table _Measures
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa062
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Healthy Stock Value' =
 				CALCULATE (
@@ -348,6 +408,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Over Stock Value' =
 			CALCULATE (
 			    [Excess Stock Value],
@@ -357,6 +418,7 @@ table _Measures
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa064
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'No Sales Stock Value' =
 				CALCULATE (
@@ -368,6 +430,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Under Stock Items' =
 			CALCULATE (
 			    DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] ),
@@ -375,6 +438,7 @@ table _Measures
 			)
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa053
+
 
 	measure 'Equal Healthy Items' =
 				CALCULATE (
@@ -384,6 +448,7 @@ table _Measures
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa054
 
+
 	measure 'Over Stock Items' =
 			CALCULATE (
 			    DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] ),
@@ -391,6 +456,7 @@ table _Measures
 			)
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa055
+
 
 	measure 'No Sales Stock Items' =
 				CALCULATE (
@@ -400,15 +466,18 @@ table _Measures
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa056
 
+
 	measure 'Stock Cover Item Count' = DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] )
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa057
+
 
 	measure 'Policy Value Unit Cost' = SELECTEDVALUE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa066
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Stock Cover Exposure Value' =
 				SUMX (
@@ -430,12 +499,15 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Stock Cover Exposure % of Business Type' = DIVIDE ( [Stock Cover Exposure Value], CALCULATE ( [Stock Cover Exposure Value], REMOVEFILTERS ( Fact_StockCoverPolicy[StockCoverStatus] ) ), 0 )
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa068
 
-	/// Reorder Actions table guard: keep the table on the stock-cover policy grain so slicers
-	/// cannot surface dimension-only rows whose SELECTEDVALUE(...) reorder measures would go blank.
+		/// Reorder Actions table guard: keep the table on the stock-cover policy grain so slicers
+		/// cannot surface dimension-only rows whose SELECTEDVALUE(...) reorder measures would go blank.
+
+
 	measure 'Reorder Table Row Keeper' =
 			VAR NumPolicyRows =
 			    CALCULATE ( COUNTROWS ( Fact_StockCoverPolicy ) )
@@ -448,10 +520,12 @@ table _Measures
 		formatString: 0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa068a
 
-	/// Rounded SVG pill badge for the Action column. The inner <title> element gives
-	/// the cell an accessible name (BUY / HEALTHY / REDUCE / REVIEW / IDLE) so screen
-	/// readers and any renderer that respects SVG titles get a clean label instead of
-	/// the raw data URI.
+		/// Rounded SVG pill badge for the Action column. The inner <title> element gives
+		/// the cell an accessible name (BUY / HEALTHY / REDUCE / REVIEW / IDLE) so screen
+		/// readers and any renderer that respects SVG titles get a clean label instead of
+		/// the raw data URI.
+
+
 	measure 'Reorder Action Pill SVG' =
 			VAR _Code = SELECTEDVALUE ( Fact_StockCoverPolicy[ItemCode] )
 			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
@@ -489,17 +563,21 @@ table _Measures
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa069
 		dataCategory: ImageUrl
 
-	/// Policy days as "60d" / "120d" / "150d" for the Policy column.
+		/// Policy days as "60d" / "120d" / "150d" for the Policy column.
+
+
 	measure 'Reorder Policy Display' =
 			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[PolicyDays] )
 			RETURN
 			    IF ( ISBLANK ( _V ), BLANK (), FORMAT ( _V, "0" ) & "d" )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa070
 
-	/// Horizontal cover bar (0-150% of target) with vertical tick at 100% and "% of target" label.
-	/// Track height is 12px (thicker) and the label uses 11px Segoe UI for legibility. When the
-	/// item has no target (non-mover / zero velocity) the label switches to "— no target" and the
-	/// fill stays empty, so the cell isn't misread as "0% of target".
+		/// Horizontal cover bar (0-150% of target) with vertical tick at 100% and "% of target" label.
+		/// Track height is 12px (thicker) and the label uses 11px Segoe UI for legibility. When the
+		/// item has no target (non-mover / zero velocity) the label switches to "— no target" and the
+		/// fill stays empty, so the cell isn't misread as "0% of target".
+
+
 	measure 'Reorder Cover Bar SVG' =
 			VAR _Code = SELECTEDVALUE ( Fact_StockCoverPolicy[ItemCode] )
 			VAR _Net = SELECTEDVALUE ( Fact_StockCoverPolicy[NetAvailable] ) / 1000
@@ -536,36 +614,46 @@ table _Measures
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa071
 		dataCategory: ImageUrl
 
-	/// On hand (net available, integer rounding).
+		/// On hand (net available, integer rounding).
+
+
 	measure 'Reorder On Hand' =
 			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[NetAvailable] ) / 1000
 			RETURN
 			    IF ( ISBLANK ( _V ), BLANK (), ROUND ( _V, 0 ) )
-		formatString: #,0.00" T"
+		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa072
 
-	/// Target stock qty; dash when zero/blank (dead SKUs).
+		/// Target stock qty; dash when zero/blank (dead SKUs).
+
+
 	measure 'Reorder Target Display' =
 			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[TargetStockQty] ) / 1000
 			RETURN
 			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa073
 
-	/// Open PO qty; dash when zero/blank.
+		/// Open PO qty; dash when zero/blank.
+
+
 	measure 'Reorder Open PO Display' =
 			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[OpenPOQty] ) / 1000
 			RETURN
 			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa074
 
-	/// Sales velocity; dash when zero/blank.
+		/// Sales velocity; dash when zero/blank.
+
+
 	measure 'Reorder Velocity Display' =
 			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[SalesVelocityQtyPerDay] ) / 1000
 			RETURN
 			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "0.00" ) & " /d" )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa075
 
-	/// Font color for the Move qty cell (red for buy, amber for reduce/review, muted grey for —).
+		/// Font color for the Move qty cell (red for buy, amber for reduce/review, muted grey for —).
+
+
 	measure 'Reorder Move Qty Color' =
 			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
 			VAR _Buy = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedReorderQty] ) / 1000
@@ -580,9 +668,11 @@ table _Measures
 			    )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa081
 
-	/// Signed numeric Move qty: +N for buy, -N for reduce/review, BLANK for healthy / no-action /
-	/// rows where there's nothing to do. The auto-scale "K"/"M"/"B" format mirrors IQD impact so
-	/// the column sorts numerically when the user clicks the header.
+		/// Signed numeric Move qty: +N for buy, -N for reduce/review, BLANK for healthy / no-action /
+		/// rows where there's nothing to do. The auto-scale "K"/"M"/"B" format mirrors IQD impact so
+		/// the column sorts numerically when the user clicks the header.
+
+
 	measure 'Reorder Move Qty Value' =
 			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
 			VAR _Buy = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedReorderQty] ) / 1000
@@ -598,9 +688,11 @@ table _Measures
 		formatString: +#,0;-#,0;0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa077
 
-	/// IQD impact (numeric): SuggestedReorderQty * AvgItemCost for Buy, ExcessQty * AvgItemCost
-	/// for Reduce, item book value for Review non-mover, BLANK otherwise. Keep this as a
-	/// plain numeric format string; table visuals render conditional format sections as literal text.
+		/// IQD impact (numeric): SuggestedReorderQty * AvgItemCost for Buy, ExcessQty * AvgItemCost
+		/// for Reduce, item book value for Review non-mover, BLANK otherwise. Keep this as a
+		/// plain numeric format string; table visuals render conditional format sections as literal text.
+
+
 	measure 'Reorder IQD Impact' =
 			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
 			VAR _Buy = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedReorderQty] )
@@ -619,6 +711,7 @@ table _Measures
 		formatString: #,0;-#,0;0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa078
 
+
 	measure 'Total Sold Qty' =
 			CALCULATE (
 			    SUMX (
@@ -631,6 +724,7 @@ table _Measures
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa082
 
+
 	measure 'Total COGS' =
 			CALCULATE (
 			    SUM ( Fact_StockMovement[CogsValue] ),
@@ -642,11 +736,13 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Average Unit COGS' = DIVIDE ( [Total COGS], [Total Sold Qty] )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa086
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Current Item Unit Cost' =
 			VAR _stockUnitCost =
@@ -666,6 +762,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Current Total Cost' =
 			SUMX (
 			    VALUES ( Dim_Item[ItemCode] ),
@@ -676,6 +773,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'GR Receipt Qty Positive' =
 			CALCULATE (
 			    SUM ( Fact_GoodsReceipt[Quantity] ) / 1000,
@@ -683,6 +781,7 @@ table _Measures
 			)
 		formatString: #,0.00" T"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa087
+
 
 	measure 'GR Receipt Value Positive' =
 			CALCULATE (
@@ -695,11 +794,13 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Weighted Purchase Unit Cost' = DIVIDE ( [GR Receipt Value Positive], [GR Receipt Qty Positive] )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa089
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Weighted Purchase Unit Cost PM' =
 			CALCULATE (
@@ -711,6 +812,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Purchase Unit Cost MoM %' =
 			VAR _current = [Weighted Purchase Unit Cost]
 			VAR _pm = [Weighted Purchase Unit Cost PM]
@@ -718,6 +820,7 @@ table _Measures
 			    IF ( NOT ISBLANK ( _pm ) && _pm <> 0, DIVIDE ( _current - _pm, _pm ), BLANK () )
 		formatString: +0.0%;-0.0%;0.0%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa091
+
 
 	measure 'Purchase Cost Impact' =
 			VAR _delta = [Weighted Purchase Unit Cost] - [Weighted Purchase Unit Cost PM]
@@ -727,6 +830,7 @@ table _Measures
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa092
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Average Unit COGS PM' =
 			CALCULATE (
@@ -738,6 +842,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Average Unit COGS MoM %' =
 			VAR _current = [Average Unit COGS]
 			VAR _pm = [Average Unit COGS PM]
@@ -745,6 +850,7 @@ table _Measures
 			    IF ( NOT ISBLANK ( _pm ) && _pm <> 0, DIVIDE ( _current - _pm, _pm ), BLANK () )
 		formatString: +0.0%;-0.0%;0.0%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa094
+
 
 	measure 'COGS Cost Impact' =
 			VAR _delta = [Average Unit COGS] - [Average Unit COGS PM]
@@ -755,6 +861,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'COGS Response Gap %' =
 			VAR _purchaseChange = [Purchase Unit Cost MoM %]
 			VAR _cogsChange = [Average Unit COGS MoM %]
@@ -763,11 +870,13 @@ table _Measures
 		formatString: +0.0%;-0.0%;0.0%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa096
 
+
 	measure 'Landed Cost Amount' = SUM ( Fact_LandedCostAllocation[LandedCostAmount] )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: b0c0d0e0-f010-4001-8001-000000000001
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Landed Supplier Base Amount' = SUM ( Fact_LandedCostAllocation[SupplierBaseAmount] )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
@@ -775,11 +884,13 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Landed Add-On Amount' = SUM ( Fact_LandedCostAllocation[AddOnAmount] )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: b0c0d0e0-f010-4001-8001-000000000003
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Landed Receipt Qty' =
 			SUMX (
@@ -796,11 +907,13 @@ table _Measures
 		formatString: #,0.00" T"
 		lineageTag: b0c0d0e0-f010-4001-8001-000000000004
 
+
 	measure 'Landed Unit Cost' = DIVIDE ( [Landed Cost Amount], [Landed Receipt Qty] )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
 		lineageTag: b0c0d0e0-f010-4001-8001-000000000005
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Landed Unit Cost PM' =
 			CALCULATE (
@@ -812,6 +925,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Landed Unit Cost Delta' =
 			VAR _current = [Landed Unit Cost]
 			VAR _pm = [Landed Unit Cost PM]
@@ -822,6 +936,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Landed Unit Cost MoM %' =
 			VAR _current = [Landed Unit Cost]
 			VAR _pm = [Landed Unit Cost PM]
@@ -829,6 +944,7 @@ table _Measures
 			    IF ( NOT ISBLANK ( _pm ) && _pm <> 0, DIVIDE ( _current - _pm, _pm ), BLANK () )
 		formatString: +0.0%;-0.0%;0.0%
 		lineageTag: b0c0d0e0-f010-4001-8001-000000000008
+
 
 	measure 'Landed Category Cost Per Unit' =
 			DIVIDE (
@@ -840,6 +956,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Landed Category Cost Per Unit PM' =
 			CALCULATE (
 			    [Landed Category Cost Per Unit],
@@ -849,6 +966,7 @@ table _Measures
 		lineageTag: b0c0d0e0-f010-4001-8001-000000000010
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Landed Unit Cost Delta by Category' =
 			VAR _current = [Landed Category Cost Per Unit]
@@ -860,12 +978,14 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Landed Add-On % of Landed' =
 			VAR _landed = [Landed Cost Amount]
 			RETURN
 			    IF ( NOT ISBLANK ( _landed ) && _landed <> 0, DIVIDE ( [Landed Add-On Amount], _landed ), BLANK () )
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: b0c0d0e0-f010-4001-8001-000000000012
+
 
 	measure 'Largest Landed Cost Driver' =
 			VAR _drivers =
@@ -887,6 +1007,7 @@ table _Measures
 			RETURN
 			    IF ( ISBLANK ( _category ), BLANK (), _category & " " & _amt & " د.ع." )
 		lineageTag: b0c0d0e0-f010-4001-8001-000000000013
+
 
 	measure 'Landed Cost Bridge Value' =
 			VAR _stepType = SELECTEDVALUE ( Dim_LandedCostBridge[StepType] )
@@ -910,6 +1031,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Landed Bridge Reconciled Unit' =
 			[Landed Unit Cost PM]
 			    + SUMX (
@@ -921,6 +1043,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Landed Bridge Residual' =
 			VAR _current = [Landed Unit Cost]
 			VAR _reconciled = [Landed Bridge Reconciled Unit]
@@ -931,6 +1054,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Landed Cost Materiality' =
 			VAR _delta = [Landed Unit Cost Delta]
 			RETURN
@@ -940,9 +1064,11 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
-	/// Cost trend % = (sold-qty weighted current unit cost − realized average unit COGS)
-	/// / realized average unit COGS. Positive means today's replacement cost for the
-	/// sold mix is higher than the realized sold-period cost; negative means lower.
+		/// Cost trend % = (sold-qty weighted current unit cost − realized average unit COGS)
+		/// / realized average unit COGS. Positive means today's replacement cost for the
+		/// sold mix is higher than the realized sold-period cost; negative means lower.
+
+
 	measure 'Cost Trend %' =
 			VAR _current = [Sold Weighted Avg Current Unit Cost]
 			VAR _realized = [Average Unit COGS]
@@ -955,6 +1081,7 @@ table _Measures
 		formatString: ▲ +0.0%;▼ -0.0%;● 0.0%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa0a1
 
+
 	measure 'Cost Trend Color' =
 			VAR _t = [Cost Trend %]
 			RETURN
@@ -966,6 +1093,7 @@ table _Measures
 			        "#4A4A4A"
 			    )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa0a2
+
 
 	measure 'Sold Weighted Avg Current Unit Cost' =
 			VAR _soldQty = [Total Sold Qty]
@@ -986,6 +1114,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Cost Trend Label' =
 			VAR _t = [Cost Trend %]
 			RETURN
@@ -998,21 +1127,27 @@ table _Measures
 			    )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa0a4
 
-	/// Open SO qty; dash when zero/blank.
+		/// Open SO qty; dash when zero/blank.
+
+
 	measure 'Reorder Open SO Display' =
 			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[OpenSOQty] )
 			RETURN
 			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa076
 
-	/// Date-selector label used by Procurement visuals. When the slicer shows All / multi-select, SELECTEDVALUE is unreliable; fall back to LC posting date.
+		/// Date-selector label used by Procurement visuals. When the slicer shows All / multi-select, SELECTEDVALUE is unreliable; fall back to LC posting date.
+
+
 	measure 'Selected Date Spine Label' =
 			VAR _n = COUNTROWS ( ALLSELECTED ( DateSpineChoice[AnalyzeBy] ) )
 			RETURN
 			    SWITCH ( TRUE (), _n = 1, MAX ( DateSpineChoice[AnalyzeBy] ), "LC posting date" )
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000101
 
-	/// Shipments table guard: hide LC doc rows with no allocation lines under active filters (e.g. item search).
+		/// Shipments table guard: hide LC doc rows with no allocation lines under active filters (e.g. item search).
+
+
 	measure 'Shipment Table Row Keeper' =
 			IF (
 			    NOT ISINSCOPE ( Fact_LandedCostAllocation[LcDocNum] ),
@@ -1022,7 +1157,9 @@ table _Measures
 		formatString: 0
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000148
 
-	/// Procurement KPI + table totals: per LC doc on rows; sum of docs on cards / matrix total (matches closed-LC table).
+		/// Procurement KPI + table totals: per LC doc on rows; sum of docs on cards / matrix total (matches closed-LC table).
+
+
 	measure 'Procurement KPI Supplier Total' =
 			IF (
 			    HASONEVALUE ( Fact_LandedCostAllocation[LcDocNum] ),
@@ -1039,6 +1176,7 @@ table _Measures
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000142
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Procurement KPI Add-On Total' =
 			IF (
@@ -1057,6 +1195,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Procurement KPI Receipt Qty' =
 			IF (
 			    HASONEVALUE ( Fact_LandedCostAllocation[LcDocNum] ),
@@ -1069,8 +1208,9 @@ table _Measures
 			        CALCULATE ( [Selected Landed Receipt Qty] )
 			    )
 			)
-		formatString: #,0.00" T"
+		formatString: #,0
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000144
+
 
 	measure 'Procurement KPI Add-On % of Landed' =
 			VAR _supplier = [Procurement KPI Supplier Total]
@@ -1080,6 +1220,7 @@ table _Measures
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000145
 
+
 	measure 'Procurement KPI Add-On Per Unit' =
 			DIVIDE ( [Procurement KPI Add-On Total], [Procurement KPI Receipt Qty] )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
@@ -1087,8 +1228,10 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Procurement KPI Largest Add-On' = [Selected Largest Landed Cost Driver]
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000147
+
 
 	measure 'Selected Landed Cost Amount' =
 			VAR _dates = VALUES ( Dim_Date[Date] )
@@ -1109,6 +1252,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Selected Landed Add-On Amount' =
 			VAR _dates = VALUES ( Dim_Date[Date] )
 			VAR _choice = [Selected Date Spine Label]
@@ -1127,6 +1271,7 @@ table _Measures
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000103
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Selected Landed Supplier Base Amount' =
 			VAR _dates = VALUES ( Dim_Date[Date] )
@@ -1147,6 +1292,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Selected Landed Receipt Qty' =
 			VAR _dates = VALUES ( Dim_Date[Date] )
 			VAR _choice = [Selected Date Spine Label]
@@ -1161,10 +1307,12 @@ table _Measures
 			            CALCULATE ( [Landed Receipt Qty], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) ),
 			        [Landed Receipt Qty]
 			    )
-		formatString: #,0.00" T"
+		formatString: #,0
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000104
 
-	/// LC posting date for the current LC document; repeats under item rows for context.
+		/// LC posting date for the current LC document; repeats under item rows for context.
+
+
 	measure 'Selected LC Document Date' =
 			CALCULATE (
 			    MAX ( Fact_LandedCostAllocation[LcDate] ),
@@ -1178,11 +1326,13 @@ table _Measures
 		formatString: Long Date
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000141
 
+
 	measure 'Selected Landed Unit Cost' = DIVIDE ( [Selected Landed Cost Amount], [Selected Landed Receipt Qty] )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000105
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Selected Landed Unit Cost PM' =
 			CALCULATE (
@@ -1194,6 +1344,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Selected Landed Unit Cost Delta' =
 			VAR _current = [Selected Landed Unit Cost]
 			VAR _pm = [Selected Landed Unit Cost PM]
@@ -1204,6 +1355,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Selected Landed Unit Cost MoM %' =
 			VAR _current = [Selected Landed Unit Cost]
 			VAR _pm = [Selected Landed Unit Cost PM]
@@ -1211,6 +1363,7 @@ table _Measures
 			    IF ( NOT ISBLANK ( _pm ) && _pm <> 0, DIVIDE ( _current - _pm, _pm ), BLANK () )
 		formatString: +0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000108
+
 
 	measure 'Selected Landed Category Cost Per Unit' =
 			DIVIDE (
@@ -1222,6 +1375,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Selected Landed Category Cost Per Unit PM' =
 			CALCULATE (
 			    [Selected Landed Category Cost Per Unit],
@@ -1231,6 +1385,7 @@ table _Measures
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000110
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Selected Landed Unit Cost Delta by Category' =
 			VAR _current = [Selected Landed Category Cost Per Unit]
@@ -1242,12 +1397,14 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Selected Landed Add-On % of Landed' =
 			VAR _landed = [Selected Landed Cost Amount]
 			RETURN
 			    IF ( NOT ISBLANK ( _landed ) && _landed <> 0, DIVIDE ( [Selected Landed Add-On Amount], _landed ), BLANK () )
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000112
+
 
 	measure 'Selected Largest Landed Cost Driver' =
 			VAR _drivers =
@@ -1269,6 +1426,7 @@ table _Measures
 			RETURN
 			    IF ( ISBLANK ( _category ), BLANK (), _category & " · " & _amt )
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000113
+
 
 	measure 'Selected Landed Cost Bridge Value' =
 			VAR _stepType = SELECTEDVALUE ( Dim_LandedCostBridge[StepType] )
@@ -1292,6 +1450,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Selected Landed Cost Materiality' =
 			VAR _delta = [Selected Landed Unit Cost Delta]
 			RETURN
@@ -1300,6 +1459,7 @@ table _Measures
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000115
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'LC Customs Projected' =
 			VAR _dates = VALUES ( Dim_Date[Date] )
@@ -1326,6 +1486,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'LC Customs Actual' =
 			CALCULATE (
 			    [Selected Landed Add-On Amount],
@@ -1337,15 +1498,18 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'LC Customs Variance' = [LC Customs Actual] - [LC Customs Projected]
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000118
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'LC Customs Variance %' = DIVIDE ( [LC Customs Variance], [LC Customs Projected] )
 		formatString: +0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000119
+
 
 	measure 'Selected Supplier Base Unit Cost' = DIVIDE ( [Selected Landed Supplier Base Amount], [Selected Landed Receipt Qty] )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
@@ -1353,12 +1517,15 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
-	/// Add-on IQD per receipt unit; uses same Selected landed date spine + qty as KPI row (slicer-aligned).
+		/// Add-on IQD per receipt unit; uses same Selected landed date spine + qty as KPI row (slicer-aligned).
+
+
 	measure 'Selected Add-On IQD Per Unit' = DIVIDE ( [Selected Landed Add-On Amount], [Selected Landed Receipt Qty] )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000132
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 
 	measure 'Selected Landed Uplift Amount' = [Selected Landed Add-On Amount]
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
@@ -1366,9 +1533,11 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Selected Landed Uplift % vs Supplier Base' = DIVIDE ( [Selected Landed Uplift Amount], [Selected Landed Supplier Base Amount] )
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000123
+
 
 	measure 'Selected Total Landed Cost Amount' =
 			CALCULATE (
@@ -1380,6 +1549,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+
 	measure 'Selected Add-On Share of Landed %' =
 			DIVIDE (
 			    [Selected Landed Add-On Amount],
@@ -1387,6 +1557,7 @@ table _Measures
 			)
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000124
+
 
 	measure 'Selected Add-On Share of Landed PM' =
 			CALCULATE (
@@ -1396,6 +1567,7 @@ table _Measures
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000133
 
+
 	measure 'Selected Add-On Share of Landed MoM pp' =
 			VAR _current = [Selected Add-On Share of Landed %]
 			VAR _prior = [Selected Add-On Share of Landed PM]
@@ -1403,6 +1575,7 @@ table _Measures
 			    IF ( NOT ISBLANK ( _current ) && NOT ISBLANK ( _prior ), _current - _prior, BLANK () )
 		formatString: +0.0\ "pp";-0.0\ "pp";0.0\ "pp"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000134
+
 
 	measure 'Selected Add-On Category Rank' =
 			VAR _category = SELECTEDVALUE ( Dim_LandedCostCategory[ReportingCategory] )
@@ -1424,17 +1597,21 @@ table _Measures
 		formatString: #,0
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000135
 
+
 	measure 'Category % of landed' = [Selected Add-On Share of Landed %]
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000137
+
 
 	measure 'Add-on IQD (M)' = DIVIDE ( [Selected Landed Add-On Amount], 1000000 )
 		formatString: #,0.0\ "M د.ع.‏";-#,0.0\ "M د.ع.‏";0.0\ "M د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000138
 
+
 	measure 'MoM change pp' = [Selected Add-On Share of Landed MoM pp]
 		formatString: +0.0\ "pp";-0.0\ "pp";0.0\ "pp"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000139
+
 
 	measure 'Selected Add-On Category Share %' =
 			DIVIDE (
@@ -1443,6 +1620,7 @@ table _Measures
 			)
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000125
+
 
 	measure 'Selected Transport % of Landed' =
 			DIVIDE (
@@ -1456,6 +1634,7 @@ table _Measures
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000126
 
+
 	measure 'Selected Tax Duty % of Landed' =
 			DIVIDE (
 			    CALCULATE (
@@ -1467,6 +1646,7 @@ table _Measures
 			)
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000127
+
 
 	measure 'Selected Insurance % of Landed' =
 			DIVIDE (
@@ -1480,6 +1660,7 @@ table _Measures
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000128
 
+
 	measure 'Selected Unloading / Other % of Landed' =
 			DIVIDE (
 			    CALCULATE (
@@ -1491,6 +1672,7 @@ table _Measures
 			)
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000129
+
 
 	measure 'Selected Top Driver Share %' =
 			VAR _drivers =
@@ -1511,6 +1693,7 @@ table _Measures
 			    DIVIDE ( _amount, ABS ( [Selected Landed Uplift Amount] ) )
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000130
+
 
 	measure 'Selected Top Add-On Category' =
 			VAR _drivers =
