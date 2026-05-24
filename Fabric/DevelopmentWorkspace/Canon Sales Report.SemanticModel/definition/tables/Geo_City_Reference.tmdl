@@ -1,0 +1,136 @@
+table Geo_City_Reference
+	lineageTag: 7d1f5a28-2000-4af7-8a20-304934000000
+
+	column LocationGroupKey
+		dataType: string
+		isKey
+		lineageTag: 7d1f5a28-2001-4af7-8a20-304934000001
+		summarizeBy: none
+		sourceColumn: [LocationGroupKey]
+
+		annotation SummarizationSetBy = Automatic
+
+	column GroupName
+		dataType: string
+		lineageTag: 7d1f5a28-2002-4af7-8a20-304934000002
+		summarizeBy: none
+		sourceColumn: [GroupName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column CityName
+		dataType: string
+		lineageTag: 7d1f5a28-2003-4af7-8a20-304934000003
+		summarizeBy: none
+		sourceColumn: [CityName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Lat
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 7d1f5a28-2004-4af7-8a20-304934000004
+		dataCategory: Latitude
+		summarizeBy: average
+		sourceColumn: [Lat]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Lon
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 7d1f5a28-2005-4af7-8a20-304934000005
+		dataCategory: Longitude
+		summarizeBy: average
+		sourceColumn: [Lon]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IsMapped
+		dataType: boolean
+		lineageTag: 7d1f5a28-2006-4af7-8a20-304934000006
+		summarizeBy: none
+		sourceColumn: [IsMapped]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Source
+		dataType: string
+		lineageTag: 7d1f5a28-2007-4af7-8a20-304934000007
+		summarizeBy: none
+		sourceColumn: [Source]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Governorate
+		dataType: string
+		lineageTag: 7d1f5a28-2008-4af7-8a20-304934000008
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: [Governorate]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 7d1f5a28-2009-4af7-8a20-304934000009
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: [Country]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Geo_City_Reference = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "LocationGroupKey", STRING,
+				    "GroupName", STRING,
+				    "CityName", STRING,
+				    "Lat", DOUBLE,
+				    "Lon", DOUBLE,
+				    "IsMapped", BOOLEAN,
+				    "Source", STRING,
+				    "Governorate", STRING,
+				    "Country", STRING,
+				    {
+				        { "BAGHDAD", "Baghdad", "Baghdad", 33.31520, 44.36610, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Baghdad", "Iraq" },
+				        { "BASRA", "Basra", "Basra", 30.50850, 47.78040, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Basra", "Iraq" },
+				        { "BASRAH", "Basrah", "Basra", 30.50850, 47.78040, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Basra", "Iraq" },
+				        { "MOSUL", "Mosul", "Mosul", 36.34560, 43.15750, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Nineveh", "Iraq" },
+				        { "ERBIL", "Erbil", "Erbil", 36.19110, 44.00920, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Erbil", "Iraq" },
+				        { "ARBIL", "Arbil", "Erbil", 36.19110, 44.00920, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Erbil", "Iraq" },
+				        { "SULAYMANIYAH", "Sulaymaniyah", "Sulaymaniyah", 35.56110, 45.43560, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Sulaymaniyah", "Iraq" },
+				        { "SULAIMANI", "Sulaimani", "Sulaymaniyah", 35.56110, 45.43560, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Sulaymaniyah", "Iraq" },
+				        { "KIRKUK", "Kirkuk", "Kirkuk", 35.46810, 44.39220, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Kirkuk", "Iraq" },
+				        { "NAJAF", "Najaf", "Najaf", 32.02590, 44.34630, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Najaf", "Iraq" },
+				        { "KARBALA", "Karbala", "Karbala", 32.61600, 44.02490, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Karbala", "Iraq" },
+				        { "HILLAH", "Hillah", "Hillah", 32.47700, 44.43600, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Babil", "Iraq" },
+				        { "HILLA", "Hilla", "Hillah", 32.47700, 44.43600, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Babil", "Iraq" },
+				        { "BAQUBAH", "Baqubah", "Baqubah", 33.74850, 44.65540, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Diyala", "Iraq" },
+				        { "DIYALA", "Diyala", "Baqubah", 33.74850, 44.65540, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Diyala", "Iraq" },
+				        { "RAMADI", "Ramadi", "Ramadi", 33.42060, 43.30780, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Al Anbar", "Iraq" },
+				        { "FALLUJAH", "Fallujah", "Fallujah", 33.34910, 43.78560, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Al Anbar", "Iraq" },
+				        { "NASIRIYAH", "Nasiriyah", "Nasiriyah", 31.05210, 46.26100, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Dhi Qar", "Iraq" },
+				        { "NASIRIYA", "Nasiriya", "Nasiriyah", 31.05210, 46.26100, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Dhi Qar", "Iraq" },
+				        { "AMARAH", "Amarah", "Amarah", 31.83590, 47.14480, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Maysan", "Iraq" },
+				        { "AMARA", "Amara", "Amarah", 31.83590, 47.14480, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Maysan", "Iraq" },
+				        { "SAMAWAH", "Samawah", "Samawah", 31.33200, 45.29440, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Al Muthanna", "Iraq" },
+				        { "SAMAWA", "Samawa", "Samawah", 31.33200, 45.29440, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Al Muthanna", "Iraq" },
+				        { "DIWANIYAH", "Diwaniyah", "Diwaniyah", 31.99050, 44.92400, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Al Qadisiyyah", "Iraq" },
+				        { "DIWANIYA", "Diwaniya", "Diwaniyah", 31.99050, 44.92400, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Al Qadisiyyah", "Iraq" },
+				        { "KUT", "Kut", "Kut", 32.51470, 45.81900, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Wasit", "Iraq" },
+				        { "TIKRIT", "Tikrit", "Tikrit", 34.60710, 43.67820, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Salah al-Din", "Iraq" },
+				        { "DUHOK", "Duhok", "Duhok", 36.86600, 42.98850, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Duhok", "Iraq" },
+				        { "DOHUK", "Dohuk", "Duhok", 36.86600, 42.98850, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Duhok", "Iraq" },
+				        { "ZAKHU", "Zakhu", "Zakhu", 37.14820, 42.70010, TRUE, "Curated WGS84 city point; verify against business OCRG labels before sign-off", "Duhok", "Iraq" }
+				    }
+				)
+
+	annotation PBI_ResultType = Table
+

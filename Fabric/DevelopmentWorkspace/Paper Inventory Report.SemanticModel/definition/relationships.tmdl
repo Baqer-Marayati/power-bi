@@ -1,0 +1,48 @@
+relationship rel_ws_item
+	fromColumn: Fact_WarehouseStock.ItemCode
+	toColumn: Dim_Item.ItemCode
+
+relationship rel_ws_whs
+	fromColumn: Fact_WarehouseStock.WhsCode
+	toColumn: Dim_Warehouse.WhsCode
+
+relationship rel_move_item
+	fromColumn: Fact_StockMovement.ItemCode
+	toColumn: Dim_Item.ItemCode
+
+relationship rel_move_date
+	fromColumn: Fact_StockMovement.DocDate
+	toColumn: Dim_Date.Date
+
+relationship rel_transfer_item
+	fromColumn: Fact_Transfer.ItemCode
+	toColumn: Dim_Item.ItemCode
+
+relationship rel_transfer_date
+	fromColumn: Fact_Transfer.DocDate
+	toColumn: Dim_Date.Date
+
+relationship rel_delivery_item
+	fromColumn: Fact_Delivery.ItemCode
+	toColumn: Dim_Item.ItemCode
+
+relationship rel_delivery_date
+	fromColumn: Fact_Delivery.DocDate
+	toColumn: Dim_Date.Date
+
+relationship rel_gr_item
+	fromColumn: Fact_GoodsReceipt.ItemCode
+	toColumn: Dim_Item.ItemCode
+
+relationship rel_gr_date
+	fromColumn: Fact_GoodsReceipt.DocDate
+	toColumn: Dim_Date.Date
+
+relationship rel_po_item
+	fromColumn: Fact_PurchaseOrder.ItemCode
+	toColumn: Dim_Item.ItemCode
+
+relationship rel_po_date
+	fromColumn: Fact_PurchaseOrder.DocDate
+	toColumn: Dim_Date.Date
+

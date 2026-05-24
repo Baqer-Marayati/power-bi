@@ -1,0 +1,185 @@
+table Fact_SalesDetail
+	lineageTag: 7de91496-9a76-4bd5-a085-237354de56f5
+
+	column PostingDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ec526f9b-b875-4242-8594-e8815be8d8b8
+		summarizeBy: none
+		sourceColumn: PostingDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: d78a6ec2-4240-413d-b26b-7743b6481b14
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNo
+		dataType: int64
+		formatString: 0
+		lineageTag: a6dc78d6-c91e-4932-a44e-a0afec48830c
+		summarizeBy: sum
+		sourceColumn: MonthNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		dataType: string
+		lineageTag: 20daa1c7-185f-43ea-b4ca-c272d65bd08e
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocType
+		dataType: string
+		lineageTag: 0ce7dca5-d844-4b98-a815-eb99c8cb24ca
+		summarizeBy: none
+		sourceColumn: DocType
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocNum
+		dataType: int64
+		formatString: 0
+		lineageTag: c3bcd0f2-deea-4090-b130-d59ebd31010d
+		summarizeBy: count
+		sourceColumn: DocNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardCode
+		dataType: string
+		lineageTag: 9db0379f-dc61-4f41-b37b-e61e96e55c67
+		summarizeBy: none
+		sourceColumn: CardCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardName
+		dataType: string
+		lineageTag: 7cb78a87-ee6f-4776-8600-b9594ffb18d4
+		summarizeBy: none
+		sourceColumn: CardName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCode
+		dataType: string
+		lineageTag: 2f88757a-609d-4694-8f9f-939da15f9c3f
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemName
+		dataType: string
+		lineageTag: 3b13a7ec-87f7-45e7-bad9-5e609122d6fd
+		summarizeBy: none
+		sourceColumn: ItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemGroupName
+		dataType: string
+		lineageTag: 22f50717-27ea-4a4a-bd80-e4fcce01a0d2
+		summarizeBy: none
+		sourceColumn: ItemGroupName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: double
+		lineageTag: b2279853-69b3-46bf-85fd-7e06c1f6c7dc
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetSales
+		dataType: double
+		lineageTag: 9450e7a1-b0d0-43c7-a4ca-b5ea8deea07b
+		summarizeBy: sum
+		sourceColumn: NetSales
+
+		annotation SummarizationSetBy = Automatic
+
+	column GrossProfit
+		dataType: double
+		lineageTag: 16ea4b49-4322-4400-95ed-990468cbffea
+		summarizeBy: sum
+		sourceColumn: GrossProfit
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationCode
+		dataType: string
+		lineageTag: 8cf08d8a-8765-41b1-8c38-f43971b7f4c0
+		summarizeBy: none
+		sourceColumn: LocationCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationName
+		dataType: string
+		lineageTag: 119de3db-bb54-40db-b1e7-1667f5c2893c
+		summarizeBy: none
+		sourceColumn: LocationName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTypeCode
+		dataType: string
+		lineageTag: 1134c6bc-d641-4ceb-8bd8-a6a3d2b5b828
+		summarizeBy: none
+		sourceColumn: SalesTypeCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTypeName
+		dataType: string
+		lineageTag: e1e7a619-d0a9-4aa4-b963-b1d317613c44
+		summarizeBy: none
+		sourceColumn: SalesTypeName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentCode
+		dataType: string
+		lineageTag: b286ed68-8da2-4c24-bcf2-35fd0b8c40a5
+		summarizeBy: none
+		sourceColumn: DepartmentCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentName
+		dataType: string
+		lineageTag: 72e0cbf0-2b83-4ebb-9a57-081278254dbd
+		summarizeBy: none
+		sourceColumn: DepartmentName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Business Type'
+		dataType: string
+		lineageTag: 75f07431-1d77-42f9-81a1-6054e48e5c79
+		summarizeBy: none
+		sourceColumn: Item Business Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_SalesDetail = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    T0.""DocDate"" AS ""PostingDate"",#(lf)    YEAR(T0.""DocDate"") AS ""Year"",#(lf)    MONTH(T0.""DocDate"") AS ""MonthNo"",#(lf)    TO_VARCHAR(T0.""DocDate"", 'YYYY-MM') AS ""YearMonth"",#(lf)    'Invoice' AS ""DocType"",#(lf)    T0.""DocNum"" AS ""DocNum"",#(lf)    T0.""CardCode"" AS ""CardCode"",#(lf)    T0.""CardName"" AS ""CardName"",#(lf)    T1.""ItemCode"" AS ""ItemCode"",#(lf)    T1.""Dscription"" AS ""ItemName"",#(lf)    T4.""ItmsGrpNam"" AS ""ItemGroupName"",#(lf)    COALESCE(NULLIF(TRIM(T3.""U_BusinessType""), ''), 'Unassigned') AS ""Item Business Type"",#(lf)    COALESCE(T1.""Quantity"", 0) AS ""Quantity"",#(lf)    COALESCE(T1.""LineTotal"", 0) AS ""NetSales"",#(lf)    COALESCE(T1.""GrssProfit"", 0) AS ""GrossProfit"",#(lf)    UPPER(TRIM(T1.""OcrCode"")) AS ""LocationCode"",#(lf)    COALESCE(NULLIF(TRIM(D1.""PrcName""), ''), UPPER(TRIM(T1.""OcrCode""))) AS ""LocationName"",#(lf)    UPPER(TRIM(T1.""OcrCode2"")) AS ""SalesTypeCode"",#(lf)    COALESCE(NULLIF(TRIM(D2.""PrcName""), ''), UPPER(TRIM(T1.""OcrCode2""))) AS ""SalesTypeName"",#(lf)    UPPER(TRIM(T1.""OcrCode3"")) AS ""DepartmentCode"",#(lf)    COALESCE(NULLIF(TRIM(D3.""PrcName""), ''), UPPER(TRIM(T1.""OcrCode3""))) AS ""DepartmentName""#(lf)FROM ""CANON"".""OINV"" T0#(lf)INNER JOIN ""CANON"".""INV1"" T1#(lf)    ON T0.""DocEntry"" = T1.""DocEntry""#(lf)LEFT JOIN ""CANON"".""OITM"" T3#(lf)    ON T1.""ItemCode"" = T3.""ItemCode""#(lf)LEFT JOIN ""CANON"".""OITB"" T4#(lf)    ON T3.""ItmsGrpCod"" = T4.""ItmsGrpCod""#(lf)LEFT JOIN ""CANON"".""OPRC"" D1#(lf)    ON T1.""OcrCode"" = D1.""PrcCode"" AND D1.""DimCode"" = 1#(lf)LEFT JOIN ""CANON"".""OPRC"" D2#(lf)    ON T1.""OcrCode2"" = D2.""PrcCode"" AND D2.""DimCode"" = 2#(lf)LEFT JOIN ""CANON"".""OPRC"" D3#(lf)    ON T1.""OcrCode3"" = D3.""PrcCode"" AND D3.""DimCode"" = 3#(lf)UNION ALL#(lf)SELECT#(lf)    T0.""DocDate"" AS ""PostingDate"",#(lf)    YEAR(T0.""DocDate"") AS ""Year"",#(lf)    MONTH(T0.""DocDate"") AS ""MonthNo"",#(lf)    TO_VARCHAR(T0.""DocDate"", 'YYYY-MM') AS ""YearMonth"",#(lf)    'Credit Memo' AS ""DocType"",#(lf)    T0.""DocNum"" AS ""DocNum"",#(lf)    T0.""CardCode"" AS ""CardCode"",#(lf)    T0.""CardName"" AS ""CardName"",#(lf)    T1.""ItemCode"" AS ""ItemCode"",#(lf)    T1.""Dscription"" AS ""ItemName"",#(lf)    T4.""ItmsGrpNam"" AS ""ItemGroupName"",#(lf)    COALESCE(NULLIF(TRIM(T3.""U_BusinessType""), ''), 'Unassigned') AS ""Item Business Type"",#(lf)    COALESCE(T1.""Quantity"", 0) * -1 AS ""Quantity"",#(lf)    COALESCE(T1.""LineTotal"", 0) * -1 AS ""NetSales"",#(lf)    COALESCE(T1.""GrssProfit"", 0) * -1 AS ""GrossProfit"",#(lf)    UPPER(TRIM(T1.""OcrCode"")) AS ""LocationCode"",#(lf)    COALESCE(NULLIF(TRIM(D1.""PrcName""), ''), UPPER(TRIM(T1.""OcrCode""))) AS ""LocationName"",#(lf)    UPPER(TRIM(T1.""OcrCode2"")) AS ""SalesTypeCode"",#(lf)    COALESCE(NULLIF(TRIM(D2.""PrcName""), ''), UPPER(TRIM(T1.""OcrCode2""))) AS ""SalesTypeName"",#(lf)    UPPER(TRIM(T1.""OcrCode3"")) AS ""DepartmentCode"",#(lf)    COALESCE(NULLIF(TRIM(D3.""PrcName""), ''), UPPER(TRIM(T1.""OcrCode3""))) AS ""DepartmentName""#(lf)FROM ""CANON"".""ORIN"" T0#(lf)INNER JOIN ""CANON"".""RIN1"" T1#(lf)    ON T0.""DocEntry"" = T1.""DocEntry""#(lf)LEFT JOIN ""CANON"".""OITM"" T3#(lf)    ON T1.""ItemCode"" = T3.""ItemCode""#(lf)LEFT JOIN ""CANON"".""OITB"" T4#(lf)    ON T3.""ItmsGrpCod"" = T4.""ItmsGrpCod""#(lf)LEFT JOIN ""CANON"".""OPRC"" D1#(lf)    ON T1.""OcrCode"" = D1.""PrcCode"" AND D1.""DimCode"" = 1#(lf)LEFT JOIN ""CANON"".""OPRC"" D2#(lf)    ON T1.""OcrCode2"" = D2.""PrcCode"" AND D2.""DimCode"" = 2#(lf)LEFT JOIN ""CANON"".""OPRC"" D3#(lf)    ON T1.""OcrCode3"" = D3.""PrcCode"" AND D3.""DimCode"" = 3;")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

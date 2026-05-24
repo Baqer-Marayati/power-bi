@@ -1,0 +1,35 @@
+table Period
+	lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0001
+
+	measure SelectedKPI = MIN ( 'Period'[KPI_ID] )
+		formatString: 0
+		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0002
+
+	column KPI
+		lineageTag: 848bbd2b-40d5-4432-ac8b-6a30444dc492
+		isNameInferred
+		sourceColumn: [KPI]
+
+	column KPI_ID
+		lineageTag: 81b0c58b-58aa-49a9-ac14-9cb9ce8233c6
+		isNameInferred
+		sourceColumn: [KPI_ID]
+
+	partition Period = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "KPI", STRING,
+				    "KPI_ID", INTEGER,
+				    {
+				        { "This week", 1 },
+				        { "This month", 2 },
+				        { "This quarter", 3 },
+				        { "This fiscal year", 4 },
+				        { "This calendar year", 5 }
+				    }
+				)
+
+	annotation PBI_Id = 4f1c4f8e3cc34d189a8c3f2e189a0001
+
