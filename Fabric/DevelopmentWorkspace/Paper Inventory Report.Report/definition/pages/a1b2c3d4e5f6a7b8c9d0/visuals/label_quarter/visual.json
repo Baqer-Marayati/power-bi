@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "label_quarter",
   "position": {
-    "x": 24,
-    "y": 188,
-    "z": 16500,
-    "height": 18,
-    "width": 136,
-    "tabOrder": 3500
+    "x": -400,
+    "y": -450,
+    "z": 4000,
+    "height": 1,
+    "width": 1,
+    "tabOrder": 18000
   },
   "visual": {
     "visualType": "textbox",
@@ -35,21 +35,21 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Business Type'"
+                  "Value": "'Quarter'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "11D"
                 }
               }
             },
@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#223430'"
+                      "Value": "'#1F4E79'"
                     }
                   }
                 }

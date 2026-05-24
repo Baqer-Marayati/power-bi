@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_donut",
   "position": {
-    "x": 188.33333333333334,
-    "y": 236.66666666666669,
-    "z": 6000,
-    "height": 286.66666666666669,
-    "width": 1028.3333333333335,
-    "tabOrder": 17000
+    "x": 511.42857142857144,
+    "y": 264.28571428571428,
+    "z": 5000,
+    "height": 358.57142857142861,
+    "width": 1355.7142857142858,
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "donutChart",
@@ -228,9 +228,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E2EAE6'"
+                      "Value": "'#C9D5E3'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
                 }
               }
             }
@@ -247,13 +254,6 @@
                 }
               }
             },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
             "text": {
               "expr": {
                 "Literal": {
@@ -261,10 +261,17 @@
                 }
               }
             },
-            "alignment": {
+            "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'center'"
+                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
                 }
               }
             },
@@ -273,16 +280,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#223430'"
+                      "Value": "'#2E3A42'"
                     }
                   }
                 }
               }
             },
-            "fontSize": {
+            "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "false"
                 }
               }
             }

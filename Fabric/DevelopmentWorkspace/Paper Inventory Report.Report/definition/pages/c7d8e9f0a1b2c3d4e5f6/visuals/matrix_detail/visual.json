@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "matrix_detail",
   "position": {
-    "x": 188,
-    "y": 560,
-    "z": 5000,
-    "height": 316,
-    "width": 1028,
-    "tabOrder": 18000
+    "x": 511.42857142857144,
+    "y": 654.28571428571433,
+    "z": 9000,
+    "height": 375.71428571428572,
+    "width": 1355.7142857142858,
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -30,6 +30,51 @@
               "nativeQueryRef": "Business Type",
               "active": true,
               "displayName": "Business Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "InventoryValuation"
+                    }
+                  },
+                  "Property": "U_GroupType"
+                }
+              },
+              "queryRef": "InventoryValuation.U_GroupType",
+              "nativeQueryRef": "U_GroupType",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "InventoryValuation"
+                    }
+                  },
+                  "Property": "U_ProductType"
+                }
+              },
+              "queryRef": "InventoryValuation.U_ProductType",
+              "nativeQueryRef": "U_ProductType",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "InventoryValuation"
+                    }
+                  },
+                  "Property": "U_SegmentType"
+                }
+              },
+              "queryRef": "InventoryValuation.U_SegmentType",
+              "nativeQueryRef": "U_SegmentType",
+              "active": false
             },
             {
               "field": {
@@ -67,18 +112,23 @@
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "InventoryValuation"
+                        }
+                      },
+                      "Property": "StockQty"
                     }
                   },
-                  "Property": "IV Stock Qty"
+                  "Function": 0
                 }
               },
-              "queryRef": "_Measures.IV Stock Qty",
-              "nativeQueryRef": "Stock Qty (T)",
-              "displayName": "Stock Qty (T)"
+              "queryRef": "Sum(InventoryValuation.StockQty)",
+              "nativeQueryRef": "Stock Qty",
+              "displayName": "Total Quantity"
             },
             {
               "field": {
@@ -167,29 +217,34 @@
           },
           {
             "queryRefs": [
-              "InventoryValuation.ItemName"
+              "InventoryValuation.U_GroupType"
             ],
             "isCollapsed": true,
-            "identityKeys": [
-              {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "InventoryValuation"
-                    }
-                  },
-                  "Property": "ItemName"
-                }
-              }
-            ],
             "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "InventoryValuation.U_ProductType"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "InventoryValuation.U_SegmentType"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "InventoryValuation.ItemName"
+            ],
+            "isCollapsed": true
           },
           {
             "queryRefs": [
               "InventoryValuation.ItemCode"
             ],
-            "isCollapsed": true,
-            "isPinned": true
+            "isCollapsed": true
           }
         ],
         "root": {}
@@ -202,7 +257,14 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "14D"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
                 }
               }
             }
@@ -332,7 +394,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "411.35D"
+                  "Value": "561.7481702834112D"
                 }
               }
             }
@@ -346,13 +408,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "189.09971714733481D"
+                  "Value": "221.60515568310183D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.IV Stock Qty"
+            "metadata": "Sum(InventoryValuation.StockQty)"
           }
         },
         {
@@ -360,7 +422,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "173.26364367352218D"
+                  "Value": "236.6124585152255D"
                 }
               }
             }
@@ -374,7 +436,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "218.94666942608998D"
+                  "Value": "298.9981547095003D"
                 }
               }
             }
@@ -411,13 +473,13 @@
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "0L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.IV Stock Qty"
+            "metadata": "Sum(InventoryValuation.StockQty)"
           }
         },
         {
@@ -527,21 +589,10 @@
       "border": [
         {
           "properties": {
-            "show": {
+            "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#E2EAE6'"
-                    }
-                  }
+                  "Value": "14D"
                 }
               }
             }
@@ -558,21 +609,17 @@
                 }
               }
             },
-            "text": {
+            "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "'Valuation Detail'"
+                  "Value": "true"
                 }
               }
             },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#223430'"
-                    }
-                  }
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Stock Value Detail'"
                 }
               }
             },
@@ -589,6 +636,54 @@
       "visualHeader": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "90L"
+                }
+              }
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "70L"
+                }
+              }
+            },
             "show": {
               "expr": {
                 "Literal": {

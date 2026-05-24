@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_reorder_by_grp",
   "position": {
-    "x": 188,
-    "y": 560,
-    "z": 6000,
-    "height": 316,
-    "width": 502,
-    "tabOrder": 17000
+    "x": 510.99788641244658,
+    "y": 645.92790733119944,
+    "z": 5000,
+    "height": 381.65625,
+    "width": 664.462890625,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -42,11 +42,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Below Reorder Count"
+                  "Property": "Suggested Reorder Value"
                 }
               },
-              "queryRef": "_Measures.Below Reorder Count",
-              "nativeQueryRef": "Below Reorder"
+              "queryRef": "_Measures.Suggested Reorder Value",
+              "nativeQueryRef": "Suggested Reorder Value"
             }
           ]
         }
@@ -61,7 +61,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Below Reorder Count"
+                "Property": "Suggested Reorder Value"
               }
             },
             "direction": "Descending"
@@ -175,9 +175,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E2EAE6'"
+                      "Value": "'#C9D5E3'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
                 }
               }
             }
@@ -197,7 +204,21 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Below Reorder by Group Type'"
+                  "Value": "'Understock Value by Group'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
                 }
               }
             },
@@ -206,16 +227,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#223430'"
+                      "Value": "'#2E3A42'"
                     }
                   }
                 }
               }
             },
-            "fontSize": {
+            "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "false"
                 }
               }
             }

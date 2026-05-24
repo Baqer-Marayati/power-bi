@@ -1,0 +1,300 @@
+table Fact_StockCoverPolicy
+	lineageTag: cc000000-0000-0000-0000-000000000001
+
+	column U_BusinessType
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000002
+		summarizeBy: none
+		sourceColumn: U_BusinessType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_GroupType
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000003
+		summarizeBy: none
+		sourceColumn: U_GroupType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_ProductType
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000004
+		summarizeBy: none
+		sourceColumn: U_ProductType
+
+		annotation SummarizationSetBy = Automatic
+
+	column U_SegmentType
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000005
+		summarizeBy: none
+		sourceColumn: U_SegmentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCode
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000006
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemName
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000007
+		summarizeBy: none
+		sourceColumn: ItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Single field for Reorder Actions item search (code and name on policy grain).
+	column ItemSearch = Fact_StockCoverPolicy[ItemCode] & " · " & Fact_StockCoverPolicy[ItemName]
+		lineageTag: cc000000-0000-0000-0000-000000000032
+		summarizeBy: none
+		sortByColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalQtyAvailable
+		dataType: double
+		lineageTag: cc000000-0000-0000-0000-000000000008
+		summarizeBy: sum
+		sourceColumn: TotalQtyAvailable
+
+		annotation SummarizationSetBy = Automatic
+
+	column AvgItemCost
+		dataType: double
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: cc000000-0000-0000-0000-000000000009
+		summarizeBy: none
+		sourceColumn: AvgItemCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column TotalItemCost
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: cc000000-0000-0000-0000-000000000010
+		summarizeBy: sum
+		sourceColumn: TotalItemCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column TotalQtySold
+		dataType: double
+		lineageTag: cc000000-0000-0000-0000-000000000011
+		summarizeBy: sum
+		sourceColumn: TotalQtySold
+
+		annotation SummarizationSetBy = Automatic
+
+	column AvgItemPrice
+		dataType: double
+		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
+		lineageTag: cc000000-0000-0000-0000-000000000012
+		summarizeBy: none
+		sourceColumn: AvgItemPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column SellingDurationDays
+		dataType: int64
+		formatString: 0
+		lineageTag: cc000000-0000-0000-0000-000000000013
+		summarizeBy: sum
+		sourceColumn: SellingDurationDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column PolicyDays
+		dataType: int64
+		formatString: 0
+		lineageTag: cc000000-0000-0000-0000-000000000014
+		summarizeBy: none
+		sourceColumn: PolicyDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesVelocityQtyPerDay
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000015
+		summarizeBy: sum
+		sourceColumn: SalesVelocityQtyPerDay
+
+		annotation SummarizationSetBy = Automatic
+
+	column TargetStockQty
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000016
+		summarizeBy: sum
+		sourceColumn: TargetStockQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockDifferenceQty
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000017
+		summarizeBy: sum
+		sourceColumn: StockDifferenceQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column SuggestedReorderQty
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000018
+		summarizeBy: sum
+		sourceColumn: SuggestedReorderQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column ExcessQty
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000019
+		summarizeBy: sum
+		sourceColumn: ExcessQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockCoverStatus
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000020
+		summarizeBy: none
+		sourceColumn: StockCoverStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column SuggestedAction
+		dataType: string
+		lineageTag: cc000000-0000-0000-0000-000000000021
+		summarizeBy: none
+		sourceColumn: SuggestedAction
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesQty90Days
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000022
+		summarizeBy: sum
+		sourceColumn: SalesQty90Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesQty180Days
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000023
+		summarizeBy: sum
+		sourceColumn: SalesQty180Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesQty365Days
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000024
+		summarizeBy: sum
+		sourceColumn: SalesQty365Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesVelocity90Days
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000025
+		summarizeBy: sum
+		sourceColumn: SalesVelocity90Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesVelocity180Days
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000026
+		summarizeBy: sum
+		sourceColumn: SalesVelocity180Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesVelocity365Days
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000027
+		summarizeBy: sum
+		sourceColumn: SalesVelocity365Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value =
+			VAR _unit =
+			    COALESCE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        Fact_StockCoverPolicy[StockCoverStatus] = "Under Stock",
+			            Fact_StockCoverPolicy[SuggestedReorderQty] * _unit,
+			        Fact_StockCoverPolicy[StockCoverStatus] = "Over Stock",
+			            Fact_StockCoverPolicy[ExcessQty] * _unit,
+			        Fact_StockCoverPolicy[StockCoverStatus] = "Healthy",
+			            Fact_StockCoverPolicy[TotalItemCost],
+			        Fact_StockCoverPolicy[StockCoverStatus] = "No demand - QTY available",
+			            Fact_StockCoverPolicy[TotalItemCost],
+			        Fact_StockCoverPolicy[StockCoverStatus] = "No demand - Zero QTY available",
+			            0,
+			        0
+			    )
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: cc000000-0000-0000-0000-000000000028
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column OpenPOQty
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000029
+		summarizeBy: sum
+		sourceColumn: OpenPOQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column OpenSOQty
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000030
+		summarizeBy: sum
+		sourceColumn: OpenSOQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetAvailable
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc000000-0000-0000-0000-000000000031
+		summarizeBy: sum
+		sourceColumn: NetAvailable
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_StockCoverPolicy = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "WITH#(lf)  SalesLines AS (#(lf)      SELECT B.""ItemCode"" AS ""ItemCode"", A.""DocDate"" AS ""DocDate"",#(lf)             B.""Quantity""            AS ""Qty"",#(lf)             B.""StockValue""          AS ""COGS"",#(lf)             B.""LineTotal""           AS ""SalesValue""#(lf)      FROM ""PAPERENTITY"".""OINV"" A JOIN ""PAPERENTITY"".""INV1"" B ON A.""DocEntry""=B.""DocEntry""#(lf)      WHERE A.""CANCELED""='N' AND A.""DocType""='I'#(lf)        AND IFNULL(B.""ItemCode"",'')<>''#(lf)        AND A.""DocDate"" >= '2024-01-01'#(lf)      UNION ALL#(lf)      SELECT B.""ItemCode"" AS ""ItemCode"", A.""DocDate"" AS ""DocDate"",#(lf)             B.""Quantity"" * -1 AS ""Qty"", B.""StockValue"" * -1 AS ""COGS"", B.""LineTotal"" * -1 AS ""SalesValue""#(lf)      FROM ""PAPERENTITY"".""ORIN"" A JOIN ""PAPERENTITY"".""RIN1"" B ON A.""DocEntry""=B.""DocEntry""#(lf)      WHERE A.""CANCELED""='N' AND A.""DocType""='I'#(lf)        AND IFNULL(B.""ItemCode"",'')<>''#(lf)        AND A.""DocDate"" >= '2024-01-01'#(lf)      

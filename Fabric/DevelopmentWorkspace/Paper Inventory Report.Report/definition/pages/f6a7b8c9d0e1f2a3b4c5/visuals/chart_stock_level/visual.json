@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_stock_level",
   "position": {
-    "x": 714,
-    "y": 236,
+    "x": 1202.2999570681707,
+    "y": 259.33333333333331,
     "z": 8000,
-    "height": 300,
-    "width": 502,
-    "tabOrder": 19000
+    "height": 358.40625,
+    "width": 664.462890625,
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "donutChart",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_WarehouseStock"
+                      "Entity": "Fact_StockCoverPolicy"
                     }
                   },
-                  "Property": "StockLevel"
+                  "Property": "StockCoverStatus"
                 }
               },
-              "queryRef": "Fact_WarehouseStock.StockLevel",
-              "nativeQueryRef": "Stock Level",
+              "queryRef": "Fact_StockCoverPolicy.StockCoverStatus",
+              "nativeQueryRef": "Stock Cover Status",
               "active": true
             }
           ]
@@ -42,11 +42,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Distinct SKUs"
+                  "Property": "Stock Cover Exposure Value"
                 }
               },
-              "queryRef": "_Measures.Distinct SKUs",
-              "nativeQueryRef": "SKUs"
+              "queryRef": "_Measures.Stock Cover Exposure Value",
+              "nativeQueryRef": "Action Value"
             }
           ]
         }
@@ -61,7 +61,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Distinct SKUs"
+                "Property": "Stock Cover Exposure Value"
               }
             },
             "direction": "Descending"
@@ -136,90 +136,6 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#4AC5BB'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Fact_WarehouseStock.StockLevel",
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Fact_WarehouseStock"
-                          }
-                        },
-                        "Property": "StockLevel"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'High'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#5B8DB8'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Fact_WarehouseStock.StockLevel",
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "Fact_WarehouseStock"
-                          }
-                        },
-                        "Property": "StockLevel"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Mid'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
                       "Value": "'#C13737'"
                     }
                   }
@@ -228,7 +144,6 @@
             }
           },
           "selector": {
-            "metadata": "Fact_WarehouseStock.StockLevel",
             "data": [
               {
                 "scopeId": {
@@ -238,21 +153,64 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Fact_WarehouseStock"
+                            "Entity": "Fact_StockCoverPolicy"
                           }
                         },
-                        "Property": "StockLevel"
+                        "Property": "StockCoverStatus"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Low'"
+                        "Value": "'Over Stock'"
                       }
                     }
                   }
                 }
               }
-            ]
+            ],
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F4E79'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Fact_StockCoverPolicy"
+                          }
+                        },
+                        "Property": "StockCoverStatus"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Healthy'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus"
           }
         },
         {
@@ -270,7 +228,6 @@
             }
           },
           "selector": {
-            "metadata": "Fact_WarehouseStock.StockLevel",
             "data": [
               {
                 "scopeId": {
@@ -280,21 +237,64 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "Fact_WarehouseStock"
+                            "Entity": "Fact_StockCoverPolicy"
                           }
                         },
-                        "Property": "StockLevel"
+                        "Property": "StockCoverStatus"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Out of Stock'"
+                        "Value": "'Under Stock'"
                       }
                     }
                   }
                 }
               }
-            ]
+            ],
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#8A8A8A'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Fact_StockCoverPolicy"
+                          }
+                        },
+                        "Property": "StockCoverStatus"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'No demand - QTY available'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus"
           }
         }
       ]
@@ -346,9 +346,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E2EAE6'"
+                      "Value": "'#C9D5E3'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
                 }
               }
             }
@@ -368,7 +375,21 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Stock Level Distribution'"
+                  "Value": "'Stock Value by Status'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
                 }
               }
             },
@@ -377,16 +398,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#223430'"
+                      "Value": "'#2E3A42'"
                     }
                   }
                 }
               }
             },
-            "fontSize": {
+            "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "false"
                 }
               }
             }

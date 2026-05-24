@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "header_shape",
   "position": {
-    "x": 188,
-    "y": 36,
-    "z": 20000,
-    "height": 60,
-    "width": 700,
+    "x": 511.66666666666669,
+    "y": 41.666666666666671,
+    "z": 23000,
+    "height": 68.333333333333343,
+    "width": 805,
     "tabOrder": 0
   },
   "visual": {
@@ -18,7 +18,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'hioj'"
+                  "Value": "''"
                 }
               }
             }
@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Procurement & Suppliers'"
+                  "Value": "'Landed Cost'"
                 }
               }
             },
@@ -66,6 +66,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
             }
           }
         }
@@ -76,7 +83,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Purchase orders, restocking costs, and supplier performance — track your procurement pipeline.'"
+                  "Value": "'Supplier price plus import costs (freight, duty, insurance, handling) for closed import documents.'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
                 }
               }
             }
