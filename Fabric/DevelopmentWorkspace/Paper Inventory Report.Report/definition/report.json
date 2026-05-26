@@ -57,16 +57,6 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "Aljazeera_logo5594601849612262.png",
-          "path": "Aljazeera_logo5594601849612262.png",
-          "type": "Image"
-        },
-        {
-          "name": "Canon_logo_transparent4826537244702471.png",
-          "path": "Canon_logo_transparent4826537244702471.png",
-          "type": "Image"
-        },
-        {
           "name": "InventoryPortfolioTheme11111111111111.json",
           "path": "InventoryPortfolioTheme11111111111111.json",
           "type": "Image"
