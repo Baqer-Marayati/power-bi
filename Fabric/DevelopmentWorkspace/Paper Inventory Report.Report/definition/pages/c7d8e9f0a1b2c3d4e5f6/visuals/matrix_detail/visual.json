@@ -167,43 +167,39 @@
                   "Property": "ItemGroup"
                 }
               }
-            ]
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "InventoryValuation.ItemGroup"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "InventoryValuation.ItemGroup"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "InventoryValuation.ItemGroup"
+            ],
+            "isCollapsed": true
           },
           {
             "queryRefs": [
               "InventoryValuation.ItemName"
             ],
-            "isCollapsed": true,
-            "identityKeys": [
-              {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "InventoryValuation"
-                    }
-                  },
-                  "Property": "ItemName"
-                }
-              }
-            ]
+            "isCollapsed": true
           },
           {
             "queryRefs": [
               "InventoryValuation.ItemCode"
             ],
-            "isCollapsed": true,
-            "identityKeys": [
-              {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "InventoryValuation"
-                    }
-                  },
-                  "Property": "ItemCode"
-                }
-              }
-            ]
+            "isCollapsed": true
           }
         ],
         "root": {}

@@ -168,43 +168,52 @@
                   "Property": "ItemGroup"
                 }
               }
-            ]
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Dim_Item.ItemGroup"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Item"
+                    }
+                  },
+                  "Property": "ItemGroup"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Dim_Item.ItemGroup"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Dim_Item.ItemGroup"
+            ],
+            "isCollapsed": true
           },
           {
             "queryRefs": [
               "Dim_Item.ItemName"
             ],
-            "isCollapsed": true,
-            "identityKeys": [
-              {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Dim_Item"
-                    }
-                  },
-                  "Property": "ItemName"
-                }
-              }
-            ]
+            "isCollapsed": true
           },
           {
             "queryRefs": [
               "Dim_Item.ItemCode"
             ],
-            "isCollapsed": true,
-            "identityKeys": [
-              {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Dim_Item"
-                    }
-                  },
-                  "Property": "ItemCode"
-                }
-              }
-            ]
+            "isCollapsed": true
           }
         ],
         "root": {
