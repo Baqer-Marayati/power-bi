@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "table_reorder_actions",
   "position": {
-    "x": 511.6666666666667,
+    "x": 511.66666666666669,
     "y": 136.66666666666669,
     "z": 8000,
-    "height": 893.3333333333334,
+    "height": 893.33333333333337,
     "width": 1355,
     "tabOrder": 4000
   },
@@ -207,8 +207,53 @@
                 }
               },
               "queryRef": "Fact_StockCoverPolicy.U_BusinessType",
-              "nativeQueryRef": "Item group",
-              "displayName": "Item group"
+              "nativeQueryRef": "Business Type",
+              "displayName": "Business Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_StockCoverPolicy"
+                    }
+                  },
+                  "Property": "U_GroupType"
+                }
+              },
+              "queryRef": "Fact_StockCoverPolicy.U_GroupType",
+              "nativeQueryRef": "Group Type",
+              "displayName": "Group Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_StockCoverPolicy"
+                    }
+                  },
+                  "Property": "U_ProductType"
+                }
+              },
+              "queryRef": "Fact_StockCoverPolicy.U_ProductType",
+              "nativeQueryRef": "Product Type",
+              "displayName": "Product Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_StockCoverPolicy"
+                    }
+                  },
+                  "Property": "U_SegmentType"
+                }
+              },
+              "queryRef": "Fact_StockCoverPolicy.U_SegmentType",
+              "nativeQueryRef": "Segment Type",
+              "displayName": "Segment Type"
             }
           ]
         }
@@ -586,6 +631,24 @@
           "selector": {
             "metadata": "Fact_StockCoverPolicy.U_BusinessType"
           }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "Fact_StockCoverPolicy.U_GroupType"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "Fact_StockCoverPolicy.U_ProductType"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "Fact_StockCoverPolicy.U_SegmentType"
+          }
         }
       ],
       "columnFormatting": [
@@ -792,6 +855,48 @@
           "selector": {
             "metadata": "Fact_StockCoverPolicy.U_BusinessType"
           }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_StockCoverPolicy.U_GroupType"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_StockCoverPolicy.U_ProductType"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_StockCoverPolicy.U_SegmentType"
+          }
         }
       ]
     },
@@ -860,7 +965,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Reorder Actions'"
+                  "Value": "'Qty and Cost by Business Type'"
                 }
               }
             },

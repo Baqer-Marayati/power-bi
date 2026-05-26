@@ -3,9 +3,9 @@
   "name": "matrix_detail",
   "position": {
     "x": 511.42857142857144,
-    "y": 654.2857142857143,
+    "y": 654.28571428571433,
     "z": 9000,
-    "height": 375.7142857142857,
+    "height": 375.71428571428572,
     "width": 1355.7142857142858,
     "tabOrder": 11000
   },
@@ -27,9 +27,54 @@
                 }
               },
               "queryRef": "InventoryValuation.U_BusinessType",
-              "nativeQueryRef": "Item group",
+              "nativeQueryRef": "Business Type",
               "active": true,
-              "displayName": "Item group"
+              "displayName": "Business Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "InventoryValuation"
+                    }
+                  },
+                  "Property": "U_GroupType"
+                }
+              },
+              "queryRef": "InventoryValuation.U_GroupType",
+              "nativeQueryRef": "U_GroupType",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "InventoryValuation"
+                    }
+                  },
+                  "Property": "U_ProductType"
+                }
+              },
+              "queryRef": "InventoryValuation.U_ProductType",
+              "nativeQueryRef": "U_ProductType",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "InventoryValuation"
+                    }
+                  },
+                  "Property": "U_SegmentType"
+                }
+              },
+              "queryRef": "InventoryValuation.U_SegmentType",
+              "nativeQueryRef": "U_SegmentType",
+              "active": false
             },
             {
               "field": {
@@ -43,7 +88,7 @@
                 }
               },
               "queryRef": "InventoryValuation.ItemName",
-              "nativeQueryRef": "Item",
+              "nativeQueryRef": "ItemName",
               "active": false
             },
             {
@@ -58,7 +103,7 @@
                 }
               },
               "queryRef": "InventoryValuation.ItemCode",
-              "nativeQueryRef": "Item Code",
+              "nativeQueryRef": "ItemCode",
               "active": false
             }
           ]
@@ -172,10 +217,28 @@
           },
           {
             "queryRefs": [
-              "InventoryValuation.ItemName"
+              "InventoryValuation.U_GroupType"
             ],
             "isCollapsed": true,
             "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "InventoryValuation.U_ProductType"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "InventoryValuation.U_SegmentType"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "InventoryValuation.ItemName"
+            ],
+            "isCollapsed": true
           },
           {
             "queryRefs": [

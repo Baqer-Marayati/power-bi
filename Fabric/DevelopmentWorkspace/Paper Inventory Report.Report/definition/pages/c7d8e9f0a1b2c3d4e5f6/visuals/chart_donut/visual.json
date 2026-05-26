@@ -257,7 +257,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Stock Value by Item group'"
+                  "Value": "'Stock Value by Business Type'"
                 }
               }
             },

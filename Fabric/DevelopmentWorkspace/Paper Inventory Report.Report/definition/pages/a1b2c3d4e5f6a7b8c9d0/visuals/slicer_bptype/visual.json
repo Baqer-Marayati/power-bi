@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
-  "name": "0721805bbcea415ac052",
+  "name": "slicer_bptype",
   "position": {
-    "x": 67.960469750377058,
-    "y": 146.16857163167913,
-    "z": 12000,
+    "x": 2500,
+    "y": 615.22908093278477,
+    "z": 20000,
     "height": 75,
     "width": 403.33333333333337,
-    "tabOrder": 12000
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "slicer",
@@ -23,11 +23,11 @@
                       "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "U_BusinessType"
+                  "Property": "U_ProductType"
                 }
               },
-              "queryRef": "Dim_Item.U_BusinessType",
-              "nativeQueryRef": "Business Type",
+              "queryRef": "Dim_Item.U_ProductType",
+              "nativeQueryRef": "Product Type",
               "active": true
             }
           ]
@@ -61,7 +61,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Item group'"
+                  "Value": "'Product Type'"
                 }
               }
             },

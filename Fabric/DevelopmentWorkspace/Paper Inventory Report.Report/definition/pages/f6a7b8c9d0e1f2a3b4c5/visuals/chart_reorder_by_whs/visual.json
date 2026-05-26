@@ -204,7 +204,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Overstock Value by Item group'"
+                  "Value": "'Overstock Value by Product Type'"
                 }
               }
             },
