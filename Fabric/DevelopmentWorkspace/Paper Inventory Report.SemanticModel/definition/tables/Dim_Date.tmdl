@@ -57,7 +57,7 @@ table Dim_Date
 	partition Dim_Date = calculated
 		mode: import
 		source =
-				VAR StartDate = DATE(2024, 10, 1)
+				VAR StartDate = DATE(2024, 1, 1)
 				VAR EndDate = DATE(2026, 12, 31)
 					RETURN
 					    ADDCOLUMNS(
