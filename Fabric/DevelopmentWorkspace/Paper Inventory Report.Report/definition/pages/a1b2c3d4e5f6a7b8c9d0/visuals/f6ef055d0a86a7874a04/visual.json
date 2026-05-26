@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "f6ef055d0a86a7874a04",
   "position": {
-    "x": 513.33333333333337,
-    "y": 648.33333333333337,
+    "x": 513.3333333333334,
+    "y": 648.3333333333334,
     "z": 10000,
-    "height": 381.66666666666669,
+    "height": 381.6666666666667,
     "width": 1353.3333333333335,
     "tabOrder": 0
   },
@@ -27,54 +27,9 @@
                 }
               },
               "queryRef": "Dim_Item.U_BusinessType",
-              "nativeQueryRef": "Business Type",
+              "nativeQueryRef": "Item group",
               "active": true,
-              "displayName": "Business Type"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Dim_Item"
-                    }
-                  },
-                  "Property": "U_GroupType"
-                }
-              },
-              "queryRef": "Dim_Item.U_GroupType",
-              "nativeQueryRef": "Group Type",
-              "active": false
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Dim_Item"
-                    }
-                  },
-                  "Property": "U_ProductType"
-                }
-              },
-              "queryRef": "Dim_Item.U_ProductType",
-              "nativeQueryRef": "Product Type",
-              "active": false
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Dim_Item"
-                    }
-                  },
-                  "Property": "U_SegmentType"
-                }
-              },
-              "queryRef": "Dim_Item.U_SegmentType",
-              "nativeQueryRef": "Segment Type",
-              "active": false
+              "displayName": "Item group"
             },
             {
               "field": {
@@ -88,7 +43,7 @@
                 }
               },
               "queryRef": "Dim_Item.ItemName",
-              "nativeQueryRef": "Item Name",
+              "nativeQueryRef": "Item",
               "active": false
             },
             {
@@ -218,41 +173,10 @@
           },
           {
             "queryRefs": [
-              "Dim_Item.U_GroupType"
-            ],
-            "isCollapsed": true,
-            "identityKeys": [
-              {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Dim_Item"
-                    }
-                  },
-                  "Property": "U_GroupType"
-                }
-              }
-            ],
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "Dim_Item.U_ProductType"
-            ],
-            "isCollapsed": true,
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "Dim_Item.U_SegmentType"
-            ],
-            "isCollapsed": true
-          },
-          {
-            "queryRefs": [
               "Dim_Item.ItemName"
             ],
-            "isCollapsed": true
+            "isCollapsed": true,
+            "isPinned": true
           },
           {
             "queryRefs": [
@@ -261,31 +185,7 @@
             "isCollapsed": true
           }
         ],
-        "root": {
-          "children": [
-            {
-              "identityValues": [
-                {
-                  "Literal": {
-                    "Value": "'B2B'"
-                  }
-                }
-              ],
-              "children": [
-                {
-                  "identityValues": [
-                    {
-                      "Literal": {
-                        "Value": "'DS Copier'"
-                      }
-                    }
-                  ],
-                  "isToggled": true
-                }
-              ]
-            }
-          ]
-        }
+        "root": {}
       }
     ],
     "objects": {
@@ -645,7 +545,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Quantity & Cost by Business Type'"
+                  "Value": "'Quantity & Cost by Item group'"
                 }
               }
             },

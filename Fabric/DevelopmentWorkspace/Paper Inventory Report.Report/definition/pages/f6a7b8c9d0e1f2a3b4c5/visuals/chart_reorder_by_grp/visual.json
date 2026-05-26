@@ -204,7 +204,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Understock Value by Group'"
+                  "Value": "'Understock Value by Item group'"
                 }
               }
             },
