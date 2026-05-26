@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "table_reorder_actions",
   "position": {
-    "x": 511.66666666666669,
+    "x": 511.6666666666667,
     "y": 136.66666666666669,
     "z": 8000,
-    "height": 893.33333333333337,
+    "height": 893.3333333333334,
     "width": 1355,
     "tabOrder": 4000
   },
@@ -200,60 +200,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_StockCoverPolicy"
+                      "Entity": "Dim_Item"
                     }
                   },
                   "Property": "ItemGroup"
                 }
               },
               "queryRef": "Dim_Item.ItemGroup",
-              "nativeQueryRef": "Business Type",
-              "displayName": "Business Type"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Fact_StockCoverPolicy"
-                    }
-                  },
-                  "Property": "ItemGroup"
-                }
-              },
-              "queryRef": "Dim_Item.ItemGroup",
-              "nativeQueryRef": "Group Type",
-              "displayName": "Group Type"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Fact_StockCoverPolicy"
-                    }
-                  },
-                  "Property": "ItemGroup"
-                }
-              },
-              "queryRef": "Dim_Item.ItemGroup",
-              "nativeQueryRef": "Product Type",
-              "displayName": "Product Type"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Fact_StockCoverPolicy"
-                    }
-                  },
-                  "Property": "ItemGroup"
-                }
-              },
-              "queryRef": "Dim_Item.ItemGroup",
-              "nativeQueryRef": "Segment Type",
-              "displayName": "Segment Type"
+              "nativeQueryRef": "Item group",
+              "displayName": "Item group"
             }
           ]
         }
@@ -631,24 +586,6 @@
           "selector": {
             "metadata": "Dim_Item.ItemGroup"
           }
-        },
-        {
-          "properties": {},
-          "selector": {
-            "metadata": "Dim_Item.ItemGroup"
-          }
-        },
-        {
-          "properties": {},
-          "selector": {
-            "metadata": "Dim_Item.ItemGroup"
-          }
-        },
-        {
-          "properties": {},
-          "selector": {
-            "metadata": "Dim_Item.ItemGroup"
-          }
         }
       ],
       "columnFormatting": [
@@ -840,48 +777,6 @@
           },
           "selector": {
             "metadata": "Fact_StockCoverPolicy.ItemCode"
-          }
-        },
-        {
-          "properties": {
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Left'"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Dim_Item.ItemGroup"
-          }
-        },
-        {
-          "properties": {
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Left'"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Dim_Item.ItemGroup"
-          }
-        },
-        {
-          "properties": {
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Left'"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Dim_Item.ItemGroup"
           }
         },
         {
