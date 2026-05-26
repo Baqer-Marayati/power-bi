@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "0721805bbcea415ac052",
   "position": {
-    "x": 67.960469750377058,
-    "y": 146.16857163167913,
+    "x": 67.96046975037706,
+    "y": 146.0,
     "z": 12000,
     "height": 75,
     "width": 403.33333333333337,
@@ -23,11 +23,11 @@
                       "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "U_BusinessType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "Dim_Item.U_BusinessType",
-              "nativeQueryRef": "Business Type",
+              "queryRef": "Dim_Item.ItemGroup",
+              "nativeQueryRef": "Item group",
               "active": true
             }
           ]
@@ -61,7 +61,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Business Type'"
+                  "Value": "'Item group'"
                 }
               }
             },

@@ -23,10 +23,10 @@
                       "Entity": "Fact_StockCoverPolicy"
                     }
                   },
-                  "Property": "U_BusinessType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "Fact_StockCoverPolicy.U_BusinessType",
+              "queryRef": "Dim_Item.ItemGroup",
               "nativeQueryRef": "Business Type",
               "active": true
             }

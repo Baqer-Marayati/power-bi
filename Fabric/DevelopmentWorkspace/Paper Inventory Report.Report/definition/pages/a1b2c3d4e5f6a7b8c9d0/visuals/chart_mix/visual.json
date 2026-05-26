@@ -42,10 +42,10 @@
                       "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "U_BusinessType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "Dim_Item.U_BusinessType",
+              "queryRef": "Dim_Item.ItemGroup",
               "nativeQueryRef": "Business Type"
             }
           ]
@@ -170,7 +170,7 @@
                             "Entity": "Dim_Item"
                           }
                         },
-                        "Property": "U_BusinessType"
+                        "Property": "ItemGroup"
                       }
                     },
                     "Right": {
@@ -211,7 +211,7 @@
                             "Entity": "Dim_Item"
                           }
                         },
-                        "Property": "U_BusinessType"
+                        "Property": "ItemGroup"
                       }
                     },
                     "Right": {
@@ -252,7 +252,7 @@
                             "Entity": "Dim_Item"
                           }
                         },
-                        "Property": "U_BusinessType"
+                        "Property": "ItemGroup"
                       }
                     },
                     "Right": {
@@ -293,7 +293,7 @@
                             "Entity": "Dim_Item"
                           }
                         },
-                        "Property": "U_BusinessType"
+                        "Property": "ItemGroup"
                       }
                     },
                     "Right": {
@@ -334,7 +334,7 @@
                             "Entity": "Dim_Item"
                           }
                         },
-                        "Property": "U_BusinessType"
+                        "Property": "ItemGroup"
                       }
                     },
                     "Right": {
@@ -375,7 +375,7 @@
                             "Entity": "Dim_Item"
                           }
                         },
-                        "Property": "U_BusinessType"
+                        "Property": "ItemGroup"
                       }
                     },
                     "Right": {
@@ -416,7 +416,7 @@
                             "Entity": "Dim_Item"
                           }
                         },
-                        "Property": "U_BusinessType"
+                        "Property": "ItemGroup"
                       }
                     },
                     "Right": {
@@ -457,7 +457,7 @@
                             "Entity": "Dim_Item"
                           }
                         },
-                        "Property": "U_BusinessType"
+                        "Property": "ItemGroup"
                       }
                     },
                     "Right": {
@@ -498,7 +498,7 @@
                             "Entity": "Dim_Item"
                           }
                         },
-                        "Property": "U_BusinessType"
+                        "Property": "ItemGroup"
                       }
                     },
                     "Right": {

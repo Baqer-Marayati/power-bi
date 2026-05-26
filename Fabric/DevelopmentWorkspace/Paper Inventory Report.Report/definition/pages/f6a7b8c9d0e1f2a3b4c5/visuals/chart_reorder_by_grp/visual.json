@@ -23,10 +23,10 @@
                       "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "U_GroupType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "Dim_Item.U_GroupType",
+              "queryRef": "Dim_Item.ItemGroup",
               "nativeQueryRef": "U_GroupType",
               "active": true
             }

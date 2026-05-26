@@ -23,10 +23,10 @@
                       "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "U_BusinessType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "Dim_Item.U_BusinessType",
+              "queryRef": "Dim_Item.ItemGroup",
               "nativeQueryRef": "Business Type",
               "active": true,
               "displayName": "Business Type"
@@ -39,10 +39,10 @@
                       "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "U_GroupType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "Dim_Item.U_GroupType",
+              "queryRef": "Dim_Item.ItemGroup",
               "nativeQueryRef": "Group Type",
               "active": false
             },
@@ -54,10 +54,10 @@
                       "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "U_ProductType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "Dim_Item.U_ProductType",
+              "queryRef": "Dim_Item.ItemGroup",
               "nativeQueryRef": "Product Type",
               "active": false
             },
@@ -69,10 +69,10 @@
                       "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "U_SegmentType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "Dim_Item.U_SegmentType",
+              "queryRef": "Dim_Item.ItemGroup",
               "nativeQueryRef": "Segment Type",
               "active": false
             },
@@ -199,7 +199,7 @@
         "levels": [
           {
             "queryRefs": [
-              "Dim_Item.U_BusinessType"
+              "Dim_Item.ItemGroup"
             ],
             "isCollapsed": true,
             "identityKeys": [
@@ -210,7 +210,7 @@
                       "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "U_BusinessType"
+                  "Property": "ItemGroup"
                 }
               }
             ],
@@ -218,7 +218,7 @@
           },
           {
             "queryRefs": [
-              "Dim_Item.U_GroupType"
+              "Dim_Item.ItemGroup"
             ],
             "isCollapsed": true,
             "identityKeys": [
@@ -229,7 +229,7 @@
                       "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "U_GroupType"
+                  "Property": "ItemGroup"
                 }
               }
             ],
@@ -237,14 +237,14 @@
           },
           {
             "queryRefs": [
-              "Dim_Item.U_ProductType"
+              "Dim_Item.ItemGroup"
             ],
             "isCollapsed": true,
             "isPinned": true
           },
           {
             "queryRefs": [
-              "Dim_Item.U_SegmentType"
+              "Dim_Item.ItemGroup"
             ],
             "isCollapsed": true
           },
@@ -449,7 +449,7 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.U_BusinessType"
+            "metadata": "Dim_Item.ItemGroup"
           }
         },
         {

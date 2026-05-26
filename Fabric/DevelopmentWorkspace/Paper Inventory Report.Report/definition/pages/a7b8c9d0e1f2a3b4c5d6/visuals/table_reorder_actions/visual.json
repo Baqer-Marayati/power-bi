@@ -203,10 +203,10 @@
                       "Entity": "Fact_StockCoverPolicy"
                     }
                   },
-                  "Property": "U_BusinessType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "Fact_StockCoverPolicy.U_BusinessType",
+              "queryRef": "Dim_Item.ItemGroup",
               "nativeQueryRef": "Business Type",
               "displayName": "Business Type"
             },
@@ -218,10 +218,10 @@
                       "Entity": "Fact_StockCoverPolicy"
                     }
                   },
-                  "Property": "U_GroupType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "Fact_StockCoverPolicy.U_GroupType",
+              "queryRef": "Dim_Item.ItemGroup",
               "nativeQueryRef": "Group Type",
               "displayName": "Group Type"
             },
@@ -233,10 +233,10 @@
                       "Entity": "Fact_StockCoverPolicy"
                     }
                   },
-                  "Property": "U_ProductType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "Fact_StockCoverPolicy.U_ProductType",
+              "queryRef": "Dim_Item.ItemGroup",
               "nativeQueryRef": "Product Type",
               "displayName": "Product Type"
             },
@@ -248,10 +248,10 @@
                       "Entity": "Fact_StockCoverPolicy"
                     }
                   },
-                  "Property": "U_SegmentType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "Fact_StockCoverPolicy.U_SegmentType",
+              "queryRef": "Dim_Item.ItemGroup",
               "nativeQueryRef": "Segment Type",
               "displayName": "Segment Type"
             }
@@ -629,25 +629,25 @@
         {
           "properties": {},
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_BusinessType"
+            "metadata": "Dim_Item.ItemGroup"
           }
         },
         {
           "properties": {},
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_GroupType"
+            "metadata": "Dim_Item.ItemGroup"
           }
         },
         {
           "properties": {},
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_ProductType"
+            "metadata": "Dim_Item.ItemGroup"
           }
         },
         {
           "properties": {},
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_SegmentType"
+            "metadata": "Dim_Item.ItemGroup"
           }
         }
       ],
@@ -853,7 +853,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_BusinessType"
+            "metadata": "Dim_Item.ItemGroup"
           }
         },
         {
@@ -867,7 +867,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_GroupType"
+            "metadata": "Dim_Item.ItemGroup"
           }
         },
         {
@@ -881,7 +881,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_ProductType"
+            "metadata": "Dim_Item.ItemGroup"
           }
         },
         {
@@ -895,7 +895,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.U_SegmentType"
+            "metadata": "Dim_Item.ItemGroup"
           }
         }
       ]

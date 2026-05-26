@@ -23,10 +23,10 @@
                       "Entity": "InventoryValuation"
                     }
                   },
-                  "Property": "U_BusinessType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "InventoryValuation.U_BusinessType",
+              "queryRef": "InventoryValuation.ItemGroup",
               "nativeQueryRef": "Business Type",
               "active": true,
               "displayName": "Business Type"
@@ -39,10 +39,10 @@
                       "Entity": "InventoryValuation"
                     }
                   },
-                  "Property": "U_GroupType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "InventoryValuation.U_GroupType",
+              "queryRef": "InventoryValuation.ItemGroup",
               "nativeQueryRef": "U_GroupType",
               "active": false
             },
@@ -54,10 +54,10 @@
                       "Entity": "InventoryValuation"
                     }
                   },
-                  "Property": "U_ProductType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "InventoryValuation.U_ProductType",
+              "queryRef": "InventoryValuation.ItemGroup",
               "nativeQueryRef": "U_ProductType",
               "active": false
             },
@@ -69,10 +69,10 @@
                       "Entity": "InventoryValuation"
                     }
                   },
-                  "Property": "U_SegmentType"
+                  "Property": "ItemGroup"
                 }
               },
-              "queryRef": "InventoryValuation.U_SegmentType",
+              "queryRef": "InventoryValuation.ItemGroup",
               "nativeQueryRef": "U_SegmentType",
               "active": false
             },
@@ -198,7 +198,7 @@
         "levels": [
           {
             "queryRefs": [
-              "InventoryValuation.U_BusinessType"
+              "InventoryValuation.ItemGroup"
             ],
             "isCollapsed": true,
             "identityKeys": [
@@ -209,7 +209,7 @@
                       "Entity": "InventoryValuation"
                     }
                   },
-                  "Property": "U_BusinessType"
+                  "Property": "ItemGroup"
                 }
               }
             ],
@@ -217,20 +217,20 @@
           },
           {
             "queryRefs": [
-              "InventoryValuation.U_GroupType"
+              "InventoryValuation.ItemGroup"
             ],
             "isCollapsed": true,
             "isPinned": true
           },
           {
             "queryRefs": [
-              "InventoryValuation.U_ProductType"
+              "InventoryValuation.ItemGroup"
             ],
             "isCollapsed": true
           },
           {
             "queryRefs": [
-              "InventoryValuation.U_SegmentType"
+              "InventoryValuation.ItemGroup"
             ],
             "isCollapsed": true
           },
@@ -400,7 +400,7 @@
             }
           },
           "selector": {
-            "metadata": "InventoryValuation.U_BusinessType"
+            "metadata": "InventoryValuation.ItemGroup"
           }
         },
         {
