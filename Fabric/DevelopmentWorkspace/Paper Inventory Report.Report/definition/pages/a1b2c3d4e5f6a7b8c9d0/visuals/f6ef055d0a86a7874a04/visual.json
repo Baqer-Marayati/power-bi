@@ -545,7 +545,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Quantity & Cost by Business Type'"
+                  "Value": "'Quantity & Cost by Item group'"
                 }
               }
             },

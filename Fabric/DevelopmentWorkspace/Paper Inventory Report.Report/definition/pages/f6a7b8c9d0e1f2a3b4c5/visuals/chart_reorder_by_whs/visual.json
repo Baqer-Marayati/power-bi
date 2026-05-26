@@ -3,7 +3,7 @@
   "name": "chart_reorder_by_whs",
   "position": {
     "x": 1201.6318567939163,
-    "y": 645.92790733119944,
+    "y": 645.9279073311994,
     "z": 6000,
     "height": 381.65625,
     "width": 664.462890625,
@@ -204,7 +204,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Overstock Value by Product Type'"
+                  "Value": "'Overstock Value by Item group'"
                 }
               }
             },

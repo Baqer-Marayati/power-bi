@@ -3,9 +3,9 @@
   "name": "chart_donut",
   "position": {
     "x": 511.42857142857144,
-    "y": 264.28571428571428,
+    "y": 264.2857142857143,
     "z": 5000,
-    "height": 358.57142857142861,
+    "height": 358.5714285714286,
     "width": 1355.7142857142858,
     "tabOrder": 10000
   },
@@ -257,7 +257,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Stock Value by Business Type'"
+                  "Value": "'Stock Value by Item group'"
                 }
               }
             },

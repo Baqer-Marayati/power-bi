@@ -42,7 +42,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Business Type'"
+                  "Value": "'Item group'"
                 }
               }
             },

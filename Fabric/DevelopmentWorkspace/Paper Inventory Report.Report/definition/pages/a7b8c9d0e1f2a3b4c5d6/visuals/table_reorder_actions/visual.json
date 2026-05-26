@@ -860,7 +860,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Qty and Cost by Business Type'"
+                  "Value": "'Stock Actions'"
                 }
               }
             },

@@ -42,7 +42,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Group Type'"
+                  "Value": "'Item group'"
                 }
               }
             },
