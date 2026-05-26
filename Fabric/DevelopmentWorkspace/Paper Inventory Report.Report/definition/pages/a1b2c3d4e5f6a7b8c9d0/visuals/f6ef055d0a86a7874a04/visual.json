@@ -168,12 +168,11 @@
                   "Property": "ItemGroup"
                 }
               }
-            ],
-            "isPinned": true
+            ]
           },
           {
             "queryRefs": [
-              "Dim_Item.ItemGroup"
+              "Dim_Item.ItemName"
             ],
             "isCollapsed": true,
             "identityKeys": [
@@ -184,36 +183,28 @@
                       "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "ItemGroup"
+                  "Property": "ItemName"
                 }
               }
-            ],
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "Dim_Item.ItemGroup"
-            ],
-            "isCollapsed": true,
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "Dim_Item.ItemGroup"
-            ],
-            "isCollapsed": true
-          },
-          {
-            "queryRefs": [
-              "Dim_Item.ItemName"
-            ],
-            "isCollapsed": true
+            ]
           },
           {
             "queryRefs": [
               "Dim_Item.ItemCode"
             ],
-            "isCollapsed": true
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Item"
+                    }
+                  },
+                  "Property": "ItemCode"
+                }
+              }
+            ]
           }
         ],
         "root": {
