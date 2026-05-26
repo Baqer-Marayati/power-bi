@@ -203,10 +203,10 @@
                       "Entity": "Fact_StockCoverPolicy"
                     }
                   },
-                  "Property": "ItemGroup"
+                  "Property": "U_BusinessType"
                 }
               },
-              "queryRef": "Dim_Item.ItemGroup",
+              "queryRef": "Fact_StockCoverPolicy.U_BusinessType",
               "nativeQueryRef": "Business Type",
               "displayName": "Business Type"
             },
@@ -218,10 +218,10 @@
                       "Entity": "Fact_StockCoverPolicy"
                     }
                   },
-                  "Property": "ItemGroup"
+                  "Property": "U_GroupType"
                 }
               },
-              "queryRef": "Dim_Item.ItemGroup",
+              "queryRef": "Fact_StockCoverPolicy.U_GroupType",
               "nativeQueryRef": "Group Type",
               "displayName": "Group Type"
             },
@@ -233,10 +233,10 @@
                       "Entity": "Fact_StockCoverPolicy"
                     }
                   },
-                  "Property": "ItemGroup"
+                  "Property": "U_ProductType"
                 }
               },
-              "queryRef": "Dim_Item.ItemGroup",
+              "queryRef": "Fact_StockCoverPolicy.U_ProductType",
               "nativeQueryRef": "Product Type",
               "displayName": "Product Type"
             },
@@ -248,10 +248,10 @@
                       "Entity": "Fact_StockCoverPolicy"
                     }
                   },
-                  "Property": "ItemGroup"
+                  "Property": "U_SegmentType"
                 }
               },
-              "queryRef": "Dim_Item.ItemGroup",
+              "queryRef": "Fact_StockCoverPolicy.U_SegmentType",
               "nativeQueryRef": "Segment Type",
               "displayName": "Segment Type"
             }
@@ -629,25 +629,25 @@
         {
           "properties": {},
           "selector": {
-            "metadata": "Dim_Item.ItemGroup"
+            "metadata": "Fact_StockCoverPolicy.U_BusinessType"
           }
         },
         {
           "properties": {},
           "selector": {
-            "metadata": "Dim_Item.ItemGroup"
+            "metadata": "Fact_StockCoverPolicy.U_GroupType"
           }
         },
         {
           "properties": {},
           "selector": {
-            "metadata": "Dim_Item.ItemGroup"
+            "metadata": "Fact_StockCoverPolicy.U_ProductType"
           }
         },
         {
           "properties": {},
           "selector": {
-            "metadata": "Dim_Item.ItemGroup"
+            "metadata": "Fact_StockCoverPolicy.U_SegmentType"
           }
         }
       ],
@@ -853,7 +853,7 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.ItemGroup"
+            "metadata": "Fact_StockCoverPolicy.U_BusinessType"
           }
         },
         {
@@ -867,7 +867,7 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.ItemGroup"
+            "metadata": "Fact_StockCoverPolicy.U_GroupType"
           }
         },
         {
@@ -881,7 +881,7 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.ItemGroup"
+            "metadata": "Fact_StockCoverPolicy.U_ProductType"
           }
         },
         {
@@ -895,7 +895,7 @@
             }
           },
           "selector": {
-            "metadata": "Dim_Item.ItemGroup"
+            "metadata": "Fact_StockCoverPolicy.U_SegmentType"
           }
         }
       ]

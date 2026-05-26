@@ -65,12 +65,6 @@ table InventoryValuation
 
 		annotation SummarizationSetBy = Automatic
 
-	column ItemGroup = InventoryValuation[U_BusinessType]
-		lineageTag: bb000000-0000-0000-0000-000000000012
-		summarizeBy: none
-
-		annotation SummarizationSetBy = Automatic
-
 	column StockQty
 		dataType: double
 		lineageTag: bb000000-0000-0000-0000-000000000010

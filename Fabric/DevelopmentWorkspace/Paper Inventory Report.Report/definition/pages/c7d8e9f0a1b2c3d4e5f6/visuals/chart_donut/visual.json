@@ -23,10 +23,10 @@
                       "Entity": "InventoryValuation"
                     }
                   },
-                  "Property": "ItemGroup"
+                  "Property": "U_BusinessType"
                 }
               },
-              "queryRef": "InventoryValuation.ItemGroup",
+              "queryRef": "InventoryValuation.U_BusinessType",
               "nativeQueryRef": "U_BusinessType",
               "active": true
             }

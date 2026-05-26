@@ -1096,28 +1096,76 @@ table _Measures
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000147
 
 	measure 'Selected Landed Cost Amount' =
-			CALCULATE ( [Landed Cost Amount], REMOVEFILTERS ( Dim_Date ) )
+			VAR _dates = VALUES ( Dim_Date[Date] )
+			VAR _choice = [Selected Date Spine Label]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        _choice = "Receipt date" && COUNTROWS ( _dates ) > 0,
+			            CALCULATE ( [Landed Cost Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
+			        _choice = "Receipt date",
+			            [Landed Cost Amount],
+			        COUNTROWS ( _dates ) > 0,
+			            CALCULATE ( [Landed Cost Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) ),
+			        [Landed Cost Amount]
+			    )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000102
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
 	measure 'Selected Landed Add-On Amount' =
-			CALCULATE ( [Landed Add-On Amount], REMOVEFILTERS ( Dim_Date ) )
+			VAR _dates = VALUES ( Dim_Date[Date] )
+			VAR _choice = [Selected Date Spine Label]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        _choice = "Receipt date" && COUNTROWS ( _dates ) > 0,
+			            CALCULATE ( [Landed Add-On Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
+			        _choice = "Receipt date",
+			            [Landed Add-On Amount],
+			        COUNTROWS ( _dates ) > 0,
+			            CALCULATE ( [Landed Add-On Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) ),
+			        [Landed Add-On Amount]
+			    )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000103
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
 	measure 'Selected Landed Supplier Base Amount' =
-			CALCULATE ( [Landed Supplier Base Amount], REMOVEFILTERS ( Dim_Date ) )
+			VAR _dates = VALUES ( Dim_Date[Date] )
+			VAR _choice = [Selected Date Spine Label]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        _choice = "Receipt date" && COUNTROWS ( _dates ) > 0,
+			            CALCULATE ( [Landed Supplier Base Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
+			        _choice = "Receipt date",
+			            [Landed Supplier Base Amount],
+			        COUNTROWS ( _dates ) > 0,
+			            CALCULATE ( [Landed Supplier Base Amount], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) ),
+			        [Landed Supplier Base Amount]
+			    )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000120
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
 	measure 'Selected Landed Receipt Qty' =
-			CALCULATE ( [Landed Receipt Qty], REMOVEFILTERS ( Dim_Date ) )
+			VAR _dates = VALUES ( Dim_Date[Date] )
+			VAR _choice = [Selected Date Spine Label]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        _choice = "Receipt date" && COUNTROWS ( _dates ) > 0,
+			            CALCULATE ( [Landed Receipt Qty], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] ) ),
+			        _choice = "Receipt date",
+			            [Landed Receipt Qty],
+			        COUNTROWS ( _dates ) > 0,
+			            CALCULATE ( [Landed Receipt Qty], REMOVEFILTERS ( Dim_Date ), TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] ) ),
+			        [Landed Receipt Qty]
+			    )
 		formatString: #,0
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000104
 
@@ -1259,18 +1307,25 @@ table _Measures
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
 	measure 'LC Customs Projected' =
-			CALCULATE (
-			    SUMX (
-			        SUMMARIZE (
-			            Fact_LandedCostAllocation,
-			            Fact_LandedCostAllocation[LcDocEntry],
-			            "_projected", MAX ( Fact_LandedCostAllocation[LcCustomsProjected] )
-			        ),
-			        [_projected]
-			    ),
-			    REMOVEFILTERS ( Dim_Date ),
-			    REMOVEFILTERS ( Dim_LandedCostCategory )
-			)
+			VAR _dates = VALUES ( Dim_Date[Date] )
+			VAR _choice = [Selected Date Spine Label]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        _choice = "Receipt date",
+			            CALCULATE (
+			                SUMX ( SUMMARIZE ( Fact_LandedCostAllocation, Fact_LandedCostAllocation[LcDocEntry], "_projected", MAX ( Fact_LandedCostAllocation[LcCustomsProjected] ) ), [_projected] ),
+			                REMOVEFILTERS ( Dim_Date ),
+			                REMOVEFILTERS ( Dim_LandedCostCategory ),
+			                TREATAS ( _dates, Fact_LandedCostAllocation[ReceiptDate] )
+			            ),
+			        CALCULATE (
+			            SUMX ( SUMMARIZE ( Fact_LandedCostAllocation, Fact_LandedCostAllocation[LcDocEntry], "_projected", MAX ( Fact_LandedCostAllocation[LcCustomsProjected] ) ), [_projected] ),
+			            REMOVEFILTERS ( Dim_Date ),
+			            REMOVEFILTERS ( Dim_LandedCostCategory ),
+			            TREATAS ( _dates, Fact_LandedCostAllocation[LcDate] )
+			        )
+			    )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000116
 

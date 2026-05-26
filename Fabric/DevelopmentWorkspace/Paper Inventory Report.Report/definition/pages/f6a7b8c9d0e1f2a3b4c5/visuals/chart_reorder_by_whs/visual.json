@@ -23,10 +23,10 @@
                       "Entity": "Dim_Item"
                     }
                   },
-                  "Property": "ItemGroup"
+                  "Property": "U_ProductType"
                 }
               },
-              "queryRef": "Dim_Item.ItemGroup",
+              "queryRef": "Dim_Item.U_ProductType",
               "nativeQueryRef": "U_ProductType",
               "active": true
             }
