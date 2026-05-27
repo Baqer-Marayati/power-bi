@@ -337,7 +337,8 @@ table Fact_StockCoverPolicy
 				        in
 				            if not hasAnyDemand and [NetAvailable] > 0 then "No demand - QTY available"
 				            else if not hasAnyDemand then "No demand - Zero QTY available"
-				            else if not hasPlanningDemand then "Slow mover - Review"
+				            else if not hasPlanningDemand and [NetAvailable] > 0 then "Over Stock"
+				            else if not hasPlanningDemand then "Healthy"
 				            else if [NetAvailable] < [TargetStockQty] * 0.9 then "Under Stock"
 				            else if [NetAvailable] > [TargetStockQty] * 1.1 then "Over Stock"
 				            else "Healthy",
@@ -349,7 +350,8 @@ table Fact_StockCoverPolicy
 				        in
 				            if not hasAnyDemand and [NetAvailable] > 0 then "Review non-mover"
 				            else if not hasAnyDemand then "No Action"
-				            else if not hasPlanningDemand then "Review slow mover"
+				            else if not hasPlanningDemand and [NetAvailable] > 0 then "Reduce"
+				            else if not hasPlanningDemand then "Good health"
 				            else if [NetAvailable] < [TargetStockQty] * 0.9 then "Buy"
 				            else if [NetAvailable] > [TargetStockQty] * 1.1 then "Reduce"
 				            else "Good health",

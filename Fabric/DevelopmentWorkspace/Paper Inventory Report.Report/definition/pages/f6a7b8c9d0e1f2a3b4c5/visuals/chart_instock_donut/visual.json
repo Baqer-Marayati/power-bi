@@ -60,10 +60,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Stock Health Exposure % of Item Group"
+                  "Property": "Stock Cover Exposure % of Business Type"
                 }
               },
-              "queryRef": "_Measures.Stock Health Exposure % of Item Group",
+              "queryRef": "_Measures.Stock Cover Exposure % of Business Type",
               "nativeQueryRef": "% of Item group"
             }
           ]
@@ -78,10 +78,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Stock Health Exposure Value"
+                  "Property": "Stock Cover Exposure Value"
                 }
               },
-              "queryRef": "_Measures.Stock Health Exposure Value",
+              "queryRef": "_Measures.Stock Cover Exposure Value",
               "nativeQueryRef": "Action Value"
             }
           ]
@@ -97,7 +97,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Stock Health Exposure Value"
+                "Property": "Stock Cover Exposure Value"
               }
             },
             "direction": "Descending"
@@ -441,7 +441,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Review Stock Value by Item group'"
+                  "Value": "'Stock Value by Item group'"
                 }
               }
             },
