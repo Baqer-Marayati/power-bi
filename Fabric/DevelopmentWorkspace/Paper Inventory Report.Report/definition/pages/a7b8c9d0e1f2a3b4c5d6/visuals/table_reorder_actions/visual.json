@@ -73,7 +73,7 @@
               },
               "queryRef": "_Measures.Reorder On Hand",
               "nativeQueryRef": "In Stock",
-              "displayName": "In Stock (T)"
+              "displayName": "In Stock"
             },
             {
               "field": {
@@ -88,7 +88,7 @@
               },
               "queryRef": "_Measures.Reorder Target Display",
               "nativeQueryRef": "Target",
-              "displayName": "Target (T)"
+              "displayName": "Target Qty"
             },
             {
               "field": {
@@ -103,7 +103,7 @@
               },
               "queryRef": "_Measures.Reorder Open PO Display",
               "nativeQueryRef": "Open PO",
-              "displayName": "Open PO (T)"
+              "displayName": "Open PO"
             },
             {
               "field": {
@@ -118,7 +118,7 @@
               },
               "queryRef": "_Measures.Reorder Open SO Display",
               "nativeQueryRef": "Open SO",
-              "displayName": "Open SO (T)"
+              "displayName": "Open SO"
             },
             {
               "field": {
@@ -133,7 +133,7 @@
               },
               "queryRef": "_Measures.Reorder Velocity Display",
               "nativeQueryRef": "Sales Rate",
-              "displayName": "Sales Rate (T/d)"
+              "displayName": "Sales Rate"
             },
             {
               "field": {
@@ -148,7 +148,7 @@
               },
               "queryRef": "_Measures.Reorder Sold 90d Display",
               "nativeQueryRef": "Sold (90d)",
-              "displayName": "Sold 90d (T)"
+              "displayName": "Sold (90d)"
             },
             {
               "field": {
@@ -163,7 +163,7 @@
               },
               "queryRef": "_Measures.Reorder Move Qty Value",
               "nativeQueryRef": "Recommended quantity",
-              "displayName": "Recommended (T)"
+              "displayName": "Recommended quantity"
             },
             {
               "field": {
