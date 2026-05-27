@@ -94,8 +94,8 @@
                 }
               },
               "queryRef": "_Measures.Procurement KPI Receipt Qty",
-              "nativeQueryRef": "Qty Received",
-              "displayName": "Qty Received"
+              "nativeQueryRef": "Qty Received (Tons)",
+              "displayName": "Qty Received (Tons)"
             },
             {
               "field": {
@@ -124,8 +124,8 @@
                 }
               },
               "queryRef": "_Measures.Selected Supplier Base Unit Cost",
-              "nativeQueryRef": "Supplier Cost / Unit",
-              "displayName": "Supplier Cost / Unit"
+              "nativeQueryRef": "Supplier Cost / Ton",
+              "displayName": "Supplier Cost / Ton"
             },
             {
               "field": {
@@ -154,8 +154,8 @@
                 }
               },
               "queryRef": "_Measures.Selected Landed Unit Cost",
-              "nativeQueryRef": "Landed Cost / Unit",
-              "displayName": "Landed Cost / Unit"
+              "nativeQueryRef": "Landed Cost / Ton",
+              "displayName": "Landed Cost / Ton"
             },
             {
               "field": {

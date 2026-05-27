@@ -151,3 +151,9 @@ Do **not** rename “Import & Handling Costs” to **Total Landed Cost** — tha
 - Drop redundant “(IQD)” on cards when numbers are already IQD-formatted.
 - Prefer plain language for management; keep SAP field names (**LC Doc**, **Open PO/SO**) when the team uses them daily.
 - When renaming in PBIR JSON, avoid apostrophes in `Literal` values (invalid JSON); use “is not” instead of “isn’t”.
+
+## 2026-05-27 — PAPER Inventory unit standard
+
+- PAPERENTITY inventory UOM is **KG** in SAP; business-facing Paper Inventory quantities should be shown as **tons** (`raw SAP qty / 1000`).
+- Management labels should say **(Tons)** for quantities and **/ Ton** for quantity-based costs; raw kg should only appear in audit/drill-through contexts with an explicit `Raw Quantity (kg)` label.
+- Paper `Reorder IQD Impact` must multiply raw kg quantities by `AvgItemCost` (IQD/kg), while visible Stock Actions quantities remain displayed in tons.

@@ -625,23 +625,22 @@ table _Measures
 		formatString: +#,0;-#,0;0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa077
 
-	/// IQD impact (numeric): SuggestedReorderQty * AvgItemCost for Buy, ExcessQty * AvgItemCost
-	/// for Reduce, item book value for Review non-mover, BLANK otherwise. Keep this as a
-	/// plain numeric format string; table visuals render conditional format sections as literal text.
+	/// IQD impact (numeric): raw kg action quantity * AvgItemCost (IQD/kg). The visible
+	/// move quantity is shown in tons, but impact must stay on the raw SAP quantity grain.
 	measure 'Reorder IQD Impact' =
 			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
-			VAR _Buy = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedReorderQty] ) / 1000
-			VAR _Excess = SELECTEDVALUE ( Fact_StockCoverPolicy[ExcessQty] ) / 1000
-			VAR _Net = SELECTEDVALUE ( Fact_StockCoverPolicy[NetAvailable] ) / 1000
+			VAR _BuyRaw = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedReorderQty] )
+			VAR _ExcessRaw = SELECTEDVALUE ( Fact_StockCoverPolicy[ExcessQty] )
+			VAR _NetRaw = SELECTEDVALUE ( Fact_StockCoverPolicy[NetAvailable] )
 			VAR _Cost = SELECTEDVALUE ( Fact_StockCoverPolicy[AvgItemCost] )
 			VAR _Total = SELECTEDVALUE ( Fact_StockCoverPolicy[TotalItemCost] )
 			RETURN
 			    SWITCH (
 			        _Act,
-			        "Buy", IF ( _Buy >= 1, _Buy * _Cost, BLANK () ),
-			        "Reduce", IF ( _Excess >= 1, _Excess * _Cost, BLANK () ),
-			        "Review non-mover", COALESCE ( _Total, _Net * _Cost ),
-			        "Review slow mover", COALESCE ( _Total, _Net * _Cost ),
+			        "Buy", IF ( _BuyRaw >= 1000, _BuyRaw * _Cost, BLANK () ),
+			        "Reduce", IF ( _ExcessRaw >= 1000, _ExcessRaw * _Cost, BLANK () ),
+			        "Review non-mover", COALESCE ( _Total, _NetRaw * _Cost ),
+			        "Review slow mover", COALESCE ( _Total, _NetRaw * _Cost ),
 			        BLANK ()
 			    )
 		formatString: #,0;-#,0;0
@@ -682,11 +681,11 @@ table _Measures
 			        SUM ( Fact_WarehouseStock[StockValue] ),
 			        SUM ( Fact_WarehouseStock[OnHand] ) / 1000
 			    )
-			VAR _masterAvgCost = SELECTEDVALUE ( Dim_Item[AvgPrice] )
-			VAR _lastPurchaseCost = SELECTEDVALUE ( Dim_Item[LastPurPrc] )
+			VAR _masterAvgCostKg = SELECTEDVALUE ( Dim_Item[AvgPrice] )
+			VAR _lastPurchaseCostKg = SELECTEDVALUE ( Dim_Item[LastPurPrc] )
 			VAR _validStockUnitCost = IF ( _stockUnitCost > 0, _stockUnitCost )
-			VAR _validMasterAvgCost = IF ( _masterAvgCost > 0, _masterAvgCost )
-			VAR _validLastPurchaseCost = IF ( _lastPurchaseCost > 0, _lastPurchaseCost )
+			VAR _validMasterAvgCost = IF ( _masterAvgCostKg > 0, _masterAvgCostKg * 1000 )
+			VAR _validLastPurchaseCost = IF ( _lastPurchaseCostKg > 0, _lastPurchaseCostKg * 1000 )
 			RETURN
 			    COALESCE ( _validStockUnitCost, _validMasterAvgCost, _validLastPurchaseCost, 0 )
 		formatString: #,0.00\ "د.ع.‏";-#,0.00\ "د.ع.‏";#,0.00\ "د.ع.‏"

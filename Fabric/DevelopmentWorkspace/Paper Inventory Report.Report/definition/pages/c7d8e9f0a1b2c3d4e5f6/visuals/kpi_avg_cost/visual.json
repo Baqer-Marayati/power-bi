@@ -235,7 +235,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Average Unit Cost'"
+                  "Value": "'Avg Cost / Ton'"
                 }
               }
             },

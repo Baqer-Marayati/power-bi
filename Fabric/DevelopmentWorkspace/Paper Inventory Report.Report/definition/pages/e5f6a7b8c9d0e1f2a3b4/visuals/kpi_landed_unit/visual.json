@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "_Measures.Procurement KPI Add-On Per Unit",
-              "nativeQueryRef": "Import Cost per Unit"
+              "nativeQueryRef": "Import Cost / Ton"
             }
           ]
         }
@@ -235,7 +235,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Import Cost per Unit'"
+                  "Value": "'Import Cost / Ton'"
                 }
               }
             },

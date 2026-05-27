@@ -204,7 +204,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Monthly Unit Cost vs Current Unit Cost'"
+                  "Value": "'Monthly Cost / Ton vs Current Cost / Ton'"
                 }
               }
             },

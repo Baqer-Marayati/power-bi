@@ -77,8 +77,8 @@
                 }
               },
               "queryRef": "_Measures.Total Sold Qty",
-              "nativeQueryRef": "Qty",
-              "displayName": "Qty"
+              "nativeQueryRef": "Qty (Tons)",
+              "displayName": "Qty (Tons)"
             },
             {
               "field": {
@@ -92,8 +92,8 @@
                 }
               },
               "queryRef": "_Measures.Average Unit COGS",
-              "nativeQueryRef": "Item COGS",
-              "displayName": "Item COGS"
+              "nativeQueryRef": "Avg COGS / Ton",
+              "displayName": "Avg COGS / Ton"
             },
             {
               "field": {
@@ -107,8 +107,8 @@
                 }
               },
               "queryRef": "_Measures.Sold Weighted Avg Current Unit Cost",
-              "nativeQueryRef": "Current Item Cost",
-              "displayName": "Current Item Cost"
+              "nativeQueryRef": "Current Cost / Ton",
+              "displayName": "Current Cost / Ton"
             },
             {
               "field": {

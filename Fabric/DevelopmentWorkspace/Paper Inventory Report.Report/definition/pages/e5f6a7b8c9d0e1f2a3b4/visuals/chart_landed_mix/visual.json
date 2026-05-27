@@ -74,7 +74,7 @@
                 }
               },
               "queryRef": "_Measures.Selected Landed Receipt Qty",
-              "nativeQueryRef": "Receipt quantity"
+              "nativeQueryRef": "Receipt quantity (Tons)"
             }
           ]
         },

@@ -64,7 +64,7 @@
                 }
               },
               "queryRef": "_Measures.Average Unit COGS",
-              "nativeQueryRef": "Average Unit COGS"
+              "nativeQueryRef": "Avg COGS / Ton"
             }
           ]
         }
@@ -630,7 +630,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Unit Cost Trend by Item group'"
+                  "Value": "'Cost / Ton Trend by Item group'"
                 }
               }
             },

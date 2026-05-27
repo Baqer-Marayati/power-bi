@@ -87,8 +87,8 @@
                 }
               },
               "queryRef": "_Measures.Reorder Target Display",
-              "nativeQueryRef": "Target",
-              "displayName": "Target Qty"
+              "nativeQueryRef": "Target Qty (Tons)",
+              "displayName": "Target Qty (Tons)"
             },
             {
               "field": {
@@ -102,8 +102,8 @@
                 }
               },
               "queryRef": "_Measures.Reorder Open PO Display",
-              "nativeQueryRef": "Open PO",
-              "displayName": "Open PO"
+              "nativeQueryRef": "Open PO (Tons)",
+              "displayName": "Open PO (Tons)"
             },
             {
               "field": {
@@ -117,8 +117,8 @@
                 }
               },
               "queryRef": "_Measures.Reorder Open SO Display",
-              "nativeQueryRef": "Open SO",
-              "displayName": "Open SO"
+              "nativeQueryRef": "Open SO (Tons)",
+              "displayName": "Open SO (Tons)"
             },
             {
               "field": {
@@ -147,8 +147,8 @@
                 }
               },
               "queryRef": "_Measures.Reorder Move Qty Value",
-              "nativeQueryRef": "Recommended quantity",
-              "displayName": "Recommended quantity"
+              "nativeQueryRef": "Recommended Qty (Tons)",
+              "displayName": "Recommended Qty (Tons)"
             },
             {
               "field": {
