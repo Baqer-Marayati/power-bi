@@ -507,7 +507,7 @@ table _Measures
 	/// fill stays empty, so the cell isn't misread as "0% of target".
 	measure 'Reorder Cover Bar SVG' =
 			VAR _Code = SELECTEDVALUE ( Fact_StockCoverPolicy[ItemCode] )
-			VAR _Net = SELECTEDVALUE ( Fact_StockCoverPolicy[NetAvailable] )
+			VAR _Net = SELECTEDVALUE ( Fact_StockCoverPolicy[NetAvailable] ) / 1000
 			VAR _Tgt = SELECTEDVALUE ( Fact_StockCoverPolicy[TargetStockQty] ) / 1000
 			VAR _NoTarget = ISBLANK ( _Tgt ) || _Tgt = 0
 			VAR _Ratio = IF ( _NoTarget, 0, DIVIDE ( _Net, _Tgt, 0 ) )
@@ -563,12 +563,19 @@ table _Measures
 			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa074
 
-	/// Sales velocity; dash when zero/blank.
+	/// Sales velocity; dash when zero/blank. Four decimals so slow Paper movers are not misread as 0.00.
 	measure 'Reorder Velocity Display' =
 			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[SalesVelocityQtyPerDay] ) / 1000
 			RETURN
-			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "0.00" ) & " /d" )
+			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "0.0000" ) & " /d" )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa075
+
+	/// Rolling 90-day net sold qty; dash when zero/blank.
+	measure 'Reorder Sold 90d Display' =
+			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[SalesQty90Days] ) / 1000
+			RETURN
+			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
+		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa075a
 
 	/// Font color for the Move qty cell (red for buy, amber for reduce/review, muted grey for —).
 	measure 'Reorder Move Qty Color' =
@@ -1005,7 +1012,7 @@ table _Measures
 
 	/// Open SO qty; dash when zero/blank.
 	measure 'Reorder Open SO Display' =
-			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[OpenSOQty] )
+			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[OpenSOQty] ) / 1000
 			RETURN
 			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa076

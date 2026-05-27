@@ -143,6 +143,21 @@
                       "Entity": "_Measures"
                     }
                   },
+                  "Property": "Reorder Sold 90d Display"
+                }
+              },
+              "queryRef": "_Measures.Reorder Sold 90d Display",
+              "nativeQueryRef": "Sold (90d)",
+              "displayName": "Sold (90d)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
                   "Property": "Reorder Move Qty Value"
                 }
               },
@@ -530,6 +545,20 @@
             "value": {
               "expr": {
                 "Literal": {
+                  "Value": "88.79458398053987D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Reorder Sold 90d Display"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
                   "Value": "100.63386184461184D"
                 }
               }
@@ -699,6 +728,20 @@
           },
           "selector": {
             "metadata": "_Measures.Reorder Velocity Display"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Reorder Sold 90d Display"
           }
         },
         {
