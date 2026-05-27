@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "No Sales Stock Value"
+                  "Property": "Slow Moving Stock Value"
                 }
               },
-              "queryRef": "_Measures.No Sales Stock Value",
-              "nativeQueryRef": "Non-Moving Stock Value"
+              "queryRef": "_Measures.Slow Moving Stock Value",
+              "nativeQueryRef": "Slow-Moving Stock Value"
             }
           ]
         }
@@ -83,7 +83,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.No Sales Stock Value"
+            "metadata": "_Measures.Slow Moving Stock Value"
           }
         },
         {
@@ -235,7 +235,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Slow / Dead Stock'"
+                  "Value": "'Slow-Moving Stock'"
                 }
               }
             },

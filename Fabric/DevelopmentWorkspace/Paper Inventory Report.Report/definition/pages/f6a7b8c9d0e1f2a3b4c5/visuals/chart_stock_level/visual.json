@@ -42,10 +42,10 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Stock Cover Exposure Value"
+                  "Property": "Stock Health Exposure Value"
                 }
               },
-              "queryRef": "_Measures.Stock Cover Exposure Value",
+              "queryRef": "_Measures.Stock Health Exposure Value",
               "nativeQueryRef": "Action Value"
             }
           ]
@@ -61,7 +61,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Stock Cover Exposure Value"
+                "Property": "Stock Health Exposure Value"
               }
             },
             "direction": "Descending"
@@ -375,7 +375,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Stock Value by Status'"
+                  "Value": "'Review Stock Value by Status'"
                 }
               }
             },

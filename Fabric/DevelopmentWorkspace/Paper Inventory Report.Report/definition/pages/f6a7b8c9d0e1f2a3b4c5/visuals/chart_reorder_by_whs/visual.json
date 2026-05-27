@@ -42,11 +42,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Excess Stock Value"
+                  "Property": "Stock Review Exposure Value"
                 }
               },
-              "queryRef": "_Measures.Excess Stock Value",
-              "nativeQueryRef": "Excess Stock Value"
+              "queryRef": "_Measures.Stock Review Exposure Value",
+              "nativeQueryRef": "Review Exposure Value"
             }
           ]
         }
@@ -61,7 +61,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Excess Stock Value"
+                "Property": "Stock Review Exposure Value"
               }
             },
             "direction": "Descending"
@@ -204,7 +204,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Overstock Value by Item group'"
+                  "Value": "'Review Exposure by Item group'"
                 }
               }
             },

@@ -373,6 +373,30 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+	/// PAPER Stock Health page: value of stock that needs management review because
+	/// recent demand is slow or absent. Kept separate from CANON stock-cover labels.
+	measure 'Slow Moving Stock Value' =
+			CALCULATE (
+			    [Policy Stock Value],
+			    Fact_StockCoverPolicy[StockCoverStatus] IN { "Slow mover - Review", "No demand - QTY available" }
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000180
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	/// PAPER Stock Health page: review exposure includes slow movers, no-demand stock,
+	/// and true overstock. This keeps the page visible when the market is slow.
+	measure 'Stock Review Exposure Value' =
+			CALCULATE (
+			    [Excess Stock Value],
+			    Fact_StockCoverPolicy[StockCoverStatus] IN { "Slow mover - Review", "No demand - QTY available", "Over Stock" }
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000181
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 	measure 'Under Stock Items' =
 			CALCULATE (
 			    DISTINCTCOUNT ( Fact_StockCoverPolicy[ItemCode] ),
@@ -438,6 +462,38 @@ table _Measures
 	measure 'Stock Cover Exposure % of Business Type' = DIVIDE ( [Stock Cover Exposure Value], CALCULATE ( [Stock Cover Exposure Value], REMOVEFILTERS ( Fact_StockCoverPolicy[StockCoverStatus] ) ), 0 )
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa068
+
+	/// PAPER Stock Health page: status exposure that includes slow movers so the
+	/// status and item-group charts do not go blank during weak-demand periods.
+	measure 'Stock Health Exposure Value' =
+			SUMX (
+			    Fact_StockCoverPolicy,
+			    VAR _status = Fact_StockCoverPolicy[StockCoverStatus]
+			    VAR _unitValue = COALESCE ( Fact_StockCoverPolicy[AvgItemCost], 0 )
+			    RETURN
+			        SWITCH (
+			            TRUE (),
+			            _status = "Under Stock", Fact_StockCoverPolicy[SuggestedReorderQty] * _unitValue,
+			            _status = "Over Stock", Fact_StockCoverPolicy[ExcessQty] * _unitValue,
+			            _status = "Slow mover - Review", Fact_StockCoverPolicy[TotalItemCost],
+			            _status = "No demand - QTY available", Fact_StockCoverPolicy[TotalItemCost],
+			            _status = "Healthy", Fact_StockCoverPolicy[TotalItemCost],
+			            0
+			        )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000182
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Stock Health Exposure % of Item Group' =
+			DIVIDE (
+			    [Stock Health Exposure Value],
+			    CALCULATE ( [Stock Health Exposure Value], REMOVEFILTERS ( Fact_StockCoverPolicy[StockCoverStatus] ) ),
+			    0
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d5a7e001-916b-4a6b-a404-000000000183
 
 	/// Reorder Actions table guard: keep the table on the stock-cover policy grain so slicers
 	/// cannot surface dimension-only rows whose SELECTEDVALUE(...) reorder measures would go blank.
