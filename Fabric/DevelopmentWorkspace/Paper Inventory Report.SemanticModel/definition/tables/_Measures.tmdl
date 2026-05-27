@@ -467,6 +467,7 @@ table _Measures
 			        "Good health", "HEALTHY",
 			        "Reduce", "REDUCE",
 			        "Review non-mover", "REVIEW",
+			        "Review slow mover", "REVIEW",
 			        "No Action", "IDLE",
 			        UPPER ( _Act )
 			    )
@@ -477,6 +478,7 @@ table _Measures
 			        "Good health", "1F6240|E4F1EA|B7D9C4",
 			        "Reduce", "8A5E0F|FBF1DD|E8D49A",
 			        "Review non-mover", "4A4A4A|EDEDED|CFCFCF",
+			        "Review slow mover", "4A4A4A|EDEDED|CFCFCF",
 			        "No Action", "1F4E79|E6EEF8|C0D3E8",
 			        "1F4E79|E6EEF8|C0D3E8"
 			    )
@@ -507,9 +509,13 @@ table _Measures
 	/// fill stays empty, so the cell isn't misread as "0% of target".
 	measure 'Reorder Cover Bar SVG' =
 			VAR _Code = SELECTEDVALUE ( Fact_StockCoverPolicy[ItemCode] )
+			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
 			VAR _Net = SELECTEDVALUE ( Fact_StockCoverPolicy[NetAvailable] ) / 1000
 			VAR _Tgt = SELECTEDVALUE ( Fact_StockCoverPolicy[TargetStockQty] ) / 1000
-			VAR _NoTarget = ISBLANK ( _Tgt ) || _Tgt = 0
+			VAR _NoTarget =
+			    ISBLANK ( _Tgt )
+			        || _Tgt < 1
+			        || _Act IN { "Review non-mover", "Review slow mover", "No Action" }
 			VAR _Ratio = IF ( _NoTarget, 0, DIVIDE ( _Net, _Tgt, 0 ) )
 			VAR _RatioCapped = MIN ( MAX ( _Ratio, 0 ), 1.5 )
 			VAR _Trk = 116
@@ -523,7 +529,7 @@ table _Measures
 			        _Ratio > 1.1, "#B5811E",
 			        "#2F7A4D"
 			    )
-			VAR _Pct = IF ( _NoTarget, "— no target", FORMAT ( _Ratio * 100, "0" ) & "% of target" )
+			VAR _Pct = IF ( _NoTarget, "No planning target", FORMAT ( _Ratio * 100, "0" ) & "% of target" )
 			VAR _Svg =
 			    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' width='120' height='40'>" &
 			    "<title>" & _Pct & "</title>" &
@@ -552,29 +558,36 @@ table _Measures
 	/// Target stock qty; dash when zero/blank (dead SKUs).
 	measure 'Reorder Target Display' =
 			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[TargetStockQty] ) / 1000
+			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
 			RETURN
-			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
+			    IF (
+			        ISBLANK ( _V )
+			            || _V < 1
+			            || _Act IN { "Review non-mover", "Review slow mover", "No Action" },
+			        "—",
+			        FORMAT ( _V, "#,0" )
+			    )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa073
 
 	/// Open PO qty; dash when zero/blank.
 	measure 'Reorder Open PO Display' =
 			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[OpenPOQty] ) / 1000
 			RETURN
-			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
+			    SWITCH ( TRUE (), ISBLANK ( _V ) || _V = 0, "—", _V < 1, "<1", FORMAT ( _V, "#,0" ) )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa074
 
-	/// Sales velocity; dash when zero/blank. Four decimals so slow Paper movers are not misread as 0.00.
+	/// Sales velocity in tonnes/day; dash when zero/blank. Four decimals so slow Paper movers are not misread as 0.00.
 	measure 'Reorder Velocity Display' =
 			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[SalesVelocityQtyPerDay] ) / 1000
 			RETURN
-			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "0.0000" ) & " /d" )
+			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "0.0000" ) )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa075
 
 	/// Rolling 90-day net sold qty; dash when zero/blank.
 	measure 'Reorder Sold 90d Display' =
 			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[SalesQty90Days] ) / 1000
 			RETURN
-			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
+			    SWITCH ( TRUE (), ISBLANK ( _V ) || _V = 0, "—", _V < 1, "<1", FORMAT ( _V, "#,0" ) )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa075a
 
 	/// Font color for the Move qty cell (red for buy, amber for reduce/review, muted grey for —).
@@ -588,6 +601,7 @@ table _Measures
 			        _Act = "Buy" && _Buy > 0, "#B33A3A",
 			        _Act = "Reduce" && _Excess > 0, "#B5811E",
 			        _Act = "Review non-mover" && _Excess > 0, "#B5811E",
+			        _Act = "Review slow mover" && _Excess > 0, "#B5811E",
 			        "#9AA5B5"
 			    )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa081
@@ -602,9 +616,10 @@ table _Measures
 			RETURN
 			    SWITCH (
 			        _Act,
-			        "Buy", IF ( _Buy > 0, _Buy, BLANK () ),
-			        "Reduce", IF ( _Excess > 0, - _Excess, BLANK () ),
-			        "Review non-mover", IF ( _Excess > 0, - _Excess, BLANK () ),
+			        "Buy", IF ( _Buy >= 1, _Buy, BLANK () ),
+			        "Reduce", IF ( _Excess >= 1, - _Excess, BLANK () ),
+			        "Review non-mover", IF ( _Excess >= 1, - _Excess, BLANK () ),
+			        "Review slow mover", IF ( _Excess >= 1, - _Excess, BLANK () ),
 			        BLANK ()
 			    )
 		formatString: +#,0;-#,0;0
@@ -623,9 +638,10 @@ table _Measures
 			RETURN
 			    SWITCH (
 			        _Act,
-			        "Buy", IF ( _Buy > 0, _Buy * _Cost, BLANK () ),
-			        "Reduce", IF ( _Excess > 0, _Excess * _Cost, BLANK () ),
+			        "Buy", IF ( _Buy >= 1, _Buy * _Cost, BLANK () ),
+			        "Reduce", IF ( _Excess >= 1, _Excess * _Cost, BLANK () ),
 			        "Review non-mover", COALESCE ( _Total, _Net * _Cost ),
+			        "Review slow mover", COALESCE ( _Total, _Net * _Cost ),
 			        BLANK ()
 			    )
 		formatString: #,0;-#,0;0
@@ -1014,7 +1030,7 @@ table _Measures
 	measure 'Reorder Open SO Display' =
 			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[OpenSOQty] ) / 1000
 			RETURN
-			    IF ( ISBLANK ( _V ) || _V = 0, "—", FORMAT ( _V, "#,0" ) )
+			    SWITCH ( TRUE (), ISBLANK ( _V ) || _V = 0, "—", _V < 1, "<1", FORMAT ( _V, "#,0" ) )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa076
 
 	/// Date-selector label used by Procurement visuals. When the slicer shows All / multi-select, SELECTEDVALUE is unreliable; fall back to LC posting date.

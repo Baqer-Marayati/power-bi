@@ -318,10 +318,42 @@ table Fact_StockCoverPolicy
 				    AddNetAvail = Table.AddColumn(AddBlend, "NetAvailable", each [TotalQtyAvailable] + [OpenPOQty] - [OpenSOQty], type number),
 				    AddTarget = Table.AddColumn(AddNetAvail, "TargetStockQty", each [SalesVelocityQtyPerDay] * Number.From([PolicyDays]), type number),
 				    AddDiff = Table.AddColumn(AddTarget, "StockDifferenceQty", each [NetAvailable] - [TargetStockQty], type number),
-				    AddReorder = Table.AddColumn(AddDiff, "SuggestedReorderQty", each if [SalesVelocityQtyPerDay] = 0 then 0 else if [NetAvailable] < [TargetStockQty] * 0.9 then [TargetStockQty] - [NetAvailable] else 0, type number),
-				    AddExcess = Table.AddColumn(AddReorder, "ExcessQty", each if [SalesVelocityQtyPerDay] = 0 and [NetAvailable] > 0 then [NetAvailable] else if [NetAvailable] > [TargetStockQty] * 1.1 then [NetAvailable] - [TargetStockQty] else 0, type number),
-				    AddStatus = Table.AddColumn(AddExcess, "StockCoverStatus", each if [SalesVelocityQtyPerDay] = 0 and [NetAvailable] > 0 then "No demand - QTY available" else if [SalesVelocityQtyPerDay] = 0 then "No demand - Zero QTY available" else if [NetAvailable] < [TargetStockQty] * 0.9 then "Under Stock" else if [NetAvailable] > [TargetStockQty] * 1.1 then "Over Stock" else "Healthy", type text),
-				    AddAction = Table.AddColumn(AddStatus, "SuggestedAction", each if [SalesVelocityQtyPerDay] = 0 and [NetAvailable] > 0 then "Review non-mover" else if [SalesVelocityQtyPerDay] = 0 then "No Action" else if [NetAvailable] < [TargetStockQty] * 0.9 then "Buy" else if [NetAvailable] > [TargetStockQty] * 1.1 then "Reduce" else "Good health", type text),
+				    AddReorder = Table.AddColumn(AddDiff, "SuggestedReorderQty", each
+				        let
+				            hasPlanningDemand = [SalesQty90Days] >= 1000 and [TargetStockQty] >= 1000
+				        in
+				            if not hasPlanningDemand then 0 else if [NetAvailable] < [TargetStockQty] * 0.9 then [TargetStockQty] - [NetAvailable] else 0,
+				        type number),
+				    AddExcess = Table.AddColumn(AddReorder, "ExcessQty", each
+				        let
+				            hasPlanningDemand = [SalesQty90Days] >= 1000 and [TargetStockQty] >= 1000
+				        in
+				            if not hasPlanningDemand and [NetAvailable] > 0 then [NetAvailable] else if hasPlanningDemand and [NetAvailable] > [TargetStockQty] * 1.1 then [NetAvailable] - [TargetStockQty] else 0,
+				        type number),
+				    AddStatus = Table.AddColumn(AddExcess, "StockCoverStatus", each
+				        let
+				            hasAnyDemand = [SalesVelocityQtyPerDay] > 0,
+				            hasPlanningDemand = [SalesQty90Days] >= 1000 and [TargetStockQty] >= 1000
+				        in
+				            if not hasAnyDemand and [NetAvailable] > 0 then "No demand - QTY available"
+				            else if not hasAnyDemand then "No demand - Zero QTY available"
+				            else if not hasPlanningDemand then "Slow mover - Review"
+				            else if [NetAvailable] < [TargetStockQty] * 0.9 then "Under Stock"
+				            else if [NetAvailable] > [TargetStockQty] * 1.1 then "Over Stock"
+				            else "Healthy",
+				        type text),
+				    AddAction = Table.AddColumn(AddStatus, "SuggestedAction", each
+				        let
+				            hasAnyDemand = [SalesVelocityQtyPerDay] > 0,
+				            hasPlanningDemand = [SalesQty90Days] >= 1000 and [TargetStockQty] >= 1000
+				        in
+				            if not hasAnyDemand and [NetAvailable] > 0 then "Review non-mover"
+				            else if not hasAnyDemand then "No Action"
+				            else if not hasPlanningDemand then "Review slow mover"
+				            else if [NetAvailable] < [TargetStockQty] * 0.9 then "Buy"
+				            else if [NetAvailable] > [TargetStockQty] * 1.1 then "Reduce"
+				            else "Good health",
+				        type text),
 				    Final = Table.RemoveColumns(AddAction, {"EffDays90","EffDays180","EffDays365","FirstSaleDate","DaysSinceFirstSale"})
 				in
 				    Final
