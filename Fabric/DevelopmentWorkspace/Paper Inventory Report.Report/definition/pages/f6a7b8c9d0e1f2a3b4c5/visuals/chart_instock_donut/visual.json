@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_instock_donut",
   "position": {
-    "x": 511.6659866867012,
-    "y": 259.3333333333333,
+    "x": 511.66598668670122,
+    "y": 259.33333333333331,
     "z": 7000,
     "height": 358.40625,
     "width": 664.462890625,

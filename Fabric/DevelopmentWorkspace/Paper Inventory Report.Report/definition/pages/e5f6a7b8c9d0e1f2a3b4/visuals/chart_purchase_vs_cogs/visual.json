@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_purchase_vs_cogs",
   "position": {
-    "x": 510.9978864124466,
-    "y": 264.3333333333333,
+    "x": 510.99788641244658,
+    "y": 264.33333333333331,
     "z": 3000,
     "height": 358.40625,
     "width": 664.462890625,
