@@ -157,3 +157,4 @@ Do **not** rename “Import & Handling Costs” to **Total Landed Cost** — tha
 - PAPERENTITY inventory UOM is **KG** in SAP; business-facing Paper Inventory quantities should be shown as **tons** (`raw SAP qty / 1000`).
 - Management labels should say **(Tons)** for quantities and **/ Ton** for quantity-based costs; raw kg should only appear in audit/drill-through contexts with an explicit `Raw Quantity (kg)` label.
 - Paper `Reorder IQD Impact` must multiply raw kg quantities by `AvgItemCost` (IQD/kg), while visible Stock Actions quantities remain displayed in tons.
+- Paper stock-cover logic keeps a **1-ton materiality threshold** for planning actions, but low-demand zero-stock rows must **not** be labeled Healthy. They are classified as `Low demand - no stock` with `Review slow mover`; positive sub-ton targets display as `<1` ton instead of being hidden as no target.

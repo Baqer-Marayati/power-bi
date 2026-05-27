@@ -504,9 +504,7 @@ table _Measures
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa070
 
 	/// Horizontal cover bar (0-150% of target) with vertical tick at 100% and "% of target" label.
-	/// Track height is 12px (thicker) and the label uses 11px Segoe UI for legibility. When the
-	/// item has no target (non-mover / zero velocity) the label switches to "— no target" and the
-	/// fill stays empty, so the cell isn't misread as "0% of target".
+	/// Sub-ton Paper targets stay visible; true non-movers/no-action rows keep the no-target label.
 	measure 'Reorder Cover Bar SVG' =
 			VAR _Code = SELECTEDVALUE ( Fact_StockCoverPolicy[ItemCode] )
 			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
@@ -514,8 +512,8 @@ table _Measures
 			VAR _Tgt = SELECTEDVALUE ( Fact_StockCoverPolicy[TargetStockQty] ) / 1000
 			VAR _NoTarget =
 			    ISBLANK ( _Tgt )
-			        || _Tgt < 1
-			        || _Act IN { "Review non-mover", "Review slow mover", "No Action" }
+			        || _Tgt <= 0
+			        || _Act IN { "Review non-mover", "No Action" }
 			VAR _Ratio = IF ( _NoTarget, 0, DIVIDE ( _Net, _Tgt, 0 ) )
 			VAR _RatioCapped = MIN ( MAX ( _Ratio, 0 ), 1.5 )
 			VAR _Trk = 116
@@ -529,7 +527,13 @@ table _Measures
 			        _Ratio > 1.1, "#B5811E",
 			        "#2F7A4D"
 			    )
-			VAR _Pct = IF ( _NoTarget, "No planning target", FORMAT ( _Ratio * 100, "0" ) & "% of target" )
+			VAR _Pct =
+			    SWITCH (
+			        TRUE (),
+			        _NoTarget, "No planning target",
+			        _Act = "Review slow mover", "Below planning threshold",
+			        FORMAT ( _Ratio * 100, "0" ) & "% of target"
+			    )
 			VAR _Svg =
 			    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' width='120' height='40'>" &
 			    "<title>" & _Pct & "</title>" &
@@ -555,16 +559,15 @@ table _Measures
 		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa072
 
-	/// Target stock qty; dash when zero/blank (dead SKUs).
+	/// Target stock qty in tons; show "<1" for positive sub-ton targets instead of hiding them.
 	measure 'Reorder Target Display' =
 			VAR _V = SELECTEDVALUE ( Fact_StockCoverPolicy[TargetStockQty] ) / 1000
 			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
 			RETURN
-			    IF (
-			        ISBLANK ( _V )
-			            || _V < 1
-			            || _Act IN { "Review non-mover", "Review slow mover", "No Action" },
-			        "—",
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _V ) || _V <= 0 || _Act IN { "Review non-mover", "No Action" }, "—",
+			        _V < 1, "<1",
 			        FORMAT ( _V, "#,0" )
 			    )
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa073
@@ -634,13 +637,14 @@ table _Measures
 			VAR _NetRaw = SELECTEDVALUE ( Fact_StockCoverPolicy[NetAvailable] )
 			VAR _Cost = SELECTEDVALUE ( Fact_StockCoverPolicy[AvgItemCost] )
 			VAR _Total = SELECTEDVALUE ( Fact_StockCoverPolicy[TotalItemCost] )
+			VAR _ReviewValue = COALESCE ( _Total, _NetRaw * _Cost )
 			RETURN
 			    SWITCH (
 			        _Act,
 			        "Buy", IF ( _BuyRaw >= 1000, _BuyRaw * _Cost, BLANK () ),
 			        "Reduce", IF ( _ExcessRaw >= 1000, _ExcessRaw * _Cost, BLANK () ),
-			        "Review non-mover", COALESCE ( _Total, _NetRaw * _Cost ),
-			        "Review slow mover", COALESCE ( _Total, _NetRaw * _Cost ),
+			        "Review non-mover", IF ( _ReviewValue > 0, _ReviewValue, BLANK () ),
+			        "Review slow mover", IF ( _ReviewValue > 0, _ReviewValue, BLANK () ),
 			        BLANK ()
 			    )
 		formatString: #,0;-#,0;0

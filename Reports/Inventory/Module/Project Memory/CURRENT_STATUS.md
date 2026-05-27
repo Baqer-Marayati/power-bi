@@ -6,6 +6,7 @@
 
 ## Current snapshot
 
+- **May 27, 2026** — PAPER Inventory Stock Health / Stock Actions logic adjusted in the Fabric semantic model so low-demand zero-stock rows no longer show as **Healthy**. The 1-ton planning threshold remains, but those rows now surface as `Low demand - no stock` / `Review slow mover`; sub-ton targets display as `<1` ton. Fabric semantic refresh is required before the app reflects the change.
 - **May 27, 2026** — PAPER Inventory Fabric copy standardized around the confirmed SAP **KG → tons** convention. Report labels now expose tons/per-ton wording, Stock Value detail quantity uses `_Measures[IV Stock Qty]` instead of raw `InventoryValuation[StockQty]`, `Reorder IQD Impact` uses raw kg × IQD/kg, and current-cost fallback converts SAP kg prices to IQD/ton.
 - **May 24, 2026** — Item-level **150-day** stock-cover override for nine `#N/A` film SKUs (`NP-C-0710*` PG variants) in `Fact_StockCoverPolicy` (Fabric + CANON). Other N/A items stay 60 days.
 - **May 24, 2026** — Landed Cost **Shipments** table item-search leak fixed: `_Measures[Shipment Table Row Keeper]` + visual filter on `table_cost_impact` hide LC doc rows with no lines for the selected item (same Row Keeper pattern as Reorder Actions). Fabric + CANON module copies aligned.
