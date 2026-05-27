@@ -77,8 +77,8 @@
                 }
               },
               "queryRef": "_Measures.IV Stock Qty",
-              "nativeQueryRef": "Total Quantity (Tons)",
-              "displayName": "Total Quantity (Tons)"
+              "nativeQueryRef": "Total Qty (Tons)",
+              "displayName": "Total Qty (Tons)"
             },
             {
               "field": {
@@ -92,7 +92,8 @@
                 }
               },
               "queryRef": "_Measures.Avg Cost",
-              "nativeQueryRef": "Avg Cost1"
+              "nativeQueryRef": "Avg Cost / Ton",
+              "displayName": "Avg Cost / Ton"
             },
             {
               "field": {

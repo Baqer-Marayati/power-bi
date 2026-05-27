@@ -2,19 +2,19 @@ table _Measures
 	lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa001
 
 	measure 'Total On Hand' = SUM ( Fact_WarehouseStock[OnHand] ) / 1000
-		formatString: #,0.00" T"
+		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa002
 
 	measure 'Total Committed' = SUM ( Fact_WarehouseStock[IsCommited] ) / 1000
-		formatString: #,0.00" T"
+		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa003
 
 	measure 'Total Available' = [Total On Hand] - [Total Committed]
-		formatString: #,0.00" T"
+		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa004
 
 	measure 'Total On Order' = SUM ( Fact_WarehouseStock[OnOrder] ) / 1000
-		formatString: #,0.00" T"
+		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa005
 
 	measure 'Distinct SKUs' = DISTINCTCOUNT ( Fact_WarehouseStock[ItemCode] )
@@ -242,7 +242,7 @@ table _Measures
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
 	measure 'IV Stock Qty' = SUM ( InventoryValuation[StockQty] ) / 1000
-		formatString: #,0.00" T"
+		formatString: #,0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa042
 
 	measure 'IV Item Count' = DISTINCTCOUNT ( InventoryValuation[ItemCode] )

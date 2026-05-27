@@ -70,14 +70,14 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "1D"
                 }
               }
             },
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "0L"
                 }
               }
             }
@@ -105,14 +105,14 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "1D"
                 }
               }
             },
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "0L"
                 }
               }
             }
@@ -235,7 +235,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total Quantity (Tons)'"
+                  "Value": "'Total Qty (Tons)'"
                 }
               }
             },
