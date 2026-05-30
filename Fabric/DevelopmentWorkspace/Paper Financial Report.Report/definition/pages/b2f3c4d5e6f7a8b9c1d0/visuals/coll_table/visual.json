@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "coll_table",
   "position": {
-    "x": 120.0,
+    "x": 120,
     "y": 265.5,
     "z": 0,
     "height": 787.5,
-    "width": 780.0,
+    "width": 780,
     "tabOrder": 0
   },
   "visual": {
@@ -245,7 +245,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "309.6666697161741D"
+                  "Value": "416.37935104232D"
                 }
               }
             }
@@ -259,7 +259,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "167.32660951498943D"
+                  "Value": "328.77401216179794D"
                 }
               }
             }

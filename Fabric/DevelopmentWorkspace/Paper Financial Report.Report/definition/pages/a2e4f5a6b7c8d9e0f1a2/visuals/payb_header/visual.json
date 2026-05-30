@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "payb_header",
   "position": {
-    "x": 120.0,
+    "x": 120,
     "y": 40.5,
     "z": 20000,
     "height": 67.5,
-    "width": 810.0,
+    "width": 810,
     "tabOrder": 20000
   },
   "visual": {

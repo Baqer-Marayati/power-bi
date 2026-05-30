@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "payb_table",
   "position": {
-    "x": 120.0,
+    "x": 120,
     "y": 266.25,
     "z": 0,
     "height": 427.5,
-    "width": 1704.0,
+    "width": 1704,
     "tabOrder": 0
   },
   "visual": {
@@ -329,7 +329,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "195.64695351879396D"
+                  "Value": "232.41682912793897D"
                 }
               }
             }
@@ -343,7 +343,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "88.97600986788939D"
+                  "Value": "170.67130565487292D"
                 }
               }
             }
@@ -357,7 +357,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "157.31107304838142D"
+                  "Value": "187.2363220553296D"
                 }
               }
             }
@@ -371,7 +371,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "148.70325960937487D"
+                  "Value": "200.4730821103685D"
                 }
               }
             }
@@ -385,7 +385,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "149.90747844189448D"
+                  "Value": "163.2196184861302D"
                 }
               }
             }
@@ -399,7 +399,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "122.99984859524778D"
+                  "Value": "171.33930662040274D"
                 }
               }
             }
@@ -413,7 +413,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "140.98446626654572D"
+                  "Value": "165.95631006341793D"
                 }
               }
             }
@@ -427,7 +427,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "326.00000023767586D"
+                  "Value": "377.66666932265787D"
                 }
               }
             }
