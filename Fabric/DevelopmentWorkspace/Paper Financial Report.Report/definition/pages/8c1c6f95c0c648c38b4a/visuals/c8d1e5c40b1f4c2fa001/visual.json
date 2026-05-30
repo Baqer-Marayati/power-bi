@@ -6,7 +6,7 @@
     "y": 265.5,
     "z": 6000,
     "height": 382.5,
-    "width": 486.699564586357,
+    "width": 656.0,
     "tabOrder": 17000
   },
   "visual": {
@@ -299,7 +299,14 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "showFocusModeButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
