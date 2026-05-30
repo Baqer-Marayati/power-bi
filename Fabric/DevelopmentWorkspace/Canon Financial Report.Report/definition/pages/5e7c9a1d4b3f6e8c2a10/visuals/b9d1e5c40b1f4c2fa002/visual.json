@@ -56,14 +56,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "18D"
+                  "Value": "21D"
                 }
               }
             },
             "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -78,13 +78,6 @@
               "expr": {
                 "Literal": {
                   "Value": "2L"
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Tahoma'"
                 }
               }
             }
@@ -322,13 +315,6 @@
       "visualHeader": [
         {
           "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
             "background": {
               "solid": {
                 "color": {

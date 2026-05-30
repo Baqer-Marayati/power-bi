@@ -173,13 +173,6 @@
       "visualHeader": [
         {
           "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
             "background": {
               "solid": {
                 "color": {

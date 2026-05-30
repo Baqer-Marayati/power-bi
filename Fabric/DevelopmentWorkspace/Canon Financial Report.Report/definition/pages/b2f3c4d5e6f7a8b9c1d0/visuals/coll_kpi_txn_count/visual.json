@@ -80,13 +80,6 @@
                   "Value": "0L"
                 }
               }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Tahoma'"
-                }
-              }
             }
           },
           "selector": {
@@ -216,13 +209,6 @@
                       "Value": "'#FFFFFF'"
                     }
                   }
-                }
-              }
-            },
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
                 }
               }
             }

@@ -81,13 +81,6 @@
                   "Value": "2L"
                 }
               }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Tahoma'"
-                }
-              }
             }
           },
           "selector": {
@@ -250,13 +243,6 @@
       "visualHeader": [
         {
           "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
             "background": {
               "solid": {
                 "color": {
