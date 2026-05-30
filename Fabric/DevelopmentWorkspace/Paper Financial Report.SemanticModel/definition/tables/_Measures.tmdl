@@ -617,7 +617,7 @@ table _Measures
 
 	measure 'Sales Quantity' =
 			
-			SUM ( 'Fact_SalesDetail'[Quantity] )
+			DIVIDE ( SUM ( 'Fact_SalesDetail'[Quantity] ), 1000 )
 		formatString: #,0.0;-#,0.0;#,0.0
 		lineageTag: c9b4fc1f-f3fb-47cf-8b1d-d0088df931f2
 
@@ -646,22 +646,6 @@ table _Measures
 			CALCULATE ( [Sales Gross Profit], DATESYTD ( 'Dim_Date'[Date] ), ALL ( 'Dim_Date' ) )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: c10ebccb-4d41-4468-8b12-2157980fa0ff
-
-		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
-	measure 'Sales Revenue (Segment Mapped)' =
-			
-			VAR SegmentKeys =
-			    DISTINCT (
-			        UNION (
-			            SELECTCOLUMNS ( VALUES ( 'Dim_ItemSegmentMap'[ProductTypeRaw] ), "ItemKey", 'Dim_ItemSegmentMap'[ProductTypeRaw] ),
-			            SELECTCOLUMNS ( VALUES ( 'Dim_ItemSegmentMap'[ProductTypeClean] ), "ItemKey", 'Dim_ItemSegmentMap'[ProductTypeClean] )
-			        )
-			    )
-			RETURN
-			    CALCULATE ( [Sales Revenue], TREATAS ( SegmentKeys, 'Fact_SalesDetail'[ItemGroupName] ) )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: 7e22cd16-c6f8-4dc3-84f1-7f17ca4be5ac
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
