@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "471154df10f27fba63d8",
   "position": {
-    "x": 710,
-    "y": 248,
-    "z": 9000,
-    "height": 406,
-    "width": 506,
-    "tabOrder": 9000
+    "x": 1198.396887159533,
+    "y": 279,
+    "z": 8000,
+    "height": 456.75,
+    "width": 657.6031128404669,
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "lineClusteredColumnComboChart",
@@ -237,7 +237,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -334,14 +334,28 @@
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "0.0D"
                 }
               }
             },
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "0.0D"
+                }
+              }
+            },
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
                 }
               }
             }
@@ -357,6 +371,24 @@
                   "Value": "true"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C9D5E3'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14.0D"
+                }
+              }
             }
           }
         }
@@ -367,7 +399,7 @@
             "angle": {
               "expr": {
                 "Literal": {
-                  "Value": "135L"
+                  "Value": "90L"
                 }
               }
             },
@@ -417,6 +449,37 @@
               "expr": {
                 "Literal": {
                   "Value": "'Bottom'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
                 }
               }
             }

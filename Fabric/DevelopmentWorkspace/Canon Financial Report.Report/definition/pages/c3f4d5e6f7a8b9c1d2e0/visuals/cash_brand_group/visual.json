@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "cash_brand_group",
   "position": {
-    "x": 948.88888888888891,
-    "y": 40,
-    "z": 21000,
-    "height": 50,
-    "width": 267.77777777777777,
-    "tabOrder": 9000
+    "x": 1514.0004543638763,
+    "y": 46.665905447246494,
+    "z": 24000,
+    "height": 63,
+    "width": 356,
+    "tabOrder": 24000
   },
   "visualGroup": {
     "displayName": "Group 1",

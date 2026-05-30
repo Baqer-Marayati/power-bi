@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "cash_chart_donut",
   "position": {
-    "x": 720,
-    "y": 236,
+    "x": 918,
+    "y": 265.5,
     "z": 500,
-    "height": 420,
-    "width": 496,
+    "height": 472.5,
+    "width": 744,
     "tabOrder": 7000
   },
   "visual": {
@@ -368,7 +368,7 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "0.0D"
                 }
               }
             }
@@ -395,6 +395,13 @@
                   }
                 }
               }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14.0D"
+                }
+              }
             }
           }
         }
@@ -405,7 +412,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -425,7 +432,7 @@
             "angle": {
               "expr": {
                 "Literal": {
-                  "Value": "135L"
+                  "Value": "90L"
                 }
               }
             },
@@ -475,6 +482,40 @@
               "expr": {
                 "Literal": {
                   "Value": "'Bottom'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            },
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
                 }
               }
             }

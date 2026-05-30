@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "coll_chart_trend",
   "position": {
-    "x": 720,
-    "y": 236,
+    "x": 1211.3929961089493,
+    "y": 265.5,
     "z": 400,
-    "height": 344,
-    "width": 496,
+    "height": 387.0,
+    "width": 644.6070038910506,
     "tabOrder": 1000
   },
   "visual": {
@@ -213,7 +213,7 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "0.0D"
                 }
               }
             }
@@ -244,7 +244,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "14.0D"
                 }
               }
             }
@@ -295,7 +295,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -315,7 +315,7 @@
             "angle": {
               "expr": {
                 "Literal": {
-                  "Value": "135L"
+                  "Value": "90L"
                 }
               }
             },
@@ -365,6 +365,40 @@
               "expr": {
                 "Literal": {
                   "Value": "'Bottom'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            },
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
                 }
               }
             }

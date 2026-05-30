@@ -2,12 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "payb_brand_canon",
   "position": {
-    "x": 144.28571428571433,
+    "x": 191.28358208955225,
     "y": 0,
     "z": 22000,
-    "height": 50,
-    "width": 123.57142857142858,
-    "tabOrder": 1000
+    "height": 63,
+    "width": 164.71641791044777
   },
   "visual": {
     "visualType": "image",

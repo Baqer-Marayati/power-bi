@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "pd_label_salestype",
   "position": {
-    "x": 24,
-    "y": 392,
+    "x": -400,
+    "y": -450,
     "z": 16200,
-    "height": 18,
-    "width": 136,
+    "height": 1,
+    "width": 1,
     "tabOrder": 26000
   },
   "visual": {
