@@ -6,7 +6,7 @@
     "y": 135.0,
     "z": 2000,
     "height": 103.5,
-    "width": 310.60700389105057,
+    "width": 320.5,
     "tabOrder": 4000
   },
   "visual": {
@@ -95,14 +95,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "21D"
                 }
               }
             },
             "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -212,6 +212,13 @@
                       "Value": "'#2E3A42'"
                     }
                   }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
