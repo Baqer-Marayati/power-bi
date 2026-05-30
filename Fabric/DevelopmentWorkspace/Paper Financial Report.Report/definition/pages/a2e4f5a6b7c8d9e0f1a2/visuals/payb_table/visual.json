@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "payb_table",
   "position": {
-    "x": 38.333333333333336,
-    "y": 236.66666666666669,
+    "x": 57.5,
+    "y": 266.25,
     "z": 0,
-    "height": 380,
-    "width": 1203.3333333333335,
+    "height": 427.5,
+    "width": 1805.0000000000002,
     "tabOrder": 0
   },
   "visual": {
@@ -617,7 +617,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "14D"
                 }
               }
             }
@@ -646,7 +646,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#223430'"
+                      "Value": "'#2E3A42'"
                     }
                   }
                 }
@@ -695,18 +695,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1F4E79'"
-                    }
-                  }
+                  "Value": "true"
                 }
               }
             },
@@ -720,42 +709,42 @@
             "preset": {
               "expr": {
                 "Literal": {
-                  "Value": "'Custom'"
+                  "Value": "'Bottom'"
                 }
               }
             },
             "angle": {
               "expr": {
                 "Literal": {
-                  "Value": "270D"
+                  "Value": "135L"
                 }
               }
             },
             "shadowDistance": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "10L"
                 }
               }
             },
             "shadowBlur": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "10L"
                 }
               }
             },
             "shadowSpread": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "3L"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "70L"
                 }
               }
             }

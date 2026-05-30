@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "cash_chart_bar",
   "position": {
-    "x": 126,
-    "y": 236,
+    "x": 189.0,
+    "y": 265.5,
     "z": 0,
-    "height": 420,
-    "width": 520,
+    "height": 472.5,
+    "width": 780.0,
     "tabOrder": 5000
   },
   "visual": {
@@ -216,7 +216,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#223430'"
+                      "Value": "'#2E3A42'"
                     }
                   }
                 }
@@ -289,6 +289,13 @@
                   }
                 }
               }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
             }
           }
         }
@@ -316,6 +323,27 @@
       "dropShadow": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outer'"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bottom'"
+                }
+              }
+            },
             "angle": {
               "expr": {
                 "Literal": {
@@ -348,27 +376,6 @@
               "expr": {
                 "Literal": {
                   "Value": "70L"
-                }
-              }
-            },
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Outer'"
-                }
-              }
-            },
-            "preset": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Bottom'"
                 }
               }
             }

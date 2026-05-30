@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "c6d2c8be4f1aa4c999e01",
   "position": {
-    "x": 188.57142857142858,
-    "y": 235.71428571428572,
+    "x": 520.7426347971095,
+    "y": 265.17857142857144,
     "z": 5000,
-    "height": 340,
-    "width": 501.42857142857144,
+    "height": 382.5,
+    "width": 651.6620344635909,
     "tabOrder": 16000
   },
   "visual": {
@@ -115,6 +115,17 @@
                   "Value": "'Customer Revenue Ranking'"
                 }
               }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2E3A42'"
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -122,6 +133,27 @@
       "dropShadow": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outer'"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bottom'"
+                }
+              }
+            },
             "angle": {
               "expr": {
                 "Literal": {
@@ -156,7 +188,13 @@
                   "Value": "70L"
                 }
               }
-            },
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
             "show": {
               "expr": {
                 "Literal": {
@@ -164,17 +202,52 @@
                 }
               }
             },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Outer'"
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C9D5E3'"
+                    }
+                  }
                 }
               }
             },
-            "preset": {
+            "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "'Bottom'"
+                  "Value": "14D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }

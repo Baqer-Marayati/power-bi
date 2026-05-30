@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "471154df10f27fba63d8",
   "position": {
-    "x": 710,
-    "y": 248,
+    "x": 1198.396887159533,
+    "y": 279.0,
     "z": 8000,
-    "height": 406,
-    "width": 506,
+    "height": 456.75,
+    "width": 657.6031128404669,
     "tabOrder": 13000
   },
   "visual": {
@@ -227,6 +227,17 @@
                   }
                 }
               }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2E3A42'"
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -357,6 +368,24 @@
                   "Value": "true"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C9D5E3'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
             }
           }
         }
@@ -364,6 +393,27 @@
       "dropShadow": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outer'"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bottom'"
+                }
+              }
+            },
             "angle": {
               "expr": {
                 "Literal": {
@@ -398,7 +448,13 @@
                   "Value": "70L"
                 }
               }
-            },
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
             "show": {
               "expr": {
                 "Literal": {
@@ -406,17 +462,21 @@
                 }
               }
             },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Outer'"
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
                 }
               }
             },
-            "preset": {
+            "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "'Bottom'"
+                  "Value": "0D"
                 }
               }
             }

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "2ad649c3a5ab0c650550",
   "position": {
-    "x": 188,
-    "y": 36,
+    "x": 520.0,
+    "y": 40.5,
     "z": 20000,
-    "height": 60,
-    "width": 540,
+    "height": 67.5,
+    "width": 523.5413642960813,
     "tabOrder": 0
   },
   "visual": {
@@ -66,6 +66,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
             }
           }
         }
@@ -77,6 +84,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'Track revenue, margin, location mix, and operating performance at a glance.'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
                 }
               }
             }

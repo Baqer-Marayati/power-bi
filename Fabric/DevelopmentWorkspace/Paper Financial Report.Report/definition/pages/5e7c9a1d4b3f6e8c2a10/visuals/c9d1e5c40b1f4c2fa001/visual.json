@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "c9d1e5c40b1f4c2fa001",
   "position": {
-    "x": 188,
-    "y": 236,
+    "x": 520.0,
+    "y": 265.5,
     "z": 5000,
-    "height": 700,
-    "width": 405,
+    "height": 787.5,
+    "width": 526.3424124513618,
     "tabOrder": 16000
   },
   "visual": {
@@ -115,6 +115,17 @@
                   "Value": "'Largest Balance Sheet Accounts'"
                 }
               }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2E3A42'"
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -122,6 +133,27 @@
       "dropShadow": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outer'"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bottom'"
+                }
+              }
+            },
             "angle": {
               "expr": {
                 "Literal": {
@@ -156,7 +188,13 @@
                   "Value": "70L"
                 }
               }
-            },
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
             "show": {
               "expr": {
                 "Literal": {
@@ -164,17 +202,52 @@
                 }
               }
             },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Outer'"
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C9D5E3'"
+                    }
+                  }
                 }
               }
             },
-            "preset": {
+            "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "'Bottom'"
+                  "Value": "14D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }

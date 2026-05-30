@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "payb_kpi_120plus",
   "position": {
-    "x": 909,
-    "y": 120,
+    "x": 1363.5,
+    "y": 135.0,
     "z": 6000,
-    "height": 92,
-    "width": 158,
+    "height": 103.5,
+    "width": 237.0,
     "tabOrder": 6000
   },
   "visual": {
@@ -145,7 +145,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "14D"
                 }
               }
             }
@@ -188,7 +188,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#333333'"
+                      "Value": "'#2E3A42'"
                     }
                   }
                 }
@@ -200,10 +200,25 @@
       "visualHeader": [
         {
           "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "border": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
                 }
               }
             }

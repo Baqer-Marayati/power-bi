@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "coll_table",
   "position": {
-    "x": 126,
-    "y": 236,
+    "x": 189.0,
+    "y": 265.5,
     "z": 0,
-    "height": 700,
-    "width": 520,
+    "height": 787.5,
+    "width": 780.0,
     "tabOrder": 0
   },
   "visual": {
@@ -270,7 +270,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "14D"
                 }
               }
             }
@@ -299,7 +299,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#223430'"
+                      "Value": "'#2E3A42'"
                     }
                   }
                 }
@@ -345,17 +345,6 @@
                 }
               }
             },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#C9D0D3'"
-                    }
-                  }
-                }
-              }
-            },
             "position": {
               "expr": {
                 "Literal": {
@@ -373,7 +362,7 @@
             "angle": {
               "expr": {
                 "Literal": {
-                  "Value": "90L"
+                  "Value": "135L"
                 }
               }
             },
@@ -391,17 +380,17 @@
                 }
               }
             },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "70L"
-                }
-              }
-            },
             "shadowSpread": {
               "expr": {
                 "Literal": {
                   "Value": "3L"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "70L"
                 }
               }
             }

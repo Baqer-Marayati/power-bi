@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "recv_table",
   "position": {
-    "x": 126.66666666666667,
-    "y": 236.66666666666669,
+    "x": 190.0,
+    "y": 266.25,
     "z": 0,
-    "height": 431.66666666666669,
-    "width": 1026.6666666666667,
+    "height": 485.625,
+    "width": 1540.0,
     "tabOrder": 0
   },
   "visual": {
@@ -673,7 +673,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "14D"
                 }
               }
             }
@@ -702,7 +702,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#223430'"
+                      "Value": "'#2E3A42'"
                     }
                   }
                 }
@@ -744,18 +744,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1F4E79'"
-                    }
-                  }
+                  "Value": "true"
                 }
               }
             },
@@ -769,42 +758,42 @@
             "preset": {
               "expr": {
                 "Literal": {
-                  "Value": "'Custom'"
+                  "Value": "'Bottom'"
                 }
               }
             },
             "angle": {
               "expr": {
                 "Literal": {
-                  "Value": "270D"
+                  "Value": "135L"
                 }
               }
             },
             "shadowDistance": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "10L"
                 }
               }
             },
             "shadowBlur": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "10L"
                 }
               }
             },
             "shadowSpread": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "3L"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "70L"
                 }
               }
             }

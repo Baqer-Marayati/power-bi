@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "i5e71c629d4d4b96a1b5",
   "position": {
-    "x": 188,
-    "y": 594,
+    "x": 520.0,
+    "y": 668.25,
     "z": 7000,
-    "height": 342,
-    "width": 483,
+    "height": 384.75,
+    "width": 627.7120622568093,
     "tabOrder": 18000
   },
   "visual": {
@@ -192,7 +192,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "14D"
                 }
               }
             }
@@ -260,6 +260,27 @@
       "dropShadow": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outer'"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bottom'"
+                }
+              }
+            },
             "angle": {
               "expr": {
                 "Literal": {
@@ -292,27 +313,6 @@
               "expr": {
                 "Literal": {
                   "Value": "70L"
-                }
-              }
-            },
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Outer'"
-                }
-              }
-            },
-            "preset": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Bottom'"
                 }
               }
             }

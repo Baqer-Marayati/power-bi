@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "coll_kpi_avg_txn",
   "position": {
-    "x": 970,
-    "y": 120,
+    "x": 1455.0,
+    "y": 135.0,
     "z": 5000,
-    "height": 92,
-    "width": 184,
+    "height": 103.5,
+    "width": 276.0,
     "tabOrder": 8000
   },
   "visual": {
@@ -145,7 +145,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "14D"
                 }
               }
             }
@@ -188,7 +188,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#333333'"
+                      "Value": "'#2E3A42'"
                     }
                   }
                 }
@@ -200,10 +200,25 @@
       "visualHeader": [
         {
           "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "border": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
                 }
               }
             }

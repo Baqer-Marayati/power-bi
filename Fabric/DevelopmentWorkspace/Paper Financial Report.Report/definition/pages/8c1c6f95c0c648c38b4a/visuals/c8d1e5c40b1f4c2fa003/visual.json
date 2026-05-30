@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "c8d1e5c40b1f4c2fa003",
   "position": {
-    "x": 188,
-    "y": 596,
+    "x": 520.0,
+    "y": 670.5,
     "z": 8000,
-    "height": 340,
-    "width": 502,
+    "height": 382.5,
+    "width": 486.699564586357,
     "tabOrder": 19000
   },
   "visual": {
@@ -188,9 +188,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E2EAE6'"
+                      "Value": "'#C9D5E3'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
                 }
               }
             }
@@ -219,7 +226,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#223430'"
+                      "Value": "'#2E3A42'"
                     }
                   }
                 }
@@ -258,6 +265,27 @@
       "dropShadow": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outer'"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bottom'"
+                }
+              }
+            },
             "angle": {
               "expr": {
                 "Literal": {
@@ -290,27 +318,6 @@
               "expr": {
                 "Literal": {
                   "Value": "70L"
-                }
-              }
-            },
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Outer'"
-                }
-              }
-            },
-            "preset": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Bottom'"
                 }
               }
             }

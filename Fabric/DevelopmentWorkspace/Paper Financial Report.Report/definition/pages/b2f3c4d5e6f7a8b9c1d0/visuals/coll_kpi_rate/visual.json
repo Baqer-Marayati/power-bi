@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "coll_kpi_rate",
   "position": {
-    "x": 548,
-    "y": 120,
+    "x": 822.0,
+    "y": 135.0,
     "z": 3000,
-    "height": 92,
-    "width": 184,
+    "height": 103.5,
+    "width": 276.0,
     "tabOrder": 6000
   },
   "visual": {
@@ -144,7 +144,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "14D"
                 }
               }
             }
@@ -215,7 +215,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#333333'"
+                      "Value": "'#2E3A42'"
                     }
                   }
                 }
