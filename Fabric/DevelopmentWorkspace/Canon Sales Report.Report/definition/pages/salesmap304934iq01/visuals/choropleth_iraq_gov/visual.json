@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "choropleth_iraq_gov",
   "position": {
-    "x": 282.5,
+    "x": 512.0960076045627,
     "y": 258.75,
     "z": 0,
-    "height": 776.25,
-    "width": 1160.0,
+    "height": 771.25,
+    "width": 996.0709759188846,
     "tabOrder": 12000
   },
   "visual": {
