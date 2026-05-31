@@ -21,6 +21,10 @@ Use this file for approved directions and durable constraints in the Inventory R
 - Stock Value measure uses `AvgPrice` from OITM as interim approach; OIVL cost layers recommended for future accuracy.
 - `Dim_Date` is a DAX calculated calendar (Dec 2025 – Dec 2026) to match the SAP data window.
 
+## 2026-05-31 — Films 125 150-day policy override
+
+- **`Films 125`** (*Blue Ray Printing Roll 125 Films*) added to `PolicyFilm150ItemCodes` for **150-day** `PolicyDays` (was default **60** under `#N/A` business type).
+
 ## 2026-05-24 — Film item 150-day policy override
 
 - Nine **#N/A** film SKUs (`NP-C-0710*` PG variants) use an **item-level 150-day** `PolicyDays` override in `Fact_StockCoverPolicy`; all other `#N/A`/blank items remain **60 days**. B2B **150** and B2C **120** defaults unchanged.
