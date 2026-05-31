@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'BP Sales'"
+                  "Value": "'Customers'"
                 }
               }
             },

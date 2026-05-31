@@ -61,7 +61,7 @@
               },
               "queryRef": "_Measures.Rebate Sales",
               "nativeQueryRef": "Sales",
-              "displayName": "Sales"
+              "displayName": "Net Revenue"
             }
           ]
         }
@@ -202,7 +202,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Target vs Actual Sales by Customer'"
+                  "Value": "'Target vs Actual Net Revenue by Customer'"
                 }
               }
             },

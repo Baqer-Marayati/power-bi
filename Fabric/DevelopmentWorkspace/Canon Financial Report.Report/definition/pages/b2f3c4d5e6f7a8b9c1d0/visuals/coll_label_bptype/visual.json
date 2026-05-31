@@ -42,7 +42,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'BP Type'"
+                  "Value": "'Customer Type'"
                 }
               }
             },

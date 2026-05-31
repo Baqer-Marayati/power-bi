@@ -46,7 +46,8 @@
                 }
               },
               "queryRef": "_Measures.Sales",
-              "nativeQueryRef": "Sales"
+              "nativeQueryRef": "Sales",
+              "displayName": "Net Revenue"
             }
           ]
         }

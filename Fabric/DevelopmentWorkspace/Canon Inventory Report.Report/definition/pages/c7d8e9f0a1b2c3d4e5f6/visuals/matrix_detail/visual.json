@@ -128,7 +128,7 @@
               },
               "queryRef": "Sum(InventoryValuation.StockQty)",
               "nativeQueryRef": "Stock Qty",
-              "displayName": "Total Quantity"
+              "displayName": "Quantity"
             },
             {
               "field": {

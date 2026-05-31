@@ -63,7 +63,7 @@
               },
               "queryRef": "_Measures.Commission Row Sales",
               "nativeQueryRef": "Sales",
-              "displayName": "Sales"
+              "displayName": "Net Revenue"
             },
             {
               "field": {

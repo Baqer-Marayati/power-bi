@@ -184,7 +184,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Avg Sales / Person'"
+                  "Value": "'Avg Net Revenue / Salesperson'"
                 }
               }
             },

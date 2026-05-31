@@ -128,7 +128,7 @@
               },
               "queryRef": "Sum(SalesFact.Qty)",
               "nativeQueryRef": "Qty",
-              "displayName": "Qty"
+              "displayName": "Quantity"
             },
             {
               "field": {
@@ -142,7 +142,8 @@
                 }
               },
               "queryRef": "_Measures.Sales",
-              "nativeQueryRef": "Sales"
+              "nativeQueryRef": "Sales",
+              "displayName": "Net Revenue"
             },
             {
               "field": {
@@ -156,7 +157,8 @@
                 }
               },
               "queryRef": "SalesOverview.Profit",
-              "nativeQueryRef": "Profit"
+              "nativeQueryRef": "Profit",
+              "displayName": "Gross Profit"
             },
             {
               "field": {
@@ -170,7 +172,8 @@
                 }
               },
               "queryRef": "SalesOverview.Margin %",
-              "nativeQueryRef": "Margin %"
+              "nativeQueryRef": "Margin %",
+              "displayName": "Gross Margin %"
             }
           ]
         }

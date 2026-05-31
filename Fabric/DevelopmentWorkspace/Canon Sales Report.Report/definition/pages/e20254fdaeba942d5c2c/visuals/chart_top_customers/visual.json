@@ -168,7 +168,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Profit by Customer'"
+                  "Value": "'Gross Profit by Customer'"
                 }
               }
             },

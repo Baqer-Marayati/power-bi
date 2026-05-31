@@ -123,7 +123,7 @@
               },
               "queryRef": "_Measures.Total Sold Qty",
               "nativeQueryRef": "Qty",
-              "displayName": "Qty"
+              "displayName": "Quantity"
             },
             {
               "field": {

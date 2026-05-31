@@ -29,7 +29,7 @@
               "queryRef": "BP_Rebate_Fact.CardName",
               "nativeQueryRef": "BP Name",
               "active": true,
-              "displayName": "BP Name"
+              "displayName": "Customer"
             }
           ]
         },
@@ -73,7 +73,7 @@
               },
               "queryRef": "Sum(BP_Rebate_Fact.Sales)",
               "nativeQueryRef": "Sales",
-              "displayName": "Sales"
+              "displayName": "Net Revenue"
             },
             {
               "field": {

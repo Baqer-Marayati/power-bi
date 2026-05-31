@@ -28,6 +28,7 @@
               },
               "queryRef": "Fact_SalesDetail.Item Business Type",
               "nativeQueryRef": "Item Business Type",
+              "displayName": "Business Type",
               "active": true
             }
           ]
@@ -125,7 +126,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue by Item Business Type'"
+                  "Value": "'Revenue by Business Type'"
                 }
               }
             },

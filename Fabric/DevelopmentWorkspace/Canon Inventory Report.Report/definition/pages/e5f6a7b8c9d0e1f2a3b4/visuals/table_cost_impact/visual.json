@@ -110,7 +110,7 @@
               },
               "queryRef": "_Measures.Procurement KPI Supplier Total",
               "nativeQueryRef": "Supplier Cost",
-              "displayName": "Supplier Cost"
+              "displayName": "Vendor Cost"
             },
             {
               "field": {
@@ -125,7 +125,7 @@
               },
               "queryRef": "_Measures.Selected Supplier Base Unit Cost",
               "nativeQueryRef": "Supplier Cost / Unit",
-              "displayName": "Supplier Cost / Unit"
+              "displayName": "Vendor Cost / Unit"
             },
             {
               "field": {

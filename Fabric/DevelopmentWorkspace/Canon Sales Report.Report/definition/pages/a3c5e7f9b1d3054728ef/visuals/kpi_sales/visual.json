@@ -184,7 +184,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Actual Sales'"
+                  "Value": "'Net Revenue'"
                 }
               }
             },

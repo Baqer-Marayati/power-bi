@@ -157,7 +157,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Monthly Sales & Profit Trend'"
+                  "Value": "'Net Revenue & Gross Profit Trend'"
                 }
               }
             },

@@ -532,7 +532,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue Mix by Business Type'"
+                  "Value": "'Net Revenue Mix by Business Type'"
                 }
               }
             },

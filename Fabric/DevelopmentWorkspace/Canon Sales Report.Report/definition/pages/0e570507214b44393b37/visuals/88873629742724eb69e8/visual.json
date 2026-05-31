@@ -29,7 +29,7 @@
               "queryRef": "DimSalesperson.SalesPerson",
               "nativeQueryRef": "Sales Person",
               "active": true,
-              "displayName": "Sales Person"
+              "displayName": "Salesperson"
             },
             {
               "field": {
@@ -143,7 +143,7 @@
               },
               "queryRef": "Sum(SalesFact.Qty)",
               "nativeQueryRef": "Qty",
-              "displayName": "Qty"
+              "displayName": "Quantity"
             },
             {
               "field": {
@@ -158,7 +158,7 @@
               },
               "queryRef": "_Measures.Sales Share %",
               "nativeQueryRef": "Sales Share %",
-              "displayName": "Sales Share %"
+              "displayName": "Net Revenue Share %"
             },
             {
               "field": {
@@ -172,7 +172,8 @@
                 }
               },
               "queryRef": "_Measures.Sales",
-              "nativeQueryRef": "Sales"
+              "nativeQueryRef": "Sales",
+              "displayName": "Net Revenue"
             },
             {
               "field": {
@@ -186,7 +187,8 @@
                 }
               },
               "queryRef": "_Measures.Profit",
-              "nativeQueryRef": "Profit"
+              "nativeQueryRef": "Profit",
+              "displayName": "Gross Profit"
             },
             {
               "field": {
@@ -200,7 +202,8 @@
                 }
               },
               "queryRef": "_Measures.Margin %",
-              "nativeQueryRef": "Margin %"
+              "nativeQueryRef": "Margin %",
+              "displayName": "Gross Margin %"
             }
           ]
         }

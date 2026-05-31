@@ -139,7 +139,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue Mix by Sales Type'"
+                  "Value": "'Net Revenue Mix by Sales Type'"
                 }
               }
             },

@@ -62,7 +62,7 @@
               },
               "queryRef": "_Measures.Commission Total Sales",
               "nativeQueryRef": "Total Sales",
-              "displayName": "Total Sales"
+              "displayName": "Net Revenue"
             }
           ]
         }
@@ -203,7 +203,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Target vs Actual Sales by Salesperson'"
+                  "Value": "'Target vs Actual Net Revenue by Salesperson'"
                 }
               }
             },

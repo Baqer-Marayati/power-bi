@@ -217,7 +217,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue Mix by Location'"
+                  "Value": "'Net Revenue Mix by Location'"
                 }
               }
             },
