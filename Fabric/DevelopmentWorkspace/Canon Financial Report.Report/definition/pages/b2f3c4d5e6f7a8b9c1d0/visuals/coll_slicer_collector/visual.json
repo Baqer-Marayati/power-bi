@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "CollectionsFact.CollectorName",
-              "nativeQueryRef": "CollectorName",
-              "active": true
+              "nativeQueryRef": "Collector",
+              "active": true,
+              "displayName": "Collector"
             }
           ]
         }

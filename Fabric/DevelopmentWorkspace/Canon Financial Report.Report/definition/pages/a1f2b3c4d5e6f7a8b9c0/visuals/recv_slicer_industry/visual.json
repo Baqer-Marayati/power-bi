@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "DimBusinessPartner.U_IndustryType",
-              "nativeQueryRef": "U_IndustryType",
-              "active": true
+              "nativeQueryRef": "Industry",
+              "active": true,
+              "displayName": "Industry"
             }
           ]
         }

@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "DimBusinessPartner.BPType",
-              "nativeQueryRef": "BPType",
-              "active": true
+              "nativeQueryRef": "Customer Type",
+              "active": true,
+              "displayName": "Customer Type"
             }
           ]
         }
