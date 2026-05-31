@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "kpi_salesperson_count",
   "position": {
-    "x": 853.3333333333334,
+    "x": 853.33333333333337,
     "y": 136.66666666666669,
     "z": 0,
     "height": 103.33333333333334,

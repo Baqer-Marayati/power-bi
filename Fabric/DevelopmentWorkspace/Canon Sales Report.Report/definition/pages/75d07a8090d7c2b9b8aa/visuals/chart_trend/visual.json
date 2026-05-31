@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "chart_trend",
   "position": {
-    "x": 511.6666666666667,
+    "x": 511.66666666666669,
     "y": 258.75,
     "z": 0,
     "height": 337.5,
-    "width": 862.9752851711027,
+    "width": 862.97528517110266,
     "tabOrder": 12000
   },
   "visual": {

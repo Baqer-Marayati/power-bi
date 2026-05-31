@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "brand_group",
   "position": {
-    "x": 1423.5,
-    "y": 45.0,
+    "x": 1603.0000000001551,
+    "y": 45,
     "z": 21000,
     "height": 50,
     "width": 268,
