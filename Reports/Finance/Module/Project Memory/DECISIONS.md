@@ -105,19 +105,18 @@
 - Keep `Revenue Insights` category grouping on `Fact_SalesDetail[Item Business Type]` (from `OITM.U_BusinessType`), not `ItemGroupName`.
 
 ## Final Page Set
-- As of April 1, 2026, the report contains 10 live pages:
-- `Financial summary`
-- `Profit & loss`
-- `Sales & revenue`
-- `Operating expenses`
+- As of May 31, 2026, the Fabric financial report contains 8 visible pages:
+- `P&L`
+- `OpEx`
 - `Balance sheet`
 - `ROI`
-- `Accounts receivable`
-- `Accounts payable`
+- `Accounts Receivable`
+- `Accounts Payable`
 - `Collections`
-- `Cash & bank`
-- Pages outside that set are no longer part of the active report shell and should not be reintroduced unless explicitly requested.
-- The last 3 pages were transferred from the Aljazeera Master Model and adapted to the Financial Report design system.
+- `Cash`
+- `P&L` replaces the former separate `Financial summary`, `Profit & loss`, and `Sales & revenue` review flow for the visible Fabric shell.
+- Pages outside that set are no longer part of the active visible report shell and should not be reintroduced unless explicitly requested.
+- The AR/AP/Collections/Cash pages were transferred from the Aljazeera Master Model and adapted to the Financial Report design system.
 
 ## Slicer And Open-State Contract (2026-03-25)
 - `Dim_Date` slicer years are intentionally constrained to start at `2026`.

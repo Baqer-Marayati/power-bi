@@ -2,7 +2,7 @@
 
 ## Date
 
-- Last updated: May 5, 2026
+- Last updated: May 31, 2026
 
 ## Current Source Of Truth
 
@@ -19,17 +19,17 @@
 
 ## Active Pages
 
-The active report shell currently contains these 10 pages in `pages.json` order:
-1. `Financial summary`
-2. `Profit & loss`
-3. `Sales & revenue`
-4. `Operating expenses`
-5. `Balance sheet`
-6. `ROI`
-7. `Accounts receivable`
-8. `Accounts payable`
-9. `Collections`
-10. `Cash & bank`
+The Fabric financial report shell currently contains these 8 visible pages in `pages.json` order for both CANON and PAPERENTITY:
+1. `P&L`
+2. `OpEx`
+3. `Balance sheet`
+4. `ROI`
+5. `Accounts Receivable`
+6. `Accounts Payable`
+7. `Collections`
+8. `Cash`
+
+`P&L` now owns the former Financial summary role, with the KPI row restored plus two stretched visuals: `Revenue, COGS & Gross Profit` and `Sales Revenue by Customer`. The old `Profit & loss` and `Sales & revenue` pages remain on disk for history/recovery but are no longer in the visible Fabric page order.
 
 ## Stable Current Assumptions
 
@@ -52,7 +52,7 @@ The active report shell currently contains these 10 pages in `pages.json` order:
 - **CANON (2026-04-18 — Path A port from PAPERENTITY):** The same Balance-sheet rebuild was applied to `Reports/Finance/Companies/CANON/Canon Financial Report/`: `Fact_BalanceSheet` now uses the per-day + PEC-reversal `_PP` SQL pattern (RE GL `310101010107`, `TransType = -3`); `[BS Amount]` rewritten to as-of via `Fact_BalanceSheet[PostingDate] <= MAX(Dim_Date[Date])`; and the BS page slicer rail collapsed to a **single "As of" date slicer** in `'Before'` mode (deleted Year/Month/Quarter slicers + Location/Sales Type/Department dim slicers + all six labels + 38 stale `visualInteractions` entries). CANON has no PEC postings yet (FY24 not closed in SAP), so the reversal sub-block currently emits zero rows — by design, the per-day sub-block alone reconciles. **SAP-verified at 6 cutoffs (2025-12-31, 2026-01-31, 2026-02-28, 2026-03-31, 2026-04-15, 2026-12-31): all balance to Σ = 0**. Validate in Desktop: open `Canon Financial Report.pbip`, refresh, change the **As of** date, and confirm Assets + Liabilities + Equity (with the new `Profit Period` row) net to zero at any cutoff. See **`MODEL_NOTES.md` → "CANON — Balance sheet ported to PAPERENTITY pattern (2026-04-18)"** for the full diff and reconciliation table.
 - Reopen the active company PBIPs in Power BI Desktop after meaningful model or visual changes.
 - Recheck any remaining semantic warnings on compatibility-heavy tables such as `generalLedgerEntries` and `accounts`.
-- Validate page behavior and interactions on the active 10-page shell, especially after changes to shared KPI rows, slicer rails, or transferred AR/AP/cash pages.
+- Validate page behavior and interactions on the active 8-page Fabric shell, especially after changes to shared KPI rows, slicer rails, or transferred AR/AP/cash pages.
 - Keep packaging, review artifacts, and screenshot capture aligned with the actual workflow documented in `DECISIONS.md` and `Module/scripts/README.md`.
 
 ## Repository Cleanup Guardrails

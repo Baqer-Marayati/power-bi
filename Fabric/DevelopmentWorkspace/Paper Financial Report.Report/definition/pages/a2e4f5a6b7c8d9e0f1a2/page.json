@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
   "name": "a2e4f5a6b7c8d9e0f1a2",
-  "displayName": "Accounts payable",
+  "displayName": "Accounts Payable",
   "displayOption": "FitToPage",
   "height": 1080,
   "width": 1920,

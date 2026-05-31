@@ -62,9 +62,9 @@ Use `Sample 2` as the active design source for:
 - When the benchmark changes, refresh this file so it reflects the latest visual direction.
 
 ## Current priority pages
-All **10** pages in `pages.json` are in the active operating set:
+All **8** visible pages in `pages.json` are in the active Fabric operating set:
 
-`Financial summary`, `Profit & loss`, `Sales & revenue`, `Operating expenses`, `Balance sheet`, `ROI`, `Accounts receivable`, `Accounts payable`, `Collections`, `Cash & bank`.
+`P&L`, `OpEx`, `Balance sheet`, `ROI`, `Accounts Receivable`, `Accounts Payable`, `Collections`, `Cash`.
 
 Deferred / historical pages are listed in `PAGE_MAP.md`.
 

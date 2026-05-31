@@ -6,7 +6,7 @@
     "y": 40.5,
     "z": 18000,
     "height": 67.5,
-    "width": 701.78988326848253,
+    "width": 701.7898832684825,
     "tabOrder": 1000
   },
   "visual": {
@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Operating expenses'"
+                  "Value": "'OpEx'"
                 }
               }
             },

@@ -5,8 +5,8 @@
     "x": 520,
     "y": 40,
     "z": 20000,
-    "height": 68.333333333333343,
-    "width": 598.33333333333337,
+    "height": 68.33333333333334,
+    "width": 598.3333333333334,
     "tabOrder": 0
   },
   "visual": {
@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Financial summary'"
+                  "Value": "'Profit & Loss'"
                 }
               }
             },
@@ -83,7 +83,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Track revenue, margin, location mix, and operating performance at a glance.'"
+                  "Value": "'Revenue to gross profit over time, with customer revenue concentration below.'"
                 }
               }
             },

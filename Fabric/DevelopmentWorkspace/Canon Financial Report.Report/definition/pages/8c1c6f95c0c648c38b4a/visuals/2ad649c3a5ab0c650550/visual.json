@@ -76,7 +76,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue to gross profit over time, with the sales-type mix. Hover any point for full margin detail.'"
+                  "Value": "'Revenue to gross profit over time, with customer revenue concentration below.'"
                 }
               }
             }

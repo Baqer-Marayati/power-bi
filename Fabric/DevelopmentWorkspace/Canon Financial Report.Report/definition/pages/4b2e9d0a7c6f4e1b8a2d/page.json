@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
   "name": "4b2e9d0a7c6f4e1b8a2d",
-  "displayName": "Operating expenses",
+  "displayName": "OpEx",
   "displayOption": "FitToPage",
   "height": 1080,
   "width": 1920,
