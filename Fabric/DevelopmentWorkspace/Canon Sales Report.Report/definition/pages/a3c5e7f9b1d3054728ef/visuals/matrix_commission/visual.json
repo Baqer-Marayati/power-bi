@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "matrix_commission",
   "position": {
-    "x": 188,
-    "y": 545,
+    "x": 282.0,
+    "y": 613.125,
     "z": 2000,
-    "height": 395,
-    "width": 1052,
+    "height": 444.375,
+    "width": 1578.0,
     "tabOrder": 2000
   },
   "visual": {

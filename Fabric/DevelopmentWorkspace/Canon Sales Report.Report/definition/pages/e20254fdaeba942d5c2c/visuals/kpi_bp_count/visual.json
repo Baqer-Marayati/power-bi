@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "kpi_bp_count",
   "position": {
-    "x": 455,
-    "y": 120,
+    "x": 682.5,
+    "y": 135.0,
     "z": 0,
-    "height": 92,
-    "width": 251,
+    "height": 103.5,
+    "width": 376.5,
     "tabOrder": 11001
   },
   "visual": {
@@ -160,6 +160,13 @@
                   }
                 }
               }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
             }
           }
         }
@@ -191,7 +198,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "12D"
                 }
               }
             },
@@ -203,6 +210,13 @@
                       "Value": "'#2E3A42'"
                     }
                   }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }

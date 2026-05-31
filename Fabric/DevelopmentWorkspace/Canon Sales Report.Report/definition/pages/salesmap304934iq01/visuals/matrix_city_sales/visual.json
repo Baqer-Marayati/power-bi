@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "matrix_city_sales",
   "position": {
-    "x": 973.33333333333337,
-    "y": 230,
+    "x": 1460.0,
+    "y": 258.75,
     "z": 0,
-    "height": 690,
-    "width": 271.66666666666669,
+    "height": 776.25,
+    "width": 407.5,
     "tabOrder": 13000
   },
   "visual": {

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "label_bptype",
   "position": {
-    "x": 24,
-    "y": 460,
+    "x": 36.0,
+    "y": 517.5,
     "z": 19000,
-    "height": 18,
-    "width": 136,
+    "height": 20.25,
+    "width": 204.0,
     "tabOrder": 19008
   },
   "visual": {
