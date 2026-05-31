@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Financial summary'"
+                  "Value": "'Profit & Loss'"
                 }
               }
             },
@@ -76,7 +76,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Track revenue, margin, location mix, and operating performance at a glance.'"
+                  "Value": "'Revenue to gross profit over time, with the sales-type mix. Hover any point for full margin detail.'"
                 }
               }
             }

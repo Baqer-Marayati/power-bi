@@ -3,10 +3,10 @@
   "name": "c8d1e5c40b1f4c2fa001",
   "position": {
     "x": 520,
-    "y": 265.5,
+    "y": 130,
     "z": 6000,
-    "height": 382.5,
-    "width": 656,
+    "height": 470,
+    "width": 1336,
     "tabOrder": 17000
   },
   "visual": {
@@ -157,6 +157,51 @@
                       "Value": "'#6F7C78'"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "y1AxisReferenceLine": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "lineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#D64550'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "dataLabelShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -355,6 +400,33 @@
               "expr": {
                 "Literal": {
                   "Value": "'Bottom'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'ReportPage'"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'tt_pnl_trend_m01'"
                 }
               }
             }

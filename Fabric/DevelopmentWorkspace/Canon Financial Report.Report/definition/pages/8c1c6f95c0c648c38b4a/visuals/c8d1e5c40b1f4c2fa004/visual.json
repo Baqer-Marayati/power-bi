@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "c8d1e5c40b1f4c2fa004",
   "position": {
-    "x": 1200,
-    "y": 670.5,
+    "x": 520,
+    "y": 620,
     "z": 9000,
-    "height": 382.5,
-    "width": 656,
+    "height": 420,
+    "width": 1336,
     "tabOrder": 20000
   },
   "visual": {
-    "visualType": "pieChart",
+    "visualType": "donutChart",
     "query": {
       "queryState": {
         "Category": {
@@ -316,6 +316,33 @@
               "expr": {
                 "Literal": {
                   "Value": "'Bottom'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'ReportPage'"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'tt_pnl_mix_m01'"
                 }
               }
             }

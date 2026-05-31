@@ -1,24 +1,18 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
-  "name": "8c1c6f95c0c648c38b4a",
-  "displayName": "P&L",
-  "displayOption": "FitToPage",
-  "height": 1080,
-  "width": 1920,
+  "name": "tt_pnl_mix_m01",
+  "displayName": "TT P&L mix by sales type",
+  "displayOption": "ActualSize",
+  "height": 150,
+  "width": 340,
+  "type": "Tooltip",
+  "visibility": "HiddenInViewMode",
+  "pageBinding": {
+    "name": "tt_pnl_mix_binding_m01",
+    "type": "Tooltip",
+    "parameters": []
+  },
   "objects": {
-    "outspacePane": [
-      {
-        "properties": {
-          "width": {
-            "expr": {
-              "Literal": {
-                "Value": "195L"
-              }
-            }
-          }
-        }
-      }
-    ],
     "background": [
       {
         "properties": {
@@ -27,7 +21,7 @@
               "color": {
                 "expr": {
                   "Literal": {
-                    "Value": "'#F8FBFF'"
+                    "Value": "'#FFFFFF'"
                   }
                 }
               }
@@ -43,6 +37,5 @@
         }
       }
     ]
-  },
-  "visualInteractions": []
+  }
 }
