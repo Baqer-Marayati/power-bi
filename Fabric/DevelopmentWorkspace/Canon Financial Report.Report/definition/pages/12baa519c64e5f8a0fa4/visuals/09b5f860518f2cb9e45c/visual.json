@@ -362,21 +362,45 @@
       "dropShadow": [
         {
           "properties": {
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "135L"
+                }
+              }
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "70L"
+                }
+              }
+            },
             "show": {
               "expr": {
                 "Literal": {
                   "Value": "true"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1F4E79'"
-                    }
-                  }
                 }
               }
             },
@@ -390,42 +414,7 @@
             "preset": {
               "expr": {
                 "Literal": {
-                  "Value": "'Custom'"
-                }
-              }
-            },
-            "angle": {
-              "expr": {
-                "Literal": {
-                  "Value": "270D"
-                }
-              }
-            },
-            "shadowDistance": {
-              "expr": {
-                "Literal": {
-                  "Value": "4D"
-                }
-              }
-            },
-            "shadowBlur": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "shadowSpread": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "'Bottom'"
                 }
               }
             }
