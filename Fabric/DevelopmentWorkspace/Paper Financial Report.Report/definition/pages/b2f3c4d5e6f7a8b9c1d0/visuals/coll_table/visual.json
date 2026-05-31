@@ -28,6 +28,7 @@
               },
               "queryRef": "CollectionsFact.CardName",
               "nativeQueryRef": "CardName",
+              "displayName": "Customer",
               "active": true
             },
             {

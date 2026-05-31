@@ -88,7 +88,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Item search'"
+                  "Value": "'Search items'"
                 }
               }
             },

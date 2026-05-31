@@ -235,7 +235,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Import Cost / Ton'"
+                  "Value": "'Landed Cost / Ton'"
                 }
               }
             },

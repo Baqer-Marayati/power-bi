@@ -78,7 +78,7 @@
               },
               "queryRef": "_Measures.IV Stock Qty",
               "nativeQueryRef": "Total Qty (Tons)",
-              "displayName": "Total Qty (Tons)"
+              "displayName": "Quantity (Tons)"
             },
             {
               "field": {

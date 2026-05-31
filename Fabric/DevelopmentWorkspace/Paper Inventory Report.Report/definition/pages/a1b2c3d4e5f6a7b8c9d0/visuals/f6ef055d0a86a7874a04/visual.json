@@ -78,7 +78,7 @@
               },
               "queryRef": "_Measures.Total Sold Qty",
               "nativeQueryRef": "Qty (Tons)",
-              "displayName": "Qty (Tons)"
+              "displayName": "Quantity (Tons)"
             },
             {
               "field": {

@@ -28,6 +28,7 @@
               },
               "queryRef": "ReceivablesFact.CardName",
               "nativeQueryRef": "CardName",
+              "displayName": "Customer",
               "active": true
             },
             {
