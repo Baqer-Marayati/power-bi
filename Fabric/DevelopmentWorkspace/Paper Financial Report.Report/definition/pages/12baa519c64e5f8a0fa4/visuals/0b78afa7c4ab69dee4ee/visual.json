@@ -6,7 +6,7 @@
     "y": 751.5,
     "z": 5000,
     "height": 157.5,
-    "width": 657.60311284046691,
+    "width": 657.6031128404669,
     "tabOrder": 11000
   },
   "visual": {
@@ -88,7 +88,7 @@
             "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -123,7 +123,7 @@
             "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }

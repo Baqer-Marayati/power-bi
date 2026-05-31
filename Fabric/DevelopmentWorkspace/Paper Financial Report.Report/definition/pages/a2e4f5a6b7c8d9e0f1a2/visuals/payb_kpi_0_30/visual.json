@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "payb_kpi_0_30",
   "position": {
-    "x": 366.67431737237831,
+    "x": 366.6743173723783,
     "y": 135,
     "z": 2000,
     "height": 103.5,
@@ -64,7 +64,7 @@
             "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
