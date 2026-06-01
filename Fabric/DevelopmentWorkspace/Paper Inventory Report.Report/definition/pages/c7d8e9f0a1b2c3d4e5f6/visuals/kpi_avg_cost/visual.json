@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_avg_cost",
   "position": {
-    "x": 1061.904761904762,
-    "y": 136.66666666666669,
+    "x": 1061.4285714285716,
+    "y": 137.14285714285714,
     "z": 0,
-    "height": 104,
+    "height": 104.28571428571429,
     "width": 255.71428571428572,
     "tabOrder": 5000
   },

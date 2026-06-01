@@ -529,7 +529,7 @@
       "url": "data:image/svg+xml;utf8,<svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M14.75 13H1.25L8.21774 4.66667L10.8306 8L14.75 3V13Z' fill='%23F3FAE8'/><path d='M1.25 13L8.21774 4.66667L10.8306 8L14.75 3' stroke='%2384CC16' stroke-linecap='round' stroke-linejoin='round'/></svg>"
     }
   },
-  "name": "Custom Theme",
+  "name": "Inventory Portfolio Theme",
   "neutral": "#BB8F06",
   "textClasses": {
     "callout": {

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "slicer_quarter",
   "position": {
-    "x": 67.0,
+    "x": 66.666666666666671,
     "y": 245.22908093278468,
     "z": 16000,
-    "height": 76,
-    "width": 400,
+    "height": 75,
+    "width": 403.33333333333337,
     "tabOrder": 4000
   },
   "visual": {
