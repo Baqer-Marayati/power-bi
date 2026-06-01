@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "choropleth_iraq_gov",
   "position": {
-    "x": 512.0960076045627,
-    "y": 264.6666666666667,
+    "x": 511.66666666666669,
+    "y": 265,
     "z": 0,
-    "height": 765.3333333333333,
-    "width": 996.0709759188846,
+    "height": 765,
+    "width": 1011.6666666666667,
     "tabOrder": 12000
   },
   "visual": {
@@ -186,14 +186,14 @@
             "viewportHeight": {
               "expr": {
                 "Literal": {
-                  "Value": "737.25D"
+                  "Value": "731D"
                 }
               }
             },
             "viewportWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "962.0709759188846D"
+                  "Value": "977.6666666666667D"
                 }
               }
             }

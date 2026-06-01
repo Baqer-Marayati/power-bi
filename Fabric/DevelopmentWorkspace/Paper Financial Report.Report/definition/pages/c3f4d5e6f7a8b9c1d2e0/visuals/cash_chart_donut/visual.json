@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "cash_chart_donut",
   "position": {
-    "x": 520.3116883116883,
-    "y": 649.3896103896103,
+    "x": 520,
+    "y": 662,
     "z": 3000,
-    "height": 377.35064935064935,
-    "width": 1336.5194805194806,
+    "height": 370,
+    "width": 1336,
     "tabOrder": 8000
   },
   "visual": {

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "matrix_city_sales",
   "position": {
-    "x": 1523.1939163498098,
-    "y": 264.6666666666667,
+    "x": 1543.3333333333335,
+    "y": 265,
     "z": 0,
-    "height": 765.3333333333333,
-    "width": 349.91286438529784,
+    "height": 765,
+    "width": 330,
     "tabOrder": 13000
   },
   "visual": {
@@ -78,7 +78,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "96.05912429792293D"
+                  "Value": "114.38387882819984D"
                 }
               }
             }
@@ -92,7 +92,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "130.85714168937886D"
+                  "Value": "179.25337611404157D"
                 }
               }
             }

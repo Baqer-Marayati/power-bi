@@ -3,9 +3,9 @@
   "name": "payb_table",
   "position": {
     "x": 520,
-    "y": 263.0,
+    "y": 264,
     "z": 0,
-    "height": 708.75,
+    "height": 768,
     "width": 1336,
     "tabOrder": 0
   },
@@ -427,7 +427,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "296.1048534126003D"
+                  "Value": "386.0763573703839D"
                 }
               }
             }

@@ -1,11 +1,11 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "88873629742724eb69e8",
   "position": {
-    "x": 511.6666666666667,
-    "y": 626.1666666666667,
+    "x": 511.66666666666669,
+    "y": 660,
     "z": 0,
-    "height": 403.83333333333326,
+    "height": 370,
     "width": 1355,
     "tabOrder": 0
   },
@@ -615,7 +615,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "160D"
+                  "Value": "206.6440423497354D"
                 }
               }
             }
@@ -629,7 +629,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "121.66666666666667D"
+                  "Value": "181.81975267129963D"
                 }
               }
             }
@@ -643,7 +643,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "340D"
+                  "Value": "375.01529511189017D"
                 }
               }
             }
@@ -657,7 +657,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "160D"
+                  "Value": "208.3167877570874D"
                 }
               }
             }
@@ -671,7 +671,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "105D"
+                  "Value": "146.66666666666666D"
                 }
               }
             }
@@ -685,7 +685,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "120D"
+                  "Value": "191.66666666666669D"
                 }
               }
             }
@@ -863,7 +863,6 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "border": [
         {
@@ -896,6 +895,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

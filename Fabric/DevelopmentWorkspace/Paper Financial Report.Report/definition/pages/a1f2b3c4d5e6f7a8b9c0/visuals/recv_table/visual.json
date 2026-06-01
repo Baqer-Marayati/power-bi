@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "recv_table",
   "position": {
-    "x": 520.43,
-    "y": 263.0,
+    "x": 520,
+    "y": 264,
     "z": 0,
-    "height": 708.75,
-    "width": 1336.43,
+    "height": 768,
+    "width": 1336,
     "tabOrder": 0
   },
   "visual": {
@@ -28,8 +28,8 @@
               },
               "queryRef": "ReceivablesFact.CardName",
               "nativeQueryRef": "CardName",
-              "displayName": "Customer",
-              "active": true
+              "active": true,
+              "displayName": "Customer"
             },
             {
               "field": {
@@ -386,7 +386,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "258.0000017471896D"
+                  "Value": "340.0000017471896D"
                 }
               }
             }

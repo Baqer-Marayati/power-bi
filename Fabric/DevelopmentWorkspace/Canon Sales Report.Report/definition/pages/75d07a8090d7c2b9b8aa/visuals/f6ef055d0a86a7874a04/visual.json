@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "f6ef055d0a86a7874a04",
   "position": {
-    "x": 511.6666666666667,
-    "y": 626.1666666666667,
+    "x": 511.66666666666669,
+    "y": 626.16666666666674,
     "z": 0,
     "height": 403.83333333333326,
     "width": 1355,
@@ -635,7 +635,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "404.2566246543139D"
+                  "Value": "522.5167831519657D"
                 }
               }
             }
@@ -649,7 +649,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "165.69928030676706D"
+                  "Value": "197.4256806545133D"
                 }
               }
             }
@@ -663,7 +663,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "148.53444418172418D"
+                  "Value": "198.6922598696021D"
                 }
               }
             }
@@ -677,7 +677,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "179.56145425609495D"
+                  "Value": "217.99154303144385D"
                 }
               }
             }
@@ -691,7 +691,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "119.32142077872143D"
+                  "Value": "170.85274596693176D"
                 }
               }
             }

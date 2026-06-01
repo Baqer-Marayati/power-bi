@@ -1,11 +1,11 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "b6f189b1dcd5e970cb69",
   "position": {
-    "x": 511.6666666666667,
-    "y": 626.1666666666667,
+    "x": 511.66666666666669,
+    "y": 660,
     "z": 2000,
-    "height": 403.83333333333326,
+    "height": 370,
     "width": 1355,
     "tabOrder": 2000
   },
@@ -400,7 +400,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "340D"
+                  "Value": "398.34003026219625D"
                 }
               }
             }
@@ -414,7 +414,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "160D"
+                  "Value": "188.32135194527D"
                 }
               }
             }
@@ -428,7 +428,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "160D"
+                  "Value": "195D"
                 }
               }
             }
@@ -442,7 +442,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "121.66666666666667D"
+                  "Value": "175.1506799450358D"
                 }
               }
             }
@@ -456,7 +456,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "105D"
+                  "Value": "175D"
                 }
               }
             }
@@ -470,7 +470,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "120D"
+                  "Value": "180D"
                 }
               }
             }
@@ -676,7 +676,6 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "border": [
         {
@@ -709,6 +708,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

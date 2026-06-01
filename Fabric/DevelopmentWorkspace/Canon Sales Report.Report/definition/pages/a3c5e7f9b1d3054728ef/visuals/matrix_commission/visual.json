@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "matrix_commission",
   "position": {
-    "x": 511.6666666666667,
-    "y": 626.1666666666667,
+    "x": 511.66666666666669,
+    "y": 660,
     "z": 2000,
-    "height": 403.83333333333326,
+    "height": 370,
     "width": 1355,
     "tabOrder": 2000
   },
@@ -443,7 +443,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "196.8571598428146D"
+                  "Value": "243.56086459922182D"
                 }
               }
             }
@@ -457,7 +457,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "183.57142857142858D"
+                  "Value": "221.9961420087838D"
                 }
               }
             }
@@ -471,7 +471,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "152.86584494976904D"
+                  "Value": "194.5708378657073D"
                 }
               }
             }
@@ -485,7 +485,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "163.00001134219252D"
+                  "Value": "214.66668445770063D"
                 }
               }
             }
@@ -499,7 +499,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "308.60680888960854D"
+                  "Value": "435.4402266111275D"
                 }
               }
             }
