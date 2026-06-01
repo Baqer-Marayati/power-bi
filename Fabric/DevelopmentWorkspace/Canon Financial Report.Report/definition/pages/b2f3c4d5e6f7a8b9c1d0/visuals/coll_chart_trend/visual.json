@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "coll_chart_trend",
   "position": {
     "x": 1211.39,
     "y": 265.5,
     "z": 400,
-    "height": 387.0,
+    "height": 387,
     "width": 644.61,
-    "tabOrder": 1000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "lineChart",

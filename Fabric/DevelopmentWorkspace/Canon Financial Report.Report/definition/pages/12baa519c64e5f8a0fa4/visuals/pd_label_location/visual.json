@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "pd_label_location",
   "position": {
     "x": -400,
     "y": -450,
-    "z": 16300,
+    "z": 18000,
     "height": 1,
     "width": 1,
-    "tabOrder": 25500
+    "tabOrder": 17000
   },
   "visual": {
     "visualType": "textbox",

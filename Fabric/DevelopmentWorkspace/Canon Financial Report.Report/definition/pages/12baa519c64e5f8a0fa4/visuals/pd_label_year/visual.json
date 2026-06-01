@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "pd_label_year",
   "position": {
     "x": -400,
     "y": -450,
-    "z": 17000,
+    "z": 21000,
     "height": 1,
     "width": 1,
-    "tabOrder": 24000
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "textbox",

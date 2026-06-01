@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "cash_kpi_pos",
   "position": {
     "x": 1342.65,
-    "y": 135.0,
-    "z": 4000,
+    "y": 135,
+    "z": 7000,
     "height": 103.5,
     "width": 239.13,
-    "tabOrder": 4000
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "cardVisual",

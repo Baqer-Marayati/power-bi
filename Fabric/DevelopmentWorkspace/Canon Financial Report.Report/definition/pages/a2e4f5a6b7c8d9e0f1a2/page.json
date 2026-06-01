@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "a2e4f5a6b7c8d9e0f1a2",
   "displayName": "Accounts Payable",
   "displayOption": "FitToPage",
@@ -46,86 +46,6 @@
   },
   "visualInteractions": [
     {
-      "source": "payb_slicer_vendor",
-      "target": "payb_kpi_0_30",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor",
-      "target": "payb_kpi_120plus",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor",
-      "target": "payb_kpi_30_60",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor",
-      "target": "payb_kpi_60_90",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor",
-      "target": "payb_kpi_90_120",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor",
-      "target": "payb_kpi_dpo",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor",
-      "target": "payb_kpi_future",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor",
-      "target": "payb_table",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_code",
-      "target": "payb_kpi_0_30",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_code",
-      "target": "payb_kpi_120plus",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_code",
-      "target": "payb_kpi_30_60",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_code",
-      "target": "payb_kpi_60_90",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_code",
-      "target": "payb_kpi_90_120",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_code",
-      "target": "payb_kpi_dpo",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_code",
-      "target": "payb_kpi_future",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_code",
-      "target": "payb_table",
-      "type": "DataFilter"
-    },
-    {
       "source": "payb_slicer_currency",
       "target": "payb_kpi_0_30",
       "type": "DataFilter"
@@ -162,46 +82,6 @@
     },
     {
       "source": "payb_slicer_currency",
-      "target": "payb_table",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_type",
-      "target": "payb_kpi_0_30",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_type",
-      "target": "payb_kpi_120plus",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_type",
-      "target": "payb_kpi_30_60",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_type",
-      "target": "payb_kpi_60_90",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_type",
-      "target": "payb_kpi_90_120",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_type",
-      "target": "payb_kpi_dpo",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_type",
-      "target": "payb_kpi_future",
-      "type": "DataFilter"
-    },
-    {
-      "source": "payb_slicer_vendor_type",
       "target": "payb_table",
       "type": "DataFilter"
     }

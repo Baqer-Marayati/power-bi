@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "coll_slicer_collector",
   "position": {
     "x": 75,
-    "y": 572,
+    "y": 476.66666666666669,
     "z": 8400,
-    "height": 74,
+    "height": 75,
     "width": 400,
-    "tabOrder": 8400
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "slicer",
@@ -181,7 +181,6 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "border": [
         {
@@ -222,7 +221,8 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [

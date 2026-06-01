@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "coll_slicer_month",
   "position": {
     "x": 75,
@@ -7,7 +7,7 @@
     "z": 8200,
     "height": 74,
     "width": 400,
-    "tabOrder": 8200
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "slicer",
@@ -181,7 +181,6 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "border": [
         {
@@ -222,7 +221,8 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [

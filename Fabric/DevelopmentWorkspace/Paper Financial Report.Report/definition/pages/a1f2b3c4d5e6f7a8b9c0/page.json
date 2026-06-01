@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "a1f2b3c4d5e6f7a8b9c0",
   "displayName": "Accounts Receivable",
   "displayOption": "FitToPage",
@@ -45,76 +45,6 @@
     ]
   },
   "visualInteractions": [
-    {
-      "source": "recv_slicer_customer",
-      "target": "recv_kpi_120plus",
-      "type": "DataFilter"
-    },
-    {
-      "source": "recv_slicer_customer",
-      "target": "recv_kpi_avg_ar",
-      "type": "DataFilter"
-    },
-    {
-      "source": "recv_slicer_customer",
-      "target": "recv_kpi_customers",
-      "type": "DataFilter"
-    },
-    {
-      "source": "recv_slicer_customer",
-      "target": "recv_kpi_outstanding",
-      "type": "DataFilter"
-    },
-    {
-      "source": "recv_slicer_customer",
-      "target": "recv_kpi_overdue",
-      "type": "DataFilter"
-    },
-    {
-      "source": "recv_slicer_customer",
-      "target": "recv_kpi_overdue_pct",
-      "type": "DataFilter"
-    },
-    {
-      "source": "recv_slicer_customer",
-      "target": "recv_table",
-      "type": "DataFilter"
-    },
-    {
-      "source": "recv_slicer_customer_code",
-      "target": "recv_kpi_120plus",
-      "type": "DataFilter"
-    },
-    {
-      "source": "recv_slicer_customer_code",
-      "target": "recv_kpi_avg_ar",
-      "type": "DataFilter"
-    },
-    {
-      "source": "recv_slicer_customer_code",
-      "target": "recv_kpi_customers",
-      "type": "DataFilter"
-    },
-    {
-      "source": "recv_slicer_customer_code",
-      "target": "recv_kpi_outstanding",
-      "type": "DataFilter"
-    },
-    {
-      "source": "recv_slicer_customer_code",
-      "target": "recv_kpi_overdue",
-      "type": "DataFilter"
-    },
-    {
-      "source": "recv_slicer_customer_code",
-      "target": "recv_kpi_overdue_pct",
-      "type": "DataFilter"
-    },
-    {
-      "source": "recv_slicer_customer_code",
-      "target": "recv_table",
-      "type": "DataFilter"
-    },
     {
       "source": "recv_slicer_collector",
       "target": "recv_kpi_120plus",

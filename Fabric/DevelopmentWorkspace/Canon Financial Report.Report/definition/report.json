@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
   "themeCollection": {
     "baseTheme": {
       "name": "CY24SU10",
@@ -54,11 +54,6 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "Custom_Theme49412231581938193.json",
-          "path": "Custom_Theme49412231581938193.json",
-          "type": "Image"
-        },
-        {
           "name": "Aljazeera_logo5594601849612262.png",
           "path": "Aljazeera_logo5594601849612262.png",
           "type": "Image"
@@ -66,6 +61,11 @@
         {
           "name": "Canon_logo_transparent4826537244702471.png",
           "path": "Canon_logo_transparent4826537244702471.png",
+          "type": "Image"
+        },
+        {
+          "name": "Custom_Theme49412231581938193.json",
+          "path": "Custom_Theme49412231581938193.json",
           "type": "Image"
         }
       ]

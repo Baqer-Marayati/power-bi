@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "c3f4d5e6f7a8b9c1d2e0",
   "displayName": "Cash",
   "displayOption": "FitToPage",
@@ -82,86 +82,6 @@
     },
     {
       "source": "cash_slicer_account_type",
-      "target": "cash_table_detail",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account",
-      "target": "cash_chart_bar",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account",
-      "target": "cash_chart_donut",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account",
-      "target": "cash_kpi_bank",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account",
-      "target": "cash_kpi_hand",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account",
-      "target": "cash_kpi_hand_pct",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account",
-      "target": "cash_kpi_pos",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account",
-      "target": "cash_kpi_total",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account",
-      "target": "cash_table_detail",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account_code",
-      "target": "cash_chart_bar",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account_code",
-      "target": "cash_chart_donut",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account_code",
-      "target": "cash_kpi_bank",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account_code",
-      "target": "cash_kpi_hand",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account_code",
-      "target": "cash_kpi_hand_pct",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account_code",
-      "target": "cash_kpi_pos",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account_code",
-      "target": "cash_kpi_total",
-      "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account_code",
       "target": "cash_table_detail",
       "type": "DataFilter"
     }

@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "cash_chart_bar",
   "position": {
-    "x": 520.0,
+    "x": 520,
     "y": 265.5,
     "z": 0,
     "height": 472.5,
     "width": 675.8,
-    "tabOrder": 5000
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "clusteredBarChart",

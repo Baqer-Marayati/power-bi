@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "coll_kpi_customers",
   "position": {
     "x": 1342.65,
-    "y": 135.0,
+    "y": 135,
     "z": 4000,
     "height": 103.5,
     "width": 239.13,
-    "tabOrder": 7000
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "cardVisual",

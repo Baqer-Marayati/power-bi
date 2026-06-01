@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "cash_kpi_total",
   "position": {
-    "x": 520.0,
-    "y": 135.0,
+    "x": 520,
+    "y": 135,
     "z": 1000,
     "height": 103.5,
     "width": 239.13,

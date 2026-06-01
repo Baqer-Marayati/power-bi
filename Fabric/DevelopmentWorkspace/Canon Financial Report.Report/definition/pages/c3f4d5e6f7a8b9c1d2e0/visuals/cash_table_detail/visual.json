@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "cash_table_detail",
   "position": {
-    "x": 520.0,
+    "x": 520,
     "y": 753.75,
-    "z": 100,
+    "z": 1000,
     "height": 275.62,
-    "width": 1336.0,
-    "tabOrder": 8000
+    "width": 1336,
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "clusteredColumnChart",
