@@ -88,6 +88,12 @@
 - AP / AR detail pages are safer when they rely on direct ledger columns and measures rather than disconnected helper-date or helper-bucket entities.
 - When an AP or AR page already shows valid top-level numbers, assume the business domain exists and investigate visual wiring before assuming SAP data is missing.
 
+## Working Capital Slicer Rails (2026-06-01)
+- Fabric copies of both Finance reports now use consistent left slicer rails on `Accounts Receivable`, `Accounts Payable`, `Collections`, and `Cash`.
+- `Collections` has true period filtering through the existing `CollectionsFact.PostingDate -> Dim_Date.Date` relationship. Its rail uses `Dim_Date[Year]`, `Dim_Date[Quarter]`, `Dim_Date[MonthName]`, `CollectionsFact[CardName]`, `CollectionsFact[CollectorName]`, and `CollectionsFact[Origin]`.
+- `ReceivablesFact`, `PayablesFact`, and `CashPositionFact` remain refresh-time/open-balance snapshot domains. They are not related to `Dim_Date`, and `CashPositionFact` has no date column, so this pass did **not** add a misleading `Dim_Date` as-of slicer to AR/AP/Cash.
+- AR/AP/Cash rails are therefore snapshot-domain filters: AR uses customer/customer-code/collector on PAPERENTITY and BP UDF + collector fields on CANON; AP uses vendor/vendor-code/currency/vendor-type; Cash uses account type/account/account code. True historical as-of behavior would require semantic model work against dated AR/AP/cash movement sources.
+
 ## Budget Notes
 - Budget visuals can be made to render with compatibility logic.
 - True budget reporting still requires a real SAP budget source if the business expects actual budget truth rather than a placeholder.

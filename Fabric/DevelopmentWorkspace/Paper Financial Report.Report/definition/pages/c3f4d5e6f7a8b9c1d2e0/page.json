@@ -43,5 +43,127 @@
         }
       }
     ]
-  }
+  },
+  "visualInteractions": [
+    {
+      "source": "cash_slicer_account_type",
+      "target": "cash_chart_bar",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account_type",
+      "target": "cash_chart_donut",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account_type",
+      "target": "cash_kpi_bank",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account_type",
+      "target": "cash_kpi_hand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account_type",
+      "target": "cash_kpi_hand_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account_type",
+      "target": "cash_kpi_pos",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account_type",
+      "target": "cash_kpi_total",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account_type",
+      "target": "cash_table_detail",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account",
+      "target": "cash_chart_bar",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account",
+      "target": "cash_chart_donut",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account",
+      "target": "cash_kpi_bank",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account",
+      "target": "cash_kpi_hand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account",
+      "target": "cash_kpi_hand_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account",
+      "target": "cash_kpi_pos",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account",
+      "target": "cash_kpi_total",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account",
+      "target": "cash_table_detail",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account_code",
+      "target": "cash_chart_bar",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account_code",
+      "target": "cash_chart_donut",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account_code",
+      "target": "cash_kpi_bank",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account_code",
+      "target": "cash_kpi_hand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account_code",
+      "target": "cash_kpi_hand_pct",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account_code",
+      "target": "cash_kpi_pos",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account_code",
+      "target": "cash_kpi_total",
+      "type": "DataFilter"
+    },
+    {
+      "source": "cash_slicer_account_code",
+      "target": "cash_table_detail",
+      "type": "DataFilter"
+    }
+  ]
 }

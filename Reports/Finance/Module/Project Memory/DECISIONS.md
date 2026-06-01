@@ -9,6 +9,12 @@
 - If new pages are added to any PAPERENTITY report, do **not** add the logo/divider group.
 - This is a permanent company-level branding decision for PAPERENTITY.
 
+## 2026-06-01 — Working-capital rail date behavior
+
+- Do not add a `Dim_Date` as-of slicer to `Accounts Receivable`, `Accounts Payable`, or `Cash` unless true semantic model support exists for those snapshot/open-balance domains.
+- `Collections` can use `Dim_Date` Year/Quarter/Month because `CollectionsFact` has an active posting-date relationship to `Dim_Date`.
+- Until AR/AP/Cash are rebuilt from dated historical movement sources, their left rails should use real snapshot-domain fields such as customer/vendor/collector/currency/account attributes rather than a date control that appears to filter but does not.
+
 ## 2026-03-26 — Color palette switch: teal → navy blue
 
 - Data colors changed from teal/green base palette to a navy-blue base palette matching the approved sample screenshot.

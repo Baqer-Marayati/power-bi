@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "recv_kpi_overdue_pct",
   "position": {
-    "x": 972.2645914396887,
+    "x": 972.26,
     "y": 135.0,
     "z": 3000,
     "height": 103.5,
-    "width": 205.3385214007782,
+    "width": 205.34,
     "tabOrder": 3000
   },
   "visual": {

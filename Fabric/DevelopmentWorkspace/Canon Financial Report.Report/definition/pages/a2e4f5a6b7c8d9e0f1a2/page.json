@@ -6,6 +6,19 @@
   "height": 1080,
   "width": 1920,
   "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "195L"
+              }
+            }
+          }
+        }
+      }
+    ],
     "background": [
       {
         "properties": {
@@ -30,5 +43,167 @@
         }
       }
     ]
-  }
+  },
+  "visualInteractions": [
+    {
+      "source": "payb_slicer_vendor",
+      "target": "payb_kpi_0_30",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor",
+      "target": "payb_kpi_120plus",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor",
+      "target": "payb_kpi_30_60",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor",
+      "target": "payb_kpi_60_90",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor",
+      "target": "payb_kpi_90_120",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor",
+      "target": "payb_kpi_dpo",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor",
+      "target": "payb_kpi_future",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor",
+      "target": "payb_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_code",
+      "target": "payb_kpi_0_30",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_code",
+      "target": "payb_kpi_120plus",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_code",
+      "target": "payb_kpi_30_60",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_code",
+      "target": "payb_kpi_60_90",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_code",
+      "target": "payb_kpi_90_120",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_code",
+      "target": "payb_kpi_dpo",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_code",
+      "target": "payb_kpi_future",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_code",
+      "target": "payb_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_kpi_0_30",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_kpi_120plus",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_kpi_30_60",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_kpi_60_90",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_kpi_90_120",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_kpi_dpo",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_kpi_future",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_type",
+      "target": "payb_kpi_0_30",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_type",
+      "target": "payb_kpi_120plus",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_type",
+      "target": "payb_kpi_30_60",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_type",
+      "target": "payb_kpi_60_90",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_type",
+      "target": "payb_kpi_90_120",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_type",
+      "target": "payb_kpi_dpo",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_type",
+      "target": "payb_kpi_future",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_vendor_type",
+      "target": "payb_table",
+      "type": "DataFilter"
+    }
+  ]
 }

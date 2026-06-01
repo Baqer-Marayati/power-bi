@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "coll_chart_origin",
   "position": {
-    "x": 1211.3929961089493,
+    "x": 1211.39,
     "y": 666.0,
     "z": 500,
     "height": 387.0,
-    "width": 644.6070038910506,
+    "width": 644.61,
     "tabOrder": 2000
   },
   "visual": {

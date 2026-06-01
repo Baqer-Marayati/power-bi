@@ -43,5 +43,247 @@
         }
       }
     ]
-  }
+  },
+  "visualInteractions": [
+    {
+      "source": "coll_slicer_year",
+      "target": "coll_chart_origin",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_year",
+      "target": "coll_chart_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_year",
+      "target": "coll_kpi_avg_txn",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_year",
+      "target": "coll_kpi_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_year",
+      "target": "coll_kpi_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_year",
+      "target": "coll_kpi_total",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_year",
+      "target": "coll_kpi_txn_count",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_year",
+      "target": "coll_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_quarter",
+      "target": "coll_chart_origin",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_quarter",
+      "target": "coll_chart_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_quarter",
+      "target": "coll_kpi_avg_txn",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_quarter",
+      "target": "coll_kpi_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_quarter",
+      "target": "coll_kpi_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_quarter",
+      "target": "coll_kpi_total",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_quarter",
+      "target": "coll_kpi_txn_count",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_quarter",
+      "target": "coll_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_month",
+      "target": "coll_chart_origin",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_month",
+      "target": "coll_chart_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_month",
+      "target": "coll_kpi_avg_txn",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_month",
+      "target": "coll_kpi_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_month",
+      "target": "coll_kpi_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_month",
+      "target": "coll_kpi_total",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_month",
+      "target": "coll_kpi_txn_count",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_month",
+      "target": "coll_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_chart_origin",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_chart_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_kpi_avg_txn",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_kpi_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_kpi_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_kpi_total",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_kpi_txn_count",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_customer",
+      "target": "coll_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_collector",
+      "target": "coll_chart_origin",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_collector",
+      "target": "coll_chart_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_collector",
+      "target": "coll_kpi_avg_txn",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_collector",
+      "target": "coll_kpi_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_collector",
+      "target": "coll_kpi_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_collector",
+      "target": "coll_kpi_total",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_collector",
+      "target": "coll_kpi_txn_count",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_collector",
+      "target": "coll_table",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_origin",
+      "target": "coll_chart_origin",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_origin",
+      "target": "coll_chart_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_origin",
+      "target": "coll_kpi_avg_txn",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_origin",
+      "target": "coll_kpi_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_origin",
+      "target": "coll_kpi_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_origin",
+      "target": "coll_kpi_total",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_origin",
+      "target": "coll_kpi_txn_count",
+      "type": "DataFilter"
+    },
+    {
+      "source": "coll_slicer_origin",
+      "target": "coll_table",
+      "type": "DataFilter"
+    }
+  ]
 }

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "cash_kpi_hand_pct",
   "position": {
-    "x": 1368,
-    "y": 135,
+    "x": 1616.87,
+    "y": 135.0,
     "z": 5000,
     "height": 103.5,
-    "width": 294,
+    "width": 239.13,
     "tabOrder": 6000
   },
   "visual": {
