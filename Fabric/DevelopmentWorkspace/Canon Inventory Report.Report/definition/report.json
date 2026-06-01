@@ -11,7 +11,7 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "InventoryPortfolioTheme11111111111111.json",
+      "name": "Custom_Theme49412231581938193.json",
       "reportVersionAtImport": {
         "visual": "1.8.100",
         "report": "2.0.100",
@@ -67,8 +67,8 @@
           "type": "Image"
         },
         {
-          "name": "InventoryPortfolioTheme11111111111111.json",
-          "path": "InventoryPortfolioTheme11111111111111.json",
+          "name": "Custom_Theme49412231581938193.json",
+          "path": "Custom_Theme49412231581938193.json",
           "type": "Image"
         }
       ]

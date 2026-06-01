@@ -3,7 +3,7 @@
   "name": "chart_stock_level",
   "position": {
     "x": 1202.2999570681707,
-    "y": 259.33333333333331,
+    "y": 259.3333333333333,
     "z": 8000,
     "height": 358.40625,
     "width": 664.462890625,
@@ -382,14 +382,14 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "13D"
+                  "Value": "12D"
                 }
               }
             },

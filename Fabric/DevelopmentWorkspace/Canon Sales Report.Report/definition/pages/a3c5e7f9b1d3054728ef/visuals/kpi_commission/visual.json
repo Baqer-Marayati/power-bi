@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "kpi_commission",
   "position": {
-    "x": 1203.3333333333335,
+    "x": 1199.4444444444446,
     "y": 136.66666666666669,
     "z": 0,
-    "height": 103.33333333333334,
+    "height": 104,
     "width": 323.33333333333337,
     "tabOrder": 11002
   },

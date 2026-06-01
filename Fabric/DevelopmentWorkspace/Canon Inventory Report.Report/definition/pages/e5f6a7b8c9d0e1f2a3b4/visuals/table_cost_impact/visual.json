@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "table_cost_impact",
   "position": {
-    "x": 511.66666666666669,
-    "y": 653.33333333333337,
+    "x": 511.6666666666667,
+    "y": 653.3333333333334,
     "z": 9000,
-    "height": 376.66666666666669,
+    "height": 376.6666666666667,
     "width": 1355,
     "tabOrder": 9000
   },
@@ -791,7 +791,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             }

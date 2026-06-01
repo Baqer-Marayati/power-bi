@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_trend",
   "position": {
-    "x": 513.45236847597789,
-    "y": 262.40123456790121,
+    "x": 513.4523684759779,
+    "y": 262.4012345679012,
     "z": 9000,
     "height": 358.39285714285717,
-    "width": 664.54458293384471,
+    "width": 664.5445829338447,
     "tabOrder": 15000
   },
   "visual": {
@@ -211,14 +211,14 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "13D"
+                  "Value": "12D"
                 }
               }
             },

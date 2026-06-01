@@ -6,7 +6,7 @@
     "y": 265.5,
     "z": 5000,
     "height": 787.5,
-    "width": 526.34241245136184,
+    "width": 526.3424124513618,
     "tabOrder": 16000
   },
   "visual": {
@@ -119,14 +119,14 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "13D"
+                  "Value": "12D"
                 }
               }
             },

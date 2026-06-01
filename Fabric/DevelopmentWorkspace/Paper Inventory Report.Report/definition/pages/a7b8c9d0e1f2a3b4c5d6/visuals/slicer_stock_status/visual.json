@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "slicer_stock_status",
   "position": {
-    "x": 68.618784530386733,
+    "x": 68.0,
     "y": 237.18232044198894,
     "z": 1000,
-    "height": 80.5524861878453,
-    "width": 402.76243093922653,
+    "height": 76,
+    "width": 400,
     "tabOrder": 3000
   },
   "visual": {
