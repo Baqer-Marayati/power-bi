@@ -221,7 +221,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Quantity (Tons)'"
+                  "Value": "'Total Qty (Tons)'"
                 }
               }
             },

@@ -235,7 +235,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Vendor Cost'"
+                  "Value": "'Supplier Cost'"
                 }
               }
             },

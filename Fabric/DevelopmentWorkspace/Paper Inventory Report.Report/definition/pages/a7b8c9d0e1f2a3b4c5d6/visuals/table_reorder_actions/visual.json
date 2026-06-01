@@ -43,7 +43,7 @@
               },
               "queryRef": "Fact_StockCoverPolicy.ItemName",
               "nativeQueryRef": "Item",
-              "displayName": "Item Name"
+              "displayName": "Item"
             },
             {
               "field": {
@@ -73,7 +73,7 @@
               },
               "queryRef": "_Measures.Reorder On Hand",
               "nativeQueryRef": "In Stock",
-              "displayName": "On Hand"
+              "displayName": "In Stock"
             },
             {
               "field": {
