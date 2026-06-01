@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "recv_table",
   "position": {
-    "x": 520.43,
-    "y": 263.0,
+    "x": 520.31168831168827,
+    "y": 262.64935064935065,
     "z": 0,
-    "height": 708.75,
-    "width": 1336.43,
+    "height": 766.33766233766232,
+    "width": 1336.5194805194806,
     "tabOrder": 0
   },
   "visual": {

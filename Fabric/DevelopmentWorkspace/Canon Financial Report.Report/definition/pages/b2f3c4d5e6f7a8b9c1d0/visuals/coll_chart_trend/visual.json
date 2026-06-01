@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "coll_chart_trend",
   "position": {
-    "x": 520.3116883116883,
-    "y": 666.0129870129871,
+    "x": 520.31168831168827,
+    "y": 658.28571428571433,
     "z": 400,
-    "height": 364.05194805194805,
+    "height": 370.7012987012987,
     "width": 1336.5194805194806,
     "tabOrder": 2000
   },
