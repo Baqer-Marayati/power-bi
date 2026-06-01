@@ -158,21 +158,6 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Reorder Minimum Order Extra Qty"
-                }
-              },
-              "queryRef": "_Measures.Reorder Minimum Order Extra Qty",
-              "nativeQueryRef": "MOQ Extra (Tons)",
-              "displayName": "MOQ Extra (Tons)"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
                   "Property": "Reorder IQD Impact"
                 }
               },
@@ -559,20 +544,6 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "94D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Measures.Reorder Minimum Order Extra Qty"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
                   "Value": "171.66952902904373D"
                 }
               }
@@ -742,20 +713,6 @@
           },
           "selector": {
             "metadata": "_Measures.Reorder Move Qty Value"
-          }
-        },
-        {
-          "properties": {
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Right'"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Measures.Reorder Minimum Order Extra Qty"
           }
         },
         {

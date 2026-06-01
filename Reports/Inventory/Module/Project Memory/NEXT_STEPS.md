@@ -2,7 +2,7 @@
 
 ## Immediate Priority
 
-1. Refresh the Paper Inventory semantic model in Fabric and re-check **Stock Actions**: policy should show `100d`, buy quantities should remain in tons, and any positive shortage below 24 tons should recommend 24 tons with an `MOQ Extra (Tons)` value.
+1. Refresh the Paper Inventory semantic model in Fabric and re-check **Stock Actions**: policy should show `100d`, buy quantities should remain in tons, any positive shortage below 24 tons should recommend 24 tons, and the separate `MOQ Extra (Tons)` column should no longer appear.
 1. Refresh the Paper Inventory semantic model in Fabric and re-check **Stock Health** + **Stock Actions**: rows with demand below the 1-ton planning threshold and zero available stock should show `Review slow mover` / `Low demand - no stock`, not **Healthy**.
 1. **Fabric sync validation** — after the May 22–23 management naming pass (`265fea0`–`c7deb2e`), open `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip` in Fabric and confirm all five page tabs, KPI titles, chart titles, and Shipments column headers render as renamed.
 2. Open the Fabric-bound PBIP in Power BI Desktop/Fabric and refresh the landed-cost tables after the May 16 semantic correction.

@@ -628,20 +628,6 @@ table _Measures
 		formatString: +#,0;-#,0;0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa077
 
-	/// Extra tons created by Paper's 24-ton minimum SKU order rule. Blank means the
-	/// calculated shortage already met/exceeded the minimum, or there is no buy action.
-	measure 'Reorder Minimum Order Extra Qty' =
-			VAR _Act = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedAction] )
-			VAR _BuyRaw = SELECTEDVALUE ( Fact_StockCoverPolicy[SuggestedReorderQty] )
-			VAR _RawNeed =
-			    SELECTEDVALUE ( Fact_StockCoverPolicy[TargetStockQty] )
-			        - SELECTEDVALUE ( Fact_StockCoverPolicy[NetAvailable] )
-			VAR _Extra = DIVIDE ( MAX ( _BuyRaw - _RawNeed, 0 ), 1000 )
-			RETURN
-			    IF ( _Act = "Buy" && _Extra >= 1, _Extra, BLANK () )
-		formatString: #,0
-		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa077a
-
 	/// Cover days after placing the recommended buy quantity, including the 24-ton
 	/// minimum where it applies.
 	measure 'Reorder Cover After Buy Days' =
