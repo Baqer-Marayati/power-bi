@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "coll_chart_trend",
   "position": {
-    "x": 1211.39,
-    "y": 265.5,
+    "x": 520.31168831168827,
+    "y": 669.922077922078,
     "z": 400,
-    "height": 787.5,
-    "width": 644.61,
+    "height": 364.05194805194805,
+    "width": 1336.5194805194806,
     "tabOrder": 2000
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "areaChart",
     "query": {
       "queryState": {
         "Category": {
@@ -72,8 +72,7 @@
             },
             "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
     },
     "objects": {
@@ -101,26 +100,6 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "lineStyles": [
-        {
-          "properties": {
-            "strokeWidth": {
-              "expr": {
-                "Literal": {
-                  "Value": "3D"
-                }
-              }
-            },
-            "showMarker": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             }

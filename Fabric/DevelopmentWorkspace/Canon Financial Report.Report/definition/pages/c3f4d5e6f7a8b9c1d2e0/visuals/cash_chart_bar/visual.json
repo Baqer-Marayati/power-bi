@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "cash_chart_bar",
   "position": {
-    "x": 520,
-    "y": 265.5,
+    "x": 520.31168831168827,
+    "y": 265.97402597402595,
     "z": 0,
-    "height": 472.5,
-    "width": 675.8,
+    "height": 362.38961038961037,
+    "width": 1336.5194805194806,
     "tabOrder": 6000
   },
   "visual": {
-    "visualType": "clusteredBarChart",
+    "visualType": "barChart",
     "query": {
       "queryState": {
         "Category": {
