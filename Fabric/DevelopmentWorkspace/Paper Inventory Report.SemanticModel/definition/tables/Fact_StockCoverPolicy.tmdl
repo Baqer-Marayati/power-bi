@@ -325,7 +325,8 @@ table Fact_StockCoverPolicy
 				            rawReorderQty = [TargetStockQty] - [NetAvailable]
 				        in
 				            if not hasPlanningDemand then 0
-				            else if [NetAvailable] < [TargetStockQty] * 0.9 and rawReorderQty > 0 then Number.Max(rawReorderQty, minSkuOrderQty)
+				            else if [NetAvailable] < [TargetStockQty] * 0.9 and rawReorderQty > 0 then
+				                if rawReorderQty < minSkuOrderQty then minSkuOrderQty else rawReorderQty
 				            else 0,
 				        type number),
 				    AddExcess = Table.AddColumn(AddReorder, "ExcessQty", each
