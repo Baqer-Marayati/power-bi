@@ -13,6 +13,27 @@ structure. This is a **layout-only** standard — see the guardrail below.
 
 ---
 
+## 0b. Implementation status — pass 2 (applied: logos + structural alignment)
+
+Corrects pass 1 and adds the structural frame the screenshot review flagged.
+
+- **Logos restored on all three Canon reports** (Canon Financial / Sales / Inventory) and
+  **re-aligned to one canonical top-left lockup**: AlJazeera image `(0,0,164.7×63)`, vertical
+  divider `(178,3.78,17.3×50.4)`, Canon image `(191.3,0,164.7×63)`. Canon Sales logos were resized
+  up from 124×50 to match. Paper reports stay logo-free (they never had logos).
+- **Bottom line unified to 1030** (50 px bottom margin) across all five reports. Financial panels
+  moved from 1035 → 1030.
+- **Slicer rail is full-height** to the 1030 line on every page (fixed sidebar, even when slicers
+  don't fill it).
+- **Vertical gaps normalized to 24 px** for normal-range gaps (10–45 px). Large/intentional gaps on
+  sparse pages (e.g. ROI's ~512 px) were left untouched.
+- **Content overhang clamped to 1030**; short pages left short (no stretching), per decision.
+  - Side effect: Canon Sales had tight 17 px gaps; widening to 24 + holding the 1030 line trimmed
+    each page's bottom visual ~13 px.
+- Verified: 0 data-visual overlaps, 0 out-of-bounds, 0 query/measure/field changes.
+
+---
+
 ## 0. Implementation status — pass 1 (applied)
 
 This pass prioritized the user constraint *"moving is just moving stuff a little bit, resizing a
@@ -70,7 +91,7 @@ each other without forcing those exact absolutes.
 |------|----------|
 | Reference | Fresh standard (not copied from one report), anchored to the common 1920×1080 base |
 | Page frame | **Full-bleed header** at top; body content inset by the outer margin |
-| Brand logos | **Removed everywhere** (no AlJazeera / Canon / brand-group images or dividers) |
+| Brand logos | **Kept on Canon reports** (AlJazeera + Canon top-left lockup, unified size/position); Paper reports remain logo-free. *(Superseded the initial "remove everywhere" choice after review.)* |
 | Header content | **Page title text only**, left-aligned, on the page background — no colored bar |
 | Page title source | **Reuse** each page's existing header text; only reposition/restyle it |
 | KPI value font | **18 pt** |
