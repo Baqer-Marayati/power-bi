@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_sales",
   "position": {
-    "x": 511.66666666666669,
+    "x": 511.6666666666667,
     "y": 136.66666666666669,
     "z": 14000,
-    "height": 103.33333333333334,
+    "height": 104,
     "width": 323.33333333333337,
     "tabOrder": 11000
   },
@@ -221,7 +221,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total Qty (Tons)'"
+                  "Value": "'Quantity (Tons)'"
                 }
               }
             },

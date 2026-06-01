@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "slicer_item_search",
   "position": {
-    "x": 66.666666666666671,
-    "y": 822.37722908093281,
+    "x": 67.0,
+    "y": 822.3772290809328,
     "z": 22000,
     "height": 184,
-    "width": 404,
+    "width": 400,
     "tabOrder": 10000
   },
   "visual": {
@@ -88,7 +88,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Item search'"
+                  "Value": "'Search items'"
                 }
               }
             },
@@ -248,7 +248,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "14D"
                 }
               }
             },

@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "f6ef055d0a86a7874a04",
   "position": {
-    "x": 513.33333333333337,
-    "y": 648.33333333333337,
+    "x": 513.3333333333334,
+    "y": 647.0595238095239,
     "z": 10000,
-    "height": 381.66666666666669,
+    "height": 381.6666666666667,
     "width": 1353.3333333333335,
     "tabOrder": 0
   },
@@ -78,7 +78,7 @@
               },
               "queryRef": "_Measures.Total Sold Qty",
               "nativeQueryRef": "Qty (Tons)",
-              "displayName": "Qty (Tons)"
+              "displayName": "Quantity (Tons)"
             },
             {
               "field": {
@@ -552,7 +552,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             }

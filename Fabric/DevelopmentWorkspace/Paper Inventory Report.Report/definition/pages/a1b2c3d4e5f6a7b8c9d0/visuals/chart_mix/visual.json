@@ -3,10 +3,10 @@
   "name": "chart_mix",
   "position": {
     "x": 1203.7687634903605,
-    "y": 262.40123456790121,
+    "y": 264.6666666666667,
     "z": 0,
     "height": 356.78571428571433,
-    "width": 664.54458293384471,
+    "width": 664.5445829338447,
     "tabOrder": 16000
   },
   "visual": {
@@ -637,14 +637,14 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "13D"
+                  "Value": "12D"
                 }
               }
             },
