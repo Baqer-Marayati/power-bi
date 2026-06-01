@@ -162,3 +162,10 @@ Do **not** rename “Import & Handling Costs” to **Total Landed Cost** — tha
 - Management labels should say **(Tons)** for quantities and **/ Ton** for quantity-based costs; raw kg should only appear in audit/drill-through contexts with an explicit `Raw Quantity (kg)` label.
 - Paper `Reorder IQD Impact` must multiply raw kg quantities by `AvgItemCost` (IQD/kg), while visible Stock Actions quantities remain displayed in tons.
 - Paper stock-cover logic keeps a **1-ton materiality threshold** for planning actions, but low-demand zero-stock rows must **not** be labeled Healthy. They are classified as `Low demand - no stock` with `Review slow mover`; positive sub-ton targets display as `<1` ton instead of being hidden as no target.
+
+## 2026-06-01 — PAPER 100-day policy and 24-ton minimum SKU order
+
+- PAPERENTITY stock-cover policy target is **100 days**.
+- Paper quantities remain displayed in **tons**, but the semantic model still calculates in raw SAP **kg**.
+- For `Buy` recommendations, `Fact_StockCoverPolicy[SuggestedReorderQty]` must respect the business minimum order per SKU: if the calculated shortage is positive but below **24 tons** (`24,000 kg`), recommend **24 tons**. Larger shortages keep the calculated shortage quantity.
+- Stock Actions should expose the extra quantity caused by the minimum-order rule as **MOQ Extra (Tons)** so users can see when a recommendation is higher only because of the purchasing constraint.

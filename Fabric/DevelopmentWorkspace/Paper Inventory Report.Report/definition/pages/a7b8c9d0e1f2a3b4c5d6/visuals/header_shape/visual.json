@@ -83,7 +83,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Which items to buy, hold, or reduce, and by how much.'"
+                  "Value": "'100-day stock target with a 24-ton minimum buy rule per SKU.'"
                 }
               }
             },

@@ -304,7 +304,7 @@ table Fact_StockCoverPolicy
 				    AddV90  = Table.AddColumn(AddEffDays90,  "SalesVelocity90Days",  each [SalesQty90Days]  / [EffDays90],  type number),
 				    AddV180 = Table.AddColumn(AddV90,        "SalesVelocity180Days", each [SalesQty180Days] / [EffDays180], type number),
 				    AddV365 = Table.AddColumn(AddV180,       "SalesVelocity365Days", each [SalesQty365Days] / [EffDays365], type number),
-				    AddPolicy = Table.AddColumn(AddV365, "PolicyDays", each 120, Int64.Type),
+				    AddPolicy = Table.AddColumn(AddV365, "PolicyDays", each 100, Int64.Type),
 				    AddBlend = Table.AddColumn(AddPolicy, "SalesVelocityQtyPerDay", each
 				        let
 				            life = if [DaysSinceFirstSale] = null then 0 else [DaysSinceFirstSale],
@@ -320,9 +320,13 @@ table Fact_StockCoverPolicy
 				    AddDiff = Table.AddColumn(AddTarget, "StockDifferenceQty", each [NetAvailable] - [TargetStockQty], type number),
 				    AddReorder = Table.AddColumn(AddDiff, "SuggestedReorderQty", each
 				        let
-				            hasPlanningDemand = [SalesQty90Days] >= 1000 or [TargetStockQty] >= 1000 or [OpenSOQty] >= 1000
+				            minSkuOrderQty = 24000,
+				            hasPlanningDemand = [SalesQty90Days] >= 1000 or [TargetStockQty] >= 1000 or [OpenSOQty] >= 1000,
+				            rawReorderQty = [TargetStockQty] - [NetAvailable]
 				        in
-				            if not hasPlanningDemand then 0 else if [NetAvailable] < [TargetStockQty] * 0.9 then [TargetStockQty] - [NetAvailable] else 0,
+				            if not hasPlanningDemand then 0
+				            else if [NetAvailable] < [TargetStockQty] * 0.9 and rawReorderQty > 0 then Number.Max(rawReorderQty, minSkuOrderQty)
+				            else 0,
 				        type number),
 				    AddExcess = Table.AddColumn(AddReorder, "ExcessQty", each
 				        let

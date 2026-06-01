@@ -2,10 +2,11 @@
 
 ## Date
 
-- Last updated: May 27, 2026
+- Last updated: Jun 1, 2026
 
 ## Current snapshot
 
+- **Jun 1, 2026** — PAPER Inventory Fabric semantic model now uses a **100-day** stock-cover policy and applies a **24-ton minimum order per SKU** inside `Fact_StockCoverPolicy[SuggestedReorderQty]`. Stock Actions remains ton-based and adds `MOQ Extra (Tons)` to explain the uplift when the raw shortage is below the minimum order. Fabric semantic refresh / app review is required before treating the result as live.
 - **May 27, 2026** — PAPER Inventory Stock Health / Stock Actions logic adjusted in the Fabric semantic model so low-demand zero-stock rows no longer show as **Healthy**. The 1-ton planning threshold remains, but those rows now surface as `Low demand - no stock` / `Review slow mover`; sub-ton targets display as `<1` ton. Fabric semantic refresh is required before the app reflects the change.
 - **May 27, 2026** — PAPER Inventory Fabric copy standardized around the confirmed SAP **KG → tons** convention. Report labels now expose tons/per-ton wording, Stock Value detail quantity uses `_Measures[IV Stock Qty]` instead of raw `InventoryValuation[StockQty]`, `Reorder IQD Impact` uses raw kg × IQD/kg, and current-cost fallback converts SAP kg prices to IQD/ton.
 - **May 24, 2026** — Item-level **150-day** stock-cover override for nine `#N/A` film SKUs (`NP-C-0710*` PG variants) in `Fact_StockCoverPolicy` (Fabric + CANON). Other N/A items stay 60 days.
