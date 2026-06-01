@@ -5,12 +5,12 @@
     "x": 1211.39,
     "y": 265.5,
     "z": 400,
-    "height": 387,
+    "height": 787.5,
     "width": 644.61,
     "tabOrder": 1000
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "CollectionsFact"
+                      "Entity": "Dim_Date"
                     }
                   },
-                  "Property": "PostingDate"
+                  "Property": "YearMonth"
                 }
               },
-              "queryRef": "CollectionsFact.PostingDate",
-              "nativeQueryRef": "PostingDate",
+              "queryRef": "Dim_Date.YearMonth",
+              "nativeQueryRef": "YearMonth",
               "active": true
             }
           ]
@@ -64,10 +64,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "CollectionsFact"
+                    "Entity": "Dim_Date"
                   }
                 },
-                "Property": "PostingDate"
+                "Property": "YearMonth"
               }
             },
             "direction": "Ascending"
@@ -292,7 +292,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Monthly Collections Trend'"
+                  "Value": "'Collections by Month'"
                 }
               }
             },

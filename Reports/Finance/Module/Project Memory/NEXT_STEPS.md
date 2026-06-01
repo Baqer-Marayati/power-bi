@@ -2,7 +2,7 @@
 
 ## Immediate Priority
 1. Sync Fabric from GitHub after the next push and validate both CANON and PAPERENTITY financial reports show exactly 8 pages: `P&L`, `OpEx`, `Balance sheet`, `ROI`, `Accounts Receivable`, `Accounts Payable`, `Collections`, `Cash`.
-2. Validate the June 1 Fabric last-four-page slicer rail pass in both reports: AR/AP/Collections/Cash should have the standard left panel, content should start around x=520, slicers should filter relevant page visuals, and PAPERENTITY should remain logo-free.
+2. Validate the June 1 Fabric Collections/Cash visual pass in both reports: Collections should show only the customer table plus one tall `Collections by Month` column chart, and Cash should show the balance-by-account bar, type donut, and `Cash Accounts Detail` table. Slicers should filter relevant page visuals and PAPERENTITY should remain logo-free.
 3. Review the rebuilt `P&L` page in both reports: KPI row should be visible, the top visual should be `Revenue, COGS & Gross Profit`, CANON should keep `Net Revenue by Sales Type`, and PAPERENTITY should show `Sales Revenue by Customer`.
 1. After repository cleanup changes, run structure validation and open the active PBIPs in Power BI Desktop when path-sensitive script or PBIP guardrail changes need end-to-end confirmation.
 2. Reopen the PBIP after each semantic-model pass and capture screenshots of the remaining broken pages.
@@ -32,8 +32,8 @@
 ## New Pages Validation
 - Open the PBIP in Desktop and refresh to validate the 3 new pages: `Receivables`, `Collections`, `Cash Position`.
 - Confirm `ReceivablesFact`, `CollectionsFact`, `CashPositionFact`, and `DimBusinessPartner` tables load cleanly.
-- Verify slicer interactions filter the pivot tables and KPI cards correctly on Receivables and Collections pages.
-- Verify Cash Position charts and detail table render with correct account balances.
+- Verify slicer interactions filter the pivot tables, KPI cards, and the Collections monthly chart correctly on Receivables and Collections pages.
+- Verify Cash Position charts and the account detail table render with correct account balances.
 - Fine-tune layout spacing, card typography, and chart formatting in Desktop if needed.
 - After validation, review directly from the active company PBIP.
 - If true historical AR/AP/Cash as-of behavior becomes required, model it from dated ledger/cash movement sources before adding any date slicer to those pages.

@@ -18,6 +18,7 @@
 - Durable rules and historical rationale live in `DECISIONS.md` and `MODEL_NOTES.md`; this file is for the current snapshot and next validation focus.
 - Fabric DevelopmentWorkspace copies now have consistent left slicer rails on the last four pages for both CANON and PAPERENTITY: `Accounts Receivable`, `Accounts Payable`, `Collections`, and `Cash`. CANON keeps its existing AR rail, AP/Cash now have rails, and Collections uses the same period/customer/collector/origin rail as PAPERENTITY.
 - AR/AP/Cash rails intentionally use real snapshot-domain fields, not a `Dim_Date` as-of slicer. Collections uses `Dim_Date` Year/Quarter/Month because `CollectionsFact.PostingDate -> Dim_Date.Date` is an active model relationship.
+- Fabric DevelopmentWorkspace Collections now uses the approved two-main-visual layout in both company reports: `Collections by Customer` table plus one tall `Collections by Month` column chart. Cash now uses the approved three-main-visual layout: balance-by-account bar, distribution-by-type donut, and `Cash Accounts Detail` table.
 
 ## Active Pages
 
@@ -45,7 +46,7 @@ The Fabric financial report shell currently contains these 8 visible pages in `p
 
 ## Current Validation Focus
 
-- **Fabric last-four-page rail pass (2026-06-01):** After Git sync, open both `Canon Financial Report` and `Paper Financial Report` from Fabric/Power BI Desktop and validate `Accounts Receivable`, `Accounts Payable`, `Collections`, and `Cash`: left rail present, main content starts around x=520, KPI rows fit within the page, slicers filter cards/tables/charts, and PAPERENTITY remains logo-free.
+- **Fabric Collections/Cash visual pass (2026-06-01):** After Git sync, open both `Canon Financial Report` and `Paper Financial Report` from Fabric/Power BI Desktop and validate `Collections` (customer table + one tall monthly column chart; no origin/type chart) and `Cash` (balance bar + type donut + cash account detail table). Also recheck the left rail, KPI fit, slicer filtering, and PAPERENTITY logo-free behavior.
 - **PAPERENTITY ROI:** Open `Paper Financial Report.pbip`, refresh, and validate the ROI page: the Monthly ROI line chart should be annualized monthly `[Net Profit] / [Average Company Capital]`; the bottom ROI card should stay blank for Year `All`/no year/multi-year selections and show ROI only when exactly one year is selected.
 - **CANON ROI:** Reopen `Canon Financial Report.pbip`, refresh, and validate that the ROI card stays blank for Year `All`/no year/multi-year selections, shows only when exactly one year is selected, and uses `[Average Company Capital]` based on 12 month-end snapshots of account `310101010101`.
 - **PAPERENTITY:** After pull, open `Paper Financial Report.pbip` and validate the **Balance sheet** page: **Largest Balance Sheet Accounts** (all `Dim_BSAccount` names) plus the **SAP equity check** three-bar visual vs SAP (same as-of date): **3000100**, **3000500**, FY **`[Net Profit]`** through **`MAX(Dim_Date[Date])`**.

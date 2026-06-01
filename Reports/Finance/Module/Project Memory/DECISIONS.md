@@ -213,8 +213,8 @@
 ## Receivables / Collections / Cash Position Layout
 - Receivables table (`recv_table`) height: **630px** (user-adjusted from 700).
 - Receivables page uses 6 KPI percentage cards (Future, 0-30, 30-60, 60-90, 90-120, 120+) at 158px wide, aligned with table width.
-- Collections page: table on left (520px), two stacked charts on right (trend line on top, type bar on bottom, each 344px tall).
-- Cash Position page: bar + donut charts on top row, "Debit vs Credit by Type" clustered column chart at bottom (replaces old Account Detail table).
+- Collections page: table on left (520px) plus one full-height monthly collections column chart on the right; the former stacked daily trend and origin/type bar are no longer the desired management layout.
+- Cash Position page: balance-by-account bar + distribution-by-type donut on the top row, with a bottom cash account detail table replacing the old "Debit vs Credit by Type" clustered column chart.
 - Cash Position bar chart: zoom slider disabled (user preference).
 
 ## Records Folder
