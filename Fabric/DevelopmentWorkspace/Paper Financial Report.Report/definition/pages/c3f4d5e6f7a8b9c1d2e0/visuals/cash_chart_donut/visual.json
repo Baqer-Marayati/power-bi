@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "cash_chart_donut",
   "position": {
-    "x": 1211.39,
-    "y": 265.5,
-    "z": 500,
-    "height": 472.5,
-    "width": 644.61,
-    "tabOrder": 7000
+    "x": 520.31168831168827,
+    "y": 656.62337662337666,
+    "z": 3000,
+    "height": 377.35064935064935,
+    "width": 1336.5194805194806,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "donutChart",
@@ -101,7 +101,7 @@
             "position": {
               "expr": {
                 "Literal": {
-                  "Value": "'Bottom'"
+                  "Value": "'RightCenter'"
                 }
               }
             }
@@ -443,27 +443,6 @@
       "dropShadow": [
         {
           "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Outer'"
-                }
-              }
-            },
-            "preset": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Bottom'"
-                }
-              }
-            },
             "angle": {
               "expr": {
                 "Literal": {
@@ -496,6 +475,27 @@
               "expr": {
                 "Literal": {
                   "Value": "70L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outer'"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bottom'"
                 }
               }
             }

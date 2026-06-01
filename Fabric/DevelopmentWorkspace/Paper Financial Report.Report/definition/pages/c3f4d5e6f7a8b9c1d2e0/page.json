@@ -79,11 +79,6 @@
       "source": "cash_slicer_account_type",
       "target": "cash_kpi_total",
       "type": "DataFilter"
-    },
-    {
-      "source": "cash_slicer_account_type",
-      "target": "cash_table_detail",
-      "type": "DataFilter"
     }
   ]
 }
