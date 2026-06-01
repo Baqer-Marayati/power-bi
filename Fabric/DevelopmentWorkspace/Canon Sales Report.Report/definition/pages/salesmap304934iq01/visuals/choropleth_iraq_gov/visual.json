@@ -61,7 +61,7 @@
               "queryRef": "_Measures.Governorate Tooltip Sales",
               "nativeQueryRef": "Sales",
               "active": true,
-              "displayName": "Net Revenue"
+              "displayName": "Sales"
             },
             {
               "field": {
@@ -277,6 +277,13 @@
                       "Value": "'#C9D5E3'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
                 }
               }
             }
