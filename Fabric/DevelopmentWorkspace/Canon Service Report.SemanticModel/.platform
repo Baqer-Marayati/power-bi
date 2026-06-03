@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Canon Service Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "62a4a45d-c79a-01db-95ef-1958bf4b4d95"
+  }
+}
