@@ -74,35 +74,11 @@ table Dim_Equipment
 
 		annotation SummarizationSetBy = Automatic
 
-	column ProjectCode
-		dataType: string
-		lineageTag: d1a00005-0001-4000-a005-00000000000b
-		summarizeBy: none
-		sourceColumn: ProjectCode
-
-		annotation SummarizationSetBy = Automatic
-
-	column HasProject
-		dataType: string
-		lineageTag: d1a00005-0001-4000-a005-00000000000c
-		summarizeBy: none
-		sourceColumn: HasProject
-
-		annotation SummarizationSetBy = Automatic
-
-	column ItemGroupClass
-		dataType: string
-		lineageTag: d1a00005-0001-4000-a005-00000000000d
-		summarizeBy: none
-		sourceColumn: ItemGroupClass
-
-		annotation SummarizationSetBy = Automatic
-
 	partition Dim_Equipment = m
 		mode: import
 		source =
 				let
-				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  E.""insID"" AS ""EquipmentKey"",#(lf)  E.""customer"" AS ""CustomerCode"",#(lf)  E.""itemCode"" AS ""ItemCode"",#(lf)  E.""itemName"" AS ""ItemName"",#(lf)  E.""manufSN"" AS ""ManufacturerSN"",#(lf)  E.""internalSN"" AS ""InternalSN"",#(lf)  E.""instLction"" AS ""InstallLocation"",#(lf)  CASE E.""status""#(lf)    WHEN 'A' THEN 'Active'#(lf)    WHEN 'I' THEN 'Inactive'#(lf)    WHEN 'R' THEN 'Returned'#(lf)    ELSE E.""status""#(lf)  END AS ""Status"",#(lf)  E.""U_Project"" AS ""ProjectCode"",#(lf)  CASE WHEN E.""U_Project"" IS NOT NULL AND E.""U_Project"" <> '' AND E.""U_Project"" <> 'PR-000' THEN 'Yes' ELSE 'No' END AS ""HasProject"",#(lf)  CASE#(lf)    WHEN G.""ItmsGrpNam"" LIKE 'B2B - IPS%' THEN 'Production'#(lf)    WHEN G.""ItmsGrpNam"" = '#N/A' THEN 'Production'#(lf)    WHEN G.""ItmsGrpCod"" = 139 THEN 'Production'#(lf)    WHEN E.""U_Project"" IS NOT NULL AND E.""U_Project"" <> '' AND E.""U_Project"" <> 'PR-000' THEN 'Production'#(lf)    WHEN G.""ItmsGrpNam"" LIKE 'B2B - DS Copier%' THEN 'Office'#(lf)    WHEN G.""ItmsGrpNam"" LIKE 'B2C%' THEN 'Consumer'#(lf)    WHEN G.""ItmsGrpCod"" IN (172,173,174,175,176,177) THEN 'Service'#(lf)    ELSE 'Other'#(lf)  END AS ""MachineClass"",#(lf)  CASE#(lf)    WHEN G.""ItmsGrpNam"" LIKE 'B2B - IPS%' THEN 'Production'#(lf)    WHEN G.""ItmsGrpNam"" = '#N/A' THEN 'Production'#(lf)    WHEN G.""ItmsGrpCod"" = 139 THEN 'Production'#(lf)    WHEN G.""ItmsGrpNam"" LIKE 'B2B - DS Copier%' THEN 'Office'#(lf)    WHEN G.""ItmsGrpNam"" LIKE 'B2C%' THEN 'Consumer'#(lf)    WHEN G.""ItmsGrpCod"" IN (172,173,174,175,176,177) THEN 'Service'#(lf)    ELSE 'Other'#(lf)  END AS ""ItemGroupClass""#(lf)FROM ""CANON"".""OINS"" E#(lf)LEFT JOIN ""CANON"".""OITM"" I ON E.""itemCode"" = I.""ItemCode""#(lf)LEFT JOIN ""CANON"".""OITB"" G ON I.""ItmsGrpCod"" = G.""ItmsGrpCod""")
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  E.""insID"" AS ""EquipmentKey"",#(lf)  E.""customer"" AS ""CustomerCode"",#(lf)  E.""itemCode"" AS ""ItemCode"",#(lf)  E.""itemName"" AS ""ItemName"",#(lf)  E.""manufSN"" AS ""ManufacturerSN"",#(lf)  E.""internalSN"" AS ""InternalSN"",#(lf)  E.""instLction"" AS ""InstallLocation"",#(lf)  CASE E.""status""#(lf)    WHEN 'A' THEN 'Active'#(lf)    WHEN 'I' THEN 'Inactive'#(lf)    WHEN 'R' THEN 'Returned'#(lf)    ELSE E.""status""#(lf)  END AS ""Status"",#(lf)  CASE#(lf)    WHEN G.""ItmsGrpNam"" LIKE 'B2B - IPS%' THEN 'Production'#(lf)    WHEN G.""ItmsGrpNam"" = '#N/A' THEN 'Production'#(lf)    WHEN G.""ItmsGrpCod"" = 139 THEN 'Production'#(lf)    WHEN G.""ItmsGrpNam"" LIKE 'B2B - DS Copier%' THEN 'Office'#(lf)    WHEN G.""ItmsGrpNam"" LIKE 'B2C%' THEN 'Consumer'#(lf)    ELSE 'Other'#(lf)  END AS ""MachineClass""#(lf)FROM ""CANON"".""OINS"" E#(lf)LEFT JOIN ""CANON"".""OITM"" I ON E.""itemCode"" = I.""ItemCode""#(lf)LEFT JOIN ""CANON"".""OITB"" G ON I.""ItmsGrpCod"" = G.""ItmsGrpCod""")
 				in
 				    Source
 

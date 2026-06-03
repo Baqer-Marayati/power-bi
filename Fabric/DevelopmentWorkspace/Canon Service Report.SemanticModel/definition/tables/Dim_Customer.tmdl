@@ -17,19 +17,11 @@ table Dim_Customer
 
 		annotation SummarizationSetBy = Automatic
 
-	column CustomerType
-		dataType: string
-		lineageTag: d1a00003-0001-4000-a003-000000000004
-		summarizeBy: none
-		sourceColumn: CustomerType
-
-		annotation SummarizationSetBy = Automatic
-
 	partition Dim_Customer = m
 		mode: import
 		source =
 				let
-				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  C.""CardCode"" AS ""CustomerCode"",#(lf)  C.""CardName"" AS ""CustomerName"",#(lf)  CASE WHEN C.""U_SolutionType"" IS NULL OR C.""U_SolutionType"" = '' THEN NULL ELSE C.""U_SolutionType"" END AS ""CustomerType""#(lf)FROM ""CANON"".""OCRD"" C#(lf)WHERE C.""CardType"" = 'C'")
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  C.""CardCode"" AS ""CustomerCode"",#(lf)  C.""CardName"" AS ""CustomerName""#(lf)FROM ""CANON"".""OCRD"" C#(lf)WHERE C.""CardType"" = 'C'")
 				in
 				    Source
 
