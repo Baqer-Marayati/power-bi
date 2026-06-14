@@ -1,0 +1,39 @@
+table DimBusinessPartnerSalesperson
+	lineageTag: 7c594eed-21a4-4f4b-b405-3c24d0d0f96f
+
+	column CardCode
+		dataType: string
+		lineageTag: 6a58cf04-6ae8-4a54-8a49-38f5e3e15b22
+		summarizeBy: none
+		sourceColumn: CardCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SlpCode
+		dataType: int64
+		formatString: 0
+		lineageTag: 7970eaf8-0e15-4c19-9082-e6fa6f1267de
+		summarizeBy: none
+		sourceColumn: SlpCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesPerson
+		dataType: string
+		lineageTag: ac2e8401-8193-48e6-a05d-2d831d03d9ea
+		summarizeBy: none
+		sourceColumn: SalesPerson
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimBusinessPartnerSalesperson = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  C.""CardCode"",#(lf)  COALESCE(C.""SlpCode"", -1) AS ""SlpCode"",#(lf)  COALESCE(S.""SlpName"", 'Unassigned') AS ""SalesPerson""#(lf)FROM ""CANON"".""OCRD"" C#(lf)LEFT JOIN ""CANON"".""OSLP"" S#(lf)  ON S.""SlpCode"" = C.""SlpCode""#(lf)WHERE C.""CardType"" = 'C'#(lf)  AND COALESCE(C.""U_PartnerType"", '') = 'Reseller';")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation

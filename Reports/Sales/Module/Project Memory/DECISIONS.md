@@ -49,6 +49,11 @@
 - Hardening: `Company Sales` must clear the full `Geo_Governorate_Map` and `Geo_City_Reference` tables, not only `Governorate`, because Deneb row context also carries `SvgPath`; leaving that path filter active makes the tooltip percentage divide each governorate by itself.
 - Keep Deneb's `SvgPath`, Sales, Customers, and SalesPct projections active and align the visual viewport with the locked `773.33 x 690` container so Desktop renders from the high-detail vector layer cleanly.
 
+## 2026-06-14 — Rebate page salesperson assignment slicer
+- Canon Sales Rebate page uses SAP customer assignment from `OCRD.SlpCode`, joined to `OSLP.SlpName`, for the Salesmen slicer.
+- The Fabric iteration adds `DimBusinessPartnerSalesperson` as a small reseller-only assignment dimension and relates it directly to `BP_Rebate_Fact` by `CardCode`; do not add a second `DimSalesperson` relationship for this page because it can blur assigned salesperson with transactional salesperson.
+- The slicer should filter rebate visuals to resellers assigned to the selected salesperson in SAP.
+
 ## Server Safety Rule
 - Same as Finance: this server hosts the production SAP database.
 - All actions are production-critical. Read-only and passive automation only.
