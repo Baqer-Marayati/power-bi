@@ -71,6 +71,11 @@
       "type": "DataFilter"
     },
     {
+      "source": "slicer_warehouse",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
       "source": "ab626e2560d342439203",
       "target": "table_reorder_actions",
       "type": "DataFilter"

@@ -442,11 +442,19 @@ table _Measures
 	measure 'Reorder Table Row Keeper' =
 			VAR NumPolicyRows =
 			    CALCULATE ( COUNTROWS ( Fact_StockCoverPolicy ) )
+			VAR WarehouseFilterActive =
+			    ISFILTERED ( Dim_Warehouse[WhsCode] )
+			        || ISFILTERED ( Dim_Warehouse[WhsName] )
+			VAR WarehouseStockRows =
+			    CALCULATE (
+			        COUNTROWS ( Fact_WarehouseStock ),
+			        TREATAS ( VALUES ( Fact_StockCoverPolicy[ItemCode] ), Fact_WarehouseStock[ItemCode] )
+			    )
 			RETURN
 			    IF (
 			        HASONEVALUE ( Fact_StockCoverPolicy[ItemCode] )
 			            && NumPolicyRows = 1,
-			        1
+			        IF ( NOT WarehouseFilterActive || WarehouseStockRows > 0, 1 )
 			    )
 		formatString: 0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa068a
