@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "Dim_Warehouse.WhsName",
-              "nativeQueryRef": "Warehouse",
+              "nativeQueryRef": "WhsName",
               "active": true
             }
           ]
