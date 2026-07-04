@@ -2,7 +2,7 @@
 
 ## Date
 
-- Last updated: June 1, 2026
+- Last updated: July 4, 2026
 
 ## Current Source Of Truth
 
@@ -32,7 +32,7 @@ The Fabric financial report shell currently contains these 8 visible pages in `p
 7. `Collections`
 8. `Cash`
 
-`P&L` now owns the former Financial summary role, with the KPI row restored plus two stretched visuals. CANON uses `Revenue, COGS & Gross Profit` plus `Net Revenue by Sales Type`; PAPERENTITY uses `Revenue, COGS & Gross Profit` plus `Sales Revenue by Customer`. The old `Profit & loss` and `Sales & revenue` page folders were deleted from the Fabric DevelopmentWorkspace copies so Fabric should surface only 8 pages after Git sync.
+`P&L` now owns the former Financial summary role, with the KPI row restored plus two stretched visuals. CANON uses `Revenue, COGS & Gross Profit` plus `Net Revenue by Sales Type`; PAPERENTITY uses `Revenue, COGS & Gross Profit` plus `Net Revenue by Customer`, now sourced from `Fact_PNL` so the chart aligns to the P&L page revenue logic instead of invoice-line sales detail. The old `Profit & loss` and `Sales & revenue` page folders were deleted from the Fabric DevelopmentWorkspace copies so Fabric should surface only 8 pages after Git sync.
 
 ## Stable Current Assumptions
 

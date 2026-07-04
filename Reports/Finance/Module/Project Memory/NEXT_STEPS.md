@@ -3,7 +3,7 @@
 ## Immediate Priority
 1. Sync Fabric from GitHub after the next push and validate both CANON and PAPERENTITY financial reports show exactly 8 pages: `P&L`, `OpEx`, `Balance sheet`, `ROI`, `Accounts Receivable`, `Accounts Payable`, `Collections`, `Cash`.
 2. Validate the June 1 Fabric Collections/Cash visual pass in both reports: Collections should show only the customer table plus one tall `Collections by Month` column chart, and Cash should show the balance-by-account bar, type donut, and `Cash Accounts Detail` table. Slicers should filter relevant page visuals and PAPERENTITY should remain logo-free.
-3. Review the rebuilt `P&L` page in both reports: KPI row should be visible, the top visual should be `Revenue, COGS & Gross Profit`, CANON should keep `Net Revenue by Sales Type`, and PAPERENTITY should show `Sales Revenue by Customer`.
+3. Review the rebuilt `P&L` page in both reports: KPI row should be visible, the top visual should be `Revenue, COGS & Gross Profit`, CANON should keep `Net Revenue by Sales Type`, and PAPERENTITY should show `Net Revenue by Customer` that reconciles to the page's P&L net revenue logic, including any `Unassigned / Manual Adjustment` bucket for revenue journals not linked to invoice/credit memo headers.
 1. After repository cleanup changes, run structure validation and open the active PBIPs in Power BI Desktop when path-sensitive script or PBIP guardrail changes need end-to-end confirmation.
 2. Reopen the PBIP after each semantic-model pass and capture screenshots of the remaining broken pages.
 3. Recheck whether the right-pane warnings for `generalLedgerEntries` and `accounts` are gone after the latest cleanup pass.

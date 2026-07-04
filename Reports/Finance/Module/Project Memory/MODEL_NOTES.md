@@ -145,6 +145,12 @@
 - If refresh fails with an unknown column error, confirm the **technical UDF name** on `OITM` in the company database (Customization → UDF may show a different `U_...` code than `U_BusinessType`) and update the SQL in `Fact_SalesDetail.tmdl` only for that identifier.
 - Do not reintroduce a **disconnected** mapping table on the chart axis for this visual; source-of-truth for the bucket is **SAP item master**, not a static `DATATABLE` map in the model.
 
+## PAPERENTITY — P&L customer revenue chart now uses P&L source (2026-07-04)
+- Fabric PAPERENTITY `P&L` chart **`Net Revenue by Customer`** now uses `Fact_PNL[CardName]` plus `[Net Revenue]`, not `Fact_SalesDetail[CardName]` plus `[Sales Revenue]`.
+- `Fact_PNL` in `Fabric/DevelopmentWorkspace/Paper Financial Report.SemanticModel` now adds `CardCode` and `CardName` by merging the existing P&L journal rows to SAP marketing-document headers (`OINV` / `ORIN`) on `TransId`.
+- Revenue journals that do not link to an invoice or credit memo are intentionally bucketed as **`Unassigned / Manual Adjustment`** so the customer bars can still reconcile to the P&L page's net revenue total instead of silently dropping manual/accounting-only revenue.
+- This is a Fabric-iteration change. If the company PBIP under `Reports/Finance/Companies/PAPERENTITY/` is later reconciled from Fabric, preserve this P&L-based customer attribution instead of reverting to invoice-line `Fact_SalesDetail` logic.
+
 ## PAPERENTITY — Balance sheet: largest accounts + SAP equity check (2026-04-11)
 
 - The **Balance sheet** page keeps the **Canon-style** visual **`Largest Balance Sheet Accounts`**: **`Dim_BSAccount[AcctName]`** on the category axis and **`[BS Balance Display]`** (all balance-sheet accounts by name, sorted by balance). This is the **detailed per-account** view; it matches the **Canon** page pattern.

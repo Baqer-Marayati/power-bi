@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_SalesDetail"
+                      "Entity": "Fact_PNL"
                     }
                   },
                   "Property": "CardName"
                 }
               },
-              "queryRef": "Fact_SalesDetail.CardName",
+              "queryRef": "Fact_PNL.CardName",
               "nativeQueryRef": "Customer",
               "active": true
             }
@@ -42,11 +42,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Sales Revenue"
+                  "Property": "Net Revenue"
                 }
               },
-              "queryRef": "_Measures.Sales Revenue",
-              "nativeQueryRef": "Sales Revenue"
+              "queryRef": "_Measures.Net Revenue",
+              "nativeQueryRef": "Net Revenue"
             }
           ]
         }
@@ -61,7 +61,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Sales Revenue"
+                "Property": "Net Revenue"
               }
             },
             "direction": "Descending"
@@ -217,7 +217,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales Revenue by Customer'"
+                  "Value": "'Net Revenue by Customer'"
                 }
               }
             },
