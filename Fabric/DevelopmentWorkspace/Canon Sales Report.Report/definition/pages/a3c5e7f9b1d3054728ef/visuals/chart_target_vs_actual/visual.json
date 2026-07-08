@@ -2,18 +2,18 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_target_vs_actual",
   "position": {
-    "x": 511.66666666666669,
-    "y": 264.66666666666669,
+    "x": 511.6666666666667,
+    "y": 264.6666666666667,
     "z": 0,
     "height": 371,
     "width": 1355,
     "tabOrder": 12000
   },
   "visual": {
-    "visualType": "hundredPercentStackedColumnChart",
+    "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Category": {
+        "Rows": {
           "projections": [
             {
               "field": {
@@ -28,11 +28,12 @@
               },
               "queryRef": "CommissionEmployee.SalesPerson",
               "nativeQueryRef": "Employee",
-              "active": true
+              "active": true,
+              "displayName": "Employee"
             }
           ]
         },
-        "Y": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -42,12 +43,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Comp Target"
+                  "Property": "Monthly Salary Target"
                 }
               },
-              "queryRef": "_Measures.Comp Target",
-              "nativeQueryRef": "Target",
-              "displayName": "Target"
+              "queryRef": "_Measures.Monthly Salary Target",
+              "nativeQueryRef": "Monthly Target",
+              "displayName": "Monthly Target"
             },
             {
               "field": {
@@ -57,12 +58,72 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Comp Actual"
+                  "Property": "Monthly Salary Actual"
                 }
               },
-              "queryRef": "_Measures.Comp Actual",
-              "nativeQueryRef": "Actual",
-              "displayName": "Actual"
+              "queryRef": "_Measures.Monthly Salary Actual",
+              "nativeQueryRef": "Monthly Actual",
+              "displayName": "Monthly Actual"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Monthly Salary Achievement %"
+                }
+              },
+              "queryRef": "_Measures.Monthly Salary Achievement %",
+              "nativeQueryRef": "Achievement %",
+              "displayName": "Achievement %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Monthly Salary Base"
+                }
+              },
+              "queryRef": "_Measures.Monthly Salary Base",
+              "nativeQueryRef": "Salary",
+              "displayName": "Salary"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Monthly Salary Payout %"
+                }
+              },
+              "queryRef": "_Measures.Monthly Salary Payout %",
+              "nativeQueryRef": "Salary Payout %",
+              "displayName": "Salary Payout %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Monthly Salary Payable"
+                }
+              },
+              "queryRef": "_Measures.Monthly Salary Payable",
+              "nativeQueryRef": "Salary Payable",
+              "displayName": "Salary Payable"
             }
           ]
         }
@@ -77,89 +138,416 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Comp Target"
+                "Property": "Monthly Salary Payable"
               }
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
     },
     "objects": {
-      "legend": [
+      "subTotals": [
         {
           "properties": {
-            "show": {
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "rowSubtotals": {
               "expr": {
                 "Literal": {
                   "Value": "true"
                 }
               }
             },
-            "position": {
+            "perRowLevel": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top'"
+                  "Value": "false"
+                }
+              }
+            },
+            "rowSubtotalsPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bottom'"
                 }
               }
             }
           }
-        }
-      ],
-      "categoryAxis": [
+        },
         {
           "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "valueAxis": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
-    "visualContainerObjects": {
-      "background": [
-        {
-          "properties": {
-            "show": {
+            "bold": {
               "expr": {
                 "Literal": {
                   "Value": "true"
                 }
               }
             },
-            "color": {
+            "applyToHeaders": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "backColor": {
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0.4
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "Row"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "titleAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "layout": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Compact'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "steppedLayoutIndentation": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowTotal": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0.6
                     }
                   }
                 }
               }
             },
-            "transparency": {
+            "applyToHeaders": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Monthly Salary Target"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Monthly Salary Actual"
+          }
+        },
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Monthly Salary Achievement %"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Monthly Salary Base"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "243.56086459922182D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Monthly Salary Target"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "221.9961420087838D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Monthly Salary Actual"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "194.5708378657073D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Monthly Salary Achievement %"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "214.66668445770063D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Monthly Salary Base"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "435.4402266111275D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "CommissionEmployee.SalesPerson"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default'"
                 }
               }
             }
@@ -210,14 +598,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Target vs Actual by Employee'"
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                  "Value": "'Monthly Salary Status'"
                 }
               }
             },
@@ -233,71 +614,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2E3A42'"
+                      "Value": "'#1F4E79'"
                     }
                   }
                 }
               }
-            }
-          }
-        }
-      ],
-      "dropShadow": [
-        {
-          "properties": {
-            "angle": {
-              "expr": {
-                "Literal": {
-                  "Value": "135L"
-                }
-              }
             },
-            "shadowDistance": {
+            "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "10L"
-                }
-              }
-            },
-            "shadowBlur": {
-              "expr": {
-                "Literal": {
-                  "Value": "10L"
-                }
-              }
-            },
-            "shadowSpread": {
-              "expr": {
-                "Literal": {
-                  "Value": "3L"
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "70L"
-                }
-              }
-            },
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Outer'"
-                }
-              }
-            },
-            "preset": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Bottom'"
+                  "Value": "'Segoe UI Semibold'"
                 }
               }
             }

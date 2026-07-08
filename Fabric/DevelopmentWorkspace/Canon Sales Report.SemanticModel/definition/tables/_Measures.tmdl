@@ -433,6 +433,265 @@ table _Measures
 		formatString: #,0
 		lineageTag: 5a6b7c8d-0014-4000-8000-000000000014
 
+	measure 'Monthly Salary Period Count' =
+
+			IF (
+			    ISFILTERED ( DateTable[Month] )
+			        || ISFILTERED ( DateTable[MonthYear] )
+			        || ISFILTERED ( DateTable[YearMonth] ),
+			    MAX ( 1, DISTINCTCOUNT ( DateTable[YearMonthKey] ) )
+			)
+		formatString: 0
+		lineageTag: 5a6b7c8d-0016-4000-8000-000000000016
+
+	measure 'Monthly Salary Target' =
+
+			VAR PeriodCount = [Monthly Salary Period Count]
+			RETURN
+			    IF (
+			        ISINSCOPE ( CommissionEmployee[SalesPerson] ),
+			        IF ( [Comp Row Visible] = 1, SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ) * PeriodCount ),
+			        SUMX (
+			            FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
+			            SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ) * PeriodCount
+			        )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0017-4000-8000-000000000017
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Monthly Salary Actual' =
+
+			IF (
+			    ISBLANK ( [Monthly Salary Period Count] ),
+			    BLANK (),
+			    IF (
+			        ISINSCOPE ( CommissionEmployee[SalesPerson] ),
+			        [Comp Row Actual],
+			        SUMX (
+			            FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
+			            [Comp Row Actual]
+			        )
+			    )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0018-4000-8000-000000000018
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Monthly Salary Achievement %' =
+
+			DIVIDE ( [Monthly Salary Actual], [Monthly Salary Target], 0 )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5a6b7c8d-0019-4000-8000-000000000019
+
+	measure 'Monthly Salary Base' =
+
+			VAR PeriodCount = [Monthly Salary Period Count]
+			RETURN
+			    IF (
+			        ISINSCOPE ( CommissionEmployee[SalesPerson] ),
+			        IF ( [Comp Row Visible] = 1, SELECTEDVALUE ( CommissionEmployee[Salary] ) * PeriodCount ),
+			        SUMX (
+			            FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
+			            SELECTEDVALUE ( CommissionEmployee[Salary] ) * PeriodCount
+			        )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0020-4000-8000-000000000020
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Monthly Salary Payout %' =
+
+			VAR TargetValue = [Monthly Salary Target]
+			VAR ActualValue = [Monthly Salary Actual]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( TargetValue ), BLANK (),
+			        ISINSCOPE ( CommissionEmployee[SalesPerson] ) && ActualValue >= TargetValue, 1,
+			        ISINSCOPE ( CommissionEmployee[SalesPerson] ), 0.75,
+			        DIVIDE ( [Monthly Salary Payable], [Monthly Salary Base] )
+			    )
+		formatString: 0%;-0%;0%
+		lineageTag: 5a6b7c8d-0021-4000-8000-000000000021
+
+	measure 'Monthly Salary Payable' =
+
+			VAR PeriodCount = [Monthly Salary Period Count]
+			RETURN
+			    IF (
+			        ISBLANK ( PeriodCount ),
+			        BLANK (),
+			        SUMX (
+			            FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
+			            VAR TargetValue = SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ) * PeriodCount
+			            VAR ActualValue = [Comp Row Actual]
+			            VAR SalaryValue = SELECTEDVALUE ( CommissionEmployee[Salary] ) * PeriodCount
+			            RETURN
+			                SWITCH (
+			                    TRUE (),
+			                    ISBLANK ( TargetValue ), BLANK (),
+			                    ActualValue >= TargetValue, SalaryValue,
+			                    SalaryValue * 0.75
+			                )
+			        )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0022-4000-8000-000000000022
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Quarter Commission Period Count' =
+
+			VAR QuarterCount =
+			    MAX (
+			        1,
+			        CALCULATE (
+			            DISTINCTCOUNT ( DateTable[Quarter] ),
+			            REMOVEFILTERS ( DateTable[Month] ),
+			            REMOVEFILTERS ( DateTable[MonthNumber] ),
+			            REMOVEFILTERS ( DateTable[MonthYear] ),
+			            REMOVEFILTERS ( DateTable[YearMonth] ),
+			            REMOVEFILTERS ( DateTable[YearMonthKey] )
+			        )
+			    )
+			RETURN
+			    IF (
+			        ISFILTERED ( DateTable[Quarter] )
+			            || ISFILTERED ( DateTable[YearQuarter] )
+			            || ISFILTERED ( DateTable[QuarterKey] ),
+			        QuarterCount,
+			        4
+			    )
+		formatString: 0
+		lineageTag: 5a6b7c8d-0023-4000-8000-000000000023
+
+	measure 'Quarter Commission Target' =
+
+			VAR PeriodCount = [Quarter Commission Period Count]
+			RETURN
+			    IF (
+			        ISINSCOPE ( CommissionEmployee[SalesPerson] ),
+			        IF ( [Comp Row Visible] = 1, SELECTEDVALUE ( CommissionEmployee[QuarterTarget] ) * PeriodCount ),
+			        SUMX (
+			            FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
+			            SELECTEDVALUE ( CommissionEmployee[QuarterTarget] ) * PeriodCount
+			        )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0024-4000-8000-000000000024
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Quarter Commission Actual Row' =
+
+			VAR PlanGroupValue = SELECTEDVALUE ( CommissionEmployee[PlanGroup] )
+			VAR SlpCodeValue = SELECTEDVALUE ( CommissionEmployee[SlpCode] )
+			VAR YearValue = SELECTEDVALUE ( DateTable[Year], 2026 )
+			RETURN
+			    IF (
+			        [Comp Row Visible] <> 1,
+			        BLANK (),
+			        SWITCH (
+			            TRUE (),
+			            PlanGroupValue = "ServiceTeam",
+			                CALCULATE (
+			                    [Sales],
+			                    REMOVEFILTERS ( DimSalesperson ),
+			                    REMOVEFILTERS ( SalesFact[SlpCode] ),
+			                    REMOVEFILTERS ( SalesFact[SalesPerson] ),
+			                    REMOVEFILTERS ( DateTable[Month] ),
+			                    REMOVEFILTERS ( DateTable[MonthNumber] ),
+			                    REMOVEFILTERS ( DateTable[MonthYear] ),
+			                    REMOVEFILTERS ( DateTable[YearMonth] ),
+			                    REMOVEFILTERS ( DateTable[YearMonthKey] ),
+			                    KEEPFILTERS ( DateTable[Year] = YearValue ),
+			                    SalesFact[SalesDept] IN { "Service Office", "Service Production" }
+			                ),
+			            NOT ISBLANK ( SlpCodeValue ),
+			                CALCULATE (
+			                    [Sales],
+			                    REMOVEFILTERS ( DateTable[Month] ),
+			                    REMOVEFILTERS ( DateTable[MonthNumber] ),
+			                    REMOVEFILTERS ( DateTable[MonthYear] ),
+			                    REMOVEFILTERS ( DateTable[YearMonth] ),
+			                    REMOVEFILTERS ( DateTable[YearMonthKey] ),
+			                    KEEPFILTERS ( DateTable[Year] = YearValue ),
+			                    TREATAS ( { SlpCodeValue }, SalesFact[SlpCode] )
+			                ),
+			            BLANK ()
+			        )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0029-4000-8000-000000000029
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Quarter Commission Actual' =
+
+			IF (
+			    ISINSCOPE ( CommissionEmployee[SalesPerson] ),
+			    [Quarter Commission Actual Row],
+			    SUMX (
+			        FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
+			        [Quarter Commission Actual Row]
+			    )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0025-4000-8000-000000000025
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Quarter Commission Achievement %' =
+
+			DIVIDE ( [Quarter Commission Actual], [Quarter Commission Target], 0 )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5a6b7c8d-0026-4000-8000-000000000026
+
+	measure 'Quarter Commission Incentive' =
+
+			VAR PeriodCount = [Quarter Commission Period Count]
+			RETURN
+			    IF (
+			        ISINSCOPE ( CommissionEmployee[SalesPerson] ),
+			        IF ( [Comp Row Visible] = 1, SELECTEDVALUE ( CommissionEmployee[QuarterIncentive] ) * PeriodCount ),
+			        SUMX (
+			            FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
+			            SELECTEDVALUE ( CommissionEmployee[QuarterIncentive] ) * PeriodCount
+			        )
+			    )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0027-4000-8000-000000000027
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Quarter Commission Earned' =
+
+			IF (
+			    ISINSCOPE ( CommissionEmployee[SalesPerson] ),
+			    IF (
+			        ISBLANK ( [Quarter Commission Target] ),
+			        BLANK (),
+			        IF ( [Quarter Commission Actual] >= [Quarter Commission Target], [Quarter Commission Incentive], 0 )
+			    ),
+			    SUMX (
+			        FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
+			        IF (
+			            ISBLANK ( [Quarter Commission Target] ),
+			            BLANK (),
+			            IF ( [Quarter Commission Actual] >= [Quarter Commission Target], [Quarter Commission Incentive], 0 )
+			        )
+			    )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0028-4000-8000-000000000028
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 	measure 'Mapped Sales' =
 			
 			CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[IsMapped] = TRUE() ) )
