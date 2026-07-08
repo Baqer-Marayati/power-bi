@@ -124,21 +124,6 @@
               "queryRef": "_Measures.Comp Payable",
               "nativeQueryRef": "Payable",
               "displayName": "Payable"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Comp Review Note"
-                }
-              },
-              "queryRef": "_Measures.Comp Review Note",
-              "nativeQueryRef": "Notes",
-              "displayName": "Notes"
             }
           ]
         }
