@@ -23,6 +23,22 @@
                       "Entity": "CommissionEmployee"
                     }
                   },
+                  "Property": "Department"
+                }
+              },
+              "queryRef": "CommissionEmployee.Department",
+              "nativeQueryRef": "Department",
+              "active": true,
+              "displayName": "Department"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CommissionEmployee"
+                    }
+                  },
                   "Property": "SalesPerson"
                 }
               },
@@ -92,8 +108,8 @@
                 }
               },
               "queryRef": "_Measures.Quarter Commission Gross Margin Percentage",
-              "nativeQueryRef": "Gross Margin Percentage",
-              "displayName": "Gross Margin Percentage"
+              "nativeQueryRef": "Gross Margin %",
+              "displayName": "Gross Margin %"
             },
             {
               "field": {
@@ -264,6 +280,22 @@
                   "Value": "false"
                 }
               }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures"
+                        }
+                      },
+                      "Property": "Comp Department Background Color"
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -322,6 +354,22 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures"
+                        }
+                      },
+                      "Property": "Comp Department Background Color"
+                    }
+                  }
                 }
               }
             }
@@ -529,7 +577,21 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "435.4402266111275D"
+                  "Value": "170D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "CommissionEmployee.Department"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "285D"
                 }
               }
             }

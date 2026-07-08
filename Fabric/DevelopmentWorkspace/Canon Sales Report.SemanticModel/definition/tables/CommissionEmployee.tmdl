@@ -26,6 +26,14 @@ table CommissionEmployee
 
 		annotation SummarizationSetBy = Automatic
 
+	column Department
+		dataType: string
+		lineageTag: 4a5b6c7d-0012-4f12-abcd-2234567890ab
+		summarizeBy: none
+		sourceColumn: [Department]
+
+		annotation SummarizationSetBy = Automatic
+
 	column SAPActive
 		dataType: string
 		lineageTag: 4a5b6c7d-0004-4f12-abcd-2234567890ab
@@ -118,6 +126,13 @@ table CommissionEmployee
 				        "SlpCode", DimSalesperson[SlpCode],
 				        "SalesPerson", DimSalesperson[SalesPerson],
 				        "SalesDept", DimSalesperson[SalesDept],
+				        "Department",
+				            SWITCH (
+				                TRUE (),
+				                [PlanGroupValue] = "ServiceTeam", "Service",
+				                ISBLANK ( DimSalesperson[SalesDept] ), "Unassigned",
+				                DimSalesperson[SalesDept]
+				            ),
 				        "SAPActive", DimSalesperson[Active],
 				        "EmployeeStatus",
 				            SWITCH (
@@ -151,6 +166,13 @@ table CommissionEmployee
 				        "SlpCode", BLANK (),
 				        "SalesPerson", CommissionPlan[SAPSalesPerson],
 				        "SalesDept", BLANK (),
+				        "Department",
+				            SWITCH (
+				                TRUE (),
+				                CommissionPlan[PlanGroup] = "ServiceTeam", "Service",
+				                CommissionPlan[PlanGroup] = "Needs Plan Setup", "Needs Plan Setup",
+				                "Unassigned"
+				            ),
 				        "SAPActive", BLANK (),
 				        "EmployeeStatus", "Needs SAP Match",
 				        "PlanGroup", CommissionPlan[PlanGroup],

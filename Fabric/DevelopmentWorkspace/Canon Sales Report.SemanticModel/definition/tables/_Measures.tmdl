@@ -213,6 +213,24 @@ table _Measures
 		formatString: 0
 		lineageTag: 5a6b7c8d-0002-4000-8000-000000000002
 
+	measure 'Comp Department Background Color' =
+
+			VAR DepartmentValue = SELECTEDVALUE ( CommissionEmployee[Department] )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        DepartmentValue = "Direct", "#EAF2FF",
+			        DepartmentValue = "Indirect", "#EAF7EF",
+			        DepartmentValue = "Online", "#F3EDFF",
+			        DepartmentValue = "Service", "#FFF4DF",
+			        DepartmentValue = "End User", "#EAF7FF",
+			        DepartmentValue = "Resellers", "#F0F7EA",
+			        DepartmentValue = "Needs Plan Setup", "#F4F6F8",
+			        DepartmentValue = "Unassigned", "#F4F6F8",
+			        "#FFFFFF"
+			    )
+		lineageTag: 5a6b7c8d-0036-4000-8000-000000000036
+
 	measure 'Comp Selected Period Count' =
 
 			VAR MonthCount =
