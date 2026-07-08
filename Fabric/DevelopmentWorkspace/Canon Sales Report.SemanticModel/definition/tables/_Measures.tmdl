@@ -207,16 +207,32 @@ table _Measures
 
 	measure 'Comp Row Visible' =
 
-			VAR StatusValue = SELECTEDVALUE ( CommissionEmployee[EmployeeStatus] )
+			VAR SAPActiveValue = SELECTEDVALUE ( CommissionEmployee[SAPActive] )
 			RETURN
-			    IF (
-			        StatusValue = "Inactive"
-			            && NOT ISFILTERED ( CommissionEmployee[EmployeeStatus] ),
-			        0,
-			        1
-			    )
+			    IF ( SAPActiveValue = "Y", 1, 0 )
 		formatString: 0
 		lineageTag: 5a6b7c8d-0002-4000-8000-000000000002
+
+	measure 'Comp Selected Period Count' =
+
+			VAR MonthCount =
+			    MAX ( 1, DISTINCTCOUNT ( DateTable[MonthNumber] ) )
+			VAR QuarterCount =
+			    MAX ( 1, DISTINCTCOUNT ( DateTable[Quarter] ) )
+			RETURN
+			    IF (
+			        [Comp Is Month View] = 1,
+			        MonthCount,
+			        IF (
+			            ISFILTERED ( DateTable[Quarter] )
+			                || ISFILTERED ( DateTable[YearQuarter] )
+			                || ISFILTERED ( DateTable[QuarterKey] ),
+			            QuarterCount,
+			            4
+			        )
+			    )
+		formatString: 0
+		lineageTag: 5a6b7c8d-0015-4000-8000-000000000015
 
 	measure 'Comp Row Salary' =
 
@@ -250,8 +266,8 @@ table _Measures
 			    [Comp Row Visible] = 1,
 			    IF (
 			        [Comp Is Month View] = 1,
-			        SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ),
-			        SELECTEDVALUE ( CommissionEmployee[QuarterTarget] )
+			        SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ) * [Comp Selected Period Count],
+			        SELECTEDVALUE ( CommissionEmployee[QuarterTarget] ) * [Comp Selected Period Count]
 			    )
 			)
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
@@ -349,14 +365,15 @@ table _Measures
 			VAR ActualValue = [Comp Row Actual]
 			VAR SalaryValue = SELECTEDVALUE ( CommissionEmployee[Salary] )
 			VAR IncentiveValue = SELECTEDVALUE ( CommissionEmployee[QuarterIncentive] )
+			VAR PeriodCount = [Comp Selected Period Count]
 			RETURN
 			    SWITCH (
 			        TRUE (),
 			        [Comp Row Visible] <> 1, BLANK (),
 			        ISBLANK ( TargetValue ), BLANK (),
-			        [Comp Is Month View] = 1 && ActualValue >= TargetValue, SalaryValue,
-			        [Comp Is Month View] = 1, SalaryValue * 0.75,
-			        ActualValue >= TargetValue, IncentiveValue,
+			        [Comp Is Month View] = 1 && ActualValue >= TargetValue, SalaryValue * PeriodCount,
+			        [Comp Is Month View] = 1, SalaryValue * 0.75 * PeriodCount,
+			        ActualValue >= TargetValue, IncentiveValue * PeriodCount,
 			        0
 			    )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
