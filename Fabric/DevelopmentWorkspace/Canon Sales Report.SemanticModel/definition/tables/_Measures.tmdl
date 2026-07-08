@@ -299,10 +299,21 @@ table _Measures
 			IF (
 			    ISINSCOPE ( CommissionEmployee[SalesPerson] ),
 			    [Comp Row Target],
-			    SUMX (
-			        FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
-			        [Comp Row Target]
-			    )
+			    VAR ServiceRows =
+			        FILTER (
+			            VALUES ( CommissionEmployee[SalesPerson] ),
+			            [Comp Row Visible] = 1
+			                && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) = "ServiceTeam"
+			        )
+			    VAR NonServiceRows =
+			        FILTER (
+			            VALUES ( CommissionEmployee[SalesPerson] ),
+			            [Comp Row Visible] = 1
+			                && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) <> "ServiceTeam"
+			        )
+			    RETURN
+			        SUMX ( NonServiceRows, [Comp Row Target] )
+			            + MAXX ( ServiceRows, [Comp Row Target] )
 			)
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 5a6b7c8d-0006-4000-8000-000000000006
@@ -346,10 +357,21 @@ table _Measures
 			IF (
 			    ISINSCOPE ( CommissionEmployee[SalesPerson] ),
 			    [Comp Row Actual],
-			    SUMX (
-			        FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
-			        [Comp Row Actual]
-			    )
+			    VAR ServiceRows =
+			        FILTER (
+			            VALUES ( CommissionEmployee[SalesPerson] ),
+			            [Comp Row Visible] = 1
+			                && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) = "ServiceTeam"
+			        )
+			    VAR NonServiceRows =
+			        FILTER (
+			            VALUES ( CommissionEmployee[SalesPerson] ),
+			            [Comp Row Visible] = 1
+			                && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) <> "ServiceTeam"
+			        )
+			    RETURN
+			        SUMX ( NonServiceRows, [Comp Row Actual] )
+			            + MAXX ( ServiceRows, [Comp Row Actual] )
 			)
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 5a6b7c8d-0008-4000-8000-000000000008
@@ -470,10 +492,21 @@ table _Measures
 			    IF (
 			        ISINSCOPE ( CommissionEmployee[SalesPerson] ),
 			        IF ( [Comp Row Visible] = 1, SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ) * PeriodCount ),
-			        SUMX (
-			            FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
-			            SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ) * PeriodCount
-			        )
+			        VAR ServiceRows =
+			            FILTER (
+			                VALUES ( CommissionEmployee[SalesPerson] ),
+			                [Comp Row Visible] = 1
+			                    && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) = "ServiceTeam"
+			            )
+			        VAR NonServiceRows =
+			            FILTER (
+			                VALUES ( CommissionEmployee[SalesPerson] ),
+			                [Comp Row Visible] = 1
+			                    && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) <> "ServiceTeam"
+			            )
+			        RETURN
+			            SUMX ( NonServiceRows, SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ) * PeriodCount )
+			                + MAXX ( ServiceRows, SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ) * PeriodCount )
 			    )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 5a6b7c8d-0017-4000-8000-000000000017
@@ -488,10 +521,21 @@ table _Measures
 			    IF (
 			        ISINSCOPE ( CommissionEmployee[SalesPerson] ),
 			        [Comp Row Actual],
-			        SUMX (
-			            FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
-			            [Comp Row Actual]
-			        )
+			        VAR ServiceRows =
+			            FILTER (
+			                VALUES ( CommissionEmployee[SalesPerson] ),
+			                [Comp Row Visible] = 1
+			                    && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) = "ServiceTeam"
+			            )
+			        VAR NonServiceRows =
+			            FILTER (
+			                VALUES ( CommissionEmployee[SalesPerson] ),
+			                [Comp Row Visible] = 1
+			                    && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) <> "ServiceTeam"
+			            )
+			        RETURN
+			            SUMX ( NonServiceRows, [Comp Row Actual] )
+			                + MAXX ( ServiceRows, [Comp Row Actual] )
 			    )
 			)
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
@@ -539,10 +583,21 @@ table _Measures
 			    IF (
 			        ISINSCOPE ( CommissionEmployee[SalesPerson] ),
 			        [Monthly Salary COGS Row],
-			        SUMX (
-			            FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
-			            [Monthly Salary COGS Row]
-			        )
+			        VAR ServiceRows =
+			            FILTER (
+			                VALUES ( CommissionEmployee[SalesPerson] ),
+			                [Comp Row Visible] = 1
+			                    && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) = "ServiceTeam"
+			            )
+			        VAR NonServiceRows =
+			            FILTER (
+			                VALUES ( CommissionEmployee[SalesPerson] ),
+			                [Comp Row Visible] = 1
+			                    && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) <> "ServiceTeam"
+			            )
+			        RETURN
+			            SUMX ( NonServiceRows, [Monthly Salary COGS Row] )
+			                + MAXX ( ServiceRows, [Monthly Salary COGS Row] )
 			    )
 			)
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
@@ -666,10 +721,21 @@ table _Measures
 			    IF (
 			        ISINSCOPE ( CommissionEmployee[SalesPerson] ),
 			        IF ( [Comp Row Visible] = 1, SELECTEDVALUE ( CommissionEmployee[QuarterTarget] ) * PeriodCount ),
-			        SUMX (
-			            FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
-			            SELECTEDVALUE ( CommissionEmployee[QuarterTarget] ) * PeriodCount
-			        )
+			        VAR ServiceRows =
+			            FILTER (
+			                VALUES ( CommissionEmployee[SalesPerson] ),
+			                [Comp Row Visible] = 1
+			                    && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) = "ServiceTeam"
+			            )
+			        VAR NonServiceRows =
+			            FILTER (
+			                VALUES ( CommissionEmployee[SalesPerson] ),
+			                [Comp Row Visible] = 1
+			                    && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) <> "ServiceTeam"
+			            )
+			        RETURN
+			            SUMX ( NonServiceRows, SELECTEDVALUE ( CommissionEmployee[QuarterTarget] ) * PeriodCount )
+			                + MAXX ( ServiceRows, SELECTEDVALUE ( CommissionEmployee[QuarterTarget] ) * PeriodCount )
 			    )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 5a6b7c8d-0024-4000-8000-000000000024
@@ -725,10 +791,21 @@ table _Measures
 			IF (
 			    ISINSCOPE ( CommissionEmployee[SalesPerson] ),
 			    [Quarter Commission Actual Row],
-			    SUMX (
-			        FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
-			        [Quarter Commission Actual Row]
-			    )
+			    VAR ServiceRows =
+			        FILTER (
+			            VALUES ( CommissionEmployee[SalesPerson] ),
+			            [Comp Row Visible] = 1
+			                && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) = "ServiceTeam"
+			        )
+			    VAR NonServiceRows =
+			        FILTER (
+			            VALUES ( CommissionEmployee[SalesPerson] ),
+			            [Comp Row Visible] = 1
+			                && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) <> "ServiceTeam"
+			        )
+			    RETURN
+			        SUMX ( NonServiceRows, [Quarter Commission Actual Row] )
+			            + MAXX ( ServiceRows, [Quarter Commission Actual Row] )
 			)
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 5a6b7c8d-0025-4000-8000-000000000025
@@ -784,10 +861,21 @@ table _Measures
 			IF (
 			    ISINSCOPE ( CommissionEmployee[SalesPerson] ),
 			    [Quarter Commission COGS Row],
-			    SUMX (
-			        FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
-			        [Quarter Commission COGS Row]
-			    )
+			    VAR ServiceRows =
+			        FILTER (
+			            VALUES ( CommissionEmployee[SalesPerson] ),
+			            [Comp Row Visible] = 1
+			                && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) = "ServiceTeam"
+			        )
+			    VAR NonServiceRows =
+			        FILTER (
+			            VALUES ( CommissionEmployee[SalesPerson] ),
+			            [Comp Row Visible] = 1
+			                && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) <> "ServiceTeam"
+			        )
+			    RETURN
+			        SUMX ( NonServiceRows, [Quarter Commission COGS Row] )
+			            + MAXX ( ServiceRows, [Quarter Commission COGS Row] )
 			)
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 5a6b7c8d-0034-4000-8000-000000000034
