@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Commission Total Sales"
+                  "Property": "Comp Actual"
                 }
               },
-              "queryRef": "_Measures.Commission Total Sales",
-              "nativeQueryRef": "Commission Total Sales"
+              "queryRef": "_Measures.Comp Actual",
+              "nativeQueryRef": "Comp Actual"
             }
           ]
         }
@@ -83,7 +83,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Commission Total Sales"
+            "metadata": "_Measures.Comp Actual"
           }
         }
       ],
@@ -184,7 +184,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Net Revenue'"
+                  "Value": "'Actual'"
                 }
               }
             },

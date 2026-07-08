@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Commission Total Target"
+                  "Property": "Comp Target"
                 }
               },
-              "queryRef": "_Measures.Commission Total Target",
-              "nativeQueryRef": "Commission Total Target"
+              "queryRef": "_Measures.Comp Target",
+              "nativeQueryRef": "Comp Target"
             }
           ]
         }
@@ -83,7 +83,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Commission Total Target"
+            "metadata": "_Measures.Comp Target"
           }
         }
       ],
@@ -184,7 +184,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total Target'"
+                  "Value": "'Target'"
                 }
               }
             },

@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Commission_Fact"
+                      "Entity": "CommissionEmployee"
                     }
                   },
-                  "Property": "SlpName"
+                  "Property": "SalesPerson"
                 }
               },
-              "queryRef": "Commission_Fact.SlpName",
-              "nativeQueryRef": "SlpName",
+              "queryRef": "CommissionEmployee.SalesPerson",
+              "nativeQueryRef": "Employee",
               "active": true
             }
           ]
@@ -42,12 +42,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Commission Total Target"
+                  "Property": "Comp Target"
                 }
               },
-              "queryRef": "_Measures.Commission Total Target",
-              "nativeQueryRef": "Total Target",
-              "displayName": "Total Target"
+              "queryRef": "_Measures.Comp Target",
+              "nativeQueryRef": "Target",
+              "displayName": "Target"
             },
             {
               "field": {
@@ -57,12 +57,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Commission Total Sales"
+                  "Property": "Comp Actual"
                 }
               },
-              "queryRef": "_Measures.Commission Total Sales",
-              "nativeQueryRef": "Total Sales",
-              "displayName": "Net Revenue"
+              "queryRef": "_Measures.Comp Actual",
+              "nativeQueryRef": "Actual",
+              "displayName": "Actual"
             }
           ]
         }
@@ -77,7 +77,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Commission Total Target"
+                "Property": "Comp Target"
               }
             },
             "direction": "Descending"
@@ -210,7 +210,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Target vs Actual Net Revenue by Salesperson'"
+                  "Value": "'Target vs Actual by Employee'"
                 }
               }
             },

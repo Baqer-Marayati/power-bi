@@ -1,0 +1,165 @@
+table CommissionEmployee
+	lineageTag: 4a5b6c7d-8e90-4f12-abcd-2234567890ab
+
+	column SlpCode
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a5b6c7d-0001-4f12-abcd-2234567890ab
+		summarizeBy: none
+		sourceColumn: [SlpCode]
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesPerson
+		dataType: string
+		lineageTag: 4a5b6c7d-0002-4f12-abcd-2234567890ab
+		summarizeBy: none
+		sourceColumn: [SalesPerson]
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesDept
+		dataType: string
+		lineageTag: 4a5b6c7d-0003-4f12-abcd-2234567890ab
+		summarizeBy: none
+		sourceColumn: [SalesDept]
+
+		annotation SummarizationSetBy = Automatic
+
+	column SAPActive
+		dataType: string
+		lineageTag: 4a5b6c7d-0004-4f12-abcd-2234567890ab
+		summarizeBy: none
+		sourceColumn: [SAPActive]
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeStatus
+		dataType: string
+		lineageTag: 4a5b6c7d-0005-4f12-abcd-2234567890ab
+		summarizeBy: none
+		sourceColumn: [EmployeeStatus]
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlanGroup
+		dataType: string
+		lineageTag: 4a5b6c7d-0006-4f12-abcd-2234567890ab
+		summarizeBy: none
+		sourceColumn: [PlanGroup]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Salary
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 4a5b6c7d-0007-4f12-abcd-2234567890ab
+		summarizeBy: sum
+		sourceColumn: [Salary]
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column MonthlyTarget
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 4a5b6c7d-0008-4f12-abcd-2234567890ab
+		summarizeBy: sum
+		sourceColumn: [MonthlyTarget]
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column QuarterTarget
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 4a5b6c7d-0009-4f12-abcd-2234567890ab
+		summarizeBy: sum
+		sourceColumn: [QuarterTarget]
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column QuarterIncentive
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 4a5b6c7d-0010-4f12-abcd-2234567890ab
+		summarizeBy: sum
+		sourceColumn: [QuarterIncentive]
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column ReviewNote
+		dataType: string
+		lineageTag: 4a5b6c7d-0011-4f12-abcd-2234567890ab
+		summarizeBy: none
+		sourceColumn: [ReviewNote]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CommissionEmployee = calculated
+		mode: import
+		source =
+				
+				VAR SapRows =
+				    ADDCOLUMNS (
+				        DimSalesperson,
+				        "PlanGroupValue", LOOKUPVALUE ( CommissionPlan[PlanGroup], CommissionPlan[SAPSalesPerson], DimSalesperson[SalesPerson] ),
+				        "SalaryValue", LOOKUPVALUE ( CommissionPlan[Salary], CommissionPlan[SAPSalesPerson], DimSalesperson[SalesPerson] ),
+				        "MonthlyTargetValue", LOOKUPVALUE ( CommissionPlan[MonthlyTarget], CommissionPlan[SAPSalesPerson], DimSalesperson[SalesPerson] ),
+				        "QuarterTargetValue", LOOKUPVALUE ( CommissionPlan[QuarterTarget], CommissionPlan[SAPSalesPerson], DimSalesperson[SalesPerson] ),
+				        "QuarterIncentiveValue", LOOKUPVALUE ( CommissionPlan[QuarterIncentive], CommissionPlan[SAPSalesPerson], DimSalesperson[SalesPerson] ),
+				        "ReviewNoteValue", LOOKUPVALUE ( CommissionPlan[ReviewNote], CommissionPlan[SAPSalesPerson], DimSalesperson[SalesPerson] )
+				    )
+				VAR SapProjection =
+				    SELECTCOLUMNS (
+				        SapRows,
+				        "SlpCode", DimSalesperson[SlpCode],
+				        "SalesPerson", DimSalesperson[SalesPerson],
+				        "SalesDept", DimSalesperson[SalesDept],
+				        "SAPActive", DimSalesperson[Active],
+				        "EmployeeStatus",
+				            SWITCH (
+				                TRUE (),
+				                DimSalesperson[Active] <> "Y", "Inactive",
+				                ISBLANK ( [SalaryValue] ), "Needs Plan Setup",
+				                "Active"
+				            ),
+				        "PlanGroup", COALESCE ( [PlanGroupValue], "Needs Plan Setup" ),
+				        "Salary", [SalaryValue],
+				        "MonthlyTarget", [MonthlyTargetValue],
+				        "QuarterTarget", [QuarterTargetValue],
+				        "QuarterIncentive", [QuarterIncentiveValue],
+				        "ReviewNote", COALESCE ( [ReviewNoteValue], "" )
+				    )
+				VAR PlanOnly =
+				    FILTER (
+				        CommissionPlan,
+				        ISBLANK (
+				            LOOKUPVALUE (
+				                DimSalesperson[SlpCode],
+				                DimSalesperson[SalesPerson], CommissionPlan[SAPSalesPerson]
+				            )
+				        )
+				    )
+				RETURN
+				UNION (
+				    SapProjection,
+				    SELECTCOLUMNS (
+				        PlanOnly,
+				        "SlpCode", BLANK (),
+				        "SalesPerson", CommissionPlan[SAPSalesPerson],
+				        "SalesDept", BLANK (),
+				        "SAPActive", BLANK (),
+				        "EmployeeStatus", "Needs SAP Match",
+				        "PlanGroup", CommissionPlan[PlanGroup],
+				        "Salary", CommissionPlan[Salary],
+				        "MonthlyTarget", CommissionPlan[MonthlyTarget],
+				        "QuarterTarget", CommissionPlan[QuarterTarget],
+				        "QuarterIncentive", CommissionPlan[QuarterIncentive],
+				        "ReviewNote", CommissionPlan[ReviewNote]
+				    )
+				)
+
+	annotation PBI_ResultType = Table

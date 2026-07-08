@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Commission Achievement %"
+                  "Property": "Comp Achievement %"
                 }
               },
-              "queryRef": "_Measures.Commission Achievement %",
-              "nativeQueryRef": "Commission Achievement %"
+              "queryRef": "_Measures.Comp Achievement %",
+              "nativeQueryRef": "Comp Achievement %"
             }
           ]
         }
@@ -83,7 +83,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Commission Achievement %"
+            "metadata": "_Measures.Comp Achievement %"
           }
         }
       ],

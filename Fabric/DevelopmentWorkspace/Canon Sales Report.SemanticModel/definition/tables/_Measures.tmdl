@@ -193,6 +193,229 @@ table _Measures
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: cf01a2b3-da08-4000-8000-000000000008
 
+	measure 'Comp Is Month View' =
+
+			IF (
+			    ISFILTERED ( DateTable[Month] )
+			        || ISFILTERED ( DateTable[MonthYear] )
+			        || ISFILTERED ( DateTable[YearMonth] ),
+			    1,
+			    0
+			)
+		formatString: 0
+		lineageTag: 5a6b7c8d-0001-4000-8000-000000000001
+
+	measure 'Comp Row Visible' =
+
+			VAR StatusValue = SELECTEDVALUE ( CommissionEmployee[EmployeeStatus] )
+			RETURN
+			    IF (
+			        StatusValue = "Inactive"
+			            && NOT ISFILTERED ( CommissionEmployee[EmployeeStatus] ),
+			        0,
+			        1
+			    )
+		formatString: 0
+		lineageTag: 5a6b7c8d-0002-4000-8000-000000000002
+
+	measure 'Comp Row Salary' =
+
+			IF (
+			    [Comp Row Visible] = 1,
+			    SELECTEDVALUE ( CommissionEmployee[Salary] )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0003-4000-8000-000000000003
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Comp Salary' =
+
+			IF (
+			    ISINSCOPE ( CommissionEmployee[SalesPerson] ),
+			    [Comp Row Salary],
+			    SUMX (
+			        FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
+			        [Comp Row Salary]
+			    )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0004-4000-8000-000000000004
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Comp Row Target' =
+
+			IF (
+			    [Comp Row Visible] = 1,
+			    IF (
+			        [Comp Is Month View] = 1,
+			        SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ),
+			        SELECTEDVALUE ( CommissionEmployee[QuarterTarget] )
+			    )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0005-4000-8000-000000000005
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Comp Target' =
+
+			IF (
+			    ISINSCOPE ( CommissionEmployee[SalesPerson] ),
+			    [Comp Row Target],
+			    SUMX (
+			        FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
+			        [Comp Row Target]
+			    )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0006-4000-8000-000000000006
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Comp Row Actual' =
+
+			VAR IsVisible = [Comp Row Visible] = 1
+			VAR PlanGroupValue = SELECTEDVALUE ( CommissionEmployee[PlanGroup] )
+			VAR SlpCodeValue = SELECTEDVALUE ( CommissionEmployee[SlpCode] )
+			RETURN
+			    IF (
+			        NOT IsVisible,
+			        BLANK (),
+			        SWITCH (
+			            TRUE (),
+			            PlanGroupValue = "ServiceTeam",
+			                CALCULATE (
+			                    [Sales],
+			                    REMOVEFILTERS ( DimSalesperson ),
+			                    REMOVEFILTERS ( SalesFact[SlpCode] ),
+			                    REMOVEFILTERS ( SalesFact[SalesPerson] ),
+			                    SalesFact[SalesDept] IN { "Service Office", "Service Production" }
+			                ),
+			            NOT ISBLANK ( SlpCodeValue ),
+			                CALCULATE (
+			                    [Sales],
+			                    TREATAS ( { SlpCodeValue }, SalesFact[SlpCode] )
+			                ),
+			            BLANK ()
+			        )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0007-4000-8000-000000000007
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Comp Actual' =
+
+			IF (
+			    ISINSCOPE ( CommissionEmployee[SalesPerson] ),
+			    [Comp Row Actual],
+			    SUMX (
+			        FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
+			        [Comp Row Actual]
+			    )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0008-4000-8000-000000000008
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Comp Achievement %' =
+
+			DIVIDE ( [Comp Actual], [Comp Target], 0 )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5a6b7c8d-0009-4000-8000-000000000009
+
+	measure 'Comp Payout %' =
+
+			VAR TargetValue = [Comp Target]
+			VAR ActualValue = [Comp Actual]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( TargetValue ), BLANK (),
+			        [Comp Is Month View] = 1 && ActualValue >= TargetValue, 1,
+			        [Comp Is Month View] = 1, 0.75,
+			        ActualValue >= TargetValue, 1,
+			        0
+			    )
+		formatString: 0%;-0%;0%
+		lineageTag: 5a6b7c8d-0010-4000-8000-000000000010
+
+	measure 'Comp Row Payable' =
+
+			VAR TargetValue = [Comp Row Target]
+			VAR ActualValue = [Comp Row Actual]
+			VAR SalaryValue = SELECTEDVALUE ( CommissionEmployee[Salary] )
+			VAR IncentiveValue = SELECTEDVALUE ( CommissionEmployee[QuarterIncentive] )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        [Comp Row Visible] <> 1, BLANK (),
+			        ISBLANK ( TargetValue ), BLANK (),
+			        [Comp Is Month View] = 1 && ActualValue >= TargetValue, SalaryValue,
+			        [Comp Is Month View] = 1, SalaryValue * 0.75,
+			        ActualValue >= TargetValue, IncentiveValue,
+			        0
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0011-4000-8000-000000000011
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Comp Payable' =
+
+			IF (
+			    ISINSCOPE ( CommissionEmployee[SalesPerson] ),
+			    [Comp Row Payable],
+			    SUMX (
+			        FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
+			        [Comp Row Payable]
+			    )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0012-4000-8000-000000000012
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Comp Review Note' =
+
+			VAR StatusValue = SELECTEDVALUE ( CommissionEmployee[EmployeeStatus] )
+			VAR PlanNote = SELECTEDVALUE ( CommissionEmployee[ReviewNote] )
+			VAR TargetValue = [Comp Row Target]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        StatusValue = "Inactive", "Inactive in SAP",
+			        StatusValue = "Needs Plan Setup", "Needs Plan Setup",
+			        StatusValue = "Needs SAP Match", "Needs SAP Match",
+			        NOT ISBLANK ( PlanNote ) && PlanNote <> "", PlanNote,
+			        ISBLANK ( TargetValue ), "Missing target",
+			        [Comp Actual] >= TargetValue, "Achieved",
+			        "Below target"
+			    )
+		lineageTag: 5a6b7c8d-0013-4000-8000-000000000013
+
+	measure 'Comp Needs Review Count' =
+
+			SUMX (
+			    FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
+			    VAR StatusValue = SELECTEDVALUE ( CommissionEmployee[EmployeeStatus] )
+			    VAR TargetValue = [Comp Row Target]
+			    VAR PlanNote = SELECTEDVALUE ( CommissionEmployee[ReviewNote] )
+			    RETURN
+			        IF (
+			            StatusValue <> "Active"
+			                || ISBLANK ( TargetValue )
+			                || ( NOT ISBLANK ( PlanNote ) && PlanNote <> "" ),
+			            1,
+			            0
+			        )
+			)
+		formatString: #,0
+		lineageTag: 5a6b7c8d-0014-4000-8000-000000000014
+
 	measure 'Mapped Sales' =
 			
 			CALCULATE ( [Sales], KEEPFILTERS ( Geo_City_Reference[IsMapped] = TRUE() ) )

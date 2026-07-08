@@ -1,0 +1,102 @@
+table CommissionPlan
+	lineageTag: 3f4a6b7c-8d90-4e12-9abc-1234567890ab
+
+	column SAPSalesPerson
+		dataType: string
+		lineageTag: 3f4a6b7c-0001-4e12-9abc-1234567890ab
+		summarizeBy: none
+		sourceColumn: [SAPSalesPerson]
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlanGroup
+		dataType: string
+		lineageTag: 3f4a6b7c-0002-4e12-9abc-1234567890ab
+		summarizeBy: none
+		sourceColumn: [PlanGroup]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Salary
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 3f4a6b7c-0003-4e12-9abc-1234567890ab
+		summarizeBy: sum
+		sourceColumn: [Salary]
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column MonthlyTarget
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 3f4a6b7c-0004-4e12-9abc-1234567890ab
+		summarizeBy: sum
+		sourceColumn: [MonthlyTarget]
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column QuarterTarget
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 3f4a6b7c-0005-4e12-9abc-1234567890ab
+		summarizeBy: sum
+		sourceColumn: [QuarterTarget]
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column QuarterIncentive
+		dataType: double
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 3f4a6b7c-0006-4e12-9abc-1234567890ab
+		summarizeBy: sum
+		sourceColumn: [QuarterIncentive]
+
+		annotation SummarizationSetBy = Automatic
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	column ReviewNote
+		dataType: string
+		lineageTag: 3f4a6b7c-0007-4e12-9abc-1234567890ab
+		summarizeBy: none
+		sourceColumn: [ReviewNote]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CommissionPlan = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "SAPSalesPerson", STRING,
+				    "PlanGroup", STRING,
+				    "Salary", DOUBLE,
+				    "MonthlyTarget", DOUBLE,
+				    "QuarterTarget", DOUBLE,
+				    "QuarterIncentive", DOUBLE,
+				    "ReviewNote", STRING,
+				    {
+				        { "Omar Abdulkareem", "Individual", 2250000, 100000000, 345000000, 4000000, "" },
+				        { "Hussen Mahdi", "Individual", 1500000, 350000000, 1150000000, 4000000, "" },
+				        { "Azhar Hazim", "Individual", 1500000, 180000000, 600000000, 4000000, "" },
+				        { "Almuntadher Yousif", "Individual", 1200000, BLANK(), BLANK(), BLANK(), "Missing target and incentive in Excel plan." },
+				        { "Manar Thamer", "Individual", 1000000, 25000000, 90000000, 1000000, "" },
+				        { "Asawar Yaqoub", "Individual", 1000000, 25000000, 90000000, 1000000, "" },
+				        { "Zainalabdeen Ali", "Individual", 1200000, 25000000, 90000000, 1000000, "" },
+				        { "Faisal Al-Jabi", "Individual", 2250000, 30000000, 100000000, 4000000, "Excel name: Faisel." },
+				        { "Rodwan Alkhaffaf", "Individual", 2250000, 30000000, 100000000, 4000000, "Excel name: Rodwan." },
+				        { "Ahmad Qassas", "Individual", 1500000, 25000000, 100000000, 1000000, "Excel splits films and solution; solution target is non-currency." },
+				        { "Ahmed Abduljabbar", "ServiceTeam", 1875000, 80000000, 270000000, 500000, "Service team target." },
+				        { "Bilal Abdulkarim", "ServiceTeam", 1200000, 80000000, 270000000, 500000, "Service team target." },
+				        { "Farouk Khadir", "ServiceTeam", 1275000, 80000000, 270000000, 500000, "Service team target." },
+				        { "Suhaib Salim", "ServiceTeam", 850000, 80000000, 270000000, 500000, "Service team target; verify SAP salesperson mapping." },
+				        { "Murtadha Sadiq", "ServiceTeam", 1575000, 80000000, 270000000, 500000, "Service team target." },
+				        { "Mustafa Khudhair", "ServiceTeam", 1600000, 80000000, 270000000, 500000, "Service team target." },
+				        { "Abdullah Abbas", "ServiceTeam", 1600000, 80000000, 270000000, 500000, "Service team target." },
+				        { "Mohammed Altahan", "ServiceTeam", 1600000, 80000000, 270000000, 500000, "Service team target." },
+				        { "Bilal Tayara", "ServiceTeam", 3000000, 80000000, 270000000, 1000000, "Service team target; Excel also notes 40% margin." }
+				    }
+				)
+
+	annotation PBI_ResultType = Table

@@ -1,10 +1,10 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
-  "name": "slicer_bpclass",
+  "name": "slicer_employee_status",
   "position": {
     "x": 67,
-    "y": 336.89574759945128,
-    "z": 17000,
+    "y": 428.56241426611796,
+    "z": 18000,
     "height": 76,
     "width": 400,
     "tabOrder": 5000
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimBusinessPartner"
+                      "Entity": "CommissionEmployee"
                     }
                   },
-                  "Property": "BPClass"
+                  "Property": "EmployeeStatus"
                 }
               },
-              "queryRef": "DimBusinessPartner.BPClass",
-              "nativeQueryRef": "BPClass",
+              "queryRef": "CommissionEmployee.EmployeeStatus",
+              "nativeQueryRef": "EmployeeStatus",
               "active": true
             }
           ]
@@ -61,7 +61,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Customer Class'"
+                  "Value": "'Employee Status'"
                 }
               }
             },

@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Commission'"
+                  "Value": "'Sales Compensation'"
                 }
               }
             },
@@ -76,7 +76,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Commission target tracking and achievement by salesperson.'"
+                  "Value": "'Salary, target, achievement, and payable commission tracking.'"
                 }
               }
             }

@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["SalesFact","_Measures","DimSalesperson","DimBusinessPartner","BP_Rebate_Fact","Commission_Fact"]
+annotation PBI_QueryOrder = ["SalesFact","_Measures","DimSalesperson","DimBusinessPartner","BP_Rebate_Fact","Commission_Fact","CommissionPlan","CommissionEmployee"]
 
 annotation __TEdtr = 1
 
@@ -24,6 +24,8 @@ ref table Geo_City_Reference
 ref table Geo_Governorate_Map
 ref table BP_Rebate_Fact
 ref table Commission_Fact
+ref table CommissionPlan
+ref table CommissionEmployee
 
 ref cultureInfo en-US
 

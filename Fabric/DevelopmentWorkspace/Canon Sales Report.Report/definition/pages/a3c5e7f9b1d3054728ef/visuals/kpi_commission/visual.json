@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Total Commission"
+                  "Property": "Comp Payable"
                 }
               },
-              "queryRef": "_Measures.Total Commission",
-              "nativeQueryRef": "Total Commission"
+              "queryRef": "_Measures.Comp Payable",
+              "nativeQueryRef": "Comp Payable"
             }
           ]
         }
@@ -83,7 +83,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Total Commission"
+            "metadata": "_Measures.Comp Payable"
           }
         }
       ],
@@ -184,7 +184,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total Commission'"
+                  "Value": "'Payable'"
                 }
               }
             },
