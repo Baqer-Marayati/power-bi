@@ -505,8 +505,14 @@ table _Measures
 			                    && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) <> "ServiceTeam"
 			            )
 			        RETURN
-			            SUMX ( NonServiceRows, SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ) * PeriodCount )
-			                + MAXX ( ServiceRows, SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ) * PeriodCount )
+			            SUMX (
+			                NonServiceRows,
+			                CALCULATE ( SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ) ) * PeriodCount
+			            )
+			                + MAXX (
+			                    ServiceRows,
+			                    CALCULATE ( SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ) ) * PeriodCount
+			                )
 			    )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 5a6b7c8d-0017-4000-8000-000000000017
@@ -630,7 +636,7 @@ table _Measures
 			        IF ( [Comp Row Visible] = 1, SELECTEDVALUE ( CommissionEmployee[Salary] ) * PeriodCount ),
 			        SUMX (
 			            FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
-			            SELECTEDVALUE ( CommissionEmployee[Salary] ) * PeriodCount
+			            CALCULATE ( SELECTEDVALUE ( CommissionEmployee[Salary] ) ) * PeriodCount
 			        )
 			    )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
@@ -668,10 +674,10 @@ table _Measures
 			        BLANK (),
 			        SUMX (
 			            FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
-			            VAR TargetValue = SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ) * PeriodCount
+			            VAR TargetValue = CALCULATE ( SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ) ) * PeriodCount
 			            VAR ActualValue = [Comp Row Actual]
-			            VAR SalaryValue = SELECTEDVALUE ( CommissionEmployee[Salary] ) * PeriodCount
-			            VAR PlanGroupValue = SELECTEDVALUE ( CommissionEmployee[PlanGroup] )
+			            VAR SalaryValue = CALCULATE ( SELECTEDVALUE ( CommissionEmployee[Salary] ) ) * PeriodCount
+			            VAR PlanGroupValue = CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) )
 			            VAR MeetsMarginRule =
 			                PlanGroupValue <> "ServiceTeam"
 			                    || [Monthly Salary Gross Margin Percentage] >= 0.4
@@ -734,8 +740,14 @@ table _Measures
 			                    && CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) ) <> "ServiceTeam"
 			            )
 			        RETURN
-			            SUMX ( NonServiceRows, SELECTEDVALUE ( CommissionEmployee[QuarterTarget] ) * PeriodCount )
-			                + MAXX ( ServiceRows, SELECTEDVALUE ( CommissionEmployee[QuarterTarget] ) * PeriodCount )
+			            SUMX (
+			                NonServiceRows,
+			                CALCULATE ( SELECTEDVALUE ( CommissionEmployee[QuarterTarget] ) ) * PeriodCount
+			            )
+			                + MAXX (
+			                    ServiceRows,
+			                    CALCULATE ( SELECTEDVALUE ( CommissionEmployee[QuarterTarget] ) ) * PeriodCount
+			                )
 			    )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 5a6b7c8d-0024-4000-8000-000000000024
@@ -907,7 +919,7 @@ table _Measures
 			        IF ( [Comp Row Visible] = 1, SELECTEDVALUE ( CommissionEmployee[QuarterIncentive] ) * PeriodCount ),
 			        SUMX (
 			            FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
-			            SELECTEDVALUE ( CommissionEmployee[QuarterIncentive] ) * PeriodCount
+			            CALCULATE ( SELECTEDVALUE ( CommissionEmployee[QuarterIncentive] ) ) * PeriodCount
 			        )
 			    )
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
@@ -939,7 +951,7 @@ table _Measures
 			        IF (
 			            ISBLANK ( [Quarter Commission Target] ),
 			            BLANK (),
-			            VAR PlanGroupValue = SELECTEDVALUE ( CommissionEmployee[PlanGroup] )
+			            VAR PlanGroupValue = CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) )
 			            VAR MeetsMarginRule =
 			                PlanGroupValue <> "ServiceTeam"
 			                    || [Quarter Commission Gross Margin Percentage] >= 0.4
