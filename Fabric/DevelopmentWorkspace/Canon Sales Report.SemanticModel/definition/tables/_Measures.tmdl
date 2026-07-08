@@ -663,7 +663,6 @@ table _Measures
 			            SELECTEDVALUE ( CommissionEmployee[QuarterIncentive] ) * PeriodCount
 			        )
 			    )
-			)
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 5a6b7c8d-0027-4000-8000-000000000027
 
