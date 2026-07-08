@@ -43,21 +43,6 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Comp Salary"
-                }
-              },
-              "queryRef": "_Measures.Comp Salary",
-              "nativeQueryRef": "Salary",
-              "displayName": "Salary"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
                   "Property": "Comp Target"
                 }
               },
@@ -94,6 +79,21 @@
               "queryRef": "_Measures.Comp Achievement %",
               "nativeQueryRef": "Achievement %",
               "displayName": "Achievement %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Comp Salary"
+                }
+              },
+              "queryRef": "_Measures.Comp Salary",
+              "nativeQueryRef": "Salary",
+              "displayName": "Salary"
             },
             {
               "field": {
