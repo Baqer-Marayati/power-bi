@@ -480,11 +480,72 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+	measure 'Monthly Salary COGS Row' =
+
+			VAR IsVisible = [Comp Row Visible] = 1
+			VAR PlanGroupValue = SELECTEDVALUE ( CommissionEmployee[PlanGroup] )
+			VAR SlpCodeValue = SELECTEDVALUE ( CommissionEmployee[SlpCode] )
+			RETURN
+			    IF (
+			        NOT IsVisible,
+			        BLANK (),
+			        SWITCH (
+			            TRUE (),
+			            PlanGroupValue = "ServiceTeam",
+			                CALCULATE (
+			                    [COGS],
+			                    REMOVEFILTERS ( DimSalesperson ),
+			                    REMOVEFILTERS ( SalesFact[SlpCode] ),
+			                    REMOVEFILTERS ( SalesFact[SalesPerson] ),
+			                    SalesFact[SalesDept] IN { "Service Office", "Service Production" }
+			                ),
+			            NOT ISBLANK ( SlpCodeValue ),
+			                CALCULATE (
+			                    [COGS],
+			                    TREATAS ( { SlpCodeValue }, SalesFact[SlpCode] )
+			                ),
+			            BLANK ()
+			        )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0030-4000-8000-000000000030
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Monthly Salary COGS' =
+
+			IF (
+			    ISBLANK ( [Monthly Salary Period Count] ),
+			    BLANK (),
+			    IF (
+			        ISINSCOPE ( CommissionEmployee[SalesPerson] ),
+			        [Monthly Salary COGS Row],
+			        SUMX (
+			            FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
+			            [Monthly Salary COGS Row]
+			        )
+			    )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0031-4000-8000-000000000031
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 	measure 'Monthly Salary Achievement %' =
 
 			DIVIDE ( [Monthly Salary Actual], [Monthly Salary Target], 0 )
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 5a6b7c8d-0019-4000-8000-000000000019
+
+	measure 'Monthly Salary Gross Margin Percentage' =
+
+			DIVIDE (
+			    [Monthly Salary Actual] - [Monthly Salary COGS],
+			    [Monthly Salary Actual],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5a6b7c8d-0032-4000-8000-000000000032
 
 	measure 'Monthly Salary Base' =
 
@@ -507,11 +568,17 @@ table _Measures
 
 			VAR TargetValue = [Monthly Salary Target]
 			VAR ActualValue = [Monthly Salary Actual]
+			VAR PlanGroupValue = SELECTEDVALUE ( CommissionEmployee[PlanGroup] )
+			VAR MeetsMarginRule =
+			    PlanGroupValue <> "ServiceTeam"
+			        || [Monthly Salary Gross Margin Percentage] >= 0.4
 			RETURN
 			    SWITCH (
 			        TRUE (),
 			        ISBLANK ( TargetValue ), BLANK (),
-			        ISINSCOPE ( CommissionEmployee[SalesPerson] ) && ActualValue >= TargetValue, 1,
+			        ISINSCOPE ( CommissionEmployee[SalesPerson] )
+			            && ActualValue >= TargetValue
+			            && MeetsMarginRule, 1,
 			        ISINSCOPE ( CommissionEmployee[SalesPerson] ), 0.75,
 			        DIVIDE ( [Monthly Salary Payable], [Monthly Salary Base] )
 			    )
@@ -530,11 +597,15 @@ table _Measures
 			            VAR TargetValue = SELECTEDVALUE ( CommissionEmployee[MonthlyTarget] ) * PeriodCount
 			            VAR ActualValue = [Comp Row Actual]
 			            VAR SalaryValue = SELECTEDVALUE ( CommissionEmployee[Salary] ) * PeriodCount
+			            VAR PlanGroupValue = SELECTEDVALUE ( CommissionEmployee[PlanGroup] )
+			            VAR MeetsMarginRule =
+			                PlanGroupValue <> "ServiceTeam"
+			                    || [Monthly Salary Gross Margin Percentage] >= 0.4
 			            RETURN
 			                SWITCH (
 			                    TRUE (),
 			                    ISBLANK ( TargetValue ), BLANK (),
-			                    ActualValue >= TargetValue, SalaryValue,
+			                    ActualValue >= TargetValue && MeetsMarginRule, SalaryValue,
 			                    SalaryValue * 0.75
 			                )
 			        )
@@ -645,11 +716,80 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
+	measure 'Quarter Commission COGS Row' =
+
+			VAR PlanGroupValue = SELECTEDVALUE ( CommissionEmployee[PlanGroup] )
+			VAR SlpCodeValue = SELECTEDVALUE ( CommissionEmployee[SlpCode] )
+			VAR YearValue = SELECTEDVALUE ( DateTable[Year], 2026 )
+			RETURN
+			    IF (
+			        [Comp Row Visible] <> 1,
+			        BLANK (),
+			        SWITCH (
+			            TRUE (),
+			            PlanGroupValue = "ServiceTeam",
+			                CALCULATE (
+			                    [COGS],
+			                    REMOVEFILTERS ( DimSalesperson ),
+			                    REMOVEFILTERS ( SalesFact[SlpCode] ),
+			                    REMOVEFILTERS ( SalesFact[SalesPerson] ),
+			                    REMOVEFILTERS ( DateTable[Month] ),
+			                    REMOVEFILTERS ( DateTable[MonthNumber] ),
+			                    REMOVEFILTERS ( DateTable[MonthYear] ),
+			                    REMOVEFILTERS ( DateTable[YearMonth] ),
+			                    REMOVEFILTERS ( DateTable[YearMonthKey] ),
+			                    KEEPFILTERS ( DateTable[Year] = YearValue ),
+			                    SalesFact[SalesDept] IN { "Service Office", "Service Production" }
+			                ),
+			            NOT ISBLANK ( SlpCodeValue ),
+			                CALCULATE (
+			                    [COGS],
+			                    REMOVEFILTERS ( DateTable[Month] ),
+			                    REMOVEFILTERS ( DateTable[MonthNumber] ),
+			                    REMOVEFILTERS ( DateTable[MonthYear] ),
+			                    REMOVEFILTERS ( DateTable[YearMonth] ),
+			                    REMOVEFILTERS ( DateTable[YearMonthKey] ),
+			                    KEEPFILTERS ( DateTable[Year] = YearValue ),
+			                    TREATAS ( { SlpCodeValue }, SalesFact[SlpCode] )
+			                ),
+			            BLANK ()
+			        )
+			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0033-4000-8000-000000000033
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
+	measure 'Quarter Commission COGS' =
+
+			IF (
+			    ISINSCOPE ( CommissionEmployee[SalesPerson] ),
+			    [Quarter Commission COGS Row],
+			    SUMX (
+			        FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
+			        [Quarter Commission COGS Row]
+			    )
+			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
+		lineageTag: 5a6b7c8d-0034-4000-8000-000000000034
+
+		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
+
 	measure 'Quarter Commission Achievement %' =
 
 			DIVIDE ( [Quarter Commission Actual], [Quarter Commission Target], 0 )
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 5a6b7c8d-0026-4000-8000-000000000026
+
+	measure 'Quarter Commission Gross Margin Percentage' =
+
+			DIVIDE (
+			    [Quarter Commission Actual] - [Quarter Commission COGS],
+			    [Quarter Commission Actual],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5a6b7c8d-0035-4000-8000-000000000035
 
 	measure 'Quarter Commission Incentive' =
 
@@ -675,14 +815,34 @@ table _Measures
 			    IF (
 			        ISBLANK ( [Quarter Commission Target] ),
 			        BLANK (),
-			        IF ( [Quarter Commission Actual] >= [Quarter Commission Target], [Quarter Commission Incentive], 0 )
+			        VAR PlanGroupValue = SELECTEDVALUE ( CommissionEmployee[PlanGroup] )
+			        VAR MeetsMarginRule =
+			            PlanGroupValue <> "ServiceTeam"
+			                || [Quarter Commission Gross Margin Percentage] >= 0.4
+			        RETURN
+			            IF (
+			                [Quarter Commission Actual] >= [Quarter Commission Target]
+			                    && MeetsMarginRule,
+			                [Quarter Commission Incentive],
+			                0
+			            )
 			    ),
 			    SUMX (
 			        FILTER ( VALUES ( CommissionEmployee[SalesPerson] ), [Comp Row Visible] = 1 ),
 			        IF (
 			            ISBLANK ( [Quarter Commission Target] ),
 			            BLANK (),
-			            IF ( [Quarter Commission Actual] >= [Quarter Commission Target], [Quarter Commission Incentive], 0 )
+			            VAR PlanGroupValue = SELECTEDVALUE ( CommissionEmployee[PlanGroup] )
+			            VAR MeetsMarginRule =
+			                PlanGroupValue <> "ServiceTeam"
+			                    || [Quarter Commission Gross Margin Percentage] >= 0.4
+			            RETURN
+			                IF (
+			                    [Quarter Commission Actual] >= [Quarter Commission Target]
+			                        && MeetsMarginRule,
+			                    [Quarter Commission Incentive],
+			                    0
+			                )
 			        )
 			    )
 			)

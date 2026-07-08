@@ -49,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales Compensation'"
+                  "Value": "'Salaries and Target'"
                 }
               }
             },
@@ -76,7 +76,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Salary, target, achievement, and payable commission tracking.'"
+                  "Value": "'Monthly salary targets and quarterly commission targets.'"
                 }
               }
             }

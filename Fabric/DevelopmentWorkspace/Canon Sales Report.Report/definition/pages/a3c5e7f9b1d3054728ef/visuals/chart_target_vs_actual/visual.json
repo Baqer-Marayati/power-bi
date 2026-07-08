@@ -88,6 +88,21 @@
                       "Entity": "_Measures"
                     }
                   },
+                  "Property": "Monthly Salary Gross Margin Percentage"
+                }
+              },
+              "queryRef": "_Measures.Monthly Salary Gross Margin Percentage",
+              "nativeQueryRef": "Gross Margin Percentage",
+              "displayName": "Gross Margin Percentage"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
                   "Property": "Monthly Salary Base"
                 }
               },
