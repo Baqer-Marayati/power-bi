@@ -225,6 +225,7 @@ table _Measures
 			        DepartmentValue = "Service", "#FFF4DF",
 			        DepartmentValue = "End User", "#EAF7FF",
 			        DepartmentValue = "Resellers", "#F0F7EA",
+			        DepartmentValue = "Others", "#F4F6F8",
 			        DepartmentValue = "Needs Plan Setup", "#F4F6F8",
 			        DepartmentValue = "Unassigned", "#F4F6F8",
 			        "#FFFFFF"

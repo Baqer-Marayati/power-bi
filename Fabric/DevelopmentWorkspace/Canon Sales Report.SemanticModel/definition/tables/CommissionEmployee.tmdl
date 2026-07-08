@@ -130,8 +130,10 @@ table CommissionEmployee
 				            SWITCH (
 				                TRUE (),
 				                [PlanGroupValue] = "ServiceTeam", "Service",
-				                ISBLANK ( DimSalesperson[SalesDept] ), "Unassigned",
-				                DimSalesperson[SalesDept]
+				                DimSalesperson[SalesPerson] IN { "Omar Abdulkareem", "Hussen Mahdi", "Azhar Hazim" }, "Indirect",
+				                DimSalesperson[SalesPerson] IN { "Manar Thamer", "Asawar Yaqoub", "Zainalabdeen Ali - Online" }, "Online",
+				                DimSalesperson[SalesPerson] IN { "Faisal Al-Jabi", "Rodwan Alkhaffaf", "Ahmad Qassas" }, "Direct",
+				                "Others"
 				            ),
 				        "SAPActive", DimSalesperson[Active],
 				        "EmployeeStatus",
@@ -170,8 +172,10 @@ table CommissionEmployee
 				            SWITCH (
 				                TRUE (),
 				                CommissionPlan[PlanGroup] = "ServiceTeam", "Service",
-				                CommissionPlan[PlanGroup] = "Needs Plan Setup", "Needs Plan Setup",
-				                "Unassigned"
+				                CommissionPlan[SAPSalesPerson] IN { "Omar Abdulkareem", "Hussen Mahdi", "Azhar Hazim" }, "Indirect",
+				                CommissionPlan[SAPSalesPerson] IN { "Manar Thamer", "Asawar Yaqoub", "Zainalabdeen Ali - Online" }, "Online",
+				                CommissionPlan[SAPSalesPerson] IN { "Faisal Al-Jabi", "Rodwan Alkhaffaf", "Ahmad Qassas" }, "Direct",
+				                "Others"
 				            ),
 				        "SAPActive", BLANK (),
 				        "EmployeeStatus", "Needs SAP Match",
