@@ -147,6 +147,14 @@ table SalesFact
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Single field for item search slicers (code and name).
+	column ItemSearch = SalesFact[ItemCode] & " · " & SalesFact[ItemName]
+		lineageTag: 3f8c2a41-7b5e-4c19-9d02-8e6a51c47b90
+		summarizeBy: none
+		sortByColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
 	partition SalesFact = m
 		mode: import
 		source =
