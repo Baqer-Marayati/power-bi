@@ -94,6 +94,12 @@
 - `ReceivablesFact`, `PayablesFact`, and `CashPositionFact` remain refresh-time/open-balance snapshot domains. They are not related to `Dim_Date`, and `CashPositionFact` has no date column, so this pass did **not** add a misleading `Dim_Date` as-of slicer to AR/AP/Cash.
 - AR/AP/Cash rails are therefore snapshot-domain filters: AR uses customer/customer-code/collector on PAPERENTITY and BP UDF + collector fields on CANON; AP uses vendor/vendor-code/currency/vendor-type; Cash uses account type/account/account code. True historical as-of behavior would require semantic model work against dated AR/AP/cash movement sources.
 
+## PAPERENTITY CashPositionFact scope fix (2026-08-18)
+- The `CashPositionFact` SQL previously selected accounts by **name keywords** (`%cash%` / `%bank%` / `%pos%` + Arabic variants). Two non-cash accounts leaked onto the Cash page: `1300004` "Advances For Work Purposes" (matched `%pos%` via "pur**pos**es" and showed as a 61.2M **POS** balance) and `1300002` "L.G (Bank Guarantee)" (matched `%bank%` and showed as **Bank**). Meanwhile the real bank account `1100007` "NBI 2100095834" was **excluded** because its name has no keyword.
+- Fix (Fabric copy `Fabric/DevelopmentWorkspace/Paper Financial Report.SemanticModel`): the WHERE now scopes to the PAPERENTITY cash account-code family `AcctCode LIKE '1100%'` (with `GroupMask = 1`, `Postable = 'Y'`); name keywords are used **only** for `AccountType` classification (POS with a `NOT LIKE '%purpose%'` guard, then Cash on Hand, else Bank).
+- Both 13xxxxx accounts belong to the other-current-assets branch (with `1300003` Prepaid Expenses and related-company accounts) — do not re-add them to Cash. Expected post-refresh effect: Total Cash drops from ~90.68M to ~24.4M, Cash in POS goes to 0 (no true POS accounts exist), and NBI joins the Bank slice.
+- The module copy under `Reports/Finance/Companies/PAPERENTITY/` still has the old keyword query; copy-back is a separate pass.
+
 ## Budget Notes
 - Budget visuals can be made to render with compatibility logic.
 - True budget reporting still requires a real SAP budget source if the business expects actual budget truth rather than a placeholder.
