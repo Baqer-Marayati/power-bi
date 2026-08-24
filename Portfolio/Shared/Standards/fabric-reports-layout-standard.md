@@ -1,9 +1,10 @@
 # Fabric Reports — Unified Layout Standard
 
-Scope: the five reports in `Fabric/DevelopmentWorkspace/`
-— **Canon Financial**, **Paper Financial**, **Canon Sales**, **Canon Inventory**, **Paper Inventory**.
+Scope: the six reports in `Fabric/DevelopmentWorkspace/`
+— **Canon Financial**, **Paper Financial**, **Canon Sales**, **Canon Inventory**, **Paper Inventory**,
+**Canon Service** (migrated 2026-08-24 from its original 1280×960 layout).
 
-Purpose: a single, exact layout/spacing/typography guideline so the five reports follow one
+Purpose: a single, exact layout/spacing/typography guideline so the reports follow one
 structure. This is a **layout-only** standard — see the guardrail below.
 
 > **GUARDRAIL — no logic changes.** Applying this standard must not add, remove, or change any

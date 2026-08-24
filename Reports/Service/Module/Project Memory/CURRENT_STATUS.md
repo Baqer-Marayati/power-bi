@@ -1,7 +1,24 @@
 # Current Status
 
 ## Date
-- Last updated: April 18, 2026
+- Last updated: August 24, 2026
+
+## Fabric copy migrated to the unified layout standard (2026-08-24)
+- `Fabric/DevelopmentWorkspace/Canon Service Report.Report` was migrated **layout-only** to
+  `Portfolio/Shared/Standards/fabric-reports-layout-standard.md` (it was the last off-standard report):
+  canvas 1280×960 FitToWidth → **1920×1080 FitToPage**; KPI cards to the shared row
+  (y=136.7, h=104, w=323.3, gaps 20.6); slicers into the standard rail (x=67, w=400, h=76) with the
+  sibling dropdown+header styling; new full-height `panel_filter_rail` shape per page; brand lockup
+  rescaled to the canonical group geometry (164.7×63 logos, group at 1514,46.7); containers unified
+  (radius 14, border #C9D5E3, title Segoe UI 12 #2E3A42, KPI value 18, shadow #1F4E79 270°/4);
+  charts remapped into the 513–1868 content zone, bottom line 1030; document schemas bumped to
+  visualContainer 2.9.0 / page 2.1.0 to match Canon Inventory.
+- The 9 standalone slicer label textboxes (`svc_p*_lbl_*`) were **deleted**; their text moved into the
+  slicers' built-in headers (sibling pattern). "Machine Type" header kept — those slicers bind
+  `Dim_Item.MachineClass`, so the label is correct for this copy.
+- **Zero semantic changes**: all query/filterConfig/visualType blocks verified byte-identical pre/post.
+- **Divergence note:** the module PBIP (`Reports/Service/Companies/CANON/...`) is still on the old
+  1280×960 layout. Copy-back/merge is a separate step after the Fabric review approves the new layout.
 
 ## Active Project
 - Service Performance Report — module activated with CANON company config.

@@ -2,7 +2,7 @@
 
 ## Date
 
-- Last updated: May 23, 2026
+- Last updated: August 24, 2026
 
 ## Current Reality
 
@@ -15,6 +15,13 @@
 - The portfolio root is reserved for cross-report structure, documentation, shared assets, and report-module orchestration.
 - The Mac repo root now lives at `/Users/baqer/Code/Power BI`.
 - `History` and `Models` are no longer part of this Git repo; the repo root is now the active Power BI project root only.
+
+## Consistency Audit (Aug 24, 2026)
+
+- New repeatable audit: `Portfolio/scripts/audit-report-consistency.py` extracts layout/design tokens from PBIP report definitions and compares them against `Portfolio/Shared/Standards/fabric-reports-layout-standard.md`.
+- Headline findings (Fabric/DevelopmentWorkspace): Canon Service is fully off-standard (1280×960 shell, no radius, Semibold 10pt titles, 167px rail, old logo sizes) and is not published to Canon Analytics; 84 off-canvas parked visuals across the other five reports; KPI gap rhythm varies 15–35.1 px across reports; semantic models use three table-naming generations (Finance legacy camelCase + suffix-Fact, Sales prefix-less, Service/Inventory clean `Dim_`/`Fact_`); measure vocabulary drifts per report (Margin % vs Gross Margin % vs Profit Margin %); only ~35–45% of measures define model-level format strings.
+- `REPORT_CATALOG.md` Sales page list is stale vs the live 6-page Fabric report (Sales Map, Salesperson, Customers, Target & Salaries).
+- **Resolved same day:** Canon Service Fabric copy migrated to the layout standard (layout-only, zero semantic changes; audit now clean — see `Reports/Service/Module/Project Memory/CURRENT_STATUS.md`). Standard scope is now six reports. Remaining audit items: off-canvas cleanup, naming/measure vocabulary, format strings.
 
 ## Current Routing
 
