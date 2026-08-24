@@ -27,7 +27,7 @@
 - Module path: `Reports/Sales`
 - Status: Active
 - Multi-company: **CANON** and **PAPERENTITY**. PBIPs: `Companies/CANON/Canon Sales Report/*.pbip`, `Companies/PAPERENTITY/Paper Sales Report/*.pbip`
-- Notes: Sales Analysis Report — 5-page PBIP (Sales Overview, Sales Employees, BP Sales, BP Rebate, Commission) with SAP HANA ODBC semantic model (CANON schema). Derived from Aljazeera Master Model. Portfolio visual identity aligned; validate in Desktop after model changes.
+- Notes: Sales Analysis Report — 6-page PBIP (Sales Overview, Sales Map, Salesperson, Customers, Rebate, Target & Salaries) with SAP HANA ODBC semantic model (CANON schema). Derived from Aljazeera Master Model. Portfolio visual identity aligned; validate in Desktop after model changes. Page list refreshed 2026-08-24 from the live Fabric copy.
 
 ### Service
 
