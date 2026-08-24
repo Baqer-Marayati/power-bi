@@ -22,7 +22,7 @@ table Dim_ProblemType
 		mode: import
 		source =
 				let
-				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  P.""prblmTypID"" AS ""ProblemTypeID"",#(lf)  P.""Name"" AS ""ProblemTypeName""#(lf)FROM ""CANON"".""OSCP"" P#(lf)UNION ALL#(lf)SELECT 0 AS ""ProblemTypeID"", 'Unclassified' AS ""ProblemTypeName"" FROM DUMMY")
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)  P.""prblmTypID"" AS ""ProblemTypeID"",#(lf)  P.""Name"" AS ""ProblemTypeName""#(lf)FROM ""CANON"".""OSCP"" P")
 				in
 				    Source
 

@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "svc_p1_header",
   "position": {
-    "x": 188,
-    "y": 36,
+    "x": 511.627455595395,
+    "y": 42.31481481481482,
     "z": 20000,
-    "height": 60,
-    "width": 756,
+    "height": 67.5,
+    "width": 695.8389261744966,
     "tabOrder": 20000
   },
   "visual": {
@@ -63,7 +63,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },
@@ -98,6 +98,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'Service call volumes, response times, and machine performance at a glance.'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
                 }
               }
             }

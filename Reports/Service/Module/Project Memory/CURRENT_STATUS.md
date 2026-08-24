@@ -17,8 +17,15 @@
   slicers' built-in headers (sibling pattern). "Machine Type" header kept — those slicers bind
   `Dim_Item.MachineClass`, so the label is correct for this copy.
 - **Zero semantic changes**: all query/filterConfig/visualType blocks verified byte-identical pre/post.
-- **Divergence note:** the module PBIP (`Reports/Service/Companies/CANON/...`) is still on the old
-  1280×960 layout. Copy-back/merge is a separate step after the Fabric review approves the new layout.
+- **Divergence resolved (same day):** after the user approved the migrated layout in Fabric, the module
+  PBIP (`Reports/Service/Companies/CANON/...`) was found to be a stale mid-May snapshot — the Fabric
+  copy (created 2026-06-03) had newer report queries (e.g. real Client View revenue/profit bars replacing
+  the parked dupes, 2-slicer rail instead of year/quarter/month stacks) and a newer semantic model.
+  The module `.Report` definition, `StaticResources`, and `.SemanticModel` definition were synced
+  wholesale from the approved Fabric copy. `Fabric/DevelopmentWorkspace/` remains the iteration surface;
+  treat the module copy as a mirror of the last approved Fabric state.
+- Superseded by the sync: the April 18 module-side notes below describe the pre-June copy; the live
+  report/model state is the Fabric copy.
 
 ## Active Project
 - Service Performance Report — module activated with CANON company config.

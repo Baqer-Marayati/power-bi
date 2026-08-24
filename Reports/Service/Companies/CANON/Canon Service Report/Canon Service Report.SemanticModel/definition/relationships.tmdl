@@ -70,17 +70,3 @@ relationship aa000004-0001-4000-c004-000000000003
 	fromColumn: Fact_ServiceRevenue.ProjectCode
 	toColumn: Dim_Project.ProjectCode
 
-relationship aa000004-0001-4000-c004-000000000004
-	fromColumn: Fact_ServiceRevenue.ItemCode
-	toColumn: Dim_Item.ItemCode
-
-relationship aa000005-0001-4000-c005-000000000001
-	fromColumn: Fact_ServiceCalls.ProjectCode
-	toColumn: Dim_Project.ProjectCode
-
-relationship aa000005-0001-4000-c005-000000000002
-	isActive: false
-	crossFilteringBehavior: bothDirections
-	fromColumn: Dim_Equipment.ProjectCode
-	toColumn: Dim_Project.ProjectCode
-
