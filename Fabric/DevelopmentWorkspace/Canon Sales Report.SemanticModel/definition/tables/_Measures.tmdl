@@ -397,7 +397,7 @@ table _Measures
 			        ActualValue >= TargetValue, 1,
 			        0
 			    )
-		formatString: 0%;-0%;0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 5a6b7c8d-0010-4000-8000-000000000010
 
 	measure 'Comp Row Payable' =
@@ -662,7 +662,7 @@ table _Measures
 			        ISINSCOPE ( CommissionEmployee[SalesPerson] ), 0.75,
 			        DIVIDE ( [Monthly Salary Payable], [Monthly Salary Base] )
 			    )
-		formatString: 0%;-0%;0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 5a6b7c8d-0021-4000-8000-000000000021
 
 	measure 'Monthly Salary Payable' =

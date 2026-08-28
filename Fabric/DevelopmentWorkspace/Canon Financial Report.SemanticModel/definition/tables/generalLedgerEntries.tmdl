@@ -108,7 +108,7 @@ table generalLedgerEntries
 			
 			VAR PrevValue = [Net Revenue LY]
 			RETURN DIVIDE ( [Net Revenue] - PrevValue, ABS ( PrevValue ) )
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0116
 
 	measure ExpenseVariance =
@@ -119,26 +119,26 @@ table generalLedgerEntries
 			        DATEADD ( 'Dim_Date'[Date], -1, YEAR )
 			    )
 			RETURN DIVIDE ( [ExpenseFiltered] - PrevValue, ABS ( PrevValue ) )
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0117
 
 	measure CostOfGoodsSoldVariance =
 			
 			VAR PrevValue = CALCULATE ( ABS ( [COGS] ), DATEADD ( 'Dim_Date'[Date], -1, YEAR ) )
 			RETURN DIVIDE ( [CostOfGoodsSoldFiltered] - PrevValue, ABS ( PrevValue ) )
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0118
 
 	measure Budgetpercent =
 			
 			DIVIDE ( [TotalRevenue] - [RevenueBudgetCompat], [RevenueBudgetCompat] )
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0119
 
 	measure NetProfitBudgetpercent =
 			
 			DIVIDE ( [NetProfit] - [NetProfit_Budget], ABS ( [NetProfit_Budget] ) )
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0120
 
 	measure PercentRevenueVarianceColorFormat =

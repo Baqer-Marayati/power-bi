@@ -56,6 +56,12 @@
   Avg Collection per Txn, Avg Sales per SP/BP, Avg Parts Cost per Call) and the four cash cards on
   both Financial reports (Paper genuinely holds ~66K in bank — bn would show 0.000). Zero model
   changes in this pass; tables/charts keep exact model formats. Percent cards stay 2dp.
+- **Percent sweep completed (same day):** all 60 remaining sub-2dp percent formats normalized to
+  two decimals model-wide — Financial `generalLedgerEntries` budget/variance measures (0.0%),
+  Sales payout measures (0%), Inventory MoM/landed-cost measures (0.0%, signed `+0.0%;-0.0%` and
+  glyph `▲ +0.0%` variants kept their signs/glyphs). Every percent measure in all six models is now
+  `0.00%`-based. Deliberate exception: chart *axis tick* precision stays 0dp (e.g. Landed Cost value
+  axes) — ticks are round gridline numbers, not values.
 - Phase 3 open: tables/matrices convergence (grid 14 / values 13 / headers 12 bold / bold totals),
   chart axis/data-label pass, codify the standard into `Portfolio/Shared/Standards/`, extend
   `audit-report-consistency.py` to police number formatting.
