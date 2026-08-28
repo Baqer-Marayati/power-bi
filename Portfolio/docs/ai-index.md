@@ -72,7 +72,7 @@ Use these exact path patterns unless newer memory files say otherwise:
   - `../scripts/clear-model-cache.ps1`
 - Theme drift check (registered `Custom_Theme49412231581938193.json` vs `../Shared/Themes/`):
   - `../scripts/validate-theme-vs-canonical.ps1`
-- Cross-report layout/styling consistency audit (PBIP design tokens vs `../Shared/Standards/fabric-reports-layout-standard.md`):
+- Cross-report layout/styling + number-formatting audit (PBIP design tokens vs `../Shared/Standards/fabric-reports-layout-standard.md` and `../Shared/Standards/fabric-reports-number-formatting.md`):
   - `../scripts/audit-report-consistency.py` (e.g. `python3 Portfolio/scripts/audit-report-consistency.py Fabric/DevelopmentWorkspace`)
 
 ## Common Questions

@@ -62,9 +62,18 @@
   glyph `▲ +0.0%` variants kept their signs/glyphs). Every percent measure in all six models is now
   `0.00%`-based. Deliberate exception: chart *axis tick* precision stays 0dp (e.g. Landed Cost value
   axes) — ticks are round gridline numbers, not values.
-- Phase 3 open: tables/matrices convergence (grid 14 / values 13 / headers 12 bold / bold totals),
-  chart axis/data-label pass, codify the standard into `Portfolio/Shared/Standards/`, extend
-  `audit-report-consistency.py` to police number formatting.
+- **Phase 3 closed (same day):** (1) all 21 non-tooltip tables/matrices converged on the Financial
+  typography pattern — grid 14 / rowPadding 2 / values 13 Segoe UI / headers 12 bold / bold totals;
+  colors and alignment per-report, untouched; Inventory 380×210 tooltip table exempt. (2) 22 money
+  charts normalized: fixed-M labels 1dp, fixed-bn labels 3dp (card-aligned), auto-unit all-money
+  labels 1dp, fixed-M value axes 1dp; percent axis ticks stay 0dp. (3) Standard codified in
+  `Portfolio/Shared/Standards/fabric-reports-number-formatting.md`; `audit-report-consistency.py`
+  gained a NUMBER FORMATTING section (Auto-unit cards, percent-card 2dp, bn-card 3dp, table
+  typography, chart label precision, non-0.00% model percents) — fleet audits 0 violations; the
+  pre-standard `Reports/Service` module copy correctly flags 24, proving detection.
+- Formatting standardization is **done**. Open follow-ups elsewhere: retire orphaned `* Card
+  Display` helpers (model cleanup), measure vocabulary alignment, Canon `ROI %` blank-at-all-years
+  data issue, publish Canon Service to production.
 
 ## Current Routing
 

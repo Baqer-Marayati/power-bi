@@ -13,7 +13,13 @@ Scans one or more `<Name>.Report` folders (PBIR format) and reports, per report:
   - per-page bottom line (max y+height) and off-canvas / hidden visuals
 
 Then prints a cross-report comparison of the key design tokens against
-Portfolio/Shared/Standards/fabric-reports-layout-standard.md expectations.
+Portfolio/Shared/Standards/fabric-reports-layout-standard.md expectations,
+plus a NUMBER FORMATTING audit against
+Portfolio/Shared/Standards/fabric-reports-number-formatting.md:
+  - cards: no Auto display units; percent cards 2dp; bn cards 3dp
+  - tables: grid 14 / values 13 / headers 12 bold / bold totals (tooltips exempt)
+  - charts: fixed-M labels 1dp, fixed-bn labels 3dp, auto money labels 1dp
+  - model: every percent format string is 0.00%-based
 
 Usage:
   python3 audit-report-consistency.py <folder-or-.Report-path> [more paths...]
@@ -23,6 +29,7 @@ Usage:
 from __future__ import annotations
 
 import json
+import re
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -198,6 +205,113 @@ def audit_report(report_dir: Path) -> dict:
     return result
 
 
+IQD = "د.ع"
+CHART_TYPES = {
+    "columnChart", "barChart", "lineChart", "areaChart", "clusteredColumnChart",
+    "clusteredBarChart", "stackedColumnChart", "stackedBarChart", "donutChart",
+    "pieChart", "lineClusteredColumnComboChart", "lineStackedColumnComboChart",
+    "hundredPercentStackedColumnChart",
+}
+
+
+def parse_model_formats(model_dir: Path):
+    """Return (money measure names, percent measure names, bad percent formats)."""
+    money, percent, bad_pct = set(), set(), []
+    tables_dir = model_dir / "definition" / "tables"
+    if not tables_dir.is_dir():
+        return money, percent, bad_pct
+    for tmdl in tables_dir.glob("*.tmdl"):
+        owner = None
+        for line in tmdl.read_bytes().decode("utf-8", errors="replace").splitlines():
+            m = re.match(r"\tmeasure\s+(?:'(.*?)'|(\S+))", line)
+            if m:
+                owner = m.group(1) or m.group(2)
+            if "formatString:" in line and owner:
+                fmt = line.split("formatString:", 1)[1].strip()
+                if IQD in fmt:
+                    money.add(owner)
+                if "%" in fmt:
+                    percent.add(owner)
+                    if "0.00%" not in fmt:
+                        bad_pct.append(f"{owner}: {fmt}")
+    return money, percent, bad_pct
+
+
+def merged_lit(obj_list, key):
+    """First literal value for `key` across selector-less entries of a PBIR object."""
+    for entry in obj_list or []:
+        if "selector" in entry:
+            continue
+        value = lit(entry.get("properties", {}).get(key))
+        if value is not None:
+            return value
+    return None
+
+
+def audit_formatting(report_dir: Path) -> list[str]:
+    """Violations of the number-formatting standard for one report."""
+    violations = []
+    model_dir = report_dir.parent / report_dir.name.replace(".Report", ".SemanticModel")
+    money, percent, bad_pct = parse_model_formats(model_dir)
+    for fmt in bad_pct:
+        violations.append(f"model: percent format not 0.00%-based — {fmt}")
+
+    for visual_file in sorted((report_dir / "definition" / "pages").glob("*/visuals/*/visual.json")):
+        vj = json.loads(visual_file.read_text())
+        visual = vj.get("visual", {})
+        vtype = visual.get("visualType")
+        name = vj.get("name", visual_file.parent.name)
+        objects = visual.get("objects", {})
+
+        fields = [
+            p.get("queryRef", "")
+            for bucket in visual.get("query", {}).get("queryState", {}).values()
+            for p in bucket.get("projections", [])
+        ]
+        measures = {f.split(".", 1)[1] for f in fields if "." in f and "(" not in f}
+
+        if vtype == "cardVisual":
+            # card formatting lives in selector entries ({"id": "default"} or per-measure)
+            entries = [
+                (lit(e.get("properties", {}).get("labelDisplayUnits")),
+                 lit(e.get("properties", {}).get("labelPrecision")))
+                for e in objects.get("value", []) or []
+            ]
+            for units, prec in entries:
+                if units == "0":
+                    violations.append(f"card {name}: Auto display units (banned — KM bug)")
+                if measures & money and units == "1000000000" and prec != "3":
+                    violations.append(f"card {name}: bn card precision {prec} != 3")
+            if measures and measures <= percent and entries and not any(
+                prec == "2" for _, prec in entries
+            ):
+                violations.append(f"card {name}: percent card precision != 2")
+        elif vtype in ("pivotTable", "tableEx") and "tooltip" not in name:
+            grid = merged_lit(objects.get("grid"), "textSize")
+            vals = merged_lit(objects.get("values"), "fontSize")
+            hdr_size = merged_lit(objects.get("columnHeaders"), "fontSize")
+            hdr_bold = merged_lit(objects.get("columnHeaders"), "bold")
+            tot_key = "subTotals" if vtype == "pivotTable" else "total"
+            tot_bold = merged_lit(objects.get(tot_key), "bold")
+            for label, got, want in (("grid size", grid, "14"), ("values size", vals, "13"),
+                                     ("header size", hdr_size, "12"), ("header bold", hdr_bold, "true"),
+                                     ("totals bold", tot_bold, "true")):
+                if got != want:
+                    violations.append(f"table {name}: {label} {got} != {want}")
+        elif vtype in CHART_TYPES:
+            labels = objects.get("labels")
+            if merged_lit(labels, "show") == "true":
+                units = merged_lit(labels, "labelDisplayUnits")
+                prec = merged_lit(labels, "labelPrecision")
+                if units == "1000000" and prec != "1":
+                    violations.append(f"chart {name}: M-unit labels precision {prec} != 1")
+                elif units == "1000000000" and prec != "3":
+                    violations.append(f"chart {name}: bn-unit labels precision {prec} != 3")
+                elif units in (None, "0") and measures and measures <= money and prec != "1":
+                    violations.append(f"chart {name}: auto-unit money labels precision {prec} != 1")
+    return violations
+
+
 def fmt_counter(counter: Counter, expected=None) -> str:
     parts = []
     for value, count in counter.most_common():
@@ -220,6 +334,7 @@ def main() -> int:
         return 1
 
     audits = [audit_report(d) for d in report_dirs]
+    formatting = {d: audit_formatting(d) for d in report_dirs}
 
     for a in audits:
         print(f'\n=== {a["name"]} ===')
@@ -265,6 +380,17 @@ def main() -> int:
         tsize = "/".join(str(v) for v, _ in a["title_sizes"].most_common()) or "-"
         ksize = "/".join(str(v) for v, _ in a["kpi_value_sizes"].most_common()) or "-"
         print(f'{a["name"]:<28}{str(a["theme"]):<38}{radius:<12}{tsize:<12}{ksize:<10}{canvas}')
+
+    print("\n=== NUMBER FORMATTING AUDIT ===")
+    total = 0
+    for report_dir in report_dirs:
+        violations = formatting[report_dir]
+        total += len(violations)
+        status = "OK" if not violations else f"{len(violations)} violation(s)"
+        print(f'{report_dir.name.replace(".Report", ""):<28}{status}')
+        for violation in violations:
+            print(f"   {violation}")
+    print(f"total formatting violations: {total}")
     return 0
 
 

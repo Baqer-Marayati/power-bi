@@ -7,6 +7,9 @@ Scope: the six reports in `Fabric/DevelopmentWorkspace/`
 Purpose: a single, exact layout/spacing/typography guideline so the reports follow one
 structure. This is a **layout-only** standard — see the guardrail below.
 
+Sibling standard: `fabric-reports-number-formatting.md` governs how numbers render
+(units, decimals, format strings) — established 2026-08-28.
+
 > **GUARDRAIL — no logic changes.** Applying this standard must not add, remove, or change any
 > measure, value, number format, field binding, slicer field, visual type, page, or filter.
 > Allowed operations are limited to: **move, resize, restyle (font/color/spacing), and delete
