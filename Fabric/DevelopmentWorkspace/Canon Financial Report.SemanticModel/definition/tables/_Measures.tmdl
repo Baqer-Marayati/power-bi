@@ -388,14 +388,6 @@ table _Measures
 			    )
 		lineageTag: 3ef3d741-8c6b-4aef-a2a2-9c21bf6d6777
 
-		formatStringDefinition =
-				SWITCH (
-				    SELECTEDVALUE ( 'Dim_KPIRows'[KPI Label] ),
-				    "Gross Margin %", "0.00%",
-				    "Net Margin %", "0.00%",
-				    "#,0 ""د.ع.‏"""
-				)
-
 	measure 'Statement Actual' =
 			
 			VAR RowType = SELECTEDVALUE ( 'Dim_ReportRows'[RowType] )
