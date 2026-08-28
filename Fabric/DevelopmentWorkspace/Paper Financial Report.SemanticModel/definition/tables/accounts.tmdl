@@ -4,6 +4,7 @@ table accounts
 	measure GLAccountIsRowVisible =
 			
 			IF ( NOT ISBLANK ( SELECTEDVALUE ( 'accounts'[displayName] ) ), 1, BLANK () )
+		formatString: 0
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0402
 
 	column number

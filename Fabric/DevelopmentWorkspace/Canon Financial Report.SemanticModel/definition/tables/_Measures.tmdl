@@ -386,6 +386,13 @@ table _Measures
 			        "Net Profit", [Net Profit],
 			        "Net Margin %", [Net Margin %]
 			    )
+		formatStringDefinition =
+				SWITCH (
+				    SELECTEDVALUE ( 'Dim_KPIRows'[KPI Label] ),
+				    "Gross Margin %", "0.00%",
+				    "Net Margin %", "0.00%",
+				    "#,0 ""د.ع.‏"""
+				)
 		lineageTag: 3ef3d741-8c6b-4aef-a2a2-9c21bf6d6777
 
 	measure 'Statement Actual' =
@@ -1101,6 +1108,7 @@ table _Measures
 	measure 'Total AP Outstanding' =
 			
 			SUM ( PayablesFact[OpenAmount] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60201
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}

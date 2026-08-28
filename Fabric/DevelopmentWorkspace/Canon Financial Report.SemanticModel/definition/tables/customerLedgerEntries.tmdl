@@ -4,6 +4,7 @@ table customerLedgerEntries
 	measure TotalOutstanding_AR =
 			
 			SUMX ( FILTER ( 'customerLedgerEntries', 'customerLedgerEntries'[open] = 1 ), 'customerLedgerEntries'[remainingAmount] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0602
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -14,6 +15,7 @@ table customerLedgerEntries
 			    FILTER ( 'customerLedgerEntries', 'customerLedgerEntries'[open] = 1 && 'customerLedgerEntries'[dueDate] < TODAY () ),
 			    'customerLedgerEntries'[remainingAmount]
 			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0603
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -24,19 +26,23 @@ table customerLedgerEntries
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0604
 
 	measure AccountReceivable_outstanding = [TotalOutstanding_AR]
+		formatString: #,0
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0605
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure AR_CountOfInvoices = DISTINCTCOUNT ( 'customerLedgerEntries'[documentNo] )
+		formatString: #,0
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0606
 
 	measure AR_totalPayable_funnel = [TotalOutstanding_AR]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0607
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure AR_totalReceivable_funnel = [AR_totalPayable_funnel]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0626
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -47,11 +53,13 @@ table customerLedgerEntries
 			    FILTER ( 'customerLedgerEntries', 'customerLedgerEntries'[open] = 1 && 'customerLedgerEntries'[dueDate] >= TODAY () ),
 			    'customerLedgerEntries'[remainingAmount]
 			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0608
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure AR_overdue_funnel = [TotalOverdue_AR]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0609
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -97,6 +105,7 @@ table customerLedgerEntries
 			        "Still on time", SUMX ( FILTER ( 'customerLedgerEntries', 'customerLedgerEntries'[open] = 1 && 'customerLedgerEntries'[dueDate] >= TODAY () + 30 ), 'customerLedgerEntries'[remainingAmount] ),
 			        [TotalOverdue_AR]
 			    )
+		formatString: #,0
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0613
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -112,6 +121,7 @@ table customerLedgerEntries
 			    ),
 			    'customerLedgerEntries'[amount]
 			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0614
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}

@@ -4,11 +4,13 @@ table vendorLedgerEntries
 	measure Accountpayables_totalPayable =
 			
 			SUMX ( FILTER ( 'vendorLedgerEntries', 'vendorLedgerEntries'[open] = 1 ), 'vendorLedgerEntries'[remainingAmount] )
+		formatString: #,0
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0702
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure Accountpayables = [Accountpayables_totalPayable]
+		formatString: #,0
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0703
 
 	measure Overduepayables =
@@ -17,11 +19,13 @@ table vendorLedgerEntries
 			    FILTER ( 'vendorLedgerEntries', 'vendorLedgerEntries'[open] = 1 && 'vendorLedgerEntries'[dueDate] < TODAY () ),
 			    'vendorLedgerEntries'[remainingAmount]
 			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0704
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure CountOfInvoices = DISTINCTCOUNT ( 'vendorLedgerEntries'[documentNo] )
+		formatString: #,0
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0705
 
 	measure Accountpayables_notYetDue =
@@ -30,21 +34,25 @@ table vendorLedgerEntries
 			    FILTER ( 'vendorLedgerEntries', 'vendorLedgerEntries'[open] = 1 && 'vendorLedgerEntries'[dueDate] >= TODAY () ),
 			    'vendorLedgerEntries'[remainingAmount]
 			)
+		formatString: #,0
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0706
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure Accountpayables_overdue_funnel = [Overduepayables]
+		formatString: #,0
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0707
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure Accountpayables_totalPayable_funnel = [Accountpayables_totalPayable]
+		formatString: #,0
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0726
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure Accountpayables_notYetDue_funnel = [Accountpayables_notYetDue]
+		formatString: #,0
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0727
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -90,6 +98,7 @@ table vendorLedgerEntries
 			        "Due next >90 days", SUMX ( FILTER ( 'vendorLedgerEntries', 'vendorLedgerEntries'[open] = 1 && 'vendorLedgerEntries'[dueDate] > TODAY () + 90 ), 'vendorLedgerEntries'[remainingAmount] ),
 			        [Overduepayables]
 			    )
+		formatString: #,0
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0711
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}

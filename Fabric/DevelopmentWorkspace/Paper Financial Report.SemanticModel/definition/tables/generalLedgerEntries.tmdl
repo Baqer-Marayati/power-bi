@@ -4,11 +4,13 @@ table generalLedgerEntries
 	measure TotalRevenue =
 			
 			ABS ( [Net Revenue] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0103
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure RevenueFiltered = [TotalRevenue]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0104
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -16,21 +18,25 @@ table generalLedgerEntries
 	measure ExpenseFiltered =
 			
 			ABS ( [Operating Expenses] + [Other Income / Expense] + [Tax & Extraordinary] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0105
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure CostOfGoodsSoldFiltered = ABS ( [COGS] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0106
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure GrossProfit = [Gross Profit]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0107
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure NetProfit = [Net Profit]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0108
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -43,6 +49,7 @@ table generalLedgerEntries
 			        ABS ( 'Fact_PNL'[Amount] ) * 1.05
 			    )
 			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0109
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -55,6 +62,7 @@ table generalLedgerEntries
 			        ABS ( 'Fact_PNL'[Amount] ) * 1.05
 			    )
 			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0110
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -67,26 +75,31 @@ table generalLedgerEntries
 			        ABS ( 'Fact_PNL'[Amount] ) * 1.05
 			    )
 			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0111
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure GrossProfit_Budget = [RevenueBudgetCompat] - [COGSBudgetCompat]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0112
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure GrossProfit_gaugeValue = [GrossProfit]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0113
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure NetProfit_Budget = [RevenueBudgetCompat] - [COGSBudgetCompat] - [ExpenseBudgetCompat]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0114
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure NetProfit_gaugeValue = [NetProfit]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0115
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -163,6 +176,7 @@ table generalLedgerEntries
 			        ABS ( 'Fact_PNL'[Amount] )
 			    )
 			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0121
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
