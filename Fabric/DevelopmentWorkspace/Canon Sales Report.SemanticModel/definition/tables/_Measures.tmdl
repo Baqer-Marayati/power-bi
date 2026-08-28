@@ -31,24 +31,6 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
-	measure 'Sales Card Display' =
-			
-			DIVIDE ( [Sales], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
-		lineageTag: a1b2c3d4-0001-4000-8000-000000000001
-
-	measure 'COGS Card Display' =
-			
-			DIVIDE ( [COGS], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
-		lineageTag: a1b2c3d4-0002-4000-8000-000000000002
-
-	measure 'Profit Card Display' =
-			
-			DIVIDE ( [Profit], 1000000 )
-		formatString: #,0"M د.ع.‏";-#,0"M د.ع.‏";#,0"M د.ع.‏"
-		lineageTag: a1b2c3d4-0003-4000-8000-000000000003
-
 	measure 'Active BP Count' =
 			
 			DISTINCTCOUNT( SalesFact[CardCode] )
@@ -978,12 +960,6 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
-	measure 'Mapped Sales Card Display' =
-			
-			DIVIDE ( [Mapped Sales], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
-		lineageTag: 7d1f5a28-3002-4af7-8a20-304934000002
-
 	measure 'Mapped BP Count' =
 			
 			CALCULATE ( [Active BP Count], KEEPFILTERS ( Geo_City_Reference[IsMapped] = TRUE() ) )
@@ -1013,12 +989,6 @@ table _Measures
 		lineageTag: 7d1f5a28-3005-4af7-8a20-304934000005
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
-	measure 'Unmapped Sales Card Display' =
-			
-			DIVIDE ( [Unmapped Sales], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
-		lineageTag: 7d1f5a28-3006-4af7-8a20-304934000006
 
 	measure 'Map Longitude' =
 			
