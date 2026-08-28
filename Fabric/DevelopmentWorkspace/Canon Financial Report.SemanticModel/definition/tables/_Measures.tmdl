@@ -890,10 +890,10 @@ table _Measures
 
 	measure 'ROI %' =
 			
-			VAR SelectedYears = VALUES ( 'Dim_Date'[Year] )
+			VAR SelectedYears =
+			    FILTER ( VALUES ( 'Dim_Date'[Year] ), NOT ISBLANK ( 'Dim_Date'[Year] ) )
 			VAR HasSingleYearSelection =
-			    ISFILTERED ( 'Dim_Date'[Year] )
-			        && COUNTROWS ( SelectedYears ) = 1
+			    COUNTROWS ( SelectedYears ) = 1
 			VAR LockedPeriods =
 			    FILTER (
 			        ALL ( accountingPeriods ),
@@ -946,7 +946,7 @@ table _Measures
 	measure 'Average Company Capital' =
 
 			VAR SelectedYears =
-			    VALUES ( 'Dim_Date'[Year] )
+			    FILTER ( VALUES ( 'Dim_Date'[Year] ), NOT ISBLANK ( 'Dim_Date'[Year] ) )
 			RETURN
 			    SUMX (
 			        SelectedYears,
