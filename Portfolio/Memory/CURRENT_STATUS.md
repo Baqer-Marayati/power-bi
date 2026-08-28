@@ -71,9 +71,18 @@
   gained a NUMBER FORMATTING section (Auto-unit cards, percent-card 2dp, bn-card 3dp, table
   typography, chart label precision, non-0.00% model percents) — fleet audits 0 violations; the
   pre-standard `Reports/Service` module copy correctly flags 24, proving detection.
-- Formatting standardization is **done**. Open follow-ups elsewhere: retire orphaned `* Card
-  Display` helpers (model cleanup), measure vocabulary alignment, Canon `ROI %` blank-at-all-years
-  data issue, publish Canon Service to production.
+- Formatting standardization is **done**. Follow-ups closed same day (later pass):
+  1. **`* Card Display` helpers retired** — 43 measures deleted (19 per Financial model, 5 Sales)
+     plus 6 dangling Q&A linguistic entities in the Sales culture file, after proof of non-use.
+  2. **Measure vocabulary aligned** — Sales `Margin %` → `Sales Margin %` (visible "Gross Margin %"
+     labels in Sales followed; plain GL margins stay Financial-only), Service `Profit Margin %` →
+     `Service Margin %`, Sales `... Gross Margin Percentage` ×2 → `... %`, Inventory
+     `In-Stock Rate` → `In-Stock Rate %` (both). Rule codified in the number-formatting standard.
+  3. **Canon `ROI %` fixed** — blank Year row in `Dim_Date` doubled `Average Company Capital` at
+     all-years scope (18.48bn vs 9.24bn) and the `ISFILTERED` guard hid Canon's only data year;
+     both measures now iterate non-blank years, guard is "exactly one year in scope" (Paper
+     semantics). Single-year values verified unchanged live (0.78% for 2026).
+- Remaining: publish Canon Service to production (user action in Fabric).
 
 ## Current Routing
 
