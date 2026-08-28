@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Sales Card Display"
+                  "Property": "Sales"
                 }
               },
-              "queryRef": "_Measures.Sales Card Display",
-              "nativeQueryRef": "Sales Card Display"
+              "queryRef": "_Measures.Sales",
+              "nativeQueryRef": "Sales"
             }
           ]
         }
@@ -70,13 +70,20 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "1000000000D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Sales Card Display"
+            "metadata": "_Measures.Sales"
           }
         }
       ],

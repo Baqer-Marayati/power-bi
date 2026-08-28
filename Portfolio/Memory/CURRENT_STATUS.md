@@ -48,6 +48,14 @@
   edits must preserve line endings or Fabric sees a whole-file rewrite.
 - Known data issue (not formatting): Canon Financial `ROI %` returns blank at all-years scope
   (Paper returns a value) — capital-base measure needs investigation.
+- **Superseding money rule (same day, user decision):** all money **total** KPI cards fleet-wide
+  render in **billions with 3 decimals** ("5.886bn د.ع.") via one uniform card mechanism — raw
+  measure + fixed Billions display units + precision 3. 65 cards updated, 28 display-only rebinds
+  from `* Card Display` helpers back to raw measures (helpers are now unbound by cards; retire in a
+  later cleanup). Exemptions render exact IQD: per-unit/average cards (Avg Cost, Landed Cost/Unit,
+  Avg Collection per Txn, Avg Sales per SP/BP, Avg Parts Cost per Call) and the four cash cards on
+  both Financial reports (Paper genuinely holds ~66K in bank — bn would show 0.000). Zero model
+  changes in this pass; tables/charts keep exact model formats. Percent cards stay 2dp.
 - Phase 3 open: tables/matrices convergence (grid 14 / values 13 / headers 12 bold / bold totals),
   chart axis/data-label pass, codify the standard into `Portfolio/Shared/Standards/`, extend
   `audit-report-consistency.py` to police number formatting.

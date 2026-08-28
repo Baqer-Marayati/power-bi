@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Total Assets Card Display"
+                  "Property": "Total Assets"
                 }
               },
-              "queryRef": "_Measures.Total Assets Card Display",
-              "nativeQueryRef": "Total Assets Card Display"
+              "queryRef": "_Measures.Total Assets",
+              "nativeQueryRef": "Total Assets"
             }
           ]
         }
@@ -70,13 +70,20 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "1000000000D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Total Assets Card Display"
+            "metadata": "_Measures.Total Assets"
           }
         }
       ],

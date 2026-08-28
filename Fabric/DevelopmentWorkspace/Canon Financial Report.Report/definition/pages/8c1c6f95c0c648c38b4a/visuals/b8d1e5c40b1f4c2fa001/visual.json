@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Net Revenue Card Display"
+                  "Property": "Net Revenue"
                 }
               },
-              "queryRef": "_Measures.Net Revenue Card Display",
-              "nativeQueryRef": "Net Revenue Card Display"
+              "queryRef": "_Measures.Net Revenue",
+              "nativeQueryRef": "Net Revenue"
             }
           ]
         }
@@ -70,13 +70,20 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "1000000000D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Net Revenue Card Display"
+            "metadata": "_Measures.Net Revenue"
           }
         }
       ]

@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Operating Profit Card Display"
+                  "Property": "Operating Profit"
                 }
               },
-              "queryRef": "_Measures.Operating Profit Card Display",
-              "nativeQueryRef": "Operating Profit Card Display"
+              "queryRef": "_Measures.Operating Profit",
+              "nativeQueryRef": "Operating Profit"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Operating Profit Card Display"
+                "Property": "Operating Profit"
               }
             },
             "direction": "Descending"
@@ -91,6 +91,20 @@
                   "Value": "false"
                 }
               }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1000000000D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
             }
           },
           "selector": {
@@ -116,13 +130,20 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "1000000000D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Operating Profit Card Display"
+            "metadata": "_Measures.Operating Profit"
           }
         }
       ]
