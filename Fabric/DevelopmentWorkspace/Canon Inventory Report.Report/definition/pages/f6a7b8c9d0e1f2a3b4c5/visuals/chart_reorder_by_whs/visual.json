@@ -99,6 +99,13 @@
                   "Value": "9D"
                 }
               }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
+                }
+              }
             }
           }
         }
