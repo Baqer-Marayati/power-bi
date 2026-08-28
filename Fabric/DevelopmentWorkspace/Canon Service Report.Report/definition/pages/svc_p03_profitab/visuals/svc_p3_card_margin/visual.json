@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Profit Margin %"
+                  "Property": "Service Margin %"
                 }
               },
-              "queryRef": "_Measures.Profit Margin %",
-              "nativeQueryRef": "Profit Margin %"
+              "queryRef": "_Measures.Service Margin %",
+              "nativeQueryRef": "Service Margin %"
             }
           ]
         }
@@ -83,7 +83,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Profit Margin %"
+            "metadata": "_Measures.Service Margin %"
           }
         }
       ]
@@ -237,7 +237,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Profit Margin %'"
+                  "Value": "'Service Margin %'"
                 }
               }
             },

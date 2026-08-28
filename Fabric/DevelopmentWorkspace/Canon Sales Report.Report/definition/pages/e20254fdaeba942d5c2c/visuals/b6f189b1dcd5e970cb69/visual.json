@@ -213,12 +213,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Margin %"
+                  "Property": "Sales Margin %"
                 }
               },
-              "queryRef": "_Measures.Margin %",
-              "nativeQueryRef": "Margin %",
-              "displayName": "Gross Margin %"
+              "queryRef": "_Measures.Sales Margin %",
+              "nativeQueryRef": "Sales Margin %",
+              "displayName": "Sales Margin %"
             }
           ]
         }
@@ -469,7 +469,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Margin %"
+            "metadata": "_Measures.Sales Margin %"
           }
         },
         {
@@ -639,7 +639,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Margin %"
+            "metadata": "_Measures.Sales Margin %"
           }
         }
       ],

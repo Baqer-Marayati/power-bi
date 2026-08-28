@@ -1,7 +1,7 @@
 table _Measures
 	lineageTag: d5ce0ed3-7f03-4a85-be25-3f25719f29ae
 
-	measure 'Margin %' =
+	measure 'Sales Margin %' =
 			
 			DIVIDE( [Profit], [Sales], 0 )
 		formatString: 0.00%;-0.00%;0.00%
@@ -599,7 +599,7 @@ table _Measures
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 5a6b7c8d-0019-4000-8000-000000000019
 
-	measure 'Monthly Salary Gross Margin Percentage' =
+	measure 'Monthly Salary Gross Margin %' =
 
 			DIVIDE (
 			    [Monthly Salary Actual] - [Monthly Salary COGS],
@@ -633,7 +633,7 @@ table _Measures
 			VAR PlanGroupValue = SELECTEDVALUE ( CommissionEmployee[PlanGroup] )
 			VAR MeetsMarginRule =
 			    PlanGroupValue <> "ServiceTeam"
-			        || [Monthly Salary Gross Margin Percentage] >= 0.4
+			        || [Monthly Salary Gross Margin %] >= 0.4
 			RETURN
 			    SWITCH (
 			        TRUE (),
@@ -662,7 +662,7 @@ table _Measures
 			            VAR PlanGroupValue = CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) )
 			            VAR MeetsMarginRule =
 			                PlanGroupValue <> "ServiceTeam"
-			                    || [Monthly Salary Gross Margin Percentage] >= 0.4
+			                    || [Monthly Salary Gross Margin %] >= 0.4
 			            RETURN
 			                SWITCH (
 			                    TRUE (),
@@ -882,7 +882,7 @@ table _Measures
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 5a6b7c8d-0026-4000-8000-000000000026
 
-	measure 'Quarter Commission Gross Margin Percentage' =
+	measure 'Quarter Commission Gross Margin %' =
 
 			DIVIDE (
 			    [Quarter Commission Actual] - [Quarter Commission COGS],
@@ -919,7 +919,7 @@ table _Measures
 			        VAR PlanGroupValue = SELECTEDVALUE ( CommissionEmployee[PlanGroup] )
 			        VAR MeetsMarginRule =
 			            PlanGroupValue <> "ServiceTeam"
-			                || [Quarter Commission Gross Margin Percentage] >= 0.4
+			                || [Quarter Commission Gross Margin %] >= 0.4
 			        RETURN
 			            IF (
 			                [Quarter Commission Actual] >= [Quarter Commission Target]
@@ -936,7 +936,7 @@ table _Measures
 			            VAR PlanGroupValue = CALCULATE ( SELECTEDVALUE ( CommissionEmployee[PlanGroup] ) )
 			            VAR MeetsMarginRule =
 			                PlanGroupValue <> "ServiceTeam"
-			                    || [Quarter Commission Gross Margin Percentage] >= 0.4
+			                    || [Quarter Commission Gross Margin %] >= 0.4
 			            RETURN
 			                IF (
 			                    [Quarter Commission Actual] >= [Quarter Commission Target]

@@ -215,7 +215,7 @@ table _Measures
 		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: m1a00001-0001-4000-d001-000000000066
 
-	measure 'Profit Margin %' =
+	measure 'Service Margin %' =
 			DIVIDE (
 			    [Net Profit per Machine],
 			    [Total Revenue Allocated]

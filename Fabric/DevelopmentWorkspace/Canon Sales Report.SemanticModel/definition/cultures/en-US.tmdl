@@ -399,7 +399,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "_Measures",
-			          "ConceptualProperty": "Margin %"
+			          "ConceptualProperty": "Sales Margin %"
 			        }
 			      },
 			      "State": "Generated",

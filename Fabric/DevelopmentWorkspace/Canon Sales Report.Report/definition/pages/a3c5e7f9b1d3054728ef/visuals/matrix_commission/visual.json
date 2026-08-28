@@ -104,12 +104,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Quarter Commission Gross Margin Percentage"
+                  "Property": "Quarter Commission Gross Margin %"
                 }
               },
-              "queryRef": "_Measures.Quarter Commission Gross Margin Percentage",
-              "nativeQueryRef": "Gross Margin %",
-              "displayName": "Gross Margin %"
+              "queryRef": "_Measures.Quarter Commission Gross Margin %",
+              "nativeQueryRef": "Sales Margin %",
+              "displayName": "Sales Margin %"
             },
             {
               "field": {

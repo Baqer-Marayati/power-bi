@@ -53,6 +53,17 @@ Rules:
   suffix already in the format string (the "1.21KM د.ع." bug).
 - Card value typography: `fontSize 18D`, not bold (per the layout standard).
 
+## Measure vocabulary (2026-08-28 alignment)
+
+- Percent measures always end in **`%`** — never "Percentage" spelled out, never a bare name
+  (`In-Stock Rate %`, not `In-Stock Rate`).
+- Plain **`Gross / Operating / Net Margin %`** are reserved for the **GL-based P&L margins**
+  (Financial reports only).
+- Margins computed from domain documents are named **`<Domain> Margin %`**: `Sales Margin %`
+  (sales docs — the same number in Canon Financial and Canon Sales), `Service Margin %`
+  (service revenue vs parts cost). Visible labels (card titles, column headers) use the same
+  name as the measure — one concept, one name, fleet-wide.
+
 ## Tables & matrices (`pivotTable` / `tableEx`)
 
 Converged on the Financial pattern (2026-08-28):

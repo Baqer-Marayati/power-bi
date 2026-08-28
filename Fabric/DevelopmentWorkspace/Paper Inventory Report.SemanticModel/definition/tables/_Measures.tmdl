@@ -116,7 +116,7 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
-	measure 'In-Stock Rate' = DIVIDE ( [In-Stock SKUs], [Distinct SKUs], 0 )
+	measure 'In-Stock Rate %' = DIVIDE ( [In-Stock SKUs], [Distinct SKUs], 0 )
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa026
 
@@ -215,7 +215,7 @@ table _Measures
 	measure 'Narrative Title' =
 			VAR _value = [Stock Value]
 			VAR _totalTonnes = [Total On Hand]
-			VAR _instockPct = [In-Stock Rate]
+			VAR _instockPct = [In-Stock Rate %]
 			VAR _belowPct = [Below Reorder %]
 			RETURN
 			    "Inventory: " &

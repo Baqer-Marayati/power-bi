@@ -10128,7 +10128,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "_Measures",
-			          "ConceptualProperty": "In-Stock Rate"
+			          "ConceptualProperty": "In-Stock Rate %"
 			        }
 			      },
 			      "State": "Generated",

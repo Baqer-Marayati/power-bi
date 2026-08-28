@@ -168,12 +168,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Margin %"
+                  "Property": "Sales Margin %"
                 }
               },
               "queryRef": "SalesOverview.Margin %",
-              "nativeQueryRef": "Margin %",
-              "displayName": "Gross Margin %"
+              "nativeQueryRef": "Sales Margin %",
+              "displayName": "Sales Margin %"
             }
           ]
         }
