@@ -386,6 +386,8 @@ table _Measures
 			        "Net Profit", [Net Profit],
 			        "Net Margin %", [Net Margin %]
 			    )
+		lineageTag: 3ef3d741-8c6b-4aef-a2a2-9c21bf6d6777
+
 		formatStringDefinition =
 				SWITCH (
 				    SELECTEDVALUE ( 'Dim_KPIRows'[KPI Label] ),
@@ -393,7 +395,6 @@ table _Measures
 				    "Net Margin %", "0.00%",
 				    "#,0 ""د.ع.‏"""
 				)
-		lineageTag: 3ef3d741-8c6b-4aef-a2a2-9c21bf6d6777
 
 	measure 'Statement Actual' =
 			
