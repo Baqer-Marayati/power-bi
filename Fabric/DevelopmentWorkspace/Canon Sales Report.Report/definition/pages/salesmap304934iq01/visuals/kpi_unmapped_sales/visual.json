@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Unmapped Sales Card Display"
+                  "Property": "Unmapped Sales"
                 }
               },
-              "queryRef": "_Measures.Unmapped Sales Card Display",
-              "nativeQueryRef": "Unmapped Sales Card Display"
+              "queryRef": "_Measures.Unmapped Sales",
+              "nativeQueryRef": "Unmapped Sales"
             }
           ]
         }
@@ -70,20 +70,20 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "1000000D"
                 }
               }
             },
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "0L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Unmapped Sales Card Display"
+            "metadata": "_Measures.Unmapped Sales"
           }
         }
       ],

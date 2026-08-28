@@ -73,13 +73,6 @@
                   "Value": "1D"
                 }
               }
-            },
-            "labelPrecision": {
-              "expr": {
-                "Literal": {
-                  "Value": "2D"
-                }
-              }
             }
           },
           "selector": {

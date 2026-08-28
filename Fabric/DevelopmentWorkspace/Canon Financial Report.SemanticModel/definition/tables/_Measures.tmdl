@@ -158,7 +158,7 @@ table _Measures
 	measure Accounts =
 			
 			DISTINCTCOUNT ( 'Fact_PNL'[AcctCode] )
-		formatString: 0
+		formatString: #,0
 		lineageTag: f0d0c5dc-295f-460f-9f5d-a1d413eb16c6
 
 	measure 'Branch Count' =
@@ -182,7 +182,7 @@ table _Measures
 	measure Departments =
 			
 			DISTINCTCOUNT ( 'Fact_PNL'[DepartmentCode] )
-		formatString: 0
+		formatString: #,0
 		lineageTag: 52b42f8f-b1b2-4df8-96e2-dbc898f8d2ef
 
 	measure 'Net Revenue LY' =
@@ -588,7 +588,7 @@ table _Measures
 	measure 'BS Accounts' =
 			
 			DISTINCTCOUNT ( 'Fact_BalanceSheet'[AcctCode] )
-		formatString: 0
+		formatString: #,0
 		lineageTag: 731922fb-eb28-4d10-80a5-627fae5eadf4
 
 	measure 'Sales Revenue' =
@@ -666,85 +666,85 @@ table _Measures
 	measure 'Net Revenue Card Display' =
 			
 			DIVIDE ( [Net Revenue], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
+		formatString: #,0.00"bn د.ع.‏";-#,0.00"bn د.ع.‏";#,0.00"bn د.ع.‏"
 		lineageTag: 58505070-d4dd-4340-a20f-a0eb13ae6bd3
 
 	measure 'Gross Profit Card Display' =
 			
 			DIVIDE ( [Gross Profit], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
+		formatString: #,0"M د.ع.‏";-#,0"M د.ع.‏";#,0"M د.ع.‏"
 		lineageTag: 17d2afb6-49d9-4f77-980f-e19d5e37bc0d
 
 	measure 'Operating Profit Card Display' =
 			
 			DIVIDE ( [Operating Profit], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
+		formatString: #,0"M د.ع.‏";-#,0"M د.ع.‏";#,0"M د.ع.‏"
 		lineageTag: 41ca236d-13ee-4357-a7d6-b90e37ff0fd0
 
 	measure 'Net Profit Card Display' =
 			
 			DIVIDE ( [Net Profit], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
+		formatString: #,0"M د.ع.‏";-#,0"M د.ع.‏";#,0"M د.ع.‏"
 		lineageTag: af6ae29e-a33e-4db4-9d32-301db9134541
 
 	measure 'Net Revenue YTD Card Display' =
 			
 			DIVIDE ( [Net Revenue YTD], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
+		formatString: #,0.00"bn د.ع.‏";-#,0.00"bn د.ع.‏";#,0.00"bn د.ع.‏"
 		lineageTag: 3184a786-f2bd-4d90-b0ca-43d9db0691f3
 
 	measure 'Gross Profit YTD Card Display' =
 			
 			DIVIDE ( [Gross Profit YTD], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
+		formatString: #,0"M د.ع.‏";-#,0"M د.ع.‏";#,0"M د.ع.‏"
 		lineageTag: 49f51f2a-00d3-4058-b932-e01a9750bdae
 
 	measure 'Operating Profit YTD Card Display' =
 			
 			DIVIDE ( [Operating Profit YTD], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
+		formatString: #,0"M د.ع.‏";-#,0"M د.ع.‏";#,0"M د.ع.‏"
 		lineageTag: d860df6b-2bdd-4e10-a325-edfd5710609e
 
 	measure 'Net Profit YTD Card Display' =
 			
 			DIVIDE ( [Net Profit YTD], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
+		formatString: #,0"M د.ع.‏";-#,0"M د.ع.‏";#,0"M د.ع.‏"
 		lineageTag: 0dea3ca0-4279-4e02-bd2f-cf342a745e7d
 
 	measure 'Sales Revenue YTD Card Display' =
 			
 			DIVIDE ( [Sales Revenue YTD], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
+		formatString: #,0.00"bn د.ع.‏";-#,0.00"bn د.ع.‏";#,0.00"bn د.ع.‏"
 		lineageTag: 0207087e-6e4c-4401-b100-b1f13fa28635
 
 	measure 'Sales Gross Profit YTD Card Display' =
 			
 			DIVIDE ( [Sales Gross Profit YTD], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
+		formatString: #,0"M د.ع.‏";-#,0"M د.ع.‏";#,0"M د.ع.‏"
 		lineageTag: d588a7f3-20a8-4969-9cc3-ebd3f4d7b8cc
 
 	measure 'Operating Expenses Card Display' =
 			
 			DIVIDE ( [Operating Expenses Display], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
+		formatString: #,0"M د.ع.‏";-#,0"M د.ع.‏";#,0"M د.ع.‏"
 		lineageTag: 47fbe32d-1911-4321-bb3f-5f06b68fe256
 
 	measure 'Total Assets Card Display' =
 			
 			DIVIDE ( [Total Assets], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
+		formatString: #,0.00"bn د.ع.‏";-#,0.00"bn د.ع.‏";#,0.00"bn د.ع.‏"
 		lineageTag: c8d75e60-0d98-4a67-9835-ea8e86698d84
 
 	measure 'Total Liabilities Card Display' =
 			
 			DIVIDE ( [Total Liabilities], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
+		formatString: #,0"M د.ع.‏";-#,0"M د.ع.‏";#,0"M د.ع.‏"
 		lineageTag: 03835a0d-e896-40c8-bc82-90d2588f665c
 
 	measure 'Total Equity Card Display' =
 			
 			DIVIDE ( [Total Equity], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
+		formatString: #,0.00"bn د.ع.‏";-#,0.00"bn د.ع.‏";#,0.00"bn د.ع.‏"
 		lineageTag: 6723fc89-f439-4143-b2ab-9fbf631c07c9
 
 	measure 'Sales Quantity YTD' =
@@ -837,7 +837,7 @@ table _Measures
 	measure 'AR Customer Count' =
 			
 			DISTINCTCOUNT ( ReceivablesFact[CardCode] )
-		formatString: 0
+		formatString: #,0
 		lineageTag: c1a2b3d4-e5f6-7890-a1b2-c3d4e5f60004
 
 	measure 'Total Collections' =
@@ -993,13 +993,13 @@ table _Measures
 	measure 'Sales Revenue Card Display' =
 			
 			DIVIDE ( [Sales Revenue], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
+		formatString: #,0.00"bn د.ع.‏";-#,0.00"bn د.ع.‏";#,0.00"bn د.ع.‏"
 		lineageTag: b1c2d3e4-f5a6-7890-b1c2-d3e4f5a67893
 
 	measure 'Sales Gross Profit Card Display' =
 			
 			DIVIDE ( [Sales Gross Profit], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
+		formatString: #,0"M د.ع.‏";-#,0"M د.ع.‏";#,0"M د.ع.‏"
 		lineageTag: b1c2d3e4-f5a6-7890-b1c2-d3e4f5a67894
 
 	measure 'ROI %' =

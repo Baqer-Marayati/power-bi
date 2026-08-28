@@ -2,7 +2,7 @@
 
 ## Date
 
-- Last updated: August 24, 2026
+- Last updated: August 28, 2026
 
 ## Current Reality
 
@@ -23,6 +23,34 @@
 - `REPORT_CATALOG.md` Sales page list is stale vs the live 6-page Fabric report (Sales Map, Salesperson, Customers, Target & Salaries).
 - **Resolved same day:** Canon Service Fabric copy migrated to the layout standard (layout-only, zero semantic changes; audit now clean — see `Reports/Service/Module/Project Memory/CURRENT_STATUS.md`). Standard scope is now six reports. Off-canvas cleanup done Aug 24 (94 inert parked visuals removed; 3 wired Paper Inventory reorder slicers kept).
 - **Format strings closed (Aug 28):** the "only ~35–45% of measures have format strings" finding was overstated — `INFO.VIEW.MEASURES()[FormatString]` returns null via REST/MCP even for formatted measures; audit format coverage from TMDL, not live metadata. True gap was the two Financial models only: 67 numeric measures each got model-level formats (IQD triple / `#,0` counts / dynamic SWITCH for the mixed-type `Overview KPI Value`). All six models now format every numeric measure; remaining unformatted are text/SVG/date helpers by design. Remaining audit items: measure vocabulary, table-naming documentation.
+
+## Number-Formatting Standard, Phases 1–2 (Aug 28, 2026)
+
+- Fleet-wide KPI number formatting standardized across all six Fabric reports after a 170-card census
+  (canvas: `power-bi-number-formatting-standard.canvas.tsx`). Core rule: **the model formats, the
+  visual displays** — format strings live in the semantic model; card visuals never use Auto display
+  units and never override precision. Big raw-money cards use *fixed* visual units chosen from live
+  magnitudes (bn or M); pre-scaled `* Card Display` measures render via their model formats.
+- Model side (formatString lines only, zero DAX changes): Financial M-suffix formats gained a
+  thousands separator and dropped false decimals (`#,0"M د.ع.‏"` — fixes Canon's comma-less "1174M"),
+  bn formats now `#,0.00"bn د.ع.‏"`; Financial counts `0` → `#,0` (Departments/Accounts/BS
+  Accounts/AR Customer Count/DPO); Sales "Bn" → "bn"; Service money measures (12) gained the IQD
+  suffix (previously bare numbers — only report without currency); Service percents 0.0% → 0.00%
+  (fleet standard is 2dp); Service `#,##0` cosmetically normalized to `#,0`.
+- Report side (165 card visual.json files; `objects.value` only): Auto display units eliminated,
+  precision overrides removed, all card values normalized to 18px regular (Paper ROI was 21px — the
+  "bold" look; Inventory legacy 21px-bold defaults cleared). Three deliberate rebinds, display-only:
+  both Financial ROI "Net Revenue" cards now bind `Net Revenue Card Display` (bn, matching P&L), and
+  Sales "Unmapped Sales" binds the raw measure at fixed Millions (was a bn display measure rendering
+  128M as "0.13Bn").
+- Verified: TMDL diffs are 100% formatString lines; all 165 visual diffs touch only `objects.value`
+  except the three rebinds; filterConfig/queries byte-identical otherwise. Service TMDL is CRLF —
+  edits must preserve line endings or Fabric sees a whole-file rewrite.
+- Known data issue (not formatting): Canon Financial `ROI %` returns blank at all-years scope
+  (Paper returns a value) — capital-base measure needs investigation.
+- Phase 3 open: tables/matrices convergence (grid 14 / values 13 / headers 12 bold / bold totals),
+  chart axis/data-label pass, codify the standard into `Portfolio/Shared/Standards/`, extend
+  `audit-report-consistency.py` to police number formatting.
 
 ## Current Routing
 

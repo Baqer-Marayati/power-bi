@@ -99,13 +99,6 @@
                 }
               }
             },
-            "labelPrecision": {
-              "expr": {
-                "Literal": {
-                  "Value": "2D"
-                }
-              }
-            },
             "fontSize": {
               "expr": {
                 "Literal": {

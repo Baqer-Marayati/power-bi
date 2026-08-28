@@ -128,7 +128,7 @@ table vendorLedgerEntries
 			        ABS ( 'vendorLedgerEntries'[amount] )
 			    )
 			RETURN IF ( PurchasesLast365 = 0, BLANK(), ROUND ( DIVIDE ( [Accountpayables_totalPayable], PurchasesLast365 ) * 365, 0 ) )
-		formatString: 0
+		formatString: #,0
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0713
 
 	column postingDate
