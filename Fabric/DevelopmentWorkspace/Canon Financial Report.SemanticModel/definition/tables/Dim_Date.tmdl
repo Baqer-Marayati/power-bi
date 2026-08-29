@@ -78,7 +78,10 @@ table Dim_Date
 		source =
 				
 				ADDCOLUMNS (
-				    CALENDAR ( DATE ( 2026, 1, 1 ), DATE ( YEAR ( TODAY () ), 12, 31 ) ),
+				    // Include the 2025-12-31 opening/carry-forward rows used by
+				    // Balance Sheet and Collections relationships. Visible Year
+				    // slicers remain constrained to 2026+ at report level.
+				    CALENDAR ( DATE ( 2025, 1, 1 ), DATE ( YEAR ( TODAY () ), 12, 31 ) ),
 				    "Year", YEAR ( [Date] ),
 				    "QuarterNo", ROUNDUP ( DIVIDE ( MONTH ( [Date] ), 3, 0 ), 0 ),
 				    "Quarter", "Q" & ROUNDUP ( DIVIDE ( MONTH ( [Date] ), 3, 0 ), 0 ),
