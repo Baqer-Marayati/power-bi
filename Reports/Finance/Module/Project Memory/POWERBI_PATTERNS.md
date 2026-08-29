@@ -49,6 +49,13 @@ This file captures what we have learned about handling PBIP report files, TMDL s
 - Slicer polish sometimes requires structural changes such as separating labels from controls.
 - IQD formatting affects layout; a card that fit in USD may crowd in IQD.
 - KPI rows and slicer rails should be treated as reusable components across pages.
+- A theme and a coarse token audit are not enough to prove visual parity: Paper ROI passed the
+  older strict check while six KPI values still used Segoe UI Semibold and both charts forced
+  10pt bold axes. Repeated typography must be explicit in PBIR (`fontFamily`, size, weight), and
+  the strict audit must inspect axes, legends, row headers, page subtitles, and inter-card gaps.
+- Current fleet hierarchy: page title/subtitle 20/13, visual title 12, KPI value 18, chart
+  axes/data labels/legends 9, matrix row header 13, and slicer header 14 bold Semibold; top KPI
+  rows use `y=136`, height 104, and exact 24px gaps.
 - The old helper `... KPI` / `... KPI Plain` aliases are retired. They leaked internal captions in live Desktop validation and should not be reintroduced.
 - For repeated top monetary KPI cards, bind the raw measure and use fixed Billions display units
   with explicit 3-decimal precision. The old `... Card Display` scaled-helper pattern is retired.

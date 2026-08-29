@@ -12,7 +12,10 @@
 - Vocabulary is aligned: the sales-document profitability measure and all visible labels are
   **Sales Margin %**; `Monthly Salary Gross Margin %` and `Quarter Commission Gross Margin %`
   use the standard percent suffix. The obsolete scaled `* Card Display` helpers are deleted.
-- This module copy passes the strict portfolio consistency audit with zero violations.
+- The Fabric copy received the later fleet typography/rhythm pass on Aug 29 (regular Segoe UI
+  hierarchy plus 24px KPI gaps) and passes the expanded strict audit with zero violations. This
+  module PBIP definition predates that later Fabric-only pass and needs an explicit copy-back
+  before it can pass the new typography checks.
 
 ## Active Project
 - `C:\Work\reporting-hub\Reports\Sales\Sales Report`
@@ -23,7 +26,7 @@
 - Latest Sales Map repair: governorate tooltip Sales % now clears the full map geography row context for its denominator, and the Deneb choropleth fields/viewport are aligned to the high-detail vector layer.
 - Existing commercial pages have: report header, branding lockup, left-rail slicers, KPI card row, charts, and existing matrices repositioned.
 - Fabric `Canon Sales Report` Rebate page now has a Salesmen slicer based on reseller assignment from SAP `OCRD.SlpCode` / `OSLP.SlpName`.
-- Portfolio visual identity applied: #F8FBFF background, navy-blue palette, C9D5E3 card borders, 1F4E79 drop shadows, Segoe UI/Tahoma typography.
+- Portfolio visual identity applied: #F8FBFF background, navy-blue palette, C9D5E3 card borders, 1F4E79 drop shadows, Segoe UI typography.
 - Pages use 1920×1080 FitToPage with the shared 400px slicer rail and fleet KPI/table/chart rules.
 
 ## Live Pages

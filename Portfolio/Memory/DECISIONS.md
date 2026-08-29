@@ -64,10 +64,12 @@
   - `.github/workflows/validate-structure.yml`
 - Markdown link validation must run in CI on push and pull request via:
   - `.github/workflows/validate-doc-links.yml`
-- The six Git-connected Fabric reports must pass the strict layout and number-formatting audit on
-  every push and pull request via:
+- The six Git-connected Fabric reports must pass the strict layout, typography/rhythm, and
+  number-formatting audit on every push and pull request via:
   - `.github/workflows/validate-report-consistency.yml`
   - `python3 Portfolio/scripts/audit-report-consistency.py --strict Fabric/DevelopmentWorkspace`
+- Explicit visual hierarchy is required: regular Segoe UI page/visual/card/chart/table text,
+  with bold 14pt Segoe UI Semibold reserved for slicer headers; top KPI rows use 24px gaps.
 - Approved Fabric definitions are reconciled back to module homes with
   `Portfolio/scripts/sync-fabric-to-modules.py --apply`; module `.pbip`, `.platform`, and `.pbi`
   files remain local to their PBIP/workspace identity and are not overwritten.

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_avg_age",
   "position": {
-    "x": 1062.5,
-    "y": 136.66666666666669,
+    "x": 1063.2666666666667,
+    "y": 136,
     "z": 0,
     "height": 104,
-    "width": 255,
+    "width": 251.8,
     "tabOrder": 3000
   },
   "visual": {
@@ -80,6 +80,13 @@
                   "Value": "3L"
                 }
               }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
             }
           },
           "selector": {
@@ -113,6 +120,13 @@
               "expr": {
                 "Literal": {
                   "Value": "3L"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             }

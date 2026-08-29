@@ -16,11 +16,17 @@
 - The report runs from company-specific PBIPs under `Companies/`, not from the older `Reports/Finance/Financial Report/` path.
 - The current shell mixes the Sample 2 design language with SAP-backed semantic model logic and later transferred AR/AP/cash pages.
 - Durable rules and historical rationale live in `DECISIONS.md` and `MODEL_NOTES.md`; this file is for the current snapshot and next validation focus.
-- **Fabric/module parity restored (2026-08-29):** both company module `.Report` and
+- **Fabric/module parity restored at the reconciliation milestone (2026-08-29):** both company module `.Report` and
   `.SemanticModel` definition trees now mirror the approved `Fabric/DevelopmentWorkspace`
   copies exactly (module `.pbip` / `.platform` identity files preserved). This includes the
   8-page shell, fleet formatting standard, vocabulary alignment, retired Card Display helpers,
   PAPERENTITY cash/P&L updates, and Canon ROI/date-integrity fixes.
+- **Later Fabric-only typography pass (2026-08-29):** Canon and Paper now use explicit regular
+  Segoe UI for KPI values, page/visual titles, chart axes/labels/legends, and matrix row headers;
+  slicer headers are the single bold Semibold tier. Top KPI rows use 24px gaps. Paper ROI's
+  Semibold card values and 10pt bold axes are fixed. The Fabric copies pass the expanded strict
+  audit with zero violations and no query/filter/binding/model changes. Module PBIP definitions
+  have not yet received this later pass.
 - Fabric DevelopmentWorkspace copies now have consistent left slicer rails on the last four pages for both CANON and PAPERENTITY: `Accounts Receivable`, `Accounts Payable`, `Collections`, and `Cash`. CANON keeps its existing AR rail, AP/Cash now have rails, and Collections uses the same period/customer/collector/origin rail as PAPERENTITY.
 - AR/AP/Cash rails intentionally use real snapshot-domain fields, not a `Dim_Date` as-of slicer. Collections uses `Dim_Date` Year/Quarter/Month because `CollectionsFact.PostingDate -> Dim_Date.Date` is an active model relationship.
 - Fabric DevelopmentWorkspace Collections now uses the approved two-main-visual layout in both company reports: `Collections by Customer` table plus one tall `Collections by Month` column chart. Cash now uses the approved three-main-visual layout: balance-by-account bar, distribution-by-type donut, and `Cash Accounts Detail` table.

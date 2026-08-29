@@ -9,7 +9,10 @@
   `.platform` identity files were preserved; a second sync dry-run reported zero differences.
 - The module now includes **Service Margin %** (renamed from Profit Margin %), explicit two-decimal
   percent cards, raw-measure bn/3dp money cards, normalized money chart labels, and the shared
-  1920×1080 table/layout standard. Strict consistency audit: zero violations.
+  1920×1080 table/layout standard.
+- A later Fabric-only pass standardized explicit regular Segoe UI chart/card/title typography and
+  changed top KPI gaps from 20.6px to 24px. The Fabric copy passes the expanded strict audit with
+  zero violations; the module PBIP definition needs a separate copy-back for this later pass.
 
 ## Fabric copy migrated to the unified layout standard (2026-08-24)
 - `Fabric/DevelopmentWorkspace/Canon Service Report.Report` was migrated **layout-only** to
@@ -102,7 +105,8 @@
 | svc_p04_partsflt | Parts & Faults | 4 KPI cards, top-parts-by-cost bar, calls-by-fault-type bar, parts-cost trend, **revenue-by-type donut (fixed)**, cost-by-customer bar |
 | svc_p05_clients  | Client View | 4 KPI cards, Client Summary pivot, machines-per-customer bar, calls trend |
 
-Each page: 1920×1080 FitToPage, Finance-matching palette, 400px shared slicer rail, and fleet-standard KPI/chart formatting.
+Each Fabric page: 1920×1080 FitToPage, Finance-matching palette, 400px shared slicer rail,
+24px KPI gaps, and explicit fleet-standard KPI/chart typography.
 
 ## Known open items
 - **Slicer rail still inconsistent across pages.** Page 2 has Team slicer instead of Customer Type; Page 5 has Customer slicer instead of Customer Type. Decide if these should be unified or are intentional per-page contexts.

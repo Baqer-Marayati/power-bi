@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "svc_p5_card_rev",
   "position": {
-    "x": 1543.3333333333335,
-    "y": 136.66666666666669,
+    "x": 1545.916666666667,
+    "y": 136,
     "z": 0,
     "height": 104,
-    "width": 323.33333333333337,
+    "width": 320.75000000000006,
     "tabOrder": 6000
   },
   "visual": {
@@ -78,6 +78,13 @@
               "expr": {
                 "Literal": {
                   "Value": "3L"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             }

@@ -3,7 +3,7 @@
   "name": "header_shape",
   "position": {
     "x": 511.6666666666667,
-    "y": 41.66666666666667,
+    "y": 40,
     "z": 9000,
     "height": 68.33333333333334,
     "width": 720,
@@ -73,6 +73,17 @@
                   "Value": "20D"
                 }
               }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2E3A42'"
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -91,6 +102,31 @@
               "expr": {
                 "Literal": {
                   "Value": "13D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#485257'"
+                    }
+                  }
                 }
               }
             }

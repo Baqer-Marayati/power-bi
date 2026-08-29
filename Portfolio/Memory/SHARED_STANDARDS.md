@@ -35,3 +35,14 @@ As of March 22, 2026, most detailed standards still live inside the Finance modu
   14/13/12-bold/bold-totals, money chart labels M→1dp / bn→3dp).
 - Enforced by the NUMBER FORMATTING section of `../scripts/audit-report-consistency.py`.
 - Sibling layout standard: `../Shared/Standards/fabric-reports-layout-standard.md`.
+
+## 2026-08-29 - Explicit Typography And KPI Rhythm (six Fabric reports)
+
+- The six Fabric reports now use one explicit visual hierarchy: page title/subtitle 20/13,
+  visual titles 12, KPI values 18, chart axes/data labels/legends 9, matrix row headers 13, and
+  slicer headers 14 bold Semibold as the single deliberate emphasis tier.
+- All top KPI rows use `y = 136`, height 104, equal widths inside their established report-family
+  bounds, and exact 24px gaps.
+- The TYPOGRAPHY & RHYTHM section of `../scripts/audit-report-consistency.py` enforces the hierarchy
+  and spacing in strict/CI mode. Full property contract:
+  `../Shared/Standards/fabric-reports-layout-standard.md`.

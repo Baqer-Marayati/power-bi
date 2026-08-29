@@ -9,8 +9,10 @@
 - **Aug 29, 2026 — Fabric/module parity restored:** both Canon and Paper module `.Report` and
   `.SemanticModel` definition trees now mirror their approved Fabric copies exactly (module
   `.pbip` / `.platform` identity preserved). Both copies include the fleet number/table/chart
-  standards and the vocabulary rename `In-Stock Rate %`; strict consistency audit reports zero
-  violations. Use `Portfolio/scripts/sync-fabric-to-modules.py` for future copy-back passes.
+  standards and the vocabulary rename `In-Stock Rate %`. A later Fabric-only pass standardized
+  explicit typography and 24px KPI gaps; both Fabric copies pass the expanded strict audit with
+  zero violations. Module PBIP definitions predate that later pass. Use
+  `Portfolio/scripts/sync-fabric-to-modules.py` for a future explicit copy-back.
 
 - **Jun 1, 2026** — PAPER Inventory Fabric semantic model now uses a **100-day** stock-cover policy and applies a **24-ton minimum order per SKU** inside `Fact_StockCoverPolicy[SuggestedReorderQty]`. Stock Actions remains ton-based; the separate `MOQ Extra (Tons)` column was removed for clarity. Fabric semantic refresh / app review is required before treating the result as live.
 - **May 27, 2026** — PAPER Inventory Stock Health / Stock Actions logic adjusted in the Fabric semantic model so low-demand zero-stock rows no longer show as **Healthy**. The 1-ton planning threshold remains, but those rows now surface as `Low demand - no stock` / `Review slow mover`; sub-ton targets display as `<1` ton. Fabric semantic refresh is required before the app reflects the change.

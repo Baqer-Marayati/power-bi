@@ -1,14 +1,20 @@
 # Next Steps
 
 ## Immediate Priority
-1. After the next Git/Fabric sync, refresh Canon Financial and confirm no `(Blank)` Year appears;
+1. After the next Git/Fabric sync, verify Paper ROI no longer looks heavier than Canon ROI: all
+   six visible KPI values should be regular Segoe UI, both chart axes should be 9pt regular, and
+   the four top cards should have equal 24px gaps. Spot-check one Sales, Inventory, and Service
+   page for the same title/axis hierarchy.
+2. After the next Git/Fabric sync, refresh Canon Financial and confirm no `(Blank)` Year appears;
    visible Year slicers expose 2026+ only, and the ROI card renders at page load and stays unchanged
    when 2026 is selected.
-2. Validate both CANON and PAPERENTITY show exactly 8 pages: `P&L`, `OpEx`, `Balance sheet`,
+3. Validate both CANON and PAPERENTITY show exactly 8 pages: `P&L`, `OpEx`, `Balance sheet`,
    `ROI`, `Accounts Receivable`, `Accounts Payable`, `Collections`, `Cash`.
-3. Run `python3 Portfolio/scripts/audit-report-consistency.py --strict Fabric/DevelopmentWorkspace`
+4. Run `python3 Portfolio/scripts/audit-report-consistency.py --strict Fabric/DevelopmentWorkspace`
    after future visual/model edits; CI runs the same guardrail.
-4. Validate Collections/Cash in both reports and PAPERENTITY's P&L customer chart after refresh.
+5. Validate Collections/Cash in both reports and PAPERENTITY's P&L customer chart after refresh.
+6. Reconcile the later Fabric-only typography pass to module PBIP definitions with
+   `Portfolio/scripts/sync-fabric-to-modules.py --apply` only when that separate copy-back is wanted.
 1. After repository cleanup changes, run structure validation and open the active PBIPs in Power BI Desktop when path-sensitive script or PBIP guardrail changes need end-to-end confirmation.
 2. Reopen the PBIP after each semantic-model pass and capture screenshots of the remaining broken pages.
 3. Recheck whether the right-pane warnings for `generalLedgerEntries` and `accounts` are gone after the latest cleanup pass.

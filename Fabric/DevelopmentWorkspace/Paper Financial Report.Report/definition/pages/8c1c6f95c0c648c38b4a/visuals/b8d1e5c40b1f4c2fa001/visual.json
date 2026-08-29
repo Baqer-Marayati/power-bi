@@ -3,10 +3,10 @@
   "name": "b8d1e5c40b1f4c2fa001",
   "position": {
     "x": 520,
-    "y": 135,
+    "y": 136,
     "z": 0,
     "height": 104,
-    "width": 252.8,
+    "width": 247.99999999999994,
     "tabOrder": 11000
   },
   "visual": {
@@ -78,6 +78,13 @@
               "expr": {
                 "Literal": {
                   "Value": "3L"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             }

@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Audit Fabric report layout and number formatting
+      - name: Audit Fabric layout, typography, rhythm, and number formatting
         run: >-
           python3 Portfolio/scripts/audit-report-consistency.py
           --strict

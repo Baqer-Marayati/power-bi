@@ -3,10 +3,10 @@
   "name": "8f2d62875ed0cae89d68",
   "position": {
     "x": 520,
-    "y": 135,
+    "y": 136,
     "z": 2000,
     "height": 104,
-    "width": 320.5,
+    "width": 316.0,
     "tabOrder": 4000
   },
   "visual": {
@@ -81,7 +81,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },

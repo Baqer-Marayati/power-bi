@@ -94,7 +94,7 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14.0D"
+                  "Value": "14D"
                 }
               }
             }
@@ -151,7 +151,7 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14.0D"
+                  "Value": "14D"
                 }
               }
             },

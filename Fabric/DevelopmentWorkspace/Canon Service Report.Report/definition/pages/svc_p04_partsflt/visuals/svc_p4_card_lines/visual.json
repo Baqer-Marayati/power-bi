@@ -3,10 +3,10 @@
   "name": "svc_p4_card_lines",
   "position": {
     "x": 511.6666666666667,
-    "y": 136.66666666666669,
+    "y": 136,
     "z": 0,
     "height": 104,
-    "width": 323.33333333333337,
+    "width": 320.75000000000006,
     "tabOrder": 5000
   },
   "visual": {
@@ -71,6 +71,13 @@
               "expr": {
                 "Literal": {
                   "Value": "1D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             }

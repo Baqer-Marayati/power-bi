@@ -3,10 +3,10 @@
   "name": "kpi_purchase_unit_cost",
   "position": {
     "x": 511.6666666666667,
-    "y": 136.66666666666669,
+    "y": 136,
     "z": 1000,
     "height": 104,
-    "width": 255,
+    "width": 251.8,
     "tabOrder": 3000
   },
   "visual": {
@@ -80,6 +80,13 @@
                   "Value": "3L"
                 }
               }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
             }
           },
           "selector": {
@@ -113,6 +120,13 @@
               "expr": {
                 "Literal": {
                   "Value": "3L"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             }

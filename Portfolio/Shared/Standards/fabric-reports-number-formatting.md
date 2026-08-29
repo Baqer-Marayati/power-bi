@@ -15,8 +15,7 @@ produces them.
 - Visuals only choose **display units and decimal places** (`labelDisplayUnits`, `labelPrecision`).
   They never re-suffix, re-scale in DAX, or bind scaled helper measures.
 - No DAX scaling helpers for display. The `* Card Display` measures (÷1e6 / ÷1e9 with suffix
-  formats) are **retired from all visuals** — nothing may bind them. They still exist in the
-  Financial/Sales models pending deliberate deletion.
+  formats) were retired and deleted from the Financial/Sales models; do not reintroduce them.
 - Dynamic format strings (`formatStringDefinition`) are **off limits** — all six models sit at
   compatibility level 1567; the feature needs 1601+. Do not bump one model alone.
 
@@ -51,7 +50,7 @@ Rules:
   0 decimals — it does NOT inherit the measure's format string (tables/charts do inherit).
 - **`labelDisplayUnits = 0D` (Auto) is banned on cards.** Auto stacks a K/M/bn prefix on top of any
   suffix already in the format string (the "1.21KM د.ع." bug).
-- Card value typography: `fontSize 18D`, not bold (per the layout standard).
+- Card value typography: explicit `Segoe UI`, `fontSize 18D`, not bold (per the layout standard).
 
 ## Measure vocabulary (2026-08-28 alignment)
 
@@ -69,6 +68,7 @@ Rules:
 Converged on the Financial pattern (2026-08-28):
 - grid `textSize 14D`, `rowPadding 2D`
 - values `fontSize 13D`, font `Segoe UI`
+- matrix row headers `fontSize 13D`, `Segoe UI`, regular
 - column headers `fontSize 12D`, `Segoe UI`, **bold** (header colors follow each report's palette —
   color is a design choice, not drift)
 - totals/subtotals **bold** (`subTotals.bold` on matrices, `total.bold` on tables)
@@ -86,12 +86,16 @@ Converged on the Financial pattern (2026-08-28):
 - Percent/count data labels inherit the model format; no overrides.
 - Charts bind raw measures (or plain column aggregations). Never suffixed helper measures — Auto
   units on a suffixed format reproduces the KM bug.
+- Axes, data labels, and legends use the shared visual typography contract: `Segoe UI`, 9 pt,
+  regular; axis/legend text color `#485257`.
 
 ## Enforcement
 
-`Portfolio/scripts/audit-report-consistency.py` polices this standard (NUMBER FORMATTING section):
+`Portfolio/scripts/audit-report-consistency.py` polices this standard (NUMBER FORMATTING and
+TYPOGRAPHY & RHYTHM sections):
 Auto-unit cards, percent cards without 2dp, bn cards without 3dp, table typography drift,
-fixed-unit chart labels missing the required precision, and non-`0.00%` percent model formats.
+fixed-unit chart labels missing the required precision, non-`0.00%` percent model formats, KPI
+font/weight, chart axis/label/legend typography, and top-row spacing.
 Run it after any report/model edit. Use `--strict` to return a non-zero exit code on formatting
 or layout drift; GitHub Actions uses that mode:
 

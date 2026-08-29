@@ -21,6 +21,30 @@ and pull request.
 
 ---
 
+## 0c. Current enforced contract — typography + KPI rhythm (applied 2026-08-29)
+
+This is the authoritative visual contract when older implementation-history or aspirational-grid
+notes below conflict with it:
+
+- **Page header:** aligned with the report-family content frame at `y = 40`; title `Segoe UI`
+  regular 20 pt `#2E3A42`; subtitle `Segoe UI` regular 13 pt `#485257`.
+- **Visual/card title:** `Segoe UI` regular 12 pt `#2E3A42`.
+- **KPI value:** `Segoe UI` regular 18 pt; top row `y = 136`, height 104, exactly 24 px between
+  adjacent cards. Each row preserves its established left/right content bounds and divides the
+  remaining width equally.
+- **Slicer hierarchy:** visible native header is the one deliberate bold exception — `Segoe UI
+  Semibold`, 14 pt, bold, `#1F4E79`; item text is 14 pt.
+- **Chart typography:** category/value axes, visible data labels, and legends are `Segoe UI`
+  regular 9 pt. Axis/legend text color is `#485257`.
+- **Tables/matrices:** row headers are body text (`Segoe UI` regular 13 pt); column headers remain
+  12 pt bold; values 13 pt; totals/subtotals bold.
+- Canon logos remain; Paper reports remain logo-free. Tooltip pages remain out of scope.
+
+The strict audit now enforces these properties directly, including properties that the previous
+audit missed (card font family/weight, axes, legends, page headers, row headers, and KPI gaps).
+
+---
+
 ## 0b. Implementation status — pass 2 (applied: logos + structural alignment)
 
 Corrects pass 1 and adds the structural frame the screenshot review flagged.
@@ -29,7 +53,7 @@ Corrects pass 1 and adds the structural frame the screenshot review flagged.
   **re-aligned to one canonical top-left lockup**: AlJazeera image `(0,0,164.7×63)`, vertical
   divider `(178,3.78,17.3×50.4)`, Canon image `(191.3,0,164.7×63)`. Canon Sales logos were resized
   up from 124×50 to match. Paper reports stay logo-free (they never had logos).
-- **Bottom line unified to 1030** (50 px bottom margin) across all five reports. Financial panels
+- **Bottom line unified to 1030** (50 px bottom margin) across the fleet. Financial panels
   moved from 1035 → 1030.
 - **Slicer rail is full-height** to the 1030 line on every page (fixed sidebar, even when slicers
   don't fill it).
@@ -51,7 +75,7 @@ number format, field, slicer field, visual type, page, or filter was changed** (
 zero query/measure/projection edits; only `position` + style props changed, plus deletion of
 decorative brand images).
 
-**Applied across all five reports:**
+**Applied across the report fleet:**
 
 - **Typography unified:** all visual/card titles → **Segoe UI** regular (Semibold removed),
   size **12** (collapsed 10/11/13/14), color **`#2E3A42`** (collapsed `#1F4E79`/`#223430`).
@@ -67,7 +91,7 @@ decorative brand images).
   (AlJazeera + Canon logos, vertical dividers, brand groups). Page-title header shapes kept.
 - **Theme consolidated:** both Inventory reports switched from `InventoryPortfolioTheme…json` to
   the shared `Custom_Theme49412231581938193.json` (the two files were byte-identical except name).
-  All five reports now register the same theme.
+  All six reports now register the same theme.
 
 **Residuals intentionally left for a follow-up pass (need visual review; higher reflow risk):**
 
@@ -107,9 +131,9 @@ each other without forcing those exact absolutes.
 | Title typeface | **Segoe UI regular** everywhere (no Semibold) |
 | Title color | **Single color `#2E3A42`** everywhere |
 | Slicer rail | Keep left rail, **width 400 px**, uniform slicer height |
-| Theme | **One shared theme** registered in all five reports |
+| Theme | **One shared theme** registered in all six reports |
 | Minor drift | Auto-normalize sub-pixel / rounding / stray-color drift without per-item approval |
-| Rollout | Apply across **all five** in one pass after spec approval |
+| Rollout | Apply across the **full Fabric fleet** in one pass after spec approval |
 
 ---
 
@@ -145,66 +169,54 @@ Auxiliary tooltip pages (`380×210`, `ActualSize`) in the Inventory reports are 
 
 | Zone | y-range | Height |
 |------|---------|--------|
-| Header (page title) | `0 → 88` | title text block at `x=48, y=28, h=40` |
-| KPI / headline row | `96 → 200` | card height `104` |
-| Analysis (charts) | `224 → …` | flexible, 24 px gaps |
+| Header (page title) | `0 → 112` | title text block aligned to content frame at `y=40` |
+| KPI / headline row | `136 → 240` | card height `104` |
+| Analysis (charts) | `264 → …` | flexible, 24 px gaps |
 | Detail (tables/matrices) | `… → 1032` | flexible, ends at bottom margin |
 
 ---
 
-## 4. Header (after logo removal)
+## 4. Header
 
-- Remove all brand `image` visuals (AlJazeera, Canon, top-right brand group) and the vertical
-  `shape` dividers. These are decorative only — safe to delete under the guardrail.
 - Keep **one page-title text** per page (reuse the existing header text/shape content).
-  - Position: `x = 48`, `y = 28`, width up to `600`, height `40`.
+  - Position: align to the report-family content frame, `y = 40`.
   - Typography: **Segoe UI regular, 20 pt, `#2E3A42`**, left-aligned, no fill, no border.
-- No colored header bar, no logos, no subtitle.
-
-> Today Canon reports carry logos and Paper reports do not — removing logos everywhere closes
-> that gap and removes the `*_brand_*` / divider position differences entirely.
+- Subtitle: **Segoe UI regular, 13 pt, `#485257`**.
+- Canon pages keep the approved AlJazeera/Canon lockup. Paper pages stay logo-free.
 
 ---
 
 ## 5. Left slicer rail
 
-- Rail block occupies `x: 48 → 448` (**width 400**).
-- Each slicer is **dropdown** mode, **slicer header hidden**, with a **separate text label** above it
-  (existing pattern — keep the labels and slicer fields exactly as they are).
+- Slicer controls are **400 px** wide. The established family anchors are `x = 75` for Financial
+  and `x = 67–68` for Sales/Inventory/Service; do not introduce intra-page jitter.
+- Each slicer is **dropdown** mode with a visible native header.
+- Header: `Segoe UI Semibold`, 14 pt, bold, `#1F4E79`.
+- Item text: 14 pt.
 - **Uniform slicer height: 76** for single-select dropdowns. Multi-row/list slicers use a height
   that is a clean multiple (e.g. `184`) but keep the same `x` and `width`.
-- Vertical rhythm inside the rail: label height `22`, label→slicer gap `4`, slicer height `76`,
-  slicer→next-label gap `16`. First label top at `y = 96`.
+- Keep a consistent vertical rhythm within each rail; do not reorder controls or fields.
 - Keep the existing top-to-bottom slicer order per report; do not reorder fields.
 
 ---
 
 ## 6. KPI / headline cards (`cardVisual`)
 
-- **Row top:** `y = 96`. **Card height:** `104`. **Gap between cards:** `24`.
-- **Card width** fills the content zone evenly for `n` cards in the row:
-  `width = (1400 − 24 × (n − 1)) / n`
-
-  | n | card width |
-  |---|-----------|
-  | 4 | 332 |
-  | 5 | 260.8 |
-  | 6 | 213.3 |
-  | 7 | 179.4 |
-
-  First card `x = 472`; each subsequent card `x = previous.x + width + 24`.
+- **Row top:** `y = 136`. **Card height:** `104`. **Gap between cards:** `24`.
+- **Card width** divides the report family's established left/right row span evenly:
+  `width = (row span − 24 × (n − 1)) / n`. Preserve the row's outer bounds.
 - **Surface:** fill `#FFFFFF`, border `#C9D5E3`, **corner radius 14**.
 - **Top accent** via drop shadow (not a separate shape): color `#1F4E79`, position `Outer`,
   angle `270`, distance `4`, blur `0`, spread `0`, transparency `0`.
 - **Title:** Segoe UI regular, **12 pt**, `#2E3A42`, shown.
-- **Value:** Segoe UI regular, **18 pt**, not bold. (Number format / display units unchanged.)
+- **Value:** Segoe UI regular, **18 pt**, not bold. Number format/display units follow the sibling
+  number-formatting standard.
 
 ---
 
 ## 7. Charts, tables, slicers (analysis & detail zones)
 
-- Snap every visual's `x/y/width/height` to the grid; align edges to the rail line (`472`),
-  the right margin (`1872`), and shared row baselines.
+- Align visual edges to the report-family content frame and shared row baselines.
 - Maintain the **24 px gap** between neighbors and between a visual and the page margins.
 - Visual container: fill `#FFFFFF`, border `#C9D5E3`, **corner radius 14**, inner padding 16
   (inherited from theme).
@@ -217,11 +229,16 @@ Auxiliary tooltip pages (`380×210`, `ActualSize`) in the Inventory reports are 
 | Role | Family | Size | Color | Weight |
 |------|--------|------|-------|--------|
 | Page title (header) | Segoe UI | 20 | `#2E3A42` | regular |
+| Page subtitle | Segoe UI | 13 | `#485257` | regular |
 | Visual / card title | Segoe UI | 12 | `#2E3A42` | regular |
 | KPI value | Segoe UI | 18 | (measure default) | regular |
 | Axis / data labels | Segoe UI | 9 | `#485257` | regular |
+| Chart legend | Segoe UI | 9 | `#485257` | regular |
+| Matrix row header | Segoe UI | 13 | (palette default) | regular |
+| Slicer header | Segoe UI Semibold | 14 | `#1F4E79` | bold |
+| Slicer item | Segoe UI | 14 | `#2E3A42` | regular |
 
-- Eliminate `Segoe UI Semibold` usages → `Segoe UI`.
+- Eliminate `Segoe UI Semibold` usages except the deliberate slicer-header hierarchy.
 - Collapse title sizes `10 / 13 / 14 / 20` (where used as visual titles) → `12`; keep `20` only for the page-title header.
 - Collapse title colors `#1F4E79` and `#223430` → `#2E3A42`.
 
@@ -246,39 +263,31 @@ Auxiliary tooltip pages (`380×210`, `ActualSize`) in the Inventory reports are 
   `InventoryPortfolioTheme…json` used by both Inventory reports) are **byte-identical except the
   `name` field**. Standardize on the single canonical copy
   `Portfolio/Shared/Themes/Custom_Theme49412231581938193.json`.
-- Register that one theme in all five reports' `definition/report.json` (`themeCollection.customTheme`)
+- Register that one theme in all six reports' `definition/report.json` (`themeCollection.customTheme`)
   and update the matching `StaticResources/RegisteredResources/` file; drop the duplicate
   `InventoryPortfolioTheme…json`.
 - Align the theme's default card corner radius to `14` so new visuals inherit the standard.
 
 ---
 
-## 11. Per-report change summary (what each must move toward)
+## 11. Report-family variants
 
-Current measured state → required normalization:
-
-- **Canon Financial** — content already full-bleed (`L=0,T=0`); right gap `50`→`48`; KPI gaps are
-  inconsistent (`15 / 18 / 20.8 / 35.1`) → uniform `24`; card height `104` (keep); remove logos.
-- **Paper Financial** — currently inset (`L=55,T=40`) → adopt full-bleed header + 48 margins;
-  right gap `63`→`48`; KPI value font `21`→`18`; KPI gaps → `24`; no logos present (good).
-- **Canon Sales** — content start `~511`→`472`; rail width `403`→`400`; KPI gaps uneven
-  (`18.3/26.7/16.7`) → `24`; card height `103`→`104`; title color `#1F4E79`→`#2E3A42`; remove logos.
-- **Canon Inventory** — switch theme to shared file; content start `~511`→`472`; rail width
-  `403/404`→`400`; slicer heights `75/78/80`→`76`; radius `12`→`14`; border `#E2EAE6`→`#C9D5E3`;
-  card height `103`→`104`; remove logos.
-- **Paper Inventory** — switch theme to shared file; currently inset (`L=55,T=42`) → full-bleed +
-  48 margins; right gap `53`→`48`; rail width `403/404`→`400`; slicer heights → `76`;
-  radius `12`→`14`; card height `103`→`104`; no logos present (good).
+- Financial reports use the established `x ≈ 520` content frame and slicers at `x = 75`.
+- Sales, Inventory, and Service use the established `x ≈ 512` content frame and slicers at
+  `x = 67–68`.
+- These are deliberate family anchors inside one visual system, not free-form page exceptions.
+- Canon pages keep the shared logo lockup; Paper pages remain logo-free.
 
 ---
 
 ## 12. Acceptance checks (after applying)
 
-- All five reports: `1920×1080`, `FitToPage`, bg `#F8FBFF`, one shared theme registered.
-- Outer margins `48` on left/right/bottom on every main page; inter-visual gaps `24`.
-- Slicer rail at `x=48`, width `400`, content starts at `x=472`.
-- KPI rows: top `y=96`, height `104`, equal `24` gaps, radius `14`.
-- No brand `image` or divider `shape` visuals remain.
-- Title typeface = Segoe UI (no Semibold); visual titles `12 pt`; titles colored `#2E3A42`.
+- All six reports: `1920×1080`, `FitToPage`, bg `#F8FBFF`, one shared theme registered.
+- Family content frames and 400px slicer rails stay internally aligned; bottom line is
+  `1030 ± 2px`.
+- KPI rows: top `y=136`, height `104`, equal `24` gaps, radius `14`.
+- Canon brand lockups remain consistent; Paper has none.
+- Page titles `20 pt`, subtitles `13 pt`, visual titles `12 pt`, KPI values `18 pt`, and
+  axes/data labels/legends `9 pt`; all are regular Segoe UI except bold Semibold slicer headers.
 - Diff review confirms **only** position/size/format/branding-image changes — no field, measure,
   value, format-string, slicer-field, or visual-type changes.

@@ -11,6 +11,9 @@ Scans one or more `<Name>.Report` folders (PBIR format) and reports, per report:
   - slicer rail geometry (x / width / heights)
   - brand image visuals (logo lockups) and their coordinates
   - per-page bottom line (max y+height) and off-canvas / hidden visuals
+  - explicit visual typography (page/visual titles, card values, slicers,
+    table row headers, chart axes/data labels/legends)
+  - top KPI row y-position and 24px rhythm
 
 Then prints a cross-report comparison of the key design tokens against
 Portfolio/Shared/Standards/fabric-reports-layout-standard.md expectations,
@@ -25,8 +28,8 @@ Usage:
   python3 audit-report-consistency.py [--strict] <folder-or-.Report-path> [more paths...]
   # e.g. python3 Portfolio/scripts/audit-report-consistency.py Fabric/DevelopmentWorkspace
 
-`--strict` exits non-zero when layout or number-formatting drift is found. It
-is intended for CI; the default remains an informational report for humans.
+`--strict` exits non-zero when layout, typography/rhythm, or number-formatting
+drift is found. It is intended for CI; the default remains informational.
 """
 
 from __future__ import annotations
@@ -47,17 +50,18 @@ EXPECTED = {
     "shadow_color": "#1F4E79",
     "kpi_value_size": "18",
     "kpi_height": 104,
+    "kpi_y": 136,
+    "kpi_gap": 24,
     "rail_width": 400,
     "bottom_line": 1030,
     "canvas": "1920x1080",
 }
 
 ALLOWED = {
-    # 20pt is the deliberate page-heading tier. Two Sales subtitles use Semibold
-    # and navy; both are approved variants, not drift.
-    "title_fonts": {"Segoe UI", "Segoe UI Semibold"},
+    # 20pt is the deliberate page-heading tier; all other container titles are 12pt.
+    "title_fonts": {"Segoe UI"},
     "title_sizes": {"12", "20"},
-    "title_colors": {"#2E3A42", "#1F4E79"},
+    "title_colors": {"#2E3A42"},
     "bottom_lines": {1030, 1032},
 }
 
@@ -325,6 +329,155 @@ def audit_formatting(report_dir: Path) -> list[str]:
     return violations
 
 
+def audit_typography(report_dir: Path) -> list[str]:
+    """Violations of the explicit fleet typography contract on visible pages."""
+    violations = []
+    pages_dir = report_dir / "definition" / "pages"
+    visible_pages = {}
+    for page_file in pages_dir.glob("*/page.json"):
+        page = json.loads(page_file.read_text())
+        if page.get("visibility") == "HiddenInViewMode" or page.get("displayOption") != "FitToPage":
+            continue
+        visible_pages[page_file.parent.name] = page.get("displayName", page_file.parent.name)
+
+    def expect(label, got, wanted):
+        if got != wanted:
+            violations.append(f"{label}: {got!r} != {wanted!r}")
+
+    def font(properties):
+        return short_font(lit(properties.get("fontFamily")))
+
+    def check_type(label, properties, *, family, size, bold, color_key=None, color=None):
+        expect(f"{label} font", font(properties), family)
+        expect(f"{label} size", lit(properties.get("fontSize")), size)
+        expect(f"{label} bold", lit(properties.get("bold")), bold)
+        if color_key and color:
+            expect(f"{label} color", lit(properties.get(color_key)), color)
+
+    for visual_file in sorted(pages_dir.glob("*/visuals/*/visual.json")):
+        page_id = visual_file.parents[2].name
+        if page_id not in visible_pages:
+            continue
+        data = json.loads(visual_file.read_text())
+        visual = data.get("visual", {})
+        objects = visual.get("objects", {})
+        vco = visual.get("visualContainerObjects", {})
+        vtype = visual.get("visualType")
+        name = data.get("name", visual_file.parent.name)
+        prefix = f'{visible_pages[page_id]} / {name}'
+        report_header = any(
+            lit(entry.get("properties", {}).get("name")) == "Report Header"
+            for entry in vco.get("stylePreset", []) or []
+        )
+
+        if report_header:
+            header_y = data.get("position", {}).get("y")
+            if not isinstance(header_y, (int, float)) or float(header_y) != 40:
+                violations.append(f"{prefix} page-header y: {header_y!r} != 40")
+            for entry in vco.get("title", []) or []:
+                check_type(
+                    f"{prefix} page title",
+                    entry.get("properties", {}),
+                    family="Segoe UI",
+                    size="20",
+                    bold="false",
+                    color_key="fontColor",
+                    color="#2E3A42",
+                )
+            for entry in vco.get("subTitle", []) or []:
+                check_type(
+                    f"{prefix} page subtitle",
+                    entry.get("properties", {}),
+                    family="Segoe UI",
+                    size="13",
+                    bold="false",
+                    color_key="fontColor",
+                    color="#485257",
+                )
+            for entry in objects.get("text", []) or []:
+                if lit(entry.get("properties", {}).get("text")) == "hioj":
+                    violations.append(f"{prefix}: stale header placeholder text")
+        else:
+            for entry in vco.get("title", []) or []:
+                check_type(
+                    f"{prefix} visual title",
+                    entry.get("properties", {}),
+                    family="Segoe UI",
+                    size="12",
+                    bold="false",
+                    color_key="fontColor",
+                    color="#2E3A42",
+                )
+
+        if vtype in ("cardVisual", "card"):
+            value_entries = objects.get("value", []) or objects.get("labels", []) or []
+            for entry in value_entries:
+                check_type(
+                    f"{prefix} card value",
+                    entry.get("properties", {}),
+                    family="Segoe UI",
+                    size="18",
+                    bold="false",
+                )
+
+        if vtype == "slicer":
+            for entry in objects.get("header", []) or []:
+                properties = entry.get("properties", {})
+                expect(f"{prefix} slicer-header font", font(properties), "Segoe UI Semibold")
+                expect(f"{prefix} slicer-header size", lit(properties.get("textSize")), "14")
+                expect(f"{prefix} slicer-header bold", lit(properties.get("bold")), "true")
+                expect(f"{prefix} slicer-header color", lit(properties.get("fontColor")), "#1F4E79")
+            for entry in objects.get("items", []) or []:
+                expect(
+                    f"{prefix} slicer-item size",
+                    lit(entry.get("properties", {}).get("textSize")),
+                    "14",
+                )
+
+        if vtype == "pivotTable" and "tooltip" not in name.lower():
+            for entry in objects.get("rowHeaders", []) or []:
+                check_type(
+                    f"{prefix} row header",
+                    entry.get("properties", {}),
+                    family="Segoe UI",
+                    size="13",
+                    bold="false",
+                )
+
+        if vtype in CHART_TYPES:
+            for key in ("categoryAxis", "valueAxis", "secondaryValueAxis", "xAxis", "yAxis"):
+                for entry in objects.get(key, []) or []:
+                    check_type(
+                        f"{prefix} {key}",
+                        entry.get("properties", {}),
+                        family="Segoe UI",
+                        size="9",
+                        bold="false",
+                        color_key="labelColor",
+                        color="#485257",
+                    )
+            for key in ("labels", "dataLabels", "detailLabels"):
+                for entry in objects.get(key, []) or []:
+                    check_type(
+                        f"{prefix} {key}",
+                        entry.get("properties", {}),
+                        family="Segoe UI",
+                        size="9",
+                        bold="false",
+                    )
+            for entry in objects.get("legend", []) or []:
+                check_type(
+                    f"{prefix} legend",
+                    entry.get("properties", {}),
+                    family="Segoe UI",
+                    size="9",
+                    bold="false",
+                    color_key="labelColor",
+                    color="#485257",
+                )
+    return violations
+
+
 def audit_layout(audit: dict) -> list[str]:
     """Actionable violations of the shared Fabric layout standard."""
     violations = []
@@ -345,11 +498,22 @@ def audit_layout(audit: dict) -> list[str]:
                 f'not in {sorted(ALLOWED["bottom_lines"])}'
             )
         for row in page["kpi_rows"]:
-            if row["y"] <= 200 and row["h"] != [EXPECTED["kpi_height"]]:
-                violations.append(
-                    f'page {page["display"]}: top KPI height {row["h"]} '
-                    f'!= [{EXPECTED["kpi_height"]}]'
-                )
+            if row["y"] <= 200:
+                if row["y"] != EXPECTED["kpi_y"]:
+                    violations.append(
+                        f'page {page["display"]}: top KPI y {row["y"]} != {EXPECTED["kpi_y"]}'
+                    )
+                if row["h"] != [EXPECTED["kpi_height"]]:
+                    violations.append(
+                        f'page {page["display"]}: top KPI height {row["h"]} '
+                        f'!= [{EXPECTED["kpi_height"]}]'
+                    )
+                bad_gaps = [gap for gap in row["gaps"] if abs(gap - EXPECTED["kpi_gap"]) > 0.1]
+                if bad_gaps:
+                    violations.append(
+                        f'page {page["display"]}: top KPI gap(s) {bad_gaps} '
+                        f'!= {EXPECTED["kpi_gap"]}'
+                    )
         for x, width, _ in page["slicers"]:
             # Paper Inventory keeps three wired support slicers parked to the
             # right of the canvas. They are not part of the visible rail.
@@ -415,6 +579,7 @@ def main() -> int:
     audits = [audit_report(d) for d in report_dirs]
     layouts = {a["name"]: audit_layout(a) for a in audits}
     formatting = {d: audit_formatting(d) for d in report_dirs}
+    typography = {d: audit_typography(d) for d in report_dirs}
 
     for a in audits:
         print(f'\n=== {a["name"]} ===')
@@ -483,9 +648,21 @@ def main() -> int:
             print(f"   {violation}")
     print(f"total layout violations: {layout_total}")
 
-    if strict and (total or layout_total):
+    print("\n=== TYPOGRAPHY & RHYTHM AUDIT ===")
+    typography_total = 0
+    for report_dir in report_dirs:
+        violations = typography[report_dir]
+        typography_total += len(violations)
+        status = "OK" if not violations else f"{len(violations)} violation(s)"
+        print(f'{report_dir.name.replace(".Report", ""):<28}{status}')
+        for violation in violations:
+            print(f"   {violation}")
+    print(f"total typography/rhythm violations: {typography_total}")
+
+    if strict and (total or layout_total or typography_total):
         print(
-            f"\nSTRICT AUDIT FAILED: {layout_total} layout + {total} formatting violation(s)",
+            f"\nSTRICT AUDIT FAILED: {layout_total} layout + {typography_total} typography/rhythm "
+            f"+ {total} formatting violation(s)",
             file=sys.stderr,
         )
         return 1

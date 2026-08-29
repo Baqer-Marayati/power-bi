@@ -91,8 +91,7 @@
   A second dry run reported **0 add / 0 change / 0 delete**. Module `.pbip`, `.platform`, and
   `.pbi` identity/cache files were deliberately preserved.
 - Reusable command added: `Portfolio/scripts/sync-fabric-to-modules.py` (dry-run by default;
-  `--apply` writes). All six reconciled module copies pass the same strict consistency audit as
-  `Fabric/DevelopmentWorkspace`.
+  `--apply` writes). At the reconciliation milestone, all six module copies matched Fabric.
 - Canon's synthetic blank `Dim_Date[Year]` was root-caused to referential-integrity gaps, not null
   source dates: the live model had **1,414** `Fact_BalanceSheet` and **4** `CollectionsFact` rows
   on 2025-12-31 while `Dim_Date` began 2026-01-01. The calendar now begins 2025-01-01 so those
@@ -102,10 +101,27 @@
   page-load result.
 - CI guardrail added: `.github/workflows/validate-report-consistency.yml` runs
   `audit-report-consistency.py --strict` on every push and pull request. Strict mode enforces
-  approved layout tokens plus number formatting and exits non-zero on drift. Current Fabric fleet:
-  **0 layout / 0 formatting violations**.
+  approved layout tokens plus number formatting and exits non-zero on drift.
 - Finance manifest page metadata was refreshed to the current 8-page shell, restoring a clean
   repository structure validation.
+
+## Fleet Typography And KPI Rhythm (Aug 29, 2026)
+
+- A visual-only pass standardized all six Fabric reports: page titles/subtitles 20/13, visual
+  titles 12, KPI values 18, chart axes/data labels/legends 9, matrix row headers 13, and slicer
+  headers 14 bold Semibold as the single deliberate emphasis tier. Paper Financial ROI's six
+  Semibold KPI values and 10pt bold chart axes were corrected as part of the fleet pass.
+- Top KPI rows now sit at `y = 136`, height 104, with exact 24px gaps and equal widths inside each
+  report-family content frame. Twelve invisible Sample-2 `hioj` header placeholders were cleared.
+- Safety comparison across all 400 changed visual files found **0 query, filter, binding, visual
+  type, display-unit, or precision changes**; no model/TMDL files changed.
+- The strict audit now has a TYPOGRAPHY & RHYTHM section and currently reports **0 layout / 0
+  typography-rhythm / 0 number-formatting violations** across the Fabric fleet. The stale
+  pre-pass Paper Finance module copy fails with 224 typography/rhythm violations, proving the new
+  checks catch the previously missed drift.
+- This pass is Fabric-iteration-only. Module PBIP definitions have not yet been copied back; use
+  `Portfolio/scripts/sync-fabric-to-modules.py --apply` as a separate reconciliation step when
+  requested.
 
 ## Current Routing
 
