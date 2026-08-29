@@ -129,7 +129,14 @@
 - `accountingPeriods` now imports Canon SAP posting periods from `CANON.OFPR`, including `startingDate`, `endingDate`, and `periodStatus`.
 - `[Average Company Capital]` uses account `310101010101` through `[Company Capital]`, samples capital at each of the 12 month-end dates in every selected year, sums those 12 values, and divides by 12. With the current Canon date table, this applies to 2026 only.
 - The ROI card measure (`[ROI %]`) is intentionally single-year only: for one selected year, it ignores month/quarter/location/sales-type/department slicers, sums `[Net Profit]` only for periods where `periodStatus = "Y"`, and divides by `[Average Company Capital]`.
-- **Updated 2026-08-28 (blank-year fix):** Canon `Dim_Date` carries a blank Year row, which made `Average Company Capital` double at all-years scope (`VALUES(Year)` iterated {2026, blank} → 18.48bn vs the true 9.24bn) and depressed `Monthly ROI %` totals. Both `ROI %` and `Average Company Capital` now iterate `FILTER(VALUES(Year), NOT ISBLANK(Year))`, and the `ISFILTERED` guard was replaced with "exactly one non-blank year in scope" (matching Paper's semantics). Net effect: single-year values unchanged (verified live: 0.78% / 9.24bn for 2026); since 2026 is Canon's only data year, the ROI card now renders 0.78% at page load instead of blank. When Canon gains a second data year, the card will again require a year selection — by design.
+- **Updated 2026-08-28/29 (blank-year fix):** the first defensive pass excluded blank Year
+  members from `ROI %` and `Average Company Capital`. Root-cause work then showed the blank was
+  Power BI's relationship unknown member: 1,414 Balance Sheet + 4 Collections rows dated
+  2025-12-31 had no match in the 2026-only calendar. `Dim_Date` now covers 2025 onward, while all
+  visible Year slicers and both ROI year sets remain explicitly constrained to **2026+**. This
+  removes the relationship blank without letting the support year turn the ROI card into a
+  multi-year result. Single-year values remain unchanged (live benchmark: 0.78% / 9.24bn for
+  2026); when a second 2026+ reporting year exists, the card again requires a year selection.
 - The Monthly ROI line chart remains separate through `[Monthly ROI %]`, which annualizes monthly net profit as `DIVIDE([Net Profit], [Average Company Capital], 0) * 12`.
 - Desktop validation: user opened `Canon Financial Report.pbip` after the `accountingPeriods` TMDL schema fix and confirmed the ROI behavior is good.
 

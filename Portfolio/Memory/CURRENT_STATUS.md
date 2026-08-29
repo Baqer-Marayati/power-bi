@@ -97,7 +97,9 @@
   source dates: the live model had **1,414** `Fact_BalanceSheet` and **4** `CollectionsFact` rows
   on 2025-12-31 while `Dim_Date` began 2026-01-01. The calendar now begins 2025-01-01 so those
   relationships resolve; the four visible Canon Year slicers explicitly exclude 2025, preserving
-  the 2026+ reporting contract. The earlier ROI-level blank filtering remains defensive.
+  the 2026+ reporting contract. `ROI %` and `Average Company Capital` likewise restrict their
+  internal year sets to non-blank 2026+ years, so the support year cannot blank or double the ROI
+  page-load result.
 - CI guardrail added: `.github/workflows/validate-report-consistency.yml` runs
   `audit-report-consistency.py --strict` on every push and pull request. Strict mode enforces
   approved layout tokens plus number formatting and exits non-zero on drift. Current Fabric fleet:

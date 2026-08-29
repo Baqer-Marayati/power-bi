@@ -43,7 +43,9 @@ The Fabric financial report shell currently contains these 8 visible pages in `p
 
 - Finance uses company-specific branding behavior: CANON pages keep the logo lockup; PAPERENTITY pages do not.
 - Main left-rail slicers remain a shared system; durable ordering and year-floor rules are recorded in `DECISIONS.md` and `LESSONS.md`.
-- `Dim_Date` lower bound is company-specific: CANON starts at 2026; PAPERENTITY starts at 2024 for historical Paper reporting.
+- `Dim_Date` lower bound is company-specific: CANON calendar coverage starts at 2025 for
+  relationship integrity, but reporting-year slicers and ROI year sets stay constrained to
+  2026+; PAPERENTITY starts at 2024 for historical Paper reporting.
 - The report should open blank until refresh when the cache-stripped handoff flow is used.
 - Desktop-approved PBIP output is stronger evidence than speculative JSON-only assumptions.
 - CANON ROI page uses the locked-period annual ROI card and annualized monthly ROI line chart with an average-capital denominator based on 12 month-end capital snapshots. It renders when exactly one non-blank year is in scope; because Canon currently has only 2026 reporting data, it now renders at page load and remains blank only when multiple real years are in scope.
