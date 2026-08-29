@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "f6ef055d0a86a7874a04",
   "position": {
-    "x": 188,
-    "y": 545,
+    "x": 511.66666666666669,
+    "y": 626.16666666666674,
     "z": 0,
-    "height": 395,
-    "width": 1052,
+    "height": 403.83333333333326,
+    "width": 1355,
     "tabOrder": 0
   },
   "visual": {
@@ -128,7 +128,7 @@
               },
               "queryRef": "Sum(SalesFact.Qty)",
               "nativeQueryRef": "Qty",
-              "displayName": "Qty"
+              "displayName": "Quantity"
             },
             {
               "field": {
@@ -142,7 +142,8 @@
                 }
               },
               "queryRef": "_Measures.Sales",
-              "nativeQueryRef": "Sales"
+              "nativeQueryRef": "Sales",
+              "displayName": "Net Revenue"
             },
             {
               "field": {
@@ -156,7 +157,8 @@
                 }
               },
               "queryRef": "SalesOverview.Profit",
-              "nativeQueryRef": "Profit"
+              "nativeQueryRef": "Profit",
+              "displayName": "Gross Profit"
             },
             {
               "field": {
@@ -166,11 +168,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Margin %"
+                  "Property": "Sales Margin %"
                 }
               },
               "queryRef": "SalesOverview.Margin %",
-              "nativeQueryRef": "Margin %"
+              "nativeQueryRef": "Sales Margin %",
+              "displayName": "Sales Margin %"
             }
           ]
         }
@@ -524,7 +527,14 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "14D"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
                 }
               }
             }
@@ -574,6 +584,20 @@
                   "Value": "'Left'"
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
             }
           }
         }
@@ -594,11 +618,36 @@
                   "Value": "false"
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
             }
           }
         }
       ],
       "subTotals": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
         {
           "properties": {
             "applyToHeaders": {
@@ -632,7 +681,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "404.2566246543139D"
+                  "Value": "522.5167831519657D"
                 }
               }
             }
@@ -646,7 +695,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "165.69928030676706D"
+                  "Value": "197.4256806545133D"
                 }
               }
             }
@@ -660,7 +709,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "148.53444418172418D"
+                  "Value": "198.6922598696021D"
                 }
               }
             }
@@ -674,7 +723,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "179.56145425609495D"
+                  "Value": "217.99154303144385D"
                 }
               }
             }
@@ -688,7 +737,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "119.32142077872143D"
+                  "Value": "170.85274596693176D"
                 }
               }
             }
@@ -828,6 +877,37 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C9D5E3'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
                 }
               }
             }

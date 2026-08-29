@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "b8d1e5c40b1f4c2fa003",
   "position": {
-    "x": 399,
-    "y": 120,
+    "x": 790.8,
+    "y": 135,
     "z": 2000,
-    "height": 92,
-    "width": 184,
+    "height": 104,
+    "width": 252.8,
     "tabOrder": 13000
   },
   "visual": {
@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Gross Profit Card Display"
+                  "Property": "Gross Profit"
                 }
               },
-              "queryRef": "_Measures.Gross Profit Card Display",
-              "nativeQueryRef": "Gross Profit Card Display"
+              "queryRef": "_Measures.Gross Profit",
+              "nativeQueryRef": "Gross Profit"
             }
           ]
         }
@@ -70,20 +70,20 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "1000000000D"
                 }
               }
             },
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "3L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Gross Profit Card Display"
+            "metadata": "_Measures.Gross Profit"
           }
         }
       ]
@@ -135,9 +135,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E6ECE8'"
+                      "Value": "'#C9D5E3'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
                 }
               }
             }
@@ -199,7 +206,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "12D"
                 }
               }
             },
@@ -211,6 +218,13 @@
                       "Value": "'#2E3A42'"
                     }
                   }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }

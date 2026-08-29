@@ -159,7 +159,9 @@
 ## KPI Row Rule
 - Treat the top KPI row on the first five pages as a shared component, not as isolated cards.
 - Do not mix the older `labels/categoryLabels` card style with the newer hidden-label + explicit-title pattern on adjacent KPI cards.
-- Monetary KPI cards may use dedicated numeric `... Card Display` measures when Power BI ignores compact-number precision settings.
+- Monetary KPI cards bind raw measures with fixed Billions display units and explicit 3-decimal
+  precision. The former `... Card Display` scaled-helper pattern was retired and deleted on
+  2026-08-28 after proof of non-use; do not reintroduce it.
 - Percent and count cards in the same row should keep the same visual structure and typography even if they continue to bind directly to the base measure.
 - If a future tweak threatens card stability, prefer preserving the current unified KPI-row pattern over chasing one-off formatting tricks.
 

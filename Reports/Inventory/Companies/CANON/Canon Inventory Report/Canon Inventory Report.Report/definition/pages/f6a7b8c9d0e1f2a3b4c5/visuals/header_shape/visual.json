@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "header_shape",
   "position": {
-    "x": 188,
-    "y": 36,
-    "z": 19000,
-    "height": 60,
-    "width": 700,
+    "x": 511.6666666666667,
+    "y": 41.66666666666667,
+    "z": 23000,
+    "height": 68.33333333333334,
+    "width": 858.3333333333334,
     "tabOrder": 0
   },
   "visual": {
@@ -18,7 +18,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'hioj'"
+                  "Value": "''"
                 }
               }
             }
@@ -56,7 +56,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },
@@ -64,6 +64,13 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
                 }
               }
             }
@@ -77,6 +84,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'See overstock, understock, and stock that is not moving.'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
                 }
               }
             }

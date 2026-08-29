@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "kpi_target",
   "position": {
-    "x": 188,
-    "y": 120,
+    "x": 511.66666666666669,
+    "y": 136.66666666666669,
     "z": 0,
-    "height": 92,
-    "width": 251,
+    "height": 104,
+    "width": 323.33333333333337,
     "tabOrder": 11000
   },
   "visual": {
@@ -23,11 +23,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Commission Total Target"
+                  "Property": "Comp Target"
                 }
               },
-              "queryRef": "_Measures.Commission Total Target",
-              "nativeQueryRef": "Commission Total Target"
+              "queryRef": "_Measures.Comp Target",
+              "nativeQueryRef": "Comp Target"
             }
           ]
         }
@@ -70,20 +70,20 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "1000000000D"
                 }
               }
             },
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "3L"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Commission Total Target"
+            "metadata": "_Measures.Comp Target"
           }
         }
       ],
@@ -160,6 +160,13 @@
                   }
                 }
               }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
             }
           }
         }
@@ -177,7 +184,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total Target'"
+                  "Value": "'Target'"
                 }
               }
             },
@@ -191,7 +198,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "12D"
                 }
               }
             },
@@ -203,6 +210,13 @@
                       "Value": "'#2E3A42'"
                     }
                   }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }

@@ -116,8 +116,8 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
-	measure 'In-Stock Rate' = DIVIDE ( [In-Stock SKUs], [Distinct SKUs], 0 )
-		formatString: 0.0%;-0.0%;0.0%
+	measure 'In-Stock Rate %' = DIVIDE ( [In-Stock SKUs], [Distinct SKUs], 0 )
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa026
 
 	measure 'Out-of-Stock SKUs' = [Distinct SKUs] - [In-Stock SKUs]
@@ -143,7 +143,7 @@ table _Measures
 			VAR _total = COUNTROWS ( Fact_WarehouseStock )
 			RETURN
 			    IF ( _total > 0, DIVIDE ( _count, _total, 0 ), 0 )
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa029
 
 	measure 'Avg Days Since Last Purchase' =
@@ -167,7 +167,7 @@ table _Measures
 			VAR _pm = [Inbound Qty PM]
 			RETURN
 			    IF ( _pm <> 0, DIVIDE ( _current - _pm, ABS ( _pm ) ), BLANK () )
-		formatString: +0.0%;-0.0%;0.0%
+		formatString: +0.00%;-0.00%;0.00%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa032
 
 	measure 'Outbound Qty PM' =
@@ -191,7 +191,7 @@ table _Measures
 			VAR _pm = [Net Movement PM]
 			RETURN
 			    IF ( _pm <> 0, DIVIDE ( _current - _pm, ABS ( _pm ) ), BLANK () )
-		formatString: +0.0%;-0.0%;0.0%
+		formatString: +0.00%;-0.00%;0.00%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa035
 
 	measure 'GR Value PM' =
@@ -209,13 +209,13 @@ table _Measures
 			VAR _pm = [GR Value PM]
 			RETURN
 			    IF ( _pm <> 0, DIVIDE ( _current - _pm, ABS ( _pm ) ), BLANK () )
-		formatString: +0.0%;-0.0%;0.0%
+		formatString: +0.00%;-0.00%;0.00%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa037
 
 	measure 'Narrative Title' =
 			VAR _value = [Stock Value]
 			VAR _belowPct = [Below Reorder %]
-			VAR _instockPct = [In-Stock Rate]
+			VAR _instockPct = [In-Stock Rate %]
 			RETURN
 			    "Inventory Health: " &
 			    FORMAT ( _value, "#,0,,.0" ) & "M د.ع. | " &
@@ -434,7 +434,7 @@ table _Measures
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
 	measure 'Stock Cover Exposure % of Business Type' = DIVIDE ( [Stock Cover Exposure Value], CALCULATE ( [Stock Cover Exposure Value], REMOVEFILTERS ( Fact_StockCoverPolicy[StockCoverStatus] ) ), 0 )
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa068
 
 	/// Reorder Actions table guard: keep the table on the stock-cover policy grain so slicers
@@ -442,11 +442,19 @@ table _Measures
 	measure 'Reorder Table Row Keeper' =
 			VAR NumPolicyRows =
 			    CALCULATE ( COUNTROWS ( Fact_StockCoverPolicy ) )
+			VAR WarehouseFilterActive =
+			    ISFILTERED ( Dim_Warehouse[WhsCode] )
+			        || ISFILTERED ( Dim_Warehouse[WhsName] )
+			VAR WarehouseStockRows =
+			    CALCULATE (
+			        COUNTROWS ( Fact_WarehouseStock ),
+			        TREATAS ( VALUES ( Fact_StockCoverPolicy[ItemCode] ), Fact_WarehouseStock[ItemCode] )
+			    )
 			RETURN
 			    IF (
 			        HASONEVALUE ( Fact_StockCoverPolicy[ItemCode] )
 			            && NumPolicyRows = 1,
-			        1
+			        IF ( NOT WarehouseFilterActive || WarehouseStockRows > 0, 1 )
 			    )
 		formatString: 0
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa068a
@@ -719,7 +727,7 @@ table _Measures
 			VAR _pm = [Weighted Purchase Unit Cost PM]
 			RETURN
 			    IF ( NOT ISBLANK ( _pm ) && _pm <> 0, DIVIDE ( _current - _pm, _pm ), BLANK () )
-		formatString: +0.0%;-0.0%;0.0%
+		formatString: +0.00%;-0.00%;0.00%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa091
 
 	measure 'Purchase Cost Impact' =
@@ -746,7 +754,7 @@ table _Measures
 			VAR _pm = [Average Unit COGS PM]
 			RETURN
 			    IF ( NOT ISBLANK ( _pm ) && _pm <> 0, DIVIDE ( _current - _pm, _pm ), BLANK () )
-		formatString: +0.0%;-0.0%;0.0%
+		formatString: +0.00%;-0.00%;0.00%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa094
 
 	measure 'COGS Cost Impact' =
@@ -763,7 +771,7 @@ table _Measures
 			VAR _cogsChange = [Average Unit COGS MoM %]
 			RETURN
 			    IF ( NOT ISBLANK ( _purchaseChange ) && NOT ISBLANK ( _cogsChange ), _cogsChange - _purchaseChange, BLANK () )
-		formatString: +0.0%;-0.0%;0.0%
+		formatString: +0.00%;-0.00%;0.00%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa096
 
 	measure 'Landed Cost Amount' = SUM ( Fact_LandedCostAllocation[LandedCostAmount] )
@@ -830,7 +838,7 @@ table _Measures
 			VAR _pm = [Landed Unit Cost PM]
 			RETURN
 			    IF ( NOT ISBLANK ( _pm ) && _pm <> 0, DIVIDE ( _current - _pm, _pm ), BLANK () )
-		formatString: +0.0%;-0.0%;0.0%
+		formatString: +0.00%;-0.00%;0.00%
 		lineageTag: b0c0d0e0-f010-4001-8001-000000000008
 
 	measure 'Landed Category Cost Per Unit' =
@@ -867,7 +875,7 @@ table _Measures
 			VAR _landed = [Landed Cost Amount]
 			RETURN
 			    IF ( NOT ISBLANK ( _landed ) && _landed <> 0, DIVIDE ( [Landed Add-On Amount], _landed ), BLANK () )
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: b0c0d0e0-f010-4001-8001-000000000012
 
 	measure 'Largest Landed Cost Driver' =
@@ -955,7 +963,7 @@ table _Measures
 			        BLANK (),
 			        DIVIDE ( _current - _realized, _realized )
 			    )
-		formatString: ▲ +0.0%;▼ -0.0%;● 0.0%
+		formatString: ▲ +0.00%;▼ -0.00%;● 0.00%
 		lineageTag: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaa0a1
 
 	measure 'Cost Trend Color' =
@@ -1212,7 +1220,7 @@ table _Measures
 			VAR _pm = [Selected Landed Unit Cost PM]
 			RETURN
 			    IF ( NOT ISBLANK ( _pm ) && _pm <> 0, DIVIDE ( _current - _pm, _pm ), BLANK () )
-		formatString: +0.0%;-0.0%;0.0%
+		formatString: +0.00%;-0.00%;0.00%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000108
 
 	measure 'Selected Landed Category Cost Per Unit' =
@@ -1347,7 +1355,7 @@ table _Measures
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
 	measure 'LC Customs Variance %' = DIVIDE ( [LC Customs Variance], [LC Customs Projected] )
-		formatString: +0.0%;-0.0%;0.0%
+		formatString: +0.00%;-0.00%;0.00%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000119
 
 	measure 'Selected Supplier Base Unit Cost' = DIVIDE ( [Selected Landed Supplier Base Amount], [Selected Landed Receipt Qty] )
@@ -1370,7 +1378,7 @@ table _Measures
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
 	measure 'Selected Landed Uplift % vs Supplier Base' = DIVIDE ( [Selected Landed Uplift Amount], [Selected Landed Supplier Base Amount] )
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000123
 
 	measure 'Selected Total Landed Cost Amount' =
@@ -1388,7 +1396,7 @@ table _Measures
 			    [Selected Landed Add-On Amount],
 			    [Selected Total Landed Cost Amount]
 			)
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000124
 
 	measure 'Selected Add-On Share of Landed PM' =
@@ -1396,7 +1404,7 @@ table _Measures
 			    [Selected Add-On Share of Landed %],
 			    DATEADD ( Dim_Date[Date], -1, MONTH )
 			)
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000133
 
 	measure 'Selected Add-On Share of Landed MoM pp' =
@@ -1428,7 +1436,7 @@ table _Measures
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000135
 
 	measure 'Category % of landed' = [Selected Add-On Share of Landed %]
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000137
 
 	measure 'Add-on IQD (M)' = DIVIDE ( [Selected Landed Add-On Amount], 1000000 )
@@ -1444,7 +1452,7 @@ table _Measures
 			    [Selected Landed Add-On Amount],
 			    CALCULATE ( [Selected Landed Add-On Amount], REMOVEFILTERS ( Dim_LandedCostCategory ) )
 			)
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000125
 
 	measure 'Selected Transport % of Landed' =
@@ -1456,7 +1464,7 @@ table _Measures
 			    ),
 			    [Selected Landed Cost Amount]
 			)
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000126
 
 	measure 'Selected Tax Duty % of Landed' =
@@ -1468,7 +1476,7 @@ table _Measures
 			    ),
 			    [Selected Landed Cost Amount]
 			)
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000127
 
 	measure 'Selected Insurance % of Landed' =
@@ -1480,7 +1488,7 @@ table _Measures
 			    ),
 			    [Selected Landed Cost Amount]
 			)
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000128
 
 	measure 'Selected Unloading / Other % of Landed' =
@@ -1492,7 +1500,7 @@ table _Measures
 			    ),
 			    [Selected Landed Cost Amount]
 			)
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000129
 
 	measure 'Selected Top Driver Share %' =
@@ -1512,7 +1520,7 @@ table _Measures
 			VAR _amount = MAXX ( _top, ABS ( [_amount] ) )
 			RETURN
 			    DIVIDE ( _amount, ABS ( [Selected Landed Uplift Amount] ) )
-		formatString: 0.0%;-0.0%;0.0%
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: d5a7e001-916b-4a6b-a404-000000000130
 
 	measure 'Selected Top Add-On Category' =

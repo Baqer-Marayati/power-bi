@@ -1,7 +1,15 @@
 # Current Status
 
 ## Date
-- Last updated: August 24, 2026
+- Last updated: August 29, 2026
+
+## Fabric/module parity refreshed (2026-08-29)
+- The Canon module `.Report` and `.SemanticModel` definitions were reconciled again from the
+  approved Fabric copy after the fleet formatting/vocabulary passes. Module `.pbip` and
+  `.platform` identity files were preserved; a second sync dry-run reported zero differences.
+- The module now includes **Service Margin %** (renamed from Profit Margin %), explicit two-decimal
+  percent cards, raw-measure bn/3dp money cards, normalized money chart labels, and the shared
+  1920×1080 table/layout standard. Strict consistency audit: zero violations.
 
 ## Fabric copy migrated to the unified layout standard (2026-08-24)
 - `Fabric/DevelopmentWorkspace/Canon Service Report.Report` was migrated **layout-only** to
@@ -80,7 +88,7 @@
 - **Employee:** Total Activities, Total Labor Hours, Avg Labor Hours per Call, Calls per Technician
 - **Cost:** Total Parts Cost, FSMA Parts Cost (returns 0, not BLANK), Avg Parts Cost per Call
 - **Revenue:** Total Service Revenue, FSMA Revenue, MPS Revenue, Labour Revenue
-- **Profitability:** FSMA Revenue Allocated, MPS Revenue Allocated, Total Revenue Allocated, Net Profit per Machine, Profit Margin %
+- **Profitability:** FSMA Revenue Allocated, MPS Revenue Allocated, Total Revenue Allocated, Net Profit per Machine, Service Margin %
 - **Client:** Machines per Client, Calls per Client, Client Profitability
 - **Data quality:** Production Machines (Tagged), Untagged Production Machines, Untagged Production Calls, Project Tag Coverage %
 
@@ -94,7 +102,7 @@
 | svc_p04_partsflt | Parts & Faults | 4 KPI cards, top-parts-by-cost bar, calls-by-fault-type bar, parts-cost trend, **revenue-by-type donut (fixed)**, cost-by-customer bar |
 | svc_p05_clients  | Client View | 4 KPI cards, Client Summary pivot, machines-per-customer bar, calls trend |
 
-Each page: 1280×960, Finance-matching color palette (#F8FBFF bg, #FFFFFF cards, #1F4E79 shadow), left 184px slicer sidebar.
+Each page: 1920×1080 FitToPage, Finance-matching palette, 400px shared slicer rail, and fleet-standard KPI/chart formatting.
 
 ## Known open items
 - **Slicer rail still inconsistent across pages.** Page 2 has Team slicer instead of Customer Type; Page 5 has Customer slicer instead of Customer Type. Decide if these should be unified or are intentional per-page contexts.

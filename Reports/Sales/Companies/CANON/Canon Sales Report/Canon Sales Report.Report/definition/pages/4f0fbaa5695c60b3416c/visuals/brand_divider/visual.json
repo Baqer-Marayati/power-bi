@@ -1,13 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "brand_divider",
   "position": {
-    "x": 134,
-    "y": 3,
+    "x": 177.99999999999997,
+    "y": 3.78,
     "z": 23000,
-    "height": 40,
-    "width": 13,
-    "tabOrder": 23000
+    "height": 50.4,
+    "width": 17.268656716417908
   },
   "visual": {
     "visualType": "shape",

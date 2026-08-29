@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "a7b8c9d0e1f2a3b4c5d6",
+  "displayName": "Stock Actions",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "195L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F8FBFF'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "50f785398f878bc38ea3",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
+      "source": "90d50ff465af0c0d7246",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8be851c912329a577cba",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e4e737e007145f08acf3",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
+      "source": "slicer_stock_status",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ab626e2560d342439203",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    }
+  ]
+}

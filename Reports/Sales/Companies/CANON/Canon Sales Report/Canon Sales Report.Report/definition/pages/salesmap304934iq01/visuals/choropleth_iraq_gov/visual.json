@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "choropleth_iraq_gov",
   "position": {
-    "x": 188.33333333333334,
-    "y": 230,
+    "x": 511.66666666666669,
+    "y": 265,
     "z": 0,
-    "height": 690,
-    "width": 773.33333333333337,
+    "height": 765,
+    "width": 1011.6666666666667,
     "tabOrder": 12000
   },
   "visual": {
@@ -124,7 +124,7 @@
             "jsonSpec": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\n  \"$schema\": \"https://vega.github.io/schema/vega/v5.json\",\n  \"width\": 740,\n  \"height\": 650,\n  \"padding\": 0,\n  \"autosize\": {\n    \"type\": \"none\",\n    \"contains\": \"padding\"\n  },\n  \"data\": [\n    {\n      \"name\": \"dataset\"\n    }\n  ],\n  \"scales\": [\n    {\n      \"name\": \"color\",\n      \"type\": \"pow\",\n      \"exponent\": 0.45,\n      \"domain\": {\n        \"data\": \"dataset\",\n        \"field\": \"Sales\"\n      },\n      \"range\": [\n        \"#DCEAF6\",\n        \"#073B72\"\n      ],\n      \"zero\": false,\n      \"nice\": false\n    }\n  ],\n  \"marks\": [\n    {\n      \"type\": \"rect\",\n      \"encode\": {\n        \"enter\": {\n          \"x\": {\n            \"value\": 0\n          },\n          \"y\": {\n            \"value\": 0\n          },\n          \"width\": {\n            \"value\": 740\n          },\n          \"height\": {\n            \"value\": 650\n          },\n          \"fill\": {\n            \"value\": \"#FFFFFF\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"path\",\n      \"from\": {\n        \"data\": \"dataset\"\n      },\n      \"encode\": {\n        \"enter\": {\n          \"path\": {\n            \"field\": \"SvgPath\"\n          },\n          \"stroke\": {\n            \"value\": \"#AFC2D5\"\n          },\n          \"strokeWidth\": {\n            \"value\": 1.2\n          },\n          \"cursor\": {\n            \"value\": \"pointer\"\n          },\n          \"tooltip\": {\n            \"signal\": \"{\\\"Governorate\\\": datum.Governorate, \\\"Sales\\\": format(datum.Sales, \\\",.0f\\\") + \\\" د.ع\\\", \\\"Customers\\\": format(isValid(datum.Customers) ? datum.Customers : (isValid(datum[''Governorate Tooltip Customer Count'']) ? datum[''Governorate Tooltip Customer Count''] : (isValid(datum[''_Measures.Governorate Tooltip Customer Count'']) ? datum[''_Measures.Governorate Tooltip Customer Count''] : 0)), \\\",.0f\\\"), \\\"Sales %\\\": format(isValid(datum.SalesPct) ? datum.SalesPct : (isValid(datum[''Governorate Sales % of Total'']) ? datum[''Governorate Sales % of Total''] : (isValid(datum[''_Measures.Governorate Sales % of Total'']) ? datum[''_Measures.Governorate Sales % of Total''] : 0)), \\\".2%\\\")}\"\n          }\n        },\n        \"update\": {\n          \"fill\": [\n            {\n              \"test\": \"datum.Sales > 0\",\n              \"scale\": \"color\",\n              \"field\": \"Sales\"\n            },\n            {\n              \"value\": \"#F2F6FA\"\n            }\n          ],\n          \"fillOpacity\": {\n            \"value\": 1\n          },\n          \"stroke\": {\n            \"value\": \"#AFC2D5\"\n          },\n          \"strokeWidth\": {\n            \"value\": 0.9\n          }\n        },\n        \"hover\": {\n          \"fillOpacity\": {\n            \"value\": 0.94\n          },\n          \"stroke\": {\n            \"value\": \"#AFC2D5\"\n          },\n          \"strokeWidth\": {\n            \"value\": 0.9\n          }\n        }\n      }\n    }\n  ]\n}'"
+                  "Value": "'{\n  \"$schema\": \"https://vega.github.io/schema/vega/v5.json\",\n  \"width\": 954,\n  \"height\": 728,\n  \"padding\": 0,\n  \"autosize\": {\n    \"type\": \"none\",\n    \"contains\": \"padding\"\n  },\n  \"data\": [\n    {\n      \"name\": \"dataset\"\n    }\n  ],\n  \"scales\": [\n    {\n      \"name\": \"color\",\n      \"type\": \"pow\",\n      \"exponent\": 0.45,\n      \"domain\": {\n        \"data\": \"dataset\",\n        \"field\": \"Sales\"\n      },\n      \"range\": [\n        \"#DCEAF6\",\n        \"#073B72\"\n      ],\n      \"zero\": false,\n      \"nice\": false\n    }\n  ],\n  \"marks\": [\n    {\n      \"type\": \"rect\",\n      \"encode\": {\n        \"enter\": {\n          \"x\": {\n            \"value\": 0\n          },\n          \"y\": {\n            \"value\": 0\n          },\n          \"width\": {\n            \"signal\": \"width\"\n          },\n          \"height\": {\n            \"signal\": \"height\"\n          },\n          \"fill\": {\n            \"value\": \"#FFFFFF\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"path\",\n      \"from\": {\n        \"data\": \"dataset\"\n      },\n      \"encode\": {\n        \"enter\": {\n          \"path\": {\n            \"field\": \"SvgPath\"\n          },\n          \"stroke\": {\n            \"value\": \"#AFC2D5\"\n          },\n          \"strokeWidth\": {\n            \"value\": 1.2\n          },\n          \"cursor\": {\n            \"value\": \"pointer\"\n          },\n          \"tooltip\": {\n            \"signal\": \"{\\\"Governorate\\\": datum.Governorate, \\\"Sales\\\": format(datum.Sales, \\\",.0f\\\") + \\\" \\u062f.\\u0639\\\", \\\"Customers\\\": format(isValid(datum.Customers) ? datum.Customers : (isValid(datum[''Governorate Tooltip Customer Count'']) ? datum[''Governorate Tooltip Customer Count''] : (isValid(datum[''_Measures.Governorate Tooltip Customer Count'']) ? datum[''_Measures.Governorate Tooltip Customer Count''] : 0)), \\\",.0f\\\"), \\\"Sales %\\\": format(isValid(datum.SalesPct) ? datum.SalesPct : (isValid(datum[''Governorate Sales % of Total'']) ? datum[''Governorate Sales % of Total''] : (isValid(datum[''_Measures.Governorate Sales % of Total'']) ? datum[''_Measures.Governorate Sales % of Total''] : 0)), \\\".2%\\\")}\"\n          },\n          \"x\": {\n            \"signal\": \"offsetX\"\n          },\n          \"y\": {\n            \"signal\": \"offsetY\"\n          },\n          \"scaleX\": {\n            \"signal\": \"mapScale\"\n          },\n          \"scaleY\": {\n            \"signal\": \"mapScale\"\n          }\n        },\n        \"update\": {\n          \"fill\": [\n            {\n              \"test\": \"datum.Sales > 0\",\n              \"scale\": \"color\",\n              \"field\": \"Sales\"\n            },\n            {\n              \"value\": \"#F2F6FA\"\n            }\n          ],\n          \"fillOpacity\": {\n            \"value\": 1\n          },\n          \"stroke\": {\n            \"value\": \"#AFC2D5\"\n          },\n          \"strokeWidth\": {\n            \"value\": 0.9\n          }\n        },\n        \"hover\": {\n          \"fillOpacity\": {\n            \"value\": 0.94\n          },\n          \"stroke\": {\n            \"value\": \"#AFC2D5\"\n          },\n          \"strokeWidth\": {\n            \"value\": 0.9\n          }\n        }\n      }\n    }\n  ],\n  \"signals\": [\n    {\n      \"name\": \"designMinX\",\n      \"value\": 28\n    },\n    {\n      \"name\": \"designMinY\",\n      \"value\": 34.5\n    },\n    {\n      \"name\": \"designContentWidth\",\n      \"value\": 684\n    },\n    {\n      \"name\": \"designContentHeight\",\n      \"value\": 581\n    },\n    {\n      \"name\": \"mapScale\",\n      \"update\": \"min(width / designContentWidth, height / designContentHeight) * 0.99\"\n    },\n    {\n      \"name\": \"offsetX\",\n      \"update\": \"(width - designContentWidth * mapScale) / 2 - designMinX * mapScale\"\n    },\n    {\n      \"name\": \"offsetY\",\n      \"update\": \"(height - designContentHeight * mapScale) / 2 - designMinY * mapScale\"\n    }\n  ]\n}'"
                 }
               }
             },
@@ -186,14 +186,14 @@
             "viewportHeight": {
               "expr": {
                 "Literal": {
-                  "Value": "690D"
+                  "Value": "731D"
                 }
               }
             },
             "viewportWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "773.3333333333334D"
+                  "Value": "977.6666666666667D"
                 }
               }
             }
@@ -277,6 +277,13 @@
                       "Value": "'#C9D5E3'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
                 }
               }
             }

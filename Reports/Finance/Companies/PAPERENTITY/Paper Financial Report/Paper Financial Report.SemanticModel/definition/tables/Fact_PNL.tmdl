@@ -185,13 +185,41 @@ table Fact_PNL
 
 		annotation SummarizationSetBy = Automatic
 
+	column CardCode
+		dataType: string
+		lineageTag: 57cb0dec-c0af-4c10-875c-bf711c7544c6
+		summarizeBy: none
+		sourceColumn: CardCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardName
+		dataType: string
+		lineageTag: b09d7586-93a2-4cdb-b198-f77d8042855d
+		summarizeBy: none
+		sourceColumn: CardName
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Fact_PNL = m
 		mode: import
 		source =
 				let
 				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    T0.""RefDate"" AS ""PostingDate"",#(lf)    YEAR(T0.""RefDate"") AS ""Year"",#(lf)    MONTH(T0.""RefDate"") AS ""MonthNo"",#(lf)    TO_VARCHAR(T0.""RefDate"", 'YYYY-MM') AS ""YearMonth"",#(lf)    T1.""TransId"" AS ""TransId"",#(lf)    T1.""Line_ID"" AS ""LineId"",#(lf)    T1.""Account"" AS ""AcctCode"",#(lf)    T2.""AcctName"" AS ""AcctName"",#(lf)    COALESCE(T1.""Debit"", 0) AS ""Debit"",#(lf)    COALESCE(T1.""Credit"", 0) AS ""Credit"",#(lf)    COALESCE(T1.""Debit"", 0) - COALESCE(T1.""Credit"", 0) AS ""Amount"",#(lf)    UPPER(TRIM(T1.""ProfitCode"")) AS ""BranchCode"",#(lf)    COALESCE(NULLIF(TRIM(B1.""PrcName""), ''), UPPER(TRIM(T1.""ProfitCode""))) AS ""BranchName"",#(lf)    T1.""OcrCode2"" AS ""CostCenterCode"",#(lf)    B2.""PrcName"" AS ""CostCenterName"",#(lf)    UPPER(TRIM(T1.""OcrCode2"")) AS ""SalesTypeCode"",#(lf)    COALESCE(NULLIF(TRIM(B2.""PrcName""), ''), UPPER(TRIM(T1.""OcrCode2""))) AS ""SalesTypeName"",#(lf)    UPPER(TRIM(T1.""OcrCode3"")) AS ""DepartmentCode"",#(lf)    COALESCE(NULLIF(TRIM(B3.""PrcName""), ''), UPPER(TRIM(T1.""OcrCode3""))) AS ""DepartmentName"",#(lf)    CASE#(lf)        WHEN T2.""GroupMask"" = 4 THEN 'Revenue'#(lf)        WHEN T2.""GroupMask"" = 5 THEN 'COGS'#(lf)        WHEN T2.""GroupMask"" = 6 THEN 'Operating Expenses'#(lf)        WHEN T2.""GroupMask"" = 7 THEN 'Other'#(lf)        WHEN T2.""GroupMask"" = 8 THEN 'Tax'#(lf)        ELSE 'Unclassified'#(lf)    END AS ""PnLSection"",#(lf)    CASE#(lf)        WHEN T2.""GroupMask"" = 4 THEN 10#(lf)        WHEN T2.""GroupMask"" = 5 THEN 20#(lf)        WHEN T2.""GroupMask"" = 6 THEN 40#(lf)        WHEN T2.""GroupMask"" = 7 THEN 50#(lf)        WHEN T2.""GroupMask"" = 8 THEN 60#(lf)        ELSE 90#(lf)    END AS ""PnLOrder""#(lf)FROM ""PAPERENTITY"".""OJDT"" T0#(lf)INNER JOIN ""PAPERENTITY"".""JDT1"" T1#(lf)    ON T0.""TransId"" = T1.""TransId""#(lf)INNER JOIN ""PAPERENTITY"".""OACT"" T2#(lf)    ON T1.""Account"" = T2.""AcctCode""#(lf)LEFT JOIN ""PAPERENTITY"".""OPRC"" B1#(lf)    ON T1.""ProfitCode"" = B1.""PrcCode"" AND B1.""DimCode"" = 1#(lf)LEFT JOIN ""PAPERENTITY"".""OPRC"" B2#(lf)    ON T1.""OcrCode2"" = B2.""PrcCode"" AND B2.""DimCode"" = 2#(lf)LEFT JOIN ""PAPERENTITY"".""OPRC"" B3#(lf)    ON T1.""OcrCode3"" = B3.""PrcCode"" AND B3.""DimCode"" = 3#(lf)WHERE T2.""GroupMask"" IN (4, 5, 6, 7, 8)#(lf)  AND T0.""TransType"" >= 0;")
 				in
-				    Source
+				    let
+				        DocumentCustomers = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    ""TransId"",#(lf)    ""CardCode"",#(lf)    ""CardName""#(lf)FROM ""PAPERENTITY"".""OINV""#(lf)UNION ALL#(lf)SELECT#(lf)    ""TransId"",#(lf)    ""CardCode"",#(lf)    ""CardName""#(lf)FROM ""PAPERENTITY"".""ORIN"";"),
+				        WithDocumentCustomer = Table.NestedJoin(Source, {"TransId"}, DocumentCustomers, {"TransId"}, "DocumentCustomer", JoinKind.LeftOuter),
+				        ExpandedDocumentCustomer = Table.ExpandTableColumn(WithDocumentCustomer, "DocumentCustomer", {"CardCode", "CardName"}, {"CardCode", "CardName"}),
+				        WithCustomerBucket = Table.TransformColumns(
+				            ExpandedDocumentCustomer,
+				            {
+				                {"CardCode", each if _ = null or Text.Trim(Text.From(_)) = "" then "Unassigned / Manual Adjustment" else Text.Trim(Text.From(_)), type text},
+				                {"CardName", each if _ = null or Text.Trim(Text.From(_)) = "" then "Unassigned / Manual Adjustment" else Text.Trim(Text.From(_)), type text}
+				            }
+				        )
+				    in
+				        WithCustomerBucket
 
 	annotation PBI_ResultType = Table
 

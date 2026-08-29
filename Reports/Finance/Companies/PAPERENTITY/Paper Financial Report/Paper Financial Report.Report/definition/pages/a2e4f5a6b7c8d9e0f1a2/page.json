@@ -1,11 +1,24 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "a2e4f5a6b7c8d9e0f1a2",
-  "displayName": "Accounts payable",
-  "displayOption": "FitToWidth",
-  "height": 960,
-  "width": 1280,
+  "displayName": "Accounts Payable",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
   "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "195L"
+              }
+            }
+          }
+        }
+      }
+    ],
     "background": [
       {
         "properties": {
@@ -30,5 +43,47 @@
         }
       }
     ]
-  }
+  },
+  "visualInteractions": [
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_kpi_0_30",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_kpi_120plus",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_kpi_30_60",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_kpi_60_90",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_kpi_90_120",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_kpi_dpo",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_kpi_future",
+      "type": "DataFilter"
+    },
+    {
+      "source": "payb_slicer_currency",
+      "target": "payb_table",
+      "type": "DataFilter"
+    }
+  ]
 }

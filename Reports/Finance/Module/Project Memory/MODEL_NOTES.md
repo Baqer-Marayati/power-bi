@@ -116,7 +116,7 @@
 ## Balance Sheet — Sign-aware display (2026-04-07)
 - `BS Balance Display` was changed from `ABS([BS Amount])` to a sign-aware `SUMX` that flips the sign for Liabilities and Equity sections: `IF(Section IN {"Liabilities","Equity"}, -SectionAmount, SectionAmount)`.
 - **Why:** SAP shows negative values for (a) liability accounts with abnormal debit balances (e.g. AP prepayments), (b) contra-asset accounts (accumulated depreciation), and (c) Profit Period when the company has a loss. The old `ABS()` stripped all sign information, making the report unable to match SAP at the per-account level.
-- **Top-level KPI cards are unaffected:** `Total Assets`, `Total Liabilities`, `Total Equity`, `Equity Ratio`, and all Card Display measures continue to return positive values because each uses `KEEPFILTERS(BSSection = ...)` which resolves to a single section in the `SUMX`.
+- **Top-level KPI cards are unaffected:** `Total Assets`, `Total Liabilities`, `Total Equity`, and `Equity Ratio` continue to return positive values because each uses `KEEPFILTERS(BSSection = ...)` which resolves to a single section in the `SUMX`.
 - **Per-account visuals now match SAP:** the Largest BS Accounts bar chart, Balance Sheet Mix donut, and Balance by Department chart will correctly show negative values for contra-assets, abnormal liability balances, and Profit Period losses.
 - The `Fact_BalanceSheet[Amount]` column itself is unchanged (`Debit - Credit`); the sign flip is purely in the display measure.
 
@@ -320,20 +320,30 @@ The full PAPERENTITY Balance-sheet rebuild (per-day `_PP` + PEC-reversal rows + 
 - When a semantic issue makes the PBIP unstable, back out risky model patterns before continuing visual cleanup.
 - Stale benchmark metadata frequently survives in `queryRef`, `metadata`, and visual-level filters even when the `Entity` binding has already been corrected. `Commitment Report` and `Actual vs Budget` both demonstrated this.
 - Red warning icons in the right-side data pane often come from a small set of foundational helper tables. Clean the shared foundations first; downstream warnings may disappear without touching every visual.
-- For compact KPI cards, report-side `labelPrecision` and `labelDisplayUnits` are not always enough to change the rendered `bn / M` text. If Power BI keeps ignoring those settings, use dedicated numeric `... Card Display` measures with fixed scaling and bind only the repeated top money cards to them.
+- For compact KPI cards, bind raw money measures and set fixed Billions display units plus explicit
+  3-decimal precision. The former dedicated `... Card Display` scaling workaround is retired and
+  must not return.
 - The older helper `... KPI` / `... KPI Plain` layer was retired from `_Measures.tmdl` because it leaked internal captions in live Desktop rendering.
-- Card caption text should not rely on helper measure display names. The safer current pattern for the repeated top monetary cards is: bind to a dedicated numeric `... Card Display` measure, hide the built-in label, and set the visible caption through `visualContainerObjects.title`.
-- More specifically for these `cardVisual` objects: the current safe combination is `objects.label.show = false`, `objects.value` bound to the scaled numeric display measure, and an explicit title in the standard grey 9pt style. That avoids both the old duplicated-caption leak and the ignored compact-number precision behavior.
+- Card caption text should not rely on helper measure display names. The current pattern is: bind
+  `objects.value` to the raw measure, hide the built-in label, set the visible caption through
+  `visualContainerObjects.title`, and set explicit display units/precision on the value object.
 - That same structural pattern is now preferred for the remaining top-row percent/count KPI cards too. Even when the card still binds directly to the base measure, use `objects.label.show = false`, render the number via `objects.value`, and set the business caption through `visualContainerObjects.title` so the whole KPI row stays visually unified.
-- Power BI may still round scaled card measures back to whole `bn` / `M` units unless the card value object itself also sets `labelDisplayUnits` and `labelPrecision = 2L`. **Correction (2026-08-28): the safe value is `labelDisplayUnits = 1D` (None), NOT `0D` — `0D` means Auto.** With Auto, a pre-scaled measure that crosses 1000 (e.g. Gross Profit Card Display = millions crossing 1bn IQD) gets a stacked auto-unit and renders as `1.17KM د.ع.`. All 14 `* Card Display` cards in both Financial reports were switched to `1D` after this surfaced live on the P&L page.
+- **Never use `labelDisplayUnits = 0D` (Auto) on cards.** Auto can stack a visual unit on a
+  model suffix and reproduce the `KM` bug. Money-total cards use `1000000000D` + `3L`; exact-IQD
+  exemptions use `1D`; percent cards use explicit `2L`.
 - If a page has had visuals deleted during cleanup, recheck `page.json` and remove stale `visualInteractions` entries as part of the same pass. `Actual vs Budget` kept dead interaction references long after the underlying visuals were gone.
 - Stale `queryRef` typos can survive even when the bound `Entity` and `Property` are correct. `CashflowPeriod` on the live `Cashflow` page demonstrated that these should be cleaned proactively instead of assuming Power BI will normalize them.
 - Model-level format strings completed for all numeric measures (2026-08-28): 66 additions each in the Canon/Paper Financial Fabric models (IQD triple `#,0\ "د.ع.‏";...` for amounts, `#,0` for counts, `0` for flag helpers). Text/SVG/date helper measures intentionally stay unformatted.
 - `Overview KPI Value` deliberately has **no** model-level format: it mixes IQD amounts with margin percents, so a static format would be wrong, and a dynamic `formatStringDefinition` requires compatibility level 1601 while the whole six-model fleet is uniformly at 1567 (Fabric rejected the sync with `Workload_FailedToParseFile` / "compatibility level 1567 is below the minimal 1601"). Its KPI card visual handles display formatting. If dynamic format strings are ever wanted, bump all models' `compatibilityLevel` together as a deliberate fleet decision (one-way upgrade).
 - Do not audit format-string coverage via `INFO.VIEW.MEASURES()[FormatString]` over REST/MCP `executeQueries` — it returns null even for measures with static format strings (verified against the freshly synced Service model). The TMDL source is the only reliable ground truth for format coverage.
 - TMDL placement rule (learned from a failed Fabric sync, `Workload_FailedToParseFile`): `formatStringDefinition` is a child object, not a measure property — it must be placed after the measure's properties (`formatString`/`displayFolder`/`lineageTag`), separated by a blank line, with its DAX expression indented two levels deeper than the declaration. Putting it before `lineageTag` breaks the parser at the following property line.
-- Fleet number-formatting standard applied 2026-08-28 (Phases 1–2; see portfolio `CURRENT_STATUS.md`). Financial specifics: M-suffix display formats are now `#,0"M د.ع.‏"` (thousands separator, 0dp — a comma-less `0.00"M"` let Canon Gross Profit render "1174M" once it crossed 1,000M), bn formats `#,0.00"bn د.ع.‏"`; count measures `0` → `#,0`. Card rule: `labelDisplayUnits = 1D` and **no** `labelPrecision` on any card bound to a model-formatted measure — the model format string is the single source of truth. Exception class (raw measures + *fixed* visual units, chosen from live magnitudes): Total Collections (bn, 2dp), Avg Collection per Txn (M, 1dp), Total Liabilities (bn, 2dp — its existing `Card Display` helper divides by 1e6, wrong scale, left unbound to avoid DAX edits). ROI pages now bind `Net Revenue Card Display` like P&L. Percent cards show 2dp everywhere (card precision overrides that forced "20%" on P&L/OpEx/BS were removed).
-- Canon `ROI %` returns blank at all-years scope while Paper returns a value — likely the Canon capital-base input is missing/empty. Data investigation pending; not a formatting issue.
+- Fleet number-formatting standard applied 2026-08-28 and enforced in CI; the authoritative rule set
+  is `Portfolio/Shared/Standards/fabric-reports-number-formatting.md`. Superseded intermediate
+  card-formatting experiments above are historical only.
+- Canon `ROI %` / blank-Year investigation closed 2026-08-29: null source dates were not the cause.
+  The 2026-only date table had unmatched 2025-12-31 rows (1,414 Balance Sheet + 4 Collections),
+  causing Power BI's synthetic blank member. `Dim_Date` now covers 2025 onward while visible Year
+  slicers exclude 2025; the ROI/card-level non-blank-year logic remains a defensive guard.
 - **Card precision must always be explicit (2026-08-28 PM):** `cardVisual` does NOT inherit decimal
   places from the measure's format string — with `labelPrecision` unset it renders 0 decimals
   (percent cards showed "16%" despite `0.00%` model formats; tables/charts inherit correctly).

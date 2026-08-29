@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "2ad649c3a5ab0c650550",
   "position": {
-    "x": 188,
-    "y": 36,
+    "x": 520,
+    "y": 40,
     "z": 20000,
-    "height": 60,
-    "width": 540,
+    "height": 68.333333333333343,
+    "width": 598.33333333333337,
     "tabOrder": 0
   },
   "visual": {
@@ -49,14 +49,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Financial summary'"
+                  "Value": "'Profit & Loss'"
                 }
               }
             },
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },
@@ -76,7 +76,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Track revenue, margin, location mix, and operating performance at a glance.'"
+                  "Value": "'Revenue to gross profit over time, with customer revenue concentration below.'"
                 }
               }
             }

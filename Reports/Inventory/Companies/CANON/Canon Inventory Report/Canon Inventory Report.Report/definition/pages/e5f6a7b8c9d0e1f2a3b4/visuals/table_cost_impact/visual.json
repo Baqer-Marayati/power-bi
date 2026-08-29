@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "table_cost_impact",
   "position": {
-    "x": 187.14285714285717,
-    "y": 537.14285714285722,
-    "z": 19000,
-    "height": 407.14285714285717,
-    "width": 1028.5714285714287,
-    "tabOrder": 22000
+    "x": 511.6666666666667,
+    "y": 646.7395833333333,
+    "z": 9000,
+    "height": 376.6666666666667,
+    "width": 1355,
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -110,7 +110,7 @@
               },
               "queryRef": "_Measures.Procurement KPI Supplier Total",
               "nativeQueryRef": "Supplier Cost",
-              "displayName": "Supplier Cost"
+              "displayName": "Vendor Cost"
             },
             {
               "field": {
@@ -125,7 +125,7 @@
               },
               "queryRef": "_Measures.Selected Supplier Base Unit Cost",
               "nativeQueryRef": "Supplier Cost / Unit",
-              "displayName": "Supplier Cost / Unit"
+              "displayName": "Vendor Cost / Unit"
             },
             {
               "field": {
@@ -200,10 +200,10 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Procurement KPI Add-On Total"
+                "Property": "Selected LC Document Date"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }
@@ -258,7 +258,7 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "14D"
                 }
               }
             },
@@ -277,6 +277,13 @@
                       "Value": "'#E2EAE6'"
                     }
                   }
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
                 }
               }
             }
@@ -373,6 +380,20 @@
                   }
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
             }
           }
         }
@@ -390,11 +411,36 @@
                   }
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
             }
           }
         }
       ],
       "subTotals": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
         {
           "properties": {
             "backColor": {
@@ -433,7 +479,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "380D"
+                  "Value": "396.25152297367066D"
                 }
               }
             }
@@ -447,7 +493,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "120D"
+                  "Value": "125.13205988642233D"
                 }
               }
             }
@@ -463,71 +509,31 @@
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "100D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Procurement KPI Receipt Qty"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "150D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Procurement KPI Supplier Total"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "140D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Selected Supplier Base Unit Cost"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "130D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Procurement KPI Add-On Total"
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "140D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "metadata": "_Measures.Selected Landed Unit Cost"
           }
@@ -543,7 +549,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "140D"
+                  "Value": "145.98740320082604D"
                 }
               }
             }
@@ -787,21 +793,10 @@
       "border": [
         {
           "properties": {
-            "show": {
+            "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#E2EAE6'"
-                    }
-                  }
+                  "Value": "14D"
                 }
               }
             }
@@ -818,6 +813,13 @@
                 }
               }
             },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "text": {
               "expr": {
                 "Literal": {
@@ -825,21 +827,10 @@
                 }
               }
             },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#223430'"
-                    }
-                  }
-                }
-              }
-            },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             }
@@ -869,17 +860,31 @@
       "dropShadow": [
         {
           "properties": {
-            "show": {
+            "angle": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "90L"
                 }
               }
             },
-            "preset": {
+            "shadowDistance": {
               "expr": {
                 "Literal": {
-                  "Value": "'Bottom'"
+                  "Value": "10L"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
                 }
               }
             },
@@ -887,6 +892,13 @@
               "expr": {
                 "Literal": {
                   "Value": "70L"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

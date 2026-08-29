@@ -4,6 +4,7 @@ table purchaseLines
 	measure CommittedPO =
 			
 			CALCULATE ( SUM ( 'purchaseLines'[amountIncludingVAT] ), 'purchaseLines'[DocumentType] = "Order" )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0802
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -11,11 +12,13 @@ table purchaseLines
 	measure UnCommittedPO =
 			
 			CALCULATE ( SUM ( 'purchaseLines'[amountIncludingVAT] ), 'purchaseLines'[DocumentType] = "Quote" )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0803
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure UnCommittedPO1 = [UnCommittedPO]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0804
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}

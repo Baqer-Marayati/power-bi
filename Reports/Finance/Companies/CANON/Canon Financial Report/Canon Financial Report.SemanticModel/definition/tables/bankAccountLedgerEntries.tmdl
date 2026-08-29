@@ -7,6 +7,7 @@ table bankAccountLedgerEntries
 			    [TotalRevenue],
 			    DATESBETWEEN ( 'DateTable'[Date], DATE ( YEAR ( TODAY () ), MONTH ( TODAY () ), 1 ), TODAY () )
 			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0502
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -17,6 +18,7 @@ table bankAccountLedgerEntries
 			    [ExpenseFiltered] + [CostOfGoodsSoldFiltered],
 			    DATESBETWEEN ( 'DateTable'[Date], DATE ( YEAR ( TODAY () ), MONTH ( TODAY () ), 1 ), TODAY () )
 			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0503
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -24,6 +26,7 @@ table bankAccountLedgerEntries
 	measure Cashflow_cashGoingIn_previous =
 			
 			CALCULATE ( [Cashflow_cashGoingIn], DATEADD ( 'DateTable'[Date], -1, MONTH ) )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0504
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -31,6 +34,7 @@ table bankAccountLedgerEntries
 	measure Cashflow_cashGoingOut_previous =
 			
 			CALCULATE ( [Cashflow_cashGoingOut], DATEADD ( 'DateTable'[Date], -1, MONTH ) )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0505
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -41,6 +45,7 @@ table bankAccountLedgerEntries
 			    { [Cashflow_cashGoingIn], [Cashflow_cashGoingIn_previous] },
 			    [Value]
 			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0506
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -51,6 +56,7 @@ table bankAccountLedgerEntries
 			    { [Cashflow_cashGoingOut], [Cashflow_cashGoingOut_previous] },
 			    [Value]
 			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0507
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -65,6 +71,7 @@ table bankAccountLedgerEntries
 			            || CONTAINSSTRING ( LOWER ( 'Fact_BalanceSheet'[AcctName] ), "bank" )
 			    )
 			)
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0508
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -72,6 +79,7 @@ table bankAccountLedgerEntries
 	measure Cashflow_endingCashOnHand_projected =
 			
 			[Cashflow_endingCashInHand] + [Cashflow_cashGoingIn_projected] - [Cashflow_cashGoingOut_projected]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0509
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -92,6 +100,7 @@ table bankAccountLedgerEntries
 			        ),
 			        ABS ( 'generalLedgerEntries'[amount] )
 			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0510
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -108,6 +117,7 @@ table bankAccountLedgerEntries
 	measure Cashflow_previousNet =
 			
 			[Cashflow_cashGoingIn_previous] - [Cashflow_cashGoingOut_previous]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0515
 
 	measure Cashflow_previousNetDisplay =

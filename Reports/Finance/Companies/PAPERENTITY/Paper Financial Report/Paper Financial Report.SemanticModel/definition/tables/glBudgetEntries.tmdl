@@ -4,11 +4,13 @@ table glBudgetEntries
 	measure TotalBudget =
 			
 			CALCULATE ( SUM ( 'glBudgetEntries'[amount] ), 'glBudgetEntries'[accountCategory] = "Expense" )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0302
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure TotalBudgetDynamic = [TotalBudget]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0303
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -16,6 +18,7 @@ table glBudgetEntries
 	measure TotalCommitmentDynamic =
 			
 			'generalLedgerEntries'[ActualSpend] + 'purchaseLines'[CommittedPO] + 'purchaseLines'[UnCommittedPO]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0305
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -23,6 +26,7 @@ table glBudgetEntries
 	measure Remaining =
 			
 			[TotalBudget] - 'generalLedgerEntries'[ActualSpend] - 'purchaseLines'[CommittedPO] - 'purchaseLines'[UnCommittedPO]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a0306
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}

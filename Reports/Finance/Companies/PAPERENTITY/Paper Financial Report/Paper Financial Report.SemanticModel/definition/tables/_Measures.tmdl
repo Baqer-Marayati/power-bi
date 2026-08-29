@@ -158,7 +158,7 @@ table _Measures
 	measure Accounts =
 			
 			DISTINCTCOUNT ( 'Fact_PNL'[AcctCode] )
-		formatString: 0
+		formatString: #,0
 		lineageTag: f0d0c5dc-295f-460f-9f5d-a1d413eb16c6
 
 	measure 'Branch Count' =
@@ -182,7 +182,7 @@ table _Measures
 	measure Departments =
 			
 			DISTINCTCOUNT ( 'Fact_PNL'[DepartmentCode] )
-		formatString: 0
+		formatString: #,0
 		lineageTag: 52b42f8f-b1b2-4df8-96e2-dbc898f8d2ef
 
 	measure 'Net Revenue LY' =
@@ -590,7 +590,7 @@ table _Measures
 	measure 'BS Accounts' =
 			
 			DISTINCTCOUNT ( 'Fact_BalanceSheet'[AcctCode] )
-		formatString: 0
+		formatString: #,0
 		lineageTag: 731922fb-eb28-4d10-80a5-627fae5eadf4
 
 	measure 'Sales Revenue' =
@@ -617,7 +617,7 @@ table _Measures
 
 	measure 'Sales Quantity' =
 			
-			SUM ( 'Fact_SalesDetail'[Quantity] )
+			DIVIDE ( SUM ( 'Fact_SalesDetail'[Quantity] ), 1000 )
 		formatString: #,0.0;-#,0.0;#,0.0
 		lineageTag: c9b4fc1f-f3fb-47cf-8b1d-d0088df931f2
 
@@ -649,129 +649,11 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
-	measure 'Sales Revenue (Segment Mapped)' =
-			
-			VAR SegmentKeys =
-			    DISTINCT (
-			        UNION (
-			            SELECTCOLUMNS ( VALUES ( 'Dim_ItemSegmentMap'[ProductTypeRaw] ), "ItemKey", 'Dim_ItemSegmentMap'[ProductTypeRaw] ),
-			            SELECTCOLUMNS ( VALUES ( 'Dim_ItemSegmentMap'[ProductTypeClean] ), "ItemKey", 'Dim_ItemSegmentMap'[ProductTypeClean] )
-			        )
-			    )
-			RETURN
-			    CALCULATE ( [Sales Revenue], TREATAS ( SegmentKeys, 'Fact_SalesDetail'[ItemGroupName] ) )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: 7e22cd16-c6f8-4dc3-84f1-7f17ca4be5ac
-
-		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
-
-	measure 'Net Revenue Card Display' =
-			
-			DIVIDE ( [Net Revenue], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
-		lineageTag: 58505070-d4dd-4340-a20f-a0eb13ae6bd3
-
-	measure 'Gross Profit Card Display' =
-			
-			DIVIDE ( [Gross Profit], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
-		lineageTag: 17d2afb6-49d9-4f77-980f-e19d5e37bc0d
-
-	measure 'Operating Profit Card Display' =
-			
-			DIVIDE ( [Operating Profit], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
-		lineageTag: 41ca236d-13ee-4357-a7d6-b90e37ff0fd0
-
-	measure 'Net Profit Card Display' =
-			
-			DIVIDE ( [Net Profit], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
-		lineageTag: af6ae29e-a33e-4db4-9d32-301db9134541
-
-	measure 'Net Revenue YTD Card Display' =
-			
-			DIVIDE ( [Net Revenue YTD], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
-		lineageTag: 3184a786-f2bd-4d90-b0ca-43d9db0691f3
-
-	measure 'Gross Profit YTD Card Display' =
-			
-			DIVIDE ( [Gross Profit YTD], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
-		lineageTag: 49f51f2a-00d3-4058-b932-e01a9750bdae
-
-	measure 'Operating Profit YTD Card Display' =
-			
-			DIVIDE ( [Operating Profit YTD], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
-		lineageTag: d860df6b-2bdd-4e10-a325-edfd5710609e
-
-	measure 'Net Profit YTD Card Display' =
-			
-			DIVIDE ( [Net Profit YTD], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
-		lineageTag: 0dea3ca0-4279-4e02-bd2f-cf342a745e7d
-
-	measure 'Sales Revenue YTD Card Display' =
-			
-			DIVIDE ( [Sales Revenue YTD], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
-		lineageTag: 0207087e-6e4c-4401-b100-b1f13fa28635
-
-	measure 'Sales Gross Profit YTD Card Display' =
-			
-			DIVIDE ( [Sales Gross Profit YTD], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
-		lineageTag: d588a7f3-20a8-4969-9cc3-ebd3f4d7b8cc
-
-	measure 'Operating Expenses Card Display' =
-			
-			DIVIDE ( [Operating Expenses Display], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
-		lineageTag: 47fbe32d-1911-4321-bb3f-5f06b68fe256
-
-	measure 'Total Assets Card Display' =
-			
-			DIVIDE ( [Total Assets], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
-		lineageTag: c8d75e60-0d98-4a67-9835-ea8e86698d84
-
-	measure 'Total Liabilities Card Display' =
-			
-			DIVIDE ( [Total Liabilities], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
-		lineageTag: 03835a0d-e896-40c8-bc82-90d2588f665c
-
-	measure 'Total Equity Card Display' =
-			
-			DIVIDE ( [Total Equity], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
-		lineageTag: 6723fc89-f439-4143-b2ab-9fbf631c07c9
-
 	measure 'Sales Quantity YTD' =
 			
 			CALCULATE ( [Sales Quantity], DATESYTD ( 'Dim_Date'[Date] ), ALL ( 'Dim_Date' ) )
 		formatString: #,0.0;-#,0.0;#,0.0
 		lineageTag: 6333ea6e-f172-4ca1-af26-d6ab7f75a143
-
-	measure 'Gross Profit Safe Card Display' =
-			
-			COALESCE ( [Gross Profit], 0 )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: 9b8fd953-7088-479f-a196-0e4c55a307d1
-
-	measure 'Operating Profit Safe Card Display' =
-			
-			COALESCE ( [Operating Profit], 0 )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: 0efa97ff-ba58-4840-9f4f-bac1e3d833ec
-
-	measure 'Net Profit Safe Card Display' =
-			
-			COALESCE ( [Net Profit], 0 )
-		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
-		lineageTag: c2f1c20e-f28d-4dec-95cc-6d9e0c59bf08
 
 	measure 'Net Revenue 2026+' =
 			
@@ -839,7 +721,7 @@ table _Measures
 	measure 'AR Customer Count' =
 			
 			DISTINCTCOUNT ( ReceivablesFact[CardCode] )
-		formatString: 0
+		formatString: #,0
 		lineageTag: c1a2b3d4-e5f6-7890-a1b2-c3d4e5f60004
 
 	measure 'Total Collections' =
@@ -968,18 +850,6 @@ table _Measures
 
 		annotation PBI_FormatHint = {"currencyCulture":"ar-IQ"}
 
-	measure 'Sales Revenue Card Display' =
-			
-			DIVIDE ( [Sales Revenue], 1000000000 )
-		formatString: 0.00"bn د.ع.‏";-0.00"bn د.ع.‏";0.00"bn د.ع.‏"
-		lineageTag: b2c3d4e5-f6a7-4890-b1c2-d3e4f5a60003
-
-	measure 'Sales Gross Profit Card Display' =
-			
-			DIVIDE ( [Sales Gross Profit], 1000000 )
-		formatString: 0.00"M د.ع.‏";-0.00"M د.ع.‏";0.00"M د.ع.‏"
-		lineageTag: b2c3d4e5-f6a7-4890-b1c2-d3e4f5a60004
-
 	measure 'Average Company Capital' =
 			
 			VAR SelectedYears =
@@ -1102,6 +972,7 @@ table _Measures
 	measure 'Total AP Outstanding' =
 			
 			SUM ( PayablesFact[OpenAmount] )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: d1a2b3c4-e5f6-7890-a1b2-c3d4e5f60201
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}

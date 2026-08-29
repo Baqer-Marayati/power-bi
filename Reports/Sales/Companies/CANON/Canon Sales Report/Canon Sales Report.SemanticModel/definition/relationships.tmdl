@@ -14,6 +14,10 @@ relationship AutoDetected_144becb5-0066-436a-8ef5-b706477d811b
 	fromColumn: BP_Rebate_Fact.CardCode
 	toColumn: DimBusinessPartner.CardCode
 
+relationship RebateSalesperson_DimBusinessPartnerSalesperson
+	fromColumn: BP_Rebate_Fact.CardCode
+	toColumn: DimBusinessPartnerSalesperson.CardCode
+
 relationship SalesMap_GeoCity_DimBusinessPartner
 	fromColumn: DimBusinessPartner.LocationGroupKey
 	toColumn: Geo_City_Reference.LocationGroupKey

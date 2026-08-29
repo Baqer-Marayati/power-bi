@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "matrix_detail",
   "position": {
-    "x": 188,
-    "y": 560,
-    "z": 5000,
-    "height": 316,
-    "width": 1028,
+    "x": 511.42857142857144,
+    "y": 646.8571428571429,
+    "z": 9000,
+    "height": 375.7142857142857,
+    "width": 1355.7142857142858,
     "tabOrder": 11000
   },
   "visual": {
@@ -128,7 +128,7 @@
               },
               "queryRef": "Sum(InventoryValuation.StockQty)",
               "nativeQueryRef": "Stock Qty",
-              "displayName": "Total Quantity"
+              "displayName": "Quantity"
             },
             {
               "field": {
@@ -257,7 +257,14 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "14D"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
                 }
               }
             }
@@ -333,6 +340,20 @@
                   }
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
             }
           }
         }
@@ -350,11 +371,36 @@
                   }
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
             }
           }
         }
       ],
       "subTotals": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
         {
           "properties": {
             "backColor": {
@@ -387,7 +433,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "411.35D"
+                  "Value": "561.7481702834112D"
                 }
               }
             }
@@ -401,7 +447,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "189.09971714733481D"
+                  "Value": "221.60515568310183D"
                 }
               }
             }
@@ -415,7 +461,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "173.26364367352218D"
+                  "Value": "236.6124585152255D"
                 }
               }
             }
@@ -429,7 +475,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "218.94666942608998D"
+                  "Value": "298.9981547095003D"
                 }
               }
             }
@@ -582,21 +628,10 @@
       "border": [
         {
           "properties": {
-            "show": {
+            "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#E2EAE6'"
-                    }
-                  }
+                  "Value": "14D"
                 }
               }
             }
@@ -613,6 +648,13 @@
                 }
               }
             },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "text": {
               "expr": {
                 "Literal": {
@@ -620,21 +662,10 @@
                 }
               }
             },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#223430'"
-                    }
-                  }
-                }
-              }
-            },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             }
@@ -644,6 +675,54 @@
       "visualHeader": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "90L"
+                }
+              }
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "70L"
+                }
+              }
+            },
             "show": {
               "expr": {
                 "Literal": {

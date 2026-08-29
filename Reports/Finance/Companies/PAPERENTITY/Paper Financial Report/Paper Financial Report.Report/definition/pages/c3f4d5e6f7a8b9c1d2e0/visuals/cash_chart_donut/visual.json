@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "cash_chart_donut",
   "position": {
-    "x": 658,
-    "y": 236,
-    "z": 500,
-    "height": 420,
-    "width": 496,
-    "tabOrder": 7000
+    "x": 520,
+    "y": 662,
+    "z": 3000,
+    "height": 370,
+    "width": 1336,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "donutChart",
@@ -101,7 +101,7 @@
             "position": {
               "expr": {
                 "Literal": {
-                  "Value": "'Bottom'"
+                  "Value": "'RightCenter'"
                 }
               }
             }
@@ -128,7 +128,7 @@
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "1L"
                 }
               }
             },
@@ -322,9 +322,23 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#223430'"
+                      "Value": "'#2E3A42'"
                     }
                   }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -393,6 +407,13 @@
                       "Value": "'#C9D5E3'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
                 }
               }
             }

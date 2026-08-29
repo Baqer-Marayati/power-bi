@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "recv_table",
   "position": {
-    "x": 126.66666666666667,
-    "y": 236.66666666666669,
+    "x": 520,
+    "y": 264,
     "z": 0,
-    "height": 431.66666666666669,
-    "width": 1026.6666666666667,
+    "height": 768,
+    "width": 1336,
     "tabOrder": 0
   },
   "visual": {
@@ -28,7 +28,8 @@
               },
               "queryRef": "ReceivablesFact.CardName",
               "nativeQueryRef": "CardName",
-              "active": true
+              "active": true,
+              "displayName": "Customer"
             },
             {
               "field": {
@@ -232,6 +233,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
@@ -242,7 +250,39 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "14D"
+                }
+              }
+            },
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "gridHorizontalColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E2EAE6'"
+                    }
+                  }
+                }
+              }
+            },
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
                 }
               }
             }
@@ -264,9 +304,34 @@
                 "color": {
                   "expr": {
                     "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
                       "Value": "'#1F4E79'"
                     }
                   }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
                 }
               }
             }
@@ -280,6 +345,24 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#223430'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
                 }
               }
             }
@@ -310,7 +393,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "225.66666885910135D"
+                  "Value": "340.0000017471896D"
                 }
               }
             }
@@ -324,7 +407,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "168.62665187865284D"
+                  "Value": "201.99999140350036D"
                 }
               }
             }
@@ -338,7 +421,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "112.4999247366561D"
+                  "Value": "180.5389673197681D"
                 }
               }
             }
@@ -352,7 +435,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "158.0595637847905D"
+                  "Value": "191.38301081065967D"
                 }
               }
             }
@@ -366,7 +449,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "156.7319524382395D"
+                  "Value": "188.45544861637177D"
                 }
               }
             }
@@ -380,7 +463,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "167.28878572681054D"
+                  "Value": "198.93466443993432D"
                 }
               }
             }
@@ -394,7 +477,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "168.66894790097854D"
+                  "Value": "193.71990817862127D"
                 }
               }
             }
@@ -408,7 +491,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "167.24655041929648D"
+                  "Value": "187.21853061370274D"
                 }
               }
             }
@@ -615,6 +698,59 @@
             "metadata": "Sum(ReceivablesFact.B121Plus)"
           }
         }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2E3A42'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F7FAFD'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -673,7 +809,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "14D"
                 }
               }
             }
@@ -702,7 +838,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#223430'"
+                      "Value": "'#2E3A42'"
                     }
                   }
                 }
@@ -718,7 +854,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             }
@@ -731,7 +867,14 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "showFocusModeButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -744,18 +887,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1F4E79'"
-                    }
-                  }
+                  "Value": "true"
                 }
               }
             },
@@ -769,42 +901,42 @@
             "preset": {
               "expr": {
                 "Literal": {
-                  "Value": "'Custom'"
+                  "Value": "'Bottom'"
                 }
               }
             },
             "angle": {
               "expr": {
                 "Literal": {
-                  "Value": "270D"
+                  "Value": "135L"
                 }
               }
             },
             "shadowDistance": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "10L"
                 }
               }
             },
             "shadowBlur": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "10L"
                 }
               }
             },
             "shadowSpread": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "3L"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "70L"
                 }
               }
             }

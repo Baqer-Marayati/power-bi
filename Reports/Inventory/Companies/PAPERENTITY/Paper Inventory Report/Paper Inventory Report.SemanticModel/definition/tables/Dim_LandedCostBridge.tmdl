@@ -1,0 +1,58 @@
+table Dim_LandedCostBridge
+	lineageTag: b0c0d0e0-f003-4001-8001-000000000001
+
+	column BridgeStep
+		dataType: string
+		lineageTag: b0c0d0e0-f003-4001-8001-000000000002
+		summarizeBy: none
+		sourceColumn: [BridgeStep]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReportingCategory
+		dataType: string
+		lineageTag: b0c0d0e0-f003-4001-8001-000000000003
+		summarizeBy: none
+		sourceColumn: [ReportingCategory]
+
+		annotation SummarizationSetBy = Automatic
+
+	column StepType
+		dataType: string
+		lineageTag: b0c0d0e0-f003-4001-8001-000000000004
+		summarizeBy: none
+		sourceColumn: [StepType]
+
+		annotation SummarizationSetBy = Automatic
+
+	column StepSort
+		dataType: int64
+		formatString: 0
+		lineageTag: b0c0d0e0-f003-4001-8001-000000000005
+		summarizeBy: none
+		sourceColumn: [StepSort]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_LandedCostBridge = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "BridgeStep", STRING,
+				    "ReportingCategory", STRING,
+				    "StepType", STRING,
+				    "StepSort", INTEGER,
+				    {
+				        { "Supplier base", "Supplier base", "Component", 1 },
+				        { "Transport / Shipping", "Transport", "Component", 2 },
+				        { "Tax / duty", "Tax / duty", "Component", 3 },
+				        { "Insurance", "Insurance", "Component", 4 },
+				        { "Unloading", "Unloading", "Component", 5 },
+				        { "Other", "Other", "Component", 6 },
+				        { "Total landed unit cost", BLANK (), "Total", 7 }
+				    }
+				)
+
+	annotation PBI_ResultType = Table
+

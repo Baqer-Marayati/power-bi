@@ -1,7 +1,18 @@
 # Current Status
 
 ## Date
-- Last updated: Jun 14, 2026
+- Last updated: August 29, 2026
+
+## Current source snapshot (supersedes older layout notes below)
+- The Canon module `.Report` and `.SemanticModel` definitions now mirror the approved
+  `Fabric/DevelopmentWorkspace/Canon Sales Report` copy exactly; module `.pbip` and `.platform`
+  identity files were preserved.
+- Current shell: **1920×1080 FitToPage**, six pages — Sales Overview, Sales Map, Salesperson,
+  Customers, Target & Salaries, Rebate — using the shared fleet layout/number standards.
+- Vocabulary is aligned: the sales-document profitability measure and all visible labels are
+  **Sales Margin %**; `Monthly Salary Gross Margin %` and `Quarter Commission Gross Margin %`
+  use the standard percent suffix. The obsolete scaled `* Card Display` helpers are deleted.
+- This module copy passes the strict portfolio consistency audit with zero violations.
 
 ## Active Project
 - `C:\Work\reporting-hub\Reports\Sales\Sales Report`
@@ -13,7 +24,7 @@
 - Existing commercial pages have: report header, branding lockup, left-rail slicers, KPI card row, charts, and existing matrices repositioned.
 - Fabric `Canon Sales Report` Rebate page now has a Salesmen slicer based on reseller assignment from SAP `OCRD.SlpCode` / `OSLP.SlpName`.
 - Portfolio visual identity applied: #F8FBFF background, navy-blue palette, C9D5E3 card borders, 1F4E79 drop shadows, Segoe UI/Tahoma typography.
-- Pages use 1280x960 FitToWidth with 195px outspace pane, matching Finance report geometry.
+- Pages use 1920×1080 FitToPage with the shared 400px slicer rail and fleet KPI/table/chart rules.
 
 ## Live Pages
 1. **Sales Overview** — 4 KPIs (Sales, COGS, Profit, Margin %), monthly trend combo chart, revenue mix donut, sales matrix

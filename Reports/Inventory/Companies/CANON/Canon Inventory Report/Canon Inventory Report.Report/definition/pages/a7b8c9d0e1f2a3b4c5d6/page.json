@@ -1,10 +1,10 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "a7b8c9d0e1f2a3b4c5d6",
   "displayName": "Stock Actions",
-  "displayOption": "FitToWidth",
-  "height": 960,
-  "width": 1280,
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
   "objects": {
     "outspacePane": [
       {
@@ -46,22 +46,22 @@
   },
   "visualInteractions": [
     {
-      "source": "slicer_item_group",
+      "source": "50f785398f878bc38ea3",
       "target": "table_reorder_actions",
       "type": "DataFilter"
     },
     {
-      "source": "slicer_group_type",
+      "source": "90d50ff465af0c0d7246",
       "target": "table_reorder_actions",
       "type": "DataFilter"
     },
     {
-      "source": "slicer_product_type",
+      "source": "8be851c912329a577cba",
       "target": "table_reorder_actions",
       "type": "DataFilter"
     },
     {
-      "source": "slicer_segment_type",
+      "source": "e4e737e007145f08acf3",
       "target": "table_reorder_actions",
       "type": "DataFilter"
     },
@@ -71,7 +71,12 @@
       "type": "DataFilter"
     },
     {
-      "source": "slicer_item_search",
+      "source": "slicer_warehouse",
+      "target": "table_reorder_actions",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ab626e2560d342439203",
       "target": "table_reorder_actions",
       "type": "DataFilter"
     }

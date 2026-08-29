@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_target_vs_actual",
   "position": {
-    "x": 188,
-    "y": 230,
+    "x": 511.66666666666669,
+    "y": 264.66666666666669,
     "z": 0,
-    "height": 300,
-    "width": 1052,
+    "height": 371,
+    "width": 1355,
     "tabOrder": 12000
   },
   "visual": {
@@ -61,7 +61,7 @@
               },
               "queryRef": "_Measures.Rebate Sales",
               "nativeQueryRef": "Sales",
-              "displayName": "Sales"
+              "displayName": "Net Revenue"
             }
           ]
         }
@@ -185,6 +185,13 @@
                   }
                 }
               }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
             }
           }
         }
@@ -202,14 +209,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Target vs Actual Sales by Customer'"
+                  "Value": "'Target vs Actual Net Revenue by Customer'"
                 }
               }
             },
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },

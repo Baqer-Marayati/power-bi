@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "table_reorder_actions",
   "position": {
-    "x": 188,
-    "y": 120,
-    "z": 0,
-    "height": 816,
-    "width": 1028,
-    "tabOrder": 12000
+    "x": 511.6666666666667,
+    "y": 136.66666666666669,
+    "z": 8000,
+    "height": 893.3333333333334,
+    "width": 1355,
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "tableEx",
@@ -43,7 +43,7 @@
               },
               "queryRef": "Fact_StockCoverPolicy.ItemName",
               "nativeQueryRef": "Item",
-              "displayName": "Item"
+              "displayName": "Item Name"
             },
             {
               "field": {
@@ -73,7 +73,7 @@
               },
               "queryRef": "_Measures.Reorder On Hand",
               "nativeQueryRef": "In Stock",
-              "displayName": "In Stock"
+              "displayName": "On Hand"
             },
             {
               "field": {
@@ -148,7 +148,7 @@
               },
               "queryRef": "_Measures.Reorder Move Qty Value",
               "nativeQueryRef": "Recommended quantity",
-              "displayName": "Recommended quantity"
+              "displayName": "Recommended Qty"
             },
             {
               "field": {
@@ -294,7 +294,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "13D"
                 }
               }
             },
@@ -368,7 +368,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "12D"
                 }
               }
             },
@@ -406,7 +406,7 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "14D"
                 }
               }
             },
@@ -445,7 +445,7 @@
             "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "6D"
+                  "Value": "2D"
                 }
               }
             }
@@ -459,6 +459,13 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -477,7 +484,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "210D"
+                  "Value": "305.9999784361185D"
                 }
               }
             }
@@ -491,7 +498,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "150D"
+                  "Value": "177.58916796107974D"
                 }
               }
             }
@@ -505,7 +512,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "75D"
+                  "Value": "88.79458398053987D"
                 }
               }
             }
@@ -519,7 +526,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "70D"
+                  "Value": "82.87494504850388D"
                 }
               }
             }
@@ -533,7 +540,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "75D"
+                  "Value": "88.79458398053987D"
                 }
               }
             }
@@ -547,7 +554,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "75D"
+                  "Value": "88.79458398053987D"
                 }
               }
             }
@@ -561,7 +568,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "85D"
+                  "Value": "100.63386184461184D"
                 }
               }
             }
@@ -575,7 +582,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "85D"
+                  "Value": "100.63386184461184D"
                 }
               }
             }
@@ -589,7 +596,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "145D"
+                  "Value": "171.66952902904373D"
                 }
               }
             }
@@ -603,7 +610,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "65D"
+                  "Value": "76.95530611646788D"
                 }
               }
             }
@@ -617,7 +624,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "110D"
+                  "Value": "130.2320565047918D"
                 }
               }
             }
@@ -770,22 +777,6 @@
               "expr": {
                 "Literal": {
                   "Value": "'Right'"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures"
-                        }
-                      },
-                      "Property": "Reorder Move Qty Color"
-                    }
-                  }
                 }
               }
             }
@@ -951,21 +942,10 @@
       "border": [
         {
           "properties": {
-            "show": {
+            "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#E2EAE6'"
-                    }
-                  }
+                  "Value": "14D"
                 }
               }
             }
@@ -979,6 +959,27 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Qty and Cost by Business Type'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
                 }
               }
             }
@@ -996,6 +997,54 @@
               }
             },
             "showFocusModeButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "90L"
+                }
+              }
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "70L"
+                }
+              }
+            },
+            "show": {
               "expr": {
                 "Literal": {
                   "Value": "true"

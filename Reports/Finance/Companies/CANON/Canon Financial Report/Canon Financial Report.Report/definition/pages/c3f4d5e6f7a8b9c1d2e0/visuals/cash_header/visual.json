@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "cash_header",
   "position": {
-    "x": 188,
-    "y": 36,
-    "z": 20000,
-    "height": 60,
-    "width": 540,
+    "x": 520,
+    "y": 40.5,
+    "z": 12000,
+    "height": 67.5,
+    "width": 701.79,
     "tabOrder": 0
   },
   "visual": {
@@ -49,14 +49,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cash & bank'"
+                  "Value": "'Cash'"
                 }
               }
             },
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },

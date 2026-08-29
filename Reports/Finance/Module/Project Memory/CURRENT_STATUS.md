@@ -2,7 +2,7 @@
 
 ## Date
 
-- Last updated: July 4, 2026
+- Last updated: August 29, 2026
 
 ## Current Source Of Truth
 
@@ -16,6 +16,11 @@
 - The report runs from company-specific PBIPs under `Companies/`, not from the older `Reports/Finance/Financial Report/` path.
 - The current shell mixes the Sample 2 design language with SAP-backed semantic model logic and later transferred AR/AP/cash pages.
 - Durable rules and historical rationale live in `DECISIONS.md` and `MODEL_NOTES.md`; this file is for the current snapshot and next validation focus.
+- **Fabric/module parity restored (2026-08-29):** both company module `.Report` and
+  `.SemanticModel` definition trees now mirror the approved `Fabric/DevelopmentWorkspace`
+  copies exactly (module `.pbip` / `.platform` identity files preserved). This includes the
+  8-page shell, fleet formatting standard, vocabulary alignment, retired Card Display helpers,
+  PAPERENTITY cash/P&L updates, and Canon ROI/date-integrity fixes.
 - Fabric DevelopmentWorkspace copies now have consistent left slicer rails on the last four pages for both CANON and PAPERENTITY: `Accounts Receivable`, `Accounts Payable`, `Collections`, and `Cash`. CANON keeps its existing AR rail, AP/Cash now have rails, and Collections uses the same period/customer/collector/origin rail as PAPERENTITY.
 - AR/AP/Cash rails intentionally use real snapshot-domain fields, not a `Dim_Date` as-of slicer. Collections uses `Dim_Date` Year/Quarter/Month because `CollectionsFact.PostingDate -> Dim_Date.Date` is an active model relationship.
 - Fabric DevelopmentWorkspace Collections now uses the approved two-main-visual layout in both company reports: `Collections by Customer` table plus one tall `Collections by Month` column chart. Cash now uses the approved three-main-visual layout: balance-by-account bar, distribution-by-type donut, and `Cash Accounts Detail` table.
@@ -41,14 +46,14 @@ The Fabric financial report shell currently contains these 8 visible pages in `p
 - `Dim_Date` lower bound is company-specific: CANON starts at 2026; PAPERENTITY starts at 2024 for historical Paper reporting.
 - The report should open blank until refresh when the cache-stripped handoff flow is used.
 - Desktop-approved PBIP output is stronger evidence than speculative JSON-only assumptions.
-- CANON ROI page uses the locked-period annual ROI card and annualized monthly ROI line chart with an average-capital denominator based on 12 month-end capital snapshots for 2026; the ROI card is intentionally blank for Year `All`, no year, or multi-year selections.
+- CANON ROI page uses the locked-period annual ROI card and annualized monthly ROI line chart with an average-capital denominator based on 12 month-end capital snapshots. It renders when exactly one non-blank year is in scope; because Canon currently has only 2026 reporting data, it now renders at page load and remains blank only when multiple real years are in scope.
 - PAPERENTITY ROI page now uses the same locked-period annual ROI pattern, but with Paper's 2024+ date range and an annual average-capital denominator based on 12 month-end capital snapshots; the ROI card is intentionally blank for Year `All`, no year, or multi-year selections.
 
 ## Current Validation Focus
 
 - **Fabric Collections/Cash visual pass (2026-06-01):** After Git sync, open both `Canon Financial Report` and `Paper Financial Report` from Fabric/Power BI Desktop and validate `Collections` (customer table + one tall monthly column chart; no origin/type chart) and `Cash` (balance bar + type donut + cash account detail table). Also recheck the left rail, KPI fit, slicer filtering, and PAPERENTITY logo-free behavior.
-- **PAPERENTITY ROI:** Open `Paper Financial Report.pbip`, refresh, and validate the ROI page: the Monthly ROI line chart should be annualized monthly `[Net Profit] / [Average Company Capital]`; the bottom ROI card should stay blank for Year `All`/no year/multi-year selections and show ROI only when exactly one year is selected.
-- **CANON ROI:** Reopen `Canon Financial Report.pbip`, refresh, and validate that the ROI card stays blank for Year `All`/no year/multi-year selections, shows only when exactly one year is selected, and uses `[Average Company Capital]` based on 12 month-end snapshots of account `310101010101`.
+- **PAPERENTITY ROI:** Open `Paper Financial Report.pbip`, refresh, and validate the ROI page: the Monthly ROI line chart should be annualized monthly `[Net Profit] / [Average Company Capital]`; the bottom ROI card should stay blank for multi-year scope and show ROI when exactly one year is selected.
+- **CANON ROI/date integrity:** Reopen `Canon Financial Report.pbip`, refresh, and confirm the Year slicers still expose 2026+ only (not the newly covered 2025 relationship-support dates), no `(Blank)` Year appears, the ROI card renders at page load, and selecting 2026 does not change its value. The live pre-change 2026 benchmark was 0.78% with 9.24bn average capital.
 - **PAPERENTITY:** After pull, open `Paper Financial Report.pbip` and validate the **Balance sheet** page: **Largest Balance Sheet Accounts** (all `Dim_BSAccount` names) plus the **SAP equity check** three-bar visual vs SAP (same as-of date): **3000100**, **3000500**, FY **`[Net Profit]`** through **`MAX(Dim_Date[Date])`**.
 - **PAPERENTITY (2026-04-18):** `[BS Amount]` is now an **as-of** measure (cumulative through `MAX(Dim_Date[Date])`, ignoring the date slicer lower bound). Validate by changing the **As of** date on the BS page and confirming **Total Assets**, **Total Liabilities**, **Total Equity**, the **Largest Accounts** bar, and the **Mix** donut all match SAP at the corresponding cutoff date.
 - **PAPERENTITY (2026-04-18, follow-up — SAP-style cutoff UI + per-day `_PP`):** The BS page slicer rail was rebuilt to mirror SAP's "Posting Date To" UX. **Year, Month, Quarter slicers all removed**; one **`As of` date slicer** in **`'Before'`** mode bound to **`Dim_Date[Date]`** drives the cutoff (visual `a9d1e5c40b1f4c2fa001` + `label_year`). The shared left-rail Year/Quarter/Month slicers are still present on every other page (P&L, Sales, Operating expenses, Financial summary, ROI). At the same time, `Fact_BalanceSheet`'s **`_PP` (Profit Period) Power Query was overhauled** to (a) emit one row **per posting date** instead of per month-end, and (b) auto-detect the open fiscal year via SAP's period-end-closing journals (`OJDT.TransType = -3` posting to `JDT1.Account = '3000500'`) instead of hardcoding `YEAR = YEAR(CURRENT_DATE)`. **SAP-verified at 4 cutoffs:** 2026-12-31 / 2026-04-15 / 2026-03-31 all balance to 0; 2025-12-31 has a residual = exact FY25 P&L (expected: FY25 was open at that moment but has since been closed by PEC; pre-baked `_PP` cannot be cutoff-aware without further model work — this is documented). **Validate in Desktop:** open `Paper Financial Report.pbip`, refresh, pick a date in the BS `As of` slicer, and confirm Assets ≈ Liabilities + Equity (with `_PP` row) at any 2026 date including mid-month. See **`MODEL_NOTES.md` → "Balance sheet: SAP-style single date slicer + per-day `_PP` (2026-04-18, follow-up)"** for the SQL change and the historical-cutoff caveat.

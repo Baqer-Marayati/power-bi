@@ -1,16 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "chart_trend",
   "position": {
-    "x": 188,
-    "y": 230,
+    "x": 511.66666666666669,
+    "y": 264.66666666666669,
     "z": 0,
-    "height": 300,
-    "width": 670,
+    "height": 337.5,
+    "width": 862.97528517110266,
     "tabOrder": 12000
   },
   "visual": {
-    "visualType": "areaChart",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -63,10 +63,34 @@
               "nativeQueryRef": "Sales"
             }
           ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Sales Margin %"
+                }
+              },
+              "queryRef": "_Measures.Sales Margin %",
+              "nativeQueryRef": "Sales Margin %",
+              "displayName": "Sales Margin %"
+            }
+          ]
         }
       }
     },
     "objects": {
+      "valueAxis": [
+        {
+          "properties": {}
+        }
+      ],
       "legend": [
         {
           "properties": {
@@ -140,6 +164,13 @@
                   }
                 }
               }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
             }
           }
         }
@@ -157,14 +188,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Monthly Sales & Profit Trend'"
+                  "Value": "'Net Revenue & Gross Profit Trend'"
                 }
               }
             },
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },

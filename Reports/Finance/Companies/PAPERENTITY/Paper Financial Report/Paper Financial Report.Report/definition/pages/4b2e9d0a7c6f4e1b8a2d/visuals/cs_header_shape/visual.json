@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "cs_header_shape",
   "position": {
-    "x": 188,
-    "y": 36,
+    "x": 520,
+    "y": 40.5,
     "z": 18000,
-    "height": 60,
-    "width": 540,
+    "height": 67.5,
+    "width": 701.78988326848253,
     "tabOrder": 1000
   },
   "visual": {
@@ -49,14 +49,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Operating expenses'"
+                  "Value": "'OpEx'"
                 }
               }
             },
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },
@@ -64,6 +64,13 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
                 }
               }
             }
@@ -77,6 +84,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'Review operating expense concentration by account, location, and department.'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
                 }
               }
             }

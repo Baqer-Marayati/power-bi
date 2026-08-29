@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "chart_stock_level",
   "position": {
-    "x": 714,
-    "y": 236,
+    "x": 1202.2999570681707,
+    "y": 264.6666666666667,
     "z": 8000,
-    "height": 300,
-    "width": 502,
-    "tabOrder": 19000
+    "height": 358.40625,
+    "width": 664.462890625,
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "donutChart",
@@ -124,6 +124,13 @@
                   "Value": "10D"
                 }
               }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
+                }
+              }
             }
           }
         }
@@ -144,7 +151,6 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.StockCoverStatus",
             "data": [
               {
                 "scopeId": {
@@ -168,7 +174,8 @@
                   }
                 }
               }
-            ]
+            ],
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus"
           }
         },
         {
@@ -186,7 +193,6 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.StockCoverStatus",
             "data": [
               {
                 "scopeId": {
@@ -210,7 +216,8 @@
                   }
                 }
               }
-            ]
+            ],
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus"
           }
         },
         {
@@ -228,7 +235,6 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.StockCoverStatus",
             "data": [
               {
                 "scopeId": {
@@ -252,7 +258,8 @@
                   }
                 }
               }
-            ]
+            ],
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus"
           }
         },
         {
@@ -270,7 +277,6 @@
             }
           },
           "selector": {
-            "metadata": "Fact_StockCoverPolicy.StockCoverStatus",
             "data": [
               {
                 "scopeId": {
@@ -294,7 +300,8 @@
                   }
                 }
               }
-            ]
+            ],
+            "metadata": "Fact_StockCoverPolicy.StockCoverStatus"
           }
         }
       ]
@@ -346,9 +353,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E2EAE6'"
+                      "Value": "'#C9D5E3'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
                 }
               }
             }
@@ -372,21 +386,35 @@
                 }
               }
             },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#223430'"
-                    }
-                  }
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2E3A42'"
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }

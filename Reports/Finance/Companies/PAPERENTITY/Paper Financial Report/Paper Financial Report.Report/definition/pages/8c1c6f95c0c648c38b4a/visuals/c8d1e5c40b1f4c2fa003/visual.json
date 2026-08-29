@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "c8d1e5c40b1f4c2fa003",
   "position": {
-    "x": 188,
-    "y": 596,
+    "x": 520,
+    "y": 662,
     "z": 8000,
-    "height": 340,
-    "width": 502,
+    "height": 370,
+    "width": 1336,
     "tabOrder": 19000
   },
   "visual": {
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_SalesDetail"
+                      "Entity": "Fact_PNL"
                     }
                   },
                   "Property": "CardName"
                 }
               },
-              "queryRef": "Fact_SalesDetail.CardName",
+              "queryRef": "Fact_PNL.CardName",
               "nativeQueryRef": "Customer",
               "active": true
             }
@@ -42,11 +42,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Sales Revenue"
+                  "Property": "Net Revenue"
                 }
               },
-              "queryRef": "_Measures.Sales Revenue",
-              "nativeQueryRef": "Sales Revenue"
+              "queryRef": "_Measures.Net Revenue",
+              "nativeQueryRef": "Net Revenue"
             }
           ]
         }
@@ -61,7 +61,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Sales Revenue"
+                "Property": "Net Revenue"
               }
             },
             "direction": "Descending"
@@ -121,7 +121,7 @@
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "3L"
                 }
               }
             },
@@ -188,9 +188,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E2EAE6'"
+                      "Value": "'#C9D5E3'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
                 }
               }
             }
@@ -210,7 +217,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales Revenue by Customer'"
+                  "Value": "'Net Revenue by Customer'"
                 }
               }
             },
@@ -219,7 +226,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#223430'"
+                      "Value": "'#2E3A42'"
                     }
                   }
                 }
@@ -228,7 +235,21 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "16D"
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -258,6 +279,27 @@
       "dropShadow": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outer'"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bottom'"
+                }
+              }
+            },
             "angle": {
               "expr": {
                 "Literal": {
@@ -290,27 +332,6 @@
               "expr": {
                 "Literal": {
                   "Value": "70L"
-                }
-              }
-            },
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Outer'"
-                }
-              }
-            },
-            "preset": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Bottom'"
                 }
               }
             }

@@ -170,6 +170,14 @@ table Dim_Item
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Single field for item search slicers (code and name).
+	column ItemSearch = Dim_Item[ItemCode] & " · " & Dim_Item[ItemName]
+		lineageTag: 11111111-1111-1111-1111-111111111020
+		summarizeBy: none
+		sortByColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Dim_Item = m
 		mode: import
 		source =

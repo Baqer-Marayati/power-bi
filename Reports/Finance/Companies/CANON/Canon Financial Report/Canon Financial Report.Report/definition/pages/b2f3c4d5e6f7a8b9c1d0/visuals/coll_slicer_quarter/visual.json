@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "coll_slicer_quarter",
   "position": {
-    "x": 24,
-    "y": 206,
-    "z": 8050,
-    "height": 32,
-    "width": 136,
-    "tabOrder": 500
+    "x": 75,
+    "y": 284,
+    "z": 8100,
+    "height": 76,
+    "width": 400,
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "slicer",
@@ -28,7 +28,8 @@
               },
               "queryRef": "Dim_Date.Quarter",
               "nativeQueryRef": "Quarter",
-              "active": true
+              "active": true,
+              "displayName": "Quarter"
             }
           ]
         }
@@ -58,6 +59,13 @@
                 }
               }
             },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "bold": {
               "expr": {
                 "Literal": {
@@ -65,10 +73,28 @@
                 }
               }
             },
-            "show": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F4E79'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "'Segoe UI Semibold'"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14.0D"
                 }
               }
             }
@@ -86,6 +112,106 @@
               }
             },
             "selectAllCheckboxEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "outlineWeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            },
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "items": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14.0D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2E3A42'"
+                    }
+                  }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EBF1F7'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
               "expr": {
                 "Literal": {
                   "Value": "false"
@@ -125,51 +251,23 @@
           "Where": [
             {
               "Condition": {
-                "And": {
-                  "Left": {
-                    "Not": {
-                      "Expression": {
-                        "Comparison": {
-                          "ComparisonKind": 0,
-                          "Left": {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "d"
-                                }
-                              },
-                              "Property": "Quarter"
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "d"
                             }
                           },
-                          "Right": {
-                            "Literal": {
-                              "Value": "null"
-                            }
-                          }
+                          "Property": "Quarter"
                         }
-                      }
-                    }
-                  },
-                  "Right": {
-                    "Not": {
-                      "Expression": {
-                        "Comparison": {
-                          "ComparisonKind": 0,
-                          "Left": {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "d"
-                                }
-                              },
-                              "Property": "Quarter"
-                            }
-                          },
-                          "Right": {
-                            "Literal": {
-                              "Value": "''"
-                            }
-                          }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
                         }
                       }
                     }

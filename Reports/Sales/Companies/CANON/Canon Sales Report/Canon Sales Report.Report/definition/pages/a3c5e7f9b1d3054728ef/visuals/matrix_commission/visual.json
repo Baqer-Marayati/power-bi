@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "matrix_commission",
   "position": {
-    "x": 188,
-    "y": 545,
+    "x": 511.66666666666669,
+    "y": 660,
     "z": 2000,
-    "height": 395,
-    "width": 1052,
+    "height": 370,
+    "width": 1355,
     "tabOrder": 2000
   },
   "visual": {
@@ -20,16 +20,32 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Commission_Fact"
+                      "Entity": "CommissionEmployee"
                     }
                   },
-                  "Property": "SlpName"
+                  "Property": "Department"
                 }
               },
-              "queryRef": "Commission_Fact.SlpName",
-              "nativeQueryRef": "Salesperson",
+              "queryRef": "CommissionEmployee.Department",
+              "nativeQueryRef": "Department",
               "active": true,
-              "displayName": "Salesperson"
+              "displayName": "Department"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CommissionEmployee"
+                    }
+                  },
+                  "Property": "SalesPerson"
+                }
+              },
+              "queryRef": "CommissionEmployee.SalesPerson",
+              "nativeQueryRef": "Employee",
+              "active": true,
+              "displayName": "Employee"
             }
           ]
         },
@@ -43,12 +59,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Commission Row Target"
+                  "Property": "Quarter Commission Target"
                 }
               },
-              "queryRef": "_Measures.Commission Row Target",
-              "nativeQueryRef": "Target",
-              "displayName": "Target"
+              "queryRef": "_Measures.Quarter Commission Target",
+              "nativeQueryRef": "Quarter Target",
+              "displayName": "Quarter Target"
             },
             {
               "field": {
@@ -58,12 +74,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Commission Row Sales"
+                  "Property": "Quarter Commission Actual"
                 }
               },
-              "queryRef": "_Measures.Commission Row Sales",
-              "nativeQueryRef": "Sales",
-              "displayName": "Sales"
+              "queryRef": "_Measures.Quarter Commission Actual",
+              "nativeQueryRef": "Quarter Actual",
+              "displayName": "Quarter Actual"
             },
             {
               "field": {
@@ -73,27 +89,57 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Commission Row Amount"
+                  "Property": "Quarter Commission Achievement %"
                 }
               },
-              "queryRef": "_Measures.Commission Row Amount",
-              "nativeQueryRef": "Commission",
-              "displayName": "Commission"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Commission Row Achievement %"
-                }
-              },
-              "queryRef": "_Measures.Commission Row Achievement %",
+              "queryRef": "_Measures.Quarter Commission Achievement %",
               "nativeQueryRef": "Achievement %",
               "displayName": "Achievement %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Quarter Commission Gross Margin %"
+                }
+              },
+              "queryRef": "_Measures.Quarter Commission Gross Margin %",
+              "nativeQueryRef": "Sales Margin %",
+              "displayName": "Sales Margin %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Quarter Commission Incentive"
+                }
+              },
+              "queryRef": "_Measures.Quarter Commission Incentive",
+              "nativeQueryRef": "Quarter Incentive",
+              "displayName": "Quarter Incentive"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Quarter Commission Earned"
+                }
+              },
+              "queryRef": "_Measures.Quarter Commission Earned",
+              "nativeQueryRef": "Commission Earned",
+              "displayName": "Commission Earned"
             }
           ]
         }
@@ -108,7 +154,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Commission Row Sales"
+                "Property": "Quarter Commission Earned"
               }
             },
             "direction": "Descending"
@@ -145,6 +191,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'Bottom'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -218,7 +271,21 @@
             "autoSizeColumnWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
                 }
               }
             }
@@ -234,6 +301,36 @@
                   "Value": "false"
                 }
               }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures"
+                        }
+                      },
+                      "Property": "Comp Department Background Color"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
             }
           }
         }
@@ -244,7 +341,14 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "14D"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
                 }
               }
             }
@@ -292,6 +396,22 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures"
+                        }
+                      },
+                      "Property": "Comp Department Background Color"
+                    }
+                  }
                 }
               }
             }
@@ -349,7 +469,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Commission Row Target"
+            "metadata": "_Measures.Quarter Commission Target"
           }
         },
         {
@@ -377,7 +497,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Commission Row Sales"
+            "metadata": "_Measures.Quarter Commission Actual"
           }
         },
         {
@@ -405,7 +525,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Commission Row Amount"
+            "metadata": "_Measures.Quarter Commission Achievement %"
           }
         },
         {
@@ -433,7 +553,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Commission Row Achievement %"
+            "metadata": "_Measures.Quarter Commission Incentive"
           }
         }
       ],
@@ -443,13 +563,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "196.8571598428146D"
+                  "Value": "243.56086459922182D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Commission Row Target"
+            "metadata": "_Measures.Quarter Commission Target"
           }
         },
         {
@@ -457,13 +577,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "183.57142857142858D"
+                  "Value": "221.9961420087838D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Commission Row Sales"
+            "metadata": "_Measures.Quarter Commission Actual"
           }
         },
         {
@@ -471,13 +591,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "152.86584494976904D"
+                  "Value": "194.5708378657073D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Commission Row Amount"
+            "metadata": "_Measures.Quarter Commission Achievement %"
           }
         },
         {
@@ -485,13 +605,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "163.00001134219252D"
+                  "Value": "214.66668445770063D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Commission Row Achievement %"
+            "metadata": "_Measures.Quarter Commission Incentive"
           }
         },
         {
@@ -499,13 +619,27 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "308.60680888960854D"
+                  "Value": "170D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Commission_Fact.SlpName"
+            "metadata": "CommissionEmployee.Department"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "285D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "CommissionEmployee.SalesPerson"
           }
         }
       ]
@@ -523,84 +657,84 @@
             }
           }
         }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C9D5E3'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Quarter Commission Status'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F4E79'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI Semibold'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "filter_exclude_total2026_commission",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Commission_Fact"
-              }
-            },
-            "Property": "QuarterLabel"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "c",
-              "Entity": "Commission_Fact",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "In": {
-                      "Expressions": [
-                        {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "c"
-                              }
-                            },
-                            "Property": "QuarterLabel"
-                          }
-                        }
-                      ],
-                      "Values": [
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'TOTAL 2026'"
-                            }
-                          }
-                        ]
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "objects": {
-          "general": [
-            {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    ]
   }
 }

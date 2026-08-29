@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "matrix_city_sales",
   "position": {
-    "x": 973.33333333333337,
-    "y": 230,
+    "x": 1543.3333333333335,
+    "y": 265,
     "z": 0,
-    "height": 690,
-    "width": 271.66666666666669,
+    "height": 765,
+    "width": 330,
     "tabOrder": 13000
   },
   "visual": {
@@ -46,7 +46,8 @@
                 }
               },
               "queryRef": "_Measures.Sales",
-              "nativeQueryRef": "Sales"
+              "nativeQueryRef": "Sales",
+              "displayName": "Net Revenue"
             }
           ]
         }
@@ -77,7 +78,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "96.05912429792293D"
+                  "Value": "114.38387882819984D"
                 }
               }
             }
@@ -91,13 +92,93 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "130.85714168937886D"
+                  "Value": "179.25337611404157D"
                 }
               }
             }
           },
           "selector": {
             "metadata": "_Measures.Sales"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTotals": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
           }
         }
       ]
@@ -154,6 +235,13 @@
                   }
                 }
               }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
             }
           }
         }
@@ -187,7 +275,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1F4E79'"
+                      "Value": "'#2E3A42'"
                     }
                   }
                 }

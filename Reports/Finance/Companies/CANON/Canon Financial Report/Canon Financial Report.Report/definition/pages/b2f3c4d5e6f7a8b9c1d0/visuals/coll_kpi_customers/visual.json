@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "coll_kpi_customers",
   "position": {
-    "x": 821,
-    "y": 120,
+    "x": 1342.65,
+    "y": 135,
     "z": 4000,
-    "height": 92,
-    "width": 184,
-    "tabOrder": 7000
+    "height": 104,
+    "width": 239.13,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -70,14 +70,43 @@
             "labelDisplayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "fillCustom": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             },
-            "labelPrecision": {
+            "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "shadowCustom": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -144,7 +173,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "14D"
                 }
               }
             }
@@ -192,7 +221,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Active Customers'"
+                  "Value": "'Customer Count'"
                 }
               }
             },
@@ -206,7 +235,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "12D"
                 }
               }
             },
@@ -215,9 +244,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#333333'"
+                      "Value": "'#2E3A42'"
                     }
                   }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }

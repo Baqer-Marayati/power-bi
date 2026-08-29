@@ -31,6 +31,7 @@ table BudgetVsActualTable
 			        SUMX ( FILTER ( 'generalLedgerEntries', 'generalLedgerEntries'[accountCategory] = "Income" ), ABS ( 'generalLedgerEntries'[amount] ) ),
 			        DATESBETWEEN ( 'DateTable'[Date], StartDate, EndDate )
 			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1006
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -53,6 +54,7 @@ table BudgetVsActualTable
 			        SUMX ( FILTER ( 'generalLedgerEntries', 'generalLedgerEntries'[accountCategory] = "Expense" ), ABS ( 'generalLedgerEntries'[amount] ) ),
 			        DATESBETWEEN ( 'DateTable'[Date], StartDate, EndDate )
 			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1007
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -76,6 +78,7 @@ table BudgetVsActualTable
 			        'glBudgetEntries'[accountCategory] = "Income",
 			        DATESBETWEEN ( 'DateTable'[Date], StartDate, EndDate )
 			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1008
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -99,16 +102,19 @@ table BudgetVsActualTable
 			        'glBudgetEntries'[accountCategory] = "Expense",
 			        DATESBETWEEN ( 'DateTable'[Date], StartDate, EndDate )
 			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1009
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure IncomeVariane = [NewDynamicIncome] - [NewDynamicBudget]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1010
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure BudgetExpenseVariance = [NewDynamicExpense] - [NewDynamicBudgetExpense]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1011
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -133,6 +139,7 @@ table BudgetVsActualTable
 			        SUMX ( FILTER ( 'generalLedgerEntries', 'generalLedgerEntries'[accountCategory] = "Income" ), ABS ( 'generalLedgerEntries'[amount] ) ),
 			        DATESBETWEEN ( 'DateTable'[Date], RowMonth, EOMONTH ( RowMonth, 0 ) )
 			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1014
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -145,11 +152,13 @@ table BudgetVsActualTable
 			        SUMX ( FILTER ( 'generalLedgerEntries', 'generalLedgerEntries'[accountCategory] = "Income" ), ABS ( 'generalLedgerEntries'[amount] ) ),
 			        DATESBETWEEN ( 'DateTable'[Date], RowMonth, EOMONTH ( RowMonth, 0 ) )
 			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1015
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure RevenueCurrentLinear = [RevenueCurrent]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1016
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -178,6 +187,7 @@ table BudgetVsActualTable
 			        ),
 			        DATESBETWEEN ( 'DateTable'[Date], StartDate, EndDate )
 			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1017
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -203,6 +213,7 @@ table BudgetVsActualTable
 			        ),
 			        DATESBETWEEN ( 'DateTable'[Date], StartDate, EndDate )
 			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1018
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -215,6 +226,7 @@ table BudgetVsActualTable
 			        SUMX ( FILTER ( 'generalLedgerEntries', 'generalLedgerEntries'[accountCategory] = Category ), ABS ( 'generalLedgerEntries'[amount] ) ),
 			        DATESBETWEEN ( 'DateTable'[Date], DATE ( YEAR ( TODAY () ), 1, 1 ), TODAY () )
 			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1019
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -228,11 +240,13 @@ table BudgetVsActualTable
 			        'glBudgetEntries'[accountCategory] = Category,
 			        DATESBETWEEN ( 'DateTable'[Date], DATE ( YEAR ( TODAY () ), 1, 1 ), TODAY () )
 			    )
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1020
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure GLTableVariance = [GLTableActual] - [GLTableBudget]
+		formatString: #,0\ "د.ع.‏";-#,0\ "د.ع.‏";#,0\ "د.ع.‏"
 		lineageTag: 4f1c4f8e-3cc3-4d18-9a8c-3f2e189a1021
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
