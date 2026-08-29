@@ -1,0 +1,22 @@
+name: Validate Report Consistency
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  validate-report-consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Audit Fabric report layout and number formatting
+        run: >-
+          python3 Portfolio/scripts/audit-report-consistency.py
+          --strict
+          Fabric/DevelopmentWorkspace

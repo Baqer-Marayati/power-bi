@@ -22,8 +22,11 @@ Portfolio/Shared/Standards/fabric-reports-number-formatting.md:
   - model: every percent format string is 0.00%-based
 
 Usage:
-  python3 audit-report-consistency.py <folder-or-.Report-path> [more paths...]
+  python3 audit-report-consistency.py [--strict] <folder-or-.Report-path> [more paths...]
   # e.g. python3 Portfolio/scripts/audit-report-consistency.py Fabric/DevelopmentWorkspace
+
+`--strict` exits non-zero when layout or number-formatting drift is found. It
+is intended for CI; the default remains an informational report for humans.
 """
 
 from __future__ import annotations
@@ -35,6 +38,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 EXPECTED = {
+    "theme": "Custom_Theme49412231581938193.json",
     "title_font": "Segoe UI",
     "title_size": "12",
     "title_color": "#2E3A42",
@@ -46,6 +50,15 @@ EXPECTED = {
     "rail_width": 400,
     "bottom_line": 1030,
     "canvas": "1920x1080",
+}
+
+ALLOWED = {
+    # 20pt is the deliberate page-heading tier. Two Sales subtitles use Semibold
+    # and navy; both are approved variants, not drift.
+    "title_fonts": {"Segoe UI", "Segoe UI Semibold"},
+    "title_sizes": {"12", "20"},
+    "title_colors": {"#2E3A42", "#1F4E79"},
+    "bottom_lines": {1030, 1032},
 }
 
 
@@ -312,6 +325,71 @@ def audit_formatting(report_dir: Path) -> list[str]:
     return violations
 
 
+def audit_layout(audit: dict) -> list[str]:
+    """Actionable violations of the shared Fabric layout standard."""
+    violations = []
+    if audit["theme"] != EXPECTED["theme"]:
+        violations.append(f'theme {audit["theme"]!r} != {EXPECTED["theme"]!r}')
+
+    for page in audit["pages"]:
+        if page["hidden"]:
+            continue
+        if page["size"] != EXPECTED["canvas"] or page["displayOption"] != "FitToPage":
+            violations.append(
+                f'page {page["display"]}: canvas {page["size"]}/{page["displayOption"]} '
+                f'!= {EXPECTED["canvas"]}/FitToPage'
+            )
+        if round(page["bottom"]) not in ALLOWED["bottom_lines"]:
+            violations.append(
+                f'page {page["display"]}: bottom line {round(page["bottom"])} '
+                f'not in {sorted(ALLOWED["bottom_lines"])}'
+            )
+        for row in page["kpi_rows"]:
+            if row["y"] <= 200 and row["h"] != [EXPECTED["kpi_height"]]:
+                violations.append(
+                    f'page {page["display"]}: top KPI height {row["h"]} '
+                    f'!= [{EXPECTED["kpi_height"]}]'
+                )
+        for x, width, _ in page["slicers"]:
+            # Paper Inventory keeps three wired support slicers parked to the
+            # right of the canvas. They are not part of the visible rail.
+            if x <= 1920 and width != EXPECTED["rail_width"]:
+                violations.append(
+                    f'page {page["display"]}: slicer width {width} '
+                    f'!= {EXPECTED["rail_width"]}'
+                )
+
+    checks = (
+        ("title font", audit["title_fonts"], ALLOWED["title_fonts"]),
+        ("title size", audit["title_sizes"], ALLOWED["title_sizes"]),
+        ("title color", audit["title_colors"], ALLOWED["title_colors"]),
+        ("border color", audit["border_colors"], {EXPECTED["border_color"]}),
+        ("shadow color", audit["shadow_colors"], {EXPECTED["shadow_color"]}),
+        ("KPI value size", audit["kpi_value_sizes"], {EXPECTED["kpi_value_size"]}),
+    )
+    for label, values, allowed in checks:
+        unexpected = sorted(str(value) for value in values if str(value) not in allowed)
+        if unexpected:
+            violations.append(
+                f'{label}: unexpected value(s) {unexpected}; allowed {sorted(allowed)}'
+            )
+
+    bad_radius = []
+    for value in audit["radius"]:
+        try:
+            matches = float(value) == float(EXPECTED["radius"])
+        except (TypeError, ValueError):
+            matches = False
+        if not matches:
+            bad_radius.append(str(value))
+    bad_radius.sort()
+    if bad_radius:
+        violations.append(f'border radius: unexpected value(s) {bad_radius}; expected 14')
+    if audit["offcanvas"]:
+        violations.append(f'off-canvas visual(s): {audit["offcanvas"]}')
+    return violations
+
+
 def fmt_counter(counter: Counter, expected=None) -> str:
     parts = []
     for value, count in counter.most_common():
@@ -321,7 +399,8 @@ def fmt_counter(counter: Counter, expected=None) -> str:
 
 
 def main() -> int:
-    roots = sys.argv[1:] or ["Fabric/DevelopmentWorkspace"]
+    strict = "--strict" in sys.argv[1:]
+    roots = [arg for arg in sys.argv[1:] if arg != "--strict"] or ["Fabric/DevelopmentWorkspace"]
     report_dirs = []
     for root in roots:
         path = Path(root)
@@ -334,6 +413,7 @@ def main() -> int:
         return 1
 
     audits = [audit_report(d) for d in report_dirs]
+    layouts = {a["name"]: audit_layout(a) for a in audits}
     formatting = {d: audit_formatting(d) for d in report_dirs}
 
     for a in audits:
@@ -391,6 +471,24 @@ def main() -> int:
         for violation in violations:
             print(f"   {violation}")
     print(f"total formatting violations: {total}")
+
+    print("\n=== STRICT LAYOUT AUDIT ===")
+    layout_total = 0
+    for audit in audits:
+        violations = layouts[audit["name"]]
+        layout_total += len(violations)
+        status = "OK" if not violations else f"{len(violations)} violation(s)"
+        print(f'{audit["name"]:<28}{status}')
+        for violation in violations:
+            print(f"   {violation}")
+    print(f"total layout violations: {layout_total}")
+
+    if strict and (total or layout_total):
+        print(
+            f"\nSTRICT AUDIT FAILED: {layout_total} layout + {total} formatting violation(s)",
+            file=sys.stderr,
+        )
+        return 1
     return 0
 
 

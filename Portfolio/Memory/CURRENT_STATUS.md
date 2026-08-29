@@ -2,7 +2,7 @@
 
 ## Date
 
-- Last updated: August 28, 2026
+- Last updated: August 29, 2026
 
 ## Current Reality
 
@@ -83,6 +83,27 @@
      both measures now iterate non-blank years, guard is "exactly one year in scope" (Paper
      semantics). Single-year values verified unchanged live (0.78% for 2026).
 - Remaining: publish Canon Service to production (user action in Fabric).
+
+## Fabric → Module Reconciliation And CI (Aug 29, 2026)
+
+- The six approved Fabric report/model definition trees were mirrored back to their canonical
+  module PBIP homes: Canon/Paper Finance, Canon Sales, Canon/Paper Inventory, and Canon Service.
+  A second dry run reported **0 add / 0 change / 0 delete**. Module `.pbip`, `.platform`, and
+  `.pbi` identity/cache files were deliberately preserved.
+- Reusable command added: `Portfolio/scripts/sync-fabric-to-modules.py` (dry-run by default;
+  `--apply` writes). All six reconciled module copies pass the same strict consistency audit as
+  `Fabric/DevelopmentWorkspace`.
+- Canon's synthetic blank `Dim_Date[Year]` was root-caused to referential-integrity gaps, not null
+  source dates: the live model had **1,414** `Fact_BalanceSheet` and **4** `CollectionsFact` rows
+  on 2025-12-31 while `Dim_Date` began 2026-01-01. The calendar now begins 2025-01-01 so those
+  relationships resolve; the four visible Canon Year slicers explicitly exclude 2025, preserving
+  the 2026+ reporting contract. The earlier ROI-level blank filtering remains defensive.
+- CI guardrail added: `.github/workflows/validate-report-consistency.yml` runs
+  `audit-report-consistency.py --strict` on every push and pull request. Strict mode enforces
+  approved layout tokens plus number formatting and exits non-zero on drift. Current Fabric fleet:
+  **0 layout / 0 formatting violations**.
+- Finance manifest page metadata was refreshed to the current 8-page shell, restoring a clean
+  repository structure validation.
 
 ## Current Routing
 

@@ -10,6 +10,10 @@ structure. This is a **layout-only** standard — see the guardrail below.
 Sibling standard: `fabric-reports-number-formatting.md` governs how numbers render
 (units, decimals, format strings) — established 2026-08-28.
 
+Enforcement: `python3 Portfolio/scripts/audit-report-consistency.py --strict
+Fabric/DevelopmentWorkspace` validates both standards and is run by GitHub Actions on every push
+and pull request.
+
 > **GUARDRAIL — no logic changes.** Applying this standard must not add, remove, or change any
 > measure, value, number format, field binding, slicer field, visual type, page, or filter.
 > Allowed operations are limited to: **move, resize, restyle (font/color/spacing), and delete

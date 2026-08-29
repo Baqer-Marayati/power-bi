@@ -92,10 +92,11 @@ Converged on the Financial pattern (2026-08-28):
 `Portfolio/scripts/audit-report-consistency.py` polices this standard (NUMBER FORMATTING section):
 Auto-unit cards, percent cards without 2dp, bn cards without 3dp, table typography drift,
 fixed-unit chart labels missing the required precision, and non-`0.00%` percent model formats.
-Run it after any report/model edit:
+Run it after any report/model edit. Use `--strict` to return a non-zero exit code on formatting
+or layout drift; GitHub Actions uses that mode:
 
 ```bash
-python3 Portfolio/scripts/audit-report-consistency.py Fabric/DevelopmentWorkspace
+python3 Portfolio/scripts/audit-report-consistency.py --strict Fabric/DevelopmentWorkspace
 ```
 
 ## Editing gotchas (hard-won)

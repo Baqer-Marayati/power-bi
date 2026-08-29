@@ -64,6 +64,13 @@
   - `.github/workflows/validate-structure.yml`
 - Markdown link validation must run in CI on push and pull request via:
   - `.github/workflows/validate-doc-links.yml`
+- The six Git-connected Fabric reports must pass the strict layout and number-formatting audit on
+  every push and pull request via:
+  - `.github/workflows/validate-report-consistency.yml`
+  - `python3 Portfolio/scripts/audit-report-consistency.py --strict Fabric/DevelopmentWorkspace`
+- Approved Fabric definitions are reconciled back to module homes with
+  `Portfolio/scripts/sync-fabric-to-modules.py --apply`; module `.pbip`, `.platform`, and `.pbi`
+  files remain local to their PBIP/workspace identity and are not overwritten.
 
 ## Cross-Report Branding Decision
 

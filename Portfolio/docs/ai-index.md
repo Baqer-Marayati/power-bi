@@ -73,7 +73,13 @@ Use these exact path patterns unless newer memory files say otherwise:
 - Theme drift check (registered `Custom_Theme49412231581938193.json` vs `../Shared/Themes/`):
   - `../scripts/validate-theme-vs-canonical.ps1`
 - Cross-report layout/styling + number-formatting audit (PBIP design tokens vs `../Shared/Standards/fabric-reports-layout-standard.md` and `../Shared/Standards/fabric-reports-number-formatting.md`):
-  - `../scripts/audit-report-consistency.py` (e.g. `python3 Portfolio/scripts/audit-report-consistency.py Fabric/DevelopmentWorkspace`)
+  - `../scripts/audit-report-consistency.py`
+  - human-readable: `python3 Portfolio/scripts/audit-report-consistency.py Fabric/DevelopmentWorkspace`
+  - CI/strict: `python3 Portfolio/scripts/audit-report-consistency.py --strict Fabric/DevelopmentWorkspace`
+- Reconcile the six approved Fabric report/model definitions back to their module PBIP homes
+  while preserving module `.pbip`, `.platform`, and `.pbi` identity/cache files:
+  - dry-run: `python3 Portfolio/scripts/sync-fabric-to-modules.py`
+  - apply: `python3 Portfolio/scripts/sync-fabric-to-modules.py --apply`
 
 ## Common Questions
 
