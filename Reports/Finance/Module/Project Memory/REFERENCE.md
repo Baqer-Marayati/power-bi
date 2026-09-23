@@ -2,10 +2,20 @@
 
 ## Working files (repo-relative)
 
-Main PBIPs:
+Main PBIPs (edit here):
 
-- `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
-- `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
+- `Fabric/DevelopmentWorkspace/Canon Financial Report.pbip`
+- `Fabric/DevelopmentWorkspace/Paper Financial Report.pbip`
+
+Live copies (read-only mirrors of Canon Analytics / Paper Analytics):
+
+- `Fabric/CanonAnalytics/Canon Financial Report.*`
+- `Fabric/PaperAnalytics/Paper Financial Report.*`
+
+Release tooling:
+
+- `Portfolio/scripts/fabric_release.py` (`status`, `publish "<Report Name>" [--apply]`, `rollback "<Report Name>" --to <commit>`)
+- `Fabric/workspaces.json` (workspace/report/model/gateway IDs), `Fabric/RELEASES.md` (publish log)
 
 Module manifest:
 
@@ -13,15 +23,15 @@ Module manifest:
 
 Primary semantic model:
 
-- `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.SemanticModel/definition/model.tmdl`
+- `Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel/definition/model.tmdl`
 
 Primary relationships:
 
-- `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.SemanticModel/definition/relationships.tmdl`
+- `Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel/definition/relationships.tmdl`
 
 Primary report pages:
 
-- `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.Report/definition/pages/`
+- `Fabric/DevelopmentWorkspace/Canon Financial Report.Report/definition/pages/`
 
 GitHub repository (remote may vary by fork):
 

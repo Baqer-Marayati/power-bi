@@ -13,6 +13,12 @@ Power BI/
 │   ├── Archive/
 │   ├── scripts/
 │   └── CONTRIBUTING.md
+├── Fabric/
+│   ├── DevelopmentWorkspace/    # Git-connected; edit reports here
+│   ├── CanonAnalytics/          # live mirror (release tool only)
+│   ├── PaperAnalytics/          # live mirror (release tool only)
+│   ├── workspaces.json
+│   └── RELEASES.md
 ├── Reports/
 │   ├── Finance/
 │   ├── HR/
@@ -20,7 +26,7 @@ Power BI/
 │   ├── Service/
 │   ├── Marketing/
 │   ├── Inventory/
-│   └── DataExchange/
+│   └── DataExchange/            # parked
 └── .cursor/, .github/, .vscode/
 ```
 
@@ -36,8 +42,7 @@ Reports/<Department>/
 ├── Companies/
 │   └── <CompanyCode>/
 │       ├── config/
-│       ├── overlays/
-│       └── <ActualReportFolder>/            # PBIP + .Report / .SemanticModel
+│       └── overlays/
 └── Module/
     ├── Core/
     ├── docs/
@@ -46,6 +51,8 @@ Reports/<Department>/
     ├── Records/
     └── Archive/
 ```
+
+The report itself (`<Name>.pbip`, `<Name>.Report/`, `<Name>.SemanticModel/`) lives in `Fabric/DevelopmentWorkspace/`, not in the module.
 
 Detailed contract:
 - `../Shared/Standards/report-module-contract.md`
@@ -65,7 +72,7 @@ Example:
 ./Portfolio/scripts/create-report-module.sh HR "HR Reporting"
 ```
 
-That creates `Reports/HR` with standard docs/memory plus contract folders (`Core`, `Companies`, `scripts`, `Records`, `Archive`) and a starter `module.manifest.json`. Add each company’s PBIP under `Companies/<CODE>/<Actual Report Folder>/` when the report exists, then record the real paths in the manifest.
+That creates `Reports/HR` with standard docs/memory plus contract folders (`Core`, `Companies`, `scripts`, `Records`, `Archive`) and a starter `module.manifest.json`. When the report exists, put it in `Fabric/DevelopmentWorkspace/`, add it to `Fabric/workspaces.json`, and record the paths in the manifest.
 
 ## Why This Works
 

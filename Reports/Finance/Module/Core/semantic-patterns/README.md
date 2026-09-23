@@ -8,4 +8,4 @@ Current shared patterns to preserve:
 - Avoid risky relationship experimentation unless the relationship is clearly valid and Desktop validation is planned.
 - Company schema names and DSNs belong in `Companies/<CODE>/config` and `Reports/Finance/module.manifest.json`.
 
-Keep live TMDL changes inside the company `.SemanticModel/` folders. Use this folder for reusable patterns, not active semantic-model source.
+Keep live TMDL changes inside the company `.SemanticModel/` folders under `Fabric/DevelopmentWorkspace/`. Use this folder for reusable patterns, not active semantic-model source.

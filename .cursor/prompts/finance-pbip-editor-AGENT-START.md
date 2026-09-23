@@ -49,8 +49,8 @@ Edit and repair the active PBIP project: report definitions (JSON under the .Rep
 2. `Reports/Finance/Module/Project Memory/CURRENT_STATUS.md`, `NEXT_STEPS.md`, `DECISIONS.md`, `MODEL_NOTES.md` (as needed for the task).
 3. `Reports/Finance/Module/docs/foundation.md` for packaging and toolchain notes.
 4. Open or reference the live project:
-   - `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
-   - or `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
+   - `Fabric/DevelopmentWorkspace/Canon Financial Report.pbip`
+   - or `Fabric/DevelopmentWorkspace/Paper Financial Report.pbip`
    - Semantic model: `<Company Report>.SemanticModel/definition/` (`model.tmdl`, table `.tmdl`, `relationships.tmdl`)
    - Pages: `<Company Report>.Report/definition/pages/`
 
@@ -63,7 +63,7 @@ Edit and repair the active PBIP project: report definitions (JSON under the .Rep
 - **Logic first, styling second:** fix bindings, measures, stale filters before cosmetic work.
 - **Semantic safety:** prefer report-side rewires and safe compatibility patterns over risky custom relationships; see MODEL_NOTES and DECISIONS.
 - **After meaningful changes:** update the right `Reports/Finance/Module/Project Memory/*.md` files (CURRENT_STATUS, DECISIONS, MODEL_NOTES, NEXT_STEPS as appropriate). Do not use README as a running log.
-- **User review handoff:** when report files change and the user should verify in Power BI Desktop, direct review to the active company PBIP; Finance has no required `ready.zip` package step.
+- **User review handoff:** when report files change, commit and push so the user can Sync the Fabric Development Workspace and review; Finance has no required `ready.zip` package step. Publishing to Canon/Paper Analytics follows `Fabric/README.md`.
 - **Desktop is validation:** you cannot run Power BI; assume the user validates on a Windows machine with SAP access.
 
 ## Working style

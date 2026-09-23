@@ -6,7 +6,7 @@ This is the fastest high-signal orientation file for the Data Export Workspace m
 
 ## What This Module Should Contain
 
-- the isolated PBIP used for exports: `Data Exchange Report/Data Exchange Report.pbip`
+- the isolated PBIPs used for exports (currently parked under `Module/Archive/2026-09-24-parked-reports/`; a revived report is edited in `Fabric/DevelopmentWorkspace/`)
 - report-specific docs
 - report-specific memory
 - report-specific exports, records, and archives

@@ -1,7 +1,12 @@
 # Current Status
 
 ## Date
-- Last updated: August 29, 2026
+- Last updated: September 24, 2026
+
+## Live in Canon Analytics (2026-09-24)
+- Canon Service Report went live in Canon Analytics on 24 Sep 2026. It was published by the API and runs on the B1HANA gateway connection. The first refresh loaded 1,654 service calls.
+- Scheduled refresh on the live model is **off**. The other Canon reports refresh at 08:00, 11:00, 14:00, 17:00, and 20:00 Arabic Standard Time.
+- The module report copy was removed in the same restructure. Edit `Fabric/DevelopmentWorkspace/Canon Service Report.*`; the live mirror is `Fabric/CanonAnalytics/Canon Service Report.*`.
 
 ## Fabric/module parity refreshed (2026-08-29)
 - The Canon module `.Report` and `.SemanticModel` definitions were reconciled again from the
@@ -12,7 +17,7 @@
   1920×1080 table/layout standard.
 - A later Fabric-only pass standardized explicit regular Segoe UI chart/card/title typography and
   changed top KPI gaps from 20.6px to 24px. The Fabric copy passes the expanded strict audit with
-  zero violations; the module PBIP definition needs a separate copy-back for this later pass.
+  zero violations; the module PBIP definition needs a separate copy-back for this later pass. *(Moot since 24 Sep 2026: the module copy was removed.)*
 
 ## Fabric copy migrated to the unified layout standard (2026-08-24)
 - `Fabric/DevelopmentWorkspace/Canon Service Report.Report` was migrated **layout-only** to
@@ -34,15 +39,16 @@
   the parked dupes, 2-slicer rail instead of year/quarter/month stacks) and a newer semantic model.
   The module `.Report` definition, `StaticResources`, and `.SemanticModel` definition were synced
   wholesale from the approved Fabric copy. `Fabric/DevelopmentWorkspace/` remains the iteration surface;
-  treat the module copy as a mirror of the last approved Fabric state.
+  treat the module copy as a mirror of the last approved Fabric state. *(The module copy was removed on 24 Sep 2026.)*
 - Superseded by the sync: the April 18 module-side notes below describe the pre-June copy; the live
   report/model state is the Fabric copy.
 
 ## Active Project
 - Service Performance Report — module activated with CANON company config.
-- Live PBIP: `Reports/Service/Companies/CANON/Canon Service Report/Canon Service Report.pbip`.
+- Edit PBIP: `Fabric/DevelopmentWorkspace/Canon Service Report.pbip`. Live copy (read-only): `Fabric/CanonAnalytics/Canon Service Report.*`.
 
 ## Current State
+- Sep 24, 2026 — repo restructured to mirror the workspaces: edit `Fabric/DevelopmentWorkspace/`, the live copy is in `Fabric/CanonAnalytics/`, publish with `Portfolio/scripts/fabric_release.py`. Module report copies were removed; the Paper Service copy was parked under `Reports/Service/Module/Archive/2026-09-24-parked-reports/PAPERENTITY/`.
 - **Phase 1 (SAP Data Discovery) COMPLETE.** Full results in `docs/PHASE1_DISCOVERY.md`.
 - **Phase 2 (Semantic Model Design) COMPLETE.**
 - **Phase 3 (Report Pages) COMPLETE.** 5 pages built as PBIR JSON under `Canon Service Report.Report/definition/pages/`.

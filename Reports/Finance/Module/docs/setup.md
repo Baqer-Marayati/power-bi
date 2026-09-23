@@ -17,16 +17,21 @@ For the broader operating foundation, toolchain status, and integration notes, r
 
 ## Active Working File
 
-Open the company PBIP you are working on:
-- CANON: `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
-- PAPERENTITY: `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
+Open the company PBIP you are working on in Power BI Desktop for edits:
+- CANON: `Fabric/DevelopmentWorkspace/Canon Financial Report.pbip`
+- PAPERENTITY: `Fabric/DevelopmentWorkspace/Paper Financial Report.pbip`
+
+The normal review path is Sync and review in the Fabric Development Workspace after the change is pushed.
 
 ## Important Related Paths
 
 - Semantic model:
-  - `Reports/Finance/Companies/<CODE>/<Actual Report Folder>/<Actual Report Folder>.SemanticModel/definition`
+  - `Fabric/DevelopmentWorkspace/<Report Name>.SemanticModel/definition`
 - Report pages:
-  - `Reports/Finance/Companies/<CODE>/<Actual Report Folder>/<Actual Report Folder>.Report/definition/pages`
+  - `Fabric/DevelopmentWorkspace/<Report Name>.Report/definition/pages`
+- Live (published) copies, read-only:
+  - `Fabric/CanonAnalytics/Canon Financial Report.*`
+  - `Fabric/PaperAnalytics/Paper Financial Report.*`
 - Benchmark reference:
   - `Reports/Finance/Module/Design Benchmarks/Sample 2`
 - Working memory:
@@ -37,7 +42,7 @@ Open the company PBIP you are working on:
 1. Pull the latest changes from GitHub.
 2. Read `README.md`.
 3. Read the key files inside `Project Memory`.
-4. Open the target company PBIP under `Reports/Finance/Companies/<CODE>/<Actual Report Folder>/`.
+4. Open the target company PBIP under `Fabric/DevelopmentWorkspace/`.
 5. Verify the target page or model area before editing.
 6. Make focused changes.
 7. Reopen and validate in Power BI.

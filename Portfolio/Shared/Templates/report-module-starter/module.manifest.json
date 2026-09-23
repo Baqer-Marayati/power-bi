@@ -9,7 +9,7 @@
     "defaultCompanyCode": "",
     "reviewArtifactPolicy": {
       "status": "module-specific",
-      "notes": "PBIP is the development source of truth. Package/review artifacts are optional per module policy."
+      "notes": "PBIP in Fabric/DevelopmentWorkspace is the development source of truth. Publish with Portfolio/scripts/fabric_release.py."
     }
   },
   "companies": [],

@@ -11,7 +11,7 @@ Use this checklist before closing any Finance report task to keep quality and ha
 3. Power BI Desktop validation is completed by the operator.
 4. No known broken visuals or model load blockers were introduced.
 5. `Project Memory` was updated when current truth, decisions, or model caveats changed.
-6. Review is from the active company PBIP under `Reports/Finance/Companies/<CODE>/<Actual Report Folder>/`.
+6. Review is from the Fabric Development Workspace after the `Fabric/DevelopmentWorkspace/` change is pushed and synced.
 
 ## Semantic-Model Gate
 

@@ -6,7 +6,7 @@ This standard defines the minimum folder contract for all domain modules under `
 
 - Keep module structure consistent across domains.
 - Support multiple companies per domain with moderate isolation.
-- Keep source-of-truth PBIP work in clear, repeatable paths under `Companies/<CompanyCode>/`.
+- Keep every report definition in one place, `Fabric/`, laid out like the Power BI workspaces.
 - Make automation predictable (capture, retention, validation).
 
 ## Required Module Structure
@@ -28,19 +28,24 @@ Reports/<Domain>/
     Archive/
 ```
 
-## Company PBIP layout
+## Report location
 
-Active report projects live **per company** under:
+Report definitions do not live in the module. They live in `Fabric/`:
 
 ```text
-Companies/<CompanyCode>/<ActualReportFolder>/
-  <ActualReportFolder>.pbip
-  <ActualReportFolder>.Report/
-  <ActualReportFolder>.SemanticModel/
+Fabric/
+  DevelopmentWorkspace/            # Git-connected; edit here
+    <Company> <Report>.pbip
+    <Company> <Report>.Report/
+    <Company> <Report>.SemanticModel/
+  CanonAnalytics/, PaperAnalytics/ # live mirrors, written by fabric_release.py only
+  workspaces.json                  # IDs per report
+  RELEASES.md                      # publish log
 ```
 
-Example codes in this portfolio: **CANON**, **PAPERENTITY** (Paper Company). Add additional `Companies/<CODE>/` folders as needed.
-Use the real business/report folder name for that module; do not assume every module follows a synthetic `<ReportName> - <CompanyCode>` pattern.
+Company codes in this portfolio are **CANON** and **PAPERENTITY** (Paper Company). `Companies/<CODE>/` in the module holds that company's `config/` and `overlays/` only. `validate-structure.ps1` fails if a `.pbip` appears under `Companies/`.
+
+Reports that are not in any workspace are parked in `Module/Archive/<date>-parked-reports/`.
 
 ## Module Manifest
 
@@ -53,7 +58,7 @@ Use the shared schema at `Portfolio/Shared/Standards/module-manifest.schema.json
 - `Core/`
   - Shared domain baseline assets that are **not** company-specific:
     - shared semantic fragments, reusable patterns, documentation assets.
-  - Company-scoped PBIPs belong under `Companies/`, not in `Core/`.
+  - Company PBIPs belong in `Fabric/DevelopmentWorkspace/`, not in `Core/` or `Companies/`.
   - No company-specific secrets or one-off overrides.
 
 - `Companies/<CompanyCode>/config/`
@@ -90,9 +95,9 @@ Use the shared schema at `Portfolio/Shared/Standards/module-manifest.schema.json
 
 ## Required Operating Rules
 
-- PBIP under `Companies/<CompanyCode>/.../` is the editable source of truth.
-- Review and sign-off happen in **Power BI Desktop** from that PBIP.
-- Modules may add a review/package artifact flow if the module memory explicitly documents it; that does not replace PBIP as source of truth.
+- `Fabric/DevelopmentWorkspace/<Company> <Report>.pbip` is the editable source of truth.
+- Review happens in the Fabric Development Workspace after a Git sync (Power BI Desktop from the same PBIP is also fine).
+- Publishing to Canon Analytics or Paper Analytics uses `Portfolio/scripts/fabric_release.py`, only when the owner names the report. See `Fabric/README.md`.
 - Modules must adopt the portfolio visual identity standard (shared theme/branding) unless an exception is explicitly approved and recorded in module decisions.
 - After meaningful report edits: run screenshot capture as needed, validate in Desktop, and update module memory.
 - Archive retention for historical snapshots follows each module's documented policy.
@@ -101,7 +106,7 @@ Use the shared schema at `Portfolio/Shared/Standards/module-manifest.schema.json
 
 - Domain folders: PascalCase (`Finance`, `HR`, `Sales`, `Service`, `Marketing`).
 - Company folders: short uppercase code (`CANON`, `PAPERENTITY`).
-- Report folder and PBIP stem: use the real module/company business name and keep the `.pbip`, `.Report`, and `.SemanticModel` stem aligned within that folder.
+- PBIP stem: `<Company> <Report>` (for example `Canon Financial Report`), with `.pbip`, `.Report`, and `.SemanticModel` sharing it.
 - Screenshot folder casing: `Records/screenshots` only.
 
 ## Migration Guidance

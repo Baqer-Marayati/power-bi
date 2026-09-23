@@ -1,20 +1,38 @@
 # Report Catalog
 
+Report definitions live in `Fabric/` (see `Fabric/README.md`). Edit `Fabric/DevelopmentWorkspace/`; `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/` mirror what is live. Modules under `Reports/` hold docs, memory, config, and scripts.
+
 ## Active Reports
 
 ### Finance
 
 - Module path: `Reports/Finance`
 - Status: Active
-- Multi-company: **CANON** and **PAPERENTITY** (Paper Company). PBIPs: `Companies/CANON/Canon Financial Report/*.pbip`, `Companies/PAPERENTITY/Paper Financial Report/*.pbip`
+- Reports: **Canon Financial Report** (live in Canon Analytics) and **Paper Financial Report** (live in Paper Analytics). PBIPs: `Fabric/DevelopmentWorkspace/Canon Financial Report.pbip`, `Fabric/DevelopmentWorkspace/Paper Financial Report.pbip`
 - Notes: Current Al Jazeera financial reporting project
 
-### DataExchange
+### Sales
 
-- Module path: `Reports/DataExchange`
+- Module path: `Reports/Sales`
 - Status: Active
-- Multi-company: **CANON** and **PAPERENTITY**. PBIPs: `Companies/CANON/Canon Data Exchange Report/*.pbip`, `Companies/PAPERENTITY/Paper Data Exchange Report/*.pbip`
-- Notes: Isolated exchange workspace; keeps Finance source untouched; work from PBIP in Desktop
+- Reports: **Canon Sales Report** (live in Canon Analytics). PBIP: `Fabric/DevelopmentWorkspace/Canon Sales Report.pbip`. Paper Sales Report is parked in `Module/Archive/2026-09-24-parked-reports/`.
+- Notes: Sales Analysis Report — 6-page PBIP (Sales Overview, Sales Map, Salesperson, Customers, Rebate, Target & Salaries) with SAP HANA ODBC semantic model (CANON schema). Derived from Aljazeera Master Model. Portfolio visual identity aligned. Page list refreshed 2026-08-24 from the live Fabric copy.
+
+### Service
+
+- Module path: `Reports/Service`
+- Status: Active
+- Reports: **Canon Service Report** (live in Canon Analytics since 24 Sep 2026). PBIP: `Fabric/DevelopmentWorkspace/Canon Service Report.pbip`. Paper Service Report is parked in `Module/Archive/2026-09-24-parked-reports/`.
+- Notes: Service Performance Report — 5-page PBIP with SAP HANA ODBC semantic model (CANON schema).
+
+### Inventory
+
+- Module path: `Reports/Inventory`
+- Status: Active
+- Reports: **Canon Inventory Report** (live in Canon Analytics) and **Paper Inventory Report** (live in Paper Analytics). PBIPs: `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`, `Fabric/DevelopmentWorkspace/Paper Inventory Report.pbip`
+- Notes: Inventory Report — 5 pages (Inventory Overview, Stock Value, Stock Health, Stock Actions, Landed Cost) with SAP HANA ODBC semantic model.
+
+## Scaffolded
 
 ### HR
 
@@ -22,32 +40,20 @@
 - Status: Scaffolded
 - Notes: Domain module created with baseline docs/memory and company-template layout
 
-### Sales
-
-- Module path: `Reports/Sales`
-- Status: Active
-- Multi-company: **CANON** and **PAPERENTITY**. PBIPs: `Companies/CANON/Canon Sales Report/*.pbip`, `Companies/PAPERENTITY/Paper Sales Report/*.pbip`
-- Notes: Sales Analysis Report — 6-page PBIP (Sales Overview, Sales Map, Salesperson, Customers, Rebate, Target & Salaries) with SAP HANA ODBC semantic model (CANON schema). Derived from Aljazeera Master Model. Portfolio visual identity aligned; validate in Desktop after model changes. Page list refreshed 2026-08-24 from the live Fabric copy.
-
-### Service
-
-- Module path: `Reports/Service`
-- Status: Active
-- Multi-company: **CANON** and **PAPERENTITY**. PBIPs: `Companies/CANON/Canon Service Report/*.pbip`, `Companies/PAPERENTITY/Paper Service Report/*.pbip`
-- Notes: Service Performance Report — 5-page PBIP with SAP HANA ODBC semantic model (CANON schema). Validate in Desktop after model or layout changes.
-
 ### Marketing
 
 - Module path: `Reports/Marketing`
 - Status: Scaffolded
 - Notes: Domain module created with baseline docs/memory and company-template layout
 
-### Inventory
+## Parked
 
-- Module path: `Reports/Inventory`
-- Status: Active
-- Multi-company: **CANON** and **PAPERENTITY**. PBIPs: `Companies/CANON/Canon Inventory Report/*.pbip`, `Companies/PAPERENTITY/Paper Inventory Report/*.pbip`
-- Notes: Inventory Report — 5-page PBIP report with SAP HANA ODBC semantic model (CANON schema). Covers stock position, warehouse distribution, movements, categories, and procurement. Awaiting Desktop validation.
+### DataExchange
+
+- Module path: `Reports/DataExchange`
+- Status: Parked (24 Sep 2026)
+- Reports: Canon and Paper Data Exchange Reports, in `Reports/DataExchange/Module/Archive/2026-09-24-parked-reports/`. Neither is in a Fabric workspace.
+- Notes: Isolated export workspace. Not needed for now.
 
 ## Planned Reports
 
@@ -60,4 +66,5 @@ Create these as modules under `Reports/` only when real project work begins.
 When a planned report becomes real:
 1. create it from `../Shared/Templates/report-module-starter`
 2. preferably use `../scripts/create-report-module.sh <ModuleName> "<ReportTitle>"`
-3. update this file from planned to active
+3. put the report in `Fabric/DevelopmentWorkspace/` and add it to `Fabric/workspaces.json`
+4. update this file from planned to active

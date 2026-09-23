@@ -44,13 +44,13 @@ After a model change, verify:
 ## Model Files To Check
 
 - CANON:
-  - `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.SemanticModel/definition/model.tmdl`
-  - `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.SemanticModel/definition/relationships.tmdl`
-  - `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.SemanticModel/definition/tables/`
+  - `Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel/definition/model.tmdl`
+  - `Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel/definition/relationships.tmdl`
+  - `Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel/definition/tables/`
 - PAPERENTITY:
-  - `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.SemanticModel/definition/model.tmdl`
-  - `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.SemanticModel/definition/relationships.tmdl`
-  - `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.SemanticModel/definition/tables/`
+  - `Fabric/DevelopmentWorkspace/Paper Financial Report.SemanticModel/definition/model.tmdl`
+  - `Fabric/DevelopmentWorkspace/Paper Financial Report.SemanticModel/definition/relationships.tmdl`
+  - `Fabric/DevelopmentWorkspace/Paper Financial Report.SemanticModel/definition/tables/`
 
 ## Escalation Rule
 

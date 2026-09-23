@@ -2,8 +2,9 @@
 
 ## Active Source of Truth
 
-- PBIP: `Sales Report/Sales Report.pbip`
-- Open in Power BI Desktop for development.
+- PBIP: `Fabric/DevelopmentWorkspace/Canon Sales Report.pbip` (repo root)
+- Open in Power BI Desktop for development; review in the Fabric Development Workspace after sync.
+- Live copy (read-only): `Fabric/CanonAnalytics/Canon Sales Report.*`
 
 ## Data Source
 
@@ -33,8 +34,8 @@ Key columns on `SalesFact`:
 
 ## Packaging
 
-- Work and review directly from the active company PBIP.
-- There is no zip packaging workflow for Sales.
+- Work from `Fabric/DevelopmentWorkspace/` and review in the Fabric Development Workspace.
+- There is no zip packaging workflow for Sales; publish with `Portfolio/scripts/fabric_release.py` when the user names the report.
 
 ## Currency
 

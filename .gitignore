@@ -30,3 +30,6 @@ Portfolio/scripts/powerbi-api-local.env
 
 # SAP HANA — local read-only connection for dev/metadata checks (never commit)
 Portfolio/scripts/hana-b1-readonly.env
+
+# Fabric release tool: pre-publish copies of live definitions (local only)
+Fabric/.release-backups/

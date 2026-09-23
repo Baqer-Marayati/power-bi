@@ -57,7 +57,7 @@
 - Do not treat a review `PBIX` as the editable master.
 - If a `PBIX` is created for review, all real changes must still be made back in the `PBIP` project.
 - Use `PBIX` for convenience; use `PBIP` for development truth.
-- User review should happen directly from the relevant active company PBIP under `Companies/CANON/` or `Companies/PAPERENTITY/`.
+- User review should happen in the Fabric Development Workspace after the relevant `Fabric/DevelopmentWorkspace/` PBIP change is pushed and synced.
 - There is no required Finance `ready.zip` or `package-report.sh` step.
 - If a one-off transfer snapshot is explicitly needed, create it as a temporary artifact and keep PBIP as the development source.
 

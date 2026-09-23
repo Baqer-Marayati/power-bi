@@ -23,8 +23,12 @@ Primary purpose:
 - Power BI financial reporting project for Al Jazeera management reporting
 
 Active editable report:
-- `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
-- `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
+- `Fabric/DevelopmentWorkspace/Canon Financial Report.pbip`
+- `Fabric/DevelopmentWorkspace/Paper Financial Report.pbip`
+
+Live (published) copies, read-only:
+- `Fabric/CanonAnalytics/Canon Financial Report.*`
+- `Fabric/PaperAnalytics/Paper Financial Report.*`
 
 Primary visual benchmark:
 - `Reports/Finance/Module/Design Benchmarks/Sample 2`
@@ -36,7 +40,8 @@ Live project brain:
 
 Use these rules consistently:
 
-- Each active company report lives under `Reports/Finance/Companies/<CODE>/<Actual Report Folder>/`.
+- Each active company report is edited in `Fabric/DevelopmentWorkspace/<Report Name>.*`; `Reports/Finance/Companies/<CODE>/` holds company `config/` and `overlays/` only.
+- Live copies in `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/` are updated only by `python3 Portfolio/scripts/fabric_release.py publish "<Report Name>" --apply` after the user names the report to publish.
 - `PBIP` is the development source of truth.
 - `PBIX` may be used as a review convenience, but not as the master.
 - Finance packaging/review artifact policy is pending the explicit user decision; PBIP remains the development source of truth either way.
@@ -61,7 +66,7 @@ Recommended startup sequence:
 
 Top-level meaning inside this module:
 
-- `Companies/` — company PBIPs (active PBIP source files per company)
+- `Companies/` — company settings (`config/`, `overlays/`); report files live under `Fabric/`
 - `Module/Design Benchmarks` — visual benchmark and design references
 - `Module/Project Memory` — current truth, decisions, technical notes, and handoff continuity
 - `Module/docs` — stable onboarding, workflow, and standards documentation
@@ -116,7 +121,7 @@ Paths currently verified:
 
 Current state:
 - PBIP remains the development source of truth.
-- Review happens directly from the active company PBIP.
+- Review happens in the Fabric Development Workspace after the change is pushed and synced.
 - There is no required `package-report.sh` or `ready.zip` step for Finance.
 
 ### Skills

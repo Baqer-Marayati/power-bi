@@ -19,14 +19,16 @@ Read these in order:
 12. `Module/Project Memory/NEXT_STEPS.md`
 13. `Module/Project Memory/REFERENCE.md`
 
-Then inspect the active project files (each company has its own PBIP under `Companies/<CODE>/`):
+Then inspect the active project files. Report definitions live under `Fabric/` at the repo root (paths below are repo-root-relative); edit only the `Fabric/DevelopmentWorkspace/` copy.
 
 **CANON (primary reference layout):**
-- `Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
-- `Companies/CANON/Canon Financial Report/Canon Financial Report.SemanticModel/definition/model.tmdl`
-- `Companies/CANON/Canon Financial Report/Canon Financial Report.SemanticModel/definition/relationships.tmdl`
+- `Fabric/DevelopmentWorkspace/Canon Financial Report.pbip`
+- `Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel/definition/model.tmdl`
+- `Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel/definition/relationships.tmdl`
 
-**PAPERENTITY** uses the same folder shape with `PAPERENTITY` in paths and schema references (see `Companies/PAPERENTITY/`).
+**PAPERENTITY** uses the same shape as `Fabric/DevelopmentWorkspace/Paper Financial Report.*`, with `PAPERENTITY` in schema references.
+
+Live (published) copies are read-only mirrors in `Fabric/CanonAnalytics/Canon Financial Report.*` and `Fabric/PaperAnalytics/Paper Financial Report.*`, written only by `Portfolio/scripts/fabric_release.py`. `Companies/<CODE>/` in this module holds company `config/` and `overlays/` only.
 
 ## Documentation Split
 
@@ -54,7 +56,8 @@ Treat this file as the universal entrypoint for future AI agents.
 
 ## Core Rules
 
-- Editable report work happens in **PBIP** under `Companies/<CompanyCode>/` (e.g. CANON, PAPERENTITY). Open the actual company PBIP path documented in this file and the module README rather than guessing a folder pattern.
+- Editable report work happens in **PBIP** under `Fabric/DevelopmentWorkspace/` (e.g. `Canon Financial Report.pbip`, `Paper Financial Report.pbip`). Use the exact paths documented in this file and the module README rather than guessing a folder pattern.
+- After edits, run `python3 Portfolio/scripts/audit-report-consistency.py --strict Fabric/DevelopmentWorkspace`, commit, and push so the user can Sync and review in the Fabric Development Workspace. Publish to Canon Analytics / Paper Analytics only when the user names the report, using `python3 Portfolio/scripts/fabric_release.py publish "<Report Name>"` (dry run) and then `--apply`.
 - `Module/Design Benchmarks/Sample 2` is the active visual benchmark unless `Project Memory` says otherwise.
 - Preserve the Sample 2 shell and CFO-style tone unless the user explicitly changes direction.
 - Logic first, styling second.

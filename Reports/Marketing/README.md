@@ -12,5 +12,5 @@ This module is the working home for Marketing reporting in the Reporting Hub por
 
 ## Source of Truth
 
-- The active editable PBIP for Marketing should live in this module.
+- The active editable PBIP for Marketing should live in `Fabric/DevelopmentWorkspace/` (repo root); this module holds its docs, memory, config, and scripts.
 - Packaged artifacts are review outputs, not source-of-truth files.

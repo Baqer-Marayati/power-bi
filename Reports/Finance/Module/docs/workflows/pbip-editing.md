@@ -2,16 +2,17 @@
 
 ## Purpose
 
-Use this workflow when editing an active Finance company PBIP under `Reports/Finance/Companies/<CODE>/<Actual Report Folder>/`.
+Use this workflow when editing an active Finance company PBIP under `Fabric/DevelopmentWorkspace/`.
 
 The goal is to keep PBIP work safe, structured, and easy to verify.
 
 ## Source Of Truth
 
 - The editable masters are the company PBIPs:
-  - `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
-  - `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
+  - `Fabric/DevelopmentWorkspace/Canon Financial Report.pbip`
+  - `Fabric/DevelopmentWorkspace/Paper Financial Report.pbip`
 - The PBIP project remains the development source of truth.
+- `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/` are read-only live mirrors; do not edit them by hand.
 - A `PBIX` may be created temporarily for review or transfer, but it must not replace the PBIP workflow.
 
 ## Standard Editing Flow
@@ -21,9 +22,10 @@ The goal is to keep PBIP work safe, structured, and easy to verify.
 3. Confirm the exact page, visual, table, or measure you intend to change.
 4. Inspect the PBIP JSON or TMDL before editing.
 5. Make the smallest safe change that addresses the real issue.
-6. Reopen the PBIP and verify the result in Power BI.
+6. Run `python3 Portfolio/scripts/audit-report-consistency.py --strict Fabric/DevelopmentWorkspace`.
 7. Update `Project Memory` if current truth changed.
-8. Commit and push the change.
+8. Commit and push the change, then Sync and review in the Fabric Development Workspace.
+9. Publish only when the user names the report: `python3 Portfolio/scripts/fabric_release.py publish "<Report Name>"` (dry run), then `--apply`, then commit and push the updated live mirror and `Fabric/RELEASES.md`.
 
 ## Before Editing
 

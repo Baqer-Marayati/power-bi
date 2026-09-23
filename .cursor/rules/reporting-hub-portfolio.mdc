@@ -7,7 +7,8 @@ alwaysApply: true
 
 ## Scope
 
-- Repository **root** = portfolio layer. **`Reports/<Module>/`** = self-contained report modules.
+- Repository **root** = portfolio layer. **`Reports/<Module>/`** = report modules (docs, memory, config, scripts).
+- **Report definitions:** `Fabric/` only. Edit `Fabric/DevelopmentWorkspace/`; `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/` mirror what is live. See `Fabric/README.md`.
 - **Cross-report truth:** `Portfolio/Memory/`. **Reusable assets:** `Portfolio/Shared/`. **Archives:** history only, not active work surfaces.
 - **Default deep-work module:** `Reports/Finance`. Other modules exist; confirm **`Portfolio/Memory/REPORT_CATALOG.md`** before assuming scope. Planned names are **not** real until listed there as Active or Scaffolded.
 
@@ -21,6 +22,7 @@ alwaysApply: true
 
 - Template: `Portfolio/Shared/Templates/report-module-starter`
 - Scaffold: `./Portfolio/scripts/create-report-module.sh <ModuleName> "<ReportTitle>"` from repo root
+- Put the report in `Fabric/DevelopmentWorkspace/` and add it to `Fabric/workspaces.json`.
 - Then update `Portfolio/Memory/REPORT_CATALOG.md` when a planned report becomes real.
 
 ## Do not

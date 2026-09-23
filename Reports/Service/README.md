@@ -12,7 +12,7 @@ Use this module for:
 
 ## Expected Working Areas
 
-- `Companies/` — **CANON** and **PAPERENTITY** each contain a PBIP (CANON: `Canon Service Report/`; PAPERENTITY: `Paper Service Report/`) plus `config/` and `overlays/` (CANON already has `config/`)
+- `Companies/` — **CANON** company settings (`config/`, `overlays/`); report files live under `Fabric/`
 - `Module/` — container for module internals:
   - `Module/docs/`
   - `Module/Project Memory/`
@@ -32,7 +32,8 @@ Read these in order:
 
 ## Source Of Truth
 
-- **Primary PBIP:** `Companies/CANON/Canon Service Report/Canon Service Report.pbip`
-- **Alternate copy:** `Companies/PAPERENTITY/Paper Service Report/Paper Service Report.pbip`
+- **Primary PBIP (edit):** `Fabric/DevelopmentWorkspace/Canon Service Report.pbip`
+- **Live copy (read-only):** `Fabric/CanonAnalytics/Canon Service Report.*`
+- **Parked:** Paper Service Report, under `Module/Archive/2026-09-24-parked-reports/PAPERENTITY/` (not in any workspace)
 
-Work directly from PBIP; there is no `ready.zip` or server-package export step in this module.
+Paths under `Fabric/` are repo-root-relative. Work directly from PBIP and review in the Fabric Development Workspace; there is no `ready.zip` or server-package export step in this module. Publish with `Portfolio/scripts/fabric_release.py`.

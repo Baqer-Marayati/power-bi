@@ -14,28 +14,27 @@ Start with:
 
 ## Canonical active PBIP entry paths
 
-Use these exact paths instead of guessing a naming pattern:
+Edit these. They are the Git-connected Development Workspace copies:
 
 - Finance
-  - `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
-  - `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
-- DataExchange
-  - `Reports/DataExchange/Companies/CANON/Canon Data Exchange Report/Canon Data Exchange Report.pbip`
-  - `Reports/DataExchange/Companies/PAPERENTITY/Paper Data Exchange Report/Paper Data Exchange Report.pbip`
+  - `Fabric/DevelopmentWorkspace/Canon Financial Report.pbip`
+  - `Fabric/DevelopmentWorkspace/Paper Financial Report.pbip`
 - Sales
-  - `Reports/Sales/Companies/CANON/Canon Sales Report/Canon Sales Report.pbip`
-  - `Reports/Sales/Companies/PAPERENTITY/Paper Sales Report/Paper Sales Report.pbip`
+  - `Fabric/DevelopmentWorkspace/Canon Sales Report.pbip`
 - Service
-  - `Reports/Service/Companies/CANON/Canon Service Report/Canon Service Report.pbip`
-  - `Reports/Service/Companies/PAPERENTITY/Paper Service Report/Paper Service Report.pbip`
+  - `Fabric/DevelopmentWorkspace/Canon Service Report.pbip`
 - Inventory
-  - `Reports/Inventory/Companies/CANON/Canon Inventory Report/Canon Inventory Report.pbip`
-  - `Reports/Inventory/Companies/PAPERENTITY/Paper Inventory Report/Paper Inventory Report.pbip`
+  - `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`
+  - `Fabric/DevelopmentWorkspace/Paper Inventory Report.pbip`
+
+What is live is mirrored, read-only, in `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/`. Publishing is `Portfolio/scripts/fabric_release.py`; see `Fabric/README.md`.
+
+Parked (not in any workspace): Paper Sales, Paper Service, and both Data Exchange reports, under each module's `Module/Archive/2026-09-24-parked-reports/`.
 
 ## Current working assumptions
 
 - `Reports/Finance` remains the primary production module.
-- `Reports/DataExchange` is the isolated export workspace and should stay separate from Finance edits.
-- **Inventory (CANON):** for Fabric review cycles edit `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`; keep module copy at `Reports/Inventory/Companies/CANON/` in sync for the same label/report changes. Page tab names (May 2026): Inventory Overview, Stock Value, Stock Health, Stock Actions, Landed Cost — see `Reports/Inventory/Module/Project Memory/DECISIONS.md`.
-- PAPERENTITY is a permanent second company copy across active modules, not a temporary experiment.
-- Do not rename or move active PBIP folders as part of documentation cleanup.
+- `Reports/DataExchange` is parked. Its two reports are in `Reports/DataExchange/Module/Archive/2026-09-24-parked-reports/`.
+- **Inventory:** page tab names (May 2026) are Inventory Overview, Stock Value, Stock Health, Stock Actions, Landed Cost. See `Reports/Inventory/Module/Project Memory/DECISIONS.md`.
+- PAPERENTITY is a permanent second company for Finance and Inventory, not a temporary experiment.
+- Do not rename `Fabric/DevelopmentWorkspace/`; the Fabric Git connection points at it.

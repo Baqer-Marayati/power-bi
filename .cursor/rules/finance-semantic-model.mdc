@@ -1,6 +1,6 @@
 ---
 description: Finance semantic model — TMDL safety, compatibility layer, MODEL_NOTES
-globs: Reports/Finance/**/*.tmdl
+globs: Fabric/DevelopmentWorkspace/*Financial Report.SemanticModel/**/*.tmdl
 alwaysApply: false
 ---
 
@@ -8,8 +8,9 @@ alwaysApply: false
 
 ## Authority and validation
 
-- Main model file: `Financial Report.SemanticModel/definition/model.tmdl` (plus table `.tmdl` fragments and `relationships.tmdl`).
-- After **any** semantic change: open the PBIP in **Power BI Desktop** and confirm load, relationships, and key visuals. There is no substitute for Desktop validation.
+- Main model file: `Fabric/DevelopmentWorkspace/<Canon|Paper> Financial Report.SemanticModel/definition/model.tmdl` (plus table `.tmdl` fragments and `relationships.tmdl`).
+- After **any** semantic change: confirm load, relationships, and key visuals, in the Fabric Development Workspace after sync or in **Power BI Desktop** from `Fabric/DevelopmentWorkspace/<Name>.pbip`.
+- A model change needs a refresh when it goes live; `fabric_release.py` does this automatically.
 
 ## MCP-first workflow
 

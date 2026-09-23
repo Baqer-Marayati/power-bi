@@ -1,8 +1,8 @@
 # Model Notes
 
 ## Main Semantic Model
-- `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.SemanticModel/definition/model.tmdl`
-- `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.SemanticModel/definition/model.tmdl`
+- `Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel/definition/model.tmdl`
+- `Fabric/DevelopmentWorkspace/Paper Financial Report.SemanticModel/definition/model.tmdl`
 
 ## Included Core Tables
 - `Fact_PNL`
@@ -98,7 +98,7 @@
 - The `CashPositionFact` SQL previously selected accounts by **name keywords** (`%cash%` / `%bank%` / `%pos%` + Arabic variants). Two non-cash accounts leaked onto the Cash page: `1300004` "Advances For Work Purposes" (matched `%pos%` via "pur**pos**es" and showed as a 61.2M **POS** balance) and `1300002` "L.G (Bank Guarantee)" (matched `%bank%` and showed as **Bank**). Meanwhile the real bank account `1100007` "NBI 2100095834" was **excluded** because its name has no keyword.
 - Fix (Fabric copy `Fabric/DevelopmentWorkspace/Paper Financial Report.SemanticModel`): the WHERE now scopes to the PAPERENTITY cash account-code family `AcctCode LIKE '1100%'` (with `GroupMask = 1`, `Postable = 'Y'`); name keywords are used **only** for `AccountType` classification (POS with a `NOT LIKE '%purpose%'` guard, then Cash on Hand, else Bank).
 - Both 13xxxxx accounts belong to the other-current-assets branch (with `1300003` Prepaid Expenses and related-company accounts) — do not re-add them to Cash. Expected post-refresh effect: Total Cash drops from ~90.68M to ~24.4M, Cash in POS goes to 0 (no true POS accounts exist), and NBI joins the Bank slice.
-- The module copy under `Reports/Finance/Companies/PAPERENTITY/` still has the old keyword query; copy-back is a separate pass.
+- The module copy under `Reports/Finance/Companies/PAPERENTITY/` still has the old keyword query; copy-back is a separate pass. *(Resolved: the Aug 29 parity pass copied it back, and the module copy was removed on 24 Sep 2026.)*
 
 ## Budget Notes
 - Budget visuals can be made to render with compatibility logic.
@@ -316,7 +316,7 @@ The full PAPERENTITY Balance-sheet rebuild (per-day `_PP` + PEC-reversal rows + 
 
 ## CANON — Hidden FX analysis tables in the Fabric development model (2026-09-23)
 
-Six standalone, hidden tables were added to `Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel` for the FX / capital-preservation analysis; since Sep 23 they are also in the Canon module copy and in Canon Analytics production. No relationships, no measures, no visuals use them; they are queried by DAX only.
+Six standalone, hidden tables were added to `Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel` for the FX / capital-preservation analysis; since Sep 23 they are also in Canon Analytics production (and its mirror `Fabric/CanonAnalytics/`). No relationships, no measures, no visuals use them; they are queried by DAX only.
 
 | Table | SAP source | Content |
 |---|---|---|

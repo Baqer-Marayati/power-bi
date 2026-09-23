@@ -13,8 +13,9 @@
 4. Run `python3 Portfolio/scripts/audit-report-consistency.py --strict Fabric/DevelopmentWorkspace`
    after future visual/model edits; CI runs the same guardrail.
 5. Validate Collections/Cash in both reports and PAPERENTITY's P&L customer chart after refresh.
-6. Reconcile the later Fabric-only typography pass to module PBIP definitions with
-   `Portfolio/scripts/sync-fabric-to-modules.py --apply` only when that separate copy-back is wanted.
+6. When the user names a Financial report to publish, run
+   `python3 Portfolio/scripts/fabric_release.py publish "<Report Name>"` (dry run), then `--apply`,
+   and commit and push the updated live mirror and `Fabric/RELEASES.md`.
 1. After repository cleanup changes, run structure validation and open the active PBIPs in Power BI Desktop when path-sensitive script or PBIP guardrail changes need end-to-end confirmation.
 2. Reopen the PBIP after each semantic-model pass and capture screenshots of the remaining broken pages.
 3. Recheck whether the right-pane warnings for `generalLedgerEntries` and `accounts` are gone after the latest cleanup pass.
@@ -46,7 +47,7 @@
 - Verify slicer interactions filter the pivot tables, KPI cards, and the Collections monthly chart correctly on Receivables and Collections pages.
 - Verify Cash Position charts and the account detail table render with correct account balances.
 - Fine-tune layout spacing, card typography, and chart formatting in Desktop if needed.
-- After validation, review directly from the active company PBIP.
+- After validation, review in the Fabric Development Workspace.
 - If true historical AR/AP/Cash as-of behavior becomes required, model it from dated ledger/cash movement sources before adding any date slicer to those pages.
 
 ## Future SAP Buildouts
@@ -59,6 +60,6 @@
 - Currency formatting is consistent in IQD.
 - Shared repeated UI systems such as KPI rows and slicer rails remain internally consistent after the change.
 - If report definitions or registered resources were touched, validate that those files are still structurally readable before Desktop review.
-- Review directly from the active company PBIP.
+- Review in the Fabric Development Workspace after the `Fabric/DevelopmentWorkspace/` change is pushed and synced.
 - If the thread reached a meaningful stable milestone, use judgment and push the source changes to GitHub as part of close-out.
 - Project Memory is updated before the thread is considered done.

@@ -1,6 +1,6 @@
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet("Finance", "Sales", "Service", "Inventory", "DataExchange")]
+    [ValidateSet("Finance", "Sales", "Service", "Inventory")]
     [string]$Domain,
     [ValidateSet("ALL", "CANON", "PAPERENTITY")]
     [string]$CompanyCode = "ALL",
@@ -38,26 +38,21 @@ function Get-PbipEntriesFromManifest {
 function Get-PbipEntriesFromFallback {
     param([Parameter(Mandatory = $true)][string]$DomainName)
 
+    $dev = "Fabric/DevelopmentWorkspace"
     $fallback = @{
         Finance = @(
-            @{ CompanyCode = "CANON"; PbipPath = "Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip" },
-            @{ CompanyCode = "PAPERENTITY"; PbipPath = "Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip" }
+            @{ CompanyCode = "CANON"; PbipPath = "$dev/Canon Financial Report.pbip" },
+            @{ CompanyCode = "PAPERENTITY"; PbipPath = "$dev/Paper Financial Report.pbip" }
         )
         Sales = @(
-            @{ CompanyCode = "CANON"; PbipPath = "Reports/Sales/Companies/CANON/Canon Sales Report/Canon Sales Report.pbip" },
-            @{ CompanyCode = "PAPERENTITY"; PbipPath = "Reports/Sales/Companies/PAPERENTITY/Paper Sales Report/Paper Sales Report.pbip" }
+            @{ CompanyCode = "CANON"; PbipPath = "$dev/Canon Sales Report.pbip" }
         )
         Service = @(
-            @{ CompanyCode = "CANON"; PbipPath = "Reports/Service/Companies/CANON/Canon Service Report/Canon Service Report.pbip" },
-            @{ CompanyCode = "PAPERENTITY"; PbipPath = "Reports/Service/Companies/PAPERENTITY/Paper Service Report/Paper Service Report.pbip" }
+            @{ CompanyCode = "CANON"; PbipPath = "$dev/Canon Service Report.pbip" }
         )
         Inventory = @(
-            @{ CompanyCode = "CANON"; PbipPath = "Reports/Inventory/Companies/CANON/Canon Inventory Report/Canon Inventory Report.pbip" },
-            @{ CompanyCode = "PAPERENTITY"; PbipPath = "Reports/Inventory/Companies/PAPERENTITY/Paper Inventory Report/Paper Inventory Report.pbip" }
-        )
-        DataExchange = @(
-            @{ CompanyCode = "CANON"; PbipPath = "Reports/DataExchange/Companies/CANON/Canon Data Exchange Report/Canon Data Exchange Report.pbip" },
-            @{ CompanyCode = "PAPERENTITY"; PbipPath = "Reports/DataExchange/Companies/PAPERENTITY/Paper Data Exchange Report/Paper Data Exchange Report.pbip" }
+            @{ CompanyCode = "CANON"; PbipPath = "$dev/Canon Inventory Report.pbip" },
+            @{ CompanyCode = "PAPERENTITY"; PbipPath = "$dev/Paper Inventory Report.pbip" }
         )
     }
 

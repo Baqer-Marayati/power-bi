@@ -2,6 +2,19 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Fabric: Release status (dev vs live, gateway, schedule)",
+      "type": "shell",
+      "command": "python3 Portfolio/scripts/fabric_release.py status",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Finance: Clear semantic model cache (cache.abf)",
       "type": "shell",
       "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/Finance/Module/scripts/clear-model-cache.ps1\"",
@@ -70,32 +83,6 @@
       "label": "Inventory: Clear semantic model cache (cache.abf)",
       "type": "shell",
       "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/Inventory/Module/scripts/clear-model-cache.ps1\"",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "DataExchange: Open report in Power BI Desktop",
-      "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/DataExchange/Module/scripts/open-report.ps1\"",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "DataExchange: Clear semantic model cache (cache.abf)",
-      "type": "shell",
-      "command": "powershell -ExecutionPolicy Bypass -File \"${workspaceFolder}/Reports/DataExchange/Module/scripts/clear-model-cache.ps1\"",
       "options": {
         "cwd": "${workspaceFolder}"
       },

@@ -10,13 +10,13 @@ This file captures what we have learned about handling PBIP report files, TMDL s
 - Page and visual JSON should be read before making assumptions about what Power BI is actually doing.
 - `PBIP` should remain the development master even when a `PBIX` review snapshot is created for convenience or faster server transfer.
 - If a `PBIX` review copy exists, treat it as disposable output, not as the place where new fixes should live.
-- Finance review now happens directly from the active company PBIP under `Reports/Finance/Companies/<CODE>/<Actual Report Folder>/`.
+- Finance review now happens in the Fabric Development Workspace after the edited PBIP under `Fabric/DevelopmentWorkspace/` is pushed and synced.
 - There is no required `ready.zip` or `package-report.sh` step for Finance done-ness.
 - Power BI debugging in this project must follow the artifact chain explicitly:
 - source PBIP files
-- user-opened active company PBIP
+- user-opened report (synced Fabric Development Workspace, or `Fabric/DevelopmentWorkspace/` PBIP in Desktop)
 - screenshot of what Desktop actually rendered
-- Most recent user screenshot beats assumptions. If the screenshot and source disagree, verify whether the user opened the intended company PBIP, an unsynced Desktop copy, or a broken build.
+- Most recent user screenshot beats assumptions. If the screenshot and source disagree, verify whether the user opened the intended report (Development Workspace vs. live Canon Analytics / Paper Analytics), an unsynced Desktop copy, or a broken build.
 
 ## TMDL Handling
 - TMDL is useful for adding compatibility tables, measures, and semantic aliases.
@@ -40,7 +40,7 @@ This file captures what we have learned about handling PBIP report files, TMDL s
 1. make or sync the intended source changes
 2. validate the active company `.Report/definition/*.json`
 3. validate the active company `.Report/StaticResources/RegisteredResources/*` when static resources changed
-4. open the active company PBIP in Power BI Desktop
+4. commit, push, and sync the Fabric Development Workspace (or open the `Fabric/DevelopmentWorkspace/` PBIP in Power BI Desktop)
 5. refresh and review the affected pages
 6. capture screenshots when review evidence is needed
 

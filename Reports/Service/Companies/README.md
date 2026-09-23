@@ -1,11 +1,12 @@
 # Companies
 
-Use this folder to host company-specific configuration and overlays.
+Use this folder to host company-specific configuration and overlays. Report files do not live here: edit `Fabric/DevelopmentWorkspace/Canon Service Report.pbip` at the repo root.
 
 ## Active companies
 
-- `CANON/` — primary company; **Canon Service Report** PBIP and existing `config/`
-- `PAPERENTITY/` — **Paper Service Report** PBIP for the second tenant copy
+- `CANON/` — primary company; existing `config/` and `overlays/` for **Canon Service Report**
+
+The PAPERENTITY copy (**Paper Service Report**, with its config and overlays) is parked under `Module/Archive/2026-09-24-parked-reports/PAPERENTITY/`.
 
 ## Structure
 
@@ -14,9 +15,6 @@ Companies/
   <CompanyCode>/
     config/
     overlays/
-    <ActualReportFolder>/
-      <ActualReportFolder>.pbip
-      ...
 ```
 
-Start from `_template/` and duplicate per company. Use the real business/report folder name for that module, then work directly from PBIP; there is no zip packaging step.
+Start from `_template/` and duplicate per company. Work directly from the PBIP under `Fabric/DevelopmentWorkspace/`; there is no zip packaging step.

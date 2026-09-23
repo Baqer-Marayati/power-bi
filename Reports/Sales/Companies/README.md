@@ -1,11 +1,12 @@
 # Companies
 
-Company-specific PBIP copies and configuration live here. **CANON** is the primary SAP Business One tenant; **PAPERENTITY** is a second copy for alternate datasource / branding work.
+Company-specific configuration and overlays live here. **CANON** is the primary SAP Business One tenant. Report files do not live here: edit `Fabric/DevelopmentWorkspace/Canon Sales Report.pbip` at the repo root.
 
 ## Active companies
 
-- `CANON/` — `Canon Sales Report/Canon Sales Report.pbip`
-- `PAPERENTITY/` — `Paper Sales Report/Paper Sales Report.pbip`
+- `CANON/` — `config/` and `overlays/` for **Canon Sales Report**
+
+The PAPERENTITY copy (**Paper Sales Report**, with its config and overlays) is parked under `Module/Archive/2026-09-24-parked-reports/PAPERENTITY/`.
 
 ## Structure
 
@@ -14,11 +15,8 @@ Companies/
   <CompanyCode>/
     config/
     overlays/
-    <ActualReportFolder>/
-      <ActualReportFolder>.pbip
-      ...
 ```
 
 Start from `_template/` (if present) and duplicate per company.
 
-There is no zip packaging workflow; use the real company report folder name and work directly from the PBIP folders.
+There is no zip packaging workflow; work directly from the PBIP under `Fabric/DevelopmentWorkspace/`.

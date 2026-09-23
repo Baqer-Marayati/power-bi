@@ -2,9 +2,11 @@
 
 ## Date
 
-- Last updated: September 23, 2026
+- Last updated: September 24, 2026
 
 ## Current snapshot
+
+- Sep 24, 2026 — repo restructured to mirror the workspaces: edit `Fabric/DevelopmentWorkspace/`, live copies are in `Fabric/CanonAnalytics/` (Canon Inventory) / `Fabric/PaperAnalytics/` (Paper Inventory), publish with `Portfolio/scripts/fabric_release.py`. Module report copies were removed.
 
 - **Sep 23, 2026 — production = development = module:** the user synced Canon Inventory to
   Canon Analytics and Paper Inventory to Paper Analytics from the Development Workspace inside
@@ -16,8 +18,8 @@
   `.pbip` / `.platform` identity preserved). Both copies include the fleet number/table/chart
   standards and the vocabulary rename `In-Stock Rate %`. A later Fabric-only pass standardized
   explicit typography and 24px KPI gaps; both Fabric copies pass the expanded strict audit with
-  zero violations. Module PBIP definitions predate that later pass. Use
-  `Portfolio/scripts/sync-fabric-to-modules.py` for a future explicit copy-back.
+  zero violations. Module PBIP definitions predate that later pass. *(Superseded: module copies were
+  removed on 24 Sep 2026 and `sync-fabric-to-modules.py` was retired.)*
 
 - **Jun 1, 2026** — PAPER Inventory Fabric semantic model now uses a **100-day** stock-cover policy and applies a **24-ton minimum order per SKU** inside `Fact_StockCoverPolicy[SuggestedReorderQty]`. Stock Actions remains ton-based; the separate `MOQ Extra (Tons)` column was removed for clarity. Fabric semantic refresh / app review is required before treating the result as live.
 - **May 27, 2026** — PAPER Inventory Stock Health / Stock Actions logic adjusted in the Fabric semantic model so low-demand zero-stock rows no longer show as **Healthy**. The 1-ton planning threshold remains, but those rows now surface as `Low demand - no stock` / `Review slow mover`; sub-ton targets display as `<1` ton. Fabric semantic refresh is required before the app reflects the change.
@@ -26,7 +28,7 @@
 - **May 24, 2026** — Landed Cost **Shipments** table item-search leak fixed: `_Measures[Shipment Table Row Keeper]` + visual filter on `table_cost_impact` hide LC doc rows with no lines for the selected item (same Row Keeper pattern as Reorder Actions). Fabric + CANON module copies aligned.
 - **May 22–23, 2026** — Management-friendly **display labels** applied to all five CANON Inventory pages in `Fabric/DevelopmentWorkspace` and `Reports/Inventory/Companies/CANON` (commits `265fea0`–`c7deb2e`). Page tabs: **Inventory Overview**, **Stock Value**, **Stock Health**, **Stock Actions**, **Landed Cost**. Measure names unchanged; see `DECISIONS.md` (2026-05-22) for approved vocabulary and user exceptions (Overstock, Open PO/SO, LC Doc).
 - **May 17, 2026** — Reorder Actions slicer leak fixed: table rows anchored on `Fact_StockCoverPolicy` grain with `Reorder Table Row Keeper` visual filter.
-- Active Fabric iteration: `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`. Module copy: `Reports/Inventory/Companies/CANON/Canon Inventory Report/`.
+- Active edit copy: `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`. Live copy (read-only): `Fabric/CanonAnalytics/Canon Inventory Report.*`.
 - Completed one-off prompts/handoffs archived to `Module/Archive/2026-05-23-completed-prompts-handoffs/`.
 
 ## Historical detail (May 2026)
@@ -75,8 +77,8 @@
 - May 11, 2026 (pm) — Reorder Actions table re-shaped to 15 columns. Restored the rounded SVG pill on Action (`Reorder Action Pill SVG`, now with an inner `<title>` for accessible name). Item column shows only `ItemName` (bold). `Reorder Cover Bar SVG` track is thicker (12px) and the "% of target" label is now 11pt. Reference fields moved to the right end in this order: Policy → Item Code → Business Type → Group Type → Product Type → Segment Type. The table is wider than the visual frame (~1500px) so it scrolls horizontally inside the 1028px container.
 - May 11, 2026 — Reorder Actions table polished: replaced the Action / Item / Move qty SVG image measures with native text columns + measure-driven conditional formatting; Item became a two-line measure with word-wrap on. (Superseded by the 15-column re-shape later the same day — pill restored, Item back to name-only.)
 - May 11, 2026 — Reorder Actions table rebuilt as a modern native `tableEx` with Image URL SVG measures (Action pill, two-line Item cell, Cover bar with % of target, colored Move qty); columns matched the original 9-column approved mock.
-- `Reports/Inventory` is an active module with full PBIP projects under `Companies/CANON/` and `Companies/PAPERENTITY/`.
-- The CANON PBIP lives at `Reports/Inventory/Companies/CANON/Canon Inventory Report/Canon Inventory Report.pbip`.
+- `Reports/Inventory` is an active module; its PBIP projects live under `Fabric/DevelopmentWorkspace/` (Canon and Paper Inventory Report).
+- The CANON PBIP lives at `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`.
 - The semantic model connects to SAP B1 HANA via ODBC DSN `HANA_B1`, querying the `CANON` schema.
 - Currency is IQD (Iraqi Dinar), consistent with the Finance module.
 - The CANON report has **5** user-facing pages (+ hidden landed-cost tooltip), **1920×1080** canvas, and semantic model tables including `Fact_StockCoverPolicy` and `Fact_LandedCostAllocation`.
@@ -113,7 +115,7 @@
 
 ## What Needs Desktop Validation
 
-- Open `Inventory Report.pbip` in Power BI Desktop.
+- Open `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip` in Power BI Desktop (or review in the Fabric Development Workspace after sync).
 - Confirm ODBC DSN `HANA_B1` connectivity and data load.
 - Verify all 12 relationships resolve correctly.
 - Check all 5 pages render with proper data.

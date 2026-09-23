@@ -29,7 +29,8 @@ A 4-page sales analysis report covering sales performance, salesperson analysis,
 
 ## Source of Truth
 
-- **Primary PBIP:** `Companies/CANON/Canon Sales Report/Canon Sales Report.pbip`
-- **Alternate copy:** `Companies/PAPERENTITY/Paper Sales Report/Paper Sales Report.pbip`
+- **Primary PBIP (edit):** `Fabric/DevelopmentWorkspace/Canon Sales Report.pbip`
+- **Live copy (read-only):** `Fabric/CanonAnalytics/Canon Sales Report.*`
+- **Parked:** Paper Sales Report, under `Module/Archive/2026-09-24-parked-reports/PAPERENTITY/` (not in any workspace)
 
-Work directly from PBIP; there is no `ready.zip` or server-package export step in this module.
+Paths under `Fabric/` are repo-root-relative. Work directly from PBIP and review in the Fabric Development Workspace; there is no `ready.zip` or server-package export step in this module. Publish with `Portfolio/scripts/fabric_release.py`.

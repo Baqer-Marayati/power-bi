@@ -1,8 +1,8 @@
 # Fabric reports — number formatting standard
 
 Scope: the six reports in `Fabric/DevelopmentWorkspace/` — **Canon Financial**, **Paper Financial**,
-**Canon Sales**, **Canon Inventory**, **Paper Inventory**, **Canon Service** — and, by extension, any
-module copy synced from them. Established 2026-08-28 after the fleet-wide formatting passes.
+**Canon Sales**, **Canon Inventory**, **Paper Inventory**, **Canon Service** — and their live mirrors in
+`Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/`. Established 2026-08-28 after the fleet-wide formatting passes.
 
 Sibling standard: `fabric-reports-layout-standard.md` (geometry/typography of containers). This
 document governs **how numbers render** — units, decimals, format strings, and the mechanism that

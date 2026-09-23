@@ -18,9 +18,10 @@ The goal is to make changes safely, document them clearly, and keep the PBIP pro
 
 ## Source Of Truth
 
-- The active editable masters are the company PBIPs under `Reports/Finance/Companies/<CODE>/<Actual Report Folder>/`.
-- CANON: `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
-- PAPERENTITY: `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
+- The active editable masters are the company PBIPs under `Fabric/DevelopmentWorkspace/`.
+- CANON: `Fabric/DevelopmentWorkspace/Canon Financial Report.pbip`
+- PAPERENTITY: `Fabric/DevelopmentWorkspace/Paper Financial Report.pbip`
+- Live copies in `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/` are read-only and are written only by `Portfolio/scripts/fabric_release.py`.
 - `PBIX` may be used temporarily for review, but not as the development source of truth.
 - `Reports/Finance/Module/Design Benchmarks/Sample 2` is the active benchmark shell unless project memory says otherwise.
 

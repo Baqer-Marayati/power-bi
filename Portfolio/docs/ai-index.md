@@ -32,35 +32,26 @@ Use this file as a fast routing map when an AI model receives the repository wit
   - `Reports/Finance/README.md`
   - `Reports/Finance/AGENTS.md`
   - `Reports/Finance/Module/Project Memory/CURRENT_STATUS.md`
-- Data exchange workflows:
-  - `Reports/DataExchange/README.md`
-  - `Reports/DataExchange/Module/docs/quickstart.md`
-- Additional active PBIP modules (see `REPORT_CATALOG.md`):
+- Edit, review, and publish reports:
+  - `../../Fabric/README.md`
+- Additional active modules (see `REPORT_CATALOG.md`):
   - `Reports/Sales`
   - `Reports/Service`
   - `Reports/Inventory`
 - Scaffolded domains (baseline structure only):
   - `Reports/HR`
   - `Reports/Marketing`
+- Parked: `Reports/DataExchange`
 
 ## Canonical Active PBIP Paths
 
-Use these exact path patterns unless newer memory files say otherwise:
-- Finance:
-  - `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
-  - `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
-- DataExchange:
-  - `Reports/DataExchange/Companies/CANON/Canon Data Exchange Report/Canon Data Exchange Report.pbip`
-  - `Reports/DataExchange/Companies/PAPERENTITY/Paper Data Exchange Report/Paper Data Exchange Report.pbip`
-- Sales:
-  - `Reports/Sales/Companies/CANON/Canon Sales Report/Canon Sales Report.pbip`
-  - `Reports/Sales/Companies/PAPERENTITY/Paper Sales Report/Paper Sales Report.pbip`
-- Service:
-  - `Reports/Service/Companies/CANON/Canon Service Report/Canon Service Report.pbip`
-  - `Reports/Service/Companies/PAPERENTITY/Paper Service Report/Paper Service Report.pbip`
-- Inventory:
-  - `Reports/Inventory/Companies/CANON/Canon Inventory Report/Canon Inventory Report.pbip`
-  - `Reports/Inventory/Companies/PAPERENTITY/Paper Inventory Report/Paper Inventory Report.pbip`
+Edit these (Development Workspace). The live copies with the same names are in `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/` and are read-only:
+  - `Fabric/DevelopmentWorkspace/Canon Financial Report.pbip`
+  - `Fabric/DevelopmentWorkspace/Paper Financial Report.pbip`
+  - `Fabric/DevelopmentWorkspace/Canon Sales Report.pbip`
+  - `Fabric/DevelopmentWorkspace/Canon Service Report.pbip`
+  - `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`
+  - `Fabric/DevelopmentWorkspace/Paper Inventory Report.pbip`
 
 ## Automation Entry Points
 
@@ -76,10 +67,11 @@ Use these exact path patterns unless newer memory files say otherwise:
   - `../scripts/audit-report-consistency.py`
   - human-readable: `python3 Portfolio/scripts/audit-report-consistency.py Fabric/DevelopmentWorkspace`
   - CI/strict: `python3 Portfolio/scripts/audit-report-consistency.py --strict Fabric/DevelopmentWorkspace`
-- Reconcile the six approved Fabric report/model definitions back to their module PBIP homes
-  while preserving module `.pbip`, `.platform`, and `.pbi` identity/cache files:
-  - dry-run: `python3 Portfolio/scripts/sync-fabric-to-modules.py`
-  - apply: `python3 Portfolio/scripts/sync-fabric-to-modules.py --apply`
+- Release tool (publish reviewed reports to Canon Analytics / Paper Analytics and keep the live mirrors):
+  - health, read-only: `python3 Portfolio/scripts/fabric_release.py status`
+  - dry run: `python3 Portfolio/scripts/fabric_release.py publish "<Report Name>"`
+  - publish: add `--apply` (only when the user names the report)
+  - roll back: `python3 Portfolio/scripts/fabric_release.py rollback "<Report Name>" --to <commit>`
 
 ## Common Questions
 

@@ -2,14 +2,15 @@
 
 ## Date
 
-- Last updated: September 23, 2026
+- Last updated: September 24, 2026
 
 ## Current source of truth
 
-- Canon PBIP: `Reports/Sales/Companies/CANON/Canon Sales Report/Canon Sales Report.pbip`
-- Paper PBIP: `Reports/Sales/Companies/PAPERENTITY/Paper Sales Report/Paper Sales Report.pbip`
-- Fabric copy: `Fabric/DevelopmentWorkspace/Canon Sales Report.pbip`
-- Paper Sales is not in the Fabric workspace.
+- Sep 24, 2026 — repo restructured to mirror the workspaces: edit `Fabric/DevelopmentWorkspace/`, the live copy is in `Fabric/CanonAnalytics/`, publish with `Portfolio/scripts/fabric_release.py`. Module report copies were removed; the Paper Sales copy was parked under `Reports/Sales/Module/Archive/2026-09-24-parked-reports/PAPERENTITY/`.
+- Canon PBIP (edit): `Fabric/DevelopmentWorkspace/Canon Sales Report.pbip`
+- Canon live copy (read-only): `Fabric/CanonAnalytics/Canon Sales Report.*`
+- Paper PBIP (parked): `Reports/Sales/Module/Archive/2026-09-24-parked-reports/PAPERENTITY/Paper Sales Report/Paper Sales Report.pbip`
+- Paper Sales is not in any Fabric workspace.
 
 ## Canon (23 Sep 2026)
 

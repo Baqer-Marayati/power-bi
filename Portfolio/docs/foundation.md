@@ -13,8 +13,10 @@ Use it to understand:
 
 ## Top-Level Meaning
 
+- `Fabric/`
+  - every report definition, laid out like the Power BI workspaces (`DevelopmentWorkspace/` to edit, `CanonAnalytics/` and `PaperAnalytics/` for what is live)
 - `Reports/`
-  - one folder per report domain
+  - one folder per report domain: docs, memory, company config, scripts
 - `Portfolio/Shared/`
   - cross-report templates, themes, data contracts, SQL, DAX patterns, screenshots, and reusable benchmarks
 - `Portfolio/Memory/`
@@ -39,23 +41,24 @@ Each report module answers question 2.
 The authoritative module list lives in `Portfolio/Memory/REPORT_CATALOG.md`.
 
 - Active production focus: `Reports/Finance`
-- Active exchange workspace: `Reports/DataExchange`
-- Additional active PBIP modules: `Reports/Sales`, `Reports/Service`, `Reports/Inventory`
+- Additional active modules: `Reports/Sales`, `Reports/Service`, `Reports/Inventory`
 - Scaffolded modules: `Reports/HR`, `Reports/Marketing`
+- Parked: `Reports/DataExchange`
 
 For the exact current entry points, read `Portfolio/Memory/ACTIVE_FOCUS.md` before guessing company folder names.
 
-Real active PBIP examples today:
-- `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
-- `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
-- `Reports/DataExchange/Companies/CANON/Canon Data Exchange Report/Canon Data Exchange Report.pbip`
-- `Reports/Sales/Companies/CANON/Canon Sales Report/Canon Sales Report.pbip`
-- `Reports/Service/Companies/CANON/Canon Service Report/Canon Service Report.pbip`
-- `Reports/Inventory/Companies/CANON/Canon Inventory Report/Canon Inventory Report.pbip`
+Active PBIPs today (edit these):
+- `Fabric/DevelopmentWorkspace/Canon Financial Report.pbip`
+- `Fabric/DevelopmentWorkspace/Paper Financial Report.pbip`
+- `Fabric/DevelopmentWorkspace/Canon Sales Report.pbip`
+- `Fabric/DevelopmentWorkspace/Canon Service Report.pbip`
+- `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`
+- `Fabric/DevelopmentWorkspace/Paper Inventory Report.pbip`
 
 ## Structure Rules
 
-- Put report-specific files inside the relevant `Reports/<Domain>/` module.
+- Put report definitions only in `Fabric/DevelopmentWorkspace/`; never copy them into a module.
+- Put report-specific docs, memory, and scripts inside the relevant `Reports/<Domain>/` module.
 - Put reusable cross-report material in `Portfolio/Shared/`.
 - Put portfolio-wide decisions and current routing in `Portfolio/Memory/`.
 - Put old or superseded material in clearly labeled archive folders.

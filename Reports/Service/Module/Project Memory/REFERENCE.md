@@ -3,11 +3,13 @@
 ## Core paths
 
 - Module root: `Reports/Service/`
-- PBIP project (CANON tenant): `Reports/Service/Companies/CANON/Canon Service Report/Canon Service Report.pbip`
-- PBIP project (PAPERENTITY tenant): `Reports/Service/Companies/PAPERENTITY/Paper Service Report/Paper Service Report.pbip`
-- Report definition (CANON): `Reports/Service/Companies/CANON/Canon Service Report/Canon Service Report.Report/definition/`
-- Semantic model (CANON): `Reports/Service/Companies/CANON/Canon Service Report/Canon Service Report.SemanticModel/definition/`
+- PBIP project (CANON tenant, edit): `Fabric/DevelopmentWorkspace/Canon Service Report.pbip`
+- Report definition (CANON): `Fabric/DevelopmentWorkspace/Canon Service Report.Report/definition/`
+- Semantic model (CANON): `Fabric/DevelopmentWorkspace/Canon Service Report.SemanticModel/definition/`
+- Live copy (CANON, read-only): `Fabric/CanonAnalytics/Canon Service Report.*`
+- PBIP project (PAPERENTITY tenant, parked): `Reports/Service/Module/Archive/2026-09-24-parked-reports/PAPERENTITY/Paper Service Report/Paper Service Report.pbip`
 - Company config: `Reports/Service/Companies/CANON/config/`
+- Release tool: `Portfolio/scripts/fabric_release.py`; publish log in `Fabric/RELEASES.md`
 
 ## Portfolio standards
 
@@ -27,7 +29,7 @@
 
 ## Automation (module)
 
-- Review: direct from the active company PBIP; no zip packaging workflow
+- Review: in the Fabric Development Workspace after sync; no zip packaging workflow
 - Clear model cache: `Reports/Service/Module/scripts/clear-model-cache.ps1`
 - Structure check: `Reports/Service/Module/scripts/validate-structure.ps1`
 - Archived discovery probes (not part of the report): `Reports/Service/Module/Archive/discovery-scripts/`

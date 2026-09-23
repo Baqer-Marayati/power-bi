@@ -1,19 +1,23 @@
 ---
-description: Finance module — PBIP source of truth, memory, multi-company layout, design rules
-globs: Reports/Finance/**
+description: Finance module - PBIP source of truth, memory, multi-company layout, design rules
+globs:
+  - Reports/Finance/**
+  - Fabric/**/Canon Financial Report.*/**
+  - Fabric/**/Paper Financial Report.*/**
 alwaysApply: false
 ---
 
-# Reports/Finance — PBIP and delivery
+# Reports/Finance - PBIP and delivery
 
 ## Source of truth
 
-- **Editable projects:** use the real company PBIP folders under `Reports/Finance/Companies/<CODE>/` — do not guess a synthetic folder name.
-- **Canonical current paths:**
-  - `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
-  - `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
+- **Edit here:**
+  - `Fabric/DevelopmentWorkspace/Canon Financial Report.pbip`
+  - `Fabric/DevelopmentWorkspace/Paper Financial Report.pbip`
+- **Live (read-only mirrors):** `Fabric/CanonAnalytics/Canon Financial Report.*`, `Fabric/PaperAnalytics/Paper Financial Report.*`.
+- `Reports/Finance/Companies/<CODE>/` holds only `config/` and `overlays/`. There is no report copy there.
 - **Development master:** **PBIP** only. **PBIX** = optional review/transfer snapshot; merge real changes back into PBIP.
-- **Workflow:** edit the PBIP as source of truth, and follow the review/package guidance recorded in Finance `Project Memory` when the user needs an inspection artifact.
+- **Workflow:** edit, push, the user reviews in the Fabric Development Workspace, then publish with `Portfolio/scripts/fabric_release.py` when the user asks (see `Fabric/README.md`).
 
 ## Live memory (update after meaningful work)
 
@@ -26,7 +30,7 @@ alwaysApply: false
 
 - **Benchmark:** `Module/Design Benchmarks/Sample 2` unless `Project Memory` overrides.
 - **Currency:** Iraqi dinar (IQD) presentation consistently; formatting affects layout, not only numbers.
-- **Systems, not one-offs:** Top KPI row and left-rail slicers are **shared patterns** across pages — fix consistently.
+- **Systems, not one-offs:** Top KPI row and left-rail slicers are **shared patterns** across pages - fix consistently.
 - **Order:** logic first (bindings, measures, stale filters), styling second.
 - **Desktop wins:** If the user approves layout in Desktop, treat that synced PBIP as the visual baseline over older JSON-only assumptions.
 

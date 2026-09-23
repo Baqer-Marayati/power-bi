@@ -5,7 +5,7 @@ This module is the working home for the <REPORT_TITLE> report inside the larger 
 ## Purpose
 
 Use this module for:
-- report-specific PBIP work (per company under `Companies/<CODE>/`)
+- report-specific docs and scripts (the PBIP itself lives in `Fabric/DevelopmentWorkspace/`)
 - report-specific project memory
 - department-specific documentation
 - records and archives as needed
@@ -13,7 +13,7 @@ Use this module for:
 ## Expected Working Areas
 
 - `module.manifest.json` — module/company machine-readable path and policy map
-- `Companies/<CODE>/` — config, overlays, and `/<Actual Report Folder>/` (PBIP + `.Report` / `.SemanticModel`)
+- `Companies/<CODE>/` — company config and overlays
 - `Module/` — container for module internals:
   - `Module/docs/`
   - `Module/Project Memory/`
@@ -35,6 +35,6 @@ When authoring a new PBIP, see [`Module/docs/pbip-snippets/README.md`](Module/do
 
 ## Source Of Truth
 
-- The PBIP under `Companies/<CODE>/<Actual Report Folder>/` is the editable source of truth for that company.
-- Work and review in Power BI Desktop from that PBIP.
+- `Fabric/DevelopmentWorkspace/<Name>.pbip` is the editable source of truth for each company's report.
+- Review in the Fabric Development Workspace after a Git sync, and publish with `Portfolio/scripts/fabric_release.py` (see `Fabric/README.md`).
 - Generated package/review artifacts are optional per module policy and must not replace PBIP as the development source.

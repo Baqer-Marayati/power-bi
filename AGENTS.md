@@ -34,7 +34,8 @@ For the current finance report:
 ## Hierarchy Rules
 
 - Treat the repository root as the portfolio layer.
-- Treat each folder inside `Reports/` as a self-contained report module.
+- Treat `Fabric/` as the only home of report definitions (see below).
+- Treat each folder inside `Reports/` as a report module: docs, memory, company config, scripts.
 - Treat `Portfolio/Shared/` as reusable cross-report material.
 - Treat `Portfolio/Memory/` as cross-report truth.
 - Treat archive folders as history, not as active work surfaces.
@@ -46,10 +47,7 @@ Authoritative status: **`Portfolio/Memory/REPORT_CATALOG.md`**.
 Active production module:
 - `Reports/Finance`
 
-Active exchange module:
-- `Reports/DataExchange`
-
-Additional active modules (PBIP + model in repo):
+Additional active modules (reports in `Fabric/`):
 - `Reports/Sales`
 - `Reports/Service`
 - `Reports/Inventory`
@@ -58,21 +56,26 @@ Scaffolded (contract layout, no PBIP yet):
 - `Reports/HR`
 - `Reports/Marketing`
 
+Parked (reports moved to the module's `Module/Archive/`):
+- `Reports/DataExchange`
+
 Do not treat a module as active for delivery until `Portfolio/Memory/REPORT_CATALOG.md` marks it Active.
 
 Default deep-work starting point:
 - `Portfolio/Memory/ACTIVE_FOCUS.md`
 
-## Fabric Development Workspace (Git → Fabric sync)
+## Fabric workspaces (edit, review, publish)
 
-When the goal is to **review in Microsoft Fabric** after **GitHub sync**:
+The repo mirrors the three Power BI workspaces. Full procedure: `Fabric/README.md`.
 
-- **Working copy:** `Fabric/DevelopmentWorkspace/` — open the `.pbip` here and apply report/semantic-model edits intended for Fabric.
-- **Module copy:** `Reports/<Domain>/Companies/<CompanyCode>/...` — copy *from* here *into* `Fabric/DevelopmentWorkspace/` when starting a Fabric-bound pass; avoid editing the module PBIP for Fabric-only iteration unless you are explicitly merging or reconciling.
-- **Delivery:** After a coherent change, **commit scoped files and push** to GitHub so you can **Sync** in Fabric. Details: `Portfolio/docs/agent-operating-playbook.md` (Fabric Development Workspace).
+- **Edit:** `Fabric/DevelopmentWorkspace/`. It is Git-connected to the Fabric Development Workspace. All report and semantic-model edits happen here.
+- **Review:** after a scoped commit and push to `main`, the user syncs the Development Workspace in Fabric and reviews.
+- **Publish:** only when the user names the report. Run `python3 Portfolio/scripts/fabric_release.py publish "<Report Name>"` as a dry run, then add `--apply`. The tool updates the live report in place, keeps the B1HANA gateway, refreshes if needed, and checks the data.
+- **Live mirrors:** `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/`, written only by the release tool. Commit and push them after each publish.
+- **Health check:** `python3 Portfolio/scripts/fabric_release.py status` is read-only.
 
 ## Cursor / VS Code workspace
 
-- Agent rules: `.cursor/rules/` (`reporting-hub-portfolio.mdc` and `fabric-development-workflow.mdc` always apply; Finance rules apply under `Reports/Finance/` and `**/*.tmdl`).
-- Tasks: **Terminal → Run Task** (or **Tasks: Run Task**) — e.g. **DataExchange**: open the company PBIP in Power BI Desktop; **Finance: Open design benchmark (Wiise Sample 2) in Power BI Desktop** for the canonical benchmark PBIP; **Finance** / **Sales** / **Service** / **Inventory**: clear semantic model cache; **Portfolio: Validate custom themes vs Portfolio/Shared/Themes**, **Portfolio: Scaffold new report module**, and shared scripts (structure validation) as needed. See `Portfolio/docs/first-encounter.md` (section 9) for a second Mac or Cursor account: GitHub clone, MCP template (`.cursor/mcp.json.example`), and skills/plugins expectations.
+- Agent rules: `.cursor/rules/` (`reporting-hub-portfolio.mdc` and `fabric-development-workflow.mdc` always apply; Finance and Inventory rules apply under their module and their report folders in `Fabric/`).
+- Tasks: **Terminal → Run Task** (or **Tasks: Run Task**) — e.g. **Fabric: Release status**; **Finance: Open design benchmark (Wiise Sample 2) in Power BI Desktop** for the canonical benchmark PBIP; **Finance** / **Sales** / **Service** / **Inventory**: clear semantic model cache; **Portfolio: Validate custom themes vs Portfolio/Shared/Themes**, **Portfolio: Scaffold new report module**, and shared scripts (structure validation) as needed. See `Portfolio/docs/first-encounter.md` (section 9) for a second Mac or Cursor account: GitHub clone, MCP template (`.cursor/mcp.json.example`), and skills/plugins expectations.
 - Shared editor defaults: `.vscode/settings.json`, `.editorconfig`.

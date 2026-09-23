@@ -12,7 +12,7 @@ Use this module for:
 
 ## Expected Working Areas
 
-- `Companies/` — **CANON** and **PAPERENTITY** each contain a PBIP folder (`Canon Inventory Report`, `Paper Inventory Report`)
+- `Companies/` — **CANON** and **PAPERENTITY** company settings (`config/`, `overlays/`); report files live under `Fabric/`
 - `Module/` — container for module internals:
   - `Module/docs/`
   - `Module/Project Memory/`
@@ -32,7 +32,8 @@ Read these in order:
 
 ## Source Of Truth
 
-- **Primary PBIP:** `Companies/CANON/Canon Inventory Report/Canon Inventory Report.pbip`
-- **Alternate copy:** `Companies/PAPERENTITY/Paper Inventory Report/Paper Inventory Report.pbip`
+- **Primary PBIP (edit):** `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`
+- **Second tenant (edit):** `Fabric/DevelopmentWorkspace/Paper Inventory Report.pbip`
+- **Live copies (read-only):** `Fabric/CanonAnalytics/Canon Inventory Report.*`, `Fabric/PaperAnalytics/Paper Inventory Report.*`
 
-Work directly from PBIP; there is no `ready.zip` or server-package export step in this module.
+Paths are repo-root-relative. Work directly from PBIP and review in the Fabric Development Workspace; there is no `ready.zip` or server-package export step in this module. Publish with `Portfolio/scripts/fabric_release.py`.

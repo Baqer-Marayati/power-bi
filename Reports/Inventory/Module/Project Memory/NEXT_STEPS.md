@@ -30,4 +30,4 @@
 
 ## Packaging
 
-- Work and review directly from the active company PBIP. There is no zip packaging workflow for Inventory.
+- Work from `Fabric/DevelopmentWorkspace/` and review in the Fabric Development Workspace. There is no zip packaging workflow for Inventory; publish with `Portfolio/scripts/fabric_release.py` when the user names the report.

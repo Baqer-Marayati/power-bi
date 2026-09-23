@@ -1,0 +1,82 @@
+{
+  "gatewayConnection": {
+    "name": "B1HANA",
+    "gateway": "SAPB1_GATEWAY",
+    "id": "c645ef82-010c-443f-a299-70fe49c37503",
+    "type": "Odbc",
+    "path": "dsn=HANA_B1"
+  },
+  "development": {
+    "name": "Development Workspace",
+    "id": "e25920dc-a13e-467a-b23e-ce3b95f0d595",
+    "folder": "Fabric/DevelopmentWorkspace"
+  },
+  "live": {
+    "CanonAnalytics": {
+      "name": "Canon Analytics",
+      "id": "a0fbbdc7-e807-4b58-a39d-b45c2adc1477",
+      "folder": "Fabric/CanonAnalytics"
+    },
+    "PaperAnalytics": {
+      "name": "Paper Analytics",
+      "id": "12bc0f31-cb6f-4e73-b3b6-64e63a8c8558",
+      "folder": "Fabric/PaperAnalytics"
+    }
+  },
+  "reports": {
+    "Canon Financial Report": {
+      "module": "Reports/Finance",
+      "live": "CanonAnalytics",
+      "devReportId": "a783533b-5377-4309-892f-2e0184fa2eb3",
+      "devModelId": "b1e83d9b-1d75-4fdf-9fad-98318bf9147a",
+      "liveReportId": "e832e4cf-7ab6-472c-bced-978986cc8f87",
+      "liveModelId": "7e404446-60d0-40d6-895a-9bdfb5213f7c",
+      "smokeQuery": "EVALUATE ROW(\"Rows\", COUNTROWS(Fact_PNL))"
+    },
+    "Canon Inventory Report": {
+      "module": "Reports/Inventory",
+      "live": "CanonAnalytics",
+      "devReportId": "cfc1bf77-3ac4-4a35-b26c-a4d00cae09d1",
+      "devModelId": "d00adac5-83c9-4105-9dcf-bb9a6373bde3",
+      "liveReportId": "fe2736c2-184b-47dc-bee9-f984349f94f7",
+      "liveModelId": "1d4d7a8c-f9ca-431d-8e7b-10188f7f9f78",
+      "smokeQuery": "EVALUATE ROW(\"Rows\", COUNTROWS(InventoryValuation))"
+    },
+    "Canon Sales Report": {
+      "module": "Reports/Sales",
+      "live": "CanonAnalytics",
+      "devReportId": "dbac3765-342e-4cd0-8084-8b81f53c22d5",
+      "devModelId": "b5b3a510-fa4d-4e4d-b5bb-bdc12cef21b8",
+      "liveReportId": "7d3c7324-af0d-4950-a0a8-ac0500bdd480",
+      "liveModelId": "09b6f013-7c86-44ca-ad93-14484000724a",
+      "smokeQuery": "EVALUATE ROW(\"Rows\", COUNTROWS(SalesFact))"
+    },
+    "Canon Service Report": {
+      "module": "Reports/Service",
+      "live": "CanonAnalytics",
+      "devReportId": "d4ec7521-1cd8-4087-ad2d-462b59ba20d5",
+      "devModelId": "eef4b55c-fd94-45e0-8e83-d37bb38ccab7",
+      "liveReportId": "aa782e34-5924-46dc-8af2-fd437a5ac945",
+      "liveModelId": "a26fb5ed-aab0-44a4-b515-10374d177145",
+      "smokeQuery": "EVALUATE ROW(\"Rows\", COUNTROWS(Fact_ServiceCalls))"
+    },
+    "Paper Financial Report": {
+      "module": "Reports/Finance",
+      "live": "PaperAnalytics",
+      "devReportId": "84ad8110-e914-472a-8975-ceb8de351974",
+      "devModelId": "cc7415d9-4d10-4b0a-acbb-6e2c9043bb2c",
+      "liveReportId": "6329a8e3-667c-4f79-afc4-d713e4183303",
+      "liveModelId": "96308a26-9381-4feb-886c-9c90afac6bf2",
+      "smokeQuery": "EVALUATE ROW(\"Rows\", COUNTROWS(Fact_PNL))"
+    },
+    "Paper Inventory Report": {
+      "module": "Reports/Inventory",
+      "live": "PaperAnalytics",
+      "devReportId": "60629780-f40d-4917-a897-c06a61c69609",
+      "devModelId": "b38eca52-b79c-43a9-b4b6-508c0a741b35",
+      "liveReportId": "7a05c64d-c5ec-408e-a90f-d0af6c7ec0a0",
+      "liveModelId": "017aa653-925e-4a5a-8437-26d939977641",
+      "smokeQuery": "EVALUATE ROW(\"Rows\", COUNTROWS(InventoryValuation))"
+    }
+  }
+}

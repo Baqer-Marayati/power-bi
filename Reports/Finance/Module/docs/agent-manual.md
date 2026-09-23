@@ -9,7 +9,7 @@ Use it as the stable onboarding guide for any AI agent or new collaborator enter
 ## What This Repository Is
 
 This is a Power BI financial reporting workspace built around:
-- active company PBIP source projects under `Companies/<CODE>/<Actual Report Folder>/`
+- active company PBIP source projects under `Fabric/DevelopmentWorkspace/` (repo root), with read-only live copies in `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/`
 - a living design benchmark in `Module/Design Benchmarks`
 - a live memory layer in `Module/Project Memory`
 - stable onboarding and workflow docs in `Module/docs`
@@ -31,9 +31,9 @@ Recommended order:
 
 ## File-System Mental Model
 
-### `Companies/<CODE>/<Actual Report Folder>`
+### `Fabric/DevelopmentWorkspace/<Report Name>.*`
 
-The active editable PBIP projects.
+The active editable PBIP projects (repo root, outside this module).
 
 Use this for:
 - report definition edits
@@ -41,8 +41,14 @@ Use this for:
 - page repairs
 
 Current entry points:
-- CANON: `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
-- PAPERENTITY: `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
+- CANON: `Fabric/DevelopmentWorkspace/Canon Financial Report.pbip`
+- PAPERENTITY: `Fabric/DevelopmentWorkspace/Paper Financial Report.pbip`
+
+Live copies in `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/` are read-only; they are updated only by `Portfolio/scripts/fabric_release.py` when the user names a report to publish.
+
+### `Companies/<CODE>`
+
+Company settings only (`config/`, `overlays/`). No report files.
 
 ### `Module/Design Benchmarks`
 
@@ -112,7 +118,7 @@ It is the combination of:
 ## Current Operating Assumptions
 
 Unless later memory updates replace them:
-- each company PBIP under `Companies/<CODE>/<Actual Report Folder>/` is the active editable report for that company
+- each company PBIP under `Fabric/DevelopmentWorkspace/` is the active editable report for that company
 - `PBIP` is the development source of truth
 - `Module/Design Benchmarks/Sample 2` is the active benchmark
 - the report should preserve a CFO / management-report tone

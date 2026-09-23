@@ -1,9 +1,14 @@
+# Removes VertiPaq import cache for Sales semantic models in Fabric/DevelopmentWorkspace.
+# Delegates to Portfolio/scripts/clear-model-cache.ps1
+
 param(
-    [string]$RepoRoot = "C:\Work\reporting-hub"
+    [ValidateSet("ALL", "CANON", "PAPERENTITY")]
+    [string]$CompanyCode = "ALL",
+    [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..\..\..")).Path
 )
 
 $ErrorActionPreference = "Stop"
-$runner = Join-Path $RepoRoot "scripts\clear-model-cache.ps1"
+$runner = Join-Path $RepoRoot "Portfolio\scripts\clear-model-cache.ps1"
 if (!(Test-Path -LiteralPath $runner)) { throw "Portfolio script not found: $runner" }
 
-powershell -ExecutionPolicy Bypass -File $runner -Domain Sales -RepoRoot $RepoRoot
+powershell -ExecutionPolicy Bypass -File $runner -Domain Sales -CompanyCode $CompanyCode -RepoRoot $RepoRoot

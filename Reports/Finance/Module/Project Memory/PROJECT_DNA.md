@@ -6,8 +6,10 @@ This is a Power BI financial reporting project for management reporting, centere
 ## Active project (source of truth)
 Use this folder as the active working project (paths are repo-relative; adjust drive if your clone differs):
 
-- `Reports/Finance/Companies/CANON/Canon Financial Report/`
-- `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/`
+- `Fabric/DevelopmentWorkspace/Canon Financial Report.*`
+- `Fabric/DevelopmentWorkspace/Paper Financial Report.*`
+
+Live copies in `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/` are read-only and are updated only by `Portfolio/scripts/fabric_release.py`.
 
 Do not create parallel experiment folders unless explicitly needed.
 
@@ -116,7 +118,7 @@ This project responds better to deliberate, evidence-based passes than to broad 
 When a new agent thread starts:
 1. open this file first
 2. open the other files in `Project Memory`: `DECISIONS.md` and `REFERENCE.md`
-3. inspect the relevant company PBIP under `Companies/`
+3. inspect the relevant company PBIP under `Fabric/DevelopmentWorkspace/`
 4. re-check `Design Benchmarks` before making visual decisions
 5. update the memory files when the benchmark changes meaningfully
 6. read `CURRENT_STATUS.md`, `MODEL_NOTES.md`, and `NEXT_STEPS.md` before deep model edits

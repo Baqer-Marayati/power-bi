@@ -2,7 +2,7 @@
 
 ## Date
 
-- Last updated: September 23, 2026
+- Last updated: September 24, 2026
 
 ## Purpose
 
@@ -10,30 +10,26 @@ This inventory classifies cleanup candidates before moving, deleting, or consoli
 
 ## Protected No-Touch
 
-- `Reports/Finance/Companies/CANON/Canon Financial Report/`
-- `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/`
-- `Reports/Sales/Companies/CANON/Canon Sales Report/`
-- `Reports/Sales/Companies/PAPERENTITY/Paper Sales Report/`
-- `Reports/Service/Companies/CANON/Canon Service Report/`
-- `Reports/Service/Companies/PAPERENTITY/Paper Service Report/`
-- `Reports/Inventory/Companies/CANON/Canon Inventory Report/`
-- `Reports/Inventory/Companies/PAPERENTITY/Paper Inventory Report/`
-- `Reports/DataExchange/Companies/CANON/Canon Data Exchange Report/`
-- `Reports/DataExchange/Companies/PAPERENTITY/Paper Data Exchange Report/`
+- `Fabric/DevelopmentWorkspace/` (Git-connected; do not rename or restructure)
+- `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/` (written only by `Portfolio/scripts/fabric_release.py`)
+- `Fabric/workspaces.json` and `Fabric/RELEASES.md`
 - `Reports/Finance/Module/Design Benchmarks/Sample 2/`
+- Parked reports under `Reports/{Sales,Service,DataExchange}/Module/Archive/2026-09-24-parked-reports/`
+
+The per-module report copies that used to be listed here were removed on 24 September 2026. They are in git history before that date.
 
 ## Safe Doc Edits
 
-- Finance docs that still describe `Financial Report/Financial Report.pbip` as the active master should be rewritten to point to `Reports/Finance/Companies/<CODE>/<Actual Report Folder>/`.
+- Docs that still point at report copies under `Reports/<Domain>/Companies/<CODE>/<Report>/` should point at `Fabric/DevelopmentWorkspace/<Report>.*` instead.
 - Finance package policy is direct PBIP review. Remove stale `ready.zip` / `package-report.sh` requirements from Finance docs, templates, and memory.
-- Template docs should stop implying a synthetic `<ReportTitle> - <CompanyCode>` folder is mandatory and should describe `Companies/<CODE>/<Actual Report Folder>/`.
+- Template docs should describe `Companies/<CODE>/` as config and overlays only, with the report in `Fabric/DevelopmentWorkspace/`.
 - Records docs should use lowercase `Records/screenshots`.
 
 ## Safe Script Edits
 
 - `Portfolio/scripts/clear-model-cache.ps1` should resolve company PBIP paths from a module manifest when present and remove only `.pbi/cache.abf`.
 - `Reports/Finance/Module/scripts/clear-model-cache.ps1` should call the portfolio script from the repo root and support company selection.
-- `Reports/Finance/Module/scripts/capture-pages.ps1` should default to real Finance company PBIPs and `Module/Records/screenshots`.
+- `Reports/Finance/Module/scripts/capture-pages.ps1` should default to the Development Workspace Finance PBIPs and `Module/Records/screenshots`.
 - `.vscode/tasks.json` can keep task entrypoints but should avoid old report-root assumptions.
 - `package-report.sh` should not be recreated for Finance unless the policy changes; current Finance done criteria do not require generated package artifacts.
 
@@ -53,4 +49,4 @@ Approved 23 September 2026: the three March pre-restore Finance PBIP folders wer
 ## Current Guardrail Additions
 
 - `Reports/Finance/module.manifest.json` records Finance company PBIP paths, schema/database names, expected pages, protected paths, and direct-PBIP review policy.
-- `Portfolio/scripts/validate-structure.ps1` should validate module manifests and active PBIP paths from `Portfolio/Memory/ACTIVE_FOCUS.md`.
+- `Portfolio/scripts/validate-structure.ps1` validates module manifests, active PBIP paths from `Portfolio/Memory/ACTIVE_FOCUS.md`, every report in `Fabric/workspaces.json` (development and live), and fails if a report copy appears under `Reports/*/Companies/`.

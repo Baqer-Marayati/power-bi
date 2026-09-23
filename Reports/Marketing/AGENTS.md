@@ -13,4 +13,4 @@
 - Keep Marketing-specific live truth inside this module.
 - Use `Module/Core/` for shared Marketing baseline assets.
 - Use `Companies/` for company-specific config and overlays.
-- Work directly from the company PBIP once it exists. There is no zip or package-report step.
+- Once the PBIP exists, it lives in `Fabric/DevelopmentWorkspace/` (repo root); work directly from it there. `Companies/` holds config and overlays only. There is no zip or package-report step.

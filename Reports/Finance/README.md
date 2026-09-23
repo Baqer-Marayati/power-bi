@@ -3,7 +3,7 @@
 This module is the working home for the Al Jazeera financial reporting project in Power BI inside the larger Reporting Hub portfolio.
 
 The project combines:
-- active SAP-backed PBIP reports under `Companies/<CompanyCode>/` (see below)
+- active SAP-backed PBIP reports under `Fabric/DevelopmentWorkspace/` at the repo root (see below)
 - a living visual benchmark in `Module/Design Benchmarks`
 - durable working memory in `Module/Project Memory`
 
@@ -17,10 +17,12 @@ Use this repository to:
 
 ## Active Project
 
-Each company has its own PBIP under `Companies/<CODE>/`. Open the `.pbip` in Power BI Desktop for that company.
+Each company has its own PBIP in the Fabric Development Workspace folder (repo-root-relative paths). Open the `.pbip` in Power BI Desktop for edits; the normal review path is Sync and review in the Fabric Development Workspace.
 
-- **CANON:** `Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
-- **PAPERENTITY:** `Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip` (schema references use PAPERENTITY instead of CANON)
+- **CANON:** `Fabric/DevelopmentWorkspace/Canon Financial Report.pbip` (live copy: `Fabric/CanonAnalytics/Canon Financial Report.*`)
+- **PAPERENTITY:** `Fabric/DevelopmentWorkspace/Paper Financial Report.pbip` (live copy: `Fabric/PaperAnalytics/Paper Financial Report.*`; schema references use PAPERENTITY instead of CANON)
+
+Live copies are read-only and are written only by `Portfolio/scripts/fabric_release.py`.
 
 The active benchmark is:
 - `Module/Design Benchmarks/Sample 2`
@@ -28,7 +30,7 @@ The active benchmark is:
 ## Working Areas
 
 - `Companies`
-  - One folder per company code; each contains its own PBIP (`.pbip`, `.Report`, `.SemanticModel`) using the real company report name.
+  - One folder per company code holding company settings only (`config/`, `overlays/`); report files live under `Fabric/`.
 - `Module/` — container for module internals:
   - `Module/Core` — shared domain baseline for cross-company Finance reporting assets; company-agnostic material belongs here first.
   - `Module/Design Benchmarks` — living design reference and benchmark shell source.
@@ -53,7 +55,7 @@ If you are continuing work on this project, read these in order:
 
 ## Working Rules
 
-- Treat the relevant company PBIP under `Companies/<CODE>/` as the editable source of truth for that company.
+- Treat the relevant company PBIP under `Fabric/DevelopmentWorkspace/` as the editable source of truth for that company.
 - Treat **PBIP** as the development master; use **PBIX** only as a temporary review or transfer snapshot if needed, and merge real changes back into PBIP.
 - Use `Module/Design Benchmarks/Sample 2` as the active visual benchmark unless memory says otherwise.
 - Use `Module/scripts/clear-model-cache.ps1` when Desktop shows stale cached model behavior after Git pulls (see `Module/scripts/README.md`).

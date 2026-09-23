@@ -78,9 +78,12 @@
   - `python3 Portfolio/scripts/audit-report-consistency.py --strict Fabric/DevelopmentWorkspace`
 - Explicit visual hierarchy is required: regular Segoe UI page/visual/card/chart/table text,
   with bold 14pt Segoe UI Semibold reserved for slicer headers; top KPI rows use 24px gaps.
-- Approved Fabric definitions are reconciled back to module homes with
-  `Portfolio/scripts/sync-fabric-to-modules.py --apply`; module `.pbip`, `.platform`, and `.pbi`
-  files remain local to their PBIP/workspace identity and are not overwritten.
+- (24 Sep 2026) Report definitions live only in `Fabric/`. `Fabric/DevelopmentWorkspace/` is edited;
+  `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/` mirror what is live and are written only by
+  `Portfolio/scripts/fabric_release.py`. Module report copies were removed and
+  `sync-fabric-to-modules.py` was retired. A publish needs the user to name the report, and the tool
+  refuses when the Development Workspace does not match the commit or live was changed outside the
+  workflow.
 
 ## Cross-Report Branding Decision
 

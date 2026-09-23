@@ -6,17 +6,26 @@ The repository root is now the portfolio layer, not a single-report project fold
 
 ## Main Areas
 
+### `Fabric`
+
+Contains every report definition, laid out like the Power BI workspaces:
+- `DevelopmentWorkspace/` is Git-connected to the Fabric Development Workspace. Edit reports here.
+- `CanonAnalytics/` and `PaperAnalytics/` mirror what is live. Only `../scripts/fabric_release.py` writes them.
+- `workspaces.json` holds the IDs, and `RELEASES.md` is the publish log.
+
+See `../../Fabric/README.md` for the workflow.
+
 ### `Reports`
 
 Contains one folder per report module.
 
 Current modules:
 - `Finance` (active)
-- `DataExchange` (active exchange workspace)
-- `Sales`, `Service`, `Inventory` (active PBIP modules)
+- `Sales`, `Service`, `Inventory` (active)
 - `HR`, `Marketing` (scaffolded)
+- `DataExchange` (parked)
 
-Active PBIPs are under each module's `Companies/<CODE>/` (see `../Memory/REPORT_CATALOG.md` and `../Memory/ACTIVE_FOCUS.md` for real folder names).
+A module holds docs, project memory, company config (`Companies/<CODE>/config`, `overlays`), and scripts. Its reports live in `Fabric/` (see `../Memory/ACTIVE_FOCUS.md` for exact paths).
 
 ### `Portfolio/Shared`
 

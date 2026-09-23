@@ -37,5 +37,5 @@ This report was derived from the Aljazeera Master Model PBIP, keeping only the 4
 
 ## Source of Truth
 
-- PBIP is the editable source of truth
-- Review from packaged artifacts, not raw PBIP folders
+- PBIP is the editable source of truth: `Fabric/DevelopmentWorkspace/Canon Sales Report.pbip`
+- Review in the Fabric Development Workspace after sync; the live copy in `Fabric/CanonAnalytics/` is updated only by `Portfolio/scripts/fabric_release.py`

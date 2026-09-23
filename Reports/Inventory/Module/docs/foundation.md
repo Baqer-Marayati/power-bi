@@ -6,7 +6,7 @@ This is the fastest high-signal orientation file for the Inventory Report module
 
 ## What This Module Should Contain
 
-- the active PBIP project for Inventory Report
+- pointers to the active PBIP projects for Inventory Report (edited in `Fabric/DevelopmentWorkspace/`; live copies in `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/`)
 - report-specific docs
 - report-specific memory
 - report-specific exports, records, and archives

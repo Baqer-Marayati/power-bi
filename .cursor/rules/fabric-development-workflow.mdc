@@ -1,28 +1,27 @@
 ---
-description: Fabric Development Workspace — copy from Reports, edit under Fabric, push for sync
+description: Fabric workspaces - edit DevelopmentWorkspace, review in Fabric, publish to Canon/Paper Analytics with fabric_release.py
 alwaysApply: true
 ---
 
-# Fabric Development Workspace workflow
+# Fabric workspace workflow
 
-When work is meant to show up in **Microsoft Fabric** after **Git sync**, follow this repo convention:
+Full procedure: `Fabric/README.md`. IDs: `Fabric/workspaces.json`.
 
-## Where to edit
+## Where report files live
 
-1. **Module home (canonical PBIP):** `Reports/<Domain>/Companies/<CompanyCode>/...` — long-term module layout; use for work that is *not* Fabric-sync-first unless the user says otherwise.
-2. **Fabric iteration copy:** `Fabric/DevelopmentWorkspace/` — PBIP + report + semantic model tree that Fabric connects to via GitHub. **For Fabric review cycles, edit this copy**, not the `Reports/...` PBIP, unless the user explicitly asks to change the module copy or merge back.
+- `Fabric/DevelopmentWorkspace/` - Git-connected to the Fabric Development Workspace. **All report and semantic-model edits happen here.** Do not rename this folder.
+- `Fabric/CanonAnalytics/`, `Fabric/PaperAnalytics/` - what is live. **Never edit by hand**; only `Portfolio/scripts/fabric_release.py` writes them.
+- `Reports/<Domain>/` holds docs, memory, config, and scripts only. Do not recreate report copies under `Reports/*/Companies/`.
 
-## Starting a Fabric-bound pass
+## Loop
 
-- **Copy or sync** the target company PBIP from `Reports/<Domain>/Companies/<CompanyCode>/` into `Fabric/DevelopmentWorkspace/` (match the layout Fabric expects, e.g. `Canon Inventory Report.pbip` and sibling `*.Report` / `*.SemanticModel` folders). Use the same structure already used for reports checked into `Fabric/DevelopmentWorkspace/`.
+1. Edit `Fabric/DevelopmentWorkspace/`, run `python3 Portfolio/scripts/audit-report-consistency.py --strict Fabric/DevelopmentWorkspace`.
+2. Commit only the files for that change and push to `origin/main`, unless the user asks to hold. If the push fails, report it; the user cannot see the change in Fabric until it is pushed.
+3. The user syncs the Development Workspace in Fabric and reviews. Screenshot and Fabric UI review stay with the user.
+4. Publish **only** when the user names the report and asks for it to go live:
+   - `python3 Portfolio/scripts/fabric_release.py publish "<Report Name>"` (dry run), then add `--apply`.
+   - Never pass `--allow-drift` or `--allow-dev-mismatch` without telling the user why and getting a yes.
+   - After it succeeds, commit `Fabric/` (mirror + `RELEASES.md`) and push, and update the module's `Project Memory/CURRENT_STATUS.md`.
+5. If the tool stops, report its message as-is. Do not work around a check.
 
-## After making changes
-
-- **Commit** only files that belong to the Fabric change (no unrelated local WIP).
-- **Push** to GitHub (`origin`, usually `main`) when the change set is ready for the user to **Sync in Fabric** and review—unless the user explicitly asks to hold the push.
-- If push fails (auth/network), report the error and leave clear `git status` / next step; do not assume the user saw the change in Fabric until push succeeds.
-
-## Clarifications
-
-- Screenshot review and Fabric UI validation stay with the human; the agent supplies repo + Git state for sync.
-- If the user wants the same edits reflected in `Reports/...`, that is a **separate copy-back or merge** step—confirm before duplicating large diffs.
+`python3 Portfolio/scripts/fabric_release.py status` is read-only and safe to run any time.

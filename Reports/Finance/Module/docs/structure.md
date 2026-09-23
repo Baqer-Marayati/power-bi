@@ -4,17 +4,18 @@
 
 ### `Companies`
 
-Company-specific active PBIP projects and source-of-truth report files.
+Company-specific settings only. Report and semantic-model files live under `Fabric/` at the repo root.
 
 Contains:
 - one folder per company code
-- the real report folder name for that company
-- `.pbip`, `.Report/`, and `.SemanticModel/` trios that must stay aligned
-- local Power BI metadata excluded by `.gitignore`
+- `config/` and `overlays/` for that company
+- `_template/` for new company folders
 
-Current active entry points:
-- `Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip`
-- `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip`
+Current active entry points (edit here):
+- `Fabric/DevelopmentWorkspace/Canon Financial Report.pbip`
+- `Fabric/DevelopmentWorkspace/Paper Financial Report.pbip`
+
+Each is a `.pbip`, `.Report/`, and `.SemanticModel/` trio that must stay aligned. Live (published) copies are read-only mirrors in `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/`, written only by `Portfolio/scripts/fabric_release.py`.
 
 ### `Module/Design Benchmarks`
 
@@ -84,7 +85,7 @@ Recommended substructure inside `docs/`:
 
 ## Source Of Truth Rules
 
-- Active editable reports live under `Companies/<CODE>/<Actual Report Folder>/`.
+- Active editable reports live under `Fabric/DevelopmentWorkspace/<Report Name>.*`.
 - `PBIP` is the development source of truth.
 - `PBIX` can be created temporarily for review but must not replace the PBIP workflow.
 - `Module/Design Benchmarks/Sample 2` is the active design benchmark unless memory states otherwise.

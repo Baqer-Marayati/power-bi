@@ -1,12 +1,13 @@
 ---
-description: Inventory Report module — Fabric sync, management naming, landed cost, stock cover. Applies under Reports/Inventory/ and Fabric/DevelopmentWorkspace/Canon Inventory*.
+description: Inventory Report module - management naming, landed cost, stock cover. Applies under Reports/Inventory/ and the Canon/Paper Inventory Report folders in Fabric/.
 globs:
   - Reports/Inventory/**
-  - Fabric/DevelopmentWorkspace/Canon Inventory Report.*
+  - Fabric/**/Canon Inventory Report.*/**
+  - Fabric/**/Paper Inventory Report.*/**
 alwaysApply: false
 ---
 
-# Inventory Report (CANON)
+# Inventory Report (CANON / PAPER)
 
 ## Before editing
 
@@ -14,11 +15,11 @@ alwaysApply: false
 2. `Reports/Inventory/Module/Project Memory/DECISIONS.md` (naming, stock cover, landed cost)
 3. `Reports/Inventory/Module/Project Memory/REFERENCE.md` (page IDs)
 
-## Fabric vs module
+## Where to edit
 
-- **Fabric review:** edit `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`
-- **Module home:** `Reports/Inventory/Companies/CANON/Canon Inventory Report/`
-- Mirror display-label / report-definition changes to both unless user scopes to one copy.
+- **Edit:** `Fabric/DevelopmentWorkspace/Canon Inventory Report.*` and `Fabric/DevelopmentWorkspace/Paper Inventory Report.*`
+- **Live (read-only):** `Fabric/CanonAnalytics/Canon Inventory Report.*`, `Fabric/PaperAnalytics/Paper Inventory Report.*`
+- There is no module copy to keep in sync. Publishing is `Portfolio/scripts/fabric_release.py` (see `Fabric/README.md`).
 
 ## Do not undo (user-approved)
 
@@ -28,6 +29,6 @@ alwaysApply: false
 
 ## Archive
 
-Completed prompts/handoffs live in `Reports/Inventory/Module/Archive/` — not active `Project Memory/`.
+Completed prompts/handoffs live in `Reports/Inventory/Module/Archive/` - not active `Project Memory/`.
 
 Codex skill: `powerbi-inventory-report` (`~/.codex/skills/`).

@@ -180,7 +180,9 @@ function Test-ModuleManifest {
 
     $companies = @($manifest.companies)
     if ($companies.Count -eq 0) {
-        $errors.Add("Module manifest has no companies: $manifestRel")
+        if ($manifest.module.status -ne "scaffolded") {
+            $errors.Add("Module manifest has no companies: $manifestRel")
+        }
         return
     }
 
@@ -256,6 +258,46 @@ if (Test-Path -LiteralPath $activeFocusPath -PathType Leaf) {
     }
 } else {
     $errors.Add("Missing active focus file: Portfolio/Memory/ACTIVE_FOCUS.md")
+}
+
+$workspacesPath = Join-RepoPath "Fabric/workspaces.json"
+if (Test-Path -LiteralPath $workspacesPath -PathType Leaf) {
+    $workspaces = Read-JsonFile -Path $workspacesPath -Label "Fabric workspace manifest"
+    if ($null -ne $workspaces) {
+        $devFolder = $workspaces.development.folder
+        $listed = @{}
+        foreach ($property in $workspaces.reports.PSObject.Properties) {
+            $name = $property.Name
+            $entry = $property.Value
+            $listed[$name] = $true
+            Test-PbipProject -PbipRelativePath "$devFolder/$name.pbip" -Source "Development Workspace PBIP"
+            $liveTarget = $workspaces.live.($entry.live)
+            if ($null -eq $liveTarget) {
+                $errors.Add("Fabric/workspaces.json: '$name' points at unknown live workspace '$($entry.live)'")
+                continue
+            }
+            if ($entry.liveReportId) {
+                Test-PbipProject -PbipRelativePath "$($liveTarget.folder)/$name.pbip" -Source "live mirror PBIP"
+            }
+        }
+        Get-ChildItem -LiteralPath (Join-RepoPath $devFolder) -Filter "*.pbip" -File -ErrorAction SilentlyContinue | ForEach-Object {
+            $stem = [System.IO.Path]::GetFileNameWithoutExtension($_.Name)
+            if (-not $listed.ContainsKey($stem)) {
+                $warnings.Add("$devFolder/$($_.Name) is not listed in Fabric/workspaces.json, so it cannot be published")
+            }
+        }
+    }
+} else {
+    $errors.Add("Missing Fabric workspace manifest: Fabric/workspaces.json")
+}
+
+foreach ($domain in $Domains) {
+    $companiesRoot = Join-RepoPath "Reports/$domain/Companies"
+    if (Test-Path -LiteralPath $companiesRoot -PathType Container) {
+        Get-ChildItem -LiteralPath $companiesRoot -Recurse -Filter "*.pbip" -File -ErrorAction SilentlyContinue | ForEach-Object {
+            $errors.Add("Report copy under Companies (reports live in Fabric/ only): $(Get-RepoRelative $_.FullName)")
+        }
+    }
 }
 
 if ($warnings.Count -gt 0) {

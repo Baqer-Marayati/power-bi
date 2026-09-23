@@ -108,7 +108,7 @@ Short, **durable** notes the assistant adds after reviewing captures in `images/
 ### 2026-04-11 — Reporting Hub pathing and durable guidance refresh
 
 - `[repo]` Future agents should route through `Portfolio/Memory/ACTIVE_FOCUS.md` before guessing active project paths; several modules use real business folder names instead of a synthetic `<ReportName> - <CompanyCode>` pattern.
-- `[finance]` The live Finance source-of-truth paths are under `Reports/Finance/Companies/CANON/Canon Financial Report/` and `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/`, not the older `Reports/Finance/Financial Report/` layout.
+- `[finance]` The live Finance source-of-truth paths are under `Reports/Finance/Companies/CANON/Canon Financial Report/` and `Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/`, not the older `Reports/Finance/Financial Report/` layout. *(Superseded 2026-09-24: reports now live only in `Fabric/DevelopmentWorkspace/`; see `Fabric/README.md`.)*
 - `[repo]` When a “current status” file turns into a long changelog, move durable rules into `DECISIONS.md` / `MODEL_NOTES.md` and restore `CURRENT_STATUS.md` to a short current snapshot.
 - `[repo]` The portfolio has standardized on `Reports/<Domain>/Module/...`; validators, templates, CI, and docs should all match that layout.
 

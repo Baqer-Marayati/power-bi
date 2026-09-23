@@ -12,5 +12,6 @@ These scripts were used during **Sales** layout / query migration and similar on
 | `find-images.ps1` | List large images under Finance report |
 | `rewrite-salesfact-query.ps1` (v1–v4) | Iterative `SalesFact.tmdl` ODBC SQL rewrites (**v4** was the last in-tree iteration) |
 | `explore-commission.sql` / `explore-commission2.sql` | Ad-hoc HANA exploration |
+| `sync-fabric-to-modules.py` | Copied `Fabric/DevelopmentWorkspace` back into the module PBIP copies. Retired 24 Sep 2026 when the module copies were removed; `fabric_release.py` now keeps the live mirrors in `Fabric/CanonAnalytics` and `Fabric/PaperAnalytics`. |
 
 If you need to repeat a similar migration, **copy** the relevant script to a working branch and adapt; do not assume paths or report IDs are still valid.

@@ -10,7 +10,7 @@
     "activeBenchmarkPath": "Reports/Finance/Module/Design Benchmarks/Sample 2/Wiise Financial Dashboards-2.pbip",
     "reviewArtifactPolicy": {
       "status": "direct-pbip-review",
-      "notes": "PBIP is the development source of truth. Finance review happens directly from the active company PBIP; no ready.zip/package-report step is required."
+      "notes": "Edit Fabric/DevelopmentWorkspace, review in the Fabric Development Workspace after Git sync, and publish with Portfolio/scripts/fabric_release.py. No ready.zip/package-report step."
     }
   },
   "companies": [
@@ -19,22 +19,24 @@
       "displayName": "Canon",
       "databaseName": "CANON",
       "schemaName": "CANON",
-      "pbipPath": "Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.pbip",
-      "reportFolder": "Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.Report",
-      "semanticModelFolder": "Reports/Finance/Companies/CANON/Canon Financial Report/Canon Financial Report.SemanticModel",
+      "pbipPath": "Fabric/DevelopmentWorkspace/Canon Financial Report.pbip",
+      "reportFolder": "Fabric/DevelopmentWorkspace/Canon Financial Report.Report",
+      "semanticModelFolder": "Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel",
       "configPath": "Reports/Finance/Companies/CANON/config",
-      "packagePolicy": "none"
+      "packagePolicy": "none",
+      "livePbipPath": "Fabric/CanonAnalytics/Canon Financial Report.pbip"
     },
     {
       "code": "PAPERENTITY",
       "displayName": "Paper Company",
       "databaseName": "PAPERENTITY",
       "schemaName": "PAPERENTITY",
-      "pbipPath": "Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.pbip",
-      "reportFolder": "Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.Report",
-      "semanticModelFolder": "Reports/Finance/Companies/PAPERENTITY/Paper Financial Report/Paper Financial Report.SemanticModel",
+      "pbipPath": "Fabric/DevelopmentWorkspace/Paper Financial Report.pbip",
+      "reportFolder": "Fabric/DevelopmentWorkspace/Paper Financial Report.Report",
+      "semanticModelFolder": "Fabric/DevelopmentWorkspace/Paper Financial Report.SemanticModel",
       "configPath": "Reports/Finance/Companies/PAPERENTITY/config",
-      "packagePolicy": "none"
+      "packagePolicy": "none",
+      "livePbipPath": "Fabric/PaperAnalytics/Paper Financial Report.pbip"
     }
   ],
   "expectedPages": [
@@ -72,8 +74,8 @@
     }
   ],
   "protectedPaths": [
-    "Reports/Finance/Companies/CANON/Canon Financial Report",
-    "Reports/Finance/Companies/PAPERENTITY/Paper Financial Report",
+    "Fabric/CanonAnalytics/Canon Financial Report.Report",
+    "Fabric/PaperAnalytics/Paper Financial Report.Report",
     "Reports/Finance/Module/Design Benchmarks/Sample 2"
   ]
 }

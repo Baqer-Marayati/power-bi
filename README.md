@@ -9,7 +9,8 @@ The repository is organized so a new contributor or model can answer two questio
 ## Quick Orientation
 
 - Repository root = portfolio coordination, standards, shared memory, and onboarding.
-- `Reports/<Domain>/` = self-contained report module.
+- `Fabric/` = every report definition, laid out like the Power BI workspaces. Edit `Fabric/DevelopmentWorkspace/`; `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/` mirror what is live. See [`Fabric/README.md`](Fabric/README.md).
+- `Reports/<Domain>/` = report module: docs, project memory, company config, and scripts.
 - `Portfolio/Shared/` = reusable assets, templates, themes, and cross-report tooling.
 - `Portfolio/Memory/` = cross-report truth, current focus, decisions, and cataloging.
 
@@ -21,7 +22,6 @@ See these files first:
 
 Active modules today:
 - `Reports/Finance`
-- `Reports/DataExchange`
 - `Reports/Sales`
 - `Reports/Service`
 - `Reports/Inventory`
@@ -29,6 +29,9 @@ Active modules today:
 Scaffolded modules:
 - `Reports/HR`
 - `Reports/Marketing`
+
+Parked modules:
+- `Reports/DataExchange`
 
 ## Start Here
 
@@ -51,11 +54,11 @@ Then open the target module, starting with that module's `README.md`, `AGENTS.md
 
 ## Working Rules
 
-- Keep editable report sources in PBIP folders under the relevant module's `Companies/<CODE>/`.
-- Do not assume a synthetic folder pattern such as `<ReportName> - <CODE>`; use the module docs or `REPORT_CATALOG.md` for the real company folder names.
+- Edit reports only in `Fabric/DevelopmentWorkspace/`. Publish to Canon Analytics or Paper Analytics with `Portfolio/scripts/fabric_release.py`, which also updates the live mirror folders.
+- Do not put report copies under `Reports/*/Companies/`; that folder holds company config and overlays only.
 - Keep stable onboarding/process docs in `Portfolio/docs/` and module `Module/docs/`.
 - Keep live portfolio truth in `Portfolio/Memory/` and live module truth in `Module/Project Memory/`.
-- Follow each module's own review workflow. Some modules work directly from PBIP only; others also keep review/package artifacts.
+- Review happens in the Fabric Development Workspace after a Git sync. Nothing goes live until the owner names the report to publish.
 
 ## Module Contract
 

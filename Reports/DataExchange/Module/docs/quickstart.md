@@ -2,8 +2,8 @@
 
 ## Open The Isolated PBIP
 
-- Open `Reports/DataExchange/Data Exchange Report/Data Exchange Report.pbip` in Power BI Desktop.
-- Refresh the model.
+- The module is parked. The PBIPs are at `Reports/DataExchange/Module/Archive/2026-09-24-parked-reports/CANON/Canon Data Exchange Report/Canon Data Exchange Report.pbip` and the matching `PAPERENTITY/Paper Data Exchange Report/` folder.
+- To use one again, copy it into `Fabric/DevelopmentWorkspace/`, open `Fabric/DevelopmentWorkspace/<Name>.pbip` in Power BI Desktop, and refresh the model.
 
 ## Export Destination
 

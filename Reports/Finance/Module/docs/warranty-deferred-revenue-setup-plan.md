@@ -337,7 +337,7 @@ Before go-live, accountants must decide whether to recognize a **catch-up deferr
 
 ## 8. Reporting model changes
 
-### 8.1. Sales report (`Reports/Sales/Companies/CANON/.../SalesFact.tmdl`)
+### 8.1. Sales report (`Fabric/DevelopmentWorkspace/Canon Sales Report.SemanticModel/.../SalesFact.tmdl`)
 
 Modify the `SalesFact` Power Query so that lines with `ItemCode IN ('WARRANTY-SVC-DIR','WARRANTY-SVC-IND')` are:
 
@@ -354,7 +354,7 @@ AND L."ItemCode" NOT IN ('WARRANTY-SVC-DIR','WARRANTY-SVC-IND')
 
 The **warranty AP UNION block** (the `OPCH/PCH1 ItemCode='SV003'` part) **stays** for now, because the actual warranty *cost* is still booked via AP Invoice when service work is done. Long-term, once the service department is also issuing internal service-completion documents, that part of the model can be revisited.
 
-### 8.2. Financial report (`Reports/Finance/Companies/CANON/.../Fact_PNL.tmdl`)
+### 8.2. Financial report (`Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel/.../Fact_PNL.tmdl`)
 
 The existing Power Query already pulls all `OACT.GroupMask IN (4,5,6,7,8)` accounts, so the new `220...` (Group 2) deferred-revenue accounts **won't** appear in `Fact_PNL`. That's correct — they're balance-sheet, not P&L.
 

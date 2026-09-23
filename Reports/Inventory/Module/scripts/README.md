@@ -5,4 +5,4 @@
 
 `clear-cache-and-open.ps1` at module root is a convenience shortcut (clear + launch Desktop).
 
-There is no module `package-report` / `archive-prune` workflow; PBIPs live under `Companies/CANON/` and `Companies/PAPERENTITY/`.
+There is no module `package-report` / `archive-prune` workflow; PBIPs live under `Fabric/DevelopmentWorkspace/` at the repo root.

@@ -2,9 +2,11 @@
 
 ## Core Paths
 
-- **CANON module PBIP:** `Reports/Inventory/Companies/CANON/Canon Inventory Report/Canon Inventory Report.pbip`
-- **PAPERENTITY module PBIP:** `Reports/Inventory/Companies/PAPERENTITY/Paper Inventory Report/Paper Inventory Report.pbip`
-- **Fabric iteration copy (Git → Fabric sync):** `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`
+- **CANON PBIP (edit, Git → Fabric sync):** `Fabric/DevelopmentWorkspace/Canon Inventory Report.pbip`
+- **PAPERENTITY PBIP (edit):** `Fabric/DevelopmentWorkspace/Paper Inventory Report.pbip`
+- **Live copies (read-only):** `Fabric/CanonAnalytics/Canon Inventory Report.*`, `Fabric/PaperAnalytics/Paper Inventory Report.*`
+- **Release tool:** `Portfolio/scripts/fabric_release.py` (`status`, `publish "<Report Name>" [--apply]`, `rollback "<Report Name>" --to <commit>`); publish log in `Fabric/RELEASES.md`
+- **Company settings:** `Reports/Inventory/Companies/<CODE>/config/` and `overlays/`
 - **Theme file:** `Reports/Inventory/Module/Core/themes/Inventory.PortfolioTheme.json`
 - **Portfolio visual identity:** `Portfolio/Shared/Standards/portfolio-visual-identity.md`
 - **Portfolio theme tokens:** `Portfolio/Shared/Standards/portfolio-theme.tokens.json`

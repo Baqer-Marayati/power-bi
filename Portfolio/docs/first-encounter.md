@@ -7,8 +7,8 @@ Use this guide when a new human contributor or AI agent opens the repository for
 Choose one scope before doing anything:
 
 - **Portfolio scope**: standards, templates, catalog, architecture
-- **Domain scope**: Finance/HR/Sales/Service/Marketing module work
-- **Data exchange scope**: extraction/transfer workspace in `Reports/DataExchange`
+- **Domain scope**: Finance/HR/Sales/Service/Marketing/Inventory module work
+- **Release scope**: moving a reviewed report from the Development Workspace to Canon Analytics or Paper Analytics (`../../Fabric/README.md`)
 
 If your task is about one report domain, move to that domain module immediately.
 
@@ -44,7 +44,8 @@ Reports/<Domain>/
   README.md
   Companies/
     <CompanyCode>/
-      <ActualReportFolder>/           # PBIP + report + model folders
+      config/
+      overlays/
   Module/
     Core/
     docs/
@@ -56,16 +57,16 @@ Reports/<Domain>/
 
 ## 4) Source-of-Truth Rule
 
-- PBIP files under `Companies/<CompanyCode>/.../` are the editable source of truth.
-- Do not assume every module follows the synthetic `<ReportName> - <CompanyCode>` pattern; confirm the real path in `REPORT_CATALOG.md`, `ACTIVE_FOCUS.md`, or the module README.
-- Review and sign-off in Power BI Desktop from that PBIP.
+- The editable source of truth is `Fabric/DevelopmentWorkspace/<Report Name>.pbip` and its `.Report` and `.SemanticModel` folders. Exact names are in `ACTIVE_FOCUS.md`.
+- `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/` show what is live. Never edit them by hand.
+- Review happens in the Fabric Development Workspace after a Git sync. Publishing to a live workspace uses `../scripts/fabric_release.py`, and only when the owner names the report.
 
 ## 5) Validation Rule
 
 After meaningful report edits:
-1. validate in Power BI Desktop (refresh, visuals, filters)
-2. run screenshot capture workflow when review evidence is needed
-3. review target pages from the latest capture set
+1. run `python3 Portfolio/scripts/audit-report-consistency.py --strict Fabric/DevelopmentWorkspace`
+2. commit and push, then review in the Fabric Development Workspace (or Power BI Desktop from the same PBIP)
+3. run screenshot capture workflow when review evidence is needed
 4. update memory files
 
 ## 6) Multi-Company Rule
@@ -78,7 +79,8 @@ Use config-first. Add overlays only when config cannot satisfy the requirement.
 
 ## 7) Common Failure Modes
 
-- Editing the wrong company copy under `Companies/` (confirm **CODE** in path and PBIP name).
+- Editing the wrong company report in `Fabric/DevelopmentWorkspace/` (confirm Canon or Paper in the PBIP name).
+- Editing a live mirror in `Fabric/CanonAnalytics/` or `Fabric/PaperAnalytics/` instead of the Development Workspace copy.
 - Mixing screenshot casing (`Screenshots` vs `screenshots`); canonical is `Records/screenshots`.
 - Keeping stale off-canvas visuals and hidden filters in PBIP pages.
 - Writing live status in `../Shared/` instead of module memory files.
@@ -88,7 +90,7 @@ Use config-first. Add overlays only when config cannot satisfy the requirement.
 If no additional context is provided:
 1. validate structure with `../scripts/validate-structure.ps1`
 2. confirm target domain in `../Memory/REPORT_CATALOG.md`
-3. confirm source-of-truth path in the domain `README.md`
+3. confirm the report path in `../Memory/ACTIVE_FOCUS.md`
 4. follow contribution constraints in `../CONTRIBUTING.md`
 
 ## 9) Another Mac, another Cursor account, or another AI client
