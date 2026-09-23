@@ -30,6 +30,7 @@ All six reports match their live workspace. `fabric_release.py status` confirmed
 - Paper Analytics: Paper Financial, Paper Inventory.
 - Canon Service went live on 24 Sep 2026, published by the API. Its scheduled refresh is still off.
 - Every live model is on the B1HANA connection (`SAPB1_GATEWAY`).
+- The release tool was tested end to end on 24 Sep 2026 with an in-place republish of Canon Service. The report link stayed the same, the gateway held, the refresh completed, and live matched the mirror afterwards.
 
 New Canon Financial FX tables and the 19 Sep Canon Sales trace columns stay empty until those production models refresh.
 
