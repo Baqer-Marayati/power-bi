@@ -1,0 +1,40 @@
+table Fact_ExchangeRate
+	lineageTag: c3e8a1b4-7d2f-4e91-9a60-1b5c8d4e2f70
+
+	column RateDate
+		dataType: dateTime
+		formatString: d
+		lineageTag: c3e8a1b4-7d2f-4e91-9a60-1b5c8d4e2f71
+		summarizeBy: none
+		sourceColumn: RateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: c3e8a1b4-7d2f-4e91-9a60-1b5c8d4e2f72
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rate
+		dataType: double
+		formatString: #,0.00
+		lineageTag: c3e8a1b4-7d2f-4e91-9a60-1b5c8d4e2f73
+		summarizeBy: none
+		sourceColumn: Rate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_ExchangeRate = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    T0.""RateDate"" AS ""RateDate"",#(lf)    T0.""Currency"" AS ""Currency"",#(lf)    T0.""Rate""     AS ""Rate""#(lf)FROM ""CANON"".""ORTT"" T0#(lf)WHERE T0.""RateDate"" >= '2025-01-01'#(lf)  AND T0.""Currency"" IN ('USD', 'EUR')")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation

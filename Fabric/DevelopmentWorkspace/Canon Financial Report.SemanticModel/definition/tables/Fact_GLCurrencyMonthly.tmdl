@@ -1,0 +1,112 @@
+table Fact_GLCurrencyMonthly
+	lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b20
+
+	column AcctCode
+		dataType: string
+		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b21
+		summarizeBy: none
+		sourceColumn: AcctCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column AcctName
+		dataType: string
+		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b22
+		summarizeBy: none
+		sourceColumn: AcctName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthEnd
+		dataType: dateTime
+		formatString: d
+		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b23
+		summarizeBy: none
+		sourceColumn: MonthEnd
+
+		annotation SummarizationSetBy = Automatic
+
+	column FCCurrency
+		dataType: string
+		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b24
+		summarizeBy: none
+		sourceColumn: FCCurrency
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransType
+		dataType: string
+		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b25
+		summarizeBy: none
+		sourceColumn: TransType
+
+		annotation SummarizationSetBy = Automatic
+
+	column DebitLC
+		dataType: double
+		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b26
+		summarizeBy: sum
+		sourceColumn: DebitLC
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreditLC
+		dataType: double
+		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b27
+		summarizeBy: sum
+		sourceColumn: CreditLC
+
+		annotation SummarizationSetBy = Automatic
+
+	column DebitSC
+		dataType: double
+		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b28
+		summarizeBy: sum
+		sourceColumn: DebitSC
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreditSC
+		dataType: double
+		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b29
+		summarizeBy: sum
+		sourceColumn: CreditSC
+
+		annotation SummarizationSetBy = Automatic
+
+	column DebitFC
+		dataType: double
+		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b2a
+		summarizeBy: sum
+		sourceColumn: DebitFC
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreditFC
+		dataType: double
+		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b2b
+		summarizeBy: sum
+		sourceColumn: CreditFC
+
+		annotation SummarizationSetBy = Automatic
+
+	column Lines
+		dataType: int64
+		formatString: 0
+		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b2c
+		summarizeBy: sum
+		sourceColumn: Lines
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_GLCurrencyMonthly = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    J.""Account"" AS ""AcctCode"",#(lf)    A.""AcctName"" AS ""AcctName"",#(lf)    LAST_DAY(J.""RefDate"") AS ""MonthEnd"",#(lf)    COALESCE(NULLIF(J.""FCCurrency"", ''), '(none)') AS ""FCCurrency"",#(lf)    TO_NVARCHAR(J.""TransType"") AS ""TransType"",#(lf)    SUM(COALESCE(J.""Debit"", 0)) AS ""DebitLC"",#(lf)    SUM(COALESCE(J.""Credit"", 0)) AS ""CreditLC"",#(lf)    SUM(COALESCE(J.""SYSDeb"", 0)) AS ""DebitSC"",#(lf)    SUM(COALESCE(J.""SYSCred"", 0)) AS ""CreditSC"",#(lf)    SUM(COALESCE(J.""FCDebit"", 0)) AS ""DebitFC"",#(lf)    SUM(COALESCE(J.""FCCredit"", 0)) AS ""CreditFC"",#(lf)    COUNT(*) AS ""Lines""#(lf)FROM ""CANON"".""JDT1"" J#(lf)INNER JOIN ""CANON"".""OACT"" A ON A.""AcctCode"" = J.""Account""#(lf)GROUP BY#(lf)    J.""Account"",#(lf)    A.""AcctName"",#(lf)    LAST_DAY(J.""RefDate""),#(lf)    COALESCE(NULLIF(J.""FCCurrency"", ''), '(none)'),#(lf)    TO_NVARCHAR(J.""TransType"")")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation

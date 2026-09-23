@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["Fact_PNL","Fact_BalanceSheet","Fact_SalesDetail","customerLedgerEntries","vendorLedgerEntries","purchaseLines","ReceivablesFact","CollectionsFact","CashPositionFact","DimBusinessPartner","PayablesFact"]
+annotation PBI_QueryOrder = ["Fact_PNL","Fact_BalanceSheet","Fact_SalesDetail","customerLedgerEntries","vendorLedgerEntries","purchaseLines","ReceivablesFact","CollectionsFact","CashPositionFact","DimBusinessPartner","PayablesFact","Fact_ExchangeRate","Dim_CompanyCurrency","Fact_GLCurrencyMonthly","Fact_FxDocument","Fact_ItemPrice"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -54,6 +54,11 @@ ref table CollectionsFact
 ref table CashPositionFact
 ref table DimBusinessPartner
 ref table PayablesFact
+ref table Fact_ExchangeRate
+ref table Dim_CompanyCurrency
+ref table Fact_GLCurrencyMonthly
+ref table Fact_FxDocument
+ref table Fact_ItemPrice
 
 ref cultureInfo en-US
 
