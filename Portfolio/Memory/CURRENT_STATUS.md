@@ -4,198 +4,46 @@
 
 - Last updated: September 23, 2026
 
-## Current Reality
+## Current reality
 
-- The repository uses a portfolio-style reporting structure instead of a single-report root layout.
-- `Reports/Finance` remains the primary production report module and the default deep-work starting point for new agents.
-- `Reports/Inventory` is an active Fabric iteration target: CANON Inventory Report management naming and landed-cost work ship via `Fabric/DevelopmentWorkspace/` (May 2026).
-- `Reports/DataExchange` is the active isolated exchange workspace for extraction and transfer workflows.
-- `Reports/Sales`, `Reports/Service`, and `Reports/Inventory` are active PBIP modules in the repo for both CANON and PAPERENTITY company copies.
-- `Reports/HR` and `Reports/Marketing` remain scaffolded modules.
-- The portfolio root is reserved for cross-report structure, documentation, shared assets, and report-module orchestration.
-- The Mac repo root now lives at `/Users/baqer/Code/Power BI`.
-- `History` and `Models` are no longer part of this Git repo; the repo root is now the active Power BI project root only.
-- A read-only pre-relocation Fabric tenant baseline was captured on August 29, 2026: East Asia home region, 14 API-visible workspaces, 22 report/model pairs, one SAP gateway serving all 11 business models, two East Asia capacities, refresh schedules, workspace roles, and all 170 tenant-control states. See `FABRIC_TENANT_REGION_MIGRATION_BASELINE_2026-08-29.md`.
+- The repo is a portfolio. `Reports/Finance` is the default deep-work module.
+- Active PBIP modules, each with CANON and PAPERENTITY copies: Finance, Sales, Service, Inventory, DataExchange.
+- `Reports/HR` and `Reports/Marketing` are scaffolds from 24 March 2026. They have no PBIP yet.
+- Mac root: `/Users/baqer/Code/Power BI`. Windows checkout: `C:\Work\reporting-hub`. GitHub `main` is the shared copy.
+- `History` and `Models` are outside this repo.
+- Fabric tenant baseline (29 Aug 2026, East Asia, unedited snapshot): `FABRIC_TENANT_REGION_MIGRATION_BASELINE_2026-08-29.md`.
 
-## Consistency Audit (Aug 24, 2026)
+## What matches production
 
-- New repeatable audit: `Portfolio/scripts/audit-report-consistency.py` extracts layout/design tokens from PBIP report definitions and compares them against `Portfolio/Shared/Standards/fabric-reports-layout-standard.md`.
-- Headline findings (Fabric/DevelopmentWorkspace): Canon Service is fully off-standard (1280×960 shell, no radius, Semibold 10pt titles, 167px rail, old logo sizes) and is not published to Canon Analytics; 84 off-canvas parked visuals across the other five reports; KPI gap rhythm varies 15–35.1 px across reports; semantic models use three table-naming generations (Finance legacy camelCase + suffix-Fact, Sales prefix-less, Service/Inventory clean `Dim_`/`Fact_`); measure vocabulary drifts per report (Margin % vs Gross Margin % vs Profit Margin %); only ~35–45% of measures define model-level format strings.
-- `REPORT_CATALOG.md` Sales page list is stale vs the live 6-page Fabric report (Sales Map, Salesperson, Customers, Target & Salaries).
-- **Resolved same day:** Canon Service Fabric copy migrated to the layout standard (layout-only, zero semantic changes; audit now clean — see `Reports/Service/Module/Project Memory/CURRENT_STATUS.md`). Standard scope is now six reports. Off-canvas cleanup done Aug 24 (94 inert parked visuals removed; 3 wired Paper Inventory reorder slicers kept).
-- **Format strings closed (Aug 28):** the "only ~35–45% of measures have format strings" finding was overstated — `INFO.VIEW.MEASURES()[FormatString]` returns null via REST/MCP even for formatted measures; audit format coverage from TMDL, not live metadata. True gap was the two Financial models only: 67 numeric measures each got model-level formats (IQD triple / `#,0` counts / dynamic SWITCH for the mixed-type `Overview KPI Value`). All six models now format every numeric measure; remaining unformatted are text/SVG/date helpers by design. Remaining audit items: measure vocabulary, table-naming documentation.
+On 23 September 2026 the user synced five Development Workspace reports into production, and those module PBIPs were mirrored from `Fabric/DevelopmentWorkspace` with 0 drift:
 
-## Number-Formatting Standard, Phases 1–2 (Aug 28, 2026)
+- Canon Financial, Canon Inventory, Canon Sales → Canon Analytics
+- Paper Financial, Paper Inventory → Paper Analytics
 
-- Fleet-wide KPI number formatting standardized across all six Fabric reports after a 170-card census
-  (canvas: `power-bi-number-formatting-standard.canvas.tsx`). Core rule: **the model formats, the
-  visual displays** — format strings live in the semantic model; card visuals never use Auto display
-  units and never override precision. Big raw-money cards use *fixed* visual units chosen from live
-  magnitudes (bn or M); pre-scaled `* Card Display` measures render via their model formats.
-- Model side (formatString lines only, zero DAX changes): Financial M-suffix formats gained a
-  thousands separator and dropped false decimals (`#,0"M د.ع.‏"` — fixes Canon's comma-less "1174M"),
-  bn formats now `#,0.00"bn د.ع.‏"`; Financial counts `0` → `#,0` (Departments/Accounts/BS
-  Accounts/AR Customer Count/DPO); Sales "Bn" → "bn"; Service money measures (12) gained the IQD
-  suffix (previously bare numbers — only report without currency); Service percents 0.0% → 0.00%
-  (fleet standard is 2dp); Service `#,##0` cosmetically normalized to `#,0`.
-- Report side (165 card visual.json files; `objects.value` only): Auto display units eliminated,
-  precision overrides removed, all card values normalized to 18px regular (Paper ROI was 21px — the
-  "bold" look; Inventory legacy 21px-bold defaults cleared). Three deliberate rebinds, display-only:
-  both Financial ROI "Net Revenue" cards now bind `Net Revenue Card Display` (bn, matching P&L), and
-  Sales "Unmapped Sales" binds the raw measure at fixed Millions (was a bn display measure rendering
-  128M as "0.13Bn").
-- Verified: TMDL diffs are 100% formatString lines; all 165 visual diffs touch only `objects.value`
-  except the three rebinds; filterConfig/queries byte-identical otherwise. Service TMDL is CRLF —
-  edits must preserve line endings or Fabric sees a whole-file rewrite.
-- Known data issue (not formatting): Canon Financial `ROI %` returns blank at all-years scope
-  (Paper returns a value) — capital-base measure needs investigation.
-- **Superseding money rule (same day, user decision):** all money **total** KPI cards fleet-wide
-  render in **billions with 3 decimals** ("5.886bn د.ع.") via one uniform card mechanism — raw
-  measure + fixed Billions display units + precision 3. 65 cards updated, 28 display-only rebinds
-  from `* Card Display` helpers back to raw measures (helpers are now unbound by cards; retire in a
-  later cleanup). Exemptions render exact IQD: per-unit/average cards (Avg Cost, Landed Cost/Unit,
-  Avg Collection per Txn, Avg Sales per SP/BP, Avg Parts Cost per Call) and the four cash cards on
-  both Financial reports (Paper genuinely holds ~66K in bank — bn would show 0.000). Zero model
-  changes in this pass; tables/charts keep exact model formats. Percent cards stay 2dp.
-- **Percent sweep completed (same day):** all 60 remaining sub-2dp percent formats normalized to
-  two decimals model-wide — Financial `generalLedgerEntries` budget/variance measures (0.0%),
-  Sales payout measures (0%), Inventory MoM/landed-cost measures (0.0%, signed `+0.0%;-0.0%` and
-  glyph `▲ +0.0%` variants kept their signs/glyphs). Every percent measure in all six models is now
-  `0.00%`-based. Deliberate exception: chart *axis tick* precision stays 0dp (e.g. Landed Cost value
-  axes) — ticks are round gridline numbers, not values.
-- **Phase 3 closed (same day):** (1) all 21 non-tooltip tables/matrices converged on the Financial
-  typography pattern — grid 14 / rowPadding 2 / values 13 Segoe UI / headers 12 bold / bold totals;
-  colors and alignment per-report, untouched; Inventory 380×210 tooltip table exempt. (2) 22 money
-  charts normalized: fixed-M labels 1dp, fixed-bn labels 3dp (card-aligned), auto-unit all-money
-  labels 1dp, fixed-M value axes 1dp; percent axis ticks stay 0dp. (3) Standard codified in
-  `Portfolio/Shared/Standards/fabric-reports-number-formatting.md`; `audit-report-consistency.py`
-  gained a NUMBER FORMATTING section (Auto-unit cards, percent-card 2dp, bn-card 3dp, table
-  typography, chart label precision, non-0.00% model percents) — fleet audits 0 violations; the
-  pre-standard `Reports/Service` module copy correctly flags 24, proving detection.
-- Formatting standardization is **done**. Follow-ups closed same day (later pass):
-  1. **`* Card Display` helpers retired** — 43 measures deleted (19 per Financial model, 5 Sales)
-     plus 6 dangling Q&A linguistic entities in the Sales culture file, after proof of non-use.
-  2. **Measure vocabulary aligned** — Sales `Margin %` → `Sales Margin %` (visible "Gross Margin %"
-     labels in Sales followed; plain GL margins stay Financial-only), Service `Profit Margin %` →
-     `Service Margin %`, Sales `... Gross Margin Percentage` ×2 → `... %`, Inventory
-     `In-Stock Rate` → `In-Stock Rate %` (both). Rule codified in the number-formatting standard.
-  3. **Canon `ROI %` fixed** — blank Year row in `Dim_Date` doubled `Average Company Capital` at
-     all-years scope (18.48bn vs 9.24bn) and the `ISFILTERED` guard hid Canon's only data year;
-     both measures now iterate non-blank years, guard is "exactly one year in scope" (Paper
-     semantics). Single-year values verified unchanged live (0.78% for 2026).
-- Remaining: publish Canon Service to production (user action in Fabric).
+For those five: **production = Development Workspace = `Fabric/DevelopmentWorkspace/` = the module PBIP.**
 
-## Fabric → Module Reconciliation And CI (Aug 29, 2026)
+Canon Service stays development-only. Its semantic model matches the module copy. Its report definition differs in 59 visual files. Publishing it, or copying Fabric back over the module, is a separate step.
 
-- The six approved Fabric report/model definition trees were mirrored back to their canonical
-  module PBIP homes: Canon/Paper Finance, Canon Sales, Canon/Paper Inventory, and Canon Service.
-  A second dry run reported **0 add / 0 change / 0 delete**. Module `.pbip`, `.platform`, and
-  `.pbi` identity/cache files were deliberately preserved.
-- Reusable command added: `Portfolio/scripts/sync-fabric-to-modules.py` (dry-run by default;
-  `--apply` writes). At the reconciliation milestone, all six module copies matched Fabric.
-- Canon's synthetic blank `Dim_Date[Year]` was root-caused to referential-integrity gaps, not null
-  source dates: the live model had **1,414** `Fact_BalanceSheet` and **4** `CollectionsFact` rows
-  on 2025-12-31 while `Dim_Date` began 2026-01-01. The calendar now begins 2025-01-01 so those
-  relationships resolve; the four visible Canon Year slicers explicitly exclude 2025, preserving
-  the 2026+ reporting contract. `ROI %` and `Average Company Capital` likewise restrict their
-  internal year sets to non-blank 2026+ years, so the support year cannot blank or double the ROI
-  page-load result.
-- CI guardrail added: `.github/workflows/validate-report-consistency.yml` runs
-  `audit-report-consistency.py --strict` on every push and pull request. Strict mode enforces
-  approved layout tokens plus number formatting and exits non-zero on drift.
-- Finance manifest page metadata was refreshed to the current 8-page shell, restoring a clean
-  repository structure validation.
+New Canon Financial FX tables and the 19 Sep Canon Sales trace columns stay empty until those production models refresh.
 
-## Fleet Typography And KPI Rhythm (Aug 29, 2026)
+## Standards already in force
 
-- A visual-only pass standardized all six Fabric reports: page titles/subtitles 20/13, visual
-  titles 12, KPI values 18, chart axes/data labels/legends 9, matrix row headers 13, and slicer
-  headers 14 bold Semibold as the single deliberate emphasis tier. Paper Financial ROI's six
-  Semibold KPI values and 10pt bold chart axes were corrected as part of the fleet pass.
-- Top KPI rows now sit at `y = 136`, height 104, with exact 24px gaps and equal widths inside each
-  report-family content frame. Twelve invisible Sample-2 `hioj` header placeholders were cleared.
-- Safety comparison across all 400 changed visual files found **0 query, filter, binding, visual
-  type, display-unit, or precision changes**; no model/TMDL files changed.
-- The strict audit now has a TYPOGRAPHY & RHYTHM section and currently reports **0 layout / 0
-  typography-rhythm / 0 number-formatting violations** across the Fabric fleet. The stale
-  pre-pass Paper Finance module copy fails with 224 typography/rhythm violations, proving the new
-  checks catch the previously missed drift.
-- This pass was Fabric-iteration-only at the time; it was copied back to the module PBIPs on
-  Sep 23 (see below).
+- Number format, KPI units, and the retired `* Card Display` pattern: `Portfolio/Shared/Standards/fabric-reports-number-formatting.md`.
+- Layout and typography: `Portfolio/Shared/Standards/fabric-reports-layout-standard.md`.
+- Strict check on every push: `python3 Portfolio/scripts/audit-report-consistency.py --strict Fabric/DevelopmentWorkspace`.
+- Copy Fabric definitions back to module homes with `Portfolio/scripts/sync-fabric-to-modules.py` (dry-run unless `--apply`).
 
-## Production Promotion And Repo Parity (Sep 23, 2026)
+Do not recreate `* Card Display` measures on the Fabric fleet. Paper Sales and both Data Exchange models still contain the older helpers, and Paper Sales still binds three of them. Leave those until a dedicated parity pass.
 
-- The user synced the Development Workspace to production inside Power BI:
-  Canon Financial, Canon Inventory, and Canon Sales → **Canon Analytics**; Paper Financial and
-  Paper Inventory → **Paper Analytics**. For these five reports, production now equals the
-  Development Workspace, which equals `Fabric/DevelopmentWorkspace/` on `main`.
-- Production therefore now carries everything through Sep 23: the Aug 28–29 formatting,
-  vocabulary, typography/rhythm, Card Display retirement, and Canon ROI/date-integrity passes;
-  the Sep 19 Canon Sales remarks/lead-source fields; and the six hidden Canon Financial FX
-  analysis tables (no relationships, measures, or visuals).
-- The five module PBIPs under `Reports/...` were mirrored from the Fabric copies (343 changed +
-  6 new files; `.pbip`/`.platform` identity preserved). A follow-up dry run reports 0 drift for
-  all five, each module copy passes `audit-report-consistency.py --strict` with 0 violations,
-  and structure validation passes. So for these five reports:
-  **production = Development Workspace = `Fabric/DevelopmentWorkspace/` = `Reports/...` module copy.**
-- **Canon Service is deliberately excluded** (user decision): it remains development-only, not
-  in Canon Analytics, and its module copy still differs from Fabric by 59 report files. Treat
-  the Service copy-back and production publish as one later, explicit step.
-- The production "last modified" dates in `FABRIC_TENANT_REGION_MIGRATION_BASELINE_2026-08-29.md`
-  predate this promotion; that file stays an unedited Aug 29 snapshot.
-- Remaining user checks in Fabric: confirm the five production semantic models refreshed
-  successfully after the sync (new Canon FX tables and Sales columns are empty until refresh)
-  and that gateway binding and scheduled refresh times survived.
+## Routing
 
-## Current Routing
+- `REPORT_CATALOG.md` — which reports exist.
+- `ACTIVE_FOCUS.md` — exact PBIP paths.
+- Each report’s live notes: `Reports/<Name>/Module/Project Memory/`.
+- One-off prompts and discovery scripts belong in that module’s `Archive/`, not in active memory.
 
-- Use `REPORT_CATALOG.md` as the authoritative module-status map.
-- Use `ACTIVE_FOCUS.md` as the fastest current-project routing file and canonical PBIP path map.
-- Treat module `README.md`, `AGENTS.md`, and `Module/Project Memory/` as the next layer of truth after portfolio memory.
+## Working-tree cleanup (23 Sep 2026)
 
-## Active Environments (Dual-Workstation Setup)
-
-- Mac development workspace:
-  - Cursor + GitHub + repo path: `/Users/baqer/Code/Power BI`
-- Windows server execution workspace:
-  - Cursor + GitHub + repo path: `C:\Work\reporting-hub` (Git Bash path: `/c/Work/reporting-hub`)
-- GitHub `main` is the shared source of truth across both environments.
-
-## Working Method In Use
-
-- Primary model is dual-copy sync:
-  1. Pull before work on whichever machine is active.
-  2. Commit and push from that machine.
-  3. Pull on the other machine before continuing.
-- The server is now in a validated, clean sync state after rebase conflict resolution and push/pull reconciliation.
-- Local server-only secret files are intentionally excluded from tracking:
-  - `../Shared/SAP Export Pipeline/config.json`
-  - `../Shared/SAP Export Pipeline/set_credentials.sh`
-
-## Immediate Meaning
-
-- Future department reports should be added under `Reports/`.
-- Shared standards and reusable assets should be added under `Portfolio/Shared/`.
-- Cross-report planning and architecture should be recorded in `Portfolio/Memory/`.
-- Portfolio-level exported data snapshots for assistant analysis remain under `Portfolio/Shared/Data Drops/` (cross-report scope, not Finance-only).
-
-## New Portfolio Onboarding Layer
-
-- Added first-encounter onboarding doc for agents and new contributors:
-  - `../docs/first-encounter.md`
-- Added deterministic agent operating playbook:
-  - `../docs/agent-operating-playbook.md`
-- Added AI retrieval index for generic model uploads:
-  - `../docs/ai-index.md`
-- Added portfolio contribution guide:
-  - `../CONTRIBUTING.md`
-- Added GitHub CI guardrail for structure enforcement:
-  - `.github/workflows/validate-structure.yml`
-- Added GitHub CI guardrail for markdown link health:
-  - `.github/workflows/validate-doc-links.yml`
-- Updated root navigation docs to reflect current multi-domain reality and contract-first workflow:
-  - `README.md`
-  - `AGENTS.md`
-  - `../docs/foundation.md`
-  - `../docs/portfolio-architecture.md`
-  - `../docs/structure.md`
+- 149 April Finance screenshots were untracked. They remain on this machine under `Reports/Finance/Module/Records/screenshots/` and are gitignored.
+- The three March Finance PBIP snapshots were removed from the tree. Restore steps are in `Reports/Finance/Module/Archive/README.md` (commit `2ba401a2`).
+- No company PBIP and no Fabric report file was edited in that cleanup.

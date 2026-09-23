@@ -16,4 +16,4 @@ Do not treat these as active instructions unless you are reconstructing history.
 | `REORDER_ACTIONS_TABLE_IMPLEMENTATION_PROMPT.md` | Stock Actions table build | Stock Actions page in PBIP |
 | `STOCK_COVER_IMPLEMENTATION_PROMPT.md` | Stock cover policy implementation | Stock Health page + `Fact_StockCoverPolicy` |
 
-**Still active in `Project Memory/`:** `PROMPT_NEW.md` (template), filter-hub / 1920 left-panel / OKViz / native slicer prompts (planned UX passes).
+Later prompt drafts (1920 left panel, OKViz, native slicer, Paper SAP diagnostics, and `PROMPT_NEW.md`) were moved on 23 September 2026 to `Reports/Inventory/Module/Archive/2026-09-23-prompt-drafts/`. They are not active instructions.

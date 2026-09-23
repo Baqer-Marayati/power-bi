@@ -1,5 +1,13 @@
 # Portfolio Decisions
 
+## 2026-09-23 — Working tree keeps live reports only
+
+- April Finance review screenshots stay on the authoring machine and stay out of Git (`Reports/Finance/Module/Records/screenshots/*.png` is gitignored).
+- The three March 2026 Finance pre-restore PBIP folders are not part of the working tree. Restore them from commit `2ba401a2` using `Reports/Finance/Module/Archive/README.md`.
+- One-off agent prompts and Service discovery scripts live under each module’s `Archive/`. Active `Project Memory/` keeps current status, decisions, and model notes.
+- This cleanup does not change company PBIP definitions or the Fabric workspace copies.
+- Paper Sales and both Data Exchange models still use the older `Card Display` measures. Do not delete those in a cleanup pass.
+
 ## 2026-04-04 — PAPERENTITY company branding: no logos or divider on any report page
 
 - All PAPERENTITY company reports across all domains must **not** include the top-right logo group (Aljazeera logo, Canon logo, vertical divider, their parent group).

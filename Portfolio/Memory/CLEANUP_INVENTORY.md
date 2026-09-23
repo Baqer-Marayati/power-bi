@@ -2,7 +2,7 @@
 
 ## Date
 
-- Last updated: May 3, 2026
+- Last updated: September 23, 2026
 
 ## Purpose
 
@@ -44,11 +44,11 @@ This inventory classifies cleanup candidates before moving, deleting, or consoli
 
 ## Archive Retention Decisions
 
-- `Reports/Finance/Module/Archive/Financial Report_pre-restore_20260325_224854/`
-- `Reports/Finance/Module/Archive/Financial Report_pre-restore_20260326_174712/`
-- `Reports/Finance/Module/Archive/Financial Report_pre-restore_20260326_181746/`
+Approved 23 September 2026: the three March pre-restore Finance PBIP folders were removed from the working tree. They remain in git history at commit `2ba401a2`. Restore instructions are in `Reports/Finance/Module/Archive/README.md`.
 
-These are full PBIP restore snapshots. They should be indexed and retained in Git for now. Deletion or external relocation needs explicit user approval after reviewing retention options.
+- `Financial Report_pre-restore_20260325_224854/`
+- `Financial Report_pre-restore_20260326_174712/`
+- `Financial Report_pre-restore_20260326_181746/`
 
 ## Current Guardrail Additions
 

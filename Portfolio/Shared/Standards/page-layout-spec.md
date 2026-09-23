@@ -38,7 +38,7 @@ Machine-oriented companion to [`portfolio-visual-identity.md`](portfolio-visual-
 
 See [`portfolio-visual-identity.md`](portfolio-visual-identity.md) and `kpiCard` in [`portfolio-theme.tokens.json`](portfolio-theme.tokens.json). Prefer:
 
-- Hidden built-in value label when using dedicated **`… Card Display`** measures for IQD / compact formatting.
+- Money **total** KPI cards bind the raw measure with fixed Billions display units and 3 decimal precision. Do not add `… Card Display` scaling measures. See [`fabric-reports-number-formatting.md`](fabric-reports-number-formatting.md).
 - Top accent via **drop shadow** (not a separate shape): color `#1F4E79`, Outer, angle `270`, distance `4`, blur `0`, spread `0`.
 
 ## Branding lockup (header)

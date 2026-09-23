@@ -2,13 +2,15 @@
 
 Reusable measure and modeling patterns observed across portfolio reports (especially Finance). Copy and adapt into each module’s `_Measures` or table fragments; keep module-specific names consistent with bound visuals.
 
-## Card display measures
+## Money KPI cards
 
-**Problem:** Card visuals sometimes ignore or fight format strings for large IQD values.
+**Pattern:** Keep the measure in real IQD. Bind the card to that raw measure. Set the card to fixed Billions and 3 decimal places so a total reads like `5.886bn`. Format strings stay on the measure. The card does not use Auto display units and does not override precision.
 
-**Pattern:** Create a dedicated display measure (example naming: `[Net Revenue Card Display]`) that returns a **pre-formatted string** or uses `FORMAT` / scaling logic agreed for that page. Bind the **card value** to the display measure and **hide** the card’s built-in data label if it duplicates or conflicts.
+**Retired:** `… Card Display` helpers that divided by a million or a billion. They were removed from the Fabric financial and Canon Sales models on 28 August 2026. Do not add them back.
 
-**Reference:** `Reports/Finance/Module/Project Memory/MODEL_NOTES.md` (KPI / formatting notes).
+**Still present, and still in use:** Paper Sales binds three of those helpers on KPI cards. Both Data Exchange models still contain the older Finance set. Leave those until a dedicated parity pass. Deleting them would change those reports.
+
+**Reference:** `Portfolio/Shared/Standards/fabric-reports-number-formatting.md` and `Reports/Finance/Module/Project Memory/MODEL_NOTES.md`.
 
 ## Time intelligence (YTD / prior year)
 
@@ -20,7 +22,7 @@ Reusable measure and modeling patterns observed across portfolio reports (especi
 
 When querying SAP B1 invoice-style tables (`OINV`, `ORIN`, etc.) directly, **filter `CANCELED = 'N'`** so cancellations are not double-counted. GL-based facts typically net correctly without this filter.
 
-**Reference:** `Shared/ChatContext/LESSONS.md` (2026-03-31).
+**Reference:** `Portfolio/Shared/ChatContext/LESSONS.md` (2026-03-31).
 
 ## AR / aging buckets
 

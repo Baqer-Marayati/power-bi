@@ -30,11 +30,4 @@
 - Review: direct from the active company PBIP; no zip packaging workflow
 - Clear model cache: `Reports/Service/Module/scripts/clear-model-cache.ps1`
 - Structure check: `Reports/Service/Module/scripts/validate-structure.ps1`
-- Discovery / verification helpers (untracked at time of writing — commit when stable):
-  - `verify_dim_equipment.ps1`
-  - `disc_oins_oscl_project.ps1` / `disc_oins_oscl_project2.ps1`
-  - `disc_production_calls.ps1`
-  - `disc_production_clients.ps1`
-  - `disc_production_def_compare.ps1`
-  - `disc_ocrd_solution_type.ps1`
-  - `disc_solution_type_distribution.ps1`
+- Archived discovery probes (not part of the report): `Reports/Service/Module/Archive/discovery-scripts/`

@@ -13,4 +13,4 @@
 - Keep Marketing-specific live truth inside this module.
 - Use `Module/Core/` for shared Marketing baseline assets.
 - Use `Companies/` for company-specific config and overlays.
-- Rebuild package artifacts before review.
+- Work directly from the company PBIP once it exists. There is no zip or package-report step.
