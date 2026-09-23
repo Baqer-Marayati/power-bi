@@ -314,6 +314,21 @@ The full PAPERENTITY Balance-sheet rebuild (per-day `_PP` + PEC-reversal rows + 
 
 **Validation in Desktop:** open `Canon Financial Report.pbip`, refresh, change the **As of** date on the BS page, and confirm Total Assets + Total Liabilities + Total Equity (with the synthetic `Profit Period` row) sum to 0 at any cutoff. Hide the "BS Amount" card column for `_PP` if the section total is preferred to the per-account row breakdown — same as PAPERENTITY.
 
+## CANON — Hidden FX analysis tables in the Fabric development model (2026-09-23)
+
+Six standalone, hidden tables were added to `Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel` (not the module copy, not production) for the FX / capital-preservation analysis. No relationships, no measures, no visuals use them; they are queried by DAX only.
+
+| Table | SAP source | Content |
+|---|---|---|
+| `Fact_ExchangeRate` | `ORTT` | Daily USD/EUR rate entered by the accountant, from 2025-01-01. USD 252 rows to 2026-09-23; one blank (0) entry on 2025-12-21. |
+| `Dim_CompanyCurrency` | `OADM` | Local currency **IQD**, system currency **USD** — SAP keeps a parallel dollar ledger (`SYSDeb`/`SYSCred`). |
+| `Fact_GLCurrencyMonthly` | `JDT1` + `OACT`, full history | Per account × month-end × FC currency × TransType: debit/credit in LC, SC and FC. Use for USD P&L and for FC-denominated balances. |
+| `Fact_FxDocument` | `OPCH`, `ORPC`, `ODPO`, `OPDN`, `OVPM`, `OINV`, `ORIN`, `ORCT` (from 2025-01-01, non-cancelled) | Header currency, `DocRate`, totals in LC/FC/SC. `DocRate` = 1 on IQD docs; 0 on some IQD payments. |
+| `Fact_PurchaseLineFx` | `PDN1`/`OPDN`, `PCH1`/`OPCH` | Line currency, rate, USD unit price, discount, LC/FC/SC totals per item. |
+| `Fact_ItemPrice` | `OITM` + `ITM1` + `OPLN` | Price lists 2 End User Private, 3 End User Government, 4 Reseller (all IQD). `OITM.AvgPrice` is 0 for CANON (per-warehouse costing) — take unit cost from the Inventory model's `InventoryValuation`. `LastPurCur` is USD for only ~65 items; use `Fact_PurchaseLineFx` for USD prices. |
+
+Facts learned (SAP-verified via these tables): capital 11,551,258,980 IQD = **$7,700,839.32 at exactly 1,500**; April reduction 2,309,095,995 = $1,539,397.33 at 1,500 → capital **$6,161,441.99**. Opening balances (31 Dec 2025) were converted at **1,430**. MID and Canon Middle East USD documents are booked at the official **1,320** (the Feb 2026 payment of $472,769 to Canon ME was made at 1,320); ATIC FZCO documents at market (1,512–1,554). `Partener Loan (L.G) Mr.Ali` (220101010114) is **USD 544,222.34** booked at 1,430 and not revalued. Canon ME **EUR** invoices carry USD-type rates (1,504.8 / 1,531.2) — rate-table error. `formatString: d` on the new date columns renders day-of-month only in MCP output; use `FORMAT(..., "yyyy-MM-dd")` in queries.
+
 ## PBIP / Semantic Handling Notes
 - Visual JSON changes are often the fastest safe route for layout and binding repairs.
 - Slicer polish can require structural report changes, not just font-size changes.

@@ -15,6 +15,7 @@
 - The portfolio root is reserved for cross-report structure, documentation, shared assets, and report-module orchestration.
 - The Mac repo root now lives at `/Users/baqer/Code/Power BI`.
 - `History` and `Models` are no longer part of this Git repo; the repo root is now the active Power BI project root only.
+- A read-only pre-relocation Fabric tenant baseline was captured on August 29, 2026: East Asia home region, 14 API-visible workspaces, 22 report/model pairs, one SAP gateway serving all 11 business models, two East Asia capacities, refresh schedules, workspace roles, and all 170 tenant-control states. See `FABRIC_TENANT_REGION_MIGRATION_BASELINE_2026-08-29.md`.
 
 ## Consistency Audit (Aug 24, 2026)
 
