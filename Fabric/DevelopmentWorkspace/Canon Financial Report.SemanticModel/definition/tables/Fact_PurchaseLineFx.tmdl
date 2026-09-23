@@ -1,0 +1,173 @@
+table Fact_PurchaseLineFx
+	isHidden
+	lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e50
+
+	column DocType
+		dataType: string
+		isHidden
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e51
+		summarizeBy: none
+		sourceColumn: DocType
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocEntry
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e52
+		summarizeBy: none
+		sourceColumn: DocEntry
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocNum
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e53
+		summarizeBy: none
+		sourceColumn: DocNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineNum
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e54
+		summarizeBy: none
+		sourceColumn: LineNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocDate
+		dataType: dateTime
+		isHidden
+		formatString: d
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e55
+		summarizeBy: none
+		sourceColumn: DocDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardCode
+		dataType: string
+		isHidden
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e56
+		summarizeBy: none
+		sourceColumn: CardCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CardName
+		dataType: string
+		isHidden
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e57
+		summarizeBy: none
+		sourceColumn: CardName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCode
+		dataType: string
+		isHidden
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e58
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemDescription
+		dataType: string
+		isHidden
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e59
+		summarizeBy: none
+		sourceColumn: ItemDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: double
+		isHidden
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e5a
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineCurrency
+		dataType: string
+		isHidden
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e5b
+		summarizeBy: none
+		sourceColumn: LineCurrency
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineRate
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e5c
+		summarizeBy: none
+		sourceColumn: LineRate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPriceFC
+		dataType: double
+		isHidden
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e5d
+		summarizeBy: none
+		sourceColumn: UnitPriceFC
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscountPct
+		dataType: double
+		isHidden
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e5e
+		summarizeBy: none
+		sourceColumn: DiscountPct
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineTotalLC
+		dataType: double
+		isHidden
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e5f
+		summarizeBy: sum
+		sourceColumn: LineTotalLC
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineTotalFC
+		dataType: double
+		isHidden
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e60
+		summarizeBy: sum
+		sourceColumn: LineTotalFC
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineTotalSC
+		dataType: double
+		isHidden
+		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e61
+		summarizeBy: sum
+		sourceColumn: LineTotalSC
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_PurchaseLineFx = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT 'Goods Receipt PO' AS ""DocType"", H.""DocEntry"", H.""DocNum"", L.""LineNum"", H.""DocDate"", H.""CardCode"", H.""CardName"", L.""ItemCode"", L.""Dscription"" AS ""ItemDescription"", L.""Quantity"", L.""Currency"" AS ""LineCurrency"", L.""Rate"" AS ""LineRate"", L.""Price"" AS ""UnitPriceFC"", L.""DiscPrcnt"" AS ""DiscountPct"", L.""LineTotal"" AS ""LineTotalLC"", L.""TotalFrgn"" AS ""LineTotalFC"", L.""TotalSumSy"" AS ""LineTotalSC""#(lf)FROM ""CANON"".""OPDN"" H INNER JOIN ""CANON"".""PDN1"" L ON L.""DocEntry"" = H.""DocEntry""#(lf)WHERE H.""CANCELED"" = 'N' AND H.""DocDate"" >= '2025-01-01'#(lf)UNION ALL#(lf)SELECT 'A/P Invoice', H.""DocEntry"", H.""DocNum"", L.""LineNum"", H.""DocDate"", H.""CardCode"", H.""CardName"", L.""ItemCode"", L.""Dscription"", L.""Quantity"", L.""Currency"", L.""Rate"", L.""Price"", L.""DiscPrcnt"", L.""LineTotal"", L.""TotalFrgn"", L.""TotalSumSy""#(lf)FROM ""CANON"".""OPCH"" H INNER JOIN ""CANON"".""PCH1"" L ON L.""DocEntry"" = H.""DocEntry""#(lf)WHERE H.""CANCELED"" = 'N' AND H.""DocDate"" >= '2025-01-01'")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation

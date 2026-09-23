@@ -1,8 +1,10 @@
 table Fact_FxDocument
+	isHidden
 	lineageTag: 7c3f9e42-5d0a-4f8c-9b34-9a6e2d1f0c30
 
 	column DocType
 		dataType: string
+		isHidden
 		lineageTag: 7c3f9e42-5d0a-4f8c-9b34-9a6e2d1f0c31
 		summarizeBy: none
 		sourceColumn: DocType
@@ -11,6 +13,7 @@ table Fact_FxDocument
 
 	column DocEntry
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 7c3f9e42-5d0a-4f8c-9b34-9a6e2d1f0c32
 		summarizeBy: none
@@ -20,6 +23,7 @@ table Fact_FxDocument
 
 	column DocNum
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 7c3f9e42-5d0a-4f8c-9b34-9a6e2d1f0c33
 		summarizeBy: none
@@ -29,6 +33,7 @@ table Fact_FxDocument
 
 	column DocDate
 		dataType: dateTime
+		isHidden
 		formatString: d
 		lineageTag: 7c3f9e42-5d0a-4f8c-9b34-9a6e2d1f0c34
 		summarizeBy: none
@@ -38,6 +43,7 @@ table Fact_FxDocument
 
 	column CardCode
 		dataType: string
+		isHidden
 		lineageTag: 7c3f9e42-5d0a-4f8c-9b34-9a6e2d1f0c35
 		summarizeBy: none
 		sourceColumn: CardCode
@@ -46,6 +52,7 @@ table Fact_FxDocument
 
 	column CardName
 		dataType: string
+		isHidden
 		lineageTag: 7c3f9e42-5d0a-4f8c-9b34-9a6e2d1f0c36
 		summarizeBy: none
 		sourceColumn: CardName
@@ -54,6 +61,7 @@ table Fact_FxDocument
 
 	column DocCurrency
 		dataType: string
+		isHidden
 		lineageTag: 7c3f9e42-5d0a-4f8c-9b34-9a6e2d1f0c37
 		summarizeBy: none
 		sourceColumn: DocCurrency
@@ -62,6 +70,7 @@ table Fact_FxDocument
 
 	column DocRate
 		dataType: double
+		isHidden
 		formatString: #,0.00
 		lineageTag: 7c3f9e42-5d0a-4f8c-9b34-9a6e2d1f0c38
 		summarizeBy: none
@@ -71,6 +80,7 @@ table Fact_FxDocument
 
 	column TotalLC
 		dataType: double
+		isHidden
 		lineageTag: 7c3f9e42-5d0a-4f8c-9b34-9a6e2d1f0c39
 		summarizeBy: sum
 		sourceColumn: TotalLC
@@ -79,6 +89,7 @@ table Fact_FxDocument
 
 	column TotalFC
 		dataType: double
+		isHidden
 		lineageTag: 7c3f9e42-5d0a-4f8c-9b34-9a6e2d1f0c3a
 		summarizeBy: sum
 		sourceColumn: TotalFC
@@ -87,6 +98,7 @@ table Fact_FxDocument
 
 	column TotalSC
 		dataType: double
+		isHidden
 		lineageTag: 7c3f9e42-5d0a-4f8c-9b34-9a6e2d1f0c3b
 		summarizeBy: sum
 		sourceColumn: TotalSC
