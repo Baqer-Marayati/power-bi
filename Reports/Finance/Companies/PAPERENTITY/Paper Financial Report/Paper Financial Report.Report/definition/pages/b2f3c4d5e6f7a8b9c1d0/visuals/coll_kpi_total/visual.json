@@ -3,10 +3,10 @@
   "name": "coll_kpi_total",
   "position": {
     "x": 520,
-    "y": 135,
+    "y": 136,
     "z": 1000,
     "height": 104,
-    "width": 239.13,
+    "width": 248.0,
     "tabOrder": 4000
   },
   "visual": {
@@ -78,6 +78,13 @@
               "expr": {
                 "Literal": {
                   "Value": "3L"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             }

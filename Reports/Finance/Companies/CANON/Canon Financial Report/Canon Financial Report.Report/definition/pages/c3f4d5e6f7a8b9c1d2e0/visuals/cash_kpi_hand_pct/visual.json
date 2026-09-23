@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "cash_kpi_hand_pct",
   "position": {
-    "x": 1616.87,
-    "y": 135,
+    "x": 1608.0,
+    "y": 136,
     "z": 8000,
     "height": 104,
-    "width": 239.13,
+    "width": 248.0,
     "tabOrder": 7000
   },
   "visual": {
@@ -79,6 +79,13 @@
               "expr": {
                 "Literal": {
                   "Value": "2L"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             }

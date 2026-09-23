@@ -2,7 +2,7 @@
 
 ## Date
 
-- Last updated: August 29, 2026
+- Last updated: September 23, 2026
 
 ## Current Source Of Truth
 
@@ -25,8 +25,12 @@
   Segoe UI for KPI values, page/visual titles, chart axes/labels/legends, and matrix row headers;
   slicer headers are the single bold Semibold tier. Top KPI rows use 24px gaps. Paper ROI's
   Semibold card values and 10pt bold axes are fixed. The Fabric copies pass the expanded strict
-  audit with zero violations and no query/filter/binding/model changes. Module PBIP definitions
-  have not yet received this later pass.
+  audit with zero violations and no query/filter/binding/model changes.
+- **Production = development = module (2026-09-23):** the user synced both Financial reports from
+  the Development Workspace to Canon Analytics and Paper Analytics inside Power BI, and both
+  module PBIPs were then mirrored from `Fabric/DevelopmentWorkspace` (0 drift, strict audit
+  clean). Canon production therefore now includes the six hidden FX analysis tables (see
+  `MODEL_NOTES.md`); they stay empty until the production model refreshes.
 - Fabric DevelopmentWorkspace copies now have consistent left slicer rails on the last four pages for both CANON and PAPERENTITY: `Accounts Receivable`, `Accounts Payable`, `Collections`, and `Cash`. CANON keeps its existing AR rail, AP/Cash now have rails, and Collections uses the same period/customer/collector/origin rail as PAPERENTITY.
 - AR/AP/Cash rails intentionally use real snapshot-domain fields, not a `Dim_Date` as-of slicer. Collections uses `Dim_Date` Year/Quarter/Month because `CollectionsFact.PostingDate -> Dim_Date.Date` is an active model relationship.
 - Fabric DevelopmentWorkspace Collections now uses the approved two-main-visual layout in both company reports: `Collections by Customer` table plus one tall `Collections by Month` column chart. Cash now uses the approved three-main-visual layout: balance-by-account bar, distribution-by-type donut, and `Cash Accounts Detail` table.

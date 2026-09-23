@@ -1,9 +1,14 @@
 # Current Status
 
 ## Date
-- Last updated: August 29, 2026
+- Last updated: September 23, 2026
 
 ## Current source snapshot (supersedes older layout notes below)
+- **Sep 23, 2026 — production = development = module:** the user synced Canon Sales from the
+  Development Workspace to Canon Analytics inside Power BI, and the module PBIP was then mirrored
+  from `Fabric/DevelopmentWorkspace` (0 drift, strict audit clean). Production and the module now
+  include the Aug 29 typography/rhythm pass and the Sep 19 `SalesFact` SAP remarks / line text /
+  lead-source trace fields (empty until the production model refreshes).
 - The Canon module `.Report` and `.SemanticModel` definitions now mirror the approved
   `Fabric/DevelopmentWorkspace/Canon Sales Report` copy exactly; module `.pbip` and `.platform`
   identity files were preserved.
@@ -13,9 +18,8 @@
   **Sales Margin %**; `Monthly Salary Gross Margin %` and `Quarter Commission Gross Margin %`
   use the standard percent suffix. The obsolete scaled `* Card Display` helpers are deleted.
 - The Fabric copy received the later fleet typography/rhythm pass on Aug 29 (regular Segoe UI
-  hierarchy plus 24px KPI gaps) and passes the expanded strict audit with zero violations. This
-  module PBIP definition predates that later Fabric-only pass and needs an explicit copy-back
-  before it can pass the new typography checks.
+  hierarchy plus 24px KPI gaps) and passes the expanded strict audit with zero violations; the
+  module copy received it on Sep 23.
 
 ## Active Project
 - `C:\Work\reporting-hub\Reports\Sales\Sales Report`

@@ -1,0 +1,42 @@
+table Dim_CompanyCurrency
+	isHidden
+	lineageTag: 5a1f7c20-3b8e-4d6a-9f12-7e4c0b9d8a10
+
+	column CompanyName
+		dataType: string
+		isHidden
+		lineageTag: 5a1f7c20-3b8e-4d6a-9f12-7e4c0b9d8a11
+		summarizeBy: none
+		sourceColumn: CompanyName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocalCurrency
+		dataType: string
+		isHidden
+		lineageTag: 5a1f7c20-3b8e-4d6a-9f12-7e4c0b9d8a12
+		summarizeBy: none
+		sourceColumn: LocalCurrency
+
+		annotation SummarizationSetBy = Automatic
+
+	column SystemCurrency
+		dataType: string
+		isHidden
+		lineageTag: 5a1f7c20-3b8e-4d6a-9f12-7e4c0b9d8a13
+		summarizeBy: none
+		sourceColumn: SystemCurrency
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_CompanyCurrency = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.Query("dsn=HANA_B1", "SELECT#(lf)    ""CompnyName"" AS ""CompanyName"",#(lf)    ""MainCurncy"" AS ""LocalCurrency"",#(lf)    ""SysCurrncy"" AS ""SystemCurrency""#(lf)FROM ""CANON"".""OADM""")
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation

@@ -11,6 +11,8 @@
 
 This is the pre-change baseline for a possible Microsoft-supported tenant relocation to Europe.
 
+> Note (Sep 23, 2026): the five production reports were re-synced from the Development Workspace on Sep 23, so the production "last modified" dates below are historical. See `CURRENT_STATUS.md` → Production Promotion And Repo Parity.
+
 ## Executive inventory
 
 - 14 workspaces are returned by the admin API:

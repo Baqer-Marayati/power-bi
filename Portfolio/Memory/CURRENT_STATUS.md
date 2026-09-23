@@ -2,7 +2,7 @@
 
 ## Date
 
-- Last updated: August 29, 2026
+- Last updated: September 23, 2026
 
 ## Current Reality
 
@@ -120,9 +120,32 @@
   typography-rhythm / 0 number-formatting violations** across the Fabric fleet. The stale
   pre-pass Paper Finance module copy fails with 224 typography/rhythm violations, proving the new
   checks catch the previously missed drift.
-- This pass is Fabric-iteration-only. Module PBIP definitions have not yet been copied back; use
-  `Portfolio/scripts/sync-fabric-to-modules.py --apply` as a separate reconciliation step when
-  requested.
+- This pass was Fabric-iteration-only at the time; it was copied back to the module PBIPs on
+  Sep 23 (see below).
+
+## Production Promotion And Repo Parity (Sep 23, 2026)
+
+- The user synced the Development Workspace to production inside Power BI:
+  Canon Financial, Canon Inventory, and Canon Sales → **Canon Analytics**; Paper Financial and
+  Paper Inventory → **Paper Analytics**. For these five reports, production now equals the
+  Development Workspace, which equals `Fabric/DevelopmentWorkspace/` on `main`.
+- Production therefore now carries everything through Sep 23: the Aug 28–29 formatting,
+  vocabulary, typography/rhythm, Card Display retirement, and Canon ROI/date-integrity passes;
+  the Sep 19 Canon Sales remarks/lead-source fields; and the six hidden Canon Financial FX
+  analysis tables (no relationships, measures, or visuals).
+- The five module PBIPs under `Reports/...` were mirrored from the Fabric copies (343 changed +
+  6 new files; `.pbip`/`.platform` identity preserved). A follow-up dry run reports 0 drift for
+  all five, each module copy passes `audit-report-consistency.py --strict` with 0 violations,
+  and structure validation passes. So for these five reports:
+  **production = Development Workspace = `Fabric/DevelopmentWorkspace/` = `Reports/...` module copy.**
+- **Canon Service is deliberately excluded** (user decision): it remains development-only, not
+  in Canon Analytics, and its module copy still differs from Fabric by 59 report files. Treat
+  the Service copy-back and production publish as one later, explicit step.
+- The production "last modified" dates in `FABRIC_TENANT_REGION_MIGRATION_BASELINE_2026-08-29.md`
+  predate this promotion; that file stays an unedited Aug 29 snapshot.
+- Remaining user checks in Fabric: confirm the five production semantic models refreshed
+  successfully after the sync (new Canon FX tables and Sales columns are empty until refresh)
+  and that gateway binding and scheduled refresh times survived.
 
 ## Current Routing
 

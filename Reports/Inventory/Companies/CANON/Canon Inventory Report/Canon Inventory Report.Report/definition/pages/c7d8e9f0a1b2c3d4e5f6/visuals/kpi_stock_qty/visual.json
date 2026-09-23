@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "kpi_stock_qty",
   "position": {
-    "x": 787.1428571428572,
-    "y": 136.66666666666669,
+    "x": 787.5619047619048,
+    "y": 136,
     "z": 3000,
     "height": 104,
-    "width": 254.2857142857143,
+    "width": 251.89523809523808,
     "tabOrder": 8000
   },
   "visual": {
@@ -73,6 +73,13 @@
                   "Value": "1D"
                 }
               }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
             }
           },
           "selector": {
@@ -99,6 +106,13 @@
               "expr": {
                 "Literal": {
                   "Value": "1D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             }

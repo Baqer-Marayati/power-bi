@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "recv_kpi_customers",
   "position": {
-    "x": 1198.4,
-    "y": 135,
+    "x": 1200.0,
+    "y": 136,
     "z": 4000,
     "height": 104,
-    "width": 205.34,
+    "width": 202.66666666666666,
     "tabOrder": 4000
   },
   "visual": {
@@ -79,6 +79,13 @@
               "expr": {
                 "Literal": {
                   "Value": "2L"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             }

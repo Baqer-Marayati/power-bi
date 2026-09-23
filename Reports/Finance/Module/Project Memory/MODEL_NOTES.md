@@ -316,7 +316,7 @@ The full PAPERENTITY Balance-sheet rebuild (per-day `_PP` + PEC-reversal rows + 
 
 ## CANON — Hidden FX analysis tables in the Fabric development model (2026-09-23)
 
-Six standalone, hidden tables were added to `Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel` (not the module copy, not production) for the FX / capital-preservation analysis. No relationships, no measures, no visuals use them; they are queried by DAX only.
+Six standalone, hidden tables were added to `Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel` for the FX / capital-preservation analysis; since Sep 23 they are also in the Canon module copy and in Canon Analytics production. No relationships, no measures, no visuals use them; they are queried by DAX only.
 
 | Table | SAP source | Content |
 |---|---|---|

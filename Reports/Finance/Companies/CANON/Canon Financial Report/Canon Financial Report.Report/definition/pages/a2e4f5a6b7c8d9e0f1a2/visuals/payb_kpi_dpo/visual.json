@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "payb_kpi_dpo",
   "position": {
-    "x": 1666,
-    "y": 135,
+    "x": 1673.7142857142858,
+    "y": 136,
     "z": 7000,
     "height": 104,
-    "width": 176,
+    "width": 168.28571428571428,
     "tabOrder": 7000
   },
   "visual": {
@@ -72,6 +72,13 @@
               "expr": {
                 "Literal": {
                   "Value": "1D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             }

@@ -2,9 +2,14 @@
 
 ## Date
 
-- Last updated: August 29, 2026
+- Last updated: September 23, 2026
 
 ## Current snapshot
+
+- **Sep 23, 2026 — production = development = module:** the user synced Canon Inventory to
+  Canon Analytics and Paper Inventory to Paper Analytics from the Development Workspace inside
+  Power BI. Both module PBIPs were then mirrored from `Fabric/DevelopmentWorkspace` (0 drift,
+  strict audit clean), so they now include the Aug 29 typography/rhythm pass.
 
 - **Aug 29, 2026 — Fabric/module parity restored:** both Canon and Paper module `.Report` and
   `.SemanticModel` definition trees now mirror their approved Fabric copies exactly (module
