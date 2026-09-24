@@ -19,7 +19,7 @@ Add durable cross-report platform decisions here as the reporting ecosystem grow
 ## Workspace content state (September 24, 2026)
 
 - Production workspaces are not Git-connected (shared capacity keeps them Pro-viewable); the only Git-synced Fabric folder is `Fabric/DevelopmentWorkspace/`.
-- **Canon Analytics** (Financial, Inventory, Sales, Service) and **Paper Analytics** (Financial, Inventory) match the Development Workspace as of Sep 24, 2026. Their repo mirrors are `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/`.
+- **Canon Analytics** (Financial, Inventory, Sales) and **Paper Analytics** (Financial, Inventory) match the Development Workspace. Their repo mirrors are `Fabric/CanonAnalytics/` and `Fabric/PaperAnalytics/`. Canon Service was removed from Canon Analytics on 24 Sep 2026 and remains in the Development Workspace only.
 - Promotion is now scripted: `Portfolio/scripts/fabric_release.py` uses the Power BI API service principal to update the live items in place (Fabric `updateDefinition`), keep the gateway binding, refresh, and smoke-check. It replaces the manual Desktop publish from the server. Deployment pipelines are still not used.
 - The service principal must be a **User** on the **B1HANA** connection (granted 24 Sep 2026). Without it, a model the API creates binds to a personal gateway with no credentials, and refresh fails with "data source is missing credentials."
 - Models the API creates are owned by the service principal. Only the owner can change their gateway binding, so rebinding them from the Power BI UI needs a "Take over" first.

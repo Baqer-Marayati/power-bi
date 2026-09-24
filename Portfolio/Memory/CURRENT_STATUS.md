@@ -24,11 +24,11 @@ The repo now mirrors the three Power BI workspaces. Full procedure: `Fabric/READ
 
 ## What is live
 
-All six reports match their live workspace. `fabric_release.py status` confirmed it on 24 Sep 2026, comparing content and ignoring formatting-only differences.
+The five live reports match their live workspace. `fabric_release.py status` confirmed the six-report set on 24 Sep 2026, comparing content and ignoring formatting-only differences. Canon Service was removed from Canon Analytics later the same day.
 
-- Canon Analytics: Canon Financial, Canon Inventory, Canon Sales, Canon Service.
+- Canon Analytics: Canon Financial, Canon Inventory, Canon Sales.
 - Paper Analytics: Paper Financial, Paper Inventory.
-- Canon Service went live on 24 Sep 2026, published by the API. Its scheduled refresh is still off.
+- Canon Service was published on 24 Sep 2026 as an API test, then removed from Canon Analytics the same day. The Development Workspace copy remains.
 - Every live model is on the B1HANA connection (`SAPB1_GATEWAY`).
 - The release tool was tested end to end on 24 Sep 2026 with an in-place republish of Canon Service. The report link stayed the same, the gateway held, the refresh completed, and live matched the mirror afterwards.
 

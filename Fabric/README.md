@@ -26,7 +26,7 @@ Each report is always in the Development Workspace. Canon reports go live in Can
 | Canon Financial Report | Canon Analytics |
 | Canon Inventory Report | Canon Analytics |
 | Canon Sales Report | Canon Analytics |
-| Canon Service Report | Canon Analytics |
+| Canon Service Report | not live; Development Workspace only |
 | Paper Financial Report | Paper Analytics |
 | Paper Inventory Report | Paper Analytics |
 

@@ -6,7 +6,7 @@ This is the fastest high-signal orientation file for the Service Performance Rep
 
 ## What This Module Should Contain
 
-- pointers to the active PBIP project for Service Performance Report (edited in `Fabric/DevelopmentWorkspace/Canon Service Report.pbip`; live copy in `Fabric/CanonAnalytics/`)
+- pointers to the active PBIP project for Service Performance Report (edited in `Fabric/DevelopmentWorkspace/Canon Service Report.pbip`; not currently live)
 - report-specific docs
 - report-specific memory
 - report-specific exports, records, and archives

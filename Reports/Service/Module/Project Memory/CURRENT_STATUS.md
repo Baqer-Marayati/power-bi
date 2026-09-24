@@ -3,10 +3,10 @@
 ## Date
 - Last updated: September 24, 2026
 
-## Live in Canon Analytics (2026-09-24)
-- Canon Service Report went live in Canon Analytics on 24 Sep 2026. It was published by the API and runs on the B1HANA gateway connection. The first refresh loaded 1,654 service calls.
-- Scheduled refresh on the live model is **off**. The other Canon reports refresh at 08:00, 11:00, 14:00, 17:00, and 20:00 Arabic Standard Time.
-- The module report copy was removed in the same restructure. Edit `Fabric/DevelopmentWorkspace/Canon Service Report.*`; the live mirror is `Fabric/CanonAnalytics/Canon Service Report.*`.
+## Development Workspace only (2026-09-24)
+- Canon Service Report was published to Canon Analytics on 24 Sep 2026 as an API test, then removed from Canon Analytics the same day. The report and its semantic model are gone from that workspace. The Development Workspace copy is unchanged.
+- The next publish creates a new live report and model (`fabric_release.py publish "Canon Service Report" --create`).
+- Edit `Fabric/DevelopmentWorkspace/Canon Service Report.*`. There is no live mirror under `Fabric/CanonAnalytics/`.
 
 ## Fabric/module parity refreshed (2026-08-29)
 - The Canon module `.Report` and `.SemanticModel` definitions were reconciled again from the
@@ -45,10 +45,10 @@
 
 ## Active Project
 - Service Performance Report — module activated with CANON company config.
-- Edit PBIP: `Fabric/DevelopmentWorkspace/Canon Service Report.pbip`. Live copy (read-only): `Fabric/CanonAnalytics/Canon Service Report.*`.
+- Edit PBIP: `Fabric/DevelopmentWorkspace/Canon Service Report.pbip`. Not live in Canon Analytics as of 24 Sep 2026.
 
 ## Current State
-- Sep 24, 2026 — repo restructured to mirror the workspaces: edit `Fabric/DevelopmentWorkspace/`, the live copy is in `Fabric/CanonAnalytics/`, publish with `Portfolio/scripts/fabric_release.py`. Module report copies were removed; the Paper Service copy was parked under `Reports/Service/Module/Archive/2026-09-24-parked-reports/PAPERENTITY/`.
+- Sep 24, 2026 — repo restructured to mirror the workspaces. Edit `Fabric/DevelopmentWorkspace/`. Module report copies were removed; the Paper Service copy was parked under `Reports/Service/Module/Archive/2026-09-24-parked-reports/PAPERENTITY/`. Later the same day the live Canon Analytics copy was deleted; the Development Workspace copy remains.
 - **Phase 1 (SAP Data Discovery) COMPLETE.** Full results in `docs/PHASE1_DISCOVERY.md`.
 - **Phase 2 (Semantic Model Design) COMPLETE.**
 - **Phase 3 (Report Pages) COMPLETE.** 5 pages built as PBIR JSON under `Canon Service Report.Report/definition/pages/`.

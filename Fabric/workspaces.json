@@ -56,8 +56,8 @@
       "live": "CanonAnalytics",
       "devReportId": "d4ec7521-1cd8-4087-ad2d-462b59ba20d5",
       "devModelId": "eef4b55c-fd94-45e0-8e83-d37bb38ccab7",
-      "liveReportId": "aa782e34-5924-46dc-8af2-fd437a5ac945",
-      "liveModelId": "a26fb5ed-aab0-44a4-b515-10374d177145",
+      "liveReportId": null,
+      "liveModelId": null,
       "smokeQuery": "EVALUATE ROW(\"Rows\", COUNTROWS(Fact_ServiceCalls))"
     },
     "Paper Financial Report": {

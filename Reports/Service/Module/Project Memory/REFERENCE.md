@@ -6,7 +6,7 @@
 - PBIP project (CANON tenant, edit): `Fabric/DevelopmentWorkspace/Canon Service Report.pbip`
 - Report definition (CANON): `Fabric/DevelopmentWorkspace/Canon Service Report.Report/definition/`
 - Semantic model (CANON): `Fabric/DevelopmentWorkspace/Canon Service Report.SemanticModel/definition/`
-- Live copy (CANON, read-only): `Fabric/CanonAnalytics/Canon Service Report.*`
+- Live copy (CANON): none as of 24 Sep 2026. Removed from Canon Analytics; republish with `--create`.
 - PBIP project (PAPERENTITY tenant, parked): `Reports/Service/Module/Archive/2026-09-24-parked-reports/PAPERENTITY/Paper Service Report/Paper Service Report.pbip`
 - Company config: `Reports/Service/Companies/CANON/config/`
 - Release tool: `Portfolio/scripts/fabric_release.py`; publish log in `Fabric/RELEASES.md`

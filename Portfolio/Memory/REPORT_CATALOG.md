@@ -22,7 +22,7 @@ Report definitions live in `Fabric/` (see `Fabric/README.md`). Edit `Fabric/Deve
 
 - Module path: `Reports/Service`
 - Status: Active
-- Reports: **Canon Service Report** (live in Canon Analytics since 24 Sep 2026). PBIP: `Fabric/DevelopmentWorkspace/Canon Service Report.pbip`. Paper Service Report is parked in `Module/Archive/2026-09-24-parked-reports/`.
+- Reports: **Canon Service Report** is in the Development Workspace only. It was removed from Canon Analytics on 24 Sep 2026. PBIP: `Fabric/DevelopmentWorkspace/Canon Service Report.pbip`. Paper Service Report is parked in `Module/Archive/2026-09-24-parked-reports/`.
 - Notes: Service Performance Report — 5-page PBIP with SAP HANA ODBC semantic model (CANON schema).
 
 ### Inventory
