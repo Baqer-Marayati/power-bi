@@ -1,10 +1,8 @@
 table Fact_GLCurrencyMonthly
-	isHidden
 	lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b20
 
 	column AcctCode
 		dataType: string
-		isHidden
 		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b21
 		summarizeBy: none
 		sourceColumn: AcctCode
@@ -13,7 +11,6 @@ table Fact_GLCurrencyMonthly
 
 	column AcctName
 		dataType: string
-		isHidden
 		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b22
 		summarizeBy: none
 		sourceColumn: AcctName
@@ -22,8 +19,7 @@ table Fact_GLCurrencyMonthly
 
 	column MonthEnd
 		dataType: dateTime
-		isHidden
-		formatString: d
+		formatString: yyyy-mm-dd
 		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b23
 		summarizeBy: none
 		sourceColumn: MonthEnd
@@ -32,7 +28,6 @@ table Fact_GLCurrencyMonthly
 
 	column FCCurrency
 		dataType: string
-		isHidden
 		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b24
 		summarizeBy: none
 		sourceColumn: FCCurrency
@@ -41,7 +36,6 @@ table Fact_GLCurrencyMonthly
 
 	column TransType
 		dataType: string
-		isHidden
 		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b25
 		summarizeBy: none
 		sourceColumn: TransType
@@ -50,7 +44,6 @@ table Fact_GLCurrencyMonthly
 
 	column DebitLC
 		dataType: double
-		isHidden
 		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b26
 		summarizeBy: sum
 		sourceColumn: DebitLC
@@ -59,7 +52,6 @@ table Fact_GLCurrencyMonthly
 
 	column CreditLC
 		dataType: double
-		isHidden
 		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b27
 		summarizeBy: sum
 		sourceColumn: CreditLC
@@ -68,7 +60,6 @@ table Fact_GLCurrencyMonthly
 
 	column DebitSC
 		dataType: double
-		isHidden
 		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b28
 		summarizeBy: sum
 		sourceColumn: DebitSC
@@ -77,7 +68,6 @@ table Fact_GLCurrencyMonthly
 
 	column CreditSC
 		dataType: double
-		isHidden
 		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b29
 		summarizeBy: sum
 		sourceColumn: CreditSC
@@ -86,7 +76,6 @@ table Fact_GLCurrencyMonthly
 
 	column DebitFC
 		dataType: double
-		isHidden
 		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b2a
 		summarizeBy: sum
 		sourceColumn: DebitFC
@@ -95,7 +84,6 @@ table Fact_GLCurrencyMonthly
 
 	column CreditFC
 		dataType: double
-		isHidden
 		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b2b
 		summarizeBy: sum
 		sourceColumn: CreditFC
@@ -104,7 +92,6 @@ table Fact_GLCurrencyMonthly
 
 	column Lines
 		dataType: int64
-		isHidden
 		formatString: 0
 		lineageTag: 6b2e8d31-4c9f-4e7b-8a23-8f5d1c0e9b2c
 		summarizeBy: sum

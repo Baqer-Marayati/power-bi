@@ -1,11 +1,9 @@
 table Fact_ExchangeRate
-	isHidden
 	lineageTag: c3e8a1b4-7d2f-4e91-9a60-1b5c8d4e2f70
 
 	column RateDate
 		dataType: dateTime
-		isHidden
-		formatString: d
+		formatString: yyyy-mm-dd
 		lineageTag: c3e8a1b4-7d2f-4e91-9a60-1b5c8d4e2f71
 		summarizeBy: none
 		sourceColumn: RateDate
@@ -14,7 +12,6 @@ table Fact_ExchangeRate
 
 	column Currency
 		dataType: string
-		isHidden
 		lineageTag: c3e8a1b4-7d2f-4e91-9a60-1b5c8d4e2f72
 		summarizeBy: none
 		sourceColumn: Currency
@@ -23,7 +20,6 @@ table Fact_ExchangeRate
 
 	column Rate
 		dataType: double
-		isHidden
 		formatString: #,0.00
 		lineageTag: c3e8a1b4-7d2f-4e91-9a60-1b5c8d4e2f73
 		summarizeBy: none

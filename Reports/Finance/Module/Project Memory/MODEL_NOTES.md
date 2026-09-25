@@ -318,6 +318,8 @@ The full PAPERENTITY Balance-sheet rebuild (per-day `_PP` + PEC-reversal rows + 
 
 Six standalone, hidden tables were added to `Fabric/DevelopmentWorkspace/Canon Financial Report.SemanticModel` for the FX / capital-preservation analysis; since Sep 23 they are also in Canon Analytics production (and its mirror `Fabric/CanonAnalytics/`). No relationships, no measures, no visuals use them; they are queried by DAX only.
 
+**2026-09-25:** all six tables and their columns are **unhidden** in the Development model, and their date columns use `yyyy-mm-dd` instead of `d`. Reason: viewers' AI agents (Jabbar, Walid, Ali — all Viewer + Build) could not find the exchange rates because hidden tables are left out of the schema AI tools read. Hiding was never access control here; Build already allowed querying them by name. Production stays hidden until the Canon Financial Report is published.
+
 | Table | SAP source | Content |
 |---|---|---|
 | `Fact_ExchangeRate` | `ORTT` | Daily USD/EUR rate entered by the accountant, from 2025-01-01. USD 252 rows to 2026-09-23; one blank (0) entry on 2025-12-21. |
