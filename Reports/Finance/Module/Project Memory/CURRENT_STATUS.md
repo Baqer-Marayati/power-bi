@@ -2,7 +2,7 @@
 
 ## Date
 
-- Last updated: September 24, 2026
+- Last updated: September 25, 2026
 
 ## Current Source Of Truth
 
@@ -13,6 +13,7 @@
 
 ## Current State
 
+- Sep 25, 2026 — **Canon Financial Report published to Canon Analytics** (commit `d5aed973`, model only, refresh Completed, `Fact_PNL` 18,096 rows). The six FX analysis tables are now **visible** in production so viewers' AI agents can find the exchange rates; date columns show `yyyy-mm-dd`. No report page changed. See `MODEL_NOTES.md`.
 - Sep 24, 2026 — repo restructured to mirror the workspaces: edit `Fabric/DevelopmentWorkspace/`, live copies are in `Fabric/CanonAnalytics/` / `Fabric/PaperAnalytics/`, publish with `Portfolio/scripts/fabric_release.py`. Module report copies were removed.
 - Finance is the primary production module in the portfolio.
 - The report runs from company-specific PBIPs under `Fabric/DevelopmentWorkspace/`, not from the older `Reports/Finance/Financial Report/` or `Reports/Finance/Companies/<CODE>/` report paths.

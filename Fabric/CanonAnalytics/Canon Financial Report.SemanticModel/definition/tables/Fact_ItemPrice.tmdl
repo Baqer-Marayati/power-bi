@@ -1,10 +1,8 @@
 table Fact_ItemPrice
-	isHidden
 	lineageTag: 8d4a0f53-6e1b-4a9d-8c45-0b7f3e2a1d40
 
 	column ItemCode
 		dataType: string
-		isHidden
 		lineageTag: 8d4a0f53-6e1b-4a9d-8c45-0b7f3e2a1d41
 		summarizeBy: none
 		sourceColumn: ItemCode
@@ -13,7 +11,6 @@ table Fact_ItemPrice
 
 	column ItemName
 		dataType: string
-		isHidden
 		lineageTag: 8d4a0f53-6e1b-4a9d-8c45-0b7f3e2a1d42
 		summarizeBy: none
 		sourceColumn: ItemName
@@ -22,7 +19,6 @@ table Fact_ItemPrice
 
 	column BusinessType
 		dataType: string
-		isHidden
 		lineageTag: 8d4a0f53-6e1b-4a9d-8c45-0b7f3e2a1d43
 		summarizeBy: none
 		sourceColumn: BusinessType
@@ -31,7 +27,6 @@ table Fact_ItemPrice
 
 	column PriceListNum
 		dataType: int64
-		isHidden
 		formatString: 0
 		lineageTag: 8d4a0f53-6e1b-4a9d-8c45-0b7f3e2a1d44
 		summarizeBy: none
@@ -41,7 +36,6 @@ table Fact_ItemPrice
 
 	column PriceListName
 		dataType: string
-		isHidden
 		lineageTag: 8d4a0f53-6e1b-4a9d-8c45-0b7f3e2a1d45
 		summarizeBy: none
 		sourceColumn: PriceListName
@@ -50,7 +44,6 @@ table Fact_ItemPrice
 
 	column Price
 		dataType: double
-		isHidden
 		lineageTag: 8d4a0f53-6e1b-4a9d-8c45-0b7f3e2a1d46
 		summarizeBy: none
 		sourceColumn: Price
@@ -59,7 +52,6 @@ table Fact_ItemPrice
 
 	column PriceCurrency
 		dataType: string
-		isHidden
 		lineageTag: 8d4a0f53-6e1b-4a9d-8c45-0b7f3e2a1d47
 		summarizeBy: none
 		sourceColumn: PriceCurrency
@@ -68,7 +60,6 @@ table Fact_ItemPrice
 
 	column AvgCostLC
 		dataType: double
-		isHidden
 		lineageTag: 8d4a0f53-6e1b-4a9d-8c45-0b7f3e2a1d48
 		summarizeBy: none
 		sourceColumn: AvgCostLC
@@ -77,7 +68,6 @@ table Fact_ItemPrice
 
 	column LastPurchasePrice
 		dataType: double
-		isHidden
 		lineageTag: 8d4a0f53-6e1b-4a9d-8c45-0b7f3e2a1d49
 		summarizeBy: none
 		sourceColumn: LastPurchasePrice
@@ -86,7 +76,6 @@ table Fact_ItemPrice
 
 	column LastPurchaseCurrency
 		dataType: string
-		isHidden
 		lineageTag: 8d4a0f53-6e1b-4a9d-8c45-0b7f3e2a1d4a
 		summarizeBy: none
 		sourceColumn: LastPurchaseCurrency
@@ -95,8 +84,7 @@ table Fact_ItemPrice
 
 	column LastPurchaseDate
 		dataType: dateTime
-		isHidden
-		formatString: d
+		formatString: yyyy-mm-dd
 		lineageTag: 8d4a0f53-6e1b-4a9d-8c45-0b7f3e2a1d4b
 		summarizeBy: none
 		sourceColumn: LastPurchaseDate
@@ -105,7 +93,6 @@ table Fact_ItemPrice
 
 	column OnHand
 		dataType: double
-		isHidden
 		lineageTag: 8d4a0f53-6e1b-4a9d-8c45-0b7f3e2a1d4c
 		summarizeBy: none
 		sourceColumn: OnHand

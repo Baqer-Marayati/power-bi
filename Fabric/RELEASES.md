@@ -10,3 +10,4 @@ The first two rows record how the current live content got there. Those publishe
 | 2026-09-24 00:54 | Canon Service Report | Canon Analytics | first publish (API test) | `345f40e8` | model, report | Completed | 1654 | off |
 | 2026-09-24 01:55 | Canon Service Report | Canon Analytics | publish | `3297af78` | model, report | Completed | 1654 | off |
 | 2026-09-24 10:17 | Canon Service Report | Canon Analytics | removed from Canon Analytics | `50330e1e` | report, model | n/a | n/a | n/a |
+| 2026-09-25 15:33 | Canon Financial Report | Canon Analytics | publish | `d5aed973` | model | Completed | 18096 | on |

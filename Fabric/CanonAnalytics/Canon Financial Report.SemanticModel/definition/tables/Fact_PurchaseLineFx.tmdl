@@ -1,10 +1,8 @@
 table Fact_PurchaseLineFx
-	isHidden
 	lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e50
 
 	column DocType
 		dataType: string
-		isHidden
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e51
 		summarizeBy: none
 		sourceColumn: DocType
@@ -13,7 +11,6 @@ table Fact_PurchaseLineFx
 
 	column DocEntry
 		dataType: int64
-		isHidden
 		formatString: 0
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e52
 		summarizeBy: none
@@ -23,7 +20,6 @@ table Fact_PurchaseLineFx
 
 	column DocNum
 		dataType: int64
-		isHidden
 		formatString: 0
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e53
 		summarizeBy: none
@@ -33,7 +29,6 @@ table Fact_PurchaseLineFx
 
 	column LineNum
 		dataType: int64
-		isHidden
 		formatString: 0
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e54
 		summarizeBy: none
@@ -43,8 +38,7 @@ table Fact_PurchaseLineFx
 
 	column DocDate
 		dataType: dateTime
-		isHidden
-		formatString: d
+		formatString: yyyy-mm-dd
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e55
 		summarizeBy: none
 		sourceColumn: DocDate
@@ -53,7 +47,6 @@ table Fact_PurchaseLineFx
 
 	column CardCode
 		dataType: string
-		isHidden
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e56
 		summarizeBy: none
 		sourceColumn: CardCode
@@ -62,7 +55,6 @@ table Fact_PurchaseLineFx
 
 	column CardName
 		dataType: string
-		isHidden
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e57
 		summarizeBy: none
 		sourceColumn: CardName
@@ -71,7 +63,6 @@ table Fact_PurchaseLineFx
 
 	column ItemCode
 		dataType: string
-		isHidden
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e58
 		summarizeBy: none
 		sourceColumn: ItemCode
@@ -80,7 +71,6 @@ table Fact_PurchaseLineFx
 
 	column ItemDescription
 		dataType: string
-		isHidden
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e59
 		summarizeBy: none
 		sourceColumn: ItemDescription
@@ -89,7 +79,6 @@ table Fact_PurchaseLineFx
 
 	column Quantity
 		dataType: double
-		isHidden
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e5a
 		summarizeBy: sum
 		sourceColumn: Quantity
@@ -98,7 +87,6 @@ table Fact_PurchaseLineFx
 
 	column LineCurrency
 		dataType: string
-		isHidden
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e5b
 		summarizeBy: none
 		sourceColumn: LineCurrency
@@ -107,7 +95,6 @@ table Fact_PurchaseLineFx
 
 	column LineRate
 		dataType: double
-		isHidden
 		formatString: #,0.00
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e5c
 		summarizeBy: none
@@ -117,7 +104,6 @@ table Fact_PurchaseLineFx
 
 	column UnitPriceFC
 		dataType: double
-		isHidden
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e5d
 		summarizeBy: none
 		sourceColumn: UnitPriceFC
@@ -126,7 +112,6 @@ table Fact_PurchaseLineFx
 
 	column DiscountPct
 		dataType: double
-		isHidden
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e5e
 		summarizeBy: none
 		sourceColumn: DiscountPct
@@ -135,7 +120,6 @@ table Fact_PurchaseLineFx
 
 	column LineTotalLC
 		dataType: double
-		isHidden
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e5f
 		summarizeBy: sum
 		sourceColumn: LineTotalLC
@@ -144,7 +128,6 @@ table Fact_PurchaseLineFx
 
 	column LineTotalFC
 		dataType: double
-		isHidden
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e60
 		summarizeBy: sum
 		sourceColumn: LineTotalFC
@@ -153,7 +136,6 @@ table Fact_PurchaseLineFx
 
 	column LineTotalSC
 		dataType: double
-		isHidden
 		lineageTag: 9e5b1a64-7f2c-4bae-9d56-1c8a4f3b2e61
 		summarizeBy: sum
 		sourceColumn: LineTotalSC
